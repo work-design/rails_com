@@ -14,12 +14,12 @@ class ApplicationRecord
   end
 
 
-  def column_attributes
+  def self.column_attributes
     [
       self.class,
       name.to_sym,
       default,
-      cast_type,
+      type,
       sql_type,
       null,
       default_function
@@ -27,17 +27,17 @@ class ApplicationRecord
   end
 
 
-  def print_table
-    widths = @columns.map { |_| _.length }
+  def self.print_table
+    widths = columns.map { |i| i.name.length }
 
-    @columns.each do |line|
+    columns.each do |line|
       line.each_with_index do |e, i|
         s = e.size
         widths[i] = s if s > widths[i]
       end
     end
 
-    format = max_lengths.map { |_| "%#{_}s" }.join(" ")
+    format = max_lengths.map { |_| "%#{_}s" }.join(' ')
 
     xs.each do |x|
       puts format % x
