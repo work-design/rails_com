@@ -16,6 +16,8 @@ module ActiveHelper
 
     if controller.present?
       controller.include?(controller_name) ? active_class : item_class
+    else
+      item_class
     end
   end
 
