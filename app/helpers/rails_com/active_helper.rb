@@ -1,4 +1,4 @@
-module ActiveHelper
+module RailsCom::ActiveHelper
 
   # active_expect('notice', 'notice', expected: 'ui info message', unexpected: 'ui negative message')
   def active_expect(assert, value, expected:, unexpected:)
