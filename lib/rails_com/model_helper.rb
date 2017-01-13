@@ -1,8 +1,9 @@
-require 'rails/generators'
-require 'generators/factory_girl/model/model_generator'
 module RailsCom::ModelHelper
 
   def to_factory_girl
+    require 'rails/generators'
+    require 'generators/factory_girl/model/model_generator'
+
     args = [
       self.name.underscore
     ]
