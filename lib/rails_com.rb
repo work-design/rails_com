@@ -3,6 +3,8 @@ require 'rails_com/routes'
 require 'rails_com/models'
 require 'rails_com/model_helper'
 
+require 'rails_com/helpers/uid_helper'
+
 module RailsCom
   # Your code goes here...
 end
