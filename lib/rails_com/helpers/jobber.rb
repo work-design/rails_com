@@ -1,12 +1,11 @@
 module Jobber
   extend self
 
-  # deliver job
-  def deliver(job, arguments, options={})
-    msg = job_data(job, arguments, at: options[:at])
+  def deliver(job, *arguments)
+    msg = job_data(job, arguments)
 
     redis_pool.with do |conn|
-      conn.lpush("queue:default", JSON.dump(msg))
+      conn.lpush('queue:default', JSON.dump(msg))
     end
   end
 
@@ -15,14 +14,14 @@ module Jobber
       class: 'ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper',
       wrapped: job,
       queue: config['queue'],
-      args: {
+      args: [ {
         job_class: job,
         job_id: SecureRandom.uuid,
         queue_name: config['queue'],
         priority: nil,
         arguments: args,
         locale: 'en'
-      },
+      } ],
       retry: true,
       jid: SecureRandom.hex(12),
       created_at: Time.now.to_f,
