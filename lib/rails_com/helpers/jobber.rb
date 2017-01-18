@@ -6,13 +6,13 @@ module Jobber
     msg = job_data(job, arguments, at: options[:at])
 
     redis_pool.with do |conn|
-      conn.lpush("#{@namespace}:queue:default", JSON.dump(msg))
+      conn.lpush("queue:default", JSON.dump(msg))
     end
   end
 
   def job_data(job, args, at: nil)
     {
-      class: 'JobWrapper',
+      class: 'ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper',
       wrapped: job,
       queue: config['queue'],
       args: {
@@ -23,12 +23,19 @@ module Jobber
         arguments: args,
         locale: 'en'
       },
-      at: at
+      retry: true,
+      jid: SecureRandom.hex(12),
+      created_at: Time.now.to_f,
+      enqueued_at: Time.now.to_f
     }
   end
 
   def redis_pool
     @redis_pool ||= ConnectionPool.new(size: 5, timeout: 5) { Redis.new(url: config['url']) }
+  end
+
+  def redis
+    Redis.new(url: config['url'])
   end
 
   def config
