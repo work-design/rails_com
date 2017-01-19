@@ -6,7 +6,6 @@ module Jobber
 
     redis_pool.with do |conn|
       conn.lpush("queue:#{config['queue']}", JSON.dump(msg))
-      binding.pry
     end
   end
 
