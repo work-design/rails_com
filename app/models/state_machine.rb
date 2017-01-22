@@ -1,20 +1,26 @@
 module StateMachine
 
-  def process_to(status)
-    if verify_changes(status)
-      update!(state: self.class.states[status])
-    else
-      errors.add :state, 'Next state is wrong'
-      raise ActiveRecord::Rollback, 'Next state is wrong'
+  # obj = Model.new
+  # obj.process_to state: 'xxx'
+  def process_to(options = {})
+    if options.size > 1
+      raise 'Only support one column'
     end
-  end
 
-  def verify_changes(status)
-    states = self.class.states.keys
+    options.each do |k, v|
+      states = k.to_s.pluralize
+      states = self.class.send(states).keys
 
-    i = states.find_index(self.state)
-    n = states[i+1]
-    n == status.to_s
+      i = states.find_index self.send(k)
+      n = states[i+1]
+
+      if n == v.to_s
+        update!(k => states[v])
+      else
+        errors.add :state, 'Next state is wrong'
+        raise ActiveRecord::Rollback, 'Next state is wrong'
+      end
+    end
   end
 
 end
