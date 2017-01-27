@@ -4,9 +4,13 @@ module Jobber
   def deliver(job, *arguments)
     msg = job_data(job, arguments)
 
-    redis_pool.with do |conn|
-      conn.lpush("queue:#{config['queue']}", JSON.dump(msg))
+    r = redis_pool.with do |conn|
+      conn.pipelined do
+        conn.lpush(queue_key, JSON.dump(msg))
+        conn.lrange(queue_key, 0, 0)
+      end
     end
+    JSON.load(r[1].first)
   end
 
   def job_data(job, args, at: nil)
@@ -29,6 +33,28 @@ module Jobber
     }
   end
 
+  def rjobs(size = 1)
+    result = redis_pool.with do |conn|
+      conn.lrange(queue_key, -size, -1)
+    end
+    result.map do |r|
+      JSON.load(r)
+    end
+  end
+
+  def ljobs(size = 1)
+    result = redis_pool.with do |conn|
+      conn.lrange(queue_key, 0, size - 1)
+    end
+    result.map do |r|
+      JSON.load(r)
+    end
+  end
+
+  def queue_key
+    @queue_key ||= "queue:#{config['queue']}"
+  end
+
   def redis_pool
     @redis_pool ||= ConnectionPool.new(size: 5, timeout: 5) { Redis.new(url: config['url']) }
   end
@@ -39,23 +65,6 @@ module Jobber
 
   def config
     @config ||= Rails.application.config_for('jobber')
-  end
-
-  def redis_stat
-    result = redis_pool.with do |conn|
-      conn.pipelined do
-        conn.get('stat:processed'.freeze)
-        conn.get('stat:failed'.freeze)
-        conn.zcard('schedule'.freeze)
-        conn.zcard('retry'.freeze)
-        conn.zcard('dead'.freeze)
-        conn.scard('processes'.freeze)
-        conn.lrange('queue:default'.freeze, -1, -1)
-        conn.smembers('processes'.freeze)
-        conn.smembers('queues'.freeze)
-      end
-    end
-    result
   end
 
 end
