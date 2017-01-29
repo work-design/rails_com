@@ -1,10 +1,12 @@
-var uploader = Qiniu.uploader({
+var Qiniu1 = new QiniuJsSDK;
+
+var uploader1 = Qiniu1.uploader({
   runtimes: 'html5,html4',
-  browse_button: 'avatar_image_key_button',
-  uptoken_url: '/uptoken',
+  browse_button: 'certificate_image_key_button',
+  uptoken_url: '/private_uptoken',
   unique_names: true,
   save_key: false,
-  domain: '<%= Settings.qiniu.public.domain %>',
+  domain: '<%= Settings.qiniu.private.domain %>',
   get_new_uptoken: false,
   container: 'container',
   max_file_size: '100mb',
@@ -16,7 +18,7 @@ var uploader = Qiniu.uploader({
   init: {
     'FileUploaded': function(up, file, info) {
       var res = $.parseJSON(info);
-      $('#avatar_image_key_id').val(res.key);
+      $('#certificate_image_key_id').val(res.key);
     },
     'Error': function(up, err, errTip) {}
   }
