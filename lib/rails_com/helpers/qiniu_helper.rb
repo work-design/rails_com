@@ -1,19 +1,17 @@
 module QiniuHelper
-  BUCKET = SETTING['qiniu_bucket']
-  HOST = SETTING['qiniu_host']
-  
   extend self
+  
   def download_url(key)
-    Qiniu::Auth.authorize_download_url_2(SETTING['qiniu_host'], key)
+    Qiniu::Auth.authorize_download_url_2(config['qiniu_host'], key)
   end
 
   def qiniu_url(key)
-    HOST << '/' unless HOST.end_with? '/'
-    HOST + key.to_s
+    config['qiniu_host'] << '/' unless config['qiniu_host'].end_with? '/'
+    config['qiniu_host'] + key.to_s
   end
 
   def generate_uptoken(key = nil)
-    put_policy = Qiniu::Auth::PutPolicy.new(BUCKET,
+    put_policy = Qiniu::Auth::PutPolicy.new(config['qiniu_bucket'],
                                             key
     )
     @uptoken = Qiniu::Auth.generate_uptoken(put_policy)
@@ -25,13 +23,13 @@ module QiniuHelper
       local_file,
       key,
       nil,
-      bucket: BUCKET
+      bucket: config['qiniu_bucket']
     )
     result['key']
   end
 
   def list(prefix = 'chem')
-    list_policy = Qiniu::Storage::ListPolicy.new(BUCKET, 10, prefix, '/')
+    list_policy = Qiniu::Storage::ListPolicy.new(config['qiniu_bucket'], 10, prefix, '/')
     code, result, response_headers, s, d = Qiniu::Storage.list(list_policy)
     result['items']
   end
@@ -108,6 +106,10 @@ module QiniuHelper
     end
 
     result
+  end
+
+  def config
+    @config ||= Rails.application.config_for('config/setting')
   end
 
 end
