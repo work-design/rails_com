@@ -5,6 +5,7 @@ require 'rails_com/model_helper'
 
 require 'rails_com/helpers/uid_helper'
 require 'rails_com/helpers/jobber'
+require 'rails_com/helpers/qiniu_helper'
 
 module RailsCom
   # Your code goes here...

@@ -21,8 +21,15 @@ module RailsCom::ActiveHelper
     end
   end
 
-  def active_action(controller, *action, active_class: 'item active', item_class: 'item')
-    if controller == controller_name && action.include?(action_name)
+  def active_action(active_class: 'item active', item_class: 'item', **options)
+    ok = false
+    options.each do |key, value|
+      if controller_name == key.to_s
+        ok = true if value.include?(action_name)
+      end
+    end
+
+    if ok
       active_class
     else
       item_class
