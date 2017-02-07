@@ -1,8 +1,8 @@
 module RailsCom::ActiveHelper
 
-  # active_expect('notice', 'notice', expected: 'ui info message', unexpected: 'ui negative message')
-  def active_expect(assert, value, expected:, unexpected:)
-    if assert == value
+  # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
+  def active_assert(assert, expected: 'item active', unexpected: 'item')
+    if assert
       expected
     else
       unexpected

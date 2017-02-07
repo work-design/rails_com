@@ -1,0 +1,17 @@
+<% if target.errors.any? %>
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">有 <%= target.errors.count %> 处问题导至无法提交:</div>
+    <ul class="list">
+      <% target.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<script>
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').fadeOut();
+  });
+</script>

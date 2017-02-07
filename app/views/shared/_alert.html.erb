@@ -1,0 +1,12 @@
+<% flash.each do |type, msg| %>
+  <div class="<%= active_assert(type == 'notice', expected: 'ui info message', unexpected: 'ui negative message') %>">
+    <i class="close icon"></i>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<script>
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').fadeOut();
+  });
+</script>
