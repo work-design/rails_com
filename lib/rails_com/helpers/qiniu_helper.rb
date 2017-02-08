@@ -11,9 +11,7 @@ module QiniuHelper
   end
 
   def generate_uptoken(key = nil)
-    put_policy = Qiniu::Auth::PutPolicy.new(config['bucket'],
-                                            key
-    )
+    put_policy = Qiniu::Auth::PutPolicy.new(config['bucket'], key)
     @uptoken = Qiniu::Auth.generate_uptoken(put_policy)
   end
 
@@ -28,7 +26,7 @@ module QiniuHelper
     result['key']
   end
 
-  def list(prefix = 'chem')
+  def list(prefix = '')
     list_policy = Qiniu::Storage::ListPolicy.new(config['bucket'], 10, prefix, '/')
     code, result, response_headers, s, d = Qiniu::Storage.list(list_policy)
     result['items']
