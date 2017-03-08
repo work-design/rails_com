@@ -8,6 +8,7 @@ require 'rails_com/helpers/jobber'
 require 'rails_com/helpers/qiniu_helper'
 
 require 'rails_com/core_ext/hash'
+require 'rails_com/core_ext/nil'
 
 module RailsCom
   # Your code goes here...

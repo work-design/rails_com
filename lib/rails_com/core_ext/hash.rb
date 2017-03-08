@@ -34,4 +34,5 @@ class Hash
       yield(object)
     end
   end
+
 end
