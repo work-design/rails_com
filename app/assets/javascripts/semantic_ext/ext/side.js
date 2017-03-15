@@ -1,7 +1,10 @@
-$('#show_sidebar').click(function(){
-    $('.ui.left.sidebar').sidebar('toggle');
+$('#test_side').click(function(){
+  $('.ui.side').toggleClass('invisible');
+  $('.ui.side .ui.menu').toggleClass('icon')
 });
 
-$('.ui.left.sidebar').sidebar({
-    dimPage: false
+$('.ui.accordion').accordion({
+  selector: {
+    trigger: '.title'
+  }
 });
