@@ -1,24 +1,24 @@
 .ui.side {
   display: flex;
-}
-
-.ui.padded.side {
-  margin-right: 1rem;
+  flex-wrap: nowrap;
 }
 
 .ui.side > .sidebar {
   width: 260px;
-  padding-right: 10px;
   transition: width 1s ease;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .ui.side > .content {
   width: 100%;
   transition: width 1s ease;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .ui.invisible.side > .sidebar {
-  width: 60px;
+  width: 80px;
   transition: width 1s ease;
 }
 
