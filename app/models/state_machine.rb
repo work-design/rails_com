@@ -17,7 +17,7 @@ module StateMachine
       if n == v.to_s
         update!(k => states[v])
       else
-        errors.add :state, 'Next state is wrong'
+        errors.add k, 'Next state is wrong'
         raise ActiveRecord::Rollback, 'Next state is wrong'
       end
     end
