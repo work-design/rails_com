@@ -1,5 +1,10 @@
 module RailsCom::ActiveHelper
 
+  # controller: active_helper controller: 'xxx'  or active_helper controller: ['xxx1', 'admin/xxx2']
+  # action: active_action 'work/employee': ['index', 'show']
+  # path: active_helper path: 'work/employees'
+  # params: active_params state: 'xxx'
+
   # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
   def active_assert(assert, expected: 'item active', unexpected: 'item')
     if assert
