@@ -1,13 +1,6 @@
-.ui.form .field.inline > label.field,
-.ui.form .fields.inline > label.field {
-  padding: 0.65em;
-  text-align: right;
-  font-size: 14px;
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-  margin-right: 0;
+.ui.form .inline.fields > label.field {
+  justify-content: flex-end;
 }
-
-.field.inline > .wide.field {
-  display: inline-block;
+.ui.form .inline.fields .field > .selection.dropdown {
+  width: 100%;
 }
