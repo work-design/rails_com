@@ -16,11 +16,11 @@ module RailsCom::ActiveHelper
 
   def active_helper(controller: [], path: [], active_class: 'item active', item_class: 'item')
     if path.present?
-      return active_class if path.include?(request.path)
+      return active_class if Array(path).include?(request.path)
     end
 
     if controller.present?
-      controller.include?(controller_name) ? active_class : item_class
+      Array(controller).include?(controller_name) ? active_class : item_class
     else
       item_class
     end
