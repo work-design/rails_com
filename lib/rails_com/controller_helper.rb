@@ -14,7 +14,7 @@ module RailsCom::ControllerHelper
 
   def require_recaptcha
     inc_ip_count
-    if ip_count >= 10
+    if ip_count >= 100
       session[:back_to] = request.fullpath
       redirect_to '/the_guards'
     end
