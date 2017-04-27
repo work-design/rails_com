@@ -26,15 +26,23 @@ module QiniuHelper
     result['key']
   end
 
+  def delete(key)
+    code, result, response_headers = Qiniu::Storage.delete(
+      config['bucket'],
+      key
+    )
+    code
+  end
+
   def list(prefix = '')
     list_policy = Qiniu::Storage::ListPolicy.new(config['bucket'], 10, prefix, '/')
     code, result, response_headers, s, d = Qiniu::Storage.list(list_policy)
     result['items']
   end
 
-  def bsearch_last
+  def bsearch_last(prefix = '')
     ary = (0..9).to_a.reverse
-    search = 'chem_0'
+    search = prefix
     begin_index = 0
     end_index = ary.length - 1
     result = nil
@@ -76,9 +84,9 @@ module QiniuHelper
     result
   end
 
-  def last
+  def last(prefix = '')
     ary = (0..9).to_a.reverse
-    search = 'chem_0'
+    search = prefix
     result = nil
 
     while true do

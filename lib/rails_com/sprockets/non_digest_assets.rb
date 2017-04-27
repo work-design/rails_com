@@ -11,6 +11,12 @@ module NonDigestAssets
     end
   end
 
+  def remove(filename)
+    super
+    QiniuHelper.delete filename
+    logger.info "Removed from Qiniu: #{ filename }"
+  end
+
 end
 
 Sprockets::Manifest.send(:prepend, NonDigestAssets)

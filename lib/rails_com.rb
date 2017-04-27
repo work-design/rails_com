@@ -3,7 +3,7 @@ require 'rails_com/routes'
 require 'rails_com/models'
 require 'rails_com/model_helper'
 require 'rails_com/controller_helper'
-require 'rails_com/non_digest_assets'
+require 'rails_com/sprockets'
 
 require 'rails_com/helpers/uid_helper'
 require 'rails_com/helpers/jobber'
