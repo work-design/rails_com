@@ -1,7 +1,6 @@
-require 'rails_com/controller_helper'
 class TheGuardsController < ApplicationController
   layout 'rails_com/application'
-  skip_before_action :require_recaptcha
+  skip_before_action :require_recaptcha, raise: false
 
   def index
 
