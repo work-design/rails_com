@@ -14,7 +14,7 @@ class QiniuExporter < Sprockets::Exporters::Base
   end
 
   def call
-    QiniuHelper.upload target, asset.digest_path
+    QiniuHelper.upload target, 'assets/' + asset.digest_path.to_s
   end
 
 end
