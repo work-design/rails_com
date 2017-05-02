@@ -16,6 +16,11 @@ module QiniuHelper
   end
 
   def upload(local_file, key = nil)
+    code, result, response_headers = upload_verbose(local_file, key)
+    result['key']
+  end
+
+  def upload_verbose(local_file, key = nil)
     code, result, response_headers = Qiniu::Storage.upload_with_token_2(
       generate_uptoken(key),
       local_file,
@@ -23,7 +28,6 @@ module QiniuHelper
       nil,
       bucket: config['bucket']
     )
-    result['key']
   end
 
   def delete(key)
@@ -38,50 +42,6 @@ module QiniuHelper
     list_policy = Qiniu::Storage::ListPolicy.new(config['bucket'], 10, prefix, '/')
     code, result, response_headers, s, d = Qiniu::Storage.list(list_policy)
     result['items']
-  end
-
-  def bsearch_last(prefix = '')
-    ary = (0..9).to_a.reverse
-    search = prefix
-    begin_index = 0
-    end_index = ary.length - 1
-    result = nil
-
-    while true do
-      if end_index - begin_index > 1
-        index = ((begin_index + end_index) / 2.0).floor
-        end_flag = false
-      else
-        index = end_index
-        end_flag = true
-      end
-
-      search.sub! /\d$/, ary[index].to_s
-      list = self.list(search)
-
-      puts 'index: ' + index.to_s
-      puts 'search: ' + search
-      puts 'count: ' + list.size.to_s
-      puts '-------------'
-
-      if list.blank?
-        begin_index = index
-      elsif list.size >= 1
-        end_index = index
-
-        if end_flag
-          search << '9'
-          begin_index = 0
-          end_index = ary.length - 1
-
-          if list.size == 1
-            break result = list[0]['key']
-          end
-        end
-      end
-    end
-
-    result
   end
 
   def last(prefix = '')

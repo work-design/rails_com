@@ -4,13 +4,8 @@ require 'sprockets/exporters/base'
 class QiniuExporter < Sprockets::Exporters::Base
 
   def skip?(logger)
-    if ::File.exist?(target)
-      logger.debug "Skipping #{ target }, already exists"
-      true
-    else
-      logger.info "Upload To Qiniu: #{ target }"
-      false
-    end
+    logger.info "==> To Upload to Qiniu: #{ target }"
+    false
   end
 
   def call

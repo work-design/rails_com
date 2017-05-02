@@ -20,7 +20,7 @@ module NonDigestAssets
   def remove(filename)
     super
     QiniuHelper.delete 'assets/' + filename.to_s
-    logger.info "Removed from Qiniu: #{ filename }"
+    logger.info "--> Removed from Qiniu: #{ filename }"
   end
 
 end
