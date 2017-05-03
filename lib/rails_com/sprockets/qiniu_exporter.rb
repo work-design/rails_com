@@ -4,8 +4,12 @@ require 'sprockets/exporters/base'
 class QiniuExporter < Sprockets::Exporters::Base
 
   def skip?(logger)
-    logger.info "==> To Upload to Qiniu: #{ target }"
-    false
+    if Sprockets.config[:sync].to_s == 'qiniu'
+      logger.info "==> To Upload to Qiniu: #{ target }"
+      false
+    else
+      true
+    end
   end
 
   def call
