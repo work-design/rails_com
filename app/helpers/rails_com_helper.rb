@@ -8,6 +8,14 @@ module RailsComHelper
     end
   end
 
+  def js_ready(filename = nil, root: Rails.root, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}.ready"
+    path = root + 'app/assets/javascripts' + filename.to_s
+    if File.exist?(path.to_s + '.js') || File.exist?(path.to_s + '.js.erb')
+      javascript_include_tag filename, options
+    end
+  end
+
   def simple_format_hash(hash_text, options = {})
     wrapper_tag = options.fetch(:wrapper_tag, :p)
 
