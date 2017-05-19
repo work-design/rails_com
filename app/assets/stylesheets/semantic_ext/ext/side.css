@@ -10,10 +10,13 @@
   padding-right: 1rem;
 }
 
+.ui.side .menu {
+  border-radius: 0;
+}
+
 .ui.side > .content {
   width: 100%;
   transition: width 1s ease;
-  padding-top: 1rem;
   padding-bottom: 1rem;
   padding-right: 1rem;
 }
