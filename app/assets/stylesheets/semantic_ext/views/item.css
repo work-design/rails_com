@@ -38,9 +38,6 @@
 }
 
 /* with rail */
-.ui.items > .item:first-child > .rail {
-  top: -14px;
-}
 .ui.items > .item > .rail {
   border: none;
 }
