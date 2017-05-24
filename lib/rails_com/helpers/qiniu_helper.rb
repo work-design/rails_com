@@ -10,7 +10,7 @@ module QiniuHelper
     config['host'] + key.to_s
   end
 
-  def generate_uptoken(key = nil, options)
+  def generate_uptoken(key = nil, **options)
     put_policy = Qiniu::Auth::PutPolicy.new(config['bucket'], key)
     options.slice(*Qiniu::Auth::PutPolicy::PARAMS.keys).each do |k, v|
       put_policy.send(k.to_s + '=', v)
@@ -18,12 +18,12 @@ module QiniuHelper
     @uptoken = Qiniu::Auth.generate_uptoken(put_policy)
   end
 
-  def upload(local_file, key = nil, options)
+  def upload(local_file, key = nil, **options)
     code, result, response_headers = upload_verbose(local_file, key, options)
     result['key']
   end
 
-  def upload_verbose(local_file, key = nil, options)
+  def upload_verbose(local_file, key = nil, **options)
     code, result, response_headers = Qiniu::Storage.upload_with_token_2(
       generate_uptoken(key, options),
       local_file,
