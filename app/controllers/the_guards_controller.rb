@@ -13,7 +13,6 @@ class TheGuardsController < ApplicationController
     else
       redirect_to '/the_guards', alert: 'Invalid captcha code.'
     end
-
   end
 
 end
