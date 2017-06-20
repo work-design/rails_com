@@ -1,9 +1,6 @@
 module RailsCom::ActiveHelper
 
-  # controller: active_helper controller: 'xxx'  or active_helper controller: ['xxx1', 'admin/xxx2']
-  # action: active_action 'work/employee': ['index', 'show']
-  # path: active_helper path: 'work/employees'
-  # params: active_params state: 'xxx'
+
 
   # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
   def active_assert(assert, expected: 'item active', unexpected: 'item')
@@ -14,53 +11,36 @@ module RailsCom::ActiveHelper
     end
   end
 
-  def active_helper(controller: [], path: [], active_class: 'item active', item_class: 'item')
-    if path.present?
-      return active_class if Array(path).include?(request.path)
-    end
-
-    if controller.present?
-      Array(controller).include?(controller_name) ? active_class : item_class
-    else
-      item_class
-    end
-  end
-
-  def active_action(active_class: 'item active', item_class: 'item', **options)
-    ok = false
-    options.each do |key, value|
-      if controller_name == key.to_s
-        ok = true if value.include?(action_name)
-      end
-    end
-
-    if ok
-      active_class
-    else
-      item_class
-    end
-  end
-
+  # path: active_helper path: 'work/employees'
+  # controller: active_helper controller: 'xxx'  or active_helper controller: ['xxx1', 'admin/xxx2']
+  # action: active_helper 'work/employee': ['index', 'show']
+  # params: active_params state: 'xxx'
   # active_page controller: 'users', action: 'show', id: 371
-  def active_page(options)
-    active_class = options.delete(:active_class) || 'item active'
-    item_class = options.delete(:item_class) || 'item'
+  def active_helper(paths: [], controllers: [], active_class: 'item active', item_class: 'item', **options)
+    check_parameters = options.delete(:check_parameters)
 
-    options.select { |_, v| v.blank? }.each do |k, v|
-      if params[k].to_s == v.to_s
-        return active_class
-      else
-        return item_class
+    if paths.present?
+      Array(paths).each do |path|
+        return active_class if current_page?(path, check_parameters: check_parameters)
       end
     end
 
-    current_page?(options) ? active_class : item_class
+    if controllers.present?
+      return active_class if (Array(controllers) & [controller_name, controller_path]).size > 0
+    end
+
+    return active_class if current_page?(options)
+
+    if (options.keys.map(&:to_s) & [controller_name, controller_path]).present?
+      options.each do |_, value|
+        return active_class if value.include?(action_name)
+      end
+    end
+
+    item_class
   end
 
-  def active_params(options)
-    active_class = options.delete(:active_class) || 'item active'
-    item_class = options.delete(:item_class) || 'item'
-
+  def active_params(options, active_class: 'item active', item_class: 'item')
     options.select { |_, v| v.present? }.each do |k, v|
       if params[k].to_s == v.to_s
         return active_class
