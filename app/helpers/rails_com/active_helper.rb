@@ -1,7 +1,5 @@
 module RailsCom::ActiveHelper
 
-
-
   # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
   def active_assert(assert, expected: 'item active', unexpected: 'item')
     if assert
@@ -11,11 +9,11 @@ module RailsCom::ActiveHelper
     end
   end
 
-  # path: active_helper path: 'work/employees'
-  # controller: active_helper controller: 'xxx'  or active_helper controller: ['xxx1', 'admin/xxx2']
+  # path: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
+  # controller: active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
   # action: active_helper 'work/employee': ['index', 'show']
   # params: active_params state: 'xxx'
-  # active_page controller: 'users', action: 'show', id: 371
+  # active_helper controller: 'users', action: 'show', id: 371
   def active_helper(paths: [], controllers: [], active_class: 'item active', item_class: 'item', **options)
     check_parameters = options.delete(:check_parameters)
 
@@ -29,12 +27,10 @@ module RailsCom::ActiveHelper
       return active_class if (Array(controllers) & [controller_name, controller_path]).size > 0
     end
 
-    return active_class if current_page?(options)
+    return active_class if options.present? && current_page?(options)
 
-    if (options.keys.map(&:to_s) & [controller_name, controller_path]).present?
-      options.each do |_, value|
-        return active_class if value.include?(action_name)
-      end
+    options.select { |k, _| [controller_name, controller_path].include?(k.to_s) }.each do |_, value|
+      return active_class if value.include?(action_name)
     end
 
     item_class
