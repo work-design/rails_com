@@ -36,7 +36,7 @@ module RailsCom::ActiveHelper
     item_class
   end
 
-  def active_params(options, active_class: 'item active', item_class: 'item')
+  def active_params(active_class: 'item active', item_class: 'item', **options)
     options.select { |_, v| v.present? }.each do |k, v|
       if params[k].to_s == v.to_s
         return active_class
