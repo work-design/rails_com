@@ -8,6 +8,14 @@ module RailsComHelper
     end
   end
 
+  def css_load(filename = nil, root: Rails.root, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}"
+    path = root + 'app/assets/stylesheets' + filename.to_s
+    if File.exist?(path.to_s + '.css')
+      stylesheet_link_tag filename, options
+    end
+  end
+
   def js_ready(filename = nil, root: Rails.root, **options)
     filename ||= "controllers/#{controller_path}/#{action_name}.ready"
     path = root + 'app/assets/javascripts' + filename.to_s
