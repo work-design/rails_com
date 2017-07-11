@@ -2,6 +2,7 @@ require 'rails_com/version'
 
 require 'rails_com/routes'
 require 'rails_com/models'
+require 'rails_com/controllers'
 require 'rails_com/model_helper'
 require 'rails_com/controller_helper'
 require 'rails_com/sprockets'
