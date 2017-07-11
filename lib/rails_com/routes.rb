@@ -15,7 +15,6 @@ module RailsCom::Routes
     routes_wrapper.select { |i| i[:controller] == controller.to_s }.map { |i| i[:action] }.uniq
   end
 
-  private
   def detail(route)
     wrap = ActionDispatch::Routing::RouteWrapper.new(route)
     info = route.defaults
