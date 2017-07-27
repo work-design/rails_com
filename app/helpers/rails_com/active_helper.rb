@@ -49,20 +49,20 @@ module RailsCom::ActiveHelper
   def filter_params(options = {})
     except = options.delete(:except)
     only = options.delete(:only)
-    query = request.GET.dup
+    query = ActionController::Parameters.new(request.GET)
 
-    if only.present?
-      query.slice!(*only)
+    if only
+      query = query.permit(only)
     else
       excepts = []
-      if except.is_a? Array
+      if except.is_a?(Array)
         excepts += except
-      else
+      elsif except.present?
         excepts << except
       end
       excepts += ['commit', 'utf8', 'page']
 
-      query.except!(*excepts)
+      query = query.permit!.except(*excepts)
     end
 
     query.merge!(options)
