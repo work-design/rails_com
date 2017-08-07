@@ -5,9 +5,9 @@ module TheCommonApi
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
       render json: { error: exp.message, backtrace: exp.backtarce }, status: :not_found
     end
-    rescue_from 'StandardError' do |exp|
-      render json: { error: exp.message, backtrace: exp.backtrace }, status: 500
-    end
+    # rescue_from 'StandardError' do |exp|
+    #   render json: { error: exp.message, backtrace: exp.backtrace }, status: 500
+    # end
     after_action :wrap_body
   end
 
