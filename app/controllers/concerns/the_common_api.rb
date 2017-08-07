@@ -20,7 +20,11 @@ module TheCommonApi
 
   def wrap_body
     if self.response.media_type == 'application/json'
-      body = JSON.parse self.response.body
+      begin
+        body = JSON.parse self.response.body
+      rescue JSON::ParserError
+        body = {}
+      end
       self.response.body = { data: body }.to_json
     end
   end
