@@ -1,9 +1,6 @@
 # RailsCom
 Short description and motivation.
 
-## Usage
-How to use my plugin.
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -20,6 +17,17 @@ Or install it yourself as:
 ```bash
 $ gem install rails_com
 ```
+## Usage
+How to use my plugin.
+
+
+### View: add link
+```erb
+<%= link_to locales_path, class: 'item', remote: true, id: 'locales_show' do %>
+  <i class="translate icon"></i>
+<% end %>
+```
+
 
 ## Contributing
 Contribution directions go here.
