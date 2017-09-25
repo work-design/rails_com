@@ -5,7 +5,7 @@ module RailsExt
       path = template.identifier
 
       result = path.match /(?<=\/)[a-zA-Z0-9_-]+(?=\/app\/views)/
-      result = result.to_s.split('-').first + '/engine'
+      result = result.to_s.split('-').first.to_s + '/engine'
 
       engine = result.classify.safe_constantize
 
