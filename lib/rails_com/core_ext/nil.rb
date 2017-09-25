@@ -1,7 +1,7 @@
 class NilClass
 
   def to_d
-    to_s.to_d
+    BigDecimal(0)
   end
 
 end
