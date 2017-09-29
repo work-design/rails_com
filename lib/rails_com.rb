@@ -17,3 +17,9 @@ require 'rails_com/core_ext/nil'
 require 'rails_com/rails_ext/template_renderer'
 
 require 'rails_com/engine'
+
+module RailsCom
+  mattr_accessor :not_found_logger
+
+  self.not_found_logger = ActiveSupport::Logger.new('log/not_found.log')
+end

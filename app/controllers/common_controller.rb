@@ -7,5 +7,12 @@ class CommonController < ApplicationController
     end
   end
 
+  def not_found
+    params.permit!
+    RailsCom.not_found_logger.info "#{params[:path]}.#{params[:format]}"
+
+    head :not_found
+  end
+
 
 end
