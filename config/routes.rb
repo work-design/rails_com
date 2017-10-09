@@ -6,3 +6,7 @@ Rails.application.routes.draw do
   end
 
 end
+
+Rails.application.routes.append do
+  match '*path' => 'common#not_found', via: :all
+end
