@@ -1,18 +1,23 @@
 module RailsCom::Routes
   extend self
 
-  def routes_wrapper
-    ary = []
-
-    routes.each do |route|
-      ary << detail(route)
-    end
-
-    ary
+  def verbs(controller, action)
+    routes_wrapper.select { |i| i[:controller] == controller.to_s && i[:action] == action.to_s }.map { |i| i[:verb] }.uniq
   end
 
   def actions(controller)
     routes_wrapper.select { |i| i[:controller] == controller.to_s }.map { |i| i[:action] }.uniq
+  end
+
+  def routes_wrapper
+    return @routes_wrapper if @routes_wrapper.present?
+
+    @routes_wrapper = []
+    routes.each do |route|
+      @routes_wrapper << detail(route)
+    end
+
+    @routes_wrapper
   end
 
   def detail(route)
