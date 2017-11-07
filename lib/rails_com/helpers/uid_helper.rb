@@ -35,13 +35,13 @@ module UidHelper
 
     if str.size >= 12
       str = str[0..11]
+      str.to_i(36).to_s 
     elsif str.size >= 6 && str.size < 12
       str = str[0..5]
+      str.to_i(36).to_s
     else
       raise 'Can not parse the format string!'
     end
-
-    Time.at(str.to_i(36)).strftime('%Y%m%d%H%M%S')
   end
 
   def rand_string(len = 4)
