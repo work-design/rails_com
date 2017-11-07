@@ -13,15 +13,35 @@ module UidHelper
     str
   end
 
-  def nsec_uuid(prefix = '')
+  def nsec_uuid(prefix = '', suffix = rand_string)
     time = Time.now
     str = time.to_i.to_s + time.nsec.to_s
-    uuid str.to_i, prefix, rand_string
+    uuid str.to_i, prefix, suffix
   end
 
-  def sec_uuid(prefix = '')
+  def sec_uuid(prefix = '', suffix = rand_string(2))
     time = Time.now
-    uuid time.to_i, prefix, rand_string(2)
+    uuid time.to_i, prefix, suffix
+  end
+
+  def decode_uuid(uuid, prefix: true)
+    if prefix
+      str_arr = uuid.split('-')
+      str = str_arr[1..-1].join
+    else
+      str_arr = uuid.split('-')
+      str = str_arr.join
+    end
+
+    if str.size >= 12
+      str = str[0..11]
+    elsif str.size >= 6 && str.size < 12
+      str = str[0..5]
+    else
+      raise 'Can not parse the format string!'
+    end
+
+    Time.at(str.to_i(36)).strftime('%Y%m%d%H%M%S')
   end
 
   def rand_string(len = 4)
