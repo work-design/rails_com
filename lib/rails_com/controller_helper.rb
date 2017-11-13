@@ -45,4 +45,6 @@ module RailsCom::ControllerHelper
 
 end
 
-ActionController::Base.include RailsCom::ControllerHelper
+ActiveSupport.on_load :action_controller_base do
+  include RailsCom::ControllerHelper
+end

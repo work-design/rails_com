@@ -35,7 +35,7 @@ module UidHelper
 
     if str.size >= 12
       str = str[0..11]
-      str.to_i(36).to_s 
+      str.to_i(36).to_s
     elsif str.size >= 6 && str.size < 12
       str = str[0..5]
       str.to_i(36).to_s
