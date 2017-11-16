@@ -1,13 +1,13 @@
 <div>
 
   <div class="ui segment breadcrumb">
-    <%= link_to 'Back', <%= index_helper %>_path, class: 'section' %>
+    <%%= link_to 'Back', <%= index_helper %>_path, class: 'section' %>
     <div class="divider"> / </div>
     <div class="active section">Edit</div>
   </div>
 
   <div class="ui segment">
-    <%= render 'form' %>
+    <%%= render 'form' %>
   </div>
 
 </div>

@@ -5,11 +5,11 @@
   </div>
 
   <div class="ui segment bottom attached">
-    <%= render 'search_form' %>
+    <%%= render 'search_form' %>
   </div>
 
   <div class="ui segment top attached">
-    <%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path, class: 'ui teal button' %>
+    <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path, class: 'ui teal button' %>
   </div>
 
   <table class="ui bottom attached table">
@@ -24,9 +24,9 @@
     <tbody>
     <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
       <tr>
-      <% attributes.reject(&:password_digest?).each do |attribute| -%>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-      <% end -%>
+<% end -%>
         <td>
           <%%= link_to 'Show', <%= singular_route_name %>_path(<%= singular_table_name %>), class: 'ui blue label' %>
           <%%= link_to 'Edit', edit_<%= singular_route_name %>_path(<%= singular_table_name %>), class: 'ui pink label' %>
@@ -37,7 +37,7 @@
     </tbody>
   </table>
 
-  <%= paginate @<%= plural_table_name %> %>
+  <%%= paginate @<%= plural_table_name %> %>
 </div>
 
 
