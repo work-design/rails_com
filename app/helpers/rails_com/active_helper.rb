@@ -10,8 +10,14 @@ module RailsCom::ActiveHelper
   end
 
   # active_asserts('active': true, expected: false)
-  def active_asserts(**options)
-    options.select { |_, v| v }.keys.join(' ')
+  def active_asserts(join: true, **options)
+    keys = options.select { |_, v| v }.keys
+
+    if join
+      keys.join(' ')
+    else
+      keys.last.to_s
+    end
   end
 
   # path: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
