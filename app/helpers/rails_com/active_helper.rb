@@ -9,6 +9,11 @@ module RailsCom::ActiveHelper
     end
   end
 
+  # active_asserts('active': true, expected: false)
+  def active_asserts(**options)
+    options.select { |_, v| v }.keys.join(' ')
+  end
+
   # path: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
   # controller: active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
   # action: active_helper 'work/employee': ['index', 'show']
