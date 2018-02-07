@@ -1,6 +1,8 @@
 module RailsExt
   module TemplateRenderer
-
+    
+    # record where the view renderd from, main project or which engine
+    # used by view helper methods: js_load, css_load, js_ready
     def render_template(template, layout_name = nil, locals = nil)
       path = template.identifier
 
