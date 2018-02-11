@@ -15,7 +15,8 @@ module StateMachine
       n = states.key(i+1)
 
       if n == v.to_s
-        update!(k => v)
+        assign_attributes(k => v)
+        save!
       else
         errors.add k, 'Next state is wrong'
         raise ActiveRecord::Rollback, 'Next state is wrong'
