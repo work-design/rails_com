@@ -9,13 +9,13 @@ module StateMachine
 
     options.each do |k, v|
       states = k.to_s.pluralize
-      states = self.class.send(states).keys
+      states = self.class.send(states)
 
-      i = states.find_index self.send(k)
-      n = states[i+1]
+      i = states[self.send(k)]
+      n = states.key(i+1)
 
       if n == v.to_s
-        update!(k => states[v])
+        update!(k => v)
       else
         errors.add k, 'Next state is wrong'
         raise ActiveRecord::Rollback, 'Next state is wrong'
