@@ -16,4 +16,14 @@ function fetch_xhr_script(url, params){
   }).catch(function(ex) {
     console.log('parsing failed', ex)
   })
-};
+}
+
+function getCheckedIds(name) {
+  var x = 'input[name="' + name + '"]:checked';
+  var ids = [];
+  $(x).each(function(){
+    ids.push($(this).val())
+  });
+  ids = ids.join(',');
+  return ids
+}
