@@ -1,8 +1,8 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
 require 'rails_com/version'
 
 Gem::Specification.new do |s|
-  s.name        = "rails_com"
+  s.name        = 'rails_com'
   s.version     = RailsCom::VERSION
   s.authors     = ["qinmingyuan"]
   s.email       = ["mingyuan0715@foxmail.com"]
