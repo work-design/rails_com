@@ -36,7 +36,7 @@ namespace :sidekiq do
 
   desc 'Stop sidekiq'
   task stop: :remote_environment do
-    comment 'Stop sidekiq'
+    comment 'Stop sidekiq！'
 
     for_each_process do |pid_file, _|
       in_path fetch(:current_path) do
@@ -47,19 +47,12 @@ namespace :sidekiq do
 
   desc 'Start sidekiq'
   task start: :remote_environment do
-    comment 'Start sidekiq'
+    comment 'Start sidekiq！'
 
     for_each_process do |pid_file, idx|
       in_path fetch(:current_path) do
         command %{ #{fetch :sidekiq} -d -i #{idx} -P #{pid_file} }
       end
-    end
-  end
-
-  desc 'run sidekiq ui'
-  task :ui do
-    in_path "#{fetch(:current_path)}/sidekiq" do
-      command %{ #{thinctl} start -d -R sidekiq.ru -p 9292 }
     end
   end
 
