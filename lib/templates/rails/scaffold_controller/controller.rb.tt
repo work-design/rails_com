@@ -1,7 +1,7 @@
 <% if namespaced? -%>
 require_dependency '<%= namespaced_path %>/application_controller'
 <% end -%>
-class <%= controller_class_name %>Controller < BaseController
+class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:camelize).join('::') %>::BaseController
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
   def index

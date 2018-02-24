@@ -14,6 +14,7 @@ require 'rails_com/core_ext/hash'
 require 'rails_com/core_ext/nil'
 
 require 'rails_com/rails_ext/template_renderer'
+require 'rails_com/rails_ext/scaffold_generator'
 
 require 'rails_com/engine'
 
