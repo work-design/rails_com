@@ -8,14 +8,8 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     @<%= plural_table_name %> = <%= orm_class %>.page(params[:page])
   end
 
-  def show
-  end
-
   def new
     @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-  end
-
-  def edit
   end
 
   def create
@@ -26,6 +20,12 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     else
       render :new
     end
+  end
+
+  def show
+  end
+
+  def edit
   end
 
   def update

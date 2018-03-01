@@ -1,7 +1,7 @@
 <div>
 
   <div class="ui top attached menu borderless">
-    <div class="item"><strong><%= plural_table_name.titleize %></strong></div>
+    <div class="header item"><%= plural_table_name.titleize %></div>
   </div>
 
   <div class="ui segment bottom attached">
