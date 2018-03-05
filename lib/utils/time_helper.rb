@@ -5,7 +5,7 @@ module TimeHelper
     from_time = from_time.to_datetime
     to_time = to_time.to_datetime
 
-    return nil if from_time > to_time
+    return {} if from_time > to_time
 
     years = to_time.year - from_time.year
     months = to_time.month - from_time.month
