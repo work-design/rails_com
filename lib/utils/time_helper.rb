@@ -2,11 +2,11 @@ module TimeHelper
   extend self
 
   def exact_distance_time(from_time, to_time)
-    return nil if from_time > to_time
-    
     from_time = from_time.to_datetime
     to_time = to_time.to_datetime
-    
+
+    return nil if from_time > to_time
+
     years = to_time.year - from_time.year
     months = to_time.month - from_time.month
     days = to_time.mday - from_time.mday
