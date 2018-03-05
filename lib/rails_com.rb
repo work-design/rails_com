@@ -20,8 +20,3 @@ require 'utils/time_helper'
 
 require 'rails_com/engine'
 
-module RailsCom
-  mattr_accessor :not_found_logger
-
-  self.not_found_logger = ActiveSupport::Logger.new('log/not_found.log')
-end
