@@ -1,6 +1,7 @@
 module TimeHelper
   extend self
-
+  
+  # todo consider timezone
   def exact_distance_time(from_time, to_time)
     from_time = from_time.to_datetime
     to_time = to_time.to_datetime
