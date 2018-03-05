@@ -16,6 +16,8 @@ require 'rails_com/core_ext/nil'
 require 'rails_com/rails_ext/template_renderer'
 require 'rails_com/rails_ext/scaffold_generator'
 
+require 'utils/time_helper'
+
 require 'rails_com/engine'
 
 module RailsCom
