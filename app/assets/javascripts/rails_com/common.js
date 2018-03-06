@@ -1,7 +1,10 @@
 function timeForLocalized(){
   $('time[data-localized!="true"]').each(function(){
-    this.textContent = moment.utc(this.textContent).local().format('YYYY-MM-DD HH:mm:ss');
-    this.dataset['localized'] = 'true'
+    if (this.textContent.length > 0) {
+      var format = this.dataset['format'] || 'YYYY-MM-DD HH:mm:ss';
+      this.textContent = moment.utc(this.textContent).local().format(format);
+      this.dataset['localized'] = 'true'
+    }
   })
 }
 
