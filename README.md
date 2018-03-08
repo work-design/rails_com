@@ -1,5 +1,5 @@
 # RailsCom
-Short description and motivation.
+Rails Common engine, with many sugars!
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -17,9 +17,11 @@ Or install it yourself as:
 ```bash
 $ gem install rails_com
 ```
-## Usage
-How to use my plugin.
-
+## Features
+* examples: puma, configs etc.
+* rails and ruby core extension;
+* methods deal rails model/controller/routes etc.
+* some helpers, for generator uuid based on time and more;
 
 ### View: add link
 ```erb
