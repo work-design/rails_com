@@ -1,4 +1,4 @@
-<%%= search_form_with css: { wrapper_all: 'inline field', wrapper_input: 'field', wrapper_submit: 'field', submit: 'ui green button'} do |f| %>
+<%%= search_form_with do |f| %>
   <div class="fields">
     <%%= f.submit 'Search' %>
   </div>
