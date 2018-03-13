@@ -45,7 +45,7 @@ function toggleAll(source, name) {
       let index = remove_ids.indexOf(checkbox.value);
       remove_ids.splice(index, 1);
     } else if (!checkbox.checked && checkbox.checked !== checkbox.defaultChecked) {
-      remove_ids.push(this.value)
+      remove_ids.push(checkbox.value)
     }  else if (!checkbox.checked && checkbox.checked === checkbox.defaultChecked) {
       let index = add_ids.indexOf(checkbox.value);
       add_ids.splice(index, 1);
