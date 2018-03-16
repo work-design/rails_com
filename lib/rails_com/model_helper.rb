@@ -47,13 +47,18 @@ module RailsCom::ModelHelper
     nil
   end
 
-  def sql_table(except: [], only: [])
+  def sql_table(except: [], only: [], pure: true)
     if only.size > 0
       _columns = columns.select { |column| only.include?(column.name) }
     else
       _columns = columns.reject { |column| except.include?(column.name) }
     end
-    sql = "CREATE TABLE `#{self.table_name}` (\n"
+    
+    if pure
+      sql = ""
+    else
+      sql = "CREATE TABLE `#{self.table_name}` (\n"
+    end
     
     _columns.each do |column|
       sql << "  `#{column.name}` #{column.sql_type}"
@@ -80,8 +85,12 @@ module RailsCom::ModelHelper
       sql << index.columns.map { |col| "`#{col}`" }.join(',')
       sql << ")\n"
     end
-
-    sql << ")"
+    
+    if pure
+      sql
+    else
+      sql << ")"
+    end
   end
 
 end
