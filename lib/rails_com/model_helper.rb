@@ -68,7 +68,7 @@ module RailsCom::ModelHelper
     end
 
     sql << "  PRIMARY KEY (`#{self.primary_key}`)"
-    
+
     _indexes = connection.indexes(self.table_name).reject { |index| (index.columns & _columns.map { |col| col.name }).blank? }
     if _indexes.present?
       sql << ",\n"
@@ -80,7 +80,7 @@ module RailsCom::ModelHelper
       sql << index.columns.map { |col| "`#{col}`" }.join(',')
       sql << ")\n"
     end
-    
+
     sql << ")"
   end
 
