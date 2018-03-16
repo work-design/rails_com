@@ -26,8 +26,7 @@ module RailsCom::ModelHelper
       ]
     end
   end
-
-
+  
   def print_table(with_column: false)
     columns.each do |column|
       info = with_column ? '#  t.column' : '# '
@@ -48,7 +47,45 @@ module RailsCom::ModelHelper
     nil
   end
 
+  def sql_table(except: [], only: [])
+    if only.size > 0
+      _columns = columns.select { |column| only.include?(column.name) }
+    else
+      _columns = columns.reject { |column| except.include?(column.name) }
+    end
+    sql = "CREATE TABLE `#{self.table_name}` (\n"
+    
+    _columns.each do |column|
+      sql << "  `#{column.name}` #{column.sql_type}"
+      sql << " NOT NULL" unless column.null
+      if column.default
+        sql << " DEFAULT '#{column.default}',\n"
+      elsif column.default.nil? && column.null
+        sql << " DEFAULT NULL,\n"
+      else
+        sql << ",\n"
+      end
+    end
+
+    sql << "  PRIMARY KEY (`#{self.primary_key}`)"
+    
+    _indexes = connection.indexes(self.table_name).reject { |index| (index.columns & _columns.map { |col| col.name }).blank? }
+    if _indexes.present?
+      sql << ",\n"
+    else
+      sql << "\n"
+    end
+    _indexes.each do |index|
+      sql << "  KEY `#{index.name}` ("
+      sql << index.columns.map { |col| "`#{col}`" }.join(',')
+      sql << ")\n"
+    end
+    
+    sql << ")"
+  end
+
 end
 
-
-ActiveRecord::Base.extend RailsCom::ModelHelper
+ActiveSupport.on_load :active_record do
+  extend RailsCom::ModelHelper
+end
