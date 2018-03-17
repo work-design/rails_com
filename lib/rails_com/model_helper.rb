@@ -26,7 +26,7 @@ module RailsCom::ModelHelper
       ]
     end
   end
-  
+
   def print_table(with_column: false)
     columns.each do |column|
       info = with_column ? '#  t.column' : '# '
@@ -53,13 +53,13 @@ module RailsCom::ModelHelper
     else
       _columns = columns.reject { |column| except.include?(column.name) }
     end
-    
+
     if pure
       sql = ""
     else
       sql = "CREATE TABLE `#{self.table_name}` (\n"
     end
-    
+
     _columns.each do |column|
       sql << "  `#{column.name}` #{column.sql_type}"
       sql << " NOT NULL" unless column.null
@@ -83,14 +83,14 @@ module RailsCom::ModelHelper
     _indexes.each_with_index do |obj, index|
       sql << "  KEY `#{obj.name}` ("
       sql << obj.columns.map { |col| "`#{col}`" }.join(',')
-      
+
       if index + 1 == _indexes.size
         sql << ")\n"
       else
         sql << "),\n"
       end
     end
-    
+
     if pure
       sql
     else
