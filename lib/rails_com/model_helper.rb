@@ -80,10 +80,15 @@ module RailsCom::ModelHelper
     else
       sql << "\n"
     end
-    _indexes.each do |index|
-      sql << "  KEY `#{index.name}` ("
-      sql << index.columns.map { |col| "`#{col}`" }.join(',')
-      sql << ")\n"
+    _indexes.each_with_index do |obj, index|
+      sql << "  KEY `#{obj.name}` ("
+      sql << obj.columns.map { |col| "`#{col}`" }.join(',')
+      
+      if index + 1 == _indexes.size
+        sql << ")\n"
+      else
+        sql << "),\n"
+      end
     end
     
     if pure
