@@ -13,7 +13,6 @@ module RailsCom::ModelHelper
     generator.invoke_all
   end
 
-
   def column_attributes
     columns.map do |column|
       [
@@ -62,6 +61,7 @@ module RailsCom::ModelHelper
 
     _columns.each do |column|
       sql << "  `#{column.name}` #{column.sql_type}"
+      sql << " COLLATE #{column.collation}" if column.collation
       sql << " NOT NULL" unless column.null
       if column.default
         sql << " DEFAULT '#{column.default}',\n"
