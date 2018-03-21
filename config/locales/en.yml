@@ -23,3 +23,9 @@ en:
       submit: 'Saves %{model}'
       q:
         submit: 'Search'
+  number:
+    human:
+      storage_units:
+        units:
+          h: Hours
+          m: Min
