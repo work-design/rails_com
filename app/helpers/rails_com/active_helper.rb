@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RailsCom::ActiveHelper
 
   # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')

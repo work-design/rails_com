@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RailsComHelper
 
   def js_load(filename = nil, root: nil, **options)
