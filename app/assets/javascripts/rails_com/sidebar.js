@@ -13,10 +13,10 @@ function sidebarSide2() {
   $('.ui.side .ui.menu').addClass('accordion');
   $('.ui.side .ui.menu').removeClass('icon');
   $('.ui.side .ui.menu .item:not(.header)').removeClass('ui dropdown');
-  $('.ui.side .ui.menu .item:not(.header)').dropdown('destroy');
   $('.ui.side .ui.menu .dropdown.icon').remove();
   $('.ui.side .ui.menu .title').append('<i class="dropdown icon"></i>');
   $('.ui.accordion').accordion({selector: {trigger: '.title'}});
+  $('.ui.side .ui.menu .item:not(.header)').dropdown('destroy');
 }
 
 document.addEventListener('turbolinks:load', function(){
