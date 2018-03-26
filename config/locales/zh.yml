@@ -1,10 +1,13 @@
 zh:
   errors:
+    format: "%{attribute} %{message}"
     messages:
+      record_invalid: "验证失败: %{errors}"
+      model_invalid: "验证失败: %{errors}"
+      required: 必须存在
       blank: 不能为空
       too_short: 长度不够
       taken: 已被占用
-      record_invalid: 已存在
   views:
     pagination:
       first: First

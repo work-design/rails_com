@@ -14,7 +14,7 @@ module TheCommonApi
   def process_errors(model)
     render json: {
       errors: model.errors.as_json(full_messages: true),
-      full_messages: model.errors.full_messages.join(',')
+      full_messages: model.errors.full_messages.join("\n")
     }, status: 500
   end
 
