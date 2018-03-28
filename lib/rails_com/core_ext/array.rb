@@ -37,7 +37,6 @@ class Array
     end
   end
 
-  # see ruby cook book
   # raw_data = [
   #   [:a, 1],
   #   [:a, 2],
@@ -46,9 +45,9 @@ class Array
   # raw_data.to_combined_h
   # => { a: [1, 2], b: 2 }
   def to_combined_h
-    hash = Hash.new { |hash, key| hash[key] = [] }
-    self.each { |x, y| hash[x] << y }
+    hash = {}
+    self.each { |x, y| hash[x] = hash[x] ? Array(hash[x]) << y : y  }
     hash
   end
-
+  
 end
