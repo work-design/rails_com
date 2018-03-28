@@ -18,13 +18,23 @@ class Array
     insert (length / 2.0).ceil, *Array.new(n - length, x)
   end
 
-  # def to_combined_h
-  #   self.map! { |a| { a[0] => a[1] } }
-  #   self.reduce({}) do |memo, index|
-  #     memo.merge(index) { |_, value, default| [value, default] }
-  #   end
-  # end
+  # raw_data = [
+  #   { a: 1 },
+  #   { a: 2 },
+  #   { b: 2 }
+  # ]
+  def to_combined_hash
+    self.reduce({}) do |memo, index|
+      memo.merge(index) { |_, value, default| [value, default] }
+    end
+  end
+
   # see ruby cook book
+  # raw_data = [
+  #   [:a, 1],
+  #   [:a, 2],
+  #   [:b, 2]
+  # ]
   def to_combined_h
     hash = Hash.new { |hash, key| hash[key] = [] }
     self.each { |x, y| hash[x] << y }
