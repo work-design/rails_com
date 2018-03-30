@@ -9,7 +9,7 @@ module IpHelper
       if x.match? /apnic\|CN\|ipv4/
         r = x.split('|').values_at(3, 4)
         min = IPAddr.new(r[0]).to_i
-        max = min + r[1].to_i
+        max = min + r[1].to_i - 1
         max_ip = IPAddr.new(max, Socket::AF_INET).to_s
       end
     end
