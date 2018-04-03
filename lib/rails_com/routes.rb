@@ -9,6 +9,10 @@ module RailsCom::Routes
     routes_wrapper.select { |i| i[:controller] == controller.to_s }.map { |i| i[:action] }.uniq
   end
 
+  def controllers
+    routes_wrapper.map { |i| i[:controller] }.uniq
+  end
+
   def routes_wrapper
     return @routes_wrapper if @routes_wrapper.present?
 
