@@ -10,7 +10,8 @@ module RailsCom::Routes
   end
 
   def controllers
-    routes_wrapper.map { |i| i[:controller] }.compact.uniq
+    _controllers = routes_wrapper.map { |i| i[:controller] }.compact.uniq
+    _controllers - RailsCom.config.ignore_controllers
   end
 
   def routes_wrapper

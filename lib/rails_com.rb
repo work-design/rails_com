@@ -1,4 +1,5 @@
 require 'rails_com/version'
+require 'rails_com/config'
 
 require 'rails_com/routes'
 require 'rails_com/models'
