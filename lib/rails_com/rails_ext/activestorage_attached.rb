@@ -1,6 +1,5 @@
 module ActiveStorage
   class Attached
-  extend self
 
     def url_sync(filename, url)
       tmp_path = File.expand_path 'tmp/storage_migrate'
