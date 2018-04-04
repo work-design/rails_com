@@ -17,6 +17,7 @@ require 'rails_com/core_ext/array'
 
 require 'rails_com/rails_ext/template_renderer'
 require 'rails_com/rails_ext/scaffold_generator'
+require 'rails_com/rails_ext/attached'
 
 require 'utils/time_helper'
 
