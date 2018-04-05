@@ -1,5 +1,5 @@
-set :puma_cmd, -> { "#{fetch :bundle_prefix} puma -e #{fetch :rails_env}" }
-set :pumactl_cmd, -> { "#{fetch :bundle_prefix} pumactl" }
+set :puma_cmd, -> { "#{fetch :bundle_more_prefix} puma -e #{fetch :rails_env}" }
+set :pumactl_cmd, -> { "#{fetch :bundle_more_prefix} pumactl" }
 set :puma_socket, -> { "#{fetch :current_path}/tmp/pids/puma.pid" }
 
 namespace :puma do
