@@ -1,3 +1,4 @@
+set :bundle_more_prefix, -> { "BUNDLE_GEMFILE=#{fetch(:current_path) + '/Gemfile'} #{fetch :bundle_prefix}" }
 set :puma_cmd, -> { "#{fetch :bundle_more_prefix} puma -e #{fetch :rails_env}" }
 set :pumactl_cmd, -> { "#{fetch :bundle_more_prefix} pumactl" }
 set :puma_socket, -> { "#{fetch :current_path}/tmp/pids/puma.pid" }
