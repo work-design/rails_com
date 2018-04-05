@@ -1,7 +1,6 @@
 dir = ENV['PWD']
-sdir = ENV['PWD']
 
-port 3000
+port 3001
 threads 5, 64
 environment 'staging'
 directory dir
@@ -9,24 +8,22 @@ workers 2
 daemonize true
 prune_bundler true
 
-bind "unix://#{File.expand_path('tmp/sockets/puma.sock', sdir)}"
-pidfile "#{File.expand_path('tmp/pids/puma.pid', sdir)}"
-state_path "#{File.expand_path('tmp/sockets/puma.state', sdir)}"
-activate_control_app "unix://#{File.expand_path('tmp/sockets/pumactl.sock', sdir)}"
-stdout_redirect "#{File.expand_path('log/puma.stdout.log', sdir)}",
-                "#{File.expand_path('log/puma.stdout.log', sdir)}"
+bind "unix://#{File.expand_path('tmp/sockets/puma.sock', dir)}"
+pidfile "#{File.expand_path('tmp/pids/puma.pid', dir)}"
+state_path "#{File.expand_path('tmp/sockets/puma.state', dir)}"
+activate_control_app "unix://#{File.expand_path('tmp/sockets/pumactl.sock', dir)}"
+stdout_redirect "#{File.expand_path('log/puma.stdout.log', dir)}",
+                "#{File.expand_path('log/puma.stdout.log', dir)}",
+                true
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
 on_restart do
-  puts '- * - On restart - * -'
-  puts 'pidfile: '
-  puts @options[:pidfile]
-  puts 'binds: '
-  puts @options[:binds]
-  puts 'control_url: '
-  puts @options[:control_url]
-  puts '- * - * - * -'
+  puts "\n-----> On restart"
+  puts "env: #{@options[:environment]}"
+  puts "pidfile: #{@options[:pidfile]}"
+  puts "binds: #{@options[:binds]}"
+  puts "control_url: #{@options[:control_url]}"
 end
