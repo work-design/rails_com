@@ -1,5 +1,5 @@
 function fetch_xhr_script(url, params){
-  let default_params = {
+  var default_params = {
     credentials: 'include',
     headers: {
       'Accept': 'application/javascript',
@@ -10,7 +10,7 @@ function fetch_xhr_script(url, params){
   fetch(url, params).then(function(response) {
     return response.text();
   }).then(function(text) {
-    let script = document.createElement('script');
+    var script = document.createElement('script');
     script.text = text;
     document.head.appendChild(script).parentNode.removeChild(script);
   }).catch(function(ex) {
