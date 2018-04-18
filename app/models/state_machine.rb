@@ -1,24 +1,25 @@
 module StateMachine
 
-  # obj = Model.new
   # obj.process_to state: 'xxx'
   def process_to(options = {})
-    if options.size > 1
-      raise 'Only support one column'
-    end
+    options.each do |column, value|
+      _states = self.class.send(column.to_s.pluralize)
+      _states = _states.keys
+      _state = self.send(column)
 
-    options.each do |k, v|
-      states = k.to_s.pluralize
-      states = self.class.send(states)
+      if _state.nil?
+        next_index = 0
+      else
+        i = _states.index(_state)
+        next_index = i + 1
+      end
+      next_state = _states[next_index]
 
-      i = states[self.send(k)]
-      n = states.key(i+1)
-
-      if n == v.to_s
-        assign_attributes(k => v)
+      if next_state == value.to_s
+        assign_attributes(column => value)
         save!
       else
-        errors.add k, 'Next state is wrong'
+        errors.add column, 'Next state is wrong'
         raise ActiveRecord::Rollback, 'Next state is wrong'
       end
     end

@@ -15,7 +15,7 @@ module TheCommonApi
     render json: {
       errors: model.errors.as_json(full_messages: true),
       full_messages: model.errors.full_messages.join("\n")
-    }, status: 500
+    }, status: 200
   end
 
   def wrap_body
