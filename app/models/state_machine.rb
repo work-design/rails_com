@@ -1,5 +1,7 @@
 module StateMachine
 
+  # to defined next_xxx_states in class
+
   # obj.process_to state: 'xxx'
   def process_to(options = {})
     options.each do |column, value|
