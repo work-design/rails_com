@@ -1,44 +1,51 @@
 module StateMachine
 
   # obj.process_to state: 'xxx'
-  def process_to(options = {}, &block)
+  def process_to(options = {})
     options.each do |column, value|
-      next_state = next_states(column, &block).first
+      if defined? "next_#{column}_states"
+        _next_state = self.send("next_#{column}_states").first
+      else
+        _next_state = next_state(column)
+      end
 
-      if next_state == value.to_s
+      if _next_state == value.to_s
         assign_attributes(column => value)
       else
-        error_msg = "Next state is wrong, should be #{next_state}"
+        error_msg = "Next state is wrong, should be #{_next_state}"
         errors.add column, error_msg
         raise ActiveRecord::Rollback, error_msg
       end
     end
   end
 
-  def process_to!(options = {}, &block)
+  def process_to!(options = {})
     self.process_to(options, &block)
     self.save!
   end
 
-  def jump_to!(options = {}, &block)
-    self.jump_to(options, &block)
-    self.save!
-  end
-
-  def jump_to(options = {}, &block)
+  def jump_to(options = {})
     options.each do |column, value|
-      next_states = next_states(column, &block)
+      if defined? "next_#{column}_states"
+        _next_states = self.send "next_#{column}_states"
+      else
+        _next_states = next_states(column)
+      end
 
-      if next_states.include?(value.to_s)
+      if _next_states.include?(value.to_s)
         assign_attributes(column => value)
       else
-        error_msg = "Next state is wrong, should be one of #{next_states.join(', ')}"
+        error_msg = "Next state is wrong, should be one of #{_next_states.join(', ')}"
         errors.add column, error_msg
         raise ActiveRecord::Rollback, error_msg
       end
     end
   end
 
+  def jump_to!(options = {})
+    self.jump_to(options, &block)
+    self.save!
+  end
 
   # obj.next_states(:state) do |result|
   #   result.reject
