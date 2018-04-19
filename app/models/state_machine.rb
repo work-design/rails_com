@@ -2,8 +2,8 @@ module StateMachine
 
   # to defined next_xxx_states in class
 
-  # obj.process_to state: 'xxx'
-  def process_to(options = {})
+  # obj.next_to state: 'xxx'
+  def next_to(options = {})
     options.each do |column, value|
       if defined? "next_#{column}_states"
         _next_state = self.send("next_#{column}_states").first
@@ -21,8 +21,8 @@ module StateMachine
     end
   end
 
-  def process_to!(options = {})
-    self.process_to(options, &block)
+  def next_to!(options = {})
+    self.next_to(options, &block)
     self.save!
   end
 
