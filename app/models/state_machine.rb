@@ -26,7 +26,7 @@ module StateMachine
     self.save!
   end
 
-  def jump_to(options = {})
+  def trigger_to(options = {})
     options.each do |column, value|
       if defined? "next_#{column}_states"
         _next_states = self.send "next_#{column}_states"
@@ -44,8 +44,8 @@ module StateMachine
     end
   end
 
-  def jump_to!(options = {})
-    self.jump_to(options, &block)
+  def trigger_to!(options = {})
+    self.trigger_to(options, &block)
     self.save!
   end
 
