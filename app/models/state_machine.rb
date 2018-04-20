@@ -5,7 +5,7 @@ module StateMachine
   # obj.next_to state: 'xxx'
   def next_to(options = {})
     options.each do |column, value|
-      if defined? "next_#{column}_states"
+      if self.class.method_defined? "next_#{column}_states"
         _next_state = self.send("next_#{column}_states").first
       else
         _next_state = next_state(column)
@@ -28,7 +28,7 @@ module StateMachine
 
   def trigger_to(options = {})
     options.each do |column, value|
-      if defined? "next_#{column}_states"
+      if self.class.method_defined? "next_#{column}_states"
         _next_states = self.send "next_#{column}_states"
       else
         _next_states = next_states(column)
