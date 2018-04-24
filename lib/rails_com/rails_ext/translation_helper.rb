@@ -15,6 +15,4 @@ module RailsCom
   end
 end
 
-if defined? ApplicationHelper
-  ApplicationHelper.include RailsCom::TranslationHelper
-end
+ActionView::Helpers::TranslationHelper.prepend RailsCom::TranslationHelper
