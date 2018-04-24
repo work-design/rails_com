@@ -19,6 +19,4 @@ module RailsExt
   end
 end
 
-ActiveSupport.on_load(:active_view) do
-  ActionView::TemplateRenderer.prepend RailsExt::TemplateRenderer
-end
+ActionView::TemplateRenderer.prepend RailsExt::TemplateRenderer
