@@ -19,6 +19,7 @@ require 'rails_com/rails_ext/template_renderer'
 require 'rails_com/rails_ext/scaffold_generator'
 require 'rails_com/rails_ext/activestorage_attached'
 require 'rails_com/rails_ext/persistence_sneakily'
+require 'rails_com/rails_ext/translation_helper'
 
 require 'utils/time_helper'
 

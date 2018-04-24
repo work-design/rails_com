@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module RailsComHelper
+module AssetsHelper
 
   def js_load(filename = nil, root: nil, **options)
     filename ||= "controllers/#{controller_path}/#{action_name}"
