@@ -1,44 +1,39 @@
-<div>
-
-  <div class="ui top attached borderless menu">
-    <div class="header item"><%= plural_table_name.titleize %></div>
-    <div class="right menu">
-      <div class="item">
-        <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'ui teal button' %>
-      </div>
+<div class="ui top attached borderless menu">
+  <div class="header item"><%= plural_table_name.titleize %></div>
+  <div class="right menu">
+    <div class="item">
+      <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'ui teal button' %>
     </div>
   </div>
-
-  <div class="ui attached segment">
-    <%%= render 'search_form' %>
-  </div>
-
-  <table class="ui bottom attached table">
-    <thead>
-    <tr>
-    <% attributes.reject(&:password_digest?).each do |attribute| -%>
-      <th><%= attribute.human_name %></th>
-    <% end -%>
-    </tr>
-    </thead>
-
-    <tbody>
-    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-      <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-<% end -%>
-        <td>
-          <%%= link_to 'Show', <%= singular_table_name %>_path(<%= singular_table_name %>), class: 'ui blue label' %>
-          <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'ui pink label' %>
-          <%%= link_to 'Destroy', <%= singular_table_name %>_path(<%= singular_table_name %>), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
-        </td>
-      </tr>
-    <%% end %>
-    </tbody>
-  </table>
-
-  <%%= paginate @<%= plural_table_name %> %>
 </div>
 
+<div class="ui attached segment">
+  <%%= render 'search_form' %>
+</div>
 
+<table class="ui bottom attached table">
+  <thead>
+  <tr>
+  <% attributes.reject(&:password_digest?).each do |attribute| -%>
+    <th><%= attribute.human_name %></th>
+  <% end -%>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+      <td>
+        <%%= link_to 'Show', <%= singular_table_name %>_path(<%= singular_table_name %>), class: 'ui blue label' %>
+        <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'ui pink label' %>
+        <%%= link_to 'Destroy', <%= singular_table_name %>_path(<%= singular_table_name %>), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <%% end %>
+  </tbody>
+</table>
+
+<%%= paginate @<%= plural_table_name %> %>
