@@ -16,5 +16,17 @@ module ActiveStorage
       end
     end
 
+
+    class One
+
+      def variant(transformations)
+        if attachment.variable?
+          attachment.variant(transformations)
+        else
+          self
+        end
+      end
+
+    end
   end
 end
