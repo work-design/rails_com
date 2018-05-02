@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_com (1.2.0)
+    rails_com (1.2.1)
       rails
       rucaptcha
 
