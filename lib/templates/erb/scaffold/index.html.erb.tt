@@ -15,15 +15,15 @@
   <thead>
     <tr>
       <th><%%= <%= class_name %>.human_attribute_name(:id) %></th>
-    <% attributes.reject(&:password_digest?).each do |attribute| -%>
-      <th><%= attribute.human_name %></th>
-    <% end %>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
+<% end -%>
     </tr>
   </thead>
-
   <tbody>
   <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
     <tr>
+      <td><%%= <%= singular_table_name %>.id %></td>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
       <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
