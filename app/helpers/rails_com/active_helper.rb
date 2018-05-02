@@ -42,7 +42,7 @@ module RailsCom::ActiveHelper
     return active_class if options.present? && current_page?(options)
 
     options.select { |k, _| [controller_name, controller_path].include?(k.to_s) }.each do |_, value|
-      return active_class if value.include?(action_name)
+      return active_class if Array(value).include?(action_name)
     end
 
     item_class
