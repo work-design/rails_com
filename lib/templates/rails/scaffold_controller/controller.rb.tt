@@ -26,7 +26,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   def update
-    if @<%= orm_instance.update("#{singular_name}_params") %>
+    if @<%= orm_instance(singular_name).update("#{singular_name}_params") %>
       redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %>
     else
       render :edit
@@ -34,7 +34,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   def destroy
-    @<%= orm_instance.destroy %>
+    @<%= orm_instance(singular_name).destroy %>
     redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %>
   end
 
