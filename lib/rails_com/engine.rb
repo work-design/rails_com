@@ -5,9 +5,9 @@ module RailsCom
       app.config.assets.precompile += ['rails_com_manifest.js']
     end
 
-    # initializer 'rails_com.add_generator_templates' do |app|
-    #   app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
-    # end
+    initializer 'rails_com.add_generator_templates' do |app|
+      app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
+    end
 
     initializer 'rails_com.add_assets_templates' do |app|
       app.config.assets.paths.push *Dir[File.expand_path('lib/nondigest_assets/*', root)]
