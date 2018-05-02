@@ -17,6 +17,7 @@ require 'rails_com/core_ext/array'
 
 require 'rails_com/rails_ext/template_renderer'
 require 'rails_com/rails_ext/scaffold_generator'
+require 'rails_com/rails_ext/named_base'
 require 'rails_com/rails_ext/activestorage_attached'
 require 'rails_com/rails_ext/persistence_sneakily'
 require 'rails_com/rails_ext/translation_helper'

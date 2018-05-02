@@ -1,16 +1,16 @@
 class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:camelize).join('::') %>::BaseController
-  before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
+  before_action :set_<%= singular_name %>, only: [:show, :edit, :update, :destroy]
 
   def index
-    @<%= plural_table_name %> = <%= class_name %>.page(params[:page])
+    @<%= plural_name %> = <%= class_name %>.page(params[:page])
   end
 
   def new
-    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+    @<%= singular_name %> = <%= orm_class.build(class_name) %>
   end
 
   def create
-    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+    @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
     if @<%= orm_instance.save %>
       redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %>
@@ -26,7 +26,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   def update
-    if @<%= orm_instance.update("#{singular_table_name}_params") %>
+    if @<%= orm_instance.update("#{singular_name}_params") %>
       redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %>
     else
       render :edit
@@ -39,12 +39,12 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   private
-  def set_<%= singular_table_name %>
-    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+  def set_<%= singular_name %>
+    @<%= singular_name %> = <%= orm_class.find(class_name, "params[:id]") %>
   end
 
   def <%= "#{singular_table_name}_params" %>
-    params.fetch(:<%= singular_table_name %>, {}).permit(
+    params.fetch(:<%= singular_name %>, {}).permit(
 <% attributes_names.map do |name| -%>
       <%= ":#{name}," %>
 <% end -%>
