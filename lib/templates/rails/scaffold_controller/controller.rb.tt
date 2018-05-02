@@ -1,11 +1,8 @@
-<% if namespaced? -%>
-require_dependency '<%= namespaced_path %>/application_controller'
-<% end -%>
 class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:camelize).join('::') %>::BaseController
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
   def index
-    @<%= plural_table_name %> = <%= orm_class %>.page(params[:page])
+    @<%= plural_table_name %> = <%= class_name %>.page(params[:page])
   end
 
   def new
