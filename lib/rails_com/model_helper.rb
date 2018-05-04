@@ -1,15 +1,15 @@
 module RailsCom::ModelHelper
 
-  def to_factory_girl
+  def to_factory_bot
     require 'rails/generators'
-    require 'generators/factory_girl/model/model_generator'
+    require 'generators/factory_bot/model/model_generator'
 
     args = [
       self.name.underscore
     ]
     cols = columns.map { |col| "#{col.name}:#{col.type}" }
 
-    generator = FactoryGirl::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root)
+    generator = FactoryBot::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root)
     generator.invoke_all
   end
 
