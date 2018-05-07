@@ -43,7 +43,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     @<%= singular_name %> = <%= orm_class.find(class_name, "params[:id]") %>
   end
 
-  def <%= "#{singular_table_name}_params" %>
+  def <%= "#{singular_name}_params" %>
     params.fetch(:<%= singular_name %>, {}).permit(
 <% attributes_names.map do |name| -%>
       <%= ":#{name}," %>
