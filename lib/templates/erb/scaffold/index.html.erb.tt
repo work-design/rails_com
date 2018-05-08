@@ -18,6 +18,7 @@
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
       <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
 <% end -%>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
