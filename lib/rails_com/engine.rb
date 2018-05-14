@@ -13,6 +13,10 @@ module RailsCom
       app.config.assets.paths.push *Dir[File.expand_path('lib/nondigest_assets/*', root)]
     end
 
+    initializer 'rails_com.add_activestorage' do |app|
+      ActiveStorage::DiskController.include VideoResponse
+    end
+
     config.generators do |g|
       g.stylesheets false
       g.javasricpts false
