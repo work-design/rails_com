@@ -14,7 +14,8 @@ module VideoResponse
   def add_range_headers
     file_size = self.response.body.size
     match = request.headers['range'].to_s.match(/bytes=(\d+)-(\d*)/)
-    file_begin = match[1]
+    match = Array(match)
+    file_begin = match[1].presence
     file_end = match[2].presence
     if file_begin && file_end
       response.header['Content-Range'] = 'bytes ' + file_begin.to_s + '-' + file_end.to_s + '/' + file_size.to_s
