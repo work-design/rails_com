@@ -8,9 +8,7 @@ require 'rails_com/model_helper'
 require 'rails_com/controller_helper'
 require 'rails_com/sprockets/non_digest_assets'
 
-require 'rails_com/helpers/uid_helper'
-require 'rails_com/helpers/jobber'
-
+# core ext
 require 'rails_com/core_ext/hash'
 require 'rails_com/core_ext/nil'
 require 'rails_com/core_ext/array'
@@ -24,6 +22,8 @@ require 'rails_com/rails_ext/translation_helper'
 require 'rails_com/rails_ext/video_response'
 
 require 'utils/time_helper'
+require 'utils/uid_helper'
+require 'utils/jobber'
 
 require 'rails_com/engine'
 
