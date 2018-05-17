@@ -21,8 +21,9 @@ module RailsCom::ActiveHelper
     end
   end
 
-  # path: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
-  # controller: active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
+  # paths: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
+  # controllers: active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
+  # modules: active_helper modules: 'admin/oa'
   # action: active_helper 'work/employee': ['index', 'show']
   # params: active_params state: 'xxx'
   # active_helper controller: 'users', action: 'show', id: 371
