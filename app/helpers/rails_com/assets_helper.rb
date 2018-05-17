@@ -36,11 +36,11 @@ module RailsCom::AssetsHelper
       paths << root_path.to_s + '.css.erb'
     else
       file_path = Pathname.new("app/assets/stylesheets").join filename
-      rails_path = Rails.root.join '', file_path
+      rails_path = Rails.root.join file_path
       paths << rails_path.to_s + '.css'
       paths << rails_path.to_s + '.css.erb'
       if @_rendered_from
-        engine_path = @_rendered_from.join 'app/assets/stylesheets', file_path
+        engine_path = @_rendered_from.join file_path
         paths << engine_path.to_s + '.css'
         paths << engine_path.to_s + '.css.erb'
       end
