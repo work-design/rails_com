@@ -26,7 +26,7 @@ module RailsCom::ActiveHelper
   # action: active_helper 'work/employee': ['index', 'show']
   # params: active_params state: 'xxx'
   # active_helper controller: 'users', action: 'show', id: 371
-  def active_helper(paths: [], controllers: [], active_class: 'item active', item_class: 'item', **options)
+  def active_helper(paths: [], controllers: [], modules: [], active_class: 'item active', item_class: 'item', **options)
     check_parameters = options.delete(:check_parameters)
 
     if paths.present?
@@ -37,6 +37,13 @@ module RailsCom::ActiveHelper
 
     if controllers.present?
       return active_class if (Array(controllers) & [controller_name, controller_path]).size > 0
+    end
+
+    if modules.present?
+      this_modules = controller_path.split('/')
+      this_modules.pop
+      _this_modules = this_modules.each_with_object([]) {|i, x| x << [x.last, i].compact.join('/') } # todo 更优雅的写法
+      return active_class if (Array(modules) & _this_modules).size > 0
     end
 
     return active_class if options.present? && current_page?(options)
