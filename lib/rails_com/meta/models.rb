@@ -10,6 +10,7 @@ module RailsCom::Models
         nil
       end
     end
+
     models.compact
   end
 

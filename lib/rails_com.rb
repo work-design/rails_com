@@ -27,6 +27,6 @@ require 'rails_com/rails_ext/video_response'
 require 'rails_com/sprockets/non_digest_assets'
 
 # Utils
-require 'utils/time_helper'
-require 'utils/uid_helper'
-require 'utils/jobber'
+require 'rails_com/utils/time_helper'
+require 'rails_com/utils/uid_helper'
+require 'rails_com/utils/jobber'
