@@ -3,9 +3,8 @@ module RailsCom::AssetsHelper
 
   def js_load(filename = nil, root: nil, **options)
     filename ||= "controllers/#{controller_path}/#{action_name}"
-    relative_path = 'app/assets/javascripts' + filename.to_s
-    rails_path = Rails.root.join relative_path
-    engine_path = @_rendered_from.join relative_path
+    rails_path = Rails.root.join 'app/assets/javascripts', filename
+    engine_path = @_rendered_from.join 'app/assets/javascripts', filename
     result = [
       rails_path.to_s + '.js',
       rails_path.to_s + '.js.erb',
@@ -22,10 +21,9 @@ module RailsCom::AssetsHelper
 
   def css_load(filename = nil, root: nil, **options)
     filename ||= "controllers/#{controller_path}/#{action_name}"
-    relative_path = 'app/assets/stylesheets' + filename.to_s
-    rails_path = Rails.root.join relative_path + '.css'
-    engine_path = @_rendered_from.join relative_path + '.css'
-    if File.exist?(rails_path) || File.exist?(engine_path)
+    rails_path = Rails.root.join 'app/assets/stylesheets', filename
+    engine_path = @_rendered_from.join 'app/assets/stylesheets', filename
+    if File.exist?(rails_path.to_s + '.css') || File.exist?(engine_path.to_s + '.css')
       stylesheet_link_tag filename, options
     end
   end
