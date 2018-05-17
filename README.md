@@ -30,6 +30,15 @@ $ gem install rails_com
 <% end %>
 ```
 
+## Module
+* Ruby core extension
+* Rails meta informations: Conroller/Model/Routes
+* Rails core extension
+* Utils
+  - UidHelper
+  - TimeHelper
+  - Jobber
+  - IpHelper
 
 ## Contributing
 Contribution directions go here.
