@@ -43,7 +43,7 @@ module RailsCom::ActiveHelper
     if modules.present?
       this_modules = controller_path.split('/')
       this_modules.pop
-      _this_modules = this_modules.each_with_object([]) {|i, x| x << [x.last, i].compact.join('/') } # todo 更优雅的写法
+      _this_modules = this_modules.map.with_index { |_, index| this_modules[0, index + 1].join('/') }
       return active_class if (Array(modules) & _this_modules).size > 0
     end
 
