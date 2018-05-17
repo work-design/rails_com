@@ -14,6 +14,15 @@ module RailsCom::Routes
     _controllers - RailsCom.config.ignore_controllers
   end
 
+  def modules
+    controllers.map do |i|
+      x = i.split('/')
+      if x.size >= 2
+        x[0..-2].join('/')
+      end
+    end.compact.uniq
+  end
+
   def routes_wrapper
     return @routes_wrapper if @routes_wrapper.present?
 
