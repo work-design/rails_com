@@ -13,7 +13,6 @@ module RailsCom::AssetsHelper
     ].map do |path|
       File.exist?(path)
     end
-    binding.pry
     if result.include?(true)
       javascript_include_tag filename, options
     end
