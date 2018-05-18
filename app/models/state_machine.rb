@@ -3,12 +3,12 @@ module StateMachine
   # to defined next_xxx_states in class
 
   # obj.next_to state: 'xxx'
-  def next_to(options = {})
+  def next_to(options = {}, &block)
     options.each do |column, value|
       if self.class.method_defined? "next_#{column}_states"
         _next_state = self.send("next_#{column}_states").first
       else
-        _next_state = next_state(column)
+        _next_state = next_state(column, &block)
       end
 
       if _next_state == value.to_s
@@ -21,17 +21,17 @@ module StateMachine
     end
   end
 
-  def next_to!(options = {})
+  def next_to!(options = {}, &block)
     self.next_to(options, &block)
     self.save!
   end
 
-  def trigger_to(options = {})
+  def trigger_to(options = {}, &block)
     options.each do |column, value|
       if self.class.method_defined? "next_#{column}_states"
         _next_states = self.send "next_#{column}_states"
       else
-        _next_states = next_states(column)
+        _next_states = next_states(column, &block)
       end
 
       if _next_states.include?(value.to_s)
@@ -44,9 +44,13 @@ module StateMachine
     end
   end
 
-  def trigger_to!(options = {})
+  def trigger_to!(options = {}, &block)
     self.trigger_to(options, &block)
     self.save!
+  end
+
+  def next_state(state_name, &block)
+    next_states(state_name, &block).first
   end
 
   # obj.next_states(:state) do |result|
