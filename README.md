@@ -23,13 +23,6 @@ $ gem install rails_com
 * methods deal rails model/controller/routes etc.
 * some helpers, for generator uuid based on time and more;
 
-### View: add link
-```erb
-<%= link_to locales_path, class: 'item', remote: true, id: 'locales_show' do %>
-  <i class="translate icon"></i>
-<% end %>
-```
-
 ## Module
 * Ruby core extension
 * Rails meta informations: Conroller/Model/Routes
@@ -39,6 +32,12 @@ $ gem install rails_com
   - TimeHelper
   - Jobber
   - IpHelper
+  
+### Locals support
+
+```erb
+<%= render 'shared/locales' %>
+```
 
 ## Contributing
 Contribution directions go here.
