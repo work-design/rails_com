@@ -70,18 +70,18 @@ module RailsCom::ActiveHelper
     except = options.delete(:except)
     only = options.delete(:only)
     query = ActionController::Parameters.new(request.GET)
+    query.merge!(options)
 
     if only
       query = query.permit(only)
     else
       excepts = []
-      excepts += Array(except)
+      excepts += (Array(except) & request.GET.keys)
       excepts += ['commit', 'utf8', 'page']
 
       query = query.permit!.except(*excepts)
     end
 
-    query.merge!(options)
     query.reject! { |_, value| value.blank? }
     query
   end
