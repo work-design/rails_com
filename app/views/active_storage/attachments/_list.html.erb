@@ -1,4 +1,4 @@
-<div class="top attached inline fields">
+<div class="top attached inline fields" id="<%= "#{target.record.class.name.underscore}_attachments_#{target.record.id}" %>">
   <div class="six wide field"></div>
   <div class="field">
     <% if target.is_a?(ActiveStorage::Attached::One) && target.attached? %>
