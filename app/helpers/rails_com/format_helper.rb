@@ -5,7 +5,7 @@ module RailsCom::FormatHelper
     wrapper_tag = options.fetch(:wrapper_tag, :p)
 
     hash_text.map do |k, v|
-      if k.to_s.end_with?(':')
+      if k.to_s.rstrip.end_with?(':')
         text = k.to_s + ' ' + v.to_s
       else
         text = k.to_s + ': ' + v.to_s
