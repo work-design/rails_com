@@ -17,6 +17,22 @@ module RailsExt
     end
 
   end
+
+  module PartialRenderer
+
+    def find_template(path, locals)
+      if path.start_with?('_')
+        prefixes = @lookup_context.prefixes
+      elsif path.include?(?/)
+        prefixes = []
+      else
+        prefixes = @lookup_context.prefixes
+      end
+      @lookup_context.find_template(path, prefixes, true, locals, @details)
+    end
+
+  end
 end
 
 ActionView::TemplateRenderer.prepend RailsExt::TemplateRenderer
+ActionView::PartialRenderer.prepend RailsExt::PartialRenderer
