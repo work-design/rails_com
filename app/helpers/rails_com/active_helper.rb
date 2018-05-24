@@ -76,7 +76,7 @@ module RailsCom::ActiveHelper
       query = query.permit(only)
     else
       excepts = []
-      excepts += (Array(except) & request.GET.keys)
+      excepts += (Array(except).map(&:to_s) & request.GET.keys)
       excepts += ['commit', 'utf8', 'page']
 
       query = query.permit!.except(*excepts)
