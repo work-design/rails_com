@@ -1,4 +1,5 @@
 module RailsExt
+  
   module TemplateRenderer
 
     # record where the view rendered from, main project or which engine
