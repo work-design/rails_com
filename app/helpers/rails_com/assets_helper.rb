@@ -21,7 +21,7 @@ module RailsCom::AssetsHelper
       end
     end
 
-    if paths.map { |path| File.exist?(path) }.include?(true)
+    if paths.any? { |path| File.exist?(path) }
       javascript_include_tag filename, options
     end
   end
@@ -46,7 +46,7 @@ module RailsCom::AssetsHelper
       end
     end
 
-    if paths.map { |path| File.exist?(path) }.include?(true)
+    if paths.any? { |path| File.exist?(path) }
       stylesheet_link_tag filename, options
     end
   end
