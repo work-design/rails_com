@@ -3,12 +3,7 @@
   <div class="field">
     <% if target.is_a?(ActiveStorage::Attached::One) && target.attached? %>
       <% if target.content_type.to_s.start_with?('image') %>
-        <div class="ui small image">
-          <%= link_to rails_attachment_path(target.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'ui grey right corner mini label' do %>
-            <i class="times icon"></i>
-          <% end %>
-          <%= image_tag target, id: "attachment_#{target.id}" %>
-        </div>
+        <%= render partial: 'active_storage/attachments/image_item', locals: { image: target } %>
       <% else %>
         <p id="attachment_<%= target.id %>">
           <%= link_to target.filename, rails_blob_path(target) %>
@@ -17,14 +12,14 @@
       <% end %>
     <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
       <% target.each do |file| %>
-        <p id="attachment_<%= file.id %>">
-          <% if file.content_type.to_s.start_with?('image') %>
-            <%= image_tag file, size: '30x30' %>
-          <% else %>
+        <% if file.content_type.to_s.start_with?('image') %>
+          <%= render partial: 'active_storage/attachments/image_item', locals: {image: file} %>
+        <% else %>
+          <p id="attachment_<%= file.id %>">
             <%= link_to file.filename, rails_blob_path(file) %>
-          <% end %>
-          <%= link_to 'x', rails_attachment_path(file.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
-        </p>
+            <%= link_to 'x', rails_attachment_path(file.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
+          </p>
+        <% end %>
       <% end %>
     <% end %>
   </div>
