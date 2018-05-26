@@ -18,8 +18,7 @@ module RailsCom::AssetsHelper
   end
 
   def js_pack(filename = nil, **options)
-    relative_path = 'app/javascript/packs'
-    paths = assets_load_path(filename, relative_path: relative_path, **options)
+    paths = assets_load_path(filename, relative_path: 'app/javascript/packs', **options)
 
     if paths.any? { |path| File.exist?(path) }
       javascript_pack_tag filename, options
