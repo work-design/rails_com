@@ -2,6 +2,7 @@
 module RailsCom::AssetsHelper
 
   def js_load(filename = nil, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}"
     paths = assets_load_path(filename)
 
     if paths.any? { |path| File.exist?(path) }
@@ -10,6 +11,7 @@ module RailsCom::AssetsHelper
   end
 
   def css_load(filename = nil, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}"
     paths = assets_load_path(filename, relative_path: 'app/assets/stylesheets', ext: ['.css', '.css.erb'])
 
     if paths.any? { |path| File.exist?(path) }
@@ -18,6 +20,7 @@ module RailsCom::AssetsHelper
   end
 
   def js_pack(filename = nil, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}"
     paths = assets_load_path(filename, relative_path: 'app/javascript/packs', **options)
 
     if paths.any? { |path| File.exist?(path) }
@@ -33,8 +36,7 @@ module RailsCom::AssetsHelper
     js_pack("controllers/#{controller_path}/#{action_name}.ready", **options)
   end
 
-  def assets_load_path(filename = nil, relative_path: 'app/assets/javascripts', ext: ['.js', '.js.erb'])
-    filename ||= "controllers/#{controller_path}/#{action_name}"
+  def assets_load_path(filename, relative_path: 'app/assets/javascripts', ext: ['.js', '.js.erb'])
     paths = []
 
     file_path = Pathname.new(relative_path).join filename
