@@ -33,7 +33,7 @@ module RailsCom::AssetsHelper
   end
 
   def js_pack_ready(**options)
-    js_pack("controllers/#{controller_path}/#{action_name}.ready", **options)
+    js_pack("controllers/#{controller_path}/#{action_name}-ready", **options)
   end
 
   def assets_load_path(filename, relative_path: 'app/assets/javascripts', ext: ['.js', '.js.erb'])
