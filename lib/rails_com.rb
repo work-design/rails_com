@@ -28,5 +28,6 @@ require 'rails_com/sprockets/non_digest_assets'
 
 # Utils
 require 'rails_com/utils/time_helper'
+require 'rails_com/utils/num_helper'
 require 'rails_com/utils/uid_helper'
 require 'rails_com/utils/jobber'
