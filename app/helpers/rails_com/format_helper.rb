@@ -29,6 +29,8 @@ module RailsCom::FormatHelper
       end
     end
 
+    text = text.to_s
+
     super
   end
 
