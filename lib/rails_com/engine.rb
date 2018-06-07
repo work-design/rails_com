@@ -1,5 +1,14 @@
 class RailsCom::Engine < ::Rails::Engine
 
+  config.generators do |g|
+    g.stylesheets false
+    g.javasricpts false
+    g.javascript_engine false
+    g.helper false
+    g.jbuilder false
+    g.templates.unshift File.expand_path('lib/templates', root)
+  end
+
   initializer 'rails_com.assets.precompile' do |app|
     app.config.assets.precompile += ['rails_com_manifest.js']
   end
@@ -14,15 +23,6 @@ class RailsCom::Engine < ::Rails::Engine
 
   initializer 'rails_com.add_activestorage' do |app|
     ActiveStorage::DiskController.include VideoResponse
-  end
-
-  config.generators do |g|
-    g.stylesheets false
-    g.javasricpts false
-    g.javascript_engine false
-    g.helper false
-    g.jbuilder false
-    g.templates.unshift File.expand_path('lib/templates', root)
   end
 
 end

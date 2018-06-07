@@ -11,9 +11,14 @@ Gem::Specification.new do |s|
   s.description = 'Rails Engine with many common utils'
   s.license = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir[
+    '{app,config,db,lib}/**/*',
+    'Rakefile',
+    'MIT-LICENSE',
+    'README.md'
+  ]
+  s.require_paths = ['lib']
 
   s.add_dependency 'rails'
-
   s.add_development_dependency 'factory_bot_rails'
 end

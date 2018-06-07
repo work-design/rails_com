@@ -6,7 +6,6 @@ class ActiveStorage::VideosController < RailsCom.config.app_class.constantize
   end
 
   def show
-
   end
 
   private
