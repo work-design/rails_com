@@ -1,11 +1,13 @@
+require 'active_support/configurable'
+
 module RailsCom
   include ActiveSupport::Configurable
-  config_accessor :access_denied_method, :default_admin_emails
 
   configure do |config|
     config.ignore_controllers = [
       'rails/welcome'
     ]
+    config.app_class = 'ApplicationController'
   end
 
 end

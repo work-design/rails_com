@@ -1,6 +1,6 @@
 require 'rails_com/version'
-require 'rails_com/config'
 require 'rails_com/engine'
+require 'rails_com/config'
 
 # Meta for Rails
 require 'rails_com/meta/routes'
