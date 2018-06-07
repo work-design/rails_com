@@ -1,0 +1,9 @@
+<%= video_tag @video.service_url(disposition: params[:disposition]),
+              id: 'my-player',
+              class: 'video-js',
+              width: 640,
+              height: 264,
+              controls: true,
+              preload: 'auto',
+              data: { setup: {} }
+%>

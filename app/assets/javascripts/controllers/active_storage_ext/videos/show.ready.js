@@ -1,1 +1,1 @@
-//= require video.js/dist/video.js
+//# require video.js/dist/video.js
