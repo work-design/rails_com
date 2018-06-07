@@ -1,4 +1,4 @@
-class ActiveStorage::VideosController < RailsCom.config.app_class.constantize
+class ActiveStorageExt::VideosController < RailsCom.config.app_class.constantize
   before_action :set_video, only: [:show]
 
   def index
