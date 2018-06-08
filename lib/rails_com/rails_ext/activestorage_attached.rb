@@ -18,12 +18,12 @@ module ActiveStorage
 
     def transfer_faststart
       download_blob_to_tempfile do |input|
-        Timefile.open do |file|
+        Tempfile.open([ 'ActiveStorage', self.filename.extension_with_delimiter ], Dir.tmpdir) do |file|
           file.binmode
-          argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart']
-          IO.popen(argv, err: File::NULL) { |out| IO.copy_stream(out, file) }
+          argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart', '-f', 'mp4', '-y', file.path]
+          system *argv
           file.rewind
-          self.attach io: file, filename: file.original_filename
+          self.attach io: file, filename: self.filename.to_s, content_type: 'video/mp4'
         end
       end
     end

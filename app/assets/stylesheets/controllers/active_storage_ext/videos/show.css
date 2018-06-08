@@ -1,3 +1,7 @@
 /*
 *= require video.js/dist/video-js.css
 */
+
+video {
+  max-width: 1127px;
+}
