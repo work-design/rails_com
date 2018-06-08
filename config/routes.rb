@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
 
   scope :rails, as: 'rails', module: 'active_storage_ext' do
-    resources :videos, only: [:index, :show]
+    resources :videos, only: [:index, :show] do
+      put :transfer, on: :member
+    end
   end
 
 end
