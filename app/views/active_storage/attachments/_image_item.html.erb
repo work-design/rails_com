@@ -1,6 +1,6 @@
-<div class="ui small image" data-controller="attachment">
+<div class="ui small image" data-controller="attachment" data-id="<%= image.record_id %>">
   <%= link_to rails_attachment_path(image.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'ui grey right corner mini label' do %>
     <i class="times icon"></i>
   <% end %>
-  <%= image_tag image, id: "attachment_#{image.id}" %>
+  <%= image_tag image, id: "attachment_#{image.id}", data: { target: 'attachment.src' }, style: 'max-width: 100%' %>
 </div>
