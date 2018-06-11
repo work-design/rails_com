@@ -13,7 +13,7 @@
     <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
       <% target.each do |file| %>
         <% if file.content_type.to_s.start_with?('image') %>
-          <%= render partial: 'active_storage/attachments/image_item', locals: {image: file} %>
+          <%= render partial: 'active_storage/attachments/image_item', locals: { image: file } %>
         <% else %>
           <p id="attachment_<%= file.id %>">
             <%= link_to file.filename, rails_blob_path(file) %>
