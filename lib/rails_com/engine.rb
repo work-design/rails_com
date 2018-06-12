@@ -23,6 +23,7 @@ class RailsCom::Engine < ::Rails::Engine
 
   initializer 'rails_com.add_activestorage' do |app|
     ActiveStorage::DiskController.include VideoResponse
+    ActiveStorage::Attachment.include AttachmentTransfer
   end
 
 end

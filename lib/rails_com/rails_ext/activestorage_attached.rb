@@ -1,6 +1,5 @@
 module ActiveStorage
   class Attached
-    include Downloading
 
     def url_sync(url)
       filename = File.basename URI(url).path
@@ -16,22 +15,6 @@ module ActiveStorage
       end
     end
 
-    def transfer_faststart
-      download_blob_to_tempfile do |input|
-        Tempfile.open([ 'ActiveStorage', self.filename.extension_with_delimiter ], Dir.tmpdir) do |file|
-          file.binmode
-          argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart', '-f', 'mp4', '-y', file.path]
-          system *argv
-          file.rewind
-          self.attach io: file, filename: self.filename.to_s, content_type: 'video/mp4'
-        end
-      end
-    end
-
-    def ffmpeg_path
-      ActiveStorage.paths[:ffmpeg] || 'ffmpeg'
-    end
-
     class One
 
       def variant(transformations)
@@ -44,4 +27,5 @@ module ActiveStorage
 
     end
   end
+
 end

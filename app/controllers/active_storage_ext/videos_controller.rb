@@ -13,11 +13,8 @@ class ActiveStorageExt::VideosController < RailsCom.config.app_class.constantize
   end
 
   def transfer
-    attach = @attachment.record.send(@attachment.name)
-    attach.transfer_faststart
-
-    @attachment = attach.attachment
-    @video = @attachment.blob
+    attached = @attachment.transfer_faststart
+    @video = attached.blob
 
     flash[:notice] = 'well done!'
     render 'show'
