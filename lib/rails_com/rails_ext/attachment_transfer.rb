@@ -14,8 +14,13 @@ module AttachmentTransfer
         r = attach.attach io: file, filename: self.filename.to_s, content_type: 'video/mp4'
       end
     end
-    self.purge_later
-    r[0]
+    self.purge
+
+    if attach.is_a?(ActiveStorage::Attached::One)
+      r
+    else
+      r.first
+    end
   end
 
   def ffmpeg_path
