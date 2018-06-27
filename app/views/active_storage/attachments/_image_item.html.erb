@@ -1,4 +1,4 @@
-<div class="ui small image" data-controller="attachment" data-upload="<%= image.record_id %>">
+<div class="ui small image">
   <%= link_to rails_attachment_path(image.id), method: :delete, data: {confirm: 'Are you sure?'}, remote: true, class: 'ui grey right corner mini label' do %>
     <i class="times icon"></i>
   <% end %>
