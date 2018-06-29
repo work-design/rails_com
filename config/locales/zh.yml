@@ -1,4 +1,9 @@
 zh:
+  controller:
+    show: 详情
+    edit: 编辑
+    destroy: 删除
+    search: 搜索
   errors:
     format: "%{attribute} %{message}"
     messages:

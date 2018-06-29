@@ -1,4 +1,9 @@
 en:
+  controller:
+    show: Show
+    edit: Edit
+    destroy: Delete
+    search: Search
   views:
     pagination:
       first: First
