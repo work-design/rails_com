@@ -13,7 +13,9 @@
     <% if file.content_type.to_s.start_with?('image') %>
       <%= image_tag file, style: 'max-width: 100%', class: 'ui small image' %>
     <% elsif file.content_type.to_s.start_with?('video') %>
-      <%= link_to file.filename, rails_video_path(file), target: '_blank' %>
+      <p id="attachment_<%= file.id %>">
+        <%= link_to file.filename, rails_video_path(file), target: '_blank' %>
+      </p>
     <% else %>
       <p id="attachment_<%= file.id %>">
         <%= link_to file.filename, rails_blob_path(file) %>
