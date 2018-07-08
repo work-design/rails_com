@@ -3,6 +3,7 @@ module AttachmentTransfer
   include ActiveStorage::Downloading
 
   def copy
+    raise 'Only Support mirror service' unless service.is_a?(ActiveStorage::Service::MirrorService)
     download_blob_to_tempfile do |io|
       checksum = blob.send(:compute_checksum_in_chunks, io)
       service.mirrors.map do |service|
