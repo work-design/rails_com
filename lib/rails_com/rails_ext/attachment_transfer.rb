@@ -2,6 +2,15 @@ require 'active_storage/downloading'
 module AttachmentTransfer
   include ActiveStorage::Downloading
 
+  def copy
+    download_blob_to_tempfile do |io|
+      checksum = blob.send(:compute_checksum_in_chunks, io)
+      service.mirrors.map do |service|
+        service.upload key, io.tap(&:rewind), checksum: checksum
+      end
+    end
+  end
+
   def transfer_faststart
     attach = self.record.send(self.name)
     r = nil

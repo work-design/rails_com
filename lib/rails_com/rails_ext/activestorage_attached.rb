@@ -13,6 +13,7 @@ module ActiveStorage
         file.rewind
         self.attach io: file, filename: filename
       end
+
     end
 
     class One
