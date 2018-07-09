@@ -2,12 +2,13 @@ function fetch_xhr_script(url, params){
   var default_params = {
     credentials: 'include',
     headers: {
-      'Accept': 'application/javascript',
+      Accept: 'application/javascript',
       'X-CSRF-Token': document.head.querySelector("[name=csrf-token]").content
     }
   };
+  var _params = Object.assign(default_params, params)
 
-  fetch(url, params).then(function(response) {
+  fetch(url, _params).then(function(response) {
     return response.text();
   }).then(function(text) {
     var script = document.createElement('script');
