@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('turbolinks:load', function() {
   timeForLocalized()
 });
+document.addEventListener('turbolinks:visit', function() {
+  timeForLocalized()
+});
 
 document.addEventListener('turbolinks:request-start', function(event) {
   var xhr = event.data.xhr;
