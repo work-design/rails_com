@@ -27,6 +27,8 @@ $ gem install rails_com
 * Ruby core extension
 * Rails meta informations: Conroller/Model/Routes
 * Rails core extension
+  - Activestorage sync with url
+  - Activestorage copy to mirror
 * Utils
   - UidHelper
   - TimeHelper
