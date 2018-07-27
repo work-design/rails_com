@@ -16,20 +16,18 @@ namespace :git do
       command %{git checkout -b current_release "#{fetch(:commit)}" --force}
     else
       command %{
-        if [ ! -d "#{fetch(:deploy_to)}/scm/objects" ]; then
+        if [ ! -d "#{fetch(:deploy_to)}/scm/.git" ]; then
           echo "-----> Cloning the Git repository"
-          #{echo_cmd %[git clone "#{fetch(:repository)}" "#{fetch(:deploy_to)}/scm" --bare]}
+          #{echo_cmd %[git clone --recurse-submodules #{fetch(:repository)} #{fetch(:deploy_to)}/scm]}
         else
           echo "-----> Fetching new git commits"
-          #{echo_cmd %[(cd "#{fetch(:deploy_to)}/scm" && git fetch "#{fetch(:repository)}" "#{fetch(:branch)}:#{fetch(:branch)}" --force)]}
+          #{echo_cmd %[(cd #{fetch(:deploy_to)}/scm && git pull --force --recurse-submodules #{fetch(:repository)} #{fetch(:branch)}:#{fetch(:branch)})]}
         fi &&
         echo "-----> Using git branch '#{fetch(:branch)}'" &&
-        #{echo_cmd %[echo 'gitdir: #{fetch(:deploy_to)}/scm' >> .git]}
-        #{echo_cmd %[git checkout "#{fetch(:branch)}" --force]}
+        #{echo_cmd %[echo 'gitdir: #{fetch(:deploy_to)}/scm/.git' >> .git]}
+        #{echo_cmd %[git checkout --force]}
       }, quiet: true
     end
-    comment %{Updating submodules}
-    command %{git submodule update}
     comment %{Using this git commit}
     command %{git rev-parse HEAD > .mina_git_revision}
     command %{git --no-pager log --format="%aN (%h):%n> %s" -n 1}
