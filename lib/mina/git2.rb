@@ -26,6 +26,7 @@ namespace :git do
         echo "-----> Using git branch '#{fetch(:branch)}'" &&
         #{echo_cmd %[echo 'gitdir: #{fetch(:deploy_to)}/scm' >> .git]}
         #{echo_cmd %[git checkout --force]}
+        #{echo_cmd %[git submodule deinit -all]}
         #{echo_cmd %[git submodule update --init]}
       }, quiet: true
     end
