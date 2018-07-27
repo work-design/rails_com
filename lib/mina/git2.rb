@@ -21,7 +21,7 @@ namespace :git do
           #{echo_cmd %[git clone --recurse-submodules --separate-git-dir #{fetch(:deploy_to)}/scm #{fetch(:repository)} #{fetch(:deploy_to)}/repo]}
         else
           echo "-----> Fetching new git commits"
-          #{echo_cmd %[(cd #{fetch(:deploy_to)}/repo && git pull --force --recurse-submodules #{fetch(:repository)} #{fetch(:branch)}:#{fetch(:branch)})]}
+          #{echo_cmd %[(cd #{fetch(:deploy_to)}/repo && git pull --force #{fetch(:repository)} #{fetch(:branch)}:#{fetch(:branch)})]}
         fi &&
         echo "-----> Using git branch '#{fetch(:branch)}'" &&
         #{echo_cmd %[echo 'gitdir: #{fetch(:deploy_to)}/scm' >> .git]}
