@@ -20,5 +20,4 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'rails'
-  s.add_development_dependency 'factory_bot_rails'
 end
