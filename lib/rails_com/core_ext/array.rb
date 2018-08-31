@@ -51,4 +51,10 @@ class Array
     hash
   end
 
+  def to_csv_file(file = 'export.csv')
+    CSV.open(file, 'w') do |csv|
+      self.each { |ar| csv << ar }
+    end
+  end
+
 end
