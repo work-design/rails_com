@@ -7,4 +7,5 @@ gem 'sqlite3'
 gem 'rails', '>= 5.2.0'
 
 gem 'factory_bot_rails'
+gem 'sdoc'
 

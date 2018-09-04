@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Array</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="Array">
+
+  
+
+    <meta name="keywords" content="Array class">
+  
+    <meta name="keywords" content="rjust!, ljust!, mjust!, to_combined_hash, to_combined_h, to_csv_file">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            Array
+            
+                <span class="parent">&lt;
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/lib/rails_com/core_ext/array_rb.html">lib/rails_com/core_ext/array.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ljust-21">ljust!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>M</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-mjust-21">mjust!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-rjust-21">rjust!</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_combined_h">to_combined_h</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_combined_hash">to_combined_hash</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-to_csv_file">to_csv_file</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-ljust-21">
+            
+              <b>ljust!</b>(n, x)
+            
+            <a href="../classes/Array.html#method-i-ljust-21" name="method-i-ljust-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>arr = [1, 2, 3] arr.ljust! 5, nil # =&gt; [nil, nil, 1, 2, 3]</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-ljust-21_source')" id="l_method-i-ljust-21_source">show</a>
+                
+              </p>
+              <div id="method-i-ljust-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ljust!</span>(<span class="ruby-identifier">n</span>, <span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">fill</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">length</span><span class="ruby-operator">...</span><span class="ruby-identifier">n</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-mjust-21">
+            
+              <b>mjust!</b>(n, x)
+            
+            <a href="../classes/Array.html#method-i-mjust-21" name="method-i-mjust-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>arr = [1, 2, 3] arr.mjust!(5, nil) # =&gt; [1, 2, nil, nil, 3]</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-mjust-21_source')" id="l_method-i-mjust-21_source">show</a>
+                
+              </p>
+              <div id="method-i-mjust-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mjust!</span>(<span class="ruby-identifier">n</span>, <span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">insert</span> (<span class="ruby-identifier">length</span> <span class="ruby-operator">/</span> <span class="ruby-value">2.0</span>).<span class="ruby-identifier">ceil</span>, <span class="ruby-operator">*</span><span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">n</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">length</span>, <span class="ruby-identifier">x</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rjust-21">
+            
+              <b>rjust!</b>(n, x)
+            
+            <a href="../classes/Array.html#method-i-rjust-21" name="method-i-rjust-21" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>fill an array with the given elements right;</p>
+
+<pre><code>arr = [1, 2, 3]
+arr.rjust! 5, nil
+# =&gt; [1, 2, 3, nil, nil]
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rjust-21_source')" id="l_method-i-rjust-21_source">show</a>
+                
+              </p>
+              <div id="method-i-rjust-21_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rjust!</span>(<span class="ruby-identifier">n</span>, <span class="ruby-identifier">x</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-operator">*</span><span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">0</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-identifier">length</span>].<span class="ruby-identifier">max</span>, <span class="ruby-identifier">x</span>))
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_combined_h">
+            
+              <b>to_combined_h</b>()
+            
+            <a href="../classes/Array.html#method-i-to_combined_h" name="method-i-to_combined_h" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>raw_data = [</p>
+
+<pre><code>[:a, 1],
+[:a, 2],
+[:b, 2]
+</code></pre>
+
+<p>] raw_data.to_combined_h</p>
+
+<h1 id="method-i-to_combined_h-label-3E+-7B+a-3A+-5B1-2C+2-5D-2C+b-3A+2+-7D">&gt; { a: [1, 2], b: 2 }</h1>
+
+<p>todo nested array bug</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_combined_h_source')" id="l_method-i-to_combined_h_source">show</a>
+                
+              </p>
+              <div id="method-i-to_combined_h_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_combined_h</span>
+  <span class="ruby-identifier">hash</span> = {}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">x</span>] = <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">x</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">x</span>]) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">y</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">y</span>  }
+  <span class="ruby-identifier">hash</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_combined_hash">
+            
+              <b>to_combined_hash</b>()
+            
+            <a href="../classes/Array.html#method-i-to_combined_hash" name="method-i-to_combined_hash" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>combine the same key hash like array</p>
+
+<pre><code>raw_data = [
+  { a: 1 },
+  { a: 2 },
+  { b: 2 }
+]
+raw_data.to_combined_hash
+#=&gt; { a: [1, 2], b: 2 }
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_combined_hash_source')" id="l_method-i-to_combined_hash_source">show</a>
+                
+              </p>
+              <div id="method-i-to_combined_hash_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_combined_hash</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reduce</span>({}) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">memo</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">index</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">value</span>, <span class="ruby-identifier">default</span>] }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_csv_file">
+            
+              <b>to_csv_file</b>(file = &#39;export.csv&#39;)
+            
+            <a href="../classes/Array.html#method-i-to_csv_file" name="method-i-to_csv_file" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <p>2D array to csv file</p>
+
+<pre><code>data = [
+  [1, 2],
+  [3, 4]
+]
+data.to_csv_file
+</code></pre>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_csv_file_source')" id="l_method-i-to_csv_file_source">show</a>
+                
+              </p>
+              <div id="method-i-to_csv_file_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/core_ext/array.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_csv_file</span>(<span class="ruby-identifier">file</span> = <span class="ruby-string">&#39;export.csv&#39;</span>)
+  <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">&#39;w&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ar</span><span class="ruby-operator">|</span> <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ar</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

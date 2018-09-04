@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jobber</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="Jobber">
+
+  
+
+    <meta name="keywords" content="Jobber class">
+  
+    <meta name="keywords" content="deliver, job_data, rjobs, ljobs, queue_key, redis_pool, redis, config">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span>
+            Jobber
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/lib/rails_com/utils/jobber_rb.html">lib/rails_com/utils/jobber.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-config">config</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-deliver">deliver</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>J</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-job_data">job_data</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-ljobs">ljobs</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>Q</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-queue_key">queue_key</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-redis">redis</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-redis_pool">redis_pool</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-rjobs">rjobs</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-config">
+            
+              <b>config</b>()
+            
+            <a href="../classes/Jobber.html#method-i-config" name="method-i-config" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-config_source')" id="l_method-i-config_source">show</a>
+                
+              </p>
+              <div id="method-i-config_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">config</span>
+  <span class="ruby-ivar">@config</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">config_for</span>(<span class="ruby-string">&#39;jobber&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-deliver">
+            
+              <b>deliver</b>(job, *arguments)
+            
+            <a href="../classes/Jobber.html#method-i-deliver" name="method-i-deliver" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-deliver_source')" id="l_method-i-deliver_source">show</a>
+                
+              </p>
+              <div id="method-i-deliver_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">deliver</span>(<span class="ruby-identifier">job</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">job_data</span>(<span class="ruby-identifier">job</span>, <span class="ruby-identifier">arguments</span>)
+
+  <span class="ruby-identifier">r</span> = <span class="ruby-identifier">redis_pool</span>.<span class="ruby-identifier">with</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">conn</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">pipelined</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">lpush</span>(<span class="ruby-identifier">queue_key</span>, <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">msg</span>))
+      <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">lrange</span>(<span class="ruby-identifier">queue_key</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">r</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">first</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-job_data">
+            
+              <b>job_data</b>(job, args, at: nil)
+            
+            <a href="../classes/Jobber.html#method-i-job_data" name="method-i-job_data" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-job_data_source')" id="l_method-i-job_data_source">show</a>
+                
+              </p>
+              <div id="method-i-job_data_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">job_data</span>(<span class="ruby-identifier">job</span>, <span class="ruby-identifier">args</span>, <span class="ruby-value">at:</span> <span class="ruby-keyword">nil</span>)
+  {
+    <span class="ruby-value">class:</span> <span class="ruby-string">&#39;ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper&#39;</span>,
+    <span class="ruby-value">wrapped:</span> <span class="ruby-identifier">job</span>,
+    <span class="ruby-value">queue:</span> <span class="ruby-identifier">config</span>[<span class="ruby-string">&#39;queue&#39;</span>],
+    <span class="ruby-value">args:</span> [ {
+      <span class="ruby-value">job_class:</span> <span class="ruby-identifier">job</span>,
+      <span class="ruby-value">job_id:</span> <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">uuid</span>,
+      <span class="ruby-value">queue_name:</span> <span class="ruby-identifier">config</span>[<span class="ruby-string">&#39;queue&#39;</span>],
+      <span class="ruby-value">priority:</span> <span class="ruby-keyword">nil</span>,
+      <span class="ruby-value">arguments:</span> <span class="ruby-identifier">args</span>,
+      <span class="ruby-value">locale:</span> <span class="ruby-string">&#39;en&#39;</span>
+    } ],
+    <span class="ruby-value">retry:</span> <span class="ruby-keyword">true</span>,
+    <span class="ruby-value">jid:</span> <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>(<span class="ruby-value">12</span>),
+    <span class="ruby-value">created_at:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>,
+    <span class="ruby-value">enqueued_at:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-ljobs">
+            
+              <b>ljobs</b>(size = 1)
+            
+            <a href="../classes/Jobber.html#method-i-ljobs" name="method-i-ljobs" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-ljobs_source')" id="l_method-i-ljobs_source">show</a>
+                
+              </p>
+              <div id="method-i-ljobs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ljobs</span>(<span class="ruby-identifier">size</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">redis_pool</span>.<span class="ruby-identifier">with</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">conn</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">lrange</span>(<span class="ruby-identifier">queue_key</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">r</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-queue_key">
+            
+              <b>queue_key</b>()
+            
+            <a href="../classes/Jobber.html#method-i-queue_key" name="method-i-queue_key" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-queue_key_source')" id="l_method-i-queue_key_source">show</a>
+                
+              </p>
+              <div id="method-i-queue_key_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">queue_key</span>
+  <span class="ruby-ivar">@queue_key</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;queue:#{config[&#39;queue&#39;]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-redis">
+            
+              <b>redis</b>()
+            
+            <a href="../classes/Jobber.html#method-i-redis" name="method-i-redis" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-redis_source')" id="l_method-i-redis_source">show</a>
+                
+              </p>
+              <div id="method-i-redis_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redis</span>
+  <span class="ruby-constant">Redis</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">url:</span> <span class="ruby-identifier">config</span>[<span class="ruby-string">&#39;url&#39;</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-redis_pool">
+            
+              <b>redis_pool</b>()
+            
+            <a href="../classes/Jobber.html#method-i-redis_pool" name="method-i-redis_pool" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-redis_pool_source')" id="l_method-i-redis_pool_source">show</a>
+                
+              </p>
+              <div id="method-i-redis_pool_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">redis_pool</span>
+  <span class="ruby-ivar">@redis_pool</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ConnectionPool</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">size:</span> <span class="ruby-value">5</span>, <span class="ruby-value">timeout:</span> <span class="ruby-value">5</span>) { <span class="ruby-constant">Redis</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">url:</span> <span class="ruby-identifier">config</span>[<span class="ruby-string">&#39;url&#39;</span>]) }
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-rjobs">
+            
+              <b>rjobs</b>(size = 1)
+            
+            <a href="../classes/Jobber.html#method-i-rjobs" name="method-i-rjobs" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-rjobs_source')" id="l_method-i-rjobs_source">show</a>
+                
+              </p>
+              <div id="method-i-rjobs_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/utils/jobber.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">rjobs</span>(<span class="ruby-identifier">size</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">redis_pool</span>.<span class="ruby-identifier">with</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">conn</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">lrange</span>(<span class="ruby-identifier">queue_key</span>, <span class="ruby-operator">-</span><span class="ruby-identifier">size</span>, <span class="ruby-value">-1</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">result</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">r</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>
