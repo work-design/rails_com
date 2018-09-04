@@ -45,4 +45,4 @@ $ gem install rails_com
 Contribution directions go here.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [LGPL License](https://opensource.org/licenses/LGPL-3.0).
