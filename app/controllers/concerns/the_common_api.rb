@@ -5,10 +5,10 @@ module TheCommonApi
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
       render json: { error: exp.message, backtrace: exp.backtarce }, status: :not_found
     end
+
     # rescue_from 'StandardError' do |exp|
     #   render json: { error: exp.message, backtrace: exp.backtrace }, status: 500
     # end
-    after_action :wrap_body
   end
 
   def process_errors(model)
@@ -18,6 +18,7 @@ module TheCommonApi
     }, status: 200
   end
 
+  # used after_action :warp_body
   def wrap_body
     if self.response.media_type == 'application/json'
       begin
