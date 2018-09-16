@@ -11,3 +11,12 @@ Rails.application.routes.draw do
   end
 
 end
+
+
+RailsCom::Engine.routes.draw do
+
+  scope :rails, as: 'rails', module: 'active_storage' do
+    resources :attachments, only: [:destroy]
+  end
+
+end

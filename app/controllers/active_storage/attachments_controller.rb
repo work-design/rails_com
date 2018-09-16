@@ -1,15 +1,10 @@
 class ActiveStorage::AttachmentsController < ActiveStorage::BaseController
-  before_action :set_attachment, only: [:show, :destroy]
-
-  def index
-    @attachments = Attachment.page(params[:page])
-  end
-
-  def show
-  end
+  before_action :set_attachment, only: [:destroy]
 
   def destroy
     @attachment.purge
+
+    head :no_content
   end
 
   private

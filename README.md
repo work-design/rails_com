@@ -1,23 +1,7 @@
 # RailsCom
-Rails Common engine, with many sugars!
+Rails 通用基础库
 
-## Installation
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'rails_com'
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install rails_com
-```
-## Features
+## 说明
 * examples: puma, configs etc.
 * rails and ruby core extension;
 * methods deal rails model/controller/routes etc.
@@ -25,10 +9,10 @@ $ gem install rails_com
 
 ## Module
 * Ruby core extension
-* Rails meta informations: Conroller/Model/Routes
+* Rails meta information: Controller/Model/Routes
 * Rails core extension
-  - Activestorage sync with url
-  - Activestorage copy to mirror
+  - ActiveStorage sync with url
+  - ActiveStorage copy to mirror
 * Utils
   - UidHelper
   - TimeHelper
@@ -41,8 +25,6 @@ $ gem install rails_com
 <%= render 'shared/locales' %>
 ```
 
-## Contributing
-Contribution directions go here.
 
 ## License
 The gem is available as open source under the terms of the [LGPL License](https://opensource.org/licenses/LGPL-3.0).
