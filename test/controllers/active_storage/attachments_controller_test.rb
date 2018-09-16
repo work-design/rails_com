@@ -11,7 +11,7 @@ class ActiveStorage::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'destroy ok' do
     assert_difference('ActiveStorage::Attachment.count', -1) do
-      delete rails_attachment_url(@active_storage_attachment)
+      delete rails_attachment_url(@active_storage_attachment), xhr: true
     end
   end
 end

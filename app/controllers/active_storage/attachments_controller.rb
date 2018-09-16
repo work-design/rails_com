@@ -3,8 +3,6 @@ class ActiveStorage::AttachmentsController < ActiveStorage::BaseController
 
   def destroy
     @attachment.purge
-
-    head :no_content
   end
 
   private

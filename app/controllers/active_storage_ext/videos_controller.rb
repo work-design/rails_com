@@ -4,10 +4,6 @@ class ActiveStorageExt::VideosController < RailsCom.config.app_class.constantize
     ActiveStorage::Current.host = request.base_url
   end
 
-  def index
-    @videos = Video.page(params[:page])
-  end
-
   def show
     expires_in ActiveStorage::Blob.service.url_expires_in
   end
