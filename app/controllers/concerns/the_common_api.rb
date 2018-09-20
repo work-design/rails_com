@@ -3,17 +3,18 @@ module TheCommonApi
 
   included do
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      render json: { error: exp.message, backtrace: exp.backtarce }, status: :not_found
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: :not_found
     end
 
-    # rescue_from 'StandardError' do |exp|
-    #   render json: { error: exp.message, backtrace: exp.backtrace }, status: 500
-    # end
+    rescue_from 'StandardError' do |exp|
+      puts exp.backtrace
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500
+    end
   end
 
   def process_errors(model)
     render json: {
-      code: 500,
+      code: 406,
       error: model.errors.as_json(full_messages: true),
       message: model.errors.full_messages.join("\n")
     }, status: 200
@@ -27,7 +28,8 @@ module TheCommonApi
       rescue JSON::ParserError
         body = {}
       end
-      self.response.body = { data: body }.to_json
+      code = body['code'] || 200
+      self.response.body = { code: code, data: body }.to_json
     end
   end
 
