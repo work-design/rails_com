@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.version = RailsCom::VERSION
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
-  s.homepage = 'https://github.com/qinmingyuan/rails_com'
+  s.homepage = 'https://github.com/yougexiangfa/rails_com'
   s.summary = 'Rails Engine with common utils'
-  s.description = 'Rails Engine with many common utils'
+  s.description = 'Common utils for Rails Application'
   s.license = 'LGPL-3.0'
 
   s.files = Dir[
