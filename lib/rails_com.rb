@@ -15,6 +15,9 @@ require 'rails_com/helpers/controller_helper'
 require 'rails_com/core_ext/hash'
 require 'rails_com/core_ext/nil'
 require 'rails_com/core_ext/array'
+require 'rails_com/core_ext/date'
+require 'rails_com/core_ext/numeric'
+require 'rails_com/core_ext/string'
 
 # Rails extension
 require 'rails_com/rails_ext/template_renderer'

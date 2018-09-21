@@ -6,19 +6,18 @@ Gem::Specification.new do |s|
   s.version = RailsCom::VERSION
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
-  s.homepage = 'https://github.com/qinmingyuan/rails_com'
-  s.summary = 'Rails Engine with many common utils'
-  s.description = 'Rails Engine with many common utils'
-  s.license = 'MIT'
+  s.homepage = 'https://github.com/yougexiangfa/rails_com'
+  s.summary = 'Rails Engine with common utils'
+  s.description = 'Common utils for Rails Application'
+  s.license = 'LGPL-3.0'
 
   s.files = Dir[
     '{app,config,db,lib}/**/*',
     'Rakefile',
-    'MIT-LICENSE',
+    'LICENSE',
     'README.md'
   ]
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails'
-  s.add_development_dependency 'factory_bot_rails'
+  s.add_dependency 'rails', '>= 5.2', '<= 6.0'
 end

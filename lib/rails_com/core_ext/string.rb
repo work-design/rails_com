@@ -6,16 +6,10 @@ class String
     false
   end
 
-  def to_bool
-    if self =~ (/(true|t|yes|y|1)$/i)
-      return true
-    end
-
-    if self.blank? || self =~ (/(false|f|no|n|0)$/i)
-      return false
-    end
-
-    nil
+  def numeric?
+    Float(self).is_a?(Numeric)
+  rescue ArgumentError, TypeError
+    false
   end
 
 end

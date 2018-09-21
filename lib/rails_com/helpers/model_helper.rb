@@ -15,14 +15,14 @@ module RailsCom::ModelHelper
 
   def column_attributes
     columns.map do |column|
-      [
-        column.name.to_sym,
-        column.default,
-        column.type,
-        column.sql_type,
-        column.null,
-        column.default_function
-      ]
+      {
+        name: column.name.to_sym,
+        type: column.type,
+        sql_type: column.sql_type,
+        null: column.null,
+        default: column.default,
+        default_function: column.default_function
+      }
     end
   end
 

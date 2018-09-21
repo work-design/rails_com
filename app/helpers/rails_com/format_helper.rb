@@ -24,7 +24,7 @@ module RailsCom::FormatHelper
       begin
         hash_text = text.to_h
         return simple_format_hash(hash_text, html_options, options)
-      rescue TypeError => e
+      rescue TypeError
         return content_tag(:span, text, html_options)
       end
     end

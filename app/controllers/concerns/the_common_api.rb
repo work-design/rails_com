@@ -3,21 +3,24 @@ module TheCommonApi
 
   included do
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      render json: { error: exp.message, backtrace: exp.backtarce }, status: :not_found
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: :not_found
     end
-    # rescue_from 'StandardError' do |exp|
-    #   render json: { error: exp.message, backtrace: exp.backtrace }, status: 500
-    # end
-    after_action :wrap_body
+
+    rescue_from 'StandardError' do |exp|
+      puts exp.backtrace
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500
+    end
   end
 
   def process_errors(model)
     render json: {
-      errors: model.errors.as_json(full_messages: true),
-      full_messages: model.errors.full_messages.join("\n")
+      code: 406,
+      error: model.errors.as_json(full_messages: true),
+      message: model.errors.full_messages.join("\n")
     }, status: 200
   end
 
+  # used after_action :warp_body
   def wrap_body
     if self.response.media_type == 'application/json'
       begin
@@ -25,8 +28,14 @@ module TheCommonApi
       rescue JSON::ParserError
         body = {}
       end
-      self.response.body = { data: body }.to_json
+      code = body['code'] || 200
+      self.response.body = { code: code, data: body }.to_json
     end
+  end
+
+  # process_js
+  def process_js
+
   end
 
 end

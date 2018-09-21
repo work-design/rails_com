@@ -12,5 +12,7 @@ if defined?(FactoryBot)
 end
 
 class ActiveSupport::TestCase
+  self.file_fixture_path = File.expand_path('fixtures/files', __dir__)
+
   include FactoryBot::Syntax::Methods
 end
