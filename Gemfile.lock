@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_com (1.2.2)
+    rails_com (1.2.4)
       rails (>= 5.2, <= 6.0)
 
 GEM
