@@ -12,7 +12,8 @@ module RailsCom::TimeHelper
       str = ''
       result.each do |k, v|
         if v > 0
-          str << v.to_s << locale.t(k)
+          str += v.to_s
+          str += locale.t(k)
         end
       end
       str
