@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RailsCom::ModelHelper</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="RailsCom::ModelHelper">
+
+  
+
+    <meta name="keywords" content="RailsCom::ModelHelper class">
+  
+    <meta name="keywords" content="to_factory_bot, column_attributes, print_table, sql_table">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span>
+            RailsCom::ModelHelper
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/rails_com/helpers/model_helper_rb.html">lib/rails_com/helpers/model_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-column_attributes">column_attributes</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-print_table">print_table</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-sql_table">sql_table</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>T</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-to_factory_bot">to_factory_bot</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-column_attributes">
+            
+              <b>column_attributes</b>()
+            
+            <a href="../../classes/RailsCom/ModelHelper.html#method-i-column_attributes" name="method-i-column_attributes" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-column_attributes_source')" id="l_method-i-column_attributes_source">show</a>
+                
+              </p>
+              <div id="method-i-column_attributes_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/helpers/model_helper.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">column_attributes</span>
+  <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+    {
+      <span class="ruby-value">name:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>,
+      <span class="ruby-value">type:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span>,
+      <span class="ruby-value">sql_type:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">sql_type</span>,
+      <span class="ruby-value">null:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">null</span>,
+      <span class="ruby-value">default:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default</span>,
+      <span class="ruby-value">default_function:</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default_function</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-print_table">
+            
+              <b>print_table</b>(with_column: false)
+            
+            <a href="../../classes/RailsCom/ModelHelper.html#method-i-print_table" name="method-i-print_table" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-print_table_source')" id="l_method-i-print_table_source">show</a>
+                
+              </p>
+              <div id="method-i-print_table_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/helpers/model_helper.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">print_table</span>(<span class="ruby-value">with_column:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">info</span> = <span class="ruby-identifier">with_column</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;#  t.column&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;# &#39;</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; :#{column.name.to_sym}, :#{column.type}&quot;</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, precision: #{column.precision}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">precision</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, scale: #{column.scale}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">scale</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, limit: #{column.limit}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">limit</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:string</span>
+      <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, default: &#39;#{column.default}&#39;&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default</span>
+      <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, default: #{column.default}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;, null: false&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">null</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, comment: &#39;#{column.comment} type: #{column.sql_type}&#39;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">comment</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">info</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-sql_table">
+            
+              <b>sql_table</b>(except: [], only: [], pure: true)
+            
+            <a href="../../classes/RailsCom/ModelHelper.html#method-i-sql_table" name="method-i-sql_table" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-sql_table_source')" id="l_method-i-sql_table_source">show</a>
+                
+              </p>
+              <div id="method-i-sql_table_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/helpers/model_helper.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sql_table</span>(<span class="ruby-value">except:</span> [], <span class="ruby-value">only:</span> [], <span class="ruby-value">pure:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">only</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">_columns</span> = <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span> <span class="ruby-identifier">only</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">column</span>.<span class="ruby-identifier">name</span>) }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">_columns</span> = <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span> <span class="ruby-identifier">except</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">column</span>.<span class="ruby-identifier">name</span>) }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pure</span>
+    <span class="ruby-identifier">sql</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">sql</span> = <span class="ruby-node">&quot;CREATE TABLE `#{self.table_name}` (\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">_columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  `#{column.name}` #{column.sql_type}&quot;</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; COLLATE #{column.collation}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">collation</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; NOT NULL&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">null</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; DEFAULT &#39;#{column.default}&#39;,\n&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">default</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">null</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; DEFAULT NULL,\n&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;,\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  PRIMARY KEY (`#{self.primary_key}`)&quot;</span>
+
+  <span class="ruby-identifier">_indexes</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">indexes</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">table_name</span>).<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">index</span>.<span class="ruby-identifier">columns</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">_columns</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span> }).<span class="ruby-identifier">blank?</span> }
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">_indexes</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;,\n&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">_indexes</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">obj</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;  KEY `#{obj.name}` (&quot;</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;`#{col}`&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">_indexes</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)\n&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;),\n&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">pure</span>
+    <span class="ruby-identifier">sql</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-to_factory_bot">
+            
+              <b>to_factory_bot</b>()
+            
+            <a href="../../classes/RailsCom/ModelHelper.html#method-i-to_factory_bot" name="method-i-to_factory_bot" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-to_factory_bot_source')" id="l_method-i-to_factory_bot_source">show</a>
+                
+              </p>
+              <div id="method-i-to_factory_bot_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/helpers/model_helper.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_factory_bot</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;rails/generators&#39;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;generators/factory_bot/model/model_generator&#39;</span>
+
+  <span class="ruby-identifier">args</span> = [
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span>
+  ]
+  <span class="ruby-identifier">cols</span> = <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{col.name}:#{col.type}&quot;</span> }
+
+  <span class="ruby-identifier">generator</span> = <span class="ruby-constant">FactoryBot</span><span class="ruby-operator">::</span><span class="ruby-constant">Generators</span><span class="ruby-operator">::</span><span class="ruby-constant">ModelGenerator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">cols</span>, <span class="ruby-value">destination_root:</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>)
+  <span class="ruby-identifier">generator</span>.<span class="ruby-identifier">invoke_all</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>

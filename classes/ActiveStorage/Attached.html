@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ActiveStorage::Attached</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="ActiveStorage::Attached">
+
+  
+
+    <meta name="keywords" content="ActiveStorage::Attached class">
+  
+    <meta name="keywords" content="url_sync">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            ActiveStorage::Attached
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/rails_com/rails_ext/activestorage_attached_rb.html">lib/rails_com/rails_ext/activestorage_attached.rb</a></li>
+            
+            <li><a href="../../files/lib/rails_com/rails_ext/attachment_transfer_rb.html">lib/rails_com/rails_ext/attachment_transfer.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="Attached/One.html">ActiveStorage::Attached::One</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-url_sync">url_sync</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-url_sync">
+            
+              <b>url_sync</b>(url)
+            
+            <a href="../../classes/ActiveStorage/Attached.html#method-i-url_sync" name="method-i-url_sync" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source:
+                <a href="javascript:toggleSource('method-i-url_sync_source')" id="l_method-i-url_sync_source">show</a>
+                
+              </p>
+              <div id="method-i-url_sync_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/rails_com/rails_ext/activestorage_attached.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">url_sync</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">filename</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span> <span class="ruby-constant">URI</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">path</span>
+
+  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">binmode</span>
+    <span class="ruby-constant">HTTParty</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>, <span class="ruby-value">stream_body:</span> <span class="ruby-keyword">true</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fragment</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">fragment</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attach</span> <span class="ruby-value">io:</span> <span class="ruby-identifier">file</span>, <span class="ruby-value">filename:</span> <span class="ruby-identifier">filename</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </div>
+  </body>
+</html>
