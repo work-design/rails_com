@@ -1,6 +1,6 @@
 require 'active_support/configurable'
 
-module RailsCom
+module RailsCom #:nodoc:
   include ActiveSupport::Configurable
 
   configure do |config|

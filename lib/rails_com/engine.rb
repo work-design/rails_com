@@ -1,4 +1,4 @@
-class RailsCom::Engine < ::Rails::Engine
+class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
   config.generators do |g|
     g.stylesheets false
