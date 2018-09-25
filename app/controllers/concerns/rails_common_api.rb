@@ -3,14 +3,12 @@ module RailsCommonApi
 
   included do
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      puts
-      puts exp.full_message(highlight: true, order: :top)
+      puts nil, exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: :not_found
     end
 
     rescue_from 'StandardError' do |exp|
-      puts
-      puts exp.full_message(highlight: true, order: :top)
+      puts nil, exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500
     end
   end
