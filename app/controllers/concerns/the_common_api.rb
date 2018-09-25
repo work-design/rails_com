@@ -7,7 +7,7 @@ module TheCommonApi
     end
 
     rescue_from 'StandardError' do |exp|
-      puts exp.backtrace
+      puts exp.full_message
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500
     end
   end
