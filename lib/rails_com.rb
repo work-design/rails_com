@@ -28,6 +28,7 @@ require 'rails_com/rails_ext/persistence_sneakily'
 require 'rails_com/rails_ext/translation_helper'
 require 'rails_com/rails_ext/video_response'
 require 'rails_com/rails_ext/attachment_transfer'
+require 'rails_com/rails_ext/errors'
 require 'rails_com/sprockets/non_digest_assets'
 
 # Utils

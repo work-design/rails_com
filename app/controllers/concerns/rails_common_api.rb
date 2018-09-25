@@ -2,14 +2,19 @@ module RailsCommonApi
   extend ActiveSupport::Concern
 
   included do
-    rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
-      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: :not_found
-    end
-
     rescue_from 'StandardError' do |exp|
       puts nil, exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500
+    end
+
+    rescue_from 'ActionController::UnauthorizedError' do |exp|
+      puts nil, exp.full_message(highlight: true, order: :top)
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 401
+    end
+
+    rescue_from 'ActiveRecord::RecordNotFound' do |exp|
+      puts nil, exp.full_message(highlight: true, order: :top)
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 404
     end
   end
 
