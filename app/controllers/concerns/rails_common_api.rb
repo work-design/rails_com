@@ -21,6 +21,11 @@ module RailsCommonApi
       puts nil, exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 401
     end
+
+    rescue_from 'ActionController::ParameterMissing' do |exp|
+      puts nil, exp.full_message(highlight: true, order: :top)
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 400
+    end
   end
 
   def process_errors(model)

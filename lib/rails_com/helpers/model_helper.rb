@@ -17,11 +17,13 @@ module RailsCom::ModelHelper
     columns.map do |column|
       {
         name: column.name.to_sym,
+        name_i18n: human_attribute_name(column.name),
         type: column.type,
         sql_type: column.sql_type,
         null: column.null,
         default: column.default,
-        default_function: column.default_function
+        default_function: column.default_function,
+        comment: column.comment
       }
     end
   end
