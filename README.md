@@ -1,7 +1,7 @@
 # RailsCom
 Rails 通用基础库
 
-## 说明
+## 功能
 * examples: puma, configs etc.
 * rails and ruby core extension;
 * methods deal rails model/controller/routes etc.

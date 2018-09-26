@@ -1,3 +1,5 @@
+
+#:nodoc:
 set :sidekiq, -> { "#{fetch :bundle_prefix} sidekiq -d" }
 set :sidekiqctl, -> { "#{fetch :bundle_prefix} sidekiqctl" }
 set :sidekiq_config, -> { "#{fetch :current_path}/config/sidekiq.yml" }
