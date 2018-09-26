@@ -49,8 +49,8 @@ class Array
   #   [:b, 2]
   # ]
   # raw_data.to_combined_h
-  # => { a: [1, 2], b: 2 }
-  # #todo nested array bug
+  # #=> { a: [1, 2], b: 2 }
+  # todo nested array bug
   def to_combined_h
     hash = {}
     self.each { |x, y| hash[x] = hash[x] ? Array(hash[x]) << y : y  }

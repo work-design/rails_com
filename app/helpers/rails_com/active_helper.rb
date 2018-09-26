@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 module RailsCom::ActiveHelper
 
-  # active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
+  #
+  # return by assert return
+  #   active_assert('notice' == 'notice', expected: 'ui info message', unexpected: 'ui negative message')
+  #   #=> 'ui info message'
   def active_assert(assert, expected: 'item active', unexpected: 'item')
     if assert
       expected
@@ -10,8 +13,10 @@ module RailsCom::ActiveHelper
     end
   end
 
-  # active_asserts('active': true, expected: false)
-  def active_asserts(join: true, **options)
+  # return value by each keys which is true
+  #   active_asserts(active: true, item: false)
+  #   #=> 'active'
+  def active_asserts(join = true, **options)
     keys = options.select { |_, v| v }.keys
 
     if join
@@ -21,12 +26,17 @@ module RailsCom::ActiveHelper
     end
   end
 
-  # paths: active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
-  # controllers: active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
-  # modules: active_helper modules: 'admin/oa'
-  # action: active_helper 'work/employee': ['index', 'show']
-  # params: active_params state: 'xxx'
-  # active_helper controller: 'users', action: 'show', id: 371
+  # See examples bellow:
+  # paths:
+  #   active_helper paths: '/work/employees' or active_helper paths: ['/work/employees']
+  # controllers:
+  #   active_helper controllers: 'xxx'  or active_helper controllers: ['xxx1', 'admin/xxx2']
+  # modules:
+  #   active_helper modules: 'admin/oa'
+  # action:
+  #   active_helper 'work/employee': ['index', 'show']
+  # params:
+  #   active_helper controller: 'users', action: 'show', id: 371
   def active_helper(paths: [], controllers: [], modules: [], active_class: 'item active', item_class: 'item', **options)
     check_parameters = options.delete(:check_parameters)
 
@@ -56,6 +66,8 @@ module RailsCom::ActiveHelper
     item_class
   end
 
+  # return value by params
+  #   active_params state: 'xxx'
   def active_params(active_class: 'item active', item_class: 'item', **options)
     options.select { |_, v| v.present? }.each do |k, v|
       if params[k].to_s == v.to_s

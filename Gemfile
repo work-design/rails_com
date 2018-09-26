@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'sprockets', '~> 4.0.0.beta4'
@@ -11,4 +12,5 @@ gem 'sdoc'
 
 gem 'pry-rails'
 gem 'awesome_print'
+gem 'rails_auth', github: 'qinmingyuan/rails_auth', branch: 'master'
 
