@@ -28,8 +28,10 @@ module AttachmentTransfer
 
     if attach.is_a?(ActiveStorage::Attached::One)
       r
+    elsif attach.ia_a?(ActiveStorage::Attached::Many)
+      r[0]
     else
-      r.first
+      r
     end
   end
 

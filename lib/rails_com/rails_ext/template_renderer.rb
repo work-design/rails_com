@@ -33,7 +33,22 @@ module RailsExt
     end
 
   end
+
+  module Parameters
+
+    def require(key)
+      begin
+        super
+      ensure
+        @required_params ||= []
+        @required_params << key
+      end
+    end
+
+  end
+
 end
 
 ActionView::TemplateRenderer.prepend RailsExt::TemplateRenderer
 ActionView::PartialRenderer.prepend RailsExt::PartialRenderer
+ActionController::Parameters.prepend RailsExt::Parameters
