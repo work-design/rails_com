@@ -28,6 +28,15 @@ module RailsCom::AssetsHelper
     end
   end
 
+  def css_pack(filename = nil, **options)
+    filename ||= "controllers/#{controller_path}/#{action_name}"
+    paths = assets_load_path(filename, relative_path: 'app/javascript/packs', **options)
+
+    if paths.any? { |path| File.exist?(path) }
+      stylesheet_pack_tag filename, options
+    end
+  end
+
   def js_ready(**options)
     js_load("controllers/#{controller_path}/#{action_name}.ready", **options)
   end
