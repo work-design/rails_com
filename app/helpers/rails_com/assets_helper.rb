@@ -1,54 +1,65 @@
 # frozen_string_literal: true
 module RailsCom::AssetsHelper
 
-  def js_load(filename = nil, **options)
-    filename ||= "controllers/#{controller_path}/#{action_name}"
-    paths = assets_load_path(filename, ext: options.delete(:ext) || ['.js', '.js.erb'])
+  # Assets path: app/assets/javascripts/controllers
+  # Packs Path: app/javascript/packs/javascripts
+  def js_load(**options)
+    ext = ['.js', '.js.erb'] + Array(options.delete(:ext))
+    suffix = options.delete(:suffix)
 
-    if paths.any? { |path| File.exist?(path) }
-      javascript_include_tag filename, options
+    asset_filename = "controllers/#{controller_path}/#{action_name}"
+    if suffix
+      asset_filename += ['.', suffix].join
     end
-  end
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext)
 
-  def css_load(filename = nil, **options)
-    filename ||= "controllers/#{controller_path}/#{action_name}"
-    paths = assets_load_path(filename, relative_path: 'app/assets/stylesheets', ext: options.delete(:ext) || ['.css', '.css.erb'])
-
-    if paths.any? { |path| File.exist?(path) }
-      stylesheet_link_tag filename, options
+    pack_filename ||= "javascripts/#{controller_path}/#{action_name}"
+    if suffix
+      pack_filename += ['-', suffix].join
     end
-  end
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
 
-  # Path: app/javascript/packs/javascripts
-  def js_pack(filename = nil, **options)
-    filename ||= "javascripts/#{controller_path}/#{action_name}"
-    paths = assets_load_path(filename, relative_path: 'app/javascript/packs', ext: options.delete(:ext) || ['.js', '.js.erb'])
-
-    if paths.any? { |path| File.exist?(path) }
-      javascript_pack_tag filename, options
+    r = []
+    if asset_paths.any? { |path| File.exist?(path) }
+      r << javascript_include_tag(asset_filename, options)
     end
-  end
 
-  #
-  # Path: app/javascript/packs/stylesheets
-  def css_pack(filename = nil, **options)
-    filename ||= "stylesheets/#{controller_path}/#{action_name}"
-    paths = assets_load_path(filename, relative_path: 'app/javascript/packs', ext: options.delete(:ext) || ['.css', '.css.erb'])
-
-    if paths.any? { |path| File.exist?(path) }
-      stylesheet_pack_tag filename, options
+    if pack_paths.any? { |path| File.exist?(path) }
+      r << javascript_pack_tag(pack_filename, options)
     end
+
+    r.join("\n    ").html_safe
   end
 
   def js_ready(**options)
-    js_load("controllers/#{controller_path}/#{action_name}.ready", **options)
+    js_load(suffix: 'ready', **options)
   end
 
-  def js_pack_ready(**options)
-    js_pack("controllers/#{controller_path}/#{action_name}-ready", **options)
+  # Assets path: app/assets/stylesheets/controllers
+  # Packs Path: app/javascript/packs/stylesheets
+  def css_load(**options)
+    ext = ['.css', '.css.erb'] + Array(options.delete(:ext))
+
+    asset_filename = "controllers/#{controller_path}/#{action_name}"
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext )
+
+    pack_filename = "stylesheets/#{controller_path}/#{action_name}"
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
+
+    r = []
+    if asset_paths.any? { |path| File.exist?(path) }
+      r << stylesheet_link_tag(asset_filename, options)
+    end
+
+    if pack_paths.any? { |path| File.exist?(path) }
+      r << stylesheet_pack_tag(pack_filename, options)
+    end
+
+    r.join("\n    ").html_safe
   end
 
-  def assets_load_path(filename, relative_path: 'app/assets/javascripts', ext:)
+  private
+  def assets_load_path(filename, relative_path:, ext:)
     paths = []
 
     file_path = Pathname.new(relative_path).join filename
