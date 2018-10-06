@@ -26,6 +26,14 @@ module ActiveStorage
         end
       end
 
+      def attachment
+        if super
+          super
+        else
+
+        end
+      end
+
     end
   end
 
