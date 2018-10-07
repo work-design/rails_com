@@ -2,6 +2,7 @@ module RailsExt
   module AttachedMacros
 
     def has_one_attached(name, dependent: :purge_later, default: nil)
+      cattr_accessor :"#{name}_attachment_default"
       if default
         blob = ActiveStorage::Blob.find_by(key: default)
         class_variable_set("@@#{name}_attachment_default", blob) if blob
