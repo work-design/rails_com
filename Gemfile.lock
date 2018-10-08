@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/qinmingyuan/rails_auth.git
-  revision: 3e9cff9b413ddd49fbdcd30388e1cac253edf562
+  revision: 75985b4791d25e59adaeb110e4cb0ce87edaddb2
   branch: master
   specs:
     rails_auth (1.0.5)

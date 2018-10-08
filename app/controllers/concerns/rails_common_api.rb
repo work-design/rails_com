@@ -49,9 +49,4 @@ module RailsCommonApi
     end
   end
 
-  # process_js
-  def process_js
-
-  end
-
 end
