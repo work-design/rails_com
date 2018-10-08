@@ -3,8 +3,16 @@ require 'tempfile'
 module Babel
   extend self
 
+  def script_path
+    @app_path = File.expand_path('.', Dir.pwd)
+    node_modules_bin_path = ENV['WEBPACKER_NODE_MODULES_BIN_PATH'] || `yarn bin`.chomp
+    babel_config = File.join(@app_path, '.babelrc')
+
+    "#{node_modules_bin_path}/babel --config-file #{babel_config}"
+  end
+
   def context(file)
-    `babel #{file}`
+    `#{script_path} #{file}`
   end
 
   def transform(code, options = {})
