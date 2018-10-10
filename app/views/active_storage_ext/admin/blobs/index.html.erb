@@ -1,9 +1,9 @@
 <div class="ui top attached borderless menu">
-  <%= link_to 'All', rails_blobs_path, class: active_helper(action: 'index') %>
-  <%= link_to 'Unattached', unattached_rails_blobs_path, class: active_helper(action: 'unattached') %>
+  <%= link_to 'All', rails_ext_blobs_path, class: active_helper(action: 'index') %>
+  <%= link_to 'Unattached', unattached_rails_ext_blobs_path, class: active_helper(action: 'unattached') %>
   <div class="right menu">
     <div class="item">
-      <%= link_to 'New ActiveStorage::Blob', new_rails_blob_path, class: 'ui teal button' %>
+      <%= link_to 'New ActiveStorage::Blob', new_rails_ext_blob_path, class: 'ui teal button' %>
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
       <td><%= number_to_human_size(blob.byte_size) %></td>
       <td><time><%= blob.created_at.to_s(:rfc822) %></time></td>
       <td class="ui labels">
-        <%= link_to rails_blob_path(blob), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to rails_ext_blob_path(blob), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>

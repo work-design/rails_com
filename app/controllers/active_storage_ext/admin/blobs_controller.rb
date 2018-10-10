@@ -23,7 +23,7 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
     @blob.key = blob_params[:key]
 
     if @blob.save
-      redirect_to rails_blobs_url, notice: 'Blob was successfully created.'
+      redirect_to rails_ext_blobs_url, notice: 'Blob was successfully created.'
     else
       render :new
     end
@@ -31,7 +31,7 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
 
   def destroy
     @blob.purge
-    redirect_to blobs_url, notice: 'Blob was successfully destroyed.'
+    redirect_to rails_ext_blobs_url, notice: 'Blob was successfully destroyed.'
   end
 
   private
