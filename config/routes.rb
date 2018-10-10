@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   scope :rails, as: 'rails', module: 'active_storage_ext/admin' do
     resources :attachments, only: [:destroy]
-    resources :blobs, only: [:index, :new, :create, :destroy]
+    resources :blobs, only: [:index, :new, :create, :destroy] do
+      get :unattached, on: :collection
+    end
   end
 
 end

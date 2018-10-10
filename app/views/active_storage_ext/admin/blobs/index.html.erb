@@ -1,5 +1,6 @@
 <div class="ui top attached borderless menu">
-  <div class="header item">Blobs</div>
+  <%= link_to 'All', rails_blobs_path, class: active_helper(action: 'index') %>
+  <%= link_to 'Unattached', unattached_rails_blobs_path, class: active_helper(action: 'unattached') %>
   <div class="right menu">
     <div class="item">
       <%= link_to 'New ActiveStorage::Blob', new_rails_blob_path, class: 'ui teal button' %>

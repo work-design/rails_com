@@ -2,11 +2,16 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
   before_action :set_blob, only: [:destroy]
 
   def index
-    @blobs = ActiveStorage::Blob.order(id: :desc).page(params[:page])
+    q_params = {}.with_indifferent_access
+    q_params.merge params.fetch(:q, {}).permit(:key, :filename)
+    @blobs = ActiveStorage::Blob.default_where(q_params).order(id: :desc).page(params[:page])
   end
 
-  def invalid
-    @blobs = ActiveStorage::Blob.unattached.page(params[:page])
+  def unattached
+    q_params = {}.with_indifferent_access
+    q_params.merge params.fetch(:q, {}).permit(:key, :filename)
+    @blobs = ActiveStorage::Blob.unattached.default_where(q_params).order(id: :desc).page(params[:page])
+    render :index
   end
 
   def new
