@@ -2,7 +2,7 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
   before_action :set_blob, only: [:destroy]
 
   def index
-    @blobs = ActiveStorage::Blob.page(params[:page])
+    @blobs = ActiveStorage::Blob.order(id: :desc).page(params[:page])
   end
 
   def invalid
@@ -14,10 +14,11 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
   end
 
   def create
-    @blob = ActiveStorage::Blob.new(blob_params)
+    @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
+    @blob.key = blob_params[:key]
 
     if @blob.save
-      redirect_to blobs_url, notice: 'Blob was successfully created.'
+      redirect_to rails_blobs_url, notice: 'Blob was successfully created.'
     else
       render :new
     end
@@ -35,7 +36,8 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
 
   def blob_params
     params.fetch(:blob, {}).permit(
-      :key
+      :key,
+      :io
     )
   end
 
