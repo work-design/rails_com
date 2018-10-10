@@ -1,4 +1,4 @@
-class ActiveStorage::AttachmentsController < ActiveStorage::BaseController
+class ActiveStorageExt::Admin::AttachmentsController < ActiveStorageExt::Admin::BaseController
   before_action :set_attachment, only: [:destroy]
 
   def destroy

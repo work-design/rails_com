@@ -8,6 +8,7 @@ module RailsCom #:nodoc:
       'rails/welcome'
     ]
     config.app_class = 'ApplicationController'
+    config.admin_class = 'AdminController'
   end
 
 end
