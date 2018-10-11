@@ -7,7 +7,6 @@
 <div class="ui segment">
   <%= form_with model: @blob, url: rails_ext_blobs_path, local: true do |f| %>
     <%= render 'shared/error_messages', target: @blob %>
-    <%= f.text_field :key %>
     <%= f.file_field :io %>
     <%= f.submit %>
   <% end %>
