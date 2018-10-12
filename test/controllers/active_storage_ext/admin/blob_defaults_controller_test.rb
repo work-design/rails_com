@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
+class ActiveStorageExt::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @blob_default = blob_defaults(:one)
+    @blob_default = create :blob_default
   end
 
-  test "should get index" do
-    get blob_defaults_url
+  test 'index ok' do
+    get 'rails/blob_defaults'
     assert_response :success
   end
 

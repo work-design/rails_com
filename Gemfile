@@ -11,5 +11,3 @@ gem 'sdoc'
 
 gem 'pry-rails'
 gem 'awesome_print'
-gem 'rails_auth', github: 'qinmingyuan/rails_auth', branch: 'master'
-
