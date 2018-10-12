@@ -1,0 +1,7 @@
+<%= form_with model: @blob_default, url: rails_ext_blob_defaults_path, local: true do |f| %>
+  <%= render 'shared/error_messages', target: @blob_default %>
+  <%= f.text_field :record_class %>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :blob_id %>
+  <%= f.submit %>
+<% end %>

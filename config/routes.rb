@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :blobs, only: [:index, :new, :create, :destroy] do
       get :unattached, on: :collection
     end
+    resources :blob_defaults
   end
 
 end
