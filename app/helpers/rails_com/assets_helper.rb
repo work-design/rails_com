@@ -52,16 +52,9 @@ module RailsCom::AssetsHelper
     end
 
     if pack_paths.any? { |path| File.exist?(path) }
-      
       begin
-        rs = stylesheet_pack_tag(pack_filename, options)
+        r << stylesheet_pack_tag(pack_filename, options)
       rescue
-        rs = nil
-      end
-
-      if rs.is_a?(String)
-        r << rs
-      else
         r << javascript_pack_tag(pack_filename, options)
       end
     end
