@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :videos, only: [:show] do
       put :transfer, on: :member
     end
+    resources :audios, only: [:show] do
+      put :transfer, on: :member
+    end
   end
 
   scope :rails, module: 'active_storage_ext/admin', as: 'rails_ext' do
