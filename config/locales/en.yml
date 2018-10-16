@@ -1,4 +1,5 @@
 en:
+  site_name: Rails Application
   controller:
     show: Show
     edit: Edit
