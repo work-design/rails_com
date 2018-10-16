@@ -1,9 +1,14 @@
 module TimeHelper
   extend self
 
-  def exact_distance_time(from_time, to_time)
-    from_time = from_time.to_datetime
-    to_time = to_time.to_datetime
+  def exact_distance_time(from_time = 0, to_time)
+    if to_time.is_a?(Numeric)
+      from_time = Time.at(from_time)
+      to_time = Time.at(to_time)
+    else
+      from_time = from_time.to_datetime
+      to_time = to_time.to_datetime
+    end
 
     return {} if from_time > to_time
 
