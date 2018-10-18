@@ -14,13 +14,23 @@ function clickCallback(e) {
   }
   (new Date).getTimezoneOffset();
 }
-
 //document.addEventListener('click', clickCallback, false);
+
+
+/**
+ * @param {String} HTML representing a single element
+ * @return {Element}
+ */
+function htmlToElement(html_str) {
+  var template = document.createElement('template');
+  template.innerHTML = html_str.trim();
+  return template.content.firstChild;
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   timeForLocalized()
 });
-
 document.addEventListener('turbolinks:load', function() {
   timeForLocalized()
 });
@@ -33,6 +43,3 @@ document.addEventListener('turbolinks:request-start', function(event) {
   var offset = (new Date).getTimezoneOffset();
   xhr.setRequestHeader('Utc-Offset', offset);
 });
-
-
-
