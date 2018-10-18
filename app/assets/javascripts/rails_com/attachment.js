@@ -10,48 +10,10 @@
   'use strict';
 
   var InputAttachment = function(options) {
-    this.settings = InputAttachment.util.merge(options, InputAttachment.defaults);
+    this.settings = Object.assign(options, InputAttachment.defaults);
     this.editor = this.settings['editor'];
     this.filenameTag = '{filename}';
     this.lastValue = null;
-  };
-
-  /**
-   * Utility functions
-   */
-  InputAttachment.util = {
-
-    /**
-     * Simple function to merge the given objects
-     *
-     * @param {Object[]} object Multiple object parameters
-     * @returns {Object}
-     */
-    merge: function() {
-      var result = {};
-      for (var i = arguments.length - 1; i >= 0; i--) {
-        var obj = arguments[i];
-        for (var k in obj) {
-          if (obj.hasOwnProperty(k)) {
-            result[k] = obj[k];
-          }
-        }
-      }
-      return result;
-    },
-
-    /**
-     * Append a line of text at the bottom, ensuring there aren't unnecessary newlines
-     *
-     * @param {String} appended Current content
-     * @param {String} previous Value which should be appended after the current content
-     */
-    appendInItsOwnLine: function(previous, appended) {
-      return (previous + "\n\n[[D]]" + appended)
-        .replace(/(\n{2,})\[\[D\]\]/, "\n\n")
-        .replace(/^(\n*)/, "");
-    },
-    
   };
 
   /**
