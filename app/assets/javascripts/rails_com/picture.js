@@ -1,4 +1,4 @@
-//= require input-attachment
+//= require ./attachment
 
 class PictureController extends Stimulus.Controller {
   greet() {

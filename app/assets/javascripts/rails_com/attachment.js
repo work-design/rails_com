@@ -3,9 +3,7 @@
 
 /*
 * Input Field with Attachment
-* Fork and Inspired by inlineAttachment(https://github.com/Rovak/InlineAttachment)
-* Author: Mingyuan Qin
-* Contact: mingyuan0715@foxmail.com
+* based on https://github.com/Rovak/InlineAttachment/blob/master/LICENSE
 */
 
 (function(document, window) {
@@ -13,34 +11,9 @@
 
   var InputAttachment = function(options) {
     this.settings = InputAttachment.util.merge(options, InputAttachment.defaults);
-    this.editor = InputAttachment.editors.initEditor(this.settings['editor']);
+    this.editor = this.settings['editor'];
     this.filenameTag = '{filename}';
     this.lastValue = null;
-  };
-
-  /**
-   * Will holds the available editors
-   *
-   * @type {Object}
-   */
-  InputAttachment.editors = {
-
-    initEditor: function(input) {
-
-      return {
-        getValue: function() {
-          return input.value;
-        },
-
-        insertValue: function(val) {
-          InputAttachment.util.insertTextAtCursor(input, val);
-        },
-
-        setValue: function(val) {
-          input.value = val;
-        }
-      }
-    }
   };
 
   /**
@@ -78,52 +51,7 @@
         .replace(/(\n{2,})\[\[D\]\]/, "\n\n")
         .replace(/^(\n*)/, "");
     },
-
-    /**
-     * Inserts the given value at the current cursor position of the textarea element
-     *
-     * @param  {HTMLElement} el
-     * @param  {String} text Text which will be inserted at the cursor position
-     */
-    insertTextAtCursor: function(el, text) {
-      var scrollPos = el.scrollTop,
-        strPos = 0,
-        browser = false,
-        range;
-
-      if ((el.selectionStart || el.selectionStart === '0')) {
-        browser = 'ff';
-      } else if (document.selection) {
-        browser = 'ie';
-      }
-
-      if (browser === 'ie') {
-        el.focus();
-        range = document.selection.createRange();
-        range.moveStart('character', -el.value.length);
-        strPos = range.text.length;
-      } else if (browser === 'ff') {
-        strPos = el.selectionStart;
-      }
-
-      var front = (el.value).substring(0, strPos);
-      var back = (el.value).substring(strPos, el.value.length);
-      el.value = front + text + back;
-      strPos = strPos + text.length;
-      if (browser === 'ie') {
-        el.focus();
-        range = document.selection.createRange();
-        range.moveStart('character', -el.value.length);
-        range.moveStart('character', strPos);
-        range.moveEnd('character', 0);
-        range.select();
-      } else if (browser === "ff") {
-        el.selectionStart = strPos;
-        el.selectionEnd = strPos;
-        el.focus();
-      }
-      el.scrollTop = scrollPos;
-    }
+    
   };
 
   /**
@@ -309,19 +237,9 @@
         img = new Image();
     img.classList.add('ui', 'small', 'image');
 
-    if (window.URL) {
-      //File API
-      img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
-      img.onload = function(e) {
-        window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
-      }
-    } else if (window.FileReader) {
-      //opera不支持createObjectURL/revokeObjectURL方法。我们用FileReader对象来处理
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function(e){
-        img.src = this.result;
-      }
+    img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
+    img.onload = function(e) {
+      window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
     }
 
     fileList.appendChild(img);
@@ -359,8 +277,7 @@
         } else {
           newValue = this.settings.urlText.replace(this.filenameTag, filename);
         }
-        var text = this.editor.getValue().replace(this.lastValue, newValue);
-        this.editor.setValue(text);
+        this.editor.input.value.replace(this.lastValue, newValue);
         this.settings.onFileUploaded.call(this, filename, result);
       }
     }
@@ -375,8 +292,7 @@
    */
   InputAttachment.prototype.onFileUploadError = function(xhr) {
     if (this.settings.onFileUploadError.call(this, xhr) !== false) {
-      var text = this.editor.getValue().replace(this.lastValue, "");
-      this.editor.setValue(text);
+      this.editor.input.value.replace(this.lastValue, "");
     }
   };
 
@@ -389,7 +305,10 @@
   InputAttachment.prototype.onFileInserted = function(file) {
     if (this.settings.onFileReceived.call(this, file) !== false) {
       this.lastValue = this.settings.progressText;
-      this.editor.insertValue(this.lastValue);
+
+      var scrollPos = el.scrollTop
+      el.value = this.lastValue;
+      el.scrollTop = scrollPos;
     }
   };
 
