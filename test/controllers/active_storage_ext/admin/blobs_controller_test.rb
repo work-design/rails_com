@@ -2,7 +2,7 @@ require 'test_helper'
 class ActiveStorageExt::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @blob = blobs(:one)
+    @blob = create :active_storage_blob
   end
 
   test "should get index" do
