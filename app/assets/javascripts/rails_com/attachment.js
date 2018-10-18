@@ -161,7 +161,7 @@
     formData.append(settings.uploadFieldName, file, remoteFilename);
 
     // Append the extra parameters to the form data
-    if (typeof settings.extraParams === "object") {
+    if (typeof settings.extraParams === 'object') {
       for (var key in settings.extraParams) {
         if (settings.extraParams.hasOwnProperty(key)) {
           formData.append(key, settings.extraParams[key]);
@@ -254,7 +254,7 @@
    */
   InputAttachment.prototype.onFileUploadError = function(xhr) {
     if (this.settings.onFileUploadError.call(this, xhr) !== false) {
-      this.editor.input.value.replace(this.lastValue, "");
+      this.editor.input.value.replace(this.lastValue, '');
     }
   };
 
