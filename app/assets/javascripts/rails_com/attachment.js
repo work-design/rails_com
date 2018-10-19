@@ -100,7 +100,9 @@
     /**
      * Triggers when a file is dropped or pasted
      */
-    onFileReceived: function() {},
+    onFileReceived: function() {
+
+    },
 
     /**
      * Custom upload handler
