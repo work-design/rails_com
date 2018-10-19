@@ -197,16 +197,18 @@
   };
 
   InputAttachment.prototype.previewFile = function(file, obj) {
-    var fileList = document.getElementById(this.settings.previewDiv),
-        img = new Image();
-    img.classList.add('ui', 'small', 'image');
+    var fileList = document.getElementById(this.settings.previewDiv)
+    var template = document.createElement('template');
+    template.innerHTML = fileList.firstElementChild.outerHTML.trim();
+    var img_div = template.content.firstChild;
+    var img = img_div.lastElementChild;
 
     img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
     img.onload = function(e) {
       window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
     }
 
-    fileList.appendChild(img);
+    fileList.appendChild(img_div);
   };
 
   /**
