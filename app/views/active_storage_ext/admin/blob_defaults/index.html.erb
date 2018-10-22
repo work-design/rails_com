@@ -2,7 +2,7 @@
   <div class="header item">Blob Defaults</div>
   <div class="right menu">
     <div class="item">
-      <%= link_to 'New Blob Default', new_rails_ext_blob_default_path(blob_id: params[:blob_id]), class: 'ui teal button' %>
+      <%= link_to 'New Blob Default', new_rails_ext_blob_default_path, class: 'ui teal button' %>
     </div>
   </div>
 </div>
@@ -17,7 +17,7 @@
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:id) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:record_class) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:name) %></th>
-      <th><%= ActiveStorage::BlobDefault.human_attribute_name(:blob) %></th>
+      <th><%= ActiveStorage::BlobDefault.human_attribute_name(:file) %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
       <td><%= blob_default.id %></td>
       <td><%= blob_default.record_class %></td>
       <td><%= blob_default.name %></td>
-      <td><%= blob_default.blob.key %></td>
+      <td><%= blob_default.file_blob.key if blob_default.file_blob %></td>
       <td class="ui labels">
         <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>

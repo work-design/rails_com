@@ -39,9 +39,6 @@
         <%= link_to rails_ext_blob_path(blob), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
-        <%= link_to rails_ext_blob_defaults_path(blob_id: blob.id), method: :delete, data: { tooltip: '默认' }, class: 'ui green mini icon button' do %>
-          <i class="edit icon"></i>
-        <% end %>
         <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: '默认' }, class: 'ui blue mini icon button' do %>
           <i class="play icon"></i>
         <% end %>

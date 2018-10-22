@@ -6,7 +6,7 @@ module RailsExt
       if super
         super
       elsif @blob_default ||= ActiveStorage::BlobDefault.find_by(record_class: record.class.name, name: name)
-        @attachment ||= build_attachment(blob: @blob_default.blob)
+        @attachment ||= build_attachment(blob: @blob_default.file_blob)
       end
 
     end
