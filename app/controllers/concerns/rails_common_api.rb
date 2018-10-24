@@ -44,7 +44,7 @@ module RailsCommonApi
       rescue JSON::ParserError
         body = {}
       end
-      code = body['code'] || 200
+      code = body.delete('code') || 200
       self.response.body = { code: code, data: body }.to_json
     end
   end
