@@ -11,6 +11,10 @@ module RailsExt
 
     end
 
+    def attached?
+      attachment&.id?
+    end
+
   end
 end
 

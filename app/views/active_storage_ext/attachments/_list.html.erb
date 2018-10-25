@@ -1,4 +1,4 @@
-<% if target.is_a?(ActiveStorage::Attached::One) && target.attached? %>
+<% if target.is_a?(ActiveStorage::Attached::One) && target.attachment.present? %>
   <% if target.content_type.to_s.start_with?('image') %>
     <%= image_tag target, style: 'max-width: 100%', class: 'ui small image' %>
   <% elsif target.content_type.to_s.start_with?('video') %>
