@@ -36,17 +36,4 @@ module RailsCommonApi
     }, status: 200
   end
 
-  # used after_action :warp_body
-  def wrap_body
-    if self.response.media_type == 'application/json'
-      begin
-        body = JSON.parse self.response.body
-      rescue JSON::ParserError
-        body = {}
-      end
-      code = body.delete('code') || 200
-      self.response.body = { code: code, data: body }.to_json
-    end
-  end
-
 end
