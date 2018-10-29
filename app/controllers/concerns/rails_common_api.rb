@@ -36,4 +36,15 @@ module RailsCommonApi
     }, status: 200
   end
 
+  def render *args
+    options = args.extract_options!
+
+    if options[:json]
+      options[:json].merge! code: 200
+    end
+
+    args << options
+    super *args
+  end
+
 end
