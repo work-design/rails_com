@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'rails', '>= 5.2', '<= 6.0'
+  s.add_dependency 'httparty', '>= 0.16', '<= 1.0'
 end
