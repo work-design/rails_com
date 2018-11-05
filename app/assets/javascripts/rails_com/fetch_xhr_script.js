@@ -12,6 +12,7 @@ function fetch_xhr_script(url, params){
     return response.text();
   }).then(function(text) {
     var script = document.createElement('script');
+    script.setAttribute('nonce', Rails.cspNonce());
     script.text = text;
     document.head.appendChild(script).parentNode.removeChild(script);
   }).catch(function(ex) {
