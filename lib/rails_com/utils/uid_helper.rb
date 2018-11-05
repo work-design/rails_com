@@ -19,6 +19,12 @@ module UidHelper
     uuid str.to_i, prefix, suffix
   end
 
+  def usec_uuid(prefix = '', suffix = rand_string(2))
+    time = Time.now
+    str = time.to_i.to_s + time.usec.to_s
+    uuid str.to_i, prefix, suffix
+  end
+
   def sec_uuid(prefix = '', suffix = rand_string(2))
     time = Time.now
     uuid time.to_i, prefix, suffix
