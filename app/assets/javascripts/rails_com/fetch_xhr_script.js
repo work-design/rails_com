@@ -6,7 +6,7 @@ function fetch_xhr_script(url, params){
       'X-CSRF-Token': document.head.querySelector("[name=csrf-token]").content
     }
   };
-  var _params = Object.assign(default_params, params)
+  var _params = Object.assign(default_params, params);
 
   fetch(url, _params).then(function(response) {
     return response.text();
