@@ -1,7 +1,5 @@
 //= require rails-ujs
 //= require turbolinks
-//= require stimulus
-//= require activestorage
 //= require_self
 
 function timeForLocalized(){
@@ -42,4 +40,5 @@ document.addEventListener('turbolinks:request-start', function(event) {
   var xhr = event.data.xhr;
   var offset = (new Date).getTimezoneOffset();
   xhr.setRequestHeader('Utc-Offset', offset);
+  xhr.setRequestHeader('Turbolinks-Csp-Nonce', Rails.cspNonce())
 });
