@@ -6,12 +6,12 @@ module ActiveRecord::Type
     end
 
     def deserialize(value)
-      @i18n = super
-      @i18n[::I18n.locale.to_s]
+      Thread.current[:i18n] = super
+      Thread.current[:i18n][::I18n.locale.to_s]
     end
 
     def serialize(value)
-      value = @i18n.merge(::I18n.locale.to_s => value)
+      value = Thread.current[:i18n].merge(::I18n.locale.to_s => value)
       super
     end
 
