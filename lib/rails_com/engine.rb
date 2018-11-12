@@ -25,6 +25,9 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     ActiveStorage::DiskController.include VideoResponse
     ActiveStorage::Attachment.include AttachmentTransfer
     ActiveStorage::Attached::One.prepend RailsExt::AttachedOne
+
+    require 'active_record/type/i18n'
+    ActiveRecord::Type.register(:i18n, ActiveRecord::Type::I18n)
   end
 
 end
