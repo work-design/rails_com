@@ -40,7 +40,7 @@ module RailsCommonApi
     options = args.extract_options!
 
     if options[:json]
-      options[:json].merge! code: 200
+      options[:json][:code] ||= Rack::Utils.status_code(options[:status] || 200)
     end
 
     args << options
