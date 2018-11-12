@@ -6,12 +6,12 @@ module ActiveRecord::Type
     end
 
     def deserialize(value)
-      @result = super
-      @result[::I18n.locale.to_s]
+      @i18n = super
+      @i18n[::I18n.locale.to_s]
     end
 
     def serialize(value)
-      value = @result.merge(::I18n.locale.to_s => value)
+      value = @i18n.merge(::I18n.locale.to_s => value)
       super
     end
 
