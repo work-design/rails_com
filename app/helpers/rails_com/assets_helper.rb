@@ -39,11 +39,18 @@ module RailsCom::AssetsHelper
   # Packs Path: app/javascript/packs/stylesheets
   def css_load(**options)
     ext = ['.css', '.css.erb'] + Array(options.delete(:ext))
+    suffix = options.delete(:suffix)
 
     asset_filename = "controllers/#{controller_path}/#{action_name}"
+    if suffix
+      asset_filename += ['.', suffix].join
+    end
     asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext )
 
     pack_filename = "stylesheets/#{controller_path}/#{action_name}"
+    if suffix
+      pack_filename += ['-', suffix].join
+    end
     pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
 
     r = []
@@ -52,7 +59,7 @@ module RailsCom::AssetsHelper
     end
 
     if pack_paths.any? { |path| File.exist?(path) }
-      
+
       begin
         rs = stylesheet_pack_tag(pack_filename, options)
       rescue
