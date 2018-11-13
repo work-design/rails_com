@@ -17,3 +17,5 @@ module ActiveRecord::Type
 
   end
 end
+
+ActiveRecord::Type.register(:i18n, ActiveRecord::Type::I18n)

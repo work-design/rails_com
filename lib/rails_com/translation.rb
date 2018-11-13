@@ -1,6 +1,6 @@
-module RailsCom::Translate
-  
-  def has_translates(*columns)
+module RailsCom::Translation
+
+  def has_translations(*columns)
 
     columns.each do |column|
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
@@ -18,5 +18,5 @@ module RailsCom::Translate
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsCom::Translate
+  extend RailsCom::Translation
 end
