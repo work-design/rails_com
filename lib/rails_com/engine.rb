@@ -12,7 +12,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   initializer 'rails_com.assets.precompile' do |app|
     app.config.assets.precompile += ['rails_com_manifest.js']
     app.config.content_security_policy_nonce_generator = -> request {
-      request.headers['Turbolinks-Csp-Nonce'] || SecureRandom.base64(16)
+      request.headers['X-Csp-Nonce'] || SecureRandom.base64(16)
     }
   end
 

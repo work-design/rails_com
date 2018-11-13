@@ -40,5 +40,10 @@ document.addEventListener('turbolinks:request-start', function(event) {
   var xhr = event.data.xhr;
   var offset = (new Date).getTimezoneOffset();
   xhr.setRequestHeader('Utc-Offset', offset);
-  xhr.setRequestHeader('Turbolinks-Csp-Nonce', Rails.cspNonce())
+  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
+});
+document.addEventListener('ajax:beforeSend', function(event) {
+  var detail = event.detail;
+  var xhr = detail[0];
+  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
 });
