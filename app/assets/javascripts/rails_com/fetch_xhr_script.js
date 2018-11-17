@@ -19,3 +19,13 @@ function fetch_xhr_script(url, params){
     console.log('parsing failed', ex);
   })
 }
+
+function remote_js_load(paths) {
+  for (i = 0; i < paths.length; i++) {
+    Rails.ajax({
+      url: paths[i],
+      type: 'GET',
+      dataType: 'script'
+    })
+  }
+}

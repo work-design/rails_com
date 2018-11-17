@@ -3,7 +3,7 @@ module RailsCom::AssetsHelper
 
   # Assets path: app/assets/javascripts/controllers
   # Packs Path: app/javascript/packs/javascripts
-  def js_load(**options)
+  def origin_js_load(**options)
     ext = ['.js', '.js.erb'] + Array(options.delete(:ext))
     suffix = options.delete(:suffix)
 
@@ -14,15 +14,28 @@ module RailsCom::AssetsHelper
     pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
 
     r = []
+    ar = []
     if asset_paths.any? { |path| File.exist?(path) }
       r << javascript_include_tag(asset_filename, options)
+      ar << asset_path(asset_filename, options)
     end
 
     if pack_paths.any? { |path| File.exist?(path) }
       r << javascript_pack_tag(pack_filename, options)
+      ar << asset_pack_path(asset_filename, options)
     end
 
-    r.join("\n    ").html_safe
+    [r.join("\n    ").html_safe, ar]
+  end
+
+  def js_load(**options)
+    r, _ = origin_js_load(**options)
+    r
+  end
+
+  def remote_js_load(**options)
+    _, r = origin_js_load(**options)
+    r
   end
 
   def js_ready(**options)
