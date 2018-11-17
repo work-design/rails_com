@@ -8,16 +8,10 @@ module RailsCom::AssetsHelper
     suffix = options.delete(:suffix)
 
     asset_filename = "controllers/#{controller_path}/#{action_name}"
-    if suffix
-      asset_filename += ['.', suffix].join
-    end
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext)
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext, suffix: suffix)
 
     pack_filename ||= "javascripts/#{controller_path}/#{action_name}"
-    if suffix
-      pack_filename += ['-', suffix].join
-    end
-    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
 
     r = []
     if asset_paths.any? { |path| File.exist?(path) }
@@ -42,16 +36,10 @@ module RailsCom::AssetsHelper
     suffix = options.delete(:suffix)
 
     asset_filename = "controllers/#{controller_path}/#{action_name}"
-    if suffix
-      asset_filename += ['.', suffix].join
-    end
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext )
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext, suffix: suffix)
 
     pack_filename = "stylesheets/#{controller_path}/#{action_name}"
-    if suffix
-      pack_filename += ['-', suffix].join
-    end
-    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
 
     r = []
     if asset_paths.any? { |path| File.exist?(path) }
@@ -77,8 +65,12 @@ module RailsCom::AssetsHelper
   end
 
   private
-  def assets_load_path(filename, relative_path:, ext:)
+  def assets_load_path(filename, relative_path:, ext:, suffix: nil)
     paths = []
+
+    if suffix
+      filename += ['+', suffix].join
+    end
 
     file_path = Pathname.new(relative_path).join filename
     rails_path = Rails.root.join file_path
