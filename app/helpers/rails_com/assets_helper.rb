@@ -22,7 +22,7 @@ module RailsCom::AssetsHelper
 
     if pack_paths.any? { |path| File.exist?(path) }
       r << javascript_pack_tag(pack_filename, options)
-      ar << asset_pack_path(asset_filename, options)
+      ar << asset_pack_path(pack_filename, options)
     end
 
     [r.join("\n    ").html_safe, ar]
