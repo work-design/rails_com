@@ -82,7 +82,7 @@ module RailsCom::AssetsHelper
     paths = []
 
     if suffix
-      filename += ['+', suffix].join
+      filename = [filename, '+', suffix].join
     end
 
     file_path = Pathname.new(relative_path).join filename
