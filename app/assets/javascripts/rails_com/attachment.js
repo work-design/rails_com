@@ -243,7 +243,7 @@
         } else {
           newValue = this.settings.urlText.replace(this.filenameTag, filename);
         }
-        this.editor.input.value.replace(this.lastValue, newValue);
+        this.editor.value.replace(this.lastValue, newValue);
         this.settings.onFileUploaded.call(this, filename, result);
       }
     }
@@ -258,7 +258,7 @@
    */
   InputAttachment.prototype.onFileUploadError = function(xhr) {
     if (this.settings.onFileUploadError.call(this, xhr) !== false) {
-      this.editor.input.value.replace(this.lastValue, '');
+      this.editor.value.replace(this.lastValue, '');
     }
   };
 
