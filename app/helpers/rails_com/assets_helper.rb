@@ -8,9 +8,14 @@ module RailsCom::AssetsHelper
     suffix = options.delete(:suffix)
 
     asset_filename = "controllers/#{controller_path}/#{action_name}"
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext, suffix: suffix)
+    pack_filename = "javascripts/#{controller_path}/#{action_name}"
 
-    pack_filename ||= "javascripts/#{controller_path}/#{action_name}"
+    if suffix
+      asset_filename = [asset_filename, '-', suffix].join
+      pack_filename = [pack_filename, '-', suffix].join
+    end
+
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext, suffix: suffix)
     pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
 
     r = []
@@ -49,9 +54,14 @@ module RailsCom::AssetsHelper
     suffix = options.delete(:suffix)
 
     asset_filename = "controllers/#{controller_path}/#{action_name}"
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext, suffix: suffix)
-
     pack_filename = "stylesheets/#{controller_path}/#{action_name}"
+
+    if suffix
+      asset_filename = [asset_filename, '-', suffix].join
+      pack_filename = [pack_filename, '-', suffix].join
+    end
+
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext, suffix: suffix)
     pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
 
     r = []
@@ -80,10 +90,6 @@ module RailsCom::AssetsHelper
   private
   def assets_load_path(filename, relative_path:, ext:, suffix: nil)
     paths = []
-
-    if suffix
-      filename = [filename, '+', suffix].join
-    end
 
     file_path = Pathname.new(relative_path).join filename
     rails_path = Rails.root.join file_path
