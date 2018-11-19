@@ -10,7 +10,7 @@
   'use strict';
 
   var InputAttachment = function(options) {
-    this.settings = Object.assign(options, InputAttachment.defaults);
+    this.settings = Object.assign(InputAttachment.defaults, options);
     this.editor = this.settings['editor'];
     this.filenameTag = '{filename}';
     this.lastValue = null;
