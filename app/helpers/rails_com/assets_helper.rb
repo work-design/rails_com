@@ -17,12 +17,12 @@ module RailsCom::AssetsHelper
     ar = []
     if asset_paths.any? { |path| File.exist?(path) }
       r << javascript_include_tag(asset_filename, options)
-      ar << asset_path(asset_filename)
+     # ar << asset_path(asset_filename)
     end
 
     if pack_paths.any? { |path| File.exist?(path) }
       r << javascript_pack_tag(pack_filename, options)
-      ar << asset_pack_path(pack_filename)
+      #ar << asset_pack_path(pack_filename)
     end
 
     [r.join("\n    ").html_safe, ar]
