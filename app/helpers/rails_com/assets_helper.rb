@@ -17,24 +17,24 @@ module RailsCom::AssetsHelper
     ar = []
     if asset_paths.any? { |path| File.exist?(path) }
       r << javascript_include_tag(asset_filename, options)
-      ar << asset_path(asset_filename, options)
+      ar << asset_path(asset_filename)
     end
 
     if pack_paths.any? { |path| File.exist?(path) }
       r << javascript_pack_tag(pack_filename, options)
-      ar << asset_pack_path(pack_filename, options)
+      ar << asset_pack_path(pack_filename)
     end
 
     [r.join("\n    ").html_safe, ar]
   end
 
   def js_load(**options)
-    r, _ = origin_js_load(**options)
+    r, _ = origin_js_load(options)
     r
   end
 
   def remote_js_load(**options)
-    _, r = origin_js_load(**options)
+    _, r = origin_js_load(options)
     r
   end
 
