@@ -11,7 +11,7 @@ module ActiveRecord::Type
     end
 
     def serialize(value)
-      value = Thread.current[:i18n].merge(::I18n.locale.to_s => value)
+      value = Hash(Thread.current[:i18n]).merge(::I18n.locale.to_s => value)
       super
     end
 
