@@ -1,6 +1,6 @@
 <div class="top attached inline fields" id="<%= "#{target.record.class.name.underscore}_attachments_#{target.record.id}" %>">
   <div class="six wide field"></div>
   <div class="field ui tiny images" id="file_preview" data-controller="picture">
-  
+    <%= render 'active_storage_ext/attachments/list_edit' %>
   </div>
 </div>
