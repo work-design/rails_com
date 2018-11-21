@@ -3,7 +3,7 @@
 
 /*
 * Input Field with Attachment
-* based on https://github.com/Rovak/InlineAttachment/blob/master/LICENSE
+* based on https://github.com/Rovak/inlineAttachment/blob/master/LICENSE
 */
 
 (function(document, window) {
@@ -196,8 +196,8 @@
     return xhr;
   };
 
-  InputAttachment.prototype.previewFile = function(file, obj) {
-    var fileList = document.getElementById(this.settings.previewDiv)
+  InputAttachment.prototype.previewFile = function(file, previewDiv) {
+    var fileList = document.getElementById(previewDiv);
     var template = document.createElement('template');
     template.innerHTML = fileList.firstElementChild.outerHTML.trim();
     var img_div = template.content.firstChild;
@@ -206,7 +206,7 @@
     img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
     img.onload = function(e) {
       window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
-    }
+    };
 
     fileList.appendChild(img_div);
   };
@@ -338,14 +338,14 @@
     return result;
   };
 
-  InputAttachment.prototype.imagePreview = function(e){
+  InputAttachment.prototype.imagePreview = function(e, previewDiv){
     var result = false;
 
     for (var i = 0; i < e.target.files.length; i++) {
       var file = e.target.files[i];
       if (this.isFileAllowed(file)) {
         result = true;
-        this.previewFile(file, e.target);
+        this.previewFile(file, previewDiv);
       }
     }
 
@@ -364,17 +364,17 @@
     var fileInput = document.getElementById(options['fileInput']);
     options['editor'] = input;
     options['fileInput'] = fileInput;
-    var inlineattach = new InputAttachment(options);
+    var inlineAttach = new InputAttachment(options);
 
     if (input) {
       input.addEventListener('paste', function(e) {
-        inlineattach.onPaste(e);
+        inlineAttach.onPaste(e);
       }, false);
 
       input.addEventListener('drop', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        inlineattach.onDrop(e);
+        inlineAttach.onDrop(e);
       }, false);
 
       input.addEventListener('dragenter', function(e) {
@@ -389,11 +389,11 @@
     }
     if (fileInput) {
       fileInput.addEventListener('click', function(e) {
-        inlineattach.onFileInputClick(e)
+        inlineAttach.onFileInputClick(e)
       }, false);
 
       fileInput.addEventListener('change', function(e) {
-        inlineattach.onFileInputChange(e)
+        inlineAttach.onFileInputChange(e)
       }, false);
     }
   }
@@ -402,11 +402,11 @@
     options = options || {};
     var fileInput = document.getElementById(options['fileInput']);
     options['fileInput'] = fileInput;
-    var inlineattach = new InputAttachment(options);
+    var inlineAttach = new InputAttachment(options);
 
     if (fileInput) {
       fileInput.addEventListener('change', function(e) {
-        inlineattach.imagePreview(e)
+        inlineAttach.imagePreview(e, options['previewDiv'])
       }, false);
     }
   }
