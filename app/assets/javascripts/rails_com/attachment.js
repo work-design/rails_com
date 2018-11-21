@@ -200,9 +200,12 @@
     var fileList = document.getElementById(previewDiv);
     var templateDiv = document.getElementById(this.settings.templateDiv);
     var template = document.createElement('template');
+    fileList.querySelectorAll('[data-preview=true]').forEach(e => e.parentNode.removeChild(e));
     template.innerHTML = templateDiv.outerHTML.trim();
     var img_div = template.content.firstChild;
     img_div.style.display = 'inline-block';
+    img_div.dataset['preview'] = true;
+    img_div.id = null;
     var img = img_div.lastElementChild;
 
     img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
