@@ -1,6 +1,14 @@
-<div class="ui image">
+<div class="ui image" id="file_template" style="display: none;">
   <a href="javascript:void(0);" onclick="this.parentNode.remove()" class="ui grey right corner mini label">
     <i class="times icon"></i>
   </a>
   <%= image_tag 'image-square.png', data: { target: 'picture.src' }, style: 'max-width: 100%' %>
+</div>
+<div class="ui image attached">
+  <%= file_field_tag 'app[logo]' %>
+  <div class="ui placeholder">
+    <div class="image" style="text-align: center;line-height: 100px;">
+      <i class="plus icon"></i>
+    </div>
+  </div>
 </div>

@@ -39,7 +39,7 @@
 
     uploadFileInput: '',
 
-    previewDiv: 'file_preview',
+    templateDiv: 'file_template',
 
     /**
      * Extension which will be used when a file extension could not
@@ -198,9 +198,11 @@
 
   InputAttachment.prototype.previewFile = function(file, previewDiv) {
     var fileList = document.getElementById(previewDiv);
+    var templateDiv = document.getElementById(this.settings.templateDiv);
     var template = document.createElement('template');
-    template.innerHTML = fileList.firstElementChild.outerHTML.trim();
+    template.innerHTML = templateDiv.outerHTML.trim();
     var img_div = template.content.firstChild;
+    img_div.style.display = 'inline-block';
     var img = img_div.lastElementChild;
 
     img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
@@ -272,7 +274,7 @@
     if (this.settings.onFileReceived.call(this, file) !== false) {
       this.lastValue = this.settings.progressText;
 
-      var scrollPos = el.scrollTop
+      var scrollPos = el.scrollTop;
       el.value = this.lastValue;
       el.scrollTop = scrollPos;
     }
