@@ -21,3 +21,9 @@ var uploader = Qiniu.uploader({
     'Error': function(up, err, errTip) {}
   }
 });
+
+function htmlToElement(html_str) {
+  var template = document.createElement('template');
+  template.innerHTML = html_str.trim();
+  return template.content.firstChild;
+}
