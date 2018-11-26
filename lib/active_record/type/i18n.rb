@@ -6,13 +6,33 @@ module ActiveRecord::Type
     end
 
     def deserialize(value)
-      Thread.current[:i18n] = super
-      Thread.current[:i18n][::I18n.locale.to_s]
+      if super.respond_to?(:[])
+        super[::I18n.locale.to_s]
+      else
+        super
+      end
     end
 
-    def serialize(value)
-      value = Hash(Thread.current[:i18n]).merge(::I18n.locale.to_s => value)
-      super
+    def serialize(value, old_value = nil)
+      if old_value
+        begin
+          r = ActiveSupport::JSON.decode(old_value)
+        rescue
+          r = {}
+        end
+      else
+        if value.is_a?(Hash)
+          return super(value)
+        else
+          r = {}
+        end
+      end
+      unless r.is_a?(Hash)
+        r = {}
+      end
+
+      value = r.merge(::I18n.locale.to_s => value)
+      super(value)
     end
 
   end

@@ -17,6 +17,21 @@ module RailsCom::Translation
 
 end
 
+class ActiveModel::Attribute
+  class FromUser
+
+    def type_cast(value)
+      if type.is_a?(ActiveRecord::Type::I18n)
+        old_value = self.original_attribute.value_before_type_cast
+        type.deserialize(type.serialize(value, old_value))
+      else
+        type.cast(value)
+      end
+    end
+
+  end
+end
+
 ActiveSupport.on_load :active_record do
   extend RailsCom::Translation
 end
