@@ -20,6 +20,7 @@ end
 class ActiveModel::Attribute
   class FromUser
 
+    # return "{\"en\":\"1\"}"
     def type_cast(value)
       if type.is_a?(ActiveRecord::Type::I18n) && original_attribute.present?
         old_value = self.original_attribute.value_before_type_cast
