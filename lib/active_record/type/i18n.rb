@@ -20,18 +20,13 @@ module ActiveRecord::Type
         rescue
           r = {}
         end
-      else
-        if value.is_a?(Hash)
-          return super(value)
-        else
-          r = {}
+        if r.is_a?(Hash)
+          value = r.merge(::I18n.locale.to_s => value)
         end
-      end
-      unless r.is_a?(Hash)
-        r = {}
+      else
+        return super(::I18n.locale.to_s => value)
       end
 
-      value = r.merge(::I18n.locale.to_s => value)
       super(value)
     end
 
