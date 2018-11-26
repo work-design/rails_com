@@ -24,7 +24,7 @@ module ActiveRecord::Type
           value = r.merge(::I18n.locale.to_s => value)
         end
       else
-        return super(::I18n.locale.to_s => value)
+        value = { ::I18n.locale.to_s => value }
       end
 
       super(value)

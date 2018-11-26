@@ -23,18 +23,9 @@ class ActiveModel::Attribute
     def type_cast(value)
       if type.is_a?(ActiveRecord::Type::I18n) && original_attribute.present?
         old_value = self.original_attribute.value_before_type_cast
-        type.deserialize(type.serialize(value, old_value))
-      else
-        type.cast(value)
-      end
-    end
-
-    def value_for_database
-      if type.is_a?(ActiveRecord::Type::I18n) && original_attribute.present?
-        old_value = self.original_attribute.value_before_type_cast
         type.serialize(value, old_value)
       else
-        type.serialize(value)
+        type.cast(value)
       end
     end
 
