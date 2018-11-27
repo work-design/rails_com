@@ -24,8 +24,13 @@ module ActiveRecord::Type
           value = r.merge(::I18n.locale.to_s => value)
         end
       else
-        v = ActiveSupport::JSON.decode(value || '{}')
-        if v.is_a?(Hash)
+        begin
+          v = ActiveSupport::JSON.decode(value)
+        rescue
+          v = {}
+        end
+
+        if v.present? && v.is_a?(Hash)
           value = v
         else
           value = { ::I18n.locale.to_s => value }
