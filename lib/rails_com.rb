@@ -3,7 +3,7 @@ require 'rails_com/engine'
 require 'rails_com/config'
 
 # translation
-require 'active_record/type/i18n'
+#require 'active_record/type/i18n'
 require 'rails_com/translation'
 
 # Meta for Rails
