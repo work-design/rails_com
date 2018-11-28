@@ -15,7 +15,7 @@ module RailsCom::Translation
 
         def #{column}= value
           r = method(#{column.inspect}).super_method.call
-          super(r.merge I18n.locale.to_s => value)
+          super(r.merge! I18n.locale.to_s => value)
         end
 
       RUBY_EVAL
