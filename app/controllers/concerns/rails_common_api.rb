@@ -26,6 +26,7 @@ module RailsCommonApi
       puts nil, exp.full_message(highlight: true, order: :top)
       render json: { code: 400, error: { class: exp.class.inspect }, message: exp.message }, status: 400
     end
+    before_action :set_locale
   end
 
   def process_errors(model)
@@ -34,6 +35,14 @@ module RailsCommonApi
       error: model.errors.as_json(full_messages: true),
       message: model.errors.full_messages.join("\n")
     }, status: 200
+  end
+
+  def set_locale
+    I18n.locale = request.header['Accept-Language'] || I18n.default_locale
+    if current_user && current_user.locale.to_s != I18n.locale.to_s
+      current_user.update locale: I18n.locale
+    end
+    logger.debug "  ==========> Locale: #{I18n.locale}"
   end
 
   def render *args
