@@ -38,7 +38,9 @@ module RailsCommonApi
   end
 
   def set_locale
-    I18n.locale = request.header['Accept-Language'] || I18n.default_locale
+    locale = request.headers['Accept-Language']
+    locale = locale.split('-').first
+    I18n.locale = locale || I18n.default_locale
     if current_user && current_user.locale.to_s != I18n.locale.to_s
       current_user.update locale: I18n.locale
     end
