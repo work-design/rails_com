@@ -2,7 +2,8 @@ module RailsCom::I18n
   extend ActiveSupport::Concern
 
   included do
-    before_save :update_i18n_column
+    before_update :update_i18n_column
+    before_create :new_i18n_column
   end
 
   def update_i18n_column
@@ -11,10 +12,9 @@ module RailsCom::I18n
       str << "#{key} = jsonb_set(#{key}, '{#{I18n.locale}}', '\"#{value[1]}\"', true)"
     end
     s = str.join(' AND ')
-    self.clear_attribute_changes(i18n_attributes)
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
   end
-  
+
 end
 
 module RailsCom::Translation
@@ -24,7 +24,7 @@ module RailsCom::Translation
   # * read with i18n scope
   def has_translations(*columns)
     mattr_accessor :i18n_attributes
-    self.i18n_attributes = columns
+    self.i18n_attributes = columns.map(&:to_s)
     include RailsCom::I18n
     columns.each do |column|
       attribute column, :i18n
@@ -42,6 +42,10 @@ module RailsCom::Translation
       RUBY_EVAL
     end
 
+  end
+
+  def _substitute_values(values)
+    super values.slice(*i18n_attributes)
   end
 
 end
