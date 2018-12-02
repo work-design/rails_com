@@ -5,14 +5,6 @@ module RailsCom::I18n
     before_save :update_i18n_column
   end
 
-  def assign_attributes(new_attributes)
-    new_attributes.slice(*i18n_attributes).each do |key, value|
-      new_attributes[key] = { I18n.locale => value }
-    end
-
-    super
-  end
-
   def update_i18n_column
     str = []
     self.changes.slice(*i18n_attributes).each do |key, value|
@@ -37,7 +29,16 @@ module RailsCom::Translation
     include RailsCom::I18n
     columns.each do |column|
       attribute column, :i18n
+
+      class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
+
+        def #{column}=(value)
+          super(::I18n.locale => value)
+        end
+
+      RUBY_EVAL
     end
+
   end
 
 end
