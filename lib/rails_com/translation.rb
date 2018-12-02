@@ -14,8 +14,7 @@ module RailsCom::I18n
     self.clear_attribute_changes(i18n_attributes)
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
   end
-
-
+  
 end
 
 module RailsCom::Translation
@@ -33,7 +32,11 @@ module RailsCom::Translation
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
 
         def #{column}=(value)
-          super(::I18n.locale => value)
+          if value.is_a?(String)
+            super(::I18n.locale => value)
+          else
+            super
+          end
         end
 
       RUBY_EVAL
