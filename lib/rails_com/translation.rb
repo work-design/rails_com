@@ -3,13 +3,13 @@ module RailsCom::I18n
 
   included do
     before_update :update_i18n_column
-    before_create :new_i18n_column
   end
 
   def update_i18n_column
     str = []
-    self.changes.slice(*i18n_attributes).each do |key, value|
-      str << "#{key} = jsonb_set(#{key}, '{#{I18n.locale}}', '\"#{value[1]}\"', true)"
+    self.changes.slice(*i18n_attributes).each do |key, _|
+      value = self.public_send("#{key}_before_type_cast")
+      str << "#{key} = #{key}::jsonb || '#{value.to_json}'::jsonb"
     end
     s = str.join(' AND ')
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
@@ -33,7 +33,7 @@ module RailsCom::Translation
 
         def #{column}=(value)
           if value.is_a?(String)
-            super(::I18n.locale => value)
+            super(::I18n.locale.to_s => value)
           else
             super
           end
@@ -44,8 +44,16 @@ module RailsCom::Translation
 
   end
 
-  def _substitute_values(values)
-    super values.slice(*i18n_attributes)
+  def _update_record(values, constraints)
+    values.except!(*i18n_attributes)
+    super
+  end
+
+  def _insert_record(values)
+    values.slice(*i18n_attributes).each do |key, v|
+      values[key] = v
+    end
+    super
   end
 
 end
