@@ -15,6 +15,14 @@ module RailsCom::I18n
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
   end
 
+  def attributes_with_values_for_create(attribute_names)
+    r = super
+    r.slice(*i18n_attributes).each do |key, v|
+      r[key] = public_send "#{key}_before_type_cast"
+    end
+    r
+  end
+
 end
 
 module RailsCom::Translation
@@ -46,13 +54,6 @@ module RailsCom::Translation
 
   def _update_record(values, constraints)
     values.except!(*i18n_attributes)
-    super
-  end
-
-  def _insert_record(values)
-    values.slice(*i18n_attributes).each do |key, v|
-      values[key] = v
-    end
     super
   end
 
