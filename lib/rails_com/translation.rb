@@ -11,6 +11,7 @@ module RailsCom::I18n
       value = self.public_send("#{key}_before_type_cast")
       str << "#{key} = #{key}::jsonb || '#{value.to_json}'::jsonb"
     end
+    return if str.blank?
     s = str.join(' AND ')
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
   end
