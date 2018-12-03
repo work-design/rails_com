@@ -12,7 +12,7 @@ module RailsCom::I18n
       str << "#{key} = #{key}::jsonb || '#{value.to_json}'::jsonb"
     end
     return if str.blank?
-    s = str.join(' AND ')
+    s = str.join(', ')
     self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
   end
 
@@ -54,6 +54,7 @@ module RailsCom::Translation
   end
 
   def _update_record(values, constraints)
+    mattr_accessor :i18n_attributes
     values.except!(*i18n_attributes)
     super
   end
