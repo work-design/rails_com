@@ -54,6 +54,7 @@ module RailsCom::Translation
   end
 
   def _update_record(values, constraints)
+    mattr_accessor :i18n_attributes
     values.except!(*i18n_attributes)
     super
   end
