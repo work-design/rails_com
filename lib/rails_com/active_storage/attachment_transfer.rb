@@ -41,4 +41,4 @@ module RailsCom::AttachmentTransfer
 
 end
 
-ActiveStorage::Attachment.include AttachmentTransfer
+ActiveStorage::Attachment.include RailsCom::AttachmentTransfer

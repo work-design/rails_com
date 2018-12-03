@@ -6,7 +6,6 @@ require 'rails_com/core'
 require 'rails_com/action_controller'
 require 'rails_com/action_view'
 require 'rails_com/active_record'
-require 'rails_com/active_storage'
 
 # Meta for Rails
 require 'rails_com/meta/routes'
