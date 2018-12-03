@@ -2,7 +2,7 @@ require 'rails/generators'
 require 'rails/generators/erb/scaffold/scaffold_generator'
 
 class Erb::Generators::ScaffoldGenerator
-  source_root File.expand_path('../../../templates/erb/scaffold', __FILE__)
+  source_root File.expand_path('../../templates/erb/scaffold', __dir__)
 
   undef available_views
   private

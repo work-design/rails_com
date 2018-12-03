@@ -1,5 +1,5 @@
 require 'active_storage/downloading'
-module AttachmentTransfer
+module RailsCom::AttachmentTransfer
   include ActiveStorage::Downloading
 
   def copy
@@ -40,3 +40,5 @@ module AttachmentTransfer
   end
 
 end
+
+ActiveStorage::Attachment.include AttachmentTransfer

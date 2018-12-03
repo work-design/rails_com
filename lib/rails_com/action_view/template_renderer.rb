@@ -1,4 +1,4 @@
-module RailsExt
+module RailsCom
 
   module TemplateRenderer
 
@@ -34,21 +34,7 @@ module RailsExt
 
   end
 
-  module Parameters
-
-    def require(key)
-      begin
-        super
-      ensure
-        @required_params ||= []
-        @required_params << key
-      end
-    end
-
-  end
-
 end
 
-ActionView::TemplateRenderer.prepend RailsExt::TemplateRenderer
-ActionView::PartialRenderer.prepend RailsExt::PartialRenderer
-ActionController::Parameters.prepend RailsExt::Parameters
+ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
+ActionView::PartialRenderer.prepend RailsCom::PartialRenderer

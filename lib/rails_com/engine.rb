@@ -21,10 +21,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
 
   initializer 'rails_com.add_activestorage' do |app|
-    require 'rails_com/rails_ext/attached_macros'
-    ActiveStorage::DiskController.include VideoResponse
-    ActiveStorage::Attachment.include AttachmentTransfer
-    ActiveStorage::Attached::One.prepend RailsExt::AttachedOne
+    require 'rails_com/active_storage'
   end
 
 end

@@ -2,37 +2,22 @@ require 'rails_com/version'
 require 'rails_com/engine'
 require 'rails_com/config'
 
-# translation
-require 'active_record/type/i18n'
-require 'rails_com/translation'
+require 'rails_com/core'
+require 'rails_com/action_controller'
+require 'rails_com/action_view'
+require 'rails_com/active_record'
+require 'rails_com/active_storage'
 
 # Meta for Rails
 require 'rails_com/meta/routes'
 require 'rails_com/meta/models'
 require 'rails_com/meta/controllers'
 
-# Rails Helper
-require 'rails_com/helpers/model_helper'
-require 'rails_com/helpers/controller_helper'
-
-# Ruby core extension
-require 'rails_com/core_ext/hash'
-require 'rails_com/core_ext/nil'
-require 'rails_com/core_ext/array'
-require 'rails_com/core_ext/date'
-require 'rails_com/core_ext/numeric'
-require 'rails_com/core_ext/string'
-
 # Rails extension
-require 'rails_com/rails_ext/template_renderer'
-require 'rails_com/rails_ext/scaffold_generator'
-require 'rails_com/rails_ext/named_base'
-require 'rails_com/rails_ext/activestorage_attached'
-require 'rails_com/rails_ext/persistence_sneakily'
-require 'rails_com/rails_ext/translation_helper'
-require 'rails_com/rails_ext/video_response'
-require 'rails_com/rails_ext/attachment_transfer'
-require 'rails_com/rails_ext/errors'
+require 'rails_com/generators/named_base'
+require 'rails_com/generators/scaffold_generator'
+
+# controllers
 require 'rails_com/sprockets/non_digest_assets'
 
 # Utils

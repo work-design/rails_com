@@ -1,4 +1,4 @@
-module VideoResponse
+module RailsCom::VideoResponse
   extend ActiveSupport::Concern
 
   included do
@@ -26,3 +26,4 @@ module VideoResponse
 
 end
 
+ActiveStorage::DiskController.include RailsCom::VideoResponse

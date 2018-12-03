@@ -15,4 +15,6 @@ module RailsCom
   end
 end
 
-ActionView::Base.include RailsCom::TranslationHelper
+ActiveSupport.on_load :active_view do
+  include RailsCom::TranslationHelper
+end
