@@ -1,4 +1,5 @@
 //= require ./attachment
+//= require stimulus
 
 class PictureController extends Stimulus.Controller {
   greet() {
