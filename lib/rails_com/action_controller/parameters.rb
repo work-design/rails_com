@@ -11,4 +11,6 @@ module RailsCom::Parameters
 
 end
 
-ActionController::Parameters.prepend RailsCom::Parameters
+ActiveSupport.on_load :action_controller_base do
+  ActionController::Parameters.prepend RailsCom::Parameters
+end

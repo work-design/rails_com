@@ -36,5 +36,7 @@ module RailsCom
 
 end
 
-ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
-ActionView::PartialRenderer.prepend RailsCom::PartialRenderer
+ActiveSupport.on_load :action_view do
+  ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
+  ActionView::PartialRenderer.prepend RailsCom::PartialRenderer
+end
