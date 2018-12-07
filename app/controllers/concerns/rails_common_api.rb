@@ -50,15 +50,4 @@ module RailsCommonApi
     logger.debug "  ==========> Locale: #{I18n.locale}"
   end
 
-  def render *args
-    options = args.extract_options!
-
-    if options[:json]
-      options[:json][:code] ||= Rack::Utils.status_code(options[:status] || 200)
-    end
-
-    args << options
-    super *args
-  end
-
 end
