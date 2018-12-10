@@ -31,10 +31,9 @@ module RailsCommonApi
 
   def process_errors(model)
     render json: {
-      code: 406,
       error: model.errors.as_json(full_messages: true),
       message: model.errors.full_messages.join("\n")
-    }, status: 200
+    }, status: :bad_request
   end
 
   def set_locale
