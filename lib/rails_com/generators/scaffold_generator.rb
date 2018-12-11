@@ -7,7 +7,7 @@ class Erb::Generators::ScaffoldGenerator
   undef available_views
   private
   def available_views
-    ['index', 'edit', 'show', 'new', '_form', '_search_form']
+    ['index', 'edit', 'show', 'new', '_form', '_filter']
   end
 
 end
