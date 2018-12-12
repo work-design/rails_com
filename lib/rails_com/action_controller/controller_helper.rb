@@ -1,7 +1,7 @@
 module RailsCom::ControllerHelper
 
   def detect_filter(filter)
-    callback = self.get_callbacks(:process_action).find { |i| i.filter == filter.to_sym }
+    callback = self.__callbacks(:process_action).find { |i| i.filter == filter.to_sym }
     return false unless callback
 
     _if = callback.instance_variable_get(:@if).map do |c|
