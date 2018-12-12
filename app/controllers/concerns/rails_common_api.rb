@@ -43,16 +43,14 @@ module RailsCommonApi
 
   # Accept-Language: "en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
   def set_locale
-    locales = request.headers['Accept-Language'].to_s.split(',')
-    a_locales = I18n.available_locales.map(&:to_s)
-    l = [a_locales & locales][0]
-    if l.present?
-      locale = l
-    else
-      locale = locales.first.to_s.split('-').first
+    request_locales = request.headers['Accept-Language'].to_s.split(',')
+    available_locales = I18n.available_locales.map(&:to_s)
+    locale = (available_locales & request_locales)[0]
+    unless locale.present?
+      locale = request_locales.first.to_s.split('-').first
     end
-    return unless a_locales.include?(locale.to_s.to_sym)
-    I18n.locale = locale || I18n.default_locale
+    locale ||= I18n.default_locale
+    I18n.locale = locale
     if current_user && current_user.locale.to_s != I18n.locale.to_s
       current_user.update locale: I18n.locale
     end
