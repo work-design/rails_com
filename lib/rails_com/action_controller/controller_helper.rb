@@ -9,7 +9,6 @@ module RailsCom::ControllerHelper
     end
 
     _unless = callback.instance_variable_get(:@unless).map do |c|
-      binding.pry
       !c.call(self)
     end
 
