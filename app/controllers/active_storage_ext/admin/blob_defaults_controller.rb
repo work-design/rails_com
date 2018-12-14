@@ -47,7 +47,8 @@ class ActiveStorageExt::Admin::BlobDefaultsController < ActiveStorageExt::Admin:
     params.fetch(:blob_default, {}).permit(
       :record_class,
       :name,
-      :file
+      :file,
+      :private
     )
   end
 

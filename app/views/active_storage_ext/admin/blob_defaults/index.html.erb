@@ -18,7 +18,7 @@
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:record_class) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:name) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:file) %></th>
-      <th></th>
+      <th><%= ActiveStorage::BlobDefault.human_attribute_name(:private) %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -28,10 +28,11 @@
       <td><%= blob_default.id %></td>
       <td><%= blob_default.record_class %></td>
       <td><%= blob_default.name %></td>
-      <td><%= blob_default.file_blob.key if blob_default.file_blob %></td>
       <td>
+        <%= blob_default.file_blob.key if blob_default.file_blob %>
         <%= render 'active_storage_ext/attachments/list', target: blob_default.file %>
       </td>
+      <td><%= blob_default.private %></td>
       <td class="ui labels">
         <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>

@@ -11,7 +11,10 @@ module RailsCom::BlobExt
   end
 
   def service
-    private = true
+    rts = self.attachments.pluck(:record_type, :name).uniq.to_combined_h
+    ps = ActiveStorage::BlobDefault.where(private: true).pluck(:record_class, :name)
+    private = ps.slice(rts.keys)
+
     if private
       private_service
     else
