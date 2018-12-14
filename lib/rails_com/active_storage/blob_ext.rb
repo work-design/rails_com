@@ -1,7 +1,7 @@
 module RailsCom::BlobExt
-  extend ActiveSupport::Concern
-  included do
-    class_attribute :private_service
+
+  def self.prepended(klass)
+    klass.class_attribute :private_service
   end
 
   def duration
@@ -11,22 +11,22 @@ module RailsCom::BlobExt
   end
 
   def service
-    rts = self.attachments.pluck(:record_type, :name).uniq.to_combined_h
-    ps = ActiveStorage::BlobDefault.where(private: true).pluck(:record_class, :name)
-    private = ps.slice(rts.keys)
-
-    if private
+    if private && private_service
       private_service
     else
       super
     end
   end
 
+  def private
+    return @private if defined?(@private)
+    rts = self.attachments.pluck(:record_type, :name).uniq.to_combined_h
+    ps = ActiveStorage::BlobDefault.where(private: true).pluck(:record_class, :name).to_combined_h
+    @private = ps.slice(*rts.keys).map { |p, v| (Array(rts[p]) - Array(v)).blank? }.uniq == [true]
+  end
+
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
-  include RailsCom::BlobExt
-  config_choice = Rails.configuration.active_storage.private_service
-  configs = Rails.configuration.active_storage.service_configurations
-  ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
+  prepend RailsCom::BlobExt
 end

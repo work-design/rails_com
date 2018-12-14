@@ -7,6 +7,8 @@ require 'rails_com/action_controller'
 require 'rails_com/action_view'
 require 'rails_com/active_record'
 
+require 'rails_com/active_storage/blob_ext'
+
 # Meta for Rails
 require 'rails_com/meta/routes'
 require 'rails_com/meta/models'
