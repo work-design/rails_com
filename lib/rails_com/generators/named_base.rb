@@ -1,3 +1,4 @@
+require 'rails/generators'
 class Rails::Generators::NamedBase
 
   undef class_name
