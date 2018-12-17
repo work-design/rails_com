@@ -2,10 +2,14 @@ module RailsCom::AttachedOne
 
   def attachment
     if super
-      super
-    elsif @blob_default ||= ActiveStorage::BlobDefault.find_by(record_class: record.class.name, name: name)
-      @attachment ||= build_attachment(blob: @blob_default.file_blob)
+      return super
+    elsif defined?(@attachment)
+      return @attachment
     end
+
+    i = "#{record.class.name}_#{name}"
+    id = ActiveStorage::BlobDefault.defaults[i]
+    @attachment = build_attachment(blob: ActiveStorage::Blob.find(id)) if id
   end
 
   def attached?
