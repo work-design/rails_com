@@ -21,7 +21,9 @@ module RailsCom::BlobExt
   def private
     return @private if defined?(@private)
     rts = self.attachments.pluck(:record_type, :name).uniq.to_combined_h
-    ps = ActiveStorage::BlobDefault.where(private: true).pluck(:record_class, :name).to_combined_h
+    ps = Rails.cache.fetch('blob_default/private') do
+      ActiveStorage::BlobDefault.where(private: true).pluck(:record_class, :name).to_combined_h
+    end
     @private = ps.slice(*rts.keys).map { |p, v| (Array(rts[p]) - Array(v)).blank? }.uniq == [true]
   end
 
