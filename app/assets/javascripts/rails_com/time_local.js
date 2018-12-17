@@ -1,4 +1,3 @@
-//= require moment
 function timeForLocalized(){
   $('time[data-localized!="true"]').each(function(){
     if (this.textContent.length > 0) {
