@@ -21,4 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '>= 5.2', '<= 6.0'
   s.add_dependency 'httparty', '>= 0.16', '<= 1.0'
+  s.add_dependency 'default_where', '~> 2.2'
+  s.add_dependency 'default_form', '~> 1.3'
 end
