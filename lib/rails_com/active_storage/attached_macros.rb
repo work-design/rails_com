@@ -6,9 +6,8 @@ module RailsCom::AttachedOne
     elsif defined?(@attachment)
       return @attachment
     end
-
-    i = "#{record.class.name}_#{name}"
-    id = ActiveStorage::BlobDefault.defaults[i]
+    
+    id = ActiveStorage::BlobDefault.defaults["#{record.class.name}_#{name}"]
     @attachment = build_attachment(blob: ActiveStorage::Blob.find(id)) if id
   end
 
