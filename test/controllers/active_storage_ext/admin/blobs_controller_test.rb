@@ -6,7 +6,7 @@ class ActiveStorageExt::Admin::BlobsControllerTest < ActionDispatch::Integration
   end
 
   test "should get index" do
-    get 'rails/blobs'
+    get '/rails/blobs'
     assert_response :success
   end
 

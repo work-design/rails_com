@@ -6,21 +6,21 @@ class ActiveStorageExt::Admin::BlobDefaultsControllerTest < ActionDispatch::Inte
   end
 
   test 'index ok' do
-    get 'rails/blob_defaults'
+    get '/rails/blob_defaults'
     assert_response :success
   end
 
   test 'new ok' do
-    get 'rails/blob_defaults/new'
+    get '/rails/blob_defaults/new'
     assert_response :success
   end
 
   test 'create ok' do
-    assert_difference('BlobDefault.count') do
-      post 'rails/blob_defaults', params: { blob_default: {  } }
+    assert_difference('ActiveStorage::BlobDefault.count') do
+      post '/rails/blob_defaults', params: { blob_default: {  } }
     end
 
-    assert_redirected_to 'rails/blob_defaults'
+    assert_redirected_to '/rails/blob_defaults'
   end
 
   test 'destroy ok' do
@@ -28,6 +28,6 @@ class ActiveStorageExt::Admin::BlobDefaultsControllerTest < ActionDispatch::Inte
       delete rails_ext_blob_default_url(@blob_default)
     end
 
-    assert_redirected_to 'rails/blob_defaults'
+    assert_redirected_to '/rails/blob_defaults'
   end
 end
