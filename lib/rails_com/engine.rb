@@ -22,10 +22,12 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
   initializer 'rails_com.add_activestorage' do |app|
     require 'rails_com/active_storage'
-    config_choice = Rails.configuration.active_storage.private_service
-    if config_choice
-      configs = Rails.configuration.active_storage.service_configurations
-      ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
+    ActiveSupport.on_load(:active_storage_blob) do
+      config_choice = Rails.configuration.active_storage.private_service
+      if config_choice
+        configs = Rails.configuration.active_storage.service_configurations
+        ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
+      end
     end
   end
 
