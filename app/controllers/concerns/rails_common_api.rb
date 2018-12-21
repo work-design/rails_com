@@ -4,7 +4,7 @@ module RailsCommonApi
   included do
     rescue_from 'StandardError' do |exp|
       puts nil, exp.full_message(highlight: true, order: :top)
-      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500 unless self.respond_body
+      render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500 unless self.response_body
     end
 
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
