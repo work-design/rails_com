@@ -16,7 +16,8 @@ class ActiveStorage::BlobDefault < ApplicationRecord
   def self.defaults
     Rails.cache.fetch('blob_default/default') do
       ActiveStorage::BlobDefault.all.map do |i|
-       ["#{i.record_class}_#{i.name}", i.file_attachment.blob_id]
+        next unless i.file_attachment
+        ["#{i.record_class}_#{i.name}", i.file_attachment.blob_id]
       end.to_h
     end
   end
