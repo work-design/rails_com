@@ -15,9 +15,9 @@ class ActiveStorage::BlobDefault < ApplicationRecord
 
   def self.defaults
     Rails.cache.fetch('blob_default/default') do
-      ActiveStorage::BlobDefault.includes(:file_attachment).select(&:file_attachment).map do |i|
+      ActiveStorage::BlobDefault.includes(:file_attachment).map do |i|
         ["#{i.record_class}_#{i.name}", i.file_attachment.blob_id]
-      end.to_h
+      end.compact!.to_h
     end
   end
 
