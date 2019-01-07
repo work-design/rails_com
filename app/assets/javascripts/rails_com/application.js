@@ -27,3 +27,8 @@ document.addEventListener('turbolinks:request-start', function(event) {
   xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
 });
 
+function remote_js_load(paths) {
+  for (i = 0; i < paths.length; i++) {
+    Rails.ajax({ url: paths[i], type: 'GET', dataType: 'script' })
+  }
+}
