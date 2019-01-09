@@ -6,32 +6,32 @@ module RailsCommonApi
       if exp.is_a?(ActiveRecord::RecordInvalid)
         puts exp.record.errors.full_messages.join(', ')
       end
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500 unless self.response_body
     end
 
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect, id: exp.id }, message: exp.message }, status: 404
     end
 
     rescue_from 'AbstractController::ActionNotFound', 'ActionController::RoutingError' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 404
     end
 
     rescue_from 'ActionController::ForbiddenError' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 403
     end
 
     rescue_from 'ActionController::UnauthorizedError' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 401
     end
 
     rescue_from 'ActionController::ParameterMissing' do |exp|
-      puts nil, exp.full_message(highlight: true, order: :top)
+      logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 400
     end
     before_action :set_locale
