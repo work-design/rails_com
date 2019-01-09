@@ -5,8 +5,11 @@ module RailsCom::BlobExt
   end
 
   def duration
-    r = metadata[:duration] || 0
-    rh = TimeHelper.exact_distance_time(r.to_f)
+    (metadata[:duration] || 0).to_f
+  end
+
+  def duration_str
+    rh = TimeHelper.exact_distance_time(duration)
     "#{rh[:minute]}:#{rh[:second].to_s.rjust(2, '0')}"
   end
 
