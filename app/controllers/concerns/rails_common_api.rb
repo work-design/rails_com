@@ -4,7 +4,7 @@ module RailsCommonApi
   included do
     rescue_from 'StandardError' do |exp|
       if exp.is_a?(ActiveRecord::RecordInvalid)
-        puts exp.record.errors.full_messages.join(', ')
+        logger.debug exp.record.errors.full_messages.join(', ')
       end
       logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500 unless self.response_body
