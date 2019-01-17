@@ -9,7 +9,7 @@ module RailsCom::BatchInsert
     keys = [select.keys, value.keys, default.keys].flatten.join(', ')
     text = [v, default.values].flatten.join(', ')
 
-    enums = model.select(select.values).in_batches(options.slice(:of)).each
+    enums = model.select(select.values).in_batches(options.slice(:of, :start, :finish, :load, :error_on_ignore)).each
     enums.each do |i|
       select_str, where_str = i.to_sql.delete('\"').split(' FROM ')
       if text.present?
