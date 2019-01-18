@@ -51,7 +51,8 @@ module UidHelper
   end
 
   def rand_string(len = 4)
-    len.times.map { ((0..9).to_a + ('A'..'Z').to_a).sample }.join
+    list = (0..9).to_a + ('A'..'Z').to_a
+    len.times.map { list.sample }.join
   end
 
 end
