@@ -13,19 +13,19 @@ module UidHelper
     str
   end
 
-  def nsec_uuid(prefix: '', suffix: rand_string, separator: '-')
+  def nsec_uuid(prefix = '', suffix: rand_string, separator: '-')
     time = Time.now
     str = time.to_i.to_s + time.nsec.to_s
     uuid str.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
-  def usec_uuid(prefix: '', suffix: rand_string(2), separator: '-')
+  def usec_uuid(prefix = '', suffix: rand_string(2), separator: '-')
     time = Time.now
     str = time.to_i.to_s + time.usec.to_s
     uuid str.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
-  def sec_uuid(prefix: '', suffix: rand_string(2), separator: '-')
+  def sec_uuid(prefix = '', suffix: rand_string(2), separator: '-')
     time = Time.now
     uuid time.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
