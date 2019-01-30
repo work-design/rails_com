@@ -1,10 +1,10 @@
 module UidHelper
   extend self
 
-  def uuid(int, prefix = '', suffix = '')
+  def uuid(int, prefix: '', suffix: '', separator: '')
     str = int.to_s(36)
     str = str + suffix
-    str = str.upcase.scan(/.{1,4}/).join('-')
+    str = str.upcase.scan(/.{1,4}/).join(separator)
 
     if prefix.present?
       str = prefix + '-' + str
@@ -13,21 +13,21 @@ module UidHelper
     str
   end
 
-  def nsec_uuid(prefix = '', suffix = rand_string)
+  def nsec_uuid(prefix: '', suffix: rand_string, separator: '-')
     time = Time.now
     str = time.to_i.to_s + time.nsec.to_s
-    uuid str.to_i, prefix, suffix
+    uuid str.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
-  def usec_uuid(prefix = '', suffix = rand_string(2))
+  def usec_uuid(prefix: '', suffix: rand_string(2), separator: '-')
     time = Time.now
     str = time.to_i.to_s + time.usec.to_s
-    uuid str.to_i, prefix, suffix
+    uuid str.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
-  def sec_uuid(prefix = '', suffix = rand_string(2))
+  def sec_uuid(prefix: '', suffix: rand_string(2), separator: '-')
     time = Time.now
-    uuid time.to_i, prefix, suffix
+    uuid time.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
   def decode_uuid(uuid, prefix: true)
