@@ -30,6 +30,10 @@ module RailsCom::BlobExt
     @private = ps.slice(*rts.keys).map { |p, v| (Array(rts[p]) - Array(v)).blank? }.uniq == [true]
   end
 
+  def identify_later
+    ActiveStorage::IdentifyJob.perform_later(self)
+  end
+
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
