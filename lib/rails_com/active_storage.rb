@@ -1,4 +1,5 @@
 require_relative 'active_storage/activestorage_attached'
 require_relative 'active_storage/attached_macros'
 require_relative 'active_storage/attachment_transfer'
+require_relative 'active_storage/attachment_ext'
 require_relative 'active_storage/video_response'
