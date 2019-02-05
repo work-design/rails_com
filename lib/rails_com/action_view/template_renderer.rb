@@ -4,7 +4,7 @@ module RailsCom
 
     # record where the view rendered from, main project or which engine
     # used by view helper methods: js_load, css_load, js_ready
-    def render_template(template, layout_name = nil, locals = nil)
+    def render_template(view, template, layout_name, locals)
       path = template.identifier
 
       result = path.match(/(?<=\/)[a-zA-Z0-9_-]+(?=\/app\/views)/)
@@ -12,7 +12,7 @@ module RailsCom
 
       engine = result.classify.safe_constantize
 
-      @view.instance_variable_set(:@_rendered_from, engine.root) if engine
+      view.instance_variable_set(:@_rendered_from, engine.root) if engine
 
       super
     end
