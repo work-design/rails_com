@@ -7,6 +7,7 @@ module RailsCommonApi
         logger.debug exp.record.errors.full_messages.join(', ')
       end
       logger.debug exp.full_message(highlight: true, order: :top)
+      LogRecord.record_to_log(self, exp)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 500 unless self.response_body
     end
 
