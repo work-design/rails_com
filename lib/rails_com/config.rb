@@ -9,6 +9,7 @@ module RailsCom #:nodoc:
     ]
     config.app_class = 'ApplicationController'
     config.admin_class = 'AdminController'
+    config.exception_log = true
   end
 
 end
