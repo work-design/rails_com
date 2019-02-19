@@ -1,0 +1,16 @@
+<div class="ui vertical fluid icon menu">
+  <div class="header center link item" id="close_side">
+    <i class="content icon"></i>
+  </div>
+  <div class="item ui dropdown">
+    <a class="<%= active_helper(controllers: ['blob_defaults', 'blobs', 'attachments'], active_class: 'title active', item_class: 'title') %>">
+      <i class="calendar check icon"></i>
+      <span>资源</span>
+    </a>
+    <div class="<%= active_helper(controllers: ['blob_defaults', 'blobs', 'attachments'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to '默认', rails_ext_blob_defaults_path, class: active_helper(controllers: 'blob_defaults') %>
+      <%= link_to 'blobs', rails_ext_blobs_path, class: active_helper(controllers: 'blobs') %>
+    </div>
+  </div>
+</div>
+
