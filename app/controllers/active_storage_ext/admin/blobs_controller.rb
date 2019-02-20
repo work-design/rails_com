@@ -30,7 +30,6 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
 
   def destroy
     @blob.purge
-    redirect_to rails_ext_blobs_url, notice: 'Blob was successfully destroyed.'
   end
 
   private

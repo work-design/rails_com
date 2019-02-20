@@ -27,7 +27,7 @@
   </thead>
   <tbody>
   <% @blobs.each do |blob| %>
-    <tr>
+    <tr id="blob_<%= blob.id %>">
       <td><%= blob.id %></td>
       <td><%= blob.key %></td>
       <td><%= blob.filename %></td>
@@ -36,7 +36,7 @@
       <td><%= number_to_human_size(blob.byte_size) %></td>
       <td><time><%= blob.created_at.to_s(:rfc822) %></time></td>
       <td class="ui labels">
-        <%= link_to rails_ext_blob_path(blob), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to rails_ext_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
         <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: '默认' }, class: 'ui blue mini icon button' do %>
