@@ -1,6 +1,11 @@
 require 'active_storage/downloading'
 module RailsCom::AttachmentTransfer
+  extend ActiveSupport::Concern
   include ActiveStorage::Downloading
+
+  included do
+    scope :garbled, -> { left_joins(:blob).where(ActiveStorage::Blob.table_name => { id: nil }) }
+  end
 
   def copy
     raise 'Only Support mirror service' unless service.is_a?(ActiveStorage::Service::MirrorService)
