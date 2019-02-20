@@ -29,7 +29,7 @@
       <td><%= attachment.blob_id %></td>
       <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
       <td class="ui labels">
-        <%= link_to rails_ext_attachment_path(attachment), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to delete_rails_ext_attachment_path(attachment), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>
