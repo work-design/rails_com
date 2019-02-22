@@ -15,11 +15,11 @@ module RailsCommonController
       request.variant = :phone
     end
 
-    logger.debug " ==========> Variant: #{request.variant}"
+    logger.debug "  ==========> Variant: #{request.variant}"
   end
 
   def set_layout
-    request.variant.first.to_s
+    request.variant.first.to_s if request.variant.present?
   end
 
   def set_timezone
