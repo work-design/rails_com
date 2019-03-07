@@ -10,40 +10,40 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
     @<%= singular_table_name %> = create <%= fixture_name %>
   end
 
-  test "should get index" do
+  test 'index ok' do
     get <%= index_helper %>_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'new ok' do
     get <%= new_helper %>
     assert_response :success
   end
 
-  test "should create <%= singular_table_name %>" do
+  test 'create ok' do
     assert_difference('<%= class_name %>.count') do
-      post <%= index_helper %>_url, params: { <%= "#{singular_table_name}: { #{attributes_string} }" %> }
+      post <%= index_helper %>_url, params: { <%= '#{singular_table_name}: { #{attributes_string} }' %> }
     end
 
     assert_redirected_to <%= singular_table_name %>_url(<%= class_name %>.last)
   end
 
-  test "should show <%= singular_table_name %>" do
+  test 'show ok' do
     get <%= show_helper %>
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'edit ok' do
     get <%= edit_helper %>
     assert_response :success
   end
 
-  test "should update <%= singular_table_name %>" do
-    patch <%= show_helper %>, params: { <%= "#{singular_table_name}: { #{attributes_string} }" %> }
-    assert_redirected_to <%= singular_table_name %>_url(<%= "@#{singular_table_name}" %>)
+  test 'update ok' do
+    patch <%= show_helper %>, params: { <%= '#{singular_table_name}: { #{attributes_string} }' %> }
+    assert_redirected_to <%= singular_table_name %>_url(<%= '@#{singular_table_name}' %>)
   end
 
-  test "should destroy <%= singular_table_name %>" do
+  test 'destroy ok' do
     assert_difference('<%= class_name %>.count', -1) do
       delete <%= show_helper %>
     end
