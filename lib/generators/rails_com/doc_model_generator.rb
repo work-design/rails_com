@@ -2,7 +2,7 @@
 #require 'rails/generators'
 module RailsCom
   class DocModelGenerator < Rails::Generators::NamedBase
-    source_root File.expand_path('../templates', __dir__)
+    source_root File.expand_path('../templates/rails_com', __dir__)
 
     def create_controller_files
       check_model_exist?
