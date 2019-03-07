@@ -20,6 +20,9 @@ document.addEventListener('turbolinks:load', function() {
 document.addEventListener('turbolinks:visit', function() {
   timeForLocalized()
 });
+document.addEventListener('ajax:success', function(){
+  timeForLocalized()
+})
 document.addEventListener('turbolinks:request-start', function(event) {
   var xhr = event.data.xhr;
   var offset = (new Date).getTimezoneOffset();
