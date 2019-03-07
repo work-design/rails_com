@@ -2,7 +2,7 @@ require 'rails/generators'
 require 'rails/generators/erb/scaffold/scaffold_generator'
 
 class Erb::Generators::ScaffoldGenerator
-  source_root File.expand_path('../templates/erb/scaffold', __dir__)
+  source_root File.expand_path('templates/scaffold_erb', __dir__)
 
   def copy_view_files
     available_views = [

@@ -1,7 +1,7 @@
 require 'generators/rails/jbuilder_generator'
 
 class Rails::Generators::JbuilderGenerator
-  source_root File.expand_path('../templates/jbuilder', __dir__)
+  source_root File.expand_path('templates/jbuilder', __dir__)
 
   def copy_view_files
     ['index', 'show'].each do |view|
