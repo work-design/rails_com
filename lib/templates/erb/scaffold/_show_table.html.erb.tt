@@ -1,6 +1,14 @@
 <table class="ui very basic large table">
+  <thead>
+    <tr>
+      <th class="six wide">
+        <%%= link_to t('.edit'), edit_<%= singular_table_name %>_path(<%= singular_name %>), class: 'ui mini blue right floated button', remote: true %>
+      </th>
+      <th class="ten wide"></th>
+    </tr>
+  </thead>
   <tbody>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<% attributes.each do |attribute| -%>
     <tr>
       <td class="right aligned"><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></td>
       <td><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
