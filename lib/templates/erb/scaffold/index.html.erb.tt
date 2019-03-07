@@ -2,7 +2,7 @@
   <div class="header item"><%= plural_table_name.titleize %></div>
   <div class="right menu">
     <div class="item">
-      <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'ui teal button' %>
+      <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'ui teal button', remote: true %>
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
   <thead>
     <tr>
       <th><%%= <%= class_name %>.human_attribute_name(:id) %></th>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<% attributes.each do |attribute| -%>
       <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
 <% end -%>
       <th>Actions</th>
@@ -23,14 +23,14 @@
   <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
     <tr>
       <td><%%= <%= singular_name %>.id %></td>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<% attributes.each do |attribute| -%>
       <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
 <% end -%>
       <td class="ui labels">
-        <%%= link_to <%= singular_table_name %>_path(<%= singular_name %>), data: { tooltip: t('.show') }, class: 'ui blue mini icon button' do %>
+        <%%= link_to <%= singular_table_name %>_path(<%= singular_name %>), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <%% end %>
-        <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_name %>), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
+        <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_name %>), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <%% end %>
         <%%= link_to <%= singular_table_name %>_path(<%= singular_name %>), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
