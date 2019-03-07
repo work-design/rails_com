@@ -18,6 +18,7 @@ require_relative 'rails_com/meta/env'
 # Rails extension
 require_relative 'rails_com/generators/named_base'
 require_relative 'rails_com/generators/scaffold_generator'
+require_relative 'rails_com/generators/jbuilder_generator'
 
 # controllers
 require_relative 'rails_com/sprockets/non_digest_assets'
