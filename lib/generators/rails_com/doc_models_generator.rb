@@ -1,6 +1,6 @@
 # 生成模型
 require_relative 'doc_model_generator'
-module Doc
+module RailsCom
   class DocModelsGenerator < Rails::Generators::Base
 
     def create_controller_files

@@ -1,8 +1,8 @@
 # 生成模型
 #require 'rails/generators'
-module Doc
+module RailsCom
   class DocModelGenerator < Rails::Generators::NamedBase
-    source_root File.expand_path('../templates', __FILE__)
+    source_root File.expand_path('../templates', __dir__)
 
     def create_controller_files
       check_model_exist?
@@ -32,6 +32,5 @@ module Doc
     def assign_model_name!(name)
 
     end
-
   end
 end
