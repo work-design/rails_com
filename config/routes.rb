@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   end
 
   scope :rails, module: 'active_storage_ext/admin', as: 'rails_ext' do
-    resources :attachments, only: [:destroy]
+    resources :attachments, only: [:index, :destroy] do
+      get :garbled, on: :collection
+      delete :delete, on: :member
+    end
     resources :blobs, only: [:index, :new, :create, :destroy] do
       get :unattached, on: :collection
     end

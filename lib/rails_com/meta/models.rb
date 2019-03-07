@@ -15,7 +15,7 @@ module RailsCom::Models
   end
 
   def model_names
-    models.map { |klass| klass.to_s }
+    models.map(&:to_s)
   end
 
 end

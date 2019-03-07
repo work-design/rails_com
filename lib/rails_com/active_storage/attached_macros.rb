@@ -8,7 +8,7 @@ module RailsCom::AttachedOne
     end
 
     id = ActiveStorage::BlobDefault.defaults["#{record.class.name}_#{name}"]
-    @attachment = build_attachment(blob: ActiveStorage::Blob.find(id)) if id
+    @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id)) if id
   end
 
   def attached?

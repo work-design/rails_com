@@ -4,6 +4,7 @@ class ActiveStorage::BlobDefault < ApplicationRecord
 
   after_commit :delete_private_cache, :delete_default_cache, on: [:create, :destroy]
   after_update_commit :delete_private_cache, if: -> { saved_change_to_private? }
+  after_update_commit :delete_default_cache
 
   def delete_private_cache
     Rails.cache.delete('blob_default/private')

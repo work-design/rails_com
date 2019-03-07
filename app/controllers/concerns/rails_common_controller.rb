@@ -2,8 +2,24 @@ module RailsCommonController
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_locale,
-                  :set_timezone
+    before_action(
+      :set_locale,
+      :set_timezone,
+      :set_variant
+    )
+    layout :set_layout
+  end
+
+  def set_variant
+    if request.user_agent =~ /iPad|iPhone|iPod|Android/ || request.host =~ /lvh.me/
+      request.variant = :phone
+    end
+
+    logger.debug "  ==========> Variant: #{request.variant}"
+  end
+
+  def set_layout
+    request.variant.first.to_s if request.variant.present?
   end
 
   def set_timezone
