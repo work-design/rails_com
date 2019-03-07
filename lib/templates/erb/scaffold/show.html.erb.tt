@@ -4,13 +4,4 @@
   <div class="active section">Show</div>
 </div>
 
-<table class="ui very basic large table">
-  <tbody>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-    <tr>
-      <td class="right aligned"><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></td>
-      <td><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
-    </tr>
-<% end -%>
-  </tbody>
-</table>
+<%% render 'show_table' %>
