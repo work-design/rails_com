@@ -1,12 +1,7 @@
 <%%= form_with model: @<%= singular_name %> do |f| %>
   <%%= render 'shared/error_messages', target: @<%= singular_name %> %>
 <% attributes.each do |attribute| -%>
-<% if attribute.password_digest? -%>
-  <%%= f.password_field :password %>
-  <%%= f.password_field :password_confirmation %>
-<% else -%>
   <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
-<% end -%>
 <% end -%>
   <%%= f.submit %>
 <%% end %>
