@@ -6,11 +6,11 @@ module RailsCom::NamedBase
   end
 
   def singular_route_name
-    class_path[-1].to_s + singular_name
+    [class_path[-1], singular_name].join('_')
   end
 
   def plural_route_name
-    class_path[-1].to_s + plural_name
+    [class_path[-1], plural_name].join('_')
   end
 
 end
