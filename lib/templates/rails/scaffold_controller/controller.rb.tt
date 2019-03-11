@@ -12,10 +12,16 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   def create
     @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
-    if @<%= orm_instance(singular_name).save %>
-      redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %>
-    else
-      render :new
+    respond_to do |format|
+      if @<%= orm_instance(singular_name).save %>
+        format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %> }
+        format.html.phone
+        format.json { render :show }
+      else
+        format.html { render :new }
+        format.html.phone { render :new }
+        format.json { render :show }
+      end
     end
   end
 

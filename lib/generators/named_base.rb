@@ -1,10 +1,18 @@
 require 'rails/generators'
-class Rails::Generators::NamedBase
+module RailsCom::NamedBase
 
-  undef class_name
-  private
   def class_name
     file_name.classify
   end
 
+  def singular_route_name
+    class_path[-1].to_s + singular_name
+  end
+
+  def plural_route_name
+    class_path[-1].to_s + plural_name
+  end
+
 end
+
+Rails::Generators::NamedBase.prepend RailsCom::NamedBase
