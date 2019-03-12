@@ -2,7 +2,7 @@
   <div class="header item"><%= plural_table_name.titleize %></div>
   <div class="right menu">
     <div class="item">
-      <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: 'ui teal button', remote: true %>
+      <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path, class: 'ui teal button', remote: true %>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
       <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
 <% end -%>
       <td class="ui labels">
-        <%%= link_to <%= plural_route_name %>_path(<%= singular_name %>), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+        <%%= link_to <%= singular_route_name %>_path(<%= singular_name %>), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <%% end %>
         <%%= link_to edit_<%= singular_route_name %>_path(<%= singular_name %>), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
