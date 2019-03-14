@@ -1,3 +1,5 @@
+//= require rails-ujs
+//= require turbolinks
 //= require ./time_local
 //= require_self
 
