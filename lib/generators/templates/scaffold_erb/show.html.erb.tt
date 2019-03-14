@@ -4,4 +4,4 @@
   <div class="active section">Show</div>
 </div>
 
-<%% render 'show_table' %>
+<%%= render 'show_table' %>
