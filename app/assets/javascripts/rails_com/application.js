@@ -1,5 +1,3 @@
-//= require rails-ujs
-//= require turbolinks
 //= require ./time_local
 //= require_self
 
@@ -22,7 +20,7 @@ document.addEventListener('turbolinks:visit', function() {
 });
 document.addEventListener('ajax:success', function(){
   timeForLocalized()
-})
+});
 document.addEventListener('turbolinks:request-start', function(event) {
   var xhr = event.data.xhr;
   var offset = (new Date).getTimezoneOffset();
