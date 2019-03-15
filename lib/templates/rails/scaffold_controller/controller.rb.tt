@@ -14,12 +14,14 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
 
     respond_to do |format|
       if @<%= orm_instance(singular_name).save %>
-        format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %> }
         format.html.phone
+        format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %> }
+        format.js
         format.json { render :show }
       else
-        format.html { render :new }
         format.html.phone { render :new }
+        format.html { render :new }
+        format.js
         format.json { render :show }
       end
     end
@@ -32,10 +34,20 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   def update
-    if @<%= orm_instance(singular_name).update("#{singular_name}_params") %>
-      redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %>
-    else
-      render :edit
+    @<%= orm_instance(singular_name).assign_attributes("#{singular_name}_params") %>
+
+    respond_to do |format|
+      if @<%= orm_instance(singular_name).save %>
+        format.html.phone
+        format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %> }
+        format.js { redirect_back }
+        format.json { render :show }
+      else
+        format.html.phone { render :edit }
+        format.html { render :edit }
+        format.js
+        format.json { render :show }
+      end
     end
   end
 
