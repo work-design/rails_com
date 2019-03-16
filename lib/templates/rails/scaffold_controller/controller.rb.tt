@@ -34,10 +34,10 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   end
 
   def update
-    @<%= orm_instance(singular_name).assign_attributes("#{singular_name}_params") %>
+    @<%= singular_name %>.assign_attributes(<%= singular_name %>_params)
 
     respond_to do |format|
-      if @<%= orm_instance(singular_name).save %>
+      if @<%= singular_name %>.save
         format.html.phone
         format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %> }
         format.js { redirect_back }
@@ -61,10 +61,10 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     @<%= singular_name %> = <%= orm_class.find(class_name, "params[:id]") %>
   end
 
-  def <%= "#{singular_name}_params" %>
+  def <%= singular_name %>_params
     params.fetch(:<%= singular_name %>, {}).permit(
-<% attributes_names.map do |name| -%>
-      <%= ":#{name}," %>
+<% attributes_names.map.with_index do |name, index| -%>
+      :<%= name %><%= ',' unless index == attributes_names.size - 1  %>
 <% end -%>
     )
   end
