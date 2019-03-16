@@ -16,12 +16,12 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
       if @<%= orm_instance(singular_name).save %>
         format.html.phone
         format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %> }
-        format.js
+        format.js { redirect_back fallback_location: <%= index_helper %>_url }
         format.json { render :show }
       else
         format.html.phone { render :new }
         format.html { render :new }
-        format.js
+        format.js { redirect_back fallback_location: <%= index_helper %>_url }
         format.json { render :show }
       end
     end
@@ -45,7 +45,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
       else
         format.html.phone { render :edit }
         format.html { render :edit }
-        format.js
+        format.js { redirect_back fallback_location: <%= index_helper %>_url }
         format.json { render :show }
       end
     end
