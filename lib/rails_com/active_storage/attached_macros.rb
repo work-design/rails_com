@@ -15,6 +15,10 @@ module RailsCom::AttachedOne
     attachment&.id?
   end
 
+  def present?
+    attachment.present?
+  end
+
 end
 
 ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
