@@ -37,15 +37,30 @@ module RailsCommonController
     logger.debug "  ==========> Zone: #{Time.zone}"
   end
 
+  # Accept-Language: "en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
   def set_locale
+    request_locales = request.headers['Accept-Language'].to_s.split(',')
+    available_locales = I18n.available_locales.map(&:to_s)
+    locale = (available_locales & request_locales)[0]
+
+    unless locale.present?
+      locale = request_locales.first.to_s.split('-').first
+    end
     if params[:locale]
-      session[:locale] = params[:locale]
+      locale = params[:locale]
+    elsif session[:locale]
+      locale = session[:locale]
+    end
+    locale ||= I18n.default_locale
+
+    I18n.locale = locale
+    session[:locale] = locale
+
+    I18n.locale = locale
+    if current_user && current_user.locale.to_s != I18n.locale.to_s
+      current_user.update locale: I18n.locale
     end
 
-    I18n.locale = session[:locale] || I18n.default_locale
-    if current_user && current_user.locale.to_s != session[:locale].to_s
-      current_user.update locale: session[:locale]
-    end
     logger.debug "  ==========> Locale: #{I18n.locale}"
   end
 
