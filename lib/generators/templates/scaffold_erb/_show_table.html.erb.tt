@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th class="six wide">
-        <%%= link_to t('.edit'), edit_<%= singular_table_name %>_path(@<%= singular_name %>), class: 'ui mini blue right floated button', remote: true %>
+        <%%= link_to t('.edit'), edit_<%= singular_route_name %>_path(@<%= singular_name %>), class: 'ui mini blue right floated button', remote: true %>
       </th>
       <th class="ten wide"></th>
     </tr>
