@@ -36,6 +36,6 @@ require 'default_form'
 
 module ActiveStorageExt
   module Admin
-    
+
   end
 end
