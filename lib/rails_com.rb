@@ -33,3 +33,9 @@ require_relative 'rails_com/utils/babel'
 # outside
 require 'default_where'
 require 'default_form'
+
+module ActiveStorageExt
+  module Admin
+    
+  end
+end
