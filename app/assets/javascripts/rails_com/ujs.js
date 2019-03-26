@@ -2,7 +2,7 @@ document.querySelectorAll('input[data-submit="true"]').forEach(function (el) {
   el.addEventListener('change', function () {
     if (this.defaultValue === '') {
       this.dataset['params'] = this.name + '=' + this.checked;
-    } else if (this.checked) {
+    } else {
       this.dataset['params'] = this.name + '=' + this.defaultValue;
     }
   });
