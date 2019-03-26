@@ -8,6 +8,7 @@ module RailsCommonController
       :set_variant
     )
     layout :set_layout
+    helper_method :default_params
   end
 
   def set_variant
