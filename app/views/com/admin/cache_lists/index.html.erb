@@ -1,0 +1,45 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Com Admin Cache Lists</div>
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'New Com Admin Cache List', new_admin_cache_list_path, class: 'ui teal button', remote: true %>
+    </div>
+  </div>
+</div>
+
+<%= render 'filter' %>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= CacheList.human_attribute_name(:id) %></th>
+      <th><%= CacheList.human_attribute_name(:path) %></th>
+      <th><%= CacheList.human_attribute_name(:key) %></th>
+      <th><%= CacheList.human_attribute_name(:etag) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @cache_lists.each do |cache_list| %>
+    <tr>
+      <td><%= cache_list.id %></td>
+      <td><%= cache_list.path %></td>
+      <td><%= cache_list.key %></td>
+      <td><%= cache_list.etag %></td>
+      <td class="ui labels">
+        <%= link_to admin_cache_list_path(cache_list), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_admin_cache_list_path(cache_list), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_cache_list_path(cache_list), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @cache_lists %>

@@ -1,0 +1,46 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Admin Infos</div>
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'New Admin Info', new_admin_info_path, class: 'ui teal button' %>
+    </div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Info.human_attribute_name(:id) %></th>
+      <th><%= Info.human_attribute_name(:code) %></th>
+      <th><%= Info.human_attribute_name(:value) %></th>
+      <th><%= Info.human_attribute_name(:platform) %></th>
+      <th><%= Info.human_attribute_name(:version) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @infos.each do |info| %>
+    <tr>
+      <td><%= info.id %></td>
+      <td><%= info.code %></td>
+      <td><%= info.value %></td>
+      <td><%= info.platform_i18n %></td>
+      <td><%= info.version %></td>
+      <td class="ui labels">
+        <%= link_to edit_admin_info_path(info), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_info_path(info), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @infos %>

@@ -10,5 +10,19 @@ class RailsComInit < ActiveRecord::Migration[5.2]
 
     change_column_null :active_storage_blobs, :checksum, true
 
+    create_table :infos do |t|
+      t.string :code
+      t.string :value
+      t.string :version
+      t.string :platform
+      t.timestamps
+    end
+
+    create_table :cache_lists do |t|
+      t.string :path
+      t.string :key
+      t.timestamps
+    end
+
   end
 end

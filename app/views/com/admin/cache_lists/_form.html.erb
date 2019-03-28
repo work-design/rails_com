@@ -1,0 +1,6 @@
+<%= form_with model: [:admin, @cache_list] do |f| %>
+  <%= render 'shared/error_messages', target: @cache_list %>
+  <%= f.text_field :path %>
+  <%= f.text_field :key %>
+  <%= f.submit %>
+<% end %>

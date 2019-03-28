@@ -20,4 +20,17 @@ Rails.application.routes.draw do
     resources :blob_defaults
   end
 
+  scope :admin, module: 'com/admin', as: :admin do
+    resources :infos
+    resources :cache_lists
+  end
+
+  scope module: 'com' do
+    controller :common do
+      get :infos
+      get :cache_list
+      get :enum_list
+    end
+  end
+
 end

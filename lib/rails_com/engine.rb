@@ -1,5 +1,9 @@
 class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
+  config.autoload_paths += Dir[
+    "#{config.root}/app/models/rails_com"
+  ]
+
   config.generators do |g|
     g.stylesheets false
     g.javasricpts false
