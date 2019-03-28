@@ -31,6 +31,7 @@ module RailsCommonApi
 
     rescue_from 'ActionController::UnauthorizedError' do |exp|
       logger.debug exp.full_message(highlight: true, order: :top)
+      binding.pry
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 401
     end
 
@@ -38,7 +39,6 @@ module RailsCommonApi
       logger.debug exp.full_message(highlight: true, order: :top)
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 400
     end
-    before_action :set_locale
   end
 
   def process_errors(model)
