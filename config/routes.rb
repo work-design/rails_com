@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  scope 'rails/active_storage', module: :active_storage_ext do
+    resources :direct_uploads, only: [:create]
+  end
+
   scope :rails, module: 'active_storage_ext', as: 'rails_ext' do
     resources :videos, only: [:show] do
       put :transfer, on: :member
