@@ -22,4 +22,12 @@ class Date
     end
   end
 
+  def parts
+    {
+      year: year,
+      month: month,
+      day: day
+    }
+  end
+
 end
