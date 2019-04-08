@@ -12,3 +12,8 @@ document.querySelectorAll('input[data-form="true"]').forEach(function (el) {
     Rails.fire(this.form, 'submit');
   });
 });
+document.querySelectorAll('input[data-filter="true"]').forEach(function (el) {
+  el.addEventListener('change', function () {
+    this.dataset['params'] = this.name + '=' + this.value;
+  });
+});
