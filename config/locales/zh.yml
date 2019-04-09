@@ -8,12 +8,18 @@ zh:
   errors:
     format: "%{attribute} %{message}"
     messages:
-      record_invalid: "验证失败: %{errors}"
       model_invalid: "验证失败: %{errors}"
-      required: 必须存在
       blank: 不能为空
       too_short: 长度不够
+      required: 必须存在
       taken: 已被占用
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "验证失败: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"
   views:
     pagination:
       first: First
