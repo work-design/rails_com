@@ -1,10 +1,17 @@
 document.querySelectorAll('input[data-submit="true"]').forEach(function (el) {
   el.addEventListener('change', function () {
-    if (this.defaultValue === '') {
-      this.dataset['params'] = this.name + '=' + this.checked;
+    if (this.dataset['params']) {
+      this.dataset['params'] += '&'
     } else {
-      this.dataset['params'] = this.name + '=' + this.defaultValue;
+      this.dataset['params'] = ''
     }
+    var str;
+    if (this.defaultValue === '') {
+      str = this.name + '=' + this.checked;
+    } else {
+      str = this.name + '=' + this.defaultValue;
+    }
+    this.dataset['params'] += str
   });
 });
 document.querySelectorAll('input[data-form="true"]').forEach(function (el) {
@@ -14,6 +21,11 @@ document.querySelectorAll('input[data-form="true"]').forEach(function (el) {
 });
 document.querySelectorAll('input[data-filter="true"]').forEach(function (el) {
   el.addEventListener('change', function () {
-    this.dataset['params'] = this.name + '=' + this.value;
+    if (this.dataset['params']) {
+      this.dataset['params'] += '&'
+    } else {
+      this.dataset['params'] = ''
+    }
+    this.dataset['params'] += (this.name + '=' + this.value);
   });
 });
