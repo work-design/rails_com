@@ -4,7 +4,20 @@ zh:
     show: 详情
     edit: 编辑
     destroy: 删除
+    new: 添加
     search: 搜索
+    export: 导出
+    sync: 加载默认配置
+  attributes:
+    id: ID
+    name: 名称
+    type: 类别
+    description: 描述
+    note: 备注
+    birthday: 生日
+    gender: 性别
+    created_at: 创建时间
+    updated_at: 更新时间
   errors:
     format: "%{attribute} %{message}"
     messages:
