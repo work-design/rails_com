@@ -8,6 +8,8 @@ zh:
     search: 搜索
     export: 导出
     sync: 加载默认配置
+    all: 所有
+    log: 操作日志
   attributes:
     id: ID
     name: 名称
