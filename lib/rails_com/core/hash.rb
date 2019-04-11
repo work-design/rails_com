@@ -9,7 +9,7 @@ class Hash
   # => { a: [1, 2] }
   # a.toggle! a: 3
   # => { a: [1, 2, 3] }
-  def toggle!(t = true, **other_hash)
+  def toggle!(t = true, other_hash)
     common_keys = self.keys & other_hash.keys
     common_keys.each do |key|
       if Array(self[key]).include?(other_hash[key])
