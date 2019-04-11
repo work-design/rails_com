@@ -1,7 +1,7 @@
 class Hash
 
-  def toggle(other_hash)
-    dup.combine_merge!(other_hash)
+  def toggle(t = true, other_hash)
+    dup.toggle!(t, other_hash)
   end
 
   # a = {a: 1}
