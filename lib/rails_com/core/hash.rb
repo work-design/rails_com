@@ -14,6 +14,8 @@ class Hash
     common_keys.each do |key|
       self[key] = Array(self[key]).append(other_hash[key]) unless Array(self[key]).include?(other_hash[key])
     end
+    other_hash.except! *common_keys
+    self.merge! other_hash
     self
   end
 
