@@ -1,18 +1,25 @@
 class Hash
 
-  def combine_merge(other_hash)
+  def toggle(other_hash)
     dup.combine_merge!(other_hash)
   end
 
   # a = {a: 1}
-  # a.combine_merge! a: 2
+  # a.toggle! a: 2
   # => { a: [1, 2] }
-  # a.combine_merge! a: 3
+  # a.toggle! a: 3
   # => { a: [1, 2, 3] }
-  def combine_merge!(other_hash)
+  def toggle!(t = true, **other_hash)
     common_keys = self.keys & other_hash.keys
     common_keys.each do |key|
-      self[key] = Array(self[key]).append(other_hash[key]) unless Array(self[key]).include?(other_hash[key])
+      if Array(self[key]).include?(other_hash[key])
+        if t
+          self[key] = Array(self[key]) - Array(other_hash[key])
+          self.delete(key) if self[key].empty?
+        end
+      else
+        self[key] = Array(self[key]).append(other_hash[key])
+      end
     end
     other_hash.except! *common_keys
     self.merge! other_hash
