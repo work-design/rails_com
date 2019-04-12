@@ -24,7 +24,7 @@ class Array
   #   # => [1, 2, nil, nil, 3]
   def mjust!(n, x)
     return self if n < length
-    insert (length / 2.0).ceil, *Array.new(n - length, x)
+    insert((length / 2.0).ceil, *Array.new(n - length, x))
   end
 
   ##
