@@ -13,6 +13,7 @@ zh:
   attributes:
     id: ID
     name: 名称
+    title: 标题
     type: 类别
     description: 描述
     note: 备注
