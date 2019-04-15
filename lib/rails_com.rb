@@ -27,6 +27,7 @@ require_relative 'rails_com/sprockets/non_digest_assets'
 require_relative 'rails_com/utils/time_helper'
 require_relative 'rails_com/utils/num_helper'
 require_relative 'rails_com/utils/uid_helper'
+require_relative 'rails_com/utils/hex_helper'
 require_relative 'rails_com/utils/jobber'
 require_relative 'rails_com/utils/babel'
 
