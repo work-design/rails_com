@@ -15,7 +15,11 @@ class Hash
       if Array(self[key]).include?(other_hash[key])
         if t
           self[key] = Array(self[key]) - Array(other_hash[key])
-          self.delete(key) if self[key].empty?
+          if self[key].empty?
+            self.delete(key)
+          elsif self[key].size == 1
+            self[key] = self[key][0]
+          end
         end
       else
         self[key] = Array(self[key]).append(other_hash[key])
