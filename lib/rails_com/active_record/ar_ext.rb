@@ -1,4 +1,4 @@
-module RailsCom::BatchInsert
+module RailsCom::ArExt
 
   # user by  in_batches:
   #  * of
@@ -19,8 +19,12 @@ module RailsCom::BatchInsert
     end
   end
 
+  def human_name
+    model_name.human
+  end
+
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsCom::BatchInsert
+  extend RailsCom::ArExt
 end
