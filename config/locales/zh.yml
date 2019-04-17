@@ -10,6 +10,8 @@ zh:
     sync: 加载默认配置
     all: 所有
     log: 操作日志
+    approve: 接受
+    reject: 拒绝
   attributes:
     id: ID
     name: 名称
