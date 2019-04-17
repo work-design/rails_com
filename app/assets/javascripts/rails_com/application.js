@@ -15,7 +15,7 @@ function remote_js_load(paths) {
 function timeForLocalized() {
   $('time[data-localized!="true"]').each(function(){
     if (this.textContent.length > 0) {
-      var format = this.dataset['format'] || 'YYYY-MM-DD HH:mm:ss';
+      var format = this.dataset['format'] || 'YYYY-MM-DD HH:mm';
       this.textContent = moment.utc(this.textContent).local().format(format);
       this.dataset['localized'] = 'true'
     }
