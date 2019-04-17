@@ -29,5 +29,21 @@ class Hash
     self.merge! other_hash
     self
   end
-  
+
+  # a = { a:1, b: 2 }
+  # a.diff { a: [1,2] }
+  # => removes: { b: 2 }
+  def simple_diff(other_hash)
+    r = {}
+    each do |key, value|
+      v = (Array(value) - Array(other_hash[key]))
+      if v.size > 1
+        r[key] = v
+      elsif v.size == 1
+        r[key] = v[0]
+      end
+    end
+    r
+  end
+
 end
