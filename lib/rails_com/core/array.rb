@@ -35,14 +35,13 @@ class Array
   #     { b: 2 },
   #     { b: 2 }
   #   ]
-  #   raw_data.to_combined_h
+  #   raw_data.to_combine_h
   #   #=> { a: [1, 2], b: 2 }
-  def to_combined_h
+  def to_combine_h
     self.reduce({}) do |memo, obj|
       memo.merge(obj) { |_, old_val, new_val| (Array(old_val) + Array(new_val)).uniq }
     end
   end
-  alias_method :to_combined_hash, :to_combined_h
 
   #
   # raw_data = [
@@ -55,7 +54,6 @@ class Array
   def to_array_h
     self.map { |x, y| { x => y } }
   end
-  alias_method :to_array_hash, :to_array_h
 
   # 2D array to csv file
   #   data = [
