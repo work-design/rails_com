@@ -1,34 +1,6 @@
 //= require rails-ujs
 //= require turbolinks
-//= require ./time_local
 //= require_self
-
-document.addEventListener('DOMContentLoaded', function() {
-  timeForLocalized()
-});
-document.addEventListener('ajax:beforeSend', function(event) {
-  var detail = event.detail;
-  var xhr = detail[0];
-  var offset = (new Date).getTimezoneOffset();
-  xhr.setRequestHeader('Utc-Offset', offset);
-  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
-});
-
-document.addEventListener('turbolinks:load', function() {
-  timeForLocalized()
-});
-document.addEventListener('turbolinks:visit', function() {
-  timeForLocalized()
-});
-document.addEventListener('ajax:success', function(){
-  timeForLocalized()
-});
-document.addEventListener('turbolinks:request-start', function(event) {
-  var xhr = event.data.xhr;
-  var offset = (new Date).getTimezoneOffset();
-  xhr.setRequestHeader('Utc-Offset', offset);
-  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
-});
 
 function remote_js_load(paths) {
   if (Array.isArray(paths)) {
@@ -39,3 +11,40 @@ function remote_js_load(paths) {
     Rails.ajax({url: paths, type: 'GET', dataType: 'script'})
   }
 }
+
+function timeForLocalized() {
+  $('time[data-localized!="true"]').each(function(){
+    if (this.textContent.length > 0) {
+      var format = this.dataset['format'] || 'YYYY-MM-DD HH:mm:ss';
+      this.textContent = moment.utc(this.textContent).local().format(format);
+      this.dataset['localized'] = 'true'
+    }
+  })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  timeForLocalized()
+});
+document.addEventListener('turbolinks:load', function() {
+  timeForLocalized()
+});
+document.addEventListener('turbolinks:visit', function() {
+  timeForLocalized()
+});
+document.addEventListener('ajax:success', function() {
+  timeForLocalized()
+});
+
+document.addEventListener('ajax:beforeSend', function(event) {
+  var detail = event.detail;
+  var xhr = detail[0];
+  var offset = (new Date).getTimezoneOffset();
+  xhr.setRequestHeader('Utc-Offset', offset);
+  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
+});
+document.addEventListener('turbolinks:request-start', function(event) {
+  var xhr = event.data.xhr;
+  var offset = (new Date).getTimezoneOffset();
+  xhr.setRequestHeader('Utc-Offset', offset);
+  xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
+});
