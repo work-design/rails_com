@@ -32,9 +32,10 @@ class Array
   #   raw_data = [
   #     { a: 1 },
   #     { a: 2 },
+  #     { b: 2 },
   #     { b: 2 }
   #   ]
-  #   raw_data.to_combined_hash
+  #   raw_data.to_combined_h
   #   #=> { a: [1, 2], b: 2 }
   def to_combined_h
     self.reduce({}) do |memo, obj|
@@ -49,7 +50,7 @@ class Array
   #   [:a, 2, 3],
   #   [:b, 2]
   # ]
-  # raw_data.to_combined_h
+  # raw_data.to_array_h
   # #=> [ { a: 1 }, { a: 2 }, { b: 2 } ]
   def to_array_h
     self.map { |x, y| { x => y } }
