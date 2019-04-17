@@ -3,6 +3,6 @@ Time::DATE_FORMATS[:date] = ->(time){
   t.strftime '%Y-%m-%d'
 }
 Time::DATE_FORMATS[:datetime] = '%Y-%m-%d %H:%M'
-Date::DATE_FORMATS[:date] = ->(date){
-  date.strftime '%Y-%m-%d'
+Date::DATE_FORMATS[:week] = ->(date){
+  I18n.t('date.day_names')[date.wday]
 }
