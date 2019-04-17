@@ -8,7 +8,8 @@ module RailsCom
 
     def default_keys(key)
       [
-        ['controller' + key].join('.').to_sym
+        "controller#{key}".to_sym,
+        "#{controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym
       ]
     end
 
