@@ -13,7 +13,8 @@ class Date
 
     return r unless less
 
-    r.day > day ? r - 1 : r
+    # if result day less than day, so 
+    r.day < day ? r : r - 1
   end
 
   def parts
