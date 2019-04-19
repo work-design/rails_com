@@ -14,7 +14,11 @@ class Date
     return r unless less
 
     # if result day less than day, so
-    r.day < day ? r : r - 1
+    if (parts.keys & [:months, :years]).present?
+      r.day < day ? r : r - 1
+    else
+      r
+    end
   end
 
   def parts
