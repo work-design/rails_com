@@ -3,7 +3,7 @@ class Date
   # Chinese custom after date
   #   '2018-01-01'.to_date.contract_after(2.month) => '2018-02-31'
   #   '2018-01-31'.to_date.contract_after(1.month) => '2018-02-28'
-  def contract_after(*afters, less: false)
+  def contract_after(*afters, less: true)
     parts = {}
     # todo use inject or something
     afters.each do |after|
@@ -13,7 +13,7 @@ class Date
 
     return r unless less
 
-    # if result day less than day, so 
+    # if result day less than day, so
     r.day < day ? r : r - 1
   end
 
