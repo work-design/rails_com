@@ -1,4 +1,4 @@
-class Com::Admin::BaseController < RailsCom.config.admin_class.constantize
+class Com::Admin::BaseController < RailsCom.config.admin_controller.constantize
 
 
 end

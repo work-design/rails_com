@@ -7,8 +7,8 @@ module RailsCom #:nodoc:
     config.ignore_controllers = [
       'rails/welcome'
     ]
-    config.app_class = 'ApplicationController'
-    config.admin_class = 'AdminController'
+    config.app_controller = 'ApplicationController'
+    config.admin_controller = 'AdminController'
     config.exception_log = true
   end
 
