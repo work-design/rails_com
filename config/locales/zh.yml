@@ -12,11 +12,12 @@ zh:
     log: 操作日志
     approve: 接受
     reject: 拒绝
+    clear: 重置
   attributes:
     id: ID
     name: 名称
     title: 标题
-    type: 类别
+    type: 类型
     description: 描述
     note: 备注
     birthday: 生日
