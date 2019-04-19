@@ -9,11 +9,11 @@ class Date
     afters.each do |after|
       parts.merge! after.parts
     end
-    date = ActiveSupport::Duration.new(0, parts).after(self)
+    r = ActiveSupport::Duration.new(0, parts).after(self)
 
-    return date unless less
+    return r unless less
 
-    day <= date.day ? date - 1 : date
+    r.day > day ? r - 1 : r
   end
 
   def parts
