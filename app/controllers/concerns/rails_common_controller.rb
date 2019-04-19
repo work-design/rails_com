@@ -75,6 +75,10 @@ module RailsCommonController
     logger.debug "  ==========> Country: #{session[:country]}"
   end
 
+  def set_flash
+    flash[:notice] = '操作成功'
+  end
+
   def default_params
     {}.with_indifferent_access
   end

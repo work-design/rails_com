@@ -22,6 +22,7 @@ zh:
     note: 备注
     birthday: 生日
     gender: 性别
+    position: 序号
     created_at: 创建时间
     updated_at: 更新时间
   errors:
