@@ -1,6 +1,6 @@
 zh:
   helpers:
     submit:
+      submit: 提交
       create: 创建
-      submit: 保存
       update: 更新
