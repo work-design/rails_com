@@ -13,6 +13,7 @@ zh:
     approve: 接受
     reject: 拒绝
     clear: 重置
+    confirm: 确认操作
   attributes:
     id: ID
     name: 名称
@@ -23,6 +24,7 @@ zh:
     birthday: 生日
     gender: 性别
     position: 序号
+    parent_ancestors: 上级
     created_at: 创建时间
     updated_at: 更新时间
   errors:

@@ -28,7 +28,7 @@
         <%%= link_to edit_<%= singular_route_name %>_path(<%= singular_name %>), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>
         <%% end %>
-        <%%= link_to <%= singular_route_name %>_path(<%= singular_name %>), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+        <%%= link_to <%= singular_route_name %>_path(<%= singular_name %>), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="trash alternate icon"></i>
         <%% end %>
       </td>
