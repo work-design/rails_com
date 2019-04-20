@@ -41,23 +41,27 @@ module RailsCommonController
   # Accept-Language: "en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
   def set_locale
     request_locales = request.headers['Accept-Language'].to_s.split(',')
-    available_locales = I18n.available_locales.map(&:to_s)
-    locale = (available_locales & request_locales)[0]
+    request_locales = request_locales.map do |i|
+      l, q = i.split(';')
+      q ||= '1'
+      [l, q.sub('q=', '').to_f]
+    end
+    request_locales.sort_by! { |i| i[-1] }
+    locales = I18n.available_locales.map(&:to_s) & request_locales
+    locales = request_locales[-1].to_s.split('-')[0] unless locales.present?
 
-    unless locale.present?
-      locale = request_locales.first.to_s.split('-').first
+    if locales.include?(I18n.default_locale.to_s)
+      q_locale = I18n.default_locale
+    else
+      q_locale = locales[-1]
     end
-    if params[:locale]
-      locale = params[:locale]
-    elsif session[:locale]
-      locale = session[:locale]
-    end
-    locale ||= I18n.default_locale
+
+    locales = [params[:locale].presence, session[:locale].presence, q_locale].compact
+    locale = locales[0]
 
     I18n.locale = locale
     session[:locale] = locale
 
-    I18n.locale = locale
     if current_user && current_user.locale.to_s != I18n.locale.to_s
       current_user.update locale: I18n.locale
     end
