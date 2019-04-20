@@ -48,7 +48,7 @@ module RailsCommonController
     end
     request_locales.sort_by! { |i| i[-1] }
     locales = I18n.available_locales.map(&:to_s) & request_locales
-    locales = request_locales[-1].to_s.split('-')[0] unless locales.present?
+    locales << request_locales[-1].to_s.split('-')[0] if locales.empty?
 
     if locales.include?(I18n.default_locale.to_s)
       q_locale = I18n.default_locale
