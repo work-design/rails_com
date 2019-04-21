@@ -1,6 +1,6 @@
 <div class="ui image">
   <%= link_to rails_ext_attachment_path(image.id), method: :delete, data: {confirm: t('.confirm')}, remote: true, class: 'ui grey right corner mini label' do %>
-    <i class="times icon"></i>
+    <i class="fas fa-trash-alt"></i>
   <% end %>
   <%= image_tag image, id: "attachment_#{image.id}", data: { target: 'picture.src' }, style: 'max-width: 100%' %>
 </div>
