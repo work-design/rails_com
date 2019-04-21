@@ -1,5 +1,6 @@
 zh:
   site_name: Rails Application
+  zh: 中文
   controller:
     show: 详情
     edit: 编辑

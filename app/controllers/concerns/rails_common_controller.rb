@@ -47,6 +47,7 @@ module RailsCommonController
       [l, q.sub('q=', '').to_f]
     end
     request_locales.sort_by! { |i| i[-1] }
+    request_locales.map! { |i| i[0] }
     locales = I18n.available_locales.map(&:to_s) & request_locales
     locales << request_locales[-1].to_s.split('-')[0] if locales.empty?
 
