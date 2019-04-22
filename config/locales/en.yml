@@ -28,8 +28,7 @@ en:
       create: 'Creates %{model}'
       update: 'Updates %{model}'
       submit: 'Saves %{model}'
-      q:
-        submit: 'Search'
+      search: Search
   number:
     human:
       storage_units:
