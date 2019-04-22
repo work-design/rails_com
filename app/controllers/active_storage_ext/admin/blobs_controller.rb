@@ -22,7 +22,7 @@ class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseCo
     @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
 
     if @blob.save
-      redirect_to rails_ext_blobs_url, notice: 'Blob was successfully created.'
+      redirect_to rails_ext_blobs_url
     else
       render :new
     end

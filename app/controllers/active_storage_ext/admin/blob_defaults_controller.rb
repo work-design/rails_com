@@ -13,7 +13,7 @@ class ActiveStorageExt::Admin::BlobDefaultsController < ActiveStorageExt::Admin:
     @blob_default = ActiveStorage::BlobDefault.new(blob_default_params)
 
     if @blob_default.save
-      redirect_to rails_ext_blob_defaults_url, notice: 'Blob default was successfully created.'
+      redirect_to rails_ext_blob_defaults_url
     else
       render :new
     end
@@ -27,7 +27,7 @@ class ActiveStorageExt::Admin::BlobDefaultsController < ActiveStorageExt::Admin:
 
   def update
     if @blob_default.update(blob_default_params)
-      redirect_to rails_ext_blob_defaults_url, notice: 'Blob default was successfully updated.'
+      redirect_to rails_ext_blob_defaults_url
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class ActiveStorageExt::Admin::BlobDefaultsController < ActiveStorageExt::Admin:
 
   def destroy
     @blob_default.destroy
-    redirect_to rails_ext_blob_defaults_url, notice: 'Blob default was successfully destroyed.'
+    redirect_to rails_ext_blob_defaults_url
   end
 
   private
