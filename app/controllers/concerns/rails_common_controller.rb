@@ -81,7 +81,11 @@ module RailsCommonController
   end
 
   def set_flash
-    flash[:notice] = '操作成功'
+    if response.successful?
+      flash[:notice] = '操作成功！'
+    elsif response.client_error?
+      flash[:alert] = '请检查参数！'
+    end
   end
 
   def default_params

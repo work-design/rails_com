@@ -1,5 +1,5 @@
 <% flash.each do |type, msg| %>
-  <div class="<%= active_assert(type == 'notice', expected: 'ui flash info message', unexpected: 'ui flash negative message') %>">
+  <div class="<%= active_assert(type == 'notice', expected: 'ui flash success message', unexpected: 'ui flash error message') %>">
     <i class="fas fa-times close icon"></i>
     <p><%= msg %></p>
   </div>
