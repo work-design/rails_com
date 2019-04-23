@@ -13,7 +13,7 @@ class Com::Admin::InfosController < Com::Admin::BaseController
     @info = Info.new(info_params)
 
     if @info.save
-      redirect_to admin_infos_url, notice: 'Info was successfully created.'
+      redirect_to admin_infos_url
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Com::Admin::InfosController < Com::Admin::BaseController
 
   def update
     if @info.update(info_params)
-      redirect_to admin_infos_url, notice: 'Info was successfully updated.'
+      redirect_to admin_infos_url
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Com::Admin::InfosController < Com::Admin::BaseController
 
   def destroy
     @info.destroy
-    redirect_to admin_infos_url, notice: 'Info was successfully destroyed.'
+    redirect_to admin_infos_url
   end
 
   private

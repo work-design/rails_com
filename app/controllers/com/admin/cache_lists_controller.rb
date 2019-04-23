@@ -15,7 +15,7 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
     respond_to do |format|
       if @cache_list.save
         format.html.phone
-        format.html { redirect_to admin_cache_lists_url, notice: 'Cache list was successfully created.' }
+        format.html { redirect_to admin_cache_lists_url }
         format.js { redirect_back fallback_location: admin_cache_lists_url }
         format.json { render :show }
       else
@@ -39,7 +39,7 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
     respond_to do |format|
       if @cache_list.save
         format.html.phone
-        format.html { redirect_to admin_cache_lists_url, notice: 'Cache list was successfully updated.' }
+        format.html { redirect_to admin_cache_lists_url }
         format.js { redirect_back fallback_location: admin_cache_lists_url }
         format.json { render :show }
       else
@@ -53,7 +53,7 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def destroy
     @cache_list.destroy
-    redirect_to admin_cache_lists_url, notice: 'Cache list was successfully destroyed.'
+    redirect_to admin_cache_lists_url
   end
 
   private
