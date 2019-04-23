@@ -16,7 +16,7 @@
       <th><%= ActiveStorage::Attachment.human_attribute_name(:record_id) %></th>
       <th><%= ActiveStorage::Attachment.human_attribute_name(:blob_id) %></th>
       <th><%= ActiveStorage::Attachment.human_attribute_name(:created_at) %></th>
-      <th>Actions</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -28,9 +28,9 @@
       <td><%= attachment.record_id %></td>
       <td><%= attachment.blob_id %></td>
       <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
-      <td class="ui labels">
-        <%= link_to delete_rails_ext_attachment_path(attachment), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+      <td>
+        <%= link_to delete_rails_ext_attachment_path(attachment), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>
     </tr>

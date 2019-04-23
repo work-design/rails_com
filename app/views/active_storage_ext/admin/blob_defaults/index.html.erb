@@ -1,13 +1,4 @@
-<div class="ui top attached borderless menu">
-  <div class="header item">Blob Defaults</div>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'New Blob Default', new_rails_ext_blob_default_path, class: 'ui teal button' %>
-    </div>
-  </div>
-</div>
-
-<div class="ui attached segment">
+<div class="ui top attached segment">
   <%= render 'search_form' %>
 </div>
 
@@ -19,7 +10,11 @@
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:name) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:file) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:private) %></th>
-      <th>Actions</th>
+      <th>
+        <%= link_to new_rails_ext_blob_default_path, class: 'ui mini primary button' do %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -33,11 +28,11 @@
         <%= render 'active_storage_ext/attachments/list', target: blob_default.file %>
       </td>
       <td><%= blob_default.private %></td>
-      <td class="ui labels">
-        <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
+      <td>
+        <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to rails_ext_blob_default_path(blob_default), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
+        <%= link_to rails_ext_blob_default_path(blob_default), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>

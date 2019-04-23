@@ -1,11 +1,6 @@
-<div class="ui top attached borderless menu">
+<div class="ui top attached tabular menu">
   <%= link_to 'All', rails_ext_blobs_path, class: active_helper(action: 'index') %>
   <%= link_to 'Unattached', unattached_rails_ext_blobs_path, class: active_helper(action: 'unattached') %>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'New ActiveStorage::Blob', new_rails_ext_blob_path, class: 'ui teal button' %>
-    </div>
-  </div>
 </div>
 
 <div class="ui attached segment">
@@ -22,7 +17,11 @@
       <th><%= ActiveStorage::Blob.human_attribute_name(:metadata) %></th>
       <th><%= ActiveStorage::Blob.human_attribute_name(:size) %></th>
       <th><%= ActiveStorage::Blob.human_attribute_name(:created_at) %></th>
-      <th>Actions</th>
+      <th>
+        <%= link_to new_rails_ext_blob_path, class: 'ui mini primary button' do %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -35,12 +34,12 @@
       <td><%= simple_format(blob.metadata) %></td>
       <td><%= number_to_human_size(blob.byte_size) %></td>
       <td><time><%= blob.created_at.to_s(:rfc822) %></time></td>
-      <td class="ui labels">
-        <%= link_to rails_ext_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+      <td>
+        <%= link_to rails_ext_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-trash-alt"></i>
         <% end %>
-        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: '默认' }, class: 'ui blue mini icon button' do %>
-          <i class="play icon"></i>
+        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-play"></i>
         <% end %>
       </td>
     </tr>

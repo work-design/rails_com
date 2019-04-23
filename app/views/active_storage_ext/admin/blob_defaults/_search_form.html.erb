@@ -1,6 +1,9 @@
-<%= search_form_with do |f| %>
+<%= search_form_with model: ActiveStorage::BlobDefault.new(params.permit(:record_class, :name)) do |f| %>
   <div class="fields">
+    <%= f.text_field :record_class %>
+    <%= f.text_field :name %>
     <%= f.submit %>
+    <%= link_to t('.clear'), filter_params(except: [:record_class, :name]), class: 'ui button' %>
   </div>
 <% end %>
 
