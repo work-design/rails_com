@@ -1,4 +1,5 @@
 class Com::CommonController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:deploy]
 
   def info
     need_updated = false
