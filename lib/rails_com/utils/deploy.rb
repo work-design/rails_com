@@ -32,19 +32,12 @@ module Deploy
   end
 
   def ln_shared_paths
-    r1 = shared_dirs.map do |path|
+    shared_paths.map do |path|
       [
         "rm -rf #{path}",
-        "ln -s ../shared/#{path} ./#{path}"
+        "ln -s #{'../' * path.split('/').size}shared/#{path} ./#{path}"
       ]
     end.flatten
-    r2 = shared_files.map do |path|
-      [
-        "rm -rf #{path}",
-        "ln -s ../../shared/#{path} ./#{path}"
-      ]
-    end.flatten
-    r1 + r2
   end
 
   def shes(env = Rails.env)
