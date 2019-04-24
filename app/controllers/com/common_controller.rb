@@ -28,9 +28,8 @@ class Com::CommonController < ApplicationController
     #unless unless digest == Deploy.github_hmac(request.body)
 
     result = ''
-    Deploy.shes.each do |sh|
-      `sh`
-    end
+    Deploy.works
+
     render plain: result
   end
 

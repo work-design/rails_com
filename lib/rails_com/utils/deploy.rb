@@ -51,4 +51,10 @@ module Deploy
     ].flatten
   end
 
+  def works
+    shes.each do |sh|
+      `#{sh}`
+    end
+  end
+
 end
