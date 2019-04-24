@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       get :infos
       get :cache_list
       get :enum_list
-      get :deploy
+      match :deploy, via: [:get, :post]
     end
   end
 
