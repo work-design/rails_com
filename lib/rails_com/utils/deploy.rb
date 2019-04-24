@@ -16,7 +16,8 @@ module Deploy
       'storage',
       'node_modules',
       'public/assets',
-      'public/packs'
+      'public/packs',
+      'vendor/bundle'
     ]
   end
 
