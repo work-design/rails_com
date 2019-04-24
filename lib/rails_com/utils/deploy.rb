@@ -40,19 +40,19 @@ module Deploy
     end.flatten
   end
 
-  def shes
+  def shes(env = Rails.env)
     [
       "git pull",
       ln_shared_paths,
       "bundle install",
-      "RAILS_ENV=#{Rails.env} bundle exec rake assets:precompile",
-      "RAILS_ENV=#{Rails.env} bundle exec rake db:migrate",
+      "RAILS_ENV=#{env} bundle exec rake assets:precompile",
+      "RAILS_ENV=#{env} bundle exec rake db:migrate",
       "bundle exec pumactl restart"
     ].flatten
   end
 
-  def works
-    shes.each do |sh|
+  def works(env = Rails.env)
+    shes(env).each do |sh|
       `#{sh}`
     end
   end
