@@ -53,6 +53,7 @@ module Deploy
 
   def works(env = Rails.env)
     shes(env).each do |sh|
+      puts "doing: #{sh}"
       `#{sh}`
     end
   end
