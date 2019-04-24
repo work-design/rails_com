@@ -30,6 +30,7 @@ require_relative 'rails_com/utils/uid_helper'
 require_relative 'rails_com/utils/hex_helper'
 require_relative 'rails_com/utils/jobber'
 require_relative 'rails_com/utils/babel'
+require_relative 'rails_com/utils/deploy'
 
 # outside
 require 'default_where'

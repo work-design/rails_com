@@ -26,16 +26,11 @@ class Com::CommonController < ApplicationController
     digest.sub!('sha1=', '')
 
     #unless unless digest == Deploy.github_hmac(request.body)
-    if params[:ref]
 
+    result = ''
+    Deploy.shes.each do |sh|
+      `sh`
     end
-
-    result = Dir.pwd
-    result << `git pull`
-    result << `bundle install`
-    result << `RAILS_ENV=development bundle exec rake assets:precompile`
-    result << 'RAILS_ENV=development bundle exec rake db:migrate'
-    result << `bundle exec pumactl restart`
     render plain: result
   end
 
