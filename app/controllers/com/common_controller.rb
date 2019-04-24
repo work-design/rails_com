@@ -21,4 +21,22 @@ class Com::CommonController < ApplicationController
     render json: { locale: I18n.locale, values: r }
   end
 
+  def deploy
+    digest = request.headers['X-Hub-Signature']
+    digest.sub!('sha1=', '')
+
+    #unless unless digest == Deploy.github_hmac(request.body)
+    if params[:ref]
+
+    end
+
+    result = Dir.pwd
+    result << `git pull`
+    result << `bundle install`
+    result << `RAILS_ENV=development bundle exec rake assets:precompile`
+    result << 'RAILS_ENV=development bundle exec rake db:migrate'
+    result << `bundle exec pumactl restart`
+    render plain: result
+  end
+
 end
