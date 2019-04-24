@@ -35,7 +35,7 @@ module Deploy
     shared_paths.map do |path|
       [
         "rm -rf #{path}",
-        "ln -s ../../shared/#{path} ./#{path}"
+        "ln -s ../shared/#{path} ./#{path}"
       ]
     end.flatten
   end
