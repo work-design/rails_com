@@ -44,7 +44,7 @@ module Deploy
     [
       "git pull",
       ln_shared_paths,
-      "bundle install",
+      "bundle install --without development test --path vendor/bundle --deployment",
       "RAILS_ENV=#{env} bundle exec rake assets:precompile",
       "RAILS_ENV=#{env} bundle exec rake db:migrate",
       "bundle exec pumactl restart"
