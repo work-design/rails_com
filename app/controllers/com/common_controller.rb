@@ -22,7 +22,7 @@ class Com::CommonController < ApplicationController
   end
 
   def deploy
-    digest = request.headers['X-Hub-Signature']
+    digest = request.headers['X-Hub-Signature'].to_s
     digest.sub!('sha1=', '')
 
     #unless unless digest == Deploy.github_hmac(request.body)
