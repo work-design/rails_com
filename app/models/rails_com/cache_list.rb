@@ -1,4 +1,4 @@
-class CacheList < ApplicationRecord
+module RailsCom::CacheList
 
   def etag
 

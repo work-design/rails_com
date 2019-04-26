@@ -1,8 +1,11 @@
-class Info < ApplicationRecord
-
-  enum platform: {
-    ios: 'ios',
-    android: 'android'
-  }
+module RailsCom::Info
+  extend ActiveSupport::Concern
+  included do
+    enum platform: {
+      ios: 'ios',
+      android: 'android'
+    }
+  end
+  
 
 end
