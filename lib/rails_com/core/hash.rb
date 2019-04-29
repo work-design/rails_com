@@ -36,7 +36,7 @@ class Hash
     o = other_hash.extract!(*(self.keys & other_hash.keys))
     
     if remove
-      removed.merge! o.same_basic(self)
+      removed.merge! o.common_basic(self)
     end
     added.merge! o.diff_basic(self)
     added.merge! other_hash
@@ -58,7 +58,7 @@ class Hash
     other_hash.diff_basic(self)
   end
 
-  def diff_all(other_hash)
+  def diff_changes(other_hash)
     [diff_remove(other_hash), diff_add(other_hash)]
   end
   
@@ -76,7 +76,7 @@ class Hash
     h
   end
 
-  def same_basic(h = {}, other_hash)
+  def common_basic(h = {}, other_hash)
     each do |key, value|
       v = Array(value) & Array(other_hash[key])
       if v.size > 1
