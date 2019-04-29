@@ -10,30 +10,49 @@ class Hash
   # a.toggle! a: 3
   # => { a: [1, 2, 3] }
   def toggle!(remove = true, other_hash)
+    common_keys = self.keys & other_hash.keys
+
+    common_keys.each do |key|
+      if remove
+        removed = Array(self[key]) & Array(other_hash[key])
+      else
+        removed = []
+      end
+      added = Array(other_hash[key]) - Array(self[key])
+      self[key] = Array(self[key]) - removed + added
+      
+      if self[key].empty?
+        self.delete(key)
+      elsif self[key].size == 1
+        self[key] = self[key][0]
+      end
+    end
+
+    other_hash.except! *common_keys
+    self.merge! other_hash
     
     self
   end
   
-  def diff_toggle!(other_hash)
-    common_keys = self.keys & other_hash.keys
-    
-    remove = self.slice(*common_keys).simple_diff(other_hash)
-    add = other_hash.simple_diff(self.slice(*common_keys))
-    
-    other_hash.except! *common_keys
-    add.merge! other_hash
-    
-    [remove, add]
+  # a = { a:1, b: 2 }
+  # a.diff_remove { a: [1,2] }
+  # => removes: { b: 2 }
+  def diff_remove(other_hash)
+    diff_basic(other_hash)
   end
 
   # a = { a:1, b: 2 }
-  # a.diff { a: [1,2] }
-  # => removes: { b: 2 }
-  def simple_diff(other_hash)
-    basic_simple_diff(other_hash)
+  # a.diff_add { a: [1,2] }
+  # => adds: { b: 2 }
+  def diff_add(other_hash)
+    other_hash.diff_basic(self)
+  end
+
+  def diff_toggle(other_hash)
+    [diff_remove(other_hash), diff_add(other_hash)]
   end
   
-  def basic_simple_diff(h = {}, other_hash)
+  def diff_basic(h = {}, other_hash)
     each do |key, value|
       v = Array(value) - Array(other_hash[key])
       if v.size > 1
