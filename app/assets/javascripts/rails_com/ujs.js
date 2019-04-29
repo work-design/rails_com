@@ -1,4 +1,4 @@
-document.querySelectorAll('input[data-submit="true"]').forEach(function (el) {
+document.querySelectorAll('input[data-submit="true"]').forEach(function(el) {
   el.addEventListener('change', function () {
     if (this.dataset['params']) {
       this.dataset['params'] += '&'
@@ -14,12 +14,12 @@ document.querySelectorAll('input[data-submit="true"]').forEach(function (el) {
     this.dataset['params'] += str
   });
 });
-document.querySelectorAll('input[data-form="true"]').forEach(function (el) {
+document.querySelectorAll('input[data-form="true"]').forEach(function(el) {
   el.addEventListener('change', function () {
     Rails.fire(this.form, 'submit');
   });
 });
-document.querySelectorAll('input[data-filter="true"]').forEach(function (el) {
+document.querySelectorAll('input[data-filter="true"]').forEach(function(el) {
   el.addEventListener('change', function () {
     if (this.dataset['params']) {
       this.dataset['params'] += '&'
