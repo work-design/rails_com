@@ -11,7 +11,6 @@ class Hash
   # => { a: [1, 2, 3] }
   def toggle!(remove = true, other_hash)
     common_keys = self.keys & other_hash.keys
-
     common_keys.each do |key|
       if remove
         removed = Array(self[key]) & Array(other_hash[key])
@@ -20,17 +19,14 @@ class Hash
       end
       added = Array(other_hash[key]) - Array(self[key])
       self[key] = Array(self[key]) - removed + added
-      
       if self[key].empty?
         self.delete(key)
       elsif self[key].size == 1
         self[key] = self[key][0]
       end
     end
-
     other_hash.except! *common_keys
     self.merge! other_hash
-    
     self
   end
   
