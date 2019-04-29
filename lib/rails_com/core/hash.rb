@@ -30,6 +30,20 @@ class Hash
     self
   end
   
+  def diff_toggle(remove = true, other_hash)
+    removed = {}
+    added = {}
+    o = other_hash.extract!(*(self.keys & other_hash.keys))
+    
+    if remove
+      removed.merge! o.same_basic(self)
+    end
+    added.merge! o.diff_basic(self)
+    added.merge! other_hash
+    
+    [removed, added]
+  end
+  
   # a = { a:1, b: 2 }
   # a.diff_remove { a: [1,2] }
   # => removes: { b: 2 }
@@ -44,7 +58,7 @@ class Hash
     other_hash.diff_basic(self)
   end
 
-  def diff_toggle(other_hash)
+  def diff_all(other_hash)
     [diff_remove(other_hash), diff_add(other_hash)]
   end
   
@@ -59,7 +73,20 @@ class Hash
         h.delete(key)
       end
     end
-    
+    h
+  end
+
+  def same_basic(h = {}, other_hash)
+    each do |key, value|
+      v = Array(value) & Array(other_hash[key])
+      if v.size > 1
+        h[key] = v
+      elsif v.size == 1
+        h[key] = v[0]
+      elsif v.empty?
+        h.delete(key)
+      end
+    end
     h
   end
 
