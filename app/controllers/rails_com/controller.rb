@@ -1,4 +1,4 @@
-module RailsCommonController
+module RailsCom::Controller
   extend ActiveSupport::Concern
 
   included do
@@ -12,10 +12,16 @@ module RailsCommonController
   end
 
   def set_variant
-    if request.user_agent =~ /iPad|iPhone|iPod|Android/ || request.host =~ /lvh.me/
-      request.variant = :phone
+    variant = []
+    if request.user_agent =~ /iPad|iPhone|iPod|Android/
+      variant << :phone
     end
 
+    if request.user_agent =~ /MicroMessenger/
+      variant << :wechat
+    end
+    
+    request.variant = variant
     logger.debug "  ==========> Variant: #{request.variant}"
   end
 

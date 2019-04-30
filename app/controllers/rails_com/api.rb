@@ -1,4 +1,4 @@
-module RailsCommonApi
+module RailsCom::Api
   extend ActiveSupport::Concern
 
   included do

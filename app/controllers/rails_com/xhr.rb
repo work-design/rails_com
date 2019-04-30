@@ -1,4 +1,4 @@
-module RailsCommonXhr
+module RailsCom::Xhr
   extend ActiveSupport::Concern
 
   included do
