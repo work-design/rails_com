@@ -11,20 +11,23 @@
     <%= css_load suffix: 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'phone', 'data-turbolinks-track': 'reload' %>
     <%= js_ready suffix: 'phone', 'data-turbolinks-track': 'reload' %>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <% if content_for?(:wechat_js) %>
+      <%= yield(:wechat_js) %>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
   </head>
   <body>
-  
-    <% if content_for?(:banner) %>
-    <%= yield :banner %>
-    <% end %>
-  
-    <main>
-      <%= yield %>
-    </main>
-    
+    <div class="weui-tab">
+      <div class="weui-tab__panel">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/phone/tab_bar' %>
+    </div>
+
     <%= js_load %>
+    <%= javascript_include_tag 'wx/footer' %>
   </body>
 </html>
