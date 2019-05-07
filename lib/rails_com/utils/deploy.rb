@@ -41,19 +41,19 @@ module Deploy
     end.flatten
   end
 
-  def shes(env = Rails.env)
-    [
-      "git pull",
-      ln_shared_paths,
-      "bundle install --without development test --path vendor/bundle --deployment",
-      "RAILS_ENV=#{env} bundle exec rake assets:precompile",
-      "RAILS_ENV=#{env} bundle exec rake db:migrate",
-      "bundle exec pumactl restart"
-    ].flatten
+  def shes(env = Rails.env, skip: [])
+    r = []
+    r << "git pull"
+    r += ln_shared_paths
+    r << "bundle install --without development test --path vendor/bundle --deployment"
+    r << "RAILS_ENV=#{env} bundle exec rake assets:precompile" if skip[:precompile]
+    r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
+    r << "bundle exec pumactl restart"
+    r
   end
 
-  def works(env = Rails.env)
-    shes(env).each do |sh|
+  def works(env = Rails.env, skip: [])
+    shes(env, skip: skip).each do |sh|
       puts "doing: #{sh}"
       `#{sh}`
     end
