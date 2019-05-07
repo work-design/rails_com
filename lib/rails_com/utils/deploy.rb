@@ -41,7 +41,8 @@ module Deploy
     end.flatten
   end
 
-  def shes(env = Rails.env, skip: [])
+  def shes(env = Rails.env, skip: {})
+    skip = skip.with_indifferent_access
     r = []
     r << "git pull"
     r += ln_shared_paths
@@ -52,7 +53,7 @@ module Deploy
     r
   end
 
-  def works(env = Rails.env, skip: [])
+  def works(env = Rails.env, skip: {})
     shes(env, skip: skip).each do |sh|
       puts "doing: #{sh}"
       `#{sh}`
