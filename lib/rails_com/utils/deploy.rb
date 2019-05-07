@@ -41,7 +41,7 @@ module Deploy
     end.flatten
   end
 
-  def shes(env = Rails.env, skip_precompile: true)
+  def shes(env = Rails.env, skip_precompile: false)
     r = []
     r << "git pull"
     r += ln_shared_paths
