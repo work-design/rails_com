@@ -46,4 +46,6 @@ module RailsCom::AttachmentTransfer
 
 end
 
-ActiveStorage::Attachment.include RailsCom::AttachmentTransfer
+ActiveSupport.on_load(:active_storage_attachment) do
+  include RailsCom::AttachmentTransfer
+end

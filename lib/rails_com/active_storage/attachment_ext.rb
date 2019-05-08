@@ -6,4 +6,6 @@ module RailsCom::AttachmentExt
 
 end
 
-ActiveStorage::Attachment.prepend RailsCom::AttachmentExt
+ActiveSupport.on_load(:active_storage_attachment) do
+  prepend RailsCom::AttachmentExt
+end
