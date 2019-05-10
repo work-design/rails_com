@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'active_storage/activestorage_attached'
 require_relative 'active_storage/attached_macros'
 require_relative 'active_storage/attachment_transfer'

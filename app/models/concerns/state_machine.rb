@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StateMachine
 
   # to defined next_xxx_states in class

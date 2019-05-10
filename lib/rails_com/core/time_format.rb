@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Time::DATE_FORMATS[:date] = ->(time){
   t = Time.zone.at time
   t.strftime '%Y-%m-%d'

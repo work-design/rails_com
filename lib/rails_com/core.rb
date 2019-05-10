@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ruby core extension
 require_relative 'core/hash'
 require_relative 'core/nil'

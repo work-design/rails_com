@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActiveStorageExt::AudiosController < RailsCom.config.app_controller.constantize
   before_action :set_video, only: [:show, :transfer]
   before_action do

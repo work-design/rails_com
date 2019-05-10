@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
   config.generators do |g|
