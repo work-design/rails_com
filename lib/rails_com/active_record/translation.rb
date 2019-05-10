@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsCom::I18n
   extend ActiveSupport::Concern
 

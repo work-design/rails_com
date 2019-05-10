@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'rails_com/version'
 require_relative 'rails_com/engine'
 require_relative 'rails_com/config'

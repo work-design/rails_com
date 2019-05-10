@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsCom::ModelHelper
 
   def to_factory_bot
