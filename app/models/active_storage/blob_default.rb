@@ -23,5 +23,10 @@ class ActiveStorage::BlobDefault < ApplicationRecord
       end.compact.to_h
     end
   end
+  
+  def self.cache_clear
+    Rails.cache.delete('blob_default/private')
+    Rails.cache.delete('blob_default/default')
+  end
 
 end
