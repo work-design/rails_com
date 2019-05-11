@@ -9,11 +9,13 @@ class ActiveStorage::BlobDefault < ApplicationRecord
   after_update_commit :delete_default_cache
 
   def delete_private_cache
-    Rails.cache.delete('blob_default/private')
+    r = Rails.cache.delete('blob_default/private')
+    logger.debug "Cache key blob_default/private delete: #{r}"
   end
 
   def delete_default_cache
-    Rails.cache.delete('blob_default/default')
+    r = Rails.cache.delete('blob_default/default')
+    logger.debug "Cache key blob_default/default delete: #{r}"
   end
 
   def self.defaults
