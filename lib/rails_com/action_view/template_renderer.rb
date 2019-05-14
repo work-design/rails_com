@@ -14,7 +14,7 @@ module RailsCom
       engine = result.classify.safe_constantize
       
       view.instance_variable_set(:@_rendered_engine, engine.root) if engine
-      view.instance_variable_set(:@_rendered_path, template.virtual_path)
+      view.instance_variable_set(:@_rendered_path, template.virtual_path) if template.respond_to? :virtual_path
       
       super
     end
