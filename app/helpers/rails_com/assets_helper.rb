@@ -7,16 +7,16 @@ module RailsCom::AssetsHelper
     ext = ['.js', '.js.erb'] + Array(options.delete(:ext))
     suffix = options.delete(:suffix)
 
-    asset_filename = "controllers/#{controller_path}/#{action_name}"
-    pack_filename = "javascripts/#{controller_path}/#{action_name}"
+    asset_filename = "controllers/#{@_rendered_path}"
+    pack_filename = "javascripts/#{@_rendered_path}"
 
     if suffix
       asset_filename = [asset_filename, '-', suffix].join
       pack_filename = [pack_filename, '-', suffix].join
     end
 
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext, suffix: suffix)
-    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext)
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
 
     r = []
     ar = []
@@ -53,16 +53,16 @@ module RailsCom::AssetsHelper
     ext = ['.css', '.css.erb'] + Array(options.delete(:ext))
     suffix = options.delete(:suffix)
 
-    asset_filename = "controllers/#{controller_path}/#{action_name}"
-    pack_filename = "stylesheets/#{controller_path}/#{action_name}"
+    asset_filename = "controllers/#{@_rendered_path}"
+    pack_filename = "stylesheets/#{@_rendered_path}"
 
     if suffix
       asset_filename = [asset_filename, '-', suffix].join
       pack_filename = [pack_filename, '-', suffix].join
     end
 
-    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext, suffix: suffix)
-    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext, suffix: suffix)
+    asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext)
+    pack_paths = assets_load_path(pack_filename, relative_path: 'app/javascript/packs', ext: ext)
 
     r = []
     if asset_paths.any? { |path| File.exist?(path) }
@@ -88,7 +88,7 @@ module RailsCom::AssetsHelper
   end
 
   private
-  def assets_load_path(filename, relative_path:, ext:, suffix: nil)
+  def assets_load_path(filename, relative_path:, ext:)
     paths = []
 
     file_path = Pathname.new(relative_path).join filename
@@ -96,8 +96,8 @@ module RailsCom::AssetsHelper
     ext.each do |name|
       paths << rails_path.to_s + name
     end
-    if @_rendered_from
-      engine_path = @_rendered_from.join file_path
+    if @_rendered_engine
+      engine_path = @_rendered_engine.join file_path
       ext.each do |name|
         paths << engine_path.to_s + name
       end
