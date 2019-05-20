@@ -33,6 +33,16 @@ module Deploy
   def shared_paths
     shared_dirs + shared_files
   end
+  
+  def init_shared_paths
+    shared_dirs.map do |dir|
+      `mkdir -p #{dir}`
+    end
+    `mkdir config`
+    shared_files.map do |path|
+      `touch #{path}`
+    end
+  end
 
   def ln_shared_paths
     shared_paths.map do |path|
