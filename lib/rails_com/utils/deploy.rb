@@ -34,13 +34,13 @@ module Deploy
     shared_dirs + shared_files
   end
   
-  def init_shared_paths
+  def init_shared_paths(root = '../shared')
     shared_dirs.map do |dir|
-      `mkdir -p #{dir}`
+      `mkdir -p #{root}/#{dir}`
     end
     `mkdir config`
     shared_files.map do |path|
-      `touch #{path}`
+      `touch #{root}/#{path}`
     end
   end
 
