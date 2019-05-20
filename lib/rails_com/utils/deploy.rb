@@ -38,7 +38,7 @@ module Deploy
     shared_dirs.map do |dir|
       `mkdir -p #{root}/#{dir}`
     end
-    `mkdir config`
+    `mkdir #{root}/config`
     shared_files.map do |path|
       `touch #{root}/#{path}`
     end
