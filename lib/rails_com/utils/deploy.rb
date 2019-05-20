@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 module Deploy
+  SHARED_DIRS = [
+    'log',
+    'tmp',
+    'storage',
+    'node_modules',
+    'public/assets',
+    'public/packs',
+    'vendor/bundle'
+  ].freeze
+  SHARED_FILES = [
+    'config/database.yml',
+    'config/master.key'
+  ].freeze
+  INIT_DIRS = [
+    'config',
+    'tmp/sockets',
+    'tmp/dirs'
+  ].freeze
   extend self
 
   def restart
@@ -10,36 +28,19 @@ module Deploy
   def github_hmac(data)
     OpenSSL::HMAC.hexdigest('sha1', RailsCom.config.github_hmac_key, data)
   end
-
-  def shared_dirs
-    [
-      'log',
-      'tmp',
-      'storage',
-      'node_modules',
-      'public/assets',
-      'public/packs',
-      'vendor/bundle'
-    ]
-  end
-
-  def shared_files
-    [
-      'config/database.yml',
-      'config/master.key'
-    ]
-  end
-
+  
   def shared_paths
-    shared_dirs + shared_files
+    SHARED_DIRS + SHARED_FILES
   end
   
   def init_shared_paths(root = '../shared')
-    shared_dirs.map do |dir|
+    SHARED_DIRS.map do |dir|
       `mkdir -p #{root}/#{dir}`
     end
-    `mkdir #{root}/config`
-    shared_files.map do |path|
+    INIT_DIRS.map do |dir|
+      `mkdir #{root}/#{dir}`
+    end
+    SHARED_FILES.map do |path|
       `touch #{root}/#{path}`
     end
   end
