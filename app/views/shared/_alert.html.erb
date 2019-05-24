@@ -1,8 +1,12 @@
-<% flash.each do |type, msg| %>
-  <div class="<%= active_assert(type == 'notice', expected: 'ui flash success message', unexpected: 'ui flash error message') %>">
-    <i class="fas fa-times close icon"></i>
-    <p><%= msg %></p>
+<div class="toast-box compact transition animating scale out" style="display: table !important; animation-duration: 5000ms;">
+  <div class="icon info ui toast" style="opacity: 1;">
+    <div class="content">
+      <% flash.each do |type, msg| %>
+        <%= msg %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-
+  <div class="ui attached active progress info inverted bottom">
+    <div class="bar" style="transition: width 5s linear 0s; width: 100%;"></div>
+  </div>
+</div>
