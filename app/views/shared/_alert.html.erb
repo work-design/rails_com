@@ -1,12 +1,14 @@
+<% flash.each do |type, msg| %>
+  <%= msg %>
+<% end %>
 <div class="toast-box compact transition animating scale out" style="display: table !important; animation-duration: 5000ms;">
   <div class="icon info ui toast" style="opacity: 1;">
     <div class="content">
-      <% flash.each do |type, msg| %>
-        <%= msg %>
-      <% end %>
+    
     </div>
   </div>
-  <div class="ui attached active progress info inverted bottom">
-    <div class="bar" style="transition: width 5s linear 0s; width: 100%;"></div>
-  </div>
+  
+</div>
+<div class="ui bottom attached active progress" data-percent="100">
+  <div class="bar"></div>
 </div>
