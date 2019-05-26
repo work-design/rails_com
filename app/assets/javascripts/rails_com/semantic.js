@@ -1,6 +1,8 @@
 $('.ui.toggle.checkbox').checkbox();
-$('.ui.progress').progress('decrement');
+$('.ui.progress').progress({
+  duration: 3000
+});
 $('#flash_toast').transition({
-  animation: 'fade right',
+  animation: 'fade',
   duration: '3s'
 });

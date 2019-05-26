@@ -1,9 +1,8 @@
 <% flash.each do |type, msg| %>
-  <%= msg %>
-<% end %>
 <div id="flash_toast">
-  xjjjx
+  <%= msg %>
 </div>
-<div class="ui bottom attached active progress" data-percent="100">
+<div class="ui bottom attached warning progress" data-percent="0">
   <div class="bar"></div>
 </div>
+<% end %>
