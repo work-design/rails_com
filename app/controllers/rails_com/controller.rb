@@ -3,6 +3,7 @@
 module RailsCom::Controller
   LOCALE_MAP = {
     'zh-CN' => 'zh',
+    'zh-TW' => 'zh',
     'en-US' => 'en'
   }.freeze
   extend ActiveSupport::Concern
