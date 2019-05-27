@@ -1,4 +1,10 @@
+# frozen_string_literal: true
+
 module RailsCom::Controller
+  LOCALE_MAP = {
+    'zh-CN' => 'zh',
+    'en-US' => 'en'
+  }.freeze
   extend ActiveSupport::Concern
 
   included do
@@ -53,9 +59,11 @@ module RailsCom::Controller
       [l, q.sub('q=', '').to_f]
     end
     request_locales.sort_by! { |i| i[-1] }
-    request_locales.map! { |i| i[0] }
+    request_locales.map! do |i|
+      r = LOCALE_MAP[i[0]]
+      r ? r : i[0]
+    end.uniq!
     locales = I18n.available_locales.map(&:to_s) & request_locales
-    locales << request_locales[-1].to_s.split('-')[0] if locales.empty?
 
     if locales.include?(I18n.default_locale.to_s)
       q_locale = I18n.default_locale

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsCom::Api
   extend ActiveSupport::Concern
 
