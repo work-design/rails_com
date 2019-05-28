@@ -33,6 +33,7 @@ require_relative 'rails_com/utils/hex_helper'
 require_relative 'rails_com/utils/jobber'
 require_relative 'rails_com/utils/babel'
 require_relative 'rails_com/utils/deploy'
+require_relative 'rails_com/utils/qrcode_helper'
 
 # outside
 require 'default_where'
