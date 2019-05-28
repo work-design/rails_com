@@ -18,6 +18,7 @@ module QrcodeHelper
     tmp = Tempfile.new
     tmp.binmode
     tmp.write png.to_s
+    tmp.rewind
     tmp
   end
 
