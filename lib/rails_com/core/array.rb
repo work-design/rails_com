@@ -40,8 +40,11 @@ class Array
   #   raw_data.to_combine_h
   #   #=> { a: [1, 2], b: 2 }
   def to_combine_h
-    self.reduce({}) do |memo, obj|
-      memo.merge(obj) { |_, old_val, new_val| (Array(old_val) + Array(new_val)).uniq }
+    self.inject({}) do |memo, obj|
+      memo.merge(obj) do |_, old_val, new_val|
+        v = (Array(old_val) + Array(new_val)).uniq
+        v.size > 1 ? v : v[0]
+      end
     end
   end
 
