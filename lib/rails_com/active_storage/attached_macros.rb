@@ -21,6 +21,11 @@ module RailsCom::AttachedOne
     attachment.present?
   end
 
+  def copy(from, from_name)
+    from_attachment = from.send "#{from_name}_attachment"
+    record.send "create_#{name}_attachment", blob_id: from_attachment.blob_id
+  end
+
 end
 
 ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
