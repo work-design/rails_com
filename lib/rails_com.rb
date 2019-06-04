@@ -9,7 +9,7 @@ require_relative 'rails_com/action_controller'
 require_relative 'rails_com/action_view'
 require_relative 'rails_com/active_record'
 
-require_relative 'rails_com/active_storage/blob_ext'
+#require_relative 'rails_com/active_storage/blob_prepend'
 
 # Meta for Rails
 require_relative 'rails_com/meta/routes'
