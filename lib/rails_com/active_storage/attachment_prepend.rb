@@ -1,4 +1,4 @@
-module RailsCom::AttachmentExt
+module RailsCom::AttachmentPrepend
 
   def identify_blob
     blob.identify_later
@@ -7,5 +7,5 @@ module RailsCom::AttachmentExt
 end
 
 ActiveSupport.on_load(:active_storage_attachment) do
-  prepend RailsCom::AttachmentExt
+  prepend RailsCom::AttachmentPrepend
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom::BlobExt
+module RailsCom::BlobPrepend
 
   def self.prepended(klass)
     klass.class_attribute :private_service
@@ -39,5 +39,5 @@ module RailsCom::BlobExt
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
-  prepend RailsCom::BlobExt
+  prepend RailsCom::BlobPrepend
 end
