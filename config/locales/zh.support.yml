@@ -26,10 +26,6 @@ zh:
       # Used in NumberHelper.number_to_human()
       decimal_units:
         format: "%n %u"
-        # Decimal units output formatting
-        # By default we will only quantify some of the exponents
-        # but the commented ones might be defined or overridden
-        # by the user.
         units:
           femto: Quadrillionth
           pico: Trillionth
