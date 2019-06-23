@@ -45,7 +45,7 @@ module RailsCom::Api
   def process_errors(model)
     render json: {
       error: model.errors.as_json(full_messages: true),
-      message: model.errors.full_messages.join("\n")
+      message: model.error_text
     }, status: :bad_request
   end
 

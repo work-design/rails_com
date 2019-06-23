@@ -5,7 +5,7 @@ module RailsCom::ApplicationRecord
   end
 
   def error_text
-    errors.full_messages.join(', ')
+    errors.full_messages.join("\n")
   end
   
 end
