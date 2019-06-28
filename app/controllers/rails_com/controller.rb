@@ -9,13 +9,10 @@ module RailsCom::Controller
   extend ActiveSupport::Concern
 
   included do
-    before_action(
-      :set_locale,
-      :set_timezone,
-      :set_variant
-    )
+    before_action :set_locale, :set_timezone, :set_variant
+    after_action :set_receiver
     layout :set_layout
-    helper_method :default_params
+    helper_method :default_params, :current_receiver
   end
 
   def set_variant
@@ -101,6 +98,17 @@ module RailsCom::Controller
     elsif response.client_error?
       flash[:alert] = '请检查参数！'
     end
+  end
+
+  def set_receiver
+    if current_receiver
+      session['receiver_type'] = current_receiver.class.base_class.name
+      session['receiver_id'] = current_receiver.id
+    end
+  end
+
+  def current_receiver
+    defined?(current_user) && current_user
   end
 
   def default_params
