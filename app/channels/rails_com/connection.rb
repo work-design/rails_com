@@ -6,7 +6,7 @@ module RailsCom::Connection
 
   def connect
     self.current_receiver = find_verified_receiver
-    logger.debug "==========> Current Receiver: #{current_receiver.class}:#{current_receiver.id}"
+    logger.debug "==========> Current Receiver: #{current_receiver.class}:#{current_receiver.id}" if current_receiver
   end
   
   protected
