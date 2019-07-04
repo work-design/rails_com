@@ -1,4 +1,4 @@
-<%= search_form_with model: ActiveStorage::BlobDefault.new(params.permit(:record_class, :name)) do |f| %>
+<%= search_form_with model: ActiveStorage::BlobDefault.new do |f| %>
   <div class="fields">
     <%= f.text_field :record_class %>
     <%= f.text_field :name %>
