@@ -27,5 +27,3 @@ module RailsCom::AttachedOne
   end
 
 end
-
-ActiveStorage::Attached::One.prepend RailsCom::AttachedOne

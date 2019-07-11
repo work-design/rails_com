@@ -22,15 +22,9 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     app.config.assets.paths.push(*Dir[File.expand_path('lib/nondigest_assets/*', root)])
   end
 
-  initializer 'rails_com.add_activestorage' do |app|
-    require 'rails_com/active_storage'
-    ActiveSupport.on_load(:active_storage_blob) do
-      config_choice = Rails.configuration.active_storage.private_service
-      if config_choice
-        configs = Rails.configuration.active_storage.service_configurations
-        ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
-      end
-    end
+  initializer 'rails_com.init_active_storage' do |app|
+    ActiveStorage::DiskController.include RailsCom::VideoResponse
+    ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
   end
 
 end

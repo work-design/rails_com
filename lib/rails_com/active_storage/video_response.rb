@@ -27,5 +27,3 @@ module RailsCom::VideoResponse
   end
 
 end
-
-ActiveStorage::DiskController.include RailsCom::VideoResponse

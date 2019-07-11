@@ -3,7 +3,6 @@
 require 'active_storage/downloading'
 module RailsCom::AttachmentTransfer
   extend ActiveSupport::Concern
-  include ActiveStorage::Downloading
 
   included do
     scope :garbled, -> { left_joins(:blob).where(ActiveStorage::Blob.table_name => { id: nil }) }
@@ -11,7 +10,7 @@ module RailsCom::AttachmentTransfer
 
   def copy
     raise 'Only Support mirror service' unless service.is_a?(ActiveStorage::Service::MirrorService)
-    download_blob_to_tempfile do |io|
+    blob.open do |io|
       checksum = blob.send(:compute_checksum_in_chunks, io)
       service.mirrors.map do |service|
         service.upload key, io.tap(&:rewind), checksum: checksum
@@ -22,7 +21,7 @@ module RailsCom::AttachmentTransfer
   def transfer_faststart
     attach = self.record.send(self.name)
     r = nil
-    download_blob_to_tempfile do |input|
+    blob.open do |input|
       Tempfile.open([ 'ActiveStorage', self.filename.extension_with_delimiter ], Dir.tmpdir) do |file|
         file.binmode
         argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart', '-f', 'mp4', '-y', file.path]
