@@ -12,7 +12,7 @@ module RailsCom::Controller
     before_action :set_locale, :set_timezone, :set_variant
     after_action :set_receiver
     layout :set_layout
-    helper_method :default_params, :current_receiver
+    helper_method :current_receiver
   end
 
   def set_variant
