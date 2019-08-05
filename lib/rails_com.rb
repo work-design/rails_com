@@ -19,7 +19,7 @@ require_relative 'rails_com/meta/env'
 # Rails extension
 require_relative 'rails_com/generators'
 require_relative 'generators/scaffold_generator'
-require_relative 'generators/jbuilder_generator'
+require_relative 'generators/jbuilder_generator' if defined?(Jbuilder)
 
 # controllers
 require_relative 'rails_com/sprockets/non_digest_assets'
