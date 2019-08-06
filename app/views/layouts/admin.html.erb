@@ -11,12 +11,12 @@
     <%= csp_meta_tag %>
   </head>
   <body>
+    <%= render 'nav_bar' %>
     <main class="ui inverted side">
       <div class="sidebar" style="width:260px;">
         <%= render 'nav' %>
       </div>
       <div class="content">
-        <%= render 'admin/nav_bar' %>
         <% if content_for?(:breadcrumb) %>
           <%= yield(:breadcrumb) %>
         <% else %>
