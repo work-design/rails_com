@@ -67,10 +67,14 @@ module RailsCom::ActiveHelper
   end
 
   # return value by params
-  #   active_params state: 'xxx'
+  #   active_params state: 'xxx', organ_id: 1
   def active_params(active_class: 'item active', item_class: 'item', **options)
-    options.select { |_, v| v.present? }.each do |k, v|
-      if params[k].to_s == v.to_s || session[k].to_s == v.to_s
+    options.compact.each do |k, v|
+      if params[k].to_s == v.to_s
+        return active_class
+      end
+      
+      if !params.key?(k) && session[k].to_s == v.to_s
         return active_class
       end
     end
