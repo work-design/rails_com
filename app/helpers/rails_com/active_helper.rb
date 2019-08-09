@@ -83,22 +83,26 @@ module RailsCom::ActiveHelper
   end
 
   def filter_params(options = {})
-    except = options.delete(:except)
-    only = options.delete(:only)
-    query = ActionController::Parameters.new(request.GET)
+    only = Array(options.delete(:only)).presence
+    except = Array(options.delete(:except))
+    query = request.GET
     query.merge!(options)
 
     if only
-      query = query.permit(only)
+      query = query.extract!(*only)
     else
       excepts = []
-      excepts += (Array(except).map(&:to_s) & request.GET.keys)
+      excepts += (except.map(&:to_s) & request.GET.keys)
       excepts += ['commit', 'utf8', 'page']
 
-      query = query.permit!.except(*excepts)
+      query.except!(*excepts)
     end
 
-    query.reject! { |_, value| value.blank? }
+    if query.length > 1
+      query.reject! { |_, value| value.blank? }
+    else
+      query.reject! { |_, value| value.nil? }
+    end
     query
   end
 
