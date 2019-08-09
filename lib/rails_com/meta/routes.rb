@@ -8,12 +8,13 @@ module RailsCom::Routes
   end
 
   def actions(controller)
-    routes_wrapper.select { |i| i[:controller] == controller.to_s }.map { |i| i[:action] }.uniq
+    controllers[controller.to_s].map { |i| i[:action] }.uniq
   end
 
   def controllers
-    _controllers = routes_wrapper.map { |i| i[:controller] }.compact.uniq
-    _controllers - RailsCom.config.ignore_controllers
+    _controllers = routes_wrapper.group_by(&->(i){ i[:controller] })
+    _controllers.delete(nil)
+    _controllers
   end
 
   def modules
@@ -25,8 +26,8 @@ module RailsCom::Routes
     end.compact.uniq
   end
 
-  def routes_wrapper
-    return @routes_wrapper if @routes_wrapper.present?
+  def routes_wrapper(cached = true)
+    return @routes_wrapper if cached && defined?(@routes_wrapper)
 
     @routes_wrapper = []
     routes.each do |route|
