@@ -70,7 +70,7 @@ module RailsCom::ActiveHelper
   #   active_params state: 'xxx'
   def active_params(active_class: 'item active', item_class: 'item', **options)
     options.select { |_, v| v.present? }.each do |k, v|
-      if params[k].to_s == v.to_s
+      if params[k].to_s == v.to_s || session[k].to_s == v.to_s
         return active_class
       end
     end

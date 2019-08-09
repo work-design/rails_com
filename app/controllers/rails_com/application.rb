@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom::Controller
+module RailsCom::Application
   LOCALE_MAP = {
     'zh-CN' => 'zh',
     'zh-TW' => 'zh',
