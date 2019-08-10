@@ -11,7 +11,7 @@
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:file) %></th>
       <th><%= ActiveStorage::BlobDefault.human_attribute_name(:private) %></th>
       <th>
-        <%= link_to new_rails_ext_blob_default_path, class: 'ui mini primary button' do %>
+        <%= link_to new_rails_ext_blob_default_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -29,7 +29,7 @@
       </td>
       <td><%= blob_default.private %></td>
       <td>
-        <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
+        <%= link_to edit_rails_ext_blob_default_path(blob_default), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
         <%= link_to rails_ext_blob_default_path(blob_default), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
