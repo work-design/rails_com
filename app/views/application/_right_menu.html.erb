@@ -14,8 +14,8 @@
         <%= link_to '个人中心', '/my', class: active_helper(controllers: ['users']) %>
         <%= link_to '管理', admin_root_path, class: 'item' %>
         <%= link_to '退出', logout_path, data: { confirm: '确认退出' }, class: 'item' %>
-        <%= link_to logout_my_members_path, class: 'item' do %>
-          <i class="fas fa-exchange-alt"></i><%= t('org.my.members.index.title') %>
+        <%= link_to logout_my_organs_path, class: 'item' do %>
+          <i class="fas fa-exchange-alt"></i><%= t('org.mine.organs.index.title') %>
         <% end %>
       </div>
     </div>
