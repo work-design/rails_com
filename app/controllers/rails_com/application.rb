@@ -114,5 +114,9 @@ module RailsCom::Application
   def default_params
     {}.with_indifferent_access
   end
+  
+  def default_form_params
+    {}
+  end
 
 end
