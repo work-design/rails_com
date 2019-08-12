@@ -15,10 +15,10 @@ header.ui.borderless.menu {
   width: 100%;
 }
 
-.ui.menu > .logo.item {
+.ui.menu .logo.item {
   padding-top: 0;
   padding-bottom: 0;
 }
-.ui.menu > .logo.item > img {
+.ui.menu .logo.item > img {
   height: 35px;
 }
