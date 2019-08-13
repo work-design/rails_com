@@ -8,4 +8,8 @@ module RailsCom::ApplicationRecord
     errors.full_messages.join("\n")
   end
   
+  def class_name
+    self.class.base_class.name
+  end
+  
 end
