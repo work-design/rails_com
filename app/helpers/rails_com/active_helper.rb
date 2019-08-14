@@ -91,10 +91,7 @@ module RailsCom::ActiveHelper
     if only
       query = query.extract!(*only)
     else
-      excepts = []
-      excepts += (except.map(&:to_s) & request.GET.keys)
-      excepts += ['commit', 'utf8', 'page']
-
+      excepts = except.map(&:to_s) + ['commit', 'utf8', 'page']
       query.except!(*excepts)
     end
 
