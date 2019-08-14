@@ -85,7 +85,7 @@ module RailsCom::ActiveHelper
   def filter_params(options = {})
     only = Array(options.delete(:only)).presence
     except = Array(options.delete(:except))
-    query = request.GET
+    query = request.GET.dup
     query.merge!(options)
 
     if only
