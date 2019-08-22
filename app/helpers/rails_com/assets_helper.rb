@@ -8,15 +8,14 @@ module RailsCom::AssetsHelper
     asset_filename = "controllers/#{@_rendered_path}"
     asset_filename = [asset_filename, '-', suffix].join if suffix
     asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext)
-
-    r = []
-    ar = []
+    
     if asset_paths.any? { |path| File.exist?(path) }
-      r << javascript_pack_tag(asset_filename, options)
-      ar << asset_pack_path(asset_filename)
+      r = javascript_pack_tag(asset_filename, options)
+      ar = asset_pack_path(asset_filename + '.js')
+      [r.html_safe, ar]
+    else
+      []
     end
-
-    [r.join("\n    ").html_safe, ar]
   end
 
   def js_load(**options)
@@ -40,13 +39,11 @@ module RailsCom::AssetsHelper
     asset_filename = "controllers/#{@_rendered_path}"
     asset_filename = [asset_filename, '-', suffix].join if suffix
     asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext)
-
-    r = []
+    
     if asset_paths.any? { |path| File.exist?(path) }
-      r << stylesheet_link_tag(asset_filename, options)
+      r = stylesheet_link_tag(asset_filename, options)
+      r.html_safe
     end
-
-    r.join("\n    ").html_safe
   end
 
   private
