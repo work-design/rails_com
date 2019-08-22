@@ -5,13 +5,8 @@ module RailsCom::AssetsHelper
   def origin_js_load(**options)
     ext = ['.js', '.js.erb'] + Array(options.delete(:ext))
     suffix = options.delete(:suffix)
-
     asset_filename = "controllers/#{@_rendered_path}"
-
-    if suffix
-      asset_filename = [asset_filename, '-', suffix].join
-    end
-
+    asset_filename = [asset_filename, '-', suffix].join if suffix
     asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/javascripts', ext: ext)
 
     r = []
@@ -42,13 +37,8 @@ module RailsCom::AssetsHelper
   def css_load(**options)
     ext = ['.css', '.css.erb'] + Array(options.delete(:ext))
     suffix = options.delete(:suffix)
-
     asset_filename = "controllers/#{@_rendered_path}"
-
-    if suffix
-      asset_filename = [asset_filename, '-', suffix].join
-    end
-
+    asset_filename = [asset_filename, '-', suffix].join if suffix
     asset_paths = assets_load_path(asset_filename, relative_path: 'app/assets/stylesheets', ext: ext)
 
     r = []
