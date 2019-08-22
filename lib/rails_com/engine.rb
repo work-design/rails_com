@@ -26,5 +26,13 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     ActiveStorage::DiskController.include RailsCom::VideoResponse
     ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
   end
+  
+  config.after_initialize do |app|
+    dirs = []
+    Rails::Engine.subclasses.each do |engine|
+      dirs += engine.paths['app/assets'].existent_directories.select { |i| i.end_with?('javascripts') }
+    end
+    JsonFileHelper.dump dirs
+  end
 
 end
