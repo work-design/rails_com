@@ -3,7 +3,10 @@ module.exports = {
   use: [
     {
       loader: 'expose-loader',
-      options: 'remote_js'
+      options: {
+        expose: 'remote_js_loader',
+        exportKey: 'default'
+      }
     }
   ]
 }
