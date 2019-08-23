@@ -1,6 +1,6 @@
-//= require stimulus
+import { Application } from 'stimulus'
 
-window.application = Stimulus.Application.start();
+window.application = Application.start();
 
 DOMStringMap.prototype.add_controller = function(controller_name) {
   if (typeof this.controller === 'string' && this.controller.length > 0) {

@@ -1,6 +1,8 @@
-//= require rails-ujs
-//= require turbolinks
-//= require_self
+import ujs from '@rails/ujs'
+import turbolinks from 'turbolinks'
+
+ujs.start()
+turbolinks.start()
 
 function remote_js_load(paths) {
   if (Array.isArray(paths)) {
