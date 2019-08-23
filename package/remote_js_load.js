@@ -10,4 +10,4 @@ const remote_js_load = (paths) => {
   }
 }
 
-module.exports = remote_js_load
+export default remote_js_load
