@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs'
 import Turbolinks from 'turbolinks'
-import 'rails_com/package/remote_js_load'
+import remote_js_load from 'rails_com/package/remote_js_load'
 
 Rails.start()
 Turbolinks.start()
