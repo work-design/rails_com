@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs'
 
-export default function remote_js_load(paths) {
+export function remote_js_load(paths) {
   if (Array.isArray(paths)) {
     for (i = 0; i < paths.length; i++) {
       Rails.ajax({url: paths[i], type: 'GET', dataType: 'script'})
