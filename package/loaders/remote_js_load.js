@@ -4,7 +4,7 @@ module.exports = {
     {
       loader: 'expose-loader',
       options: {
-        expose: 'remote_js_loader',
+        expose: 'remote_js_load',
         exportKey: 'default'
       }
     },
