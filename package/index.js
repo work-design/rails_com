@@ -23,7 +23,7 @@ const paths = () => {
   return result
 };
 
-const resolved_roots = roots.unshift(resolve('node_modules'))
+const resolved_roots = [resolve('node_modules')].concat(roots)
 
 module.exports = {
   paths,
