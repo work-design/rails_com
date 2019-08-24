@@ -1,5 +1,5 @@
-//= require ./attachment
-//= require stimulus
+import { attachToPreview } from './attachment'
+import { Application } from 'stimulus'
 
 class PictureController extends Stimulus.Controller {
   greet() {
