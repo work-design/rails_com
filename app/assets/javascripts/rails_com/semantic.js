@@ -6,3 +6,7 @@ $('#flash_toast').transition({
   animation: 'fade',
   duration: '3s'
 });
+
+$('.message .close').on('click', function() {
+  $(this).closest('.message').fadeOut();
+});
