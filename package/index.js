@@ -8,7 +8,7 @@ const paths = () => {
   let glob = extensions.length === 1 ? `**/*${extensions[0]}` : `**/*{${extensions.join(',')}}`
   let result = {}
 
-  config.resoved_paths.forEach((rootPath) => {
+  config.resolved_paths.forEach((rootPath) => {
     const ab_paths = sync(join(rootPath, glob))
 
     ab_paths.forEach((path) => {
@@ -21,6 +21,6 @@ const paths = () => {
   return result
 };
 
-const resolved_roots = [resolve('node_modules')].concat(config.resoved_paths)
+const resolved_roots = [resolve('node_modules')].concat(config.resolved_paths)
 
 module.exports = paths

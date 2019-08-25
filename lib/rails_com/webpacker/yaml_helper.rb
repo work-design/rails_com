@@ -9,7 +9,7 @@ module Webpacker
     
     def resolved_paths_concat(ary = [])
       r = YAML.load_file(path)
-      r[Rails.env]['resolved_paths'] += ary
+      r['production']['resolved_paths'] += ary
       dump(r)
       r
     end
