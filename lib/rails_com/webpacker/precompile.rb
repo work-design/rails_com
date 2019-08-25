@@ -1,4 +1,0 @@
-module Webpacker::Precompile
-
-
-end

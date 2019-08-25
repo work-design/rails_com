@@ -1,16 +1,14 @@
 const { basename, dirname, join, relative, resolve } = require('path')
-const { readFileSync } = require('fs')
 const { sync } = require('glob')
 const extname = require('path-complete-extname')
 const config = require('@rails/webpacker/package/config')
-const roots = JSON.parse(readFileSync('tmp/share_object.json', 'utf8'))
 
 const paths = () => {
   const { extensions } = config
   let glob = extensions.length === 1 ? `**/*${extensions[0]}` : `**/*{${extensions.join(',')}}`
   let result = {}
 
-  roots.forEach((rootPath) => {
+  config.resoved_paths.forEach((rootPath) => {
     const ab_paths = sync(join(rootPath, glob))
 
     ab_paths.forEach((path) => {
@@ -23,9 +21,6 @@ const paths = () => {
   return result
 };
 
-const resolved_roots = [resolve('node_modules')].concat(roots)
+const resolved_roots = [resolve('node_modules')].concat(config.resoved_paths)
 
-module.exports = {
-  paths,
-  resolved_roots
-}
+module.exports = paths

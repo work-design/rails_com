@@ -23,6 +23,7 @@ require_relative 'generators/jbuilder_generator' if defined?(Jbuilder)
 
 # controllers
 require_relative 'rails_com/sprockets/non_digest_assets'
+require_relative 'rails_com/webpacker/yaml_helper'
 
 # Utils
 require_relative 'rails_com/utils/time_helper'
@@ -33,7 +34,6 @@ require_relative 'rails_com/utils/jobber'
 require_relative 'rails_com/utils/babel'
 require_relative 'rails_com/utils/deploy'
 require_relative 'rails_com/utils/qrcode_helper'
-require_relative 'rails_com/utils/json_file_helper'
 
 # outside
 require 'default_where'
