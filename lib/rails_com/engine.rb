@@ -28,11 +28,13 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
   
   config.after_initialize do |app|
-    dirs = []
+    webpack = Webpacker::YamlHelper.new
     Rails::Engine.subclasses.each do |engine|
-      dirs += engine.paths['app/assets'].existent_directories.select { |i| i.end_with?('javascripts') }
+      engine.paths['app/assets'].existent_directories.select(&->(i){ i.end_with?('javascripts') }).each do |path|
+        webpack.append 'resolved_paths', path
+      end
     end
-    #Webpacker::YamlHelper.resolved_paths_concat dirs
+    webpack.dump
   end
 
 end

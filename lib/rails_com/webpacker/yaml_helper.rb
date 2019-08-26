@@ -1,29 +1,35 @@
 module Webpacker
-  module YamlHelper
-    extend self
+  class YamlHelper
+    attr_reader :yaml, :io
+
+    def initialize(path: 'config/webpacker.yml', export: 'config/webpacker.yml')
+      real_path = Rails.root + path
+      real_export = Rails.root + export
+      
+      @yaml = YAML.parse_stream File.read(real_path)
+      @io = File.new(real_export, 'a+')
+    end
     
-    def dump(obj, io = default_io)
-      YAML.dump(obj, io)
+    def dump
+      io.truncate(0)
+      @yaml.yaml io
       io.fsync
     end
     
-    def resolved_paths_concat(ary = [])
-      r = YAML.load_file(path)
-      r['production']['resolved_paths'] += ary
-      dump(r)
-      r
-    end
-    
-    def xx
-    
-    end
-    
-    def default_io
-      File.new(path, 'w+')
-    end
-    
-    def path
-      Rails.root + 'config/webpacker.yml'
+    def append(env = 'default', key, value)
+      a = yaml.children[0].children[0].children
+      a_index = a.find_index { |i| i.scalar? && i.value == env }
+
+      b = a[a_index + 1].children
+      b_index = b.find_index { |i| i.scalar? && i.value == key }
+      
+      c = b[b_index + 1]
+      if c.sequence?
+        c.style = 1  # block style
+        c.children << Psych::Nodes::Scalar.new(value)
+      end
+      
+      c
     end
     
   end
