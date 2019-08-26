@@ -1,3 +1,10 @@
+
+# temp ignore config/webpacker changes
+# git update-index --assume-unchanged config/webpacker.yml
+# check it works
+# git ls-files -v | grep config/webpacker.yml
+# recover
+# git update-index --no-assume-unchanged config/webpacker.yml
 module Webpacker
   class YamlHelper
     attr_reader :yaml, :io
