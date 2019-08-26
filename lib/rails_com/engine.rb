@@ -32,7 +32,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     Rails::Engine.subclasses.each do |engine|
       dirs += engine.paths['app/assets'].existent_directories.select { |i| i.end_with?('javascripts') }
     end
-    Webpacker::YamlHelper.resolved_paths_concat dirs
+    #Webpacker::YamlHelper.resolved_paths_concat dirs
   end
 
 end

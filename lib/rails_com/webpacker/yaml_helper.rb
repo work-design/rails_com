@@ -14,6 +14,10 @@ module Webpacker
       r
     end
     
+    def xx
+    
+    end
+    
     def default_io
       File.new(path, 'w+')
     end
