@@ -21,6 +21,4 @@ const paths = () => {
   return result
 };
 
-const resolved_roots = [resolve('node_modules')].concat(config.resolved_paths)
-
 module.exports = paths
