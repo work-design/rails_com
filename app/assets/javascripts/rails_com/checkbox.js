@@ -1,6 +1,7 @@
 import { Controller } from 'stimulus'
 
-// 2. data-controller="check"
+// data-controller="check"
+// data-check-name="xx"
 class CheckController extends Controller {
   static targets = ['added', 'moved']
 
@@ -32,7 +33,6 @@ class CheckController extends Controller {
   }
 
   // data-action="check#toggleAll"
-  // data-check-name="xx"
   toggleAll(event) {
     let element = event.target
     let checkboxes = document.getElementsByName(this.data.get('name'));
