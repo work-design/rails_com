@@ -1,27 +1,15 @@
-/* jslint newcap: true */
-/* global XMLHttpRequest: false, FormData: false */
-
 /*
 * Input Field with Attachment
-* based on https://github.com/Rovak/inlineAttachment/blob/master/LICENSE
 */
 
-(function(document, window) {
-  'use strict';
-
-  var InputAttachment = function(options) {
-    this.settings = Object.assign(InputAttachment.defaults, options);
-    this.editor = this.settings['editor'];
-    this.filenameTag = '{filename}';
-    this.lastValue = null;
-  };
+export default class InputAttachment {
 
   /**
    * Default configuration options
    *
    * @type {Object}
    */
-  InputAttachment.defaults = {
+  static defaults = {
     /**
      * URL where the file will be send
      */
@@ -93,14 +81,14 @@
     /**
      * Before the file is send
      */
-    beforeFileUpload: function() {
+    beforeFileUpload() {
       return true;
     },
 
     /**
      * Triggers when a file is dropped or pasted
      */
-    onFileReceived: function() {
+    onFileReceived() {
 
     },
 
@@ -109,7 +97,7 @@
      *
      * @return {Boolean} when false is returned it will prevent default upload behavior
      */
-    onFileUploadResponse: function() {
+    onFileUploadResponse() {
       return true;
     },
 
@@ -119,14 +107,21 @@
      *
      * @return {Boolean} when false is returned it will prevent default error behavior
      */
-    onFileUploadError: function() {
+    onFileUploadError() {
       return true;
     },
 
     /**
      * When a file has successfully been uploaded
      */
-    onFileUploaded: function() {}
+    onFileUploaded() {}
+  };
+
+  constructor(options) {
+    this.settings = Object.assign(InputAttachment.defaults, options);
+    this.editor = this.settings['editor'];
+    this.filenameTag = '{filename}';
+    this.lastValue = null;
   };
 
   /**
@@ -135,12 +130,12 @@
    * @param  {Blob} file blob data received from event.dataTransfer object
    * @return {XMLHttpRequest} request object which sends the file
    */
-  InputAttachment.prototype.uploadFile = function(file) {
-    var me = this,
-      formData = new FormData(),
-      xhr = new XMLHttpRequest(),
-      settings = this.settings,
-      extension = settings.defaultExtension || settings.defualtExtension;
+  uploadFile(file) {
+    let me = this
+    let formData = new FormData()
+    let xhr = new XMLHttpRequest()
+    let settings = this.settings
+    let extension = settings.defaultExtension
 
     if (typeof settings.setupFormData === 'function') {
       settings.setupFormData(formData, file);
@@ -196,10 +191,10 @@
     return xhr;
   };
 
-  InputAttachment.prototype.previewFile = function(file, previewDiv) {
-    var fileList = document.getElementById(previewDiv);
-    var templateDiv = document.getElementById(this.settings.templateDiv);
-    var template = document.createElement('template');
+  previewFile(file, previewDiv) {
+    let fileList = document.getElementById(previewDiv);
+    let templateDiv = document.getElementById(this.settings.templateDiv);
+    let template = document.createElement('template');
     fileList.querySelectorAll('[data-preview=true]').forEach(e => e.parentNode.removeChild(e));
     template.innerHTML = templateDiv.outerHTML.trim();
     var img_div = template.content.firstChild;
@@ -221,7 +216,7 @@
    *
    * @param {File} file clipboard data file
    */
-  InputAttachment.prototype.isFileAllowed = function(file) {
+  isFileAllowed(file) {
     if (file.kind === 'string') { return false; }
     if (this.settings.allowedTypes.indexOf('*') === 0){
       return true;
@@ -236,7 +231,7 @@
    * @param  {XMLHttpRequest} xhr
    * @return {void}
    */
-  InputAttachment.prototype.onFileUploadResponse = function(xhr) {
+  onFileUploadResponse(xhr) {
     if (this.settings.onFileUploadResponse.call(this, xhr) !== false) {
       var result = JSON.parse(xhr.responseText),
         filename = result[this.settings.jsonFieldName];
@@ -261,7 +256,7 @@
    * @param  {XMLHttpRequest} xhr
    * @return {void}
    */
-  InputAttachment.prototype.onFileUploadError = function(xhr) {
+  onFileUploadError(xhr) {
     if (this.settings.onFileUploadError.call(this, xhr) !== false) {
       this.editor.value.replace(this.lastValue, '');
     }
@@ -273,7 +268,7 @@
    * @param  {File} file
    * @return {void}
    */
-  InputAttachment.prototype.onFileInserted = function(file) {
+  onFileInserted(file) {
     if (this.settings.onFileReceived.call(this, file) !== false) {
       this.lastValue = this.settings.progressText;
 
@@ -288,7 +283,7 @@
    * @param  {Event} e
    * @return {Boolean} if the event was handled
    */
-  InputAttachment.prototype.onPaste = function(e) {
+  onPaste(e) {
     var result = false,
       clipboardData = e.clipboardData,
       items;
@@ -316,7 +311,7 @@
    * @param  {Event} e
    * @return {Boolean} if the event was handled
    */
-  InputAttachment.prototype.onDrop = function(e) {
+  onDrop(e) {
     var result = false;
     for (var i = 0; i < e.dataTransfer.files.length; i++) {
       var file = e.dataTransfer.files[i];
@@ -330,7 +325,7 @@
     return result;
   };
 
-  InputAttachment.prototype.onFileInputChange = function(e) {
+  onFileInputChange(e) {
     var result = false;
     for (var i = 0; i < e.target.files.length; i++) {
       var file = e.target.files[i];
@@ -343,7 +338,7 @@
     return result;
   };
 
-  InputAttachment.prototype.imagePreview = function(e, previewDiv){
+  imagePreview(e, previewDiv){
     var result = false;
 
     for (var i = 0; i < e.target.files.length; i++) {
@@ -357,65 +352,8 @@
     return result;
   };
 
-  InputAttachment.prototype.onFileInputClick = function(e) {
+  onFileInputClick(e) {
     console.log('fileInputClick', e)
   };
 
-  window.InputAttachment = InputAttachment;
-
-  function attachToInput(options) {
-    options = options || {};
-    var input = document.getElementById(options['input']);
-    var fileInput = document.getElementById(options['fileInput']);
-    options['editor'] = input;
-    options['fileInput'] = fileInput;
-    var inlineAttach = new InputAttachment(options);
-
-    if (input) {
-      input.addEventListener('paste', function(e) {
-        inlineAttach.onPaste(e);
-      }, false);
-
-      input.addEventListener('drop', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        inlineAttach.onDrop(e);
-      }, false);
-
-      input.addEventListener('dragenter', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-      }, false);
-
-      input.addEventListener('dragover', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-      }, false);
-    }
-    if (fileInput) {
-      fileInput.addEventListener('click', function(e) {
-        inlineAttach.onFileInputClick(e)
-      }, false);
-
-      fileInput.addEventListener('change', function(e) {
-        inlineAttach.onFileInputChange(e)
-      }, false);
-    }
-  }
-
-  function attachToPreview(options) {
-    options = options || {};
-    var fileInput = document.getElementById(options['fileInput']);
-    options['fileInput'] = fileInput;
-    var inlineAttach = new InputAttachment(options);
-
-    if (fileInput) {
-      fileInput.addEventListener('change', function(e) {
-        inlineAttach.imagePreview(e, options['previewDiv'])
-      }, false);
-    }
-  }
-
-  window.attachToInput = attachToInput;
-  window.attachToPreview = attachToPreview;
-})(document, window);
+}

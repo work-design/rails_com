@@ -1,4 +1,3 @@
-//= require action_cable
-//= require_self
+import { createConsumer } from '@rails/actioncable'
 
-ApplicationCable = ActionCable.createConsumer();
+export default createConsumer();
