@@ -1,5 +1,5 @@
 import InputAttachment from './attachment'
-import { Application } from 'stimulus'
+import { Controller } from 'stimulus'
 
 class PictureController extends Controller {
   static targets = ['src']

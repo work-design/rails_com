@@ -1,4 +1,4 @@
-$('.ui.toggle.checkbox').checkbox();
+$('.ui.checkbox').checkbox();
 $('.ui.progress').progress({
   duration: 3000
 });
