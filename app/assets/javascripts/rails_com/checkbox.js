@@ -8,17 +8,6 @@ class CheckController extends Controller {
     console.log('Check Controller works!')
   }
 
-  doToggle(checkbox, changed) {
-    if (changed && checkbox.checked) {
-      checkbox.dataset.add_target('check.added')
-    } else if (changed && !checkbox.checked) {
-      checkbox.dataset.add_target('check.moved')
-    } else {
-      checkbox.dataset.remove_target('check.added')
-      checkbox.dataset.remove_target('check.moved')
-    }
-  }
-
   // data-action="check#toggle"
   toggle(event) {
     let checkbox = event.target
@@ -52,6 +41,17 @@ class CheckController extends Controller {
       checkbox.checked = element.checked
       let changed = checkbox.checked !== checkbox.defaultChecked
       this.doToggle(checkbox, changed)
+    }
+  }
+
+  doToggle(checkbox, changed) {
+    if (changed && checkbox.checked) {
+      checkbox.dataset.add_target('check.added')
+    } else if (changed && !checkbox.checked) {
+      checkbox.dataset.add_target('check.moved')
+    } else {
+      checkbox.dataset.remove_target('check.added')
+      checkbox.dataset.remove_target('check.moved')
     }
   }
 }
