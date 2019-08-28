@@ -1,45 +1,24 @@
 import InputAttachment from './attachment'
 import { Controller } from 'stimulus'
 
+// <input type="file" data-controller="picture">
 class PictureController extends Controller {
-  static targets = ['src']
+  static targets = ['src', 'previewDiv']
 
   connect() {
+
+  }
+
+  /*
+  * <input type="file" data-action="picture#upload">
+  **/
+  upload() {
     let input = this.element
-    var fileInput = document.getElementById(options['fileInput']);
+    let options = {}
     options['editor'] = input;
     options['fileInput'] = fileInput;
-    var inlineAttach = new InputAttachment(options);
-
-    input.addEventListener('paste', function(e) {
-      inlineAttach.onPaste(e);
-    }, false);
-
-    input.addEventListener('drop', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      inlineAttach.onDrop(e);
-    }, false);
-
-    input.addEventListener('dragenter', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }, false);
-
-    input.addEventListener('dragover', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }, false);
-
-    if (fileInput) {
-      fileInput.addEventListener('click', function(e) {
-        inlineAttach.onFileInputClick(e)
-      }, false);
-
-      fileInput.addEventListener('change', function(e) {
-        inlineAttach.onFileInputChange(e)
-      }, false);
-    }
+    let fileInput = document.getElementById(options['fileInput']);
+    let inlineAttach = new InputAttachment(options);
   }
 
   preview() {
@@ -53,6 +32,27 @@ class PictureController extends Controller {
       }, false);
     }
   }
+
+  previewFile(file, previewDiv) {
+    let fileList = document.getElementById(this.previewDivTarget);
+    let templateDiv = document.getElementById(this.settings.templateDiv);
+    let template = document.createElement('template');
+    fileList.querySelectorAll('[data-preview=true]').forEach(e => e.parentNode.removeChild(e));
+    template.innerHTML = templateDiv.outerHTML.trim();
+    var img_div = template.content.firstChild;
+    img_div.style.display = 'inline-block';
+    img_div.dataset['preview'] = true;
+    img_div.id = null;
+    var img = img_div.lastElementChild;
+
+    img.src = window.URL.createObjectURL(file); //创建一个object URL，并不是你的本地路径
+    img.onload = function(e) {
+      window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+    };
+
+    fileList.appendChild(img_div);
+  };
+
 
 }
 

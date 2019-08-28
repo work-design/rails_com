@@ -1,4 +1,3 @@
-//= require stimulus/dist/stimulus.umd
-//= require weui.js/dist/weui
-//= require default_form/ready
-//= require default_form/valid
+import 'rails_com/stimulus'
+import 'default_form/application'
+import 'weui.js/dist/weui'
