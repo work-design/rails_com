@@ -1,20 +1,16 @@
-# temp ignore config/webpacker changes
-# git update-index --assume-unchanged config/webpacker.yml
-# check it works
-# git ls-files -v | grep config/webpacker.yml
-# recover
-# git update-index --no-assume-unchanged config/webpacker.yml
+# make old config/webpacker.yml as an template file, rename it to config/webpacker_template.yml
+# ignore config/webpacker.yml in git
 module Webpacker
   class YamlHelper
 
-    def initialize(path: 'config/webpacker.yml', export: 'config/webpacker.yml')
-      real_path = Rails.root + path
-      real_export = Rails.root + export
+    def initialize(template: 'config/webpacker_template.yml', export: 'config/webpacker.yml')
+      template_path = Rails.root + template
+      export_path = Rails.root + export
       
-      @yaml = YAML.parse_stream File.read(real_path)
+      @yaml = YAML.parse_stream File.read(template_path)
       @content = @yaml.children[0].children[0].children
       @parsed = @yaml.to_ruby[0]
-      @io = File.new(real_export, 'a+')
+      @io = File.new(export_path, 'w+')
     end
     
     def dump
