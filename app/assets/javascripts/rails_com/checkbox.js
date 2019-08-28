@@ -9,11 +9,19 @@ class CheckController extends Controller {
     console.log('Check Controller works!')
   }
 
-  // data-action="check#toggle"
-  toggle(event) {
-    let checkbox = event.target
-    let changed = checkbox.checked !== checkbox.defaultChecked
-    this.doToggle(checkbox, changed)
+  applyFor(event) {
+    let link = event.currentTarget
+    let url = new URL(link.href)
+    let added = this.addedIds()
+    let moved = this.movedIds()
+    if (added.length > 0) {
+      url.searchParams.set('add_ids', added)
+    }
+    if (moved.length > 0) {
+      url.searchParams.set('remove_ids', added)
+    }
+
+    link.href = url
   }
 
   addedIds() {
@@ -21,7 +29,7 @@ class CheckController extends Controller {
     this.addedTargets.forEach((item) => {
       ids.push(item.value)
     })
-    return ids
+    return ids.join(',')
   }
 
   movedIds() {
@@ -29,12 +37,19 @@ class CheckController extends Controller {
     this.movedTargets.forEach((item) => {
       ids.push(item.value)
     })
-    return ids
+    return ids.join(',')
+  }
+
+  // data-action="check#toggle"
+  toggle(event) {
+    let checkbox = event.currentTarget
+    let changed = checkbox.checked !== checkbox.defaultChecked
+    this.doToggle(checkbox, changed)
   }
 
   // data-action="check#toggleAll"
   toggleAll(event) {
-    let element = event.target
+    let element = event.currentTarget
     let checkboxes = document.getElementsByName(this.data.get('name'));
 
     for (let checkbox of checkboxes) {
