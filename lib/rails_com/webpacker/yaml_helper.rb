@@ -14,7 +14,6 @@ module Webpacker
     end
     
     def dump
-      @io.truncate(0)
       @yaml.yaml @io
       @io.fsync
       @io.close
