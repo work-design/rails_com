@@ -4,7 +4,7 @@ module Webpacker
   class YamlHelper
 
     def initialize(template: 'config/webpacker_template.yml', export: 'config/webpacker.yml')
-      template_path = Rails.root + template
+      template_path = (Rails.root + template).existence || RailsCom::Engine.root + template
       export_path = Rails.root + export
       
       @yaml = YAML.parse_stream File.read(template_path)
