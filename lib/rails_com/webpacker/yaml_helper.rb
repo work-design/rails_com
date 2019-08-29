@@ -1,8 +1,11 @@
-# make old config/webpacker.yml as an template file, rename it to config/webpacker_template.yml
 # ignore config/webpacker.yml in git
+# gem 'webpacker', require: File.exist?('config/webpacker.yml')
+# config.webpacker.xxx = xx if config.respond_to?(:webpacker)
 module Webpacker
   class YamlHelper
-
+    
+    # uses config/webpacker_template.yml in rails_com engine as default,
+    # config/webpacker_template.yml in Rails project will override this.
     def initialize(template: 'config/webpacker_template.yml', export: 'config/webpacker.yml')
       template_path = (Rails.root + template).existence || RailsCom::Engine.root + template
       export_path = Rails.root + export
