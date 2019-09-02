@@ -1,6 +1,6 @@
 import { Application } from 'stimulus'
 
-window.application = Application.start();
+window.application = Application.start()
 
 // el.dataset.add_controller('xx')
 DOMStringMap.prototype.add_controller = function(controller_name) {
@@ -28,7 +28,7 @@ DOMStringMap.prototype.add_target = function(target_name) {
 DOMStringMap.prototype.remove_target = function(target_name) {
   if (typeof this.target === 'string') {
     let targets = this.target.split(' ')
-    let index = targets.indexOf(target_name);
+    let index = targets.indexOf(target_name)
     if (index > -1) {
       targets.splice(index, 1)
     }
