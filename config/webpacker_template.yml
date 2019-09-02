@@ -43,8 +43,8 @@ development:
   dev_server:
     https: false
     host: localhost
-    port: 3036
-    public: localhost:3036
+    port: 3035
+    public: localhost:3035
     hmr: false
     inline: true
     overlay: true
