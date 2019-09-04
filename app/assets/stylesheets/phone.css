@@ -24,3 +24,12 @@ html, body {
   width: 45px;
   padding-right: 16px;
 }
+
+.fa-shopping-cart.weui-tabbar__icon {
+  position: relative;
+}
+.weui-tabbar__icon .weui-badge {
+  position: absolute;
+  top: -.4em;
+  right: -.4em;
+}
