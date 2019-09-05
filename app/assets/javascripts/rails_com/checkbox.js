@@ -42,24 +42,33 @@ class CheckController extends Controller {
 
   // data-action="check#toggle"
   toggle(event) {
-    let checkbox = event.currentTarget
-    let changed = checkbox.checked !== checkbox.defaultChecked
-    this.doToggle(checkbox, changed)
+    this.doToggle(event.currentTarget)
   }
 
   // data-action="check#toggleAll"
   toggleAll(event) {
     let element = event.currentTarget
-    let checkboxes = document.getElementsByName(this.data.get('name'));
+    let checkboxes = document.getElementsByName(element.value);
 
     for (let checkbox of checkboxes) {
       checkbox.checked = element.checked
-      let changed = checkbox.checked !== checkbox.defaultChecked
-      this.doToggle(checkbox, changed)
+      this.doToggle(checkbox)
     }
   }
 
-  doToggle(checkbox, changed) {
+  toggleAllName(event) {
+    let element = event.currentTarget
+    let checkboxes = document.querySelectorAll(`input[data-name='${element.value}']`)
+
+    for (let checkbox of checkboxes) {
+      checkbox.checked = element.checked
+      this.doToggle(checkbox)
+    }
+  }
+
+  doToggle(checkbox) {
+    let changed = checkbox.checked !== checkbox.defaultChecked
+
     if (changed && checkbox.checked) {
       checkbox.dataset.add_target('check.added')
     } else if (changed && !checkbox.checked) {
