@@ -119,4 +119,8 @@ module RailsCom::Application
     {}
   end
 
+  def json_format?
+    self.request.format.json?
+  end
+
 end
