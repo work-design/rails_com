@@ -25,11 +25,10 @@ module Webpacker
     def append(env = 'default', key, value)
       return if Array(@parsed.dig(env, key)).include? value
       env_index = @content.find_index { |i| i.scalar? && i.value == env }
-
       env_content = @content[env_index + 1].children
-      key_index = env_content.find_index { |i| i.scalar? && i.value == key }
+      value_index = env_content.find_index { |i| i.scalar? && i.value == key }
+      value_content = env_content[value_index + 1]
       
-      value_content = env_content[key_index + 1]
       if value_content.sequence?
         value_content.style = 1  # block style
         value_content.children << Psych::Nodes::Scalar.new(value)
