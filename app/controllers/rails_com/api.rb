@@ -41,12 +41,5 @@ module RailsCom::Api
       render json: { error: { class: exp.class.inspect }, message: exp.message }, status: 400
     end
   end
-
-  def process_errors(model)
-    render json: {
-      error: model.errors.as_json(full_messages: true),
-      message: model.error_text
-    }, status: :bad_request
-  end
-
+  
 end
