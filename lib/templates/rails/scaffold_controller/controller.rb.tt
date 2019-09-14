@@ -12,18 +12,8 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   def create
     @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
-    respond_to do |format|
-      if @<%= orm_instance(singular_name).save %>
-        format.html.phone
-        format.html { redirect_to <%= index_helper %>_url }
-        format.js { redirect_back fallback_location: <%= index_helper %>_url }
-        format.json { render :show }
-      else
-        format.html.phone { render :new }
-        format.html { render :new }
-        format.js { redirect_back fallback_location: <%= index_helper %>_url }
-        format.json { render :show }
-      end
+    unless @<%= orm_instance(singular_name).save %>
+      render :new, locals: { model: @<%= singular_name %> }, status: :bad_request
     end
   end
 
@@ -36,24 +26,13 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
   def update
     @<%= singular_name %>.assign_attributes(<%= singular_name %>_params)
 
-    respond_to do |format|
-      if @<%= singular_name %>.save
-        format.html.phone
-        format.html { redirect_to <%= index_helper %>_url }
-        format.js { redirect_back fallback_location: <%= index_helper %>_url }
-        format.json { render :show }
-      else
-        format.html.phone { render :edit }
-        format.html { render :edit }
-        format.js { redirect_back fallback_location: <%= index_helper %>_url }
-        format.json { render :show }
-      end
+    unless @<%= singular_name %>.save
+      render :edit, locals: { model: @<%= singular_name %> }, status: :bad_request
     end
   end
 
   def destroy
     @<%= orm_instance(singular_name).destroy %>
-    redirect_to <%= index_helper %>_url
   end
 
   private
