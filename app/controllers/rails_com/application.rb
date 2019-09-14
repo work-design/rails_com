@@ -123,32 +123,4 @@ module RailsCom::Application
     self.request.format.json?
   end
 
-  def create_failed(model)
-    respond_to do |format|
-      format.html+phone { render :new }
-      format.html { render :new }
-      format.js { render :new }
-      format.json do
-        render json: {
-          error: model.errors.as_json(full_messages: true),
-          message: model.error_text
-        }, status: :bad_request
-      end
-    end
-  end
-  
-  def update_failed(model)
-    respond_to do |format|
-      format.html+phone { render :edit }
-      format.html { render :edit }
-      format.js { render :edit }
-      format.json do
-        render json: {
-          error: model.errors.as_json(full_messages: true),
-          message: model.error_text
-        }, status: :bad_request
-      end
-    end
-  end
-
 end
