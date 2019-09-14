@@ -11,19 +11,9 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def create
     @cache_list = CacheList.new(cache_list_params)
-
-    respond_to do |format|
-      if @cache_list.save
-        format.html.phone
-        format.html { redirect_to admin_cache_lists_url }
-        format.js { redirect_back fallback_location: admin_cache_lists_url }
-        format.json { render :show }
-      else
-        format.html.phone { render :new }
-        format.html { render :new }
-        format.js { redirect_back fallback_location: admin_cache_lists_url }
-        format.json { render :show }
-      end
+    
+    unless @cache_list.save
+      render :new, locals: { model: @cache_list }, status: :unprocessable_entity
     end
   end
 
@@ -35,19 +25,9 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def update
     @cache_list.assign_attributes(cache_list_params)
-
-    respond_to do |format|
-      if @cache_list.save
-        format.html.phone
-        format.html { redirect_to admin_cache_lists_url }
-        format.js { redirect_back fallback_location: admin_cache_lists_url }
-        format.json { render :show }
-      else
-        format.html.phone { render :edit }
-        format.html { render :edit }
-        format.js { redirect_back fallback_location: admin_cache_lists_url }
-        format.json { render :show }
-      end
+    
+    unless @cache_list.save
+      render :edit, locals: { model: @cache_list }, status: :unprocessable_entity
     end
   end
 
