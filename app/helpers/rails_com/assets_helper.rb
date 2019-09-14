@@ -46,23 +46,14 @@ module RailsCom::AssetsHelper
   def assets_load_path(relative_path:, exts:, suffix: nil)
     filenames = [
       "controllers/#{controller_path}/#{action_name}",
-      "controllers/#{@_rendered_path}"
     ]
     if suffix
       filenames.map! { |i| [i, '-', suffix].join }
     end
     
     filenames.each do |filename|
-      paths = []
-      paths << Rails.root.join(relative_path, filename)
-      if @_rendered_engine
-        paths << @_rendered_engine.join(file_path)
-      end
-
       exts.each do |ext|
-        paths.each do |path|
-          return filename if File.exist?(path + ext)
-        end
+        return filename if Webpacker.manifest.lookup(filename + ext)
       end
     end
     
