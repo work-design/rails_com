@@ -3,14 +3,13 @@ module RailsCom::AssetsHelper
 
   # Assets path: app/assets/javascripts/controllers
   def origin_js_load(**options)
-    exts = ['.js', '.js.erb'] + Array(options.delete(:ext))
-    relative_path = 'app/assets/javascripts'
-    asset_path = assets_load_path(relative_path: relative_path, exts: exts, suffix: options.delete(:suffix))
+    exts = ['.js'] + Array(options.delete(:ext))
+    dealer, asset_path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
     
-    if asset_path
-      r = javascript_pack_tag(asset_path, options)
-      ar = asset_pack_path(asset_path + '.js')
-      [r.html_safe, ar]
+    if dealer == :webpacker
+      [javascript_pack_tag(asset_path, options).html_safe, asset_pack_path(asset_path + ext)]
+    elsif dealer == :sprockets
+      [javascript_include_tag(asset_path, options).html_safe, asset_path(asset_path + ext)]
     else
       []
     end
@@ -32,33 +31,31 @@ module RailsCom::AssetsHelper
 
   # Assets path: app/assets/stylesheets/controllers
   def css_load(**options)
-    exts = ['.css', '.css.erb'] + Array(options.delete(:ext))
-    relative_path = 'app/assets/stylesheets'
-    asset_path = assets_load_path(relative_path: relative_path, exts: exts, suffix: options.delete(:suffix))
+    exts = ['.css'] + Array(options.delete(:ext))
+    dealer, asset_path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
     
-    if asset_path
-      r = stylesheet_link_tag(asset_filename, options)
-      r.html_safe
+    if dealer == :sprockets
+      stylesheet_link_tag(asset_path, options).html_safe
+    elsif dealer == :webpacker
+      stylesheet_pack_tag(asset_path, options).html_safe
     end
   end
 
   private
-  def assets_load_path(relative_path:, exts:, suffix: nil)
-    filenames = [
-      "controllers/#{controller_path}/#{action_name}",
-    ]
-    if suffix
-      filenames.map! { |i| [i, '-', suffix].join }
-    end
+  def assets_load_path(exts: [], suffix: nil)
+    exts.uniq!
+    filename = "controllers/#{controller_path}/#{action_name}"
+    filename = [filename, '-', suffix].join if suffix
     
-    filenames.each do |filename|
-      exts.each do |ext|
-        #Rails.application.assets.find_asset('application.css').present?
-        return filename if Webpacker.manifest.lookup(filename + ext)
+    exts.each do |ext|
+      if Rails.application.assets.find_asset(filename + ext).present?
+        return [:sprockets, filename, ext]
+      elsif Webpacker.manifest.lookup(filename + ext)
+        return [:webpacker, filename, ext]
       end
     end
     
-    nil
+    []
   end
 
 end
