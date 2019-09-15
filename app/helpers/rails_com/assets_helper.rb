@@ -53,6 +53,7 @@ module RailsCom::AssetsHelper
     
     filenames.each do |filename|
       exts.each do |ext|
+        #Rails.application.assets.find_asset('application.css').present?
         return filename if Webpacker.manifest.lookup(filename + ext)
       end
     end
