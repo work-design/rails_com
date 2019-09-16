@@ -50,7 +50,7 @@ module RailsCom::AssetsHelper
     exts.each do |ext|
       if Webpacker.manifest.lookup(filename + ext)
         return [:webpacker, filename, ext]
-      elsif Rails.application.assets.find_asset(filename + ext).present?
+      elsif Rails.application.assets_manifest.find_sources(filename + ext).count > 0
         return [:sprockets, filename, ext]
       end
     end
