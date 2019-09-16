@@ -48,10 +48,10 @@ module RailsCom::AssetsHelper
     filename = [filename, '-', suffix].join if suffix
     
     exts.each do |ext|
-      if Rails.application.assets.find_asset(filename + ext).present?
-        return [:sprockets, filename, ext]
-      elsif Webpacker.manifest.lookup(filename + ext)
+      if Webpacker.manifest.lookup(filename + ext)
         return [:webpacker, filename, ext]
+      elsif Rails.application.assets.find_asset(filename + ext).present?
+        return [:sprockets, filename, ext]
       end
     end
     
