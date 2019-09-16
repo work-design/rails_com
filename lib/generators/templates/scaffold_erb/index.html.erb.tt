@@ -28,7 +28,7 @@
         <%%= link_to edit_<%= singular_route_name %>_path(<%= singular_name %>), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-pencil-alt"></i>
         <%% end %>
-        <%%= link_to <%= singular_route_name %>_path(<%= singular_name %>), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+        <%%= link_to <%= singular_route_name %>_path(<%= singular_name %>), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <%% end %>
       </td>
