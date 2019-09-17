@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
 class Array
-
-  # fill an array with the given elements right;
-  #   arr = [1, 2, 3]
-  #   arr.rjust! 5, nil
-  #   # => [1, 2, 3, nil, nil]
-  def rjust!(n, x)
-    return self if n < length
-    insert(0, *Array.new([0, n-length].max, x))
-  end
-
-  ##
+  
   #   arr = [1, 2, 3]
   #   arr.ljust! 5, nil
   #   # => [nil, nil, 1, 2, 3]
   def ljust!(n, x)
+    return self if n < length
+    insert(0, *Array.new([0, n-length].max, x))
+  end
+
+  # fill an array with the given elements left;
+  #   arr = [1, 2, 3]
+  #   arr.rjust! 5, nil
+  #   # => [1, 2, 3, nil, nil]
+  def rjust!(n, x)
     return self if n < length
     fill(x, length...n)
   end
