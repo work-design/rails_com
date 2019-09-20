@@ -11,6 +11,8 @@ module RailsCom
       else
         prefixes = @lookup_context.prefixes
       end
+      
+      @lookup_context.formats = @lookup_context.formats[0..0]
       @lookup_context.find_template(path, prefixes, true, locals, @details)
     end
 
