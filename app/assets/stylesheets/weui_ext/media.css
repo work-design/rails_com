@@ -7,6 +7,9 @@
 }
 
 .weui-media-box__ft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: max-content;
   align-self: stretch;
   margin-top: -16px;
@@ -14,6 +17,9 @@
 }
 
 .weui-media-box__ft .weui-btn {
-  height: 100%;
   border-radius: 0;
+  width: 100%;
+}
+.weui-media-box__ft .weui-btn + .weui-btn {
+  margin-top: 0;
 }
