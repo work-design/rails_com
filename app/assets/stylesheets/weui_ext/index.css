@@ -1,0 +1,15 @@
+/*
+*= require_tree .
+*= require_self
+*/
+
+
+html, body {
+  height: 100%;
+}
+
+.weui-tabbar__icon .weui-badge {
+  position: absolute;
+  top: -.4em;
+  right: -.4em;
+}

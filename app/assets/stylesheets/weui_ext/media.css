@@ -1,0 +1,19 @@
+.weui-media-box {
+  padding-right: 0;
+}
+
+.weui-media-box__bd {
+  padding-right: 16px;
+}
+
+.weui-media-box__ft {
+  max-width: max-content;
+  align-self: stretch;
+  margin-top: -16px;
+  margin-bottom: -16px;
+}
+
+.weui-media-box__ft .weui-btn {
+  height: 100%;
+  border-radius: 0;
+}
