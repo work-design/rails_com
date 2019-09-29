@@ -39,7 +39,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     config_choice = app.config.active_storage.private_service
     if config_choice
       configs = app.config.active_storage.service_configurations
-      binding.pry
       ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
     end
     ActiveStorage::Current.host = SETTING['host'] if defined? SETTING
