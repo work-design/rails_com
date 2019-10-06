@@ -7,10 +7,6 @@ class Erb::Generators::ScaffoldGenerator
   def copy_view_files
     available_views = [
       'index.html',
-      'edit.js',
-      'show.html',
-      'show.js',
-      'new.js',
       '_form.html',
       '_filter.html',
       '_show_table.html'

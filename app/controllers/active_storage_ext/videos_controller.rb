@@ -7,7 +7,7 @@ class ActiveStorageExt::VideosController < RailsCom.config.app_controller.consta
   end
 
   def show
-    expires_in ActiveStorage::Blob.service.url_expires_in
+    expires_in ActiveStorage.service_urls_expire_in
   end
 
   def transfer
