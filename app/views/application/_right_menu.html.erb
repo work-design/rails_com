@@ -1,6 +1,6 @@
 <div class="right menu">
   <%= render partial: 'shared/locales' %>
-  <%= render partial: 'rails_notice/link' %>
+  <%= render partial: 'notice_link' %>
   <% if current_user %>
     <div class="ui simple dropdown item">
       <% if current_user.avatar.attached? %>

@@ -42,8 +42,8 @@ module RailsCom::Application
       session[:zone] = zone
     end
 
-    if current_user && current_user.timezone.blank?
-      current_user.update timezone: Time.zone.name
+    if current_receiver && current_receiver.timezone.blank?
+      current_receiver.update timezone: Time.zone.name
     end
     logger.debug "  ==========> Zone: #{Time.zone}"
   end
@@ -75,8 +75,8 @@ module RailsCom::Application
     I18n.locale = locale
     session[:locale] = locale
 
-    if current_user && current_user.locale.to_s != I18n.locale.to_s
-      current_user.update locale: I18n.locale
+    if current_receiver && current_receiver.locale.to_s != I18n.locale.to_s
+      current_receiver.update locale: I18n.locale
     end
 
     logger.debug "  ==========> Locale: #{I18n.locale}"
@@ -85,8 +85,8 @@ module RailsCom::Application
   def set_country
     if params[:country]
       session[:country] = params[:country]
-    elsif current_user
-      session[:country] = current_user.country
+    elsif current_receiver
+      session[:country] = current_receiver.country
     end
 
     logger.debug "  ==========> Country: #{session[:country]}"

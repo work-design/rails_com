@@ -19,7 +19,11 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
 
   initializer 'rails_com.add_assets_templates' do |app|
-    app.config.assets.paths.push(*Dir[File.expand_path('lib/nondigest_assets/*', root)])
+    app.config.assets.paths.push(
+      *Dir[
+        File.expand_path('lib/nondigest_assets/*', root)
+      ]
+    )
   end
 
   initializer 'rails_com.init_active_storage' do |app|
