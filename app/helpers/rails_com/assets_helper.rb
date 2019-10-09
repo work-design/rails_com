@@ -5,7 +5,7 @@ module RailsCom::AssetsHelper
   def origin_js_load(**options)
     exts = ['.js'] + Array(options.delete(:ext))
     dealer, asset_path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
-    
+
     if dealer == :webpacker
       [javascript_pack_tag(asset_path, options).html_safe, asset_pack_path(asset_path + ext)]
     elsif dealer == :sprockets
@@ -44,9 +44,9 @@ module RailsCom::AssetsHelper
   private
   def assets_load_path(exts: [], suffix: nil)
     exts.uniq!
-    filename = "controllers/#{controller_path}/#{action_name}"
+    filename = "controllers/#{controller_path}/#{@_rendered_template}"
     filename = [filename, '-', suffix].join if suffix
-    
+
     exts.each do |ext|
       if Webpacker.manifest.lookup(filename + ext)
         return [:webpacker, filename, ext]

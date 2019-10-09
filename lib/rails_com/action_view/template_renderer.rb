@@ -6,6 +6,7 @@ module RailsCom
     def render(context, options)
       # todo better implement
       @lookup_context.send :_set_detail, :formats, @lookup_context.formats[0..0]
+      context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
     
