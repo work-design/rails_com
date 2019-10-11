@@ -32,13 +32,15 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
   
   config.after_initialize do |app|
-    webpack = Webpacker::YamlHelper.new
-    Rails::Engine.subclasses.each do |engine|
-      engine.paths['app/assets'].existent_directories.select(&->(i){ i.end_with?('javascripts') }).each do |path|
-        webpack.append 'resolved_paths', path
+    if RailsCom.config.custom_webpacker
+      webpack = Webpacker::YamlHelper.new
+      Rails::Engine.subclasses.each do |engine|
+        engine.paths['app/assets'].existent_directories.select(&->(i){ i.end_with?('javascripts') }).each do |path|
+          webpack.append 'resolved_paths', path
+        end
       end
+      webpack.dump
     end
-    webpack.dump
 
     config_choice = app.config.active_storage.private_service
     if config_choice
