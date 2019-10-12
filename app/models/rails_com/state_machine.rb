@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module StateMachine
+module RailsCom::StateMachine
 
   # to defined next_xxx_states in class
 
