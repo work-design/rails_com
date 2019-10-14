@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope 'rails/active_storage', module: :active_storage_ext do
+  scope 'rails/active_storage', module: :com do
     resources :direct_uploads, only: [:create]
   end
 
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :rails, module: 'active_storage_ext/admin', as: 'rails_ext' do
+  scope :admin, module: 'com/admin', as: :admin do
+    resources :infos
+    resources :cache_lists
     resources :attachments, only: [:index, :destroy] do
       get :garbled, on: :collection
       delete :delete, on: :member
@@ -22,11 +24,6 @@ Rails.application.routes.draw do
       get :unattached, on: :collection
     end
     resources :blob_defaults
-  end
-
-  scope :admin, module: 'com/admin', as: :admin do
-    resources :infos
-    resources :cache_lists
   end
 
   scope module: 'com' do

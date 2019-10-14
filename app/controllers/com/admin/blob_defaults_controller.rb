@@ -1,4 +1,4 @@
-class ActiveStorageExt::Admin::BlobDefaultsController < ActiveStorageExt::Admin::BaseController
+class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
   before_action :set_blob_default, only: [:show, :edit, :update, :destroy]
 
   def index

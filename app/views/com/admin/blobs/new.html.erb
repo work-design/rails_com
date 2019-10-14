@@ -1,11 +1,11 @@
 <div class="ui segment breadcrumb">
-  <%= link_to 'Back', rails_ext_blobs_path, class: 'section' %>
+  <%= link_to 'Back', admin_blobs_path, class: 'section' %>
   <i class="fas fa-angle-right divider"></i>
   <div class="active section">Add</div>
 </div>
 
 <div class="ui segment">
-  <%= form_with model: @blob, url: rails_ext_blobs_path, local: true do |f| %>
+  <%= form_with model: @blob, url: admin_blobs_path, local: true do |f| %>
     <%= render 'shared/error_messages', target: @blob %>
     <%= f.file_field :io %>
     <%= f.submit %>

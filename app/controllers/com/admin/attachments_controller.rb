@@ -1,4 +1,4 @@
-class ActiveStorageExt::Admin::AttachmentsController < ActiveStorageExt::Admin::BaseController
+class Com::Admin::AttachmentsController < Com::Admin::BaseController
   before_action :set_attachment, only: [:delete, :destroy]
 
   def index

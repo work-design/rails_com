@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActiveStorageExt::AudiosController < RailsCom.config.app_controller.constantize
+class Com::VideosController < RailsCom.config.app_controller.constantize
   before_action :set_video, only: [:show, :transfer]
   before_action do
     ActiveStorage::Current.host = request.base_url
@@ -20,7 +20,8 @@ class ActiveStorageExt::AudiosController < RailsCom.config.app_controller.consta
 
   private
   def set_video
-    @audio = ActiveStorage::Blob.find(params[:id])
+    @attachment = ActiveStorage::Attachment.find(params[:id])
+    @video = @attachment.blob
   end
 
 end

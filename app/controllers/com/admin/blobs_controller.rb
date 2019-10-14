@@ -1,4 +1,4 @@
-class ActiveStorageExt::Admin::BlobsController < ActiveStorageExt::Admin::BaseController
+class Com::Admin::BlobsController < Com::Admin::BaseController
   before_action :set_blob, only: [:destroy]
 
   def index
