@@ -33,7 +33,6 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def destroy
     @cache_list.destroy
-    redirect_to admin_cache_lists_url
   end
 
   private

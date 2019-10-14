@@ -21,10 +21,8 @@ class Com::Admin::BlobsController < Com::Admin::BaseController
   def create
     @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
 
-    if @blob.save
-      redirect_to rails_ext_blobs_url
-    else
-      render :new
+    unless @blob.save
+      render :new, locals: { model: @blob }, status: :unprocessable_entity
     end
   end
 

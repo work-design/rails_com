@@ -12,10 +12,8 @@ class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
   def create
     @blob_default = ActiveStorage::BlobDefault.new(blob_default_params)
 
-    if @blob_default.save
-      redirect_to rails_ext_blob_defaults_url
-    else
-      render :new
+    unless @blob_default.save
+      render :new, locals: { model: @blob_default }, status: :unprocessable_entity
     end
   end
 
@@ -26,16 +24,15 @@ class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
   end
 
   def update
-    if @blob_default.update(blob_default_params)
-      redirect_to rails_ext_blob_defaults_url
-    else
-      render :edit
+    @blob_default.assign_attributes(blob_default_params)
+    
+    unless @blob_default.save
+      render :edit, locals: { model: @blob_default }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @blob_default.destroy
-    redirect_to rails_ext_blob_defaults_url
   end
 
   private

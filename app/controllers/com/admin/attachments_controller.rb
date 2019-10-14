@@ -2,8 +2,8 @@ class Com::Admin::AttachmentsController < Com::Admin::BaseController
   before_action :set_attachment, only: [:delete, :destroy]
 
   def index
-    q_params = {}.with_indifferent_access
-    q_params.merge params.fetch(:q, {}).permit(:record_type, :record_id, :name)
+    q_params = {}
+    q_params.merge params.permit(:record_type, :record_id, :name)
     @attachments = ActiveStorage::Attachment.default_where(q_params).order(id: :desc).page(params[:page])
   end
 

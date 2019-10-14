@@ -12,10 +12,8 @@ class Com::Admin::InfosController < Com::Admin::BaseController
   def create
     @info = Info.new(info_params)
 
-    if @info.save
-      redirect_to admin_infos_url
-    else
-      render :new
+    unless @info.save
+      render :new, locals: { model: @info }, status: :unprocessable_entity
     end
   end
 
@@ -26,16 +24,15 @@ class Com::Admin::InfosController < Com::Admin::BaseController
   end
 
   def update
-    if @info.update(info_params)
-      redirect_to admin_infos_url
-    else
-      render :edit
+    @info.assign_attributes(info_params)
+    
+    unless @info.save
+      render :edit, locals: { model: @info }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @info.destroy
-    redirect_to admin_infos_url
   end
 
   private
