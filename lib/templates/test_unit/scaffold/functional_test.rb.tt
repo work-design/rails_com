@@ -25,7 +25,7 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
       post <%= index_helper %>_url, params: { <%= '#{singular_table_name}: { #{attributes_string} }' %> }
     end
 
-    assert_redirected_to <%= singular_table_name %>_url(<%= class_name %>.last)
+    assert_response :success
   end
 
   test 'show ok' do
@@ -40,7 +40,7 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
 
   test 'update ok' do
     patch <%= show_helper %>, params: { <%= '#{singular_table_name}: { #{attributes_string} }' %> }
-    assert_redirected_to <%= singular_table_name %>_url(<%= '@#{singular_table_name}' %>)
+    assert_response :success
   end
 
   test 'destroy ok' do
@@ -48,7 +48,8 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
       delete <%= show_helper %>
     end
 
-    assert_redirected_to <%= index_helper %>_url
+    assert_response :success
   end
+
 end
 <% end -%>
