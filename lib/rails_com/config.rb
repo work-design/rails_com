@@ -11,6 +11,7 @@ module RailsCom #:nodoc:
     config.exception_log = true
     config.custom_webpacker = true
     config.github_hmac_key = 'must_change_this'
+    config.host = 'localhost:3000'
   end
 
 end
