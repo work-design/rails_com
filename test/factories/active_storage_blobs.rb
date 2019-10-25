@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :active_storage_blob, class: 'ActiveStorage::Blob' do
-    id { 1 }
     key { "MyString" }
     filename { "MyString" }
     content_type { 'image/jpeg' }

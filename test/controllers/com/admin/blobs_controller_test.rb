@@ -1,5 +1,5 @@
 require 'test_helper'
-class ActiveStorageExt::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
+class Com::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @blob = create :active_storage_blob

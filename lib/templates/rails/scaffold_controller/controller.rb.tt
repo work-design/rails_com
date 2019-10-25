@@ -13,7 +13,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
     unless @<%= orm_instance(singular_name).save %>
-      render :new, locals: { model: @<%= singular_name %> }, status: :bad_request
+      render :new, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class <%= controller_class_name %>Controller < <%= controller_class_path.map(&:c
     @<%= singular_name %>.assign_attributes(<%= singular_name %>_params)
 
     unless @<%= singular_name %>.save
-      render :edit, locals: { model: @<%= singular_name %> }, status: :bad_request
+      render :edit, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
     end
   end
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActiveStorageExt::Admin::AttachmentsControllerTest < ActionDispatch::IntegrationTest
+class Com::Admin::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @user = create :user

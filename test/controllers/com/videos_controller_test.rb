@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActiveStorageExt::VideosControllerTest < ActionDispatch::IntegrationTest
+class Com::VideosControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create :user
     @user.avatar.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'

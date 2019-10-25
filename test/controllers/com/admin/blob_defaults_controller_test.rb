@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActiveStorageExt::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
+class Com::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @blob_default = create :active_storage_blob_default
   end
