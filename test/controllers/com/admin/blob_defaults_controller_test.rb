@@ -6,28 +6,28 @@ class Com::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'index ok' do
-    get '/rails/blob_defaults'
+    get admin_blob_defaults_url
     assert_response :success
   end
 
   test 'new ok' do
-    get '/rails/blob_defaults/new'
+    get new_admin_blob_default_url, xhr: true
     assert_response :success
   end
 
   test 'create ok' do
     assert_difference('ActiveStorage::BlobDefault.count') do
-      post '/rails/blob_defaults', params: { blob_default: {  } }
+      post admin_blob_defaults_url, params: { blob_default: { record_class: 'User', name: 'avatar' } }, xhr: true
     end
 
-    assert_redirected_to '/rails/blob_defaults'
+    assert_response :success
   end
 
   test 'destroy ok' do
     assert_difference('ActiveStorage::BlobDefault.count', -1) do
-      delete rails_ext_blob_default_url(@blob_default)
+      delete admin_blob_default_url(@blob_default), xhr: true
     end
 
-    assert_redirected_to '/rails/blob_defaults'
+    assert_response :success
   end
 end

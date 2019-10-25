@@ -11,6 +11,8 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     g.templates.unshift File.expand_path('lib/templates', root)
   end
 
+  config.factory_bot.definition_file_paths += Dir["#{config.root}/test/factories"] if defined?(FactoryBotRails)
+
   initializer 'rails_com.assets.precompile' do |app|
     app.config.assets.precompile += ['rails_com_manifest.js']
     app.config.content_security_policy_nonce_generator = -> request {

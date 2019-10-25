@@ -5,29 +5,29 @@ class Com::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
     @blob = create :active_storage_blob
   end
 
-  test "should get index" do
-    get '/rails/blobs'
+  test 'index ok' do
+    get admin_blobs_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'new ok' do
     get new_blob_url
     assert_response :success
   end
 
-  test "should create blob" do
-    assert_difference('Blob.count') do
-      post blobs_url, params: { blob: {  } }
+  test 'create ok' do
+    assert_difference('ActiveStorage::Blob.count') do
+      post admin_blobs_url, params: { blob: {  } }
     end
 
-    assert_redirected_to blob_url(Blob.last)
+    assert_response :success
   end
 
-  test "should destroy blob" do
-    assert_difference('Blob.count', -1) do
-      delete blob_url(@blob)
+  test 'destroy ok' do
+    assert_difference('ActiveStorage::Blob.count', -1) do
+      delete admin_blob_url(@blob)
     end
 
-    assert_redirected_to blobs_url
+    assert_response :success
   end
 end
