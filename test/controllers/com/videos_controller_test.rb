@@ -1,7 +1,8 @@
 require 'test_helper'
-
 class Com::VideosControllerTest < ActionDispatch::IntegrationTest
+ 
   setup do
+    User.has_one_attached :avatar
     @user = create :user
     @user.avatar.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'
 

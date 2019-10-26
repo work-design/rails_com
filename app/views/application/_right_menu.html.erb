@@ -1,7 +1,7 @@
 <div class="right menu">
   <%= render partial: 'shared/locales' %>
   <%= render partial: 'notice_link' %>
-  <% if current_user %>
+  <% if defined?(current_user) && current_user %>
     <div class="ui simple dropdown item">
       <%= image_tag current_user.avatar, class: 'ui avatar image' if current_user.avatar.attached? %>
       <%= current_user.name %>
@@ -12,7 +12,7 @@
         <%= link_to '退出', logout_path, data: { confirm: '确认退出' }, class: 'item' %>
       </div>
     </div>
-  <% else %>
+  <% elsif defined?(RailsAuth) %>
     <%= link_to sign_path, class: 'item' do %>
       <i class="fas fa-user"></i>
       <span>登陆/注册</span>

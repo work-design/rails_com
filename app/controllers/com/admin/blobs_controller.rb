@@ -2,14 +2,14 @@ class Com::Admin::BlobsController < Com::Admin::BaseController
   before_action :set_blob, only: [:destroy]
 
   def index
-    q_params = {}.with_indifferent_access
-    q_params.merge params.fetch(:q, {}).permit(:key, :filename)
+    q_params = {}
+    q_params.merge! params.permit(:key, :filename)
     @blobs = ActiveStorage::Blob.default_where(q_params).order(id: :desc).page(params[:page])
   end
 
   def unattached
-    q_params = {}.with_indifferent_access
-    q_params.merge params.fetch(:q, {}).permit(:key, :filename)
+    q_params = {}
+    q_params.merge! params.permit(:key, :filename)
     @blobs = ActiveStorage::Blob.unattached.default_where(q_params).order(id: :desc).page(params[:page])
     render :index
   end

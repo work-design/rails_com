@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :direct_uploads, only: [:create]
   end
 
-  scope :rails, module: 'active_storage_ext', as: 'rails_ext' do
+  scope :rails, module: 'com', as: 'rails_ext' do
     resources :videos, only: [:show] do
       put :transfer, on: :member
     end
