@@ -1,6 +1,6 @@
 require 'test_helper'
-
 class Com::Admin::CacheListsControllerTest < ActionDispatch::IntegrationTest
+
   setup do
     @cache_list = create :cache_list
   end

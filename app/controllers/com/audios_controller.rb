@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Com::AudiosController < RailsCom.config.app_controller.constantize
+class Com::AudiosController < Com::BaseController
   before_action :set_video, only: [:show, :transfer]
   before_action do
     ActiveStorage::Current.host = request.base_url

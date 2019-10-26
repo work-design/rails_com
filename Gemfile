@@ -6,7 +6,7 @@ gem 'sprockets'
 gem 'webpacker'
 gem 'sqlite3'
 
-gem 'factory_bot_rails', github: 'thoughtbot/factory_bot_rails'
+gem 'factory_bot'
 gem 'sdoc'
 
 gem 'pry-rails'

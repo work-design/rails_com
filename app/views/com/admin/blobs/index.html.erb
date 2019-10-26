@@ -38,7 +38,7 @@
         <%= link_to admin_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
-        <%= link_to admin_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
+        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-play"></i>
         <% end %>
       </td>

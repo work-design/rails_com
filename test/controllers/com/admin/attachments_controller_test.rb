@@ -1,5 +1,4 @@
 require 'test_helper'
-
 class Com::Admin::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
   setup do

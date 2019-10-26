@@ -11,7 +11,7 @@ class Com::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'new ok' do
-    get new_blob_url
+    get new_admin_blob_url
     assert_response :success
   end
 
