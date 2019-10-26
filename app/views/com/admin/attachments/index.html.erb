@@ -1,6 +1,6 @@
 <div class="ui top attached borderless menu">
-  <%= link_to 'All', rails_ext_attachments_path, class: active_helper(action: 'index') %>
-  <%= link_to 'Garbled', garbled_rails_ext_attachments_path, class: active_helper(action: 'garbled') %>
+  <%= link_to 'All', admin_attachments_path, class: active_helper(action: 'index') %>
+  <%= link_to 'Garbled', garbled_admin_attachments_path, class: active_helper(action: 'garbled') %>
 </div>
 
 <div class="ui attached segment">
@@ -29,7 +29,7 @@
       <td><%= attachment.blob_id %></td>
       <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
       <td>
-        <%= link_to delete_rails_ext_attachment_path(attachment), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+        <%= link_to delete_admin_attachment_path(attachment), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>

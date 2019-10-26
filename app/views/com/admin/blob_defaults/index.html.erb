@@ -25,7 +25,7 @@
       <td><%= blob_default.name %></td>
       <td>
         <%= blob_default.file_blob.key if blob_default.file_blob %>
-        <%= render 'active_storage_ext/attachments/list', target: blob_default.file %>
+        <%= render 'com/attachments/list', target: blob_default.file %>
       </td>
       <td><%= blob_default.private %></td>
       <td>

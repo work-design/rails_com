@@ -1,8 +1,9 @@
 require 'test_helper'
-
 class Com::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
+ 
   setup do
     @blob_default = create :active_storage_blob_default
+    @blob_default.file.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'
   end
 
   test 'index ok' do
