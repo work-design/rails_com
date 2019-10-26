@@ -13,3 +13,5 @@ gem 'pry-rails'
 gem 'awesome_print'
 gem 'kaminari'
 gem 'jbuilder'
+
+gem 'default_form', github: 'qinmingyuan/default_form'
