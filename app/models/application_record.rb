@@ -1,3 +1,3 @@
 class ApplicationRecord < ActiveRecord::Base
-  include RailsCom::ApplicationRecord
+  self.abstract_class = true
 end unless defined? ApplicationRecord
