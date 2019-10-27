@@ -10,5 +10,5 @@ FactoryBot.find_definitions
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   self.file_fixture_path = File.expand_path('fixtures/files', __dir__)
-  parallelize(workers: 2)
+  #parallelize(workers: 2)
 end
