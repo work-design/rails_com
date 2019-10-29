@@ -5,7 +5,7 @@ class Com::PdfsController < Com::BaseController
   def show
     disposition = params[:disposition] || 'inline'
     @pdf ||= @pdf_class.new(**pdf_params)
-    send_data @pdf.render, filename: 'cert_file', disposition: disposition, type: 'application/pdf'
+    send_data @pdf.render, filename: 'cert_file.pdf', disposition: disposition, type: 'application/pdf'
   end
 
   private
