@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :audios, only: [:show] do
       put :transfer, on: :member
     end
-    resources :pdfs, only: [:show]
+    resources :pdfs, only: [:show] do
+      get :png, on: :member
+    end
   end
 
   scope :admin, module: 'com/admin', as: :admin do
