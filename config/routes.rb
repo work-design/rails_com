@@ -21,7 +21,10 @@ Rails.application.routes.draw do
       put :transfer, on: :member
     end
     resources :pdfs, only: [:show] do
-      get :png, on: :member
+      member do
+        get :png
+        get :jpg
+      end
     end
   end
 

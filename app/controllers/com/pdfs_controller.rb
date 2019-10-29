@@ -3,23 +3,28 @@ class Com::PdfsController < Com::BaseController
   before_action :set_pdf, only: [:show, :png]
 
   def show
-    disposition = params[:disposition] || 'inline'
-    @pdf ||= @pdf_class.new(**pdf_params)
-    send_data @pdf.render, filename: 'cert_file.pdf', disposition: disposition, type: 'application/pdf'
+    send_data @pdf.render, filename: 'cert_file.pdf', disposition: @disposition, type: 'application/pdf'
   end
   
   def png
-    disposition = params[:disposition] || 'inline'
-    @pdf ||= @pdf_class.new(**pdf_params)
     require 'vips'
     buffer = Vips::Image.new_from_buffer @pdf.render, ''
     
-    send_data buffer.write_to_buffer('.png'), filename: 'cert_file.png', disposition: disposition, type: 'image/png'
+    send_data buffer.write_to_buffer('.png'), filename: 'cert_file.png', disposition: @disposition, type: 'image/png'
+  end
+  
+  def jpg
+    require 'vips'
+    buffer = Vips::Image.new_from_buffer @pdf.render, ''
+
+    send_data buffer.write_to_buffer('.jpg'), filename: 'cert_file.jpg', disposition: @disposition, type: 'image/jpg'
   end
 
   private
   def set_pdf
     @pdf_class = params[:id].constantize
+    @pdf ||= @pdf_class.new(**pdf_params)
+    @disposition = params[:disposition] || 'inline'
   end
   
   def pdf_params
