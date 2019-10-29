@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  
+  scope module: 'com' do
+    controller :common do
+      get :infos
+      get :cache_list
+      get :enum_list
+      match :deploy, via: [:get, :post]
+    end
+  end
 
   scope 'rails/active_storage', module: :com do
     resources :direct_uploads, only: [:create]
@@ -11,6 +20,7 @@ Rails.application.routes.draw do
     resources :audios, only: [:show] do
       put :transfer, on: :member
     end
+    resources :pdfs, only: [:show]
   end
 
   scope :admin, module: 'com/admin', as: :admin do
@@ -24,15 +34,6 @@ Rails.application.routes.draw do
       get :unattached, on: :collection
     end
     resources :blob_defaults
-  end
-
-  scope module: 'com' do
-    controller :common do
-      get :infos
-      get :cache_list
-      get :enum_list
-      match :deploy, via: [:get, :post]
-    end
   end
 
 end
