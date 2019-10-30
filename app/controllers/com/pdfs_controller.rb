@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Com::PdfsController < Com::BaseController
-  before_action :set_pdf, only: [:show, :png]
+  before_action :set_pdf, only: [:show, :png, :jpg]
 
   def show
     send_data @pdf.render, filename: 'cert_file.pdf', disposition: @disposition, type: 'application/pdf'
@@ -8,14 +8,14 @@ class Com::PdfsController < Com::BaseController
   
   def png
     require 'vips'
-    buffer = Vips::Image.new_from_buffer @pdf.render, ''
+    buffer = Vips::Image.pdfload_buffer @pdf.render
     
     send_data buffer.write_to_buffer('.png'), filename: 'cert_file.png', disposition: @disposition, type: 'image/png'
   end
   
   def jpg
     require 'vips'
-    buffer = Vips::Image.new_from_buffer @pdf.render, ''
+    buffer = Vips::Image.pdfload_buffer @pdf.render
 
     send_data buffer.write_to_buffer('.jpg'), filename: 'cert_file.jpg', disposition: @disposition, type: 'image/jpg'
   end
