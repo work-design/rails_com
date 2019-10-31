@@ -15,6 +15,13 @@ module RailsCom::ControllerHelper
     !(_if + _unless).uniq.include?(false)
   end
 
+  def valid_ivars
+    _except = self._protected_ivars.to_a + [
+      :@marked_for_same_origin_verification
+    ]
+    self.instance_variables - _except
+  end
+
 end
 
 module RailsCom::FilterHelper
