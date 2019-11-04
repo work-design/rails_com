@@ -4,7 +4,11 @@ module RailsCom
   module TemplateRenderer
     
     def render(context, options)
-      _formats = [context.request.format.symbol].presence || @lookup_context.formats[0..0].presence || [:html]
+      if context.request.format.symbol
+        _formats = [context.request.format.symbol]
+      else
+        _formats = @lookup_context.formats[0..0].presence || [:html]
+      end
 
       # todo better implement
       @lookup_context.send :_set_detail, :formats, _formats
