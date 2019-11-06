@@ -29,7 +29,10 @@
     <tr id="blob_<%= blob.id %>">
       <td><%= blob.id %></td>
       <td><%= blob.key %></td>
-      <td><%= blob.filename %></td>
+      <td>
+        <p><%= image_tag blob.service_url if blob.image? %></p>
+        <p><%= blob.filename %></p>
+      </td>
       <td><%= blob.content_type %></td>
       <td><%= simple_format(blob.metadata) %></td>
       <td><%= number_to_human_size(blob.byte_size) %></td>
