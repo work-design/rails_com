@@ -18,6 +18,6 @@ document.querySelectorAll('input[data-submit="true"], select[data-submit="true"]
 document.querySelectorAll('input[data-form="true"], select[data-form="true"]').forEach(function(el) {
   el.addEventListener('change', function () {
     Rails.fire(this.form, 'submit')
-  });
-});
+  })
+})
 

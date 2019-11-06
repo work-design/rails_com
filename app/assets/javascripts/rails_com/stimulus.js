@@ -9,7 +9,7 @@ DOMStringMap.prototype.add_controller = function(controller_name) {
   } else {
     this.controller = controller_name
   }
-};
+}
 
 // el.dataset.add_target('xx')
 DOMStringMap.prototype.add_target = function(target_name) {
