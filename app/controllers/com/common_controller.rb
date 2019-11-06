@@ -2,15 +2,9 @@ class Com::CommonController < Com::BaseController
   skip_before_action :verify_authenticity_token, only: [:deploy]
 
   def info
-    need_updated = false
-    is_force = true
-    current_version = {'ios' => '0.1.2', 'android' => '1.0.0'}
-
-    if params[:version].gsub(".", "").to_i < current_version[params[:platform]].gsub(".", "").to_i
-      need_updated = true
-    end
-
-    render json: {force: is_force && need_updated, updated: need_updated, url: 'https://app.goceshi.com/qy/yui7', latest_version: current_version[params[:platform]], content: need_updated ? "修复视频模糊、录制及分享到微信群等问题" : '已是最新版本', title: '0.1.2版本更新'}
+    q_params = {}
+    q_params.merge! params.permit(:platform)
+    @infos = Info.default_where(q_params)
   end
 
   def cache_list
@@ -20,6 +14,12 @@ class Com::CommonController < Com::BaseController
   def enum_list
     r = I18n.backend.translations[I18n.locale][:activerecord][:enum]
     render json: { locale: I18n.locale, values: r }
+  end
+  
+  def qrcode
+    options = qrcode_params.to_h.symbolize_keys
+    buffer = QrcodeHelper.code_png(params[:url], **options)
+    send_data buffer, filename: 'cert_file.png', disposition: 'inline', type: 'image/png'
   end
 
   def deploy
@@ -32,6 +32,19 @@ class Com::CommonController < Com::BaseController
     Deploy.works
 
     render plain: result
+  end
+  
+  private
+  def qrcode_params
+    params.permit(
+      :resize_gte_to,
+      :resize_exactly_to,
+      :fill,
+      :color,
+      :size,
+      :border_modules,
+      :module_px_size
+    )
   end
 
 end
