@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
-require 'httparty'
+require 'httpx'
 module ActiveStorage
   class Attached
 
     def url_sync(url)
       filename = File.basename URI(url).path
-
+      
       Tempfile.open do |file|
         file.binmode
-        HTTParty.get(url, stream_body: true) do |fragment|
+        
+        HTTPX.get(url).body.each do |fragment|
           file.write fragment
         end
 
