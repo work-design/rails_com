@@ -11,14 +11,14 @@ class Com::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'new ok' do
-    get new_admin_blob_url
+    get new_admin_blob_url, xhr: true
     assert_response :success
   end
 
   test 'create ok' do
     io = Rack::Test::UploadedFile.new File.join(self.class.file_fixture_path, 'empty_file.txt')
     assert_difference('ActiveStorage::Blob.count') do
-      post admin_blobs_url, params: { blob: { io: io } }
+      post admin_blobs_url, params: { blob: { io: io } }, xhr: true
     end
 
     assert_response :success
@@ -26,7 +26,7 @@ class Com::Admin::BlobsControllerTest < ActionDispatch::IntegrationTest
 
   test 'destroy ok' do
     assert_difference('ActiveStorage::Blob.count', -1) do
-      delete admin_blob_url(@blob)
+      delete admin_blob_url(@blob), xhr: true
     end
 
     assert_response :success
