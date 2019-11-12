@@ -1,4 +1,4 @@
-module RecordInstanceExt
+module RailsCom::ActiveRecordInclude
 
   def error_text
     errors.full_messages.join("\n")
@@ -11,5 +11,5 @@ module RecordInstanceExt
 end
 
 ActiveSupport.on_load :active_record do
-  include RecordInstanceExt
+  include RailsCom::ActiveRecordInclude
 end
