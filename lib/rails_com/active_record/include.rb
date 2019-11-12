@@ -1,4 +1,4 @@
-module RailsCom::ActiveRecordInclude
+module RailsCom::ActiveRecord::Include
 
   def error_text
     errors.full_messages.join("\n")
@@ -11,5 +11,5 @@ module RailsCom::ActiveRecordInclude
 end
 
 ActiveSupport.on_load :active_record do
-  include RailsCom::ActiveRecordInclude
+  include RailsCom::ActiveRecord::Include
 end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 # Ruby core extension
-require_relative 'core/hash'
-require_relative 'core/nil'
-require_relative 'core/array'
-require_relative 'core/date'
-require_relative 'core/numeric'
-require_relative 'core/string'
-require_relative 'core/time_format'
+require 'rails_com/core/hash'
+require 'rails_com/core/nil'
+require 'rails_com/core/array'
+require 'rails_com/core/date'
+require 'rails_com/core/numeric'
+require 'rails_com/core/string'
+require 'rails_com/core/time_format'
 
-require_relative 'core/pathname'
+require 'rails_com/core/pathname'

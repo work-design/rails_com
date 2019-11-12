@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom::ActiveRecordExtend
+module RailsCom::ActiveRecord::Extend
 
   # user by  in_batches:
   #  * of
@@ -28,5 +28,5 @@ module RailsCom::ActiveRecordExtend
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsCom::ActiveRecordExtend
+  extend RailsCom::ActiveRecord::Extend
 end

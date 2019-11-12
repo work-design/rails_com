@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'action_controller/controller_helper'
-require_relative 'action_controller/errors'
-require_relative 'action_controller/parameters'
+require 'rails_com/action_controller/controller_helper'
+require 'rails_com/action_controller/errors'
+require 'rails_com/action_controller/parameters'
