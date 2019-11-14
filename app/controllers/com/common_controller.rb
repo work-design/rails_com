@@ -26,8 +26,7 @@ class Com::CommonController < Com::BaseController
     digest = request.headers['X-Hub-Signature'].to_s
     digest.sub!('sha1=', '')
 
-    return unless digest == Deploy.github_hmac(request.body)
-
+    return unless digest == Deploy.github_hmac(request.body.read)
     result = ''
     Deploy.works
 
