@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom::API
+module RailsCom::Api
   extend ActiveSupport::Concern
 
   included do

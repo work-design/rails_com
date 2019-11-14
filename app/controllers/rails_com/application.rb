@@ -10,7 +10,6 @@ module RailsCom::Application
 
   included do
     before_action :set_locale, :set_timezone, :set_variant
-    after_action :set_receiver
     layout :set_layout
     helper_method :current_receiver
   end
@@ -97,13 +96,6 @@ module RailsCom::Application
       flash[:notice] = '操作成功！'
     elsif response.client_error?
       flash[:alert] = '请检查参数！'
-    end
-  end
-
-  def set_receiver
-    if current_receiver
-      session['receiver_type'] = current_receiver.class.base_class.name
-      session['receiver_id'] = current_receiver.id
     end
   end
 
