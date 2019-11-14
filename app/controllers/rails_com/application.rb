@@ -100,7 +100,7 @@ module RailsCom::Application
   end
 
   def current_receiver
-    defined?(current_authorized_token) && current_authorized_token
+    defined?(current_user) && current_user
   end
 
   def default_params

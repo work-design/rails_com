@@ -1,11 +1,11 @@
 module RailsCom::Connection
   extend ActiveSupport::Concern
   included do
-    identified_by :current_receiver
+    identified_by :verified_receiver
   end
 
   def connect
-    self.current_receiver = find_verified_receiver
+    self.verified_receiver = find_verified_receiver
   end
   
   protected
