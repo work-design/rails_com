@@ -1,14 +1,5 @@
-<div class="ui top attached borderless menu">
-  <div class="header item">Admin Infos</div>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'New Admin Info', new_admin_info_path, class: 'ui teal button' %>
-    </div>
-  </div>
-</div>
-
-<div class="ui attached segment">
-  <%= render 'search_form' %>
+<div class="ui top attached segment">
+  <%= render 'filter' %>
 </div>
 
 <table class="ui bottom attached selectable table">
@@ -19,7 +10,11 @@
       <th><%= Info.human_attribute_name(:value) %></th>
       <th><%= Info.human_attribute_name(:platform) %></th>
       <th><%= Info.human_attribute_name(:version) %></th>
-      <th>Actions</th>
+      <th>
+        <%= link_to new_admin_info_path, remote: true, class: 'ui mini primary button' do %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -30,12 +25,12 @@
       <td><%= info.value %></td>
       <td><%= info.platform_i18n %></td>
       <td><%= info.version %></td>
-      <td class="ui labels">
-        <%= link_to edit_admin_info_path(info), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
+      <td>
+        <%= link_to edit_admin_info_path(info), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to admin_info_path(info), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+        <%= link_to admin_info_path(info), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-trash"></i>
         <% end %>
       </td>
     </tr>
