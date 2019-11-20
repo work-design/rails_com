@@ -1,0 +1,10 @@
+@import 'weui/dist/style/weui';
+@import '@fortawesome/fontawesome-free/css/fontawesome';
+@import 'rails_com/fa_all';
+@import 'weui_ext';
+
+
+.fa-shopping-cart.weui-tabbar__icon {
+  position: relative;
+}
+
