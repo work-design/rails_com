@@ -17,7 +17,6 @@ module RailsCom::Application
       if exp.is_a?(ActiveRecord::RecordInvalid)
         logger.debug exp.record.errors.full_messages.join(', ')
       end
-      logger.debug exp.full_message(highlight: true, order: :top)
   
       if RailsCom.config.exception_log && defined?(LogRecord)
         LogRecord.record_to_log(self, exp)
@@ -26,27 +25,23 @@ module RailsCom::Application
     end
 
     rescue_from 'ActiveRecord::RecordNotFound' do |exp|
-      logger.debug exp.full_message(highlight: true, order: :top)
+      #logger.debug exp.full_message(highlight: true, order: :top)
       render :not_found, locals: { exp: exp }, status: 404
     end
 
     rescue_from 'AbstractController::ActionNotFound', 'ActionController::RoutingError' do |exp|
-      logger.debug exp.full_message(highlight: true, order: :top)
       render :controller_not_found, locals: { exp: exp }, status: 404
     end
 
     rescue_from 'ActionController::ForbiddenError' do |exp|
-      logger.debug exp.full_message(highlight: true, order: :top)
       render :controller_not_found, locals: { exp: exp }, status: 403
     end
 
     rescue_from 'ActionController::UnauthorizedError' do |exp|
-      logger.debug exp.full_message(highlight: true, order: :top)
       render :controller_not_found, locals: { exp: exp }, status: 401
     end
 
     rescue_from 'ActionController::ParameterMissing' do |exp|
-      logger.debug exp.full_message(highlight: true, order: :top)
       render :controller_not_found, locals: { exp: exp }, status: 400
     end
   end
