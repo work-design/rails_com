@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : t('site_name') %>
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="description" content="<%= yield(:meta_description) %>">
+    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
+    <meta name="turbolinks-cache-control" content="no-preview">
+    <%= stylesheet_link_tag 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= css_load suffix: 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'phone', 'data-turbolinks-track': 'reload' %>
+    <%= js_ready suffix: 'phone-ready', 'data-turbolinks-track': 'reload' %>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <% if content_for?(:wechat_js) %>
+      <%= yield(:wechat_js) %>
+    <% end %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= csp_meta_tag %>
+  </head>
+  <body>
+    <div class="weui-tab">
+      <div class="weui-tab__panel">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/phone/tab_bar' %>
+    </div>
+
+    <%= js_load suffix: 'phone' %>
+    <%= javascript_pack_tag 'phone/footer' %>
+  </body>
+</html>
