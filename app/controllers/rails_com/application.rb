@@ -17,7 +17,8 @@ module RailsCom::Application
       if exp.is_a?(ActiveRecord::RecordInvalid)
         logger.debug exp.record.errors.full_messages.join(', ')
       end
-  
+      logger.debug exp.full_message(highlight: true, order: :top)
+      
       if RailsCom.config.exception_log && defined?(LogRecord)
         LogRecord.record_to_log(self, exp)
       end

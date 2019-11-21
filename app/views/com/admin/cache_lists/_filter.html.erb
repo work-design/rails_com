@@ -1,5 +1,5 @@
 
-<%= search_form_with model: CacheList.new do |f| %>
+<%= form_with theme: 'search', model: CacheList.new do |f| %>
   <div class="fields">
     <%= f.text_field :name %>
     <%= f.submit %>
