@@ -31,6 +31,12 @@ module RailsCom::ActiveRecord::Extend
       }
     end
   end
+  
+  def to_migration
+    require 'rails/generators/active_record/migration/migration_generator'
+    r = ActiveRecord::Generators::MigrationGenerator.new ['add_user']
+    r.create_migration_file
+  end
 
   def print_table(with_column: false)
     columns.each do |column|

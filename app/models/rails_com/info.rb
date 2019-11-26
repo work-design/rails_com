@@ -3,6 +3,9 @@
 module RailsCom::Info
   extend ActiveSupport::Concern
   included do
+    attribute :code, :string
+    attribute :value, :string
+    attribute :version, :string
     attribute :platform, :string
     
     enum platform: {
