@@ -38,26 +38,6 @@ module RailsCom::ActiveRecord::Extend
     r.create_migration_file
   end
 
-  def print_table(with_column: false)
-    columns.each do |column|
-      info = with_column ? '#  t.column' : '# '
-      info << " :#{column.name.to_sym}, :#{column.type}"
-      info << ", precision: #{column.precision}" if column.precision
-      info << ", scale: #{column.scale}" if column.scale
-      info << ", limit: #{column.limit}" if column.limit
-      if column.default && column.type == :string
-        info << ", default: '#{column.default}'"
-      elsif column.default
-        info << ", default: #{column.default}"
-      end
-      info << ", null: false" unless column.null
-      info << ", comment: '#{column.comment} type: #{column.sql_type}'" if column.comment
-      puts info
-    end
-
-    nil
-  end
-
   def sql_table(except: [], only: [], pure: true)
     if only.size > 0
       _columns = columns.select { |column| only.include?(column.name) }
