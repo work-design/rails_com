@@ -5,14 +5,19 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
   
   def create_migration_file
+    set_local_assigns!
     check_model_exist?
-    migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
+    migration_template @migration_template, File.join(db_migrate_path, "#{file_name}.rb")
     binding.pry
   end
   
   private
+  def set_local_assigns!
+    @migration_template = 'add_migration.rb'
+  end
+  
   def check_model_exist?
-    Rails.application.eager_load!  # 主动require 模型的定义
+    
     unless self.class.const_defined? model_name
       abort "模型:#{model_name}没有定义"
     end

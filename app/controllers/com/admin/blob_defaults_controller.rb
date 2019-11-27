@@ -2,15 +2,15 @@ class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
   before_action :set_blob_default, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blob_defaults = ActiveStorage::BlobDefault.page(params[:page])
+    @blob_defaults = BlobDefault.page(params[:page])
   end
 
   def new
-    @blob_default = ActiveStorage::BlobDefault.new
+    @blob_default = BlobDefault.new
   end
 
   def create
-    @blob_default = ActiveStorage::BlobDefault.new(blob_default_params)
+    @blob_default = BlobDefault.new(blob_default_params)
 
     unless @blob_default.save
       render :new, locals: { model: @blob_default }, status: :unprocessable_entity
@@ -37,7 +37,7 @@ class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
 
   private
   def set_blob_default
-    @blob_default = ActiveStorage::BlobDefault.find(params[:id])
+    @blob_default = BlobDefault.find(params[:id])
   end
 
   def blob_default_params
