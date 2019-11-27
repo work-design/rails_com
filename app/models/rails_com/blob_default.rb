@@ -3,9 +3,9 @@
 module RailsCom::BlobDefault
   extend ActiveSupport::Concern
   included do
-    attribute :record_class, :string
-    attribute :name, :string, comment: '名称'
-    attribute :private, :boolean
+    attribute :record_class, :string, comment: 'AR 类名，如 User'
+    attribute :name, :string, comment: '名称, attach 名称，如：avatar'
+    attribute :private, :boolean, comment: '是否私有'
     
     has_one_attached :file
 
