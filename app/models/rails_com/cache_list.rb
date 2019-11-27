@@ -3,7 +3,7 @@ module RailsCom::CacheList
   included do
     attribute :path, :string
     attribute :key, :string
-    attribute :xx, :string
+    attribute :xx, :string, default: 'xxs', limit: 4
   end
   
   def etag

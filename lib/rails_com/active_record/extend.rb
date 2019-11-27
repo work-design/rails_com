@@ -19,21 +19,31 @@ module RailsCom::ActiveRecord::Extend
 
   def column_attributes
     columns.map do |column|
-      {
+      r = {
         name: column.name.to_sym,
         name_i18n: human_attribute_name(column.name),
         type: column.type,
-        sql_type: column.sql_type,
         null: column.null,
         default: column.default,
-        default_function: column.default_function,
         comment: column.comment
       }
+      r.merge! column.sql_type_metadata.as_json(only: ['limit', 'precision', 'scale']).compact
+      r.symbolize_keys!
     end
   end
   
   def new_attributes
-    _default_attributes.keys - columns_hash.keys
+    news = _default_attributes.except(*columns_hash.keys)
+    news.values.map do |column|
+      r = {
+        name: column.name.to_sym,
+        name_i18n: human_attribute_name(column.name),
+        type: column.type.type,
+        default: column.send(:user_provided_value)
+      }
+      r.merge! column.type.as_json.compact
+      r.symbolize_keys!
+    end
   end
   
   # todo support type/lock_version

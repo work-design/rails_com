@@ -3,6 +3,7 @@ require 'rails/generators/active_record'
 
 class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
+  attr_reader :model_name, :model_class
   
   def create_migration_file
     set_local_assigns!
@@ -13,7 +14,14 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   
   private
   def set_local_assigns!
+    if table_not_exist?
+      @migration_template = 'create_table_migration.rb'
+    end
     @migration_template = 'add_migration.rb'
+  end
+  
+  def table_not_exist?
+    !(model_class.connection.table_exists? model_class.table_name)
   end
   
   def check_model_exist?
@@ -24,11 +32,11 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   end
 
   def model_name
-    @model_name = file_name.classify
+    @model_name ||= file_name.classify
   end
 
   def model_class
-    @model_class = model_name.constantize
+    @model_class ||= model_name.constantize
   end
 
   def assign_model_name!(name)

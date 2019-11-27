@@ -3,7 +3,6 @@
 module RailsCom::BlobDefault
   extend ActiveSupport::Concern
   included do
-    table_name = 'active_storage_blob_defaults'
     attribute :record_class, :string
     attribute :name, :string
     attribute :private, :boolean
