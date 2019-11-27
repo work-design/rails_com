@@ -3,7 +3,11 @@
 module RailsCom::BlobDefault
   extend ActiveSupport::Concern
   included do
-    self.table_name = 'active_storage_blob_defaults'
+    table_name = 'active_storage_blob_defaults'
+    attribute :record_class, :string
+    attribute :name, :string
+    attribute :private, :boolean
+    
     has_one_attached :file
 
     after_commit :delete_private_cache, :delete_default_cache, on: [:create, :destroy]
