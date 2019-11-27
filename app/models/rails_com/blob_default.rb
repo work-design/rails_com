@@ -4,7 +4,7 @@ module RailsCom::BlobDefault
   extend ActiveSupport::Concern
   included do
     attribute :record_class, :string
-    attribute :name, :string, limit:4, comment: '名称', default: 'sss', null: false
+    attribute :name, :string, comment: '名称'
     attribute :private, :boolean
     
     has_one_attached :file

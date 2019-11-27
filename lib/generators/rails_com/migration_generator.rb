@@ -16,11 +16,15 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
     @todo_attributes = model_class.new_attributes
     set_inject_options
     if !model_class.table_exists?
-      @migration_class_name = "Create#{model_name}"
+      @file_name = "create_#{file_name}"
       @migration_template = 'create_table_migration.rb'
     else
       @migration_template = 'add_migration.rb'
     end
+  end
+  
+  def table_name
+    model_class.table_name
   end
   
   def set_inject_options
