@@ -1,5 +1,6 @@
-# 生成模型
-#require 'rails/generators'
+
+require 'rails/generators/active_record'
+
 class RailsCom::MigrationGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
   
@@ -7,7 +8,7 @@ class RailsCom::MigrationGenerator < Rails::Generators::NamedBase
     binding.pry
     check_model_exist?
 
-    template 'model.erb', File.join('doc/api', "#{file_name}_model.md")
+    template 'migration.rb', File.join('doc/api', "#{file_name}_model.md")
   end
   
   private

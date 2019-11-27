@@ -32,10 +32,17 @@ module RailsCom::ActiveRecord::Extend
     end
   end
   
-  def to_migration
-    require 'rails/generators/active_record/migration/migration_generator'
-    r = ActiveRecord::Generators::MigrationGenerator.new ['add_user']
-    r.create_migration_file
+  def new_attributes
+    _default_attributes.keys - columns_hash.keys
+  end
+  
+  # todo support type/lock_version
+  def custom_attributes
+    defined_keys = attributes_to_define_after_schema_loads.keys
+    defined_keys += all_timestamp_attributes_in_model
+    defined_keys.prepend primary_key
+    
+    columns_hash.keys - defined_keys
   end
 
 end
