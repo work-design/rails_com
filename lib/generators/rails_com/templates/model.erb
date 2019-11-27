@@ -1,6 +1,0 @@
-## 模型名称：<%= model_name %>
-| 字段 | 类型 | 描述 | 示例 | server端需特殊处理 | update |
-|---|---|---|---|---|---:|
-<% model_class.columns.each do |column| -%>
-| <%= column.name %> | <%= column.type.to_s %> |
-<% end %>

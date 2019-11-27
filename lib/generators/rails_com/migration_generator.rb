@@ -5,10 +5,9 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
   
   def create_migration_file
-    binding.pry
     check_model_exist?
-
-    template 'migration.rb', File.join('doc/api', "#{file_name}_model.md")
+    migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
+    binding.pry
   end
   
   private
