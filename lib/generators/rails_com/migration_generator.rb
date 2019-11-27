@@ -25,7 +25,7 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   
   def set_inject_options
     @todo_attributes.map! do |attribute|
-      attribute.merge! inject_options: attribute.slice(:limit, :precision, :scale, :comment, :default).inject('') { |s, h| s << ", #{h[0]}: '#{h[1]}'" }
+      attribute.merge! inject_options: attribute.slice(:limit, :precision, :scale, :comment, :default, :null).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
     end
   end
   
