@@ -33,15 +33,18 @@ module RailsCom::ActiveRecord::Extend
   end
   
   def new_attributes
-    news = _default_attributes.except(*columns_hash.keys)
-    news.values.map do |column|
+    if table_exists?
+      news = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
+    else
+      news = attributes_to_define_after_schema_loads
+    end
+    news.map do |name, column|
       r = {
-        name: column.name.to_sym,
-        name_i18n: human_attribute_name(column.name),
-        type: column.type.type,
-        default: column.send(:user_provided_value)
+        name: name.to_sym,
+        name_i18n: human_attribute_name(name),
+        type: column[0]
       }
-      r.merge! column.type.as_json.compact
+      r.merge! column[1].as_json
       r.symbolize_keys!
     end
   end

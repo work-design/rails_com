@@ -6,9 +6,8 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   attr_reader :model_name, :model_class, :todo_attributes
   
   def create_migration_file
-    set_local_assigns!
     check_model_exist?
-    binding.pry
+    set_local_assigns!
     migration_template @migration_template, File.join(db_migrate_path, "#{file_name}.rb")
   end
   
@@ -16,8 +15,8 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   def set_local_assigns!
     @todo_attributes = model_class.new_attributes
     set_inject_options
-    binding.pry
-    if table_not_exist?
+    if !model_class.table_exists?
+      @migration_class_name = "Create#{model_name}"
       @migration_template = 'create_table_migration.rb'
     else
       @migration_template = 'add_migration.rb'
@@ -26,31 +25,16 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   
   def set_inject_options
     @todo_attributes.map! do |attribute|
-      attribute.merge! inject_options: attribute.slice(:limit, :precision, :scale).inject('') { |s, h| s << ", #{h[0]}: #{h[1]}" }
+      attribute.merge! inject_options: attribute.slice(:limit, :precision, :scale, :comment, :default).inject('') { |s, h| s << ", #{h[0]}: '#{h[1]}'" }
     end
-  end
-  
-  def table_not_exist?
-    !(model_class.connection.table_exists? model_class.table_name)
   end
   
   def check_model_exist?
-    
+    @model_name = file_name.classify
+    @model_class = model_name.constantize
     unless self.class.const_defined? model_name
       abort "模型:#{model_name}没有定义"
     end
-  end
-
-  def model_name
-    @model_name ||= file_name.classify
-  end
-
-  def model_class
-    @model_class ||= model_name.constantize
-  end
-
-  def assign_model_name!(name)
-
   end
   
 end
