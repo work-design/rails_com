@@ -1,8 +1,11 @@
 # 生成模型
-class RailsCom::MigrationsGenerator < Rails::Generators::Base
+require 'generators/rails_com/migration_generator'
 
-  def create_controller_files
-    create_file 'doc/test.md', 'ddd'
+class RailsCom::MigrationsGenerator < Rails::Generators::Base
+  
+  def to_migration
+    r = RailsCom::MigrationGenerator.new ['add_user']
+    r.create_migration_file
   end
 
 end

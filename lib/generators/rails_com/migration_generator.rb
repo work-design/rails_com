@@ -1,10 +1,10 @@
 
 require 'rails/generators/active_record'
 
-class RailsCom::MigrationGenerator < Rails::Generators::NamedBase
+class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
   
-  def create_xx_files
+  def create_migration_file
     binding.pry
     check_model_exist?
 
