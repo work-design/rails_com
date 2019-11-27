@@ -2,6 +2,9 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
 
   def change
     create_table :<%= table_name %> do |t|
+<% todo_references.each do |reference| -%>
+      t.references :<%= reference[:name] %>
+<% end -%>
 <% todo_attributes.each do |attribute| -%>
       t.<%= attribute[:type] %> :<%= attribute[:name] %><%= attribute[:inject_options] %>
 <% end -%>
