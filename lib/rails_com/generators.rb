@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-require_relative 'generators/named_base'
+require 'rails_com/generators/named_base'
