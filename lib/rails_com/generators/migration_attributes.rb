@@ -4,13 +4,14 @@ class RailsCom::MigrationAttributes
   def initialize(record_class)
     @record_class = record_class
     @table_exists = record_class.table_exists?
+    @timestamps = true
     set_new_references
     set_new_attributes
     set_custom_attributes
   end
   
   def to_hash
-    r = instance_values.slice('table_exists', 'new_references', 'new_attributes', 'custom_attributes')
+    r = instance_values.slice('table_exists', 'new_references', 'new_attributes', 'custom_attributes', 'timestamps')
     r.symbolize_keys!
   end
 
@@ -31,6 +32,8 @@ class RailsCom::MigrationAttributes
   def set_new_attributes
     @new_attributes = record_class.new_attributes
     @new_attributes.map! do |attribute|
+      @timestamps = 'updated_at' if attribute[:name].to_s == 'created_at'
+      @timestamps = 'created_at' if attribute[:name].to_s == 'updated_at'
       attribute.merge! attribute_options: attribute_options(attribute)
     end
   end

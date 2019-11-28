@@ -21,7 +21,11 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
     <%- attributes[:new_attributes].each do |attribute| -%>
       t.<%= attribute[:type] %> :<%= attribute[:name] %><%= attribute[:attribute_options] %>
     <%- end -%>
+    <%- if attributes[:timestamps] == true -%>
       t.timestamps
+    <%- else -%>
+      t.datetime :<%= attributes[:timestamps] %>, null: false
+    <%- end -%>
     end
   <%- end -%>
 <%- end -%>
