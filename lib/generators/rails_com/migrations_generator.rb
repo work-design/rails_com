@@ -1,6 +1,5 @@
-# 生成模型
-require 'generators/rails_com/migration_common'
 require 'rails/generators/active_record/migration'
+
 class RailsCom::MigrationsGenerator < Rails::Generators::Base
   include ActiveRecord::Generators::Migration
   
@@ -12,7 +11,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   def xx
     Zeitwerk::Loader.eager_load_all
     ApplicationRecord.subclasses.map do |record_class|
-      RailsCom::MigrationCommon.new(record_class)
+      RailsCom::MigrationAttributes.new(record_class)
     end
   end
 

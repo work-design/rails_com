@@ -1,5 +1,5 @@
 class RailsCom::MigrationAttributes
-  attr_reader :record_class
+  attr_reader :record_class, :new_attributes, :custom_attributes, :todo_references
   
   def initialize(record_class)
     @record_class = record_class

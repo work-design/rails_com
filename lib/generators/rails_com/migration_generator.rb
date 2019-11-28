@@ -21,8 +21,6 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
     end
   end
   
-  
-  
   def check_model_exist?
     @model_name = file_name.classify
     @model_class = model_name.constantize
