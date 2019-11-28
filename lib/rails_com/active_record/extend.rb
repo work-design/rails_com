@@ -21,7 +21,6 @@ module RailsCom::ActiveRecord::Extend
     columns.map do |column|
       r = {
         name: column.name.to_sym,
-        name_i18n: human_attribute_name(column.name),
         type: column.type,
         null: column.null,
         default: column.default,
@@ -41,7 +40,6 @@ module RailsCom::ActiveRecord::Extend
     news.map do |name, column|
       r = {
         name: name.to_sym,
-        name_i18n: human_attribute_name(name),
         type: column[0]
       }
       r.merge! column[1].as_json

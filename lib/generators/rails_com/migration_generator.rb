@@ -7,15 +7,12 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   
   def create_migration_file
     check_model_exist?
-    set_belongs_to_reflections!
     set_local_assigns!
     migration_template @migration_template, File.join(db_migrate_path, "#{file_name}.rb")
   end
   
   private
   def set_local_assigns!
-    @todo_attributes = model_class.new_attributes
-    set_inject_options
     if !model_class.table_exists?
       @file_name = "create_#{file_name}"
       @migration_template = 'create_table_migration.rb'
@@ -24,23 +21,7 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
     end
   end
   
-  def set_belongs_to_reflections!
-    @todo_references = model_class.reflections.values.select { |reflection| reflection.belongs_to? }.map do |ref|
-      {
-        name: ref.name
-      }
-    end
-  end
   
-  def table_name
-    model_class.table_name
-  end
-  
-  def set_inject_options
-    @todo_attributes.map! do |attribute|
-      attribute.merge! inject_options: attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
-    end
-  end
   
   def check_model_exist?
     @model_name = file_name.classify
