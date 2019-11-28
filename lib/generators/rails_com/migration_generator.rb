@@ -3,7 +3,7 @@ require 'rails/generators/active_record'
 
 class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
-  attr_reader :model_name, :model_class, :todo_attributes, :todo_references
+  attr_reader :tables, :record_class
   
   def create_migration_file
     check_model_exist?
@@ -13,16 +13,21 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   
   private
   def set_local_assigns!
-    unless model_class.table_exists?
+    unless record_class.table_exists?
       @file_name = "create_#{file_name}"
     end
+    @tables = {
+      record_class.table_name => RailsCom::MigrationAttributes.new(record_class).as_json
+    }
   end
   
   def check_model_exist?
-    @model_name = file_name.classify
-    @model_class = model_name.constantize
-    unless self.class.const_defined? model_name
-      abort "模型:#{model_name}没有定义"
+    @record_class = file_name.classify.safe_constantize
+    if record_class
+      abort "#{file_name} not defined!"
+    end
+    unless record_class.ancestors.include?(ActiveRecord::Base)
+      abort "#{record_class.name} is not an ActiveRecord Object!"
     end
   end
   
