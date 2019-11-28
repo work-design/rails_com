@@ -1,9 +1,0 @@
-class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
-
-  def change
-<% custom_attributes.each do |attribute| -%>
-    remove_column :<%= table_name %>, :<%= attribute[:name] %>, :<%= attribute[:type] %><%= attribute[:inject_options] %>
-<% end -%>
-  end
-
-end

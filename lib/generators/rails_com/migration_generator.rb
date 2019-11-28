@@ -8,16 +8,13 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   def create_migration_file
     check_model_exist?
     set_local_assigns!
-    migration_template @migration_template, File.join(db_migrate_path, "#{file_name}.rb")
+    migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end
   
   private
   def set_local_assigns!
-    if !model_class.table_exists?
+    unless model_class.table_exists?
       @file_name = "create_#{file_name}"
-      @migration_template = 'create_table_migration.rb'
-    else
-      @migration_template = 'add_migration.rb'
     end
   end
   

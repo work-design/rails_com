@@ -1,0 +1,35 @@
+class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+
+  def change
+<% tables.each do |table_name, attributes| -%>
+  <% if attributes[:table_exists]
+
+  <%- attributes[:todo_references].each do |reference| -%>
+    add_reference :<%= table_name %>, :<%= reference[:name] %><%= reference[:inject_options] %>
+  <%- end -%>
+
+  <% attributes[:new_attributes].each do |attribute| -%>
+    add_column :<%= table_name %>, :<%= attribute[:name] %>, :<%= attribute[:type] %><%= attribute[:inject_options] %>
+  <%- end -%>
+
+  <% custom_attributes.each do |attribute| -%>
+    remove_column :<%= table_name %>, :<%= attribute[:name] %>, :<%= attribute[:type] %><%= attribute[:inject_options] %>
+  <% end -%>
+
+  <% else -%>
+
+    create_table :<%= table_name %> do |t|
+    <% attributes[:todo_references].each do |reference| -%>
+      t.references :<%= reference[:name] %><%= reference[:inject_options] %>
+    <% end -%>
+    <% attributes[:new_attributes].each do |attribute| -%>
+      t.<%= attribute[:type] %> :<%= attribute[:name] %><%= attribute[:inject_options] %>
+    <% end -%>
+      t.timestamps
+    end
+
+  <% end %>
+<% end %>
+  end
+
+end
