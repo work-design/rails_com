@@ -20,7 +20,7 @@ class RailsCom::MigrationAttributes
   
   def set_new_references
     @new_references = record_class.reflections.values.select do |reflection|
-      reflection.belongs_to? && !Account.column_names.include?(reflection.foreign_key)
+      reflection.belongs_to? && !record_class.column_names.include?(reflection.foreign_key)
     end
 
     @new_references.map! do |ref|
