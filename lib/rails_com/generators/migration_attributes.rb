@@ -4,20 +4,21 @@ class RailsCom::MigrationAttributes
   def initialize(record_class)
     @record_class = record_class
     @table_exists = record_class.table_exists?
-    set_belongs_to_reflections!
-    set_inject_options
+    set_references
+    set_new_attributes
+    set_custom_attributes
+  end
+
+  def table_name
+    @table_name = record_class.table_name
   end
   
-  def set_belongs_to_reflections!
+  def set_references
     @todo_references = record_class.reflections.values.select { |reflection| reflection.belongs_to? }.map do |ref|
       {
         name: ref.name
       }
     end
-  end
-  
-  def table_name
-    record_class.table_name
   end
   
   def set_new_attributes
@@ -28,6 +29,7 @@ class RailsCom::MigrationAttributes
   end
   
   def set_custom_attributes
+    return unless @table_exists
     @custom_attributes = record_class.custom_attributes
     @custom_attributes.map! do |attribute|
       attribute.merge! inject_options: inject_options(attribute)
