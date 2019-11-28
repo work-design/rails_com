@@ -2,22 +2,18 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
 
   def change
 <% tables.each do |table_name, attributes| -%>
-  <% if attributes[:table_exists] %>
 
+  <%- if attributes[:table_exists] -%>
   <%- attributes[:new_references].each do |reference| -%>
     add_reference :<%= table_name %>, :<%= reference[:name] %><%= reference[:reference_options] %>
   <%- end -%>
-
   <%- attributes[:new_attributes].each do |attribute| -%>
     add_column :<%= table_name %>, :<%= attribute[:name] %>, :<%= attribute[:type] %><%= attribute[:attribute_options] %>
   <%- end -%>
-
   <%- attributes[:custom_attributes].each do |attribute| -%>
     remove_column :<%= table_name %>, :<%= attribute[:name] %>, :<%= attribute[:type] %><%= attribute[:attribute_options] %>
   <%- end -%>
-
   <%- else -%>
-
     create_table :<%= table_name %> do |t|
     <%- attributes[:new_references].each do |reference| -%>
       t.references :<%= reference[:name] %><%= reference[:reference_options] %>
@@ -27,7 +23,6 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
     <%- end -%>
       t.timestamps
     end
-
   <%- end -%>
 <%- end -%>
   end
