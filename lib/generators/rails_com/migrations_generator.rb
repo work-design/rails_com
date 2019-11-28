@@ -13,7 +13,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   def set_local_assigns!
     Zeitwerk::Loader.eager_load_all
     @tables = ApplicationRecord.subclasses.map do |record_class|
-      RailsCom::MigrationAttributes.new(record_class)
+      [record_class.table_name, RailsCom::MigrationAttributes.new(record_class).to_hash]
     end
   end
 
