@@ -19,10 +19,8 @@ class RailsCom::MigrationAttributes
   end
   
   def set_new_references
-    @new_references = record_class.reflections.values.select do |reflection|
-      reflection.belongs_to? && !record_class.column_names.include?(reflection.foreign_key)
-    end
-
+    @new_references = record_class.reflections.values.select { |reflection| reflection.belongs_to? }
+    @new_references.reject! { |reflection| record_class.table_exists? && record_class.column_names.include?(reflection.foreign_key) }
     @new_references.map! do |ref|
       r = { name: ref.name }
       r.merge! polymorphic: true if ref.polymorphic?
