@@ -21,11 +21,11 @@ module RailsCom::ActiveRecord::Extend
     columns.map do |column|
       r = {
         name: column.name.to_sym,
-        type: column.type,
-        null: column.null,
-        default: column.default,
-        comment: column.comment
+        type: column.type
       }
+      r.merge! null: column.null unless column.null
+      r.merge! default: column.default unless column.default.nil?
+      r.merge! comment: column.comment if column.comment.present?
       r.merge! column.sql_type_metadata.as_json(only: ['limit', 'precision', 'scale']).compact
       r.symbolize_keys!
     end
@@ -52,8 +52,19 @@ module RailsCom::ActiveRecord::Extend
     defined_keys = attributes_to_define_after_schema_loads.keys
     defined_keys += all_timestamp_attributes_in_model
     defined_keys.prepend primary_key
+    defined_keys.map(&:to_s)
     
-    columns_hash.keys - defined_keys
+    columns_hash.except(*defined_keys).map do |name, column|
+      r = {
+        name: name.to_sym,
+        type: column.type
+      }
+      r.merge! null: column.null unless column.null
+      r.merge! default: column.default unless column.default.nil?
+      r.merge! comment: column.comment if column.comment.present?
+      r.merge! column.sql_type_metadata.as_json(only: ['limit', 'precision', 'scale']).compact
+      r.symbolize_keys!
+    end
   end
 
 end
