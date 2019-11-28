@@ -17,13 +17,13 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
       @file_name = "create_#{file_name}"
     end
     @tables = {
-      record_class.table_name => RailsCom::MigrationAttributes.new(record_class).as_json
+      record_class.table_name => RailsCom::MigrationAttributes.new(record_class).to_hash
     }
   end
   
   def check_model_exist?
     @record_class = file_name.classify.safe_constantize
-    if record_class
+    unless record_class
       abort "#{file_name} not defined!"
     end
     unless record_class.ancestors.include?(ActiveRecord::Base)
