@@ -42,6 +42,9 @@ module RailsCom::ActiveRecord::Extend
         name: name.to_sym,
         type: column[0]
       }
+      dt = column[1].delete(:default)
+      dt = nil if dt.respond_to?(:call)
+      r.merge! default: dt if dt
       r.merge! column[1].as_json
       r.symbolize_keys!
     end
