@@ -45,7 +45,7 @@ module RailsCom::ActiveRecord::Extend
       dt = column[1].delete(:default)
       dt = nil if dt.respond_to?(:call)
       r.merge! default: dt if dt
-      r.merge! column[1].as_json
+      r.merge! column[1]
       r.symbolize_keys!
     end
   end
