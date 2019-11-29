@@ -26,6 +26,9 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
     <%- else -%>
       t.datetime :<%= attributes[:timestamps] %>, null: false
     <%- end -%>
+    <%- attributes[:indexes].each do |index| -%>
+      t.index <%= index[:index].inspect %><%= index[:index_options] %>
+    <%- end -%>
     end
   <%- end -%>
 <%- end -%>

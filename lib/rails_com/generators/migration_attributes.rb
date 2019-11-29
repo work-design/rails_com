@@ -8,10 +8,11 @@ class RailsCom::MigrationAttributes
     set_new_references
     set_new_attributes
     set_custom_attributes
+    set_indexes
   end
   
   def to_hash
-    r = instance_values.slice('table_exists', 'timestamps', 'new_references', 'new_attributes', 'custom_attributes')
+    r = instance_values.slice('table_exists', 'timestamps', 'indexes', 'new_references', 'new_attributes', 'custom_attributes')
     r.symbolize_keys!
   end
 
@@ -50,6 +51,13 @@ class RailsCom::MigrationAttributes
     end
   end
   
+  def set_indexes
+    @indexes = record_class.indexes_to_define_after_schema_loads
+    @indexes.map! do |index|
+      index.merge! index_options: index_options(index)
+    end
+  end
+
   def reference_options(reference)
     reference.slice(:polymorphic).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
   end
@@ -58,4 +66,8 @@ class RailsCom::MigrationAttributes
     attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
   end
   
+  def index_options(index)
+    index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+  end
+
 end

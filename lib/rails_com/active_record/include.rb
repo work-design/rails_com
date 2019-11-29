@@ -1,7 +1,7 @@
 module RailsCom::ActiveRecord::Include
   extend ActiveSupport::Concern
   included do
-    class_attribute :indexes_to_define_after_schema_loads, instance_accessor: false, default: {}
+    class_attribute :indexes_to_define_after_schema_loads, instance_accessor: false, default: []
   end
 
   def error_text
@@ -14,7 +14,8 @@ module RailsCom::ActiveRecord::Include
 
   class_methods do
     def index(name, **options)
-      self.indexes_to_define_after_schema_loads = indexes_to_define_after_schema_loads.merge(name => options)
+      h = { index: name, **options }
+      self.indexes_to_define_after_schema_loads = self.indexes_to_define_after_schema_loads + [h]
     end
   end
 
