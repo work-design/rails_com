@@ -5,6 +5,7 @@ module RailsCom::AttachmentTransfer
   extend ActiveSupport::Concern
 
   included do
+    attribute :name, :string, null: false
     scope :garbled, -> { left_joins(:blob).where(ActiveStorage::Blob.table_name => { id: nil }) }
   end
 
