@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails/generators/active_record/migration'
 
 class RailsCom::MigrationsGenerator < Rails::Generators::Base
