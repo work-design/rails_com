@@ -11,7 +11,7 @@ class RailsCom::MigrationAttributes
   end
   
   def to_hash
-    r = instance_values.slice('table_exists', 'new_references', 'new_attributes', 'custom_attributes', 'timestamps')
+    r = instance_values.slice('table_exists', 'timestamps', 'new_references', 'new_attributes', 'custom_attributes')
     r.symbolize_keys!
   end
 
