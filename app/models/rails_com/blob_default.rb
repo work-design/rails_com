@@ -27,7 +27,7 @@ module RailsCom::BlobDefault
   class_methods do
     def defaults
       Rails.cache.fetch('blob_default/default') do
-        ActiveStorage::BlobDefault.includes(:file_attachment).map do |i|
+        BlobDefault.includes(:file_attachment).map do |i|
           ["#{i.record_class}_#{i.name}", i.file_attachment.blob_id]
         end.compact.to_h
       end

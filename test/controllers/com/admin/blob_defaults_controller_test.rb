@@ -17,7 +17,7 @@ class Com::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create ok' do
-    assert_difference('ActiveStorage::BlobDefault.count') do
+    assert_difference('BlobDefault.count') do
       post admin_blob_defaults_url, params: { blob_default: { record_class: 'User', name: 'avatar' } }, xhr: true
     end
 
@@ -25,7 +25,7 @@ class Com::Admin::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'destroy ok' do
-    assert_difference('ActiveStorage::BlobDefault.count', -1) do
+    assert_difference('BlobDefault.count', -1) do
       delete admin_blob_default_url(@blob_default), xhr: true
     end
 
