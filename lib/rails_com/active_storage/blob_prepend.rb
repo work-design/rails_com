@@ -4,6 +4,13 @@ module RailsCom::BlobPrepend
 
   def self.prepended(klass)
     klass.class_attribute :private_service
+    klass.attribute :key, :string, null: false, index: { unique: true }
+    klass.attribute :filename, :string, null: false
+    klass.attribute :content_type, :string
+    klass.attribute :metadata, :text
+    klass.attribute :byte_size, :integer, null: false
+    klass.attribute :checksum, :string, null: false
+    klass.attribute :created_at, :datetime, null: false
   end
 
   def duration
