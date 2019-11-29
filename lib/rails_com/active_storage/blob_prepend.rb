@@ -9,7 +9,7 @@ module RailsCom::BlobPrepend
     klass.attribute :content_type, :string
     klass.attribute :metadata, :text
     klass.attribute :byte_size, :integer, null: false
-    klass.attribute :checksum, :string, null: false
+    klass.attribute :checksum, :string
     klass.attribute :created_at, :datetime, null: false
   end
 
