@@ -26,7 +26,7 @@ module RailsCom::ActiveRecord::Extend
       r.merge! null: column.null unless column.null
       r.merge! default: column.default unless column.default.nil?
       r.merge! comment: column.comment if column.comment.present?
-      r.merge! column.sql_type_metadata.as_json(only: ['limit', 'precision', 'scale']).compact
+      r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
     end
   end
@@ -49,8 +49,7 @@ module RailsCom::ActiveRecord::Extend
       r.symbolize_keys!
     end
   end
-  
-  # todo support type/lock_version
+
   def custom_attributes
     defined_keys = attributes_to_define_after_schema_loads.keys
 
@@ -72,7 +71,7 @@ module RailsCom::ActiveRecord::Extend
       r.merge! null: column.null unless column.null
       r.merge! default: column.default unless column.default.nil?
       r.merge! comment: column.comment if column.comment.present?
-      r.merge! column.sql_type_metadata.as_json(only: ['limit', 'precision', 'scale']).compact
+      r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
     end
   end
