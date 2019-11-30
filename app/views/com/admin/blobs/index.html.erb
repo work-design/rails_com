@@ -4,7 +4,7 @@
 </div>
 
 <div class="ui attached segment">
-  <%= render 'search_form' %>
+  <%= render 'filter' %>
 </div>
 
 <table class="ui bottom attached selectable table">
@@ -18,7 +18,7 @@
       <th><%= ActiveStorage::Blob.human_attribute_name(:size) %></th>
       <th><%= ActiveStorage::Blob.human_attribute_name(:created_at) %></th>
       <th>
-        <%= link_to new_admin_blob_path, class: 'ui mini primary button' do %>
+        <%= link_to new_admin_blob_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -30,7 +30,7 @@
       <td><%= blob.id %></td>
       <td><%= blob.key %></td>
       <td>
-        <p><%= image_tag blob.service_url if blob.image? %></p>
+        <p><%= image_tag blob.variant(resize_to_limit: [100, 100]) if blob.image? %></p>
         <p><%= blob.filename %></p>
       </td>
       <td><%= blob.content_type %></td>
@@ -41,7 +41,7 @@
         <%= link_to admin_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
-        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', method: :delete, data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
+        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-play"></i>
         <% end %>
       </td>

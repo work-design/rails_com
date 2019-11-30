@@ -5,6 +5,7 @@ gemspec
 gem 'sprockets'
 gem 'webpacker'
 gem 'sqlite3'
+gem 'image_processing'
 
 gem 'factory_bot_rails', require: false
 gem 'sdoc'
