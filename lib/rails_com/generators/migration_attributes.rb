@@ -63,7 +63,7 @@ class RailsCom::MigrationAttributes
   end
   
   def attribute_options(attribute)
-    attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+    attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
   end
   
   def index_options(index)
