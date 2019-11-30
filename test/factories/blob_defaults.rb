@@ -1,6 +1,6 @@
 FactoryBot.define do
   
-  factory :active_storage_blob_default, class: 'BlobDefault' do
+  factory :blob_default do
     record_class { 'User' }
     name { 'avatar'}
   end
