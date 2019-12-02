@@ -21,10 +21,8 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
     <%- attributes[:new_attributes].each do |attribute| -%>
       t.<%= attribute[:type] %> :<%= attribute[:name] %><%= attribute[:attribute_options] %>
     <%- end -%>
-    <%- if attributes[:timestamps] == true -%>
+    <%- if attributes[:timestamps].blank? -%>
       t.timestamps
-    <%- else -%>
-      t.datetime :<%= attributes[:timestamps] %>, null: false
     <%- end -%>
     <%- attributes[:indexes].each do |index| -%>
       t.index <%= index[:index].inspect %><%= index[:index_options] %>

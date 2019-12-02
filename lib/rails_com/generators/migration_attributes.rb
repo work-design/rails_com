@@ -4,7 +4,7 @@ class RailsCom::MigrationAttributes
   def initialize(record_class)
     @record_class = record_class
     @table_exists = record_class.table_exists?
-    @timestamps = true
+    @timestamps = []
     set_new_references
     set_new_attributes
     set_custom_attributes
@@ -34,8 +34,9 @@ class RailsCom::MigrationAttributes
   def set_new_attributes
     @new_attributes = record_class.new_attributes
     @new_attributes.map! do |attribute|
-      @timestamps = 'updated_at' if attribute[:name].to_s == 'created_at'
-      @timestamps = 'created_at' if attribute[:name].to_s == 'updated_at'
+      if ['created_at', 'updated_at'].include?(attribute[:name].to_s)
+        @timestamps.append attribute[:name].to_s
+      end
       attribute.merge! attribute_options: attribute_options(attribute)
     end
   end
