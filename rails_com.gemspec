@@ -22,5 +22,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 6.0'
   s.add_dependency 'httpx', '~> 0.5'
   s.add_dependency 'default_where', '~> 2.2'
-  s.add_dependency 'default_form', '~> 1.5'
 end
