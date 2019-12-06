@@ -51,12 +51,6 @@ module RailsCom::ActiveRecord::Enum
     RailsCom.config.enum_key.call(self, attribute)
   end
 
-  def extract_multi_params(pairs)
-    _pairs = pairs.select { |k, _| k.include?('(') }
-
-    self.new.send :extract_callstack_for_multiparameter_attributes, _pairs
-  end
-
   def self.extended(mod)
     mod.attribute_method_suffix '_i18n'
 
