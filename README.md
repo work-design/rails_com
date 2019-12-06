@@ -25,6 +25,30 @@ Rails 通用基础库
 <%= render 'shared/locales' %>
 ```
 
+## 支持 enum
+```yaml
+# zh.yml
+activerecord:
+  enum:
+    notification:
+      receiver_type:
+        User: 全体用户
+        Member: 成员
+```
+
+```ruby
+t.select :receiver_type, options_for_select(Notification.options_i18n(:receiver_type))
+```
+
+* Override 
+```yaml
+activerecord:
+  enum:
+    notification:
+      receiver_type:
+        User: 全体用户
+        Member: # remain this blank
+```
 
 ## License
 The gem is available as open source under the terms of the [LGPL License](https://opensource.org/licenses/LGPL-3.0).
