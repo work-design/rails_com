@@ -1,4 +1,8 @@
 <script>
-  Turbolinks.clearCache()
-  Turbolinks.visit(document.referrer, { action: 'replace' })
+  if (typeof Turbolinks === 'undefined') {
+    window.location = document.referrer
+  } else {
+    Turbolinks.clearCache()
+    Turbolinks.visit(document.referrer, {action: 'replace'})
+  }
 </script>
