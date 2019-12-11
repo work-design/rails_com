@@ -8,6 +8,10 @@ module RailsCom::ActionController
       self.get_callbacks(:process_action).map(&:filter).include?(filter.to_sym)
     end
     
+    def raw_view_paths
+      view_paths.paths.map { |i| i.path }
+    end
+    
   end
 end
 
