@@ -10,7 +10,7 @@ module RailsCom::Application
 
   included do
     before_action :set_locale, :set_timezone, :set_variant
-    layout :set_layout if respond_to?(layout)
+    layout :set_layout if respond_to?(:layout)
     helper_method :current_receiver
 
     rescue_from 'StandardError' do |exp|
@@ -25,7 +25,7 @@ module RailsCom::Application
       render :controller_not_found, locals: { exp: exp }, status: 500 unless self.response_body
     end
 
-    rescue_from ActiveRecord::RecordNotFound do |exp|
+    rescue_from 'ActiveRecord::RecordNotFound' do |exp|
       logger.debug exp.full_message(highlight: true, order: :top)
       render :not_found, locals: { exp: exp }, status: 404
     end
