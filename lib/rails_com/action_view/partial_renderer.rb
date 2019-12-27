@@ -2,17 +2,15 @@
 
 module RailsCom
   module PartialRenderer
-
+    
+    # 支持在views/:controller 目录下，用 _ 开头的子目录进一步分组
     def find_template(path, locals)
-      if path.start_with?('_')
-        prefixes = @lookup_context.prefixes
-      elsif path.include?(?/)
+      if path.include?('/') && !path.start_with?('_')
         prefixes = []
       else
         prefixes = @lookup_context.prefixes
       end
-      
-      @lookup_context.formats = @lookup_context.formats[0..0]
+
       @lookup_context.find_template(path, prefixes, true, locals, @details)
     end
 
