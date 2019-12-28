@@ -40,7 +40,6 @@ require 'rails_com/utils/qrcode_helper'
 
 # outside
 require 'default_where'
-require 'default_form'
 
 module ActiveStorageExt
   module Admin

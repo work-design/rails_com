@@ -12,7 +12,8 @@ module RailsCom
       end
 
       # todo better implement
-      @lookup_context.send :_set_detail, :formats, _formats
+      #@lookup_context.send :_set_detail, :formats, _formats
+      #binding.pry
       context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
