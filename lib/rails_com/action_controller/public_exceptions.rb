@@ -16,7 +16,7 @@ module RailsCom::PublicExceptions
     if @exp.respond_to?(:record)
       message = @exp.record.error_text
     else
-      message = @exp.message
+      message = RailsCom.config.default_error_message.presence || @exp.message
     end
     body = {
       error: error,
