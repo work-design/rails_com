@@ -21,6 +21,10 @@ class Com::CommonController < Com::BaseController
     buffer = QrcodeHelper.code_png(params[:url], **options)
     send_data buffer, filename: 'cert_file.png', disposition: 'inline', type: 'image/png'
   end
+  
+  def test_raise
+    raise 'error from test raise'
+  end
 
   def deploy
     digest = request.headers['X-Hub-Signature'].to_s
