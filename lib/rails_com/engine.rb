@@ -11,6 +11,10 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     g.templates.unshift File.expand_path('lib/templates', root)
   end
 
+  initializer 'rails_com.add_generator_templates'do |app|
+    app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
+  end
+
   initializer 'rails_com.default_initializer' do |app|
     app.config.assets.precompile += ['rails_com_manifest.js']
     app.config.content_security_policy_nonce_generator = -> request {
