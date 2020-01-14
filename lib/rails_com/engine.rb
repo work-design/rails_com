@@ -16,7 +16,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
 
   initializer 'rails_com.default_initializer' do |app|
-    app.config.assets.precompile += ['rails_com_manifest.js']
     app.config.content_security_policy_nonce_generator = -> request {
       request.headers['X-Csp-Nonce'] || SecureRandom.base64(16)
     }
@@ -24,16 +23,11 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       'ActionController::ForbiddenError' => :forbidden,
       'ActionController::UnauthorizedError' => :unauthorized
     })
-    app.config.assets.paths.push(
-      *Dir[
-        File.expand_path('lib/nondigest_assets/*', root)
-      ]
-    )
-    
+
     ActiveStorage::DiskController.include RailsCom::VideoResponse
     ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
   end
-  
+
   config.after_initialize do |app|
     if RailsCom.config.custom_webpacker
       webpack = Webpacker::YamlHelper.new
@@ -52,5 +46,5 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     end
     ActiveStorage::Current.host = RailsCom.config.host
   end
-  
+
 end
