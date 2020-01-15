@@ -33,7 +33,7 @@ module RailsCom::AssetsHelper
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
     dealer, asset_path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
-    
+
     if dealer == :sprockets
       stylesheet_link_tag(asset_path, options).html_safe
     elsif dealer == :webpacker
@@ -50,11 +50,9 @@ module RailsCom::AssetsHelper
     exts.each do |ext|
       if Webpacker.manifest.lookup(filename + ext)
         return [:webpacker, filename, ext]
-      elsif Rails.application.assets_manifest.find_sources(filename + ext).count > 0
-        return [:sprockets, filename, ext]
       end
     end
-    
+
     []
   end
 
