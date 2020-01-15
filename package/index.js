@@ -19,6 +19,6 @@ const paths = () => {
   })
 
   return result
-};
+}
 
 module.exports = paths
