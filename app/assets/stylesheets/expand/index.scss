@@ -1,7 +1,5 @@
-/*
-*= require_tree .
-*= require_self
-*/
+@import 'collections/menu';
+@import 'elements/fa';
 
 .ui.form textarea {
   border-radius: 0;
