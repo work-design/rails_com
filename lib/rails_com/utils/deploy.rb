@@ -28,11 +28,11 @@ module Deploy
   def github_hmac(data)
     OpenSSL::HMAC.hexdigest('sha1', RailsCom.config.github_hmac_key, data)
   end
-  
+
   def shared_paths
     SHARED_DIRS + SHARED_FILES
   end
-  
+
   def init_shared_paths(root = '../shared')
     SHARED_DIRS.map do |dir|
       `mkdir -p #{root}/#{dir}`
@@ -59,7 +59,7 @@ module Deploy
     r << "git pull"
     r += ln_shared_paths
     r << "bundle install --without development test --path vendor/bundle --deployment"
-    r << "RAILS_ENV=#{env} bundle exec rake assets:precompile" unless skip_precompile
+    r << "RAILS_ENV=#{env} bundle exec rake webpacker:compile" unless skip_precompile
     r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
     r << "bundle exec pumactl restart"
     r
