@@ -6,7 +6,6 @@ module Deploy
     'tmp',
     'storage',
     'node_modules',
-    'public/assets',
     'public/packs',
     'vendor/bundle'
   ].freeze
