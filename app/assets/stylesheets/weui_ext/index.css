@@ -13,3 +13,7 @@ html, body {
   top: -.4em;
   right: -.4em;
 }
+
+.weui-label {
+  color: #666;
+}
