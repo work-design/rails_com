@@ -12,7 +12,7 @@
     <%= css_load suffix: 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'phone', 'data-turbolinks-track': 'reload' %>
     <%= js_ready suffix: 'phone-ready', 'data-turbolinks-track': 'reload' %>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <% if content_for?(:wechat_js) %>
       <%= yield(:wechat_js) %>
     <% end %>

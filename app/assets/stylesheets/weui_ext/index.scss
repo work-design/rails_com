@@ -1,8 +1,6 @@
-/*
-*= require_tree .
-*= require_self
-*/
-
+@import 'article';
+@import 'cell';
+@import 'media';
 
 html, body {
   height: 100%;
