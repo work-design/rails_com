@@ -5,6 +5,13 @@ GIT
     default_form (1.5.0)
       rails_com (~> 1.2)
 
+GIT
+  remote: https://github.com/qinmingyuan/default_where.git
+  revision: 7657ef532ee4749a6c9d2b7c7f11423dad511f33
+  specs:
+    default_where (2.2.3)
+      activerecord (>= 4.0, <= 6.1)
+
 PATH
   remote: .
   specs:
@@ -77,8 +84,6 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
-    default_where (2.2.0)
-      activerecord (>= 4.0.0)
     erubi (1.9.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
@@ -198,6 +203,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   default_form!
+  default_where!
   factory_bot_rails
   image_processing
   jbuilder

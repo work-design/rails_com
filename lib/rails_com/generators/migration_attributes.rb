@@ -22,14 +22,18 @@ class RailsCom::MigrationAttributes
   end
 
   def set_new_references
-    @new_references = record_class.reflections.values.select { |reflection| reflection.belongs_to? }
-    @new_references.reject! { |reflection| record_class.attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
-    @new_references.reject! { |reflection| @table_exists && record_class.column_names.include?(reflection.foreign_key.to_s) }
-    @new_references.map! do |ref|
+    @new_references = {}
+    refs = record_class.reflections.values.select { |reflection| reflection.belongs_to? }
+    refs.reject! { |reflection| record_class.attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
+    refs.reject! { |reflection| @table_exists && record_class.column_names.include?(reflection.foreign_key.to_s) }
+    refs.each do |ref|
       r = { name: ref.name }
       r.merge! polymorphic: true if ref.polymorphic?
       r.merge! reference_options: reference_options(r)
+      @new_references[ref.foreign_key.to_sym] = r unless @new_references.key?(ref.foreign_key.to_sym)
     end
+
+    @new_references = @new_references.values
   end
 
   def set_new_attributes
