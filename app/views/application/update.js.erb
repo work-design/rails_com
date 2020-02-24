@@ -1,2 +1,6 @@
 Turbolinks.clearCache()
+<% if defined? return_to %>
+Turbolinks.visit('<%= return_to %>', { action: 'replace' })
+<% else %>
 Turbolinks.visit(location, { action: 'replace' })
+<% end %>
