@@ -32,7 +32,11 @@
       <td><%= blob.key %></td>
       <td>
         <p><%= image_tag blob.variant(resize_to_limit: [100, 100]) if blob.image? %></p>
-        <p><%= link_to blob.filename, blob.service_url %></p>
+        <% if blob.service_url.present? %>
+          <p><%= link_to blob.filename, blob.service_url %></p>
+        <% else %>
+          <p><%= blob.filename %></p>
+        <% end %>
       </td>
       <td><%= blob.content_type %></td>
       <td><%= simple_format(blob.metadata) %></td>
