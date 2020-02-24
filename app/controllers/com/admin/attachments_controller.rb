@@ -3,7 +3,7 @@ class Com::Admin::AttachmentsController < Com::Admin::BaseController
 
   def index
     q_params = {}
-    q_params.merge! params.permit(:record_type, :record_id, :name)
+    q_params.merge! params.permit(:id, :record_type, :record_id, :name)
     @attachments = ActiveStorage::Attachment.default_where(q_params).order(id: :desc).page(params[:page])
   end
 

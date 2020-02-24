@@ -17,6 +17,7 @@
       <th><%= ActiveStorage::Blob.human_attribute_name(:metadata) %></th>
       <th><%= ActiveStorage::Blob.human_attribute_name(:size) %></th>
       <th><%= ActiveStorage::Blob.human_attribute_name(:created_at) %></th>
+      <th></th>
       <th>
         <%= link_to new_admin_blob_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
@@ -37,6 +38,11 @@
       <td><%= simple_format(blob.metadata) %></td>
       <td><%= number_to_human_size(blob.byte_size) %></td>
       <td><time><%= blob.created_at.to_s(:rfc822) %></time></td>
+      <td>
+        <% blob.attachments.each do |attachment| %>
+          <%= link_to "#{attachment.record_type}_#{attachment.record_id}", admin_attachments_path(id: attachment.id) %>
+        <% end %>
+      </td>
       <td>
         <%= link_to admin_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
