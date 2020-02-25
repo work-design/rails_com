@@ -13,7 +13,7 @@ class Setting < OpenStruct
         @table[k.to_sym] = v
       end
       @hash_table[k.to_sym] = v
-      new_ostruct_member(k)
+      new_ostruct_member!(k)
     end
   end
 
