@@ -1,4 +1,4 @@
-class Setting < OpenStruct
+class RailsCom::Setting < OpenStruct
 
   def initialize(hash = {})
     @table = {}
@@ -23,11 +23,11 @@ class Setting < OpenStruct
 
 end
 
-class Settings < Array
+class RailsCom::Settings < Array
 
   def initialize(data = [])
     data.map do |h|
-      self << Setting.new(h)
+      self << RailsCom::Setting.new(h)
     end
   end
 
