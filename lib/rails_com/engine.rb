@@ -32,7 +32,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     if RailsCom.config.custom_webpacker
       webpack = Webpacker::YamlHelper.new
       Rails::Engine.subclasses.each do |engine|
-        engine.paths['app/assets'].existent_directories.select(&->(i){ i.end_with?('javascripts', 'stylesheets') }).each do |path|
+        engine.paths['app/javascript'].existent_directories.select(&->(i){ i.end_with?('packs', 'stylesheets') }).each do |path|
           webpack.append 'resolved_paths', path
         end
       end
