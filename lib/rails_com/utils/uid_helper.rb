@@ -32,6 +32,11 @@ module UidHelper
     uuid time.to_i, prefix: prefix, suffix: suffix, separator: separator
   end
 
+  def rand_string(len = 4)
+    list = (0..9).to_a + ('A'..'Z').to_a
+    len.times.map { list.sample }.join
+  end
+
   def decode_uuid(uuid, prefix: true)
     if prefix
       str_arr = uuid.split('-')
@@ -50,11 +55,6 @@ module UidHelper
     else
       raise 'Can not parse the format string!'
     end
-  end
-
-  def rand_string(len = 4)
-    list = (0..9).to_a + ('A'..'Z').to_a
-    len.times.map { list.sample }.join
   end
 
 end
