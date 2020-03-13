@@ -25,7 +25,6 @@ require 'generators/scaffold_generator'
 require 'generators/jbuilder_generator' if defined?(Jbuilder)
 
 # controllers
-require 'rails_com/sprockets/non_digest_assets'
 require 'rails_com/webpacker/yaml_helper'
 
 # Utils
