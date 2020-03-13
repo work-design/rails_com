@@ -4,15 +4,9 @@ module RailsCom::AssetsHelper
   # Assets path: app/assets/javascripts/controllers
   def origin_js_load(**options)
     exts = ['.js'] + Array(options.delete(:ext))
-    dealer, asset_path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    asset_path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
-    if dealer == :webpacker
-      [javascript_pack_tag(asset_path, options).html_safe, asset_pack_path(asset_path + ext)]
-    elsif dealer == :sprockets
-      [javascript_include_tag(asset_path, options).html_safe, asset_path(asset_path + ext)]
-    else
-      []
-    end
+    [javascript_include_tag(asset_path, options).html_safe, asset_path(asset_path + ext)]
   end
 
   def js_load(**options)
@@ -32,13 +26,9 @@ module RailsCom::AssetsHelper
   # Assets path: app/assets/stylesheets/controllers
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
-    dealer, asset_path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    asset_path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
-    if dealer == :sprockets
-      stylesheet_link_tag(asset_path, options).html_safe
-    elsif dealer == :webpacker
-      stylesheet_pack_tag(asset_path, options).html_safe
-    end
+    stylesheet_pack_tag(asset_path, options).html_safe
   end
 
   private
@@ -49,7 +39,7 @@ module RailsCom::AssetsHelper
 
     exts.each do |ext|
       if Webpacker.manifest.lookup(filename + ext)
-        return [:webpacker, filename, ext]
+        return [filename, ext]
       end
     end
 

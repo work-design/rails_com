@@ -211,9 +211,8 @@ DEPENDENCIES
   pry-rails
   rails_com!
   sdoc
-  sprockets
   sqlite3
   webpacker
 
 BUNDLED WITH
-   1.17.2
+   2.1.2
