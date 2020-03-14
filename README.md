@@ -50,5 +50,8 @@ activerecord:
         Member: # remain this blank
 ```
 
+## 注意
+* 仅支持 webpacker, 不再支持 sprockets
+
 ## License
 The gem is available as open source under the terms of the [LGPL License](https://opensource.org/licenses/LGPL-3.0).
