@@ -7,7 +7,7 @@ module RailsCom::AssetsHelper
     path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
     if path
-      [javascript_pack_tag(path, options).html_safe, asset_pack_path(path + ext)]
+      [javascript_pack_tag(path, **options).html_safe, asset_pack_path(path + ext)]
     else
       []
     end
@@ -33,7 +33,7 @@ module RailsCom::AssetsHelper
     path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
     if path
-      stylesheet_pack_tag(path, options).html_safe
+      stylesheet_pack_tag(path, **options).html_safe
     end
   end
 
