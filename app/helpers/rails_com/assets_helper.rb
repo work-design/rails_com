@@ -14,12 +14,12 @@ module RailsCom::AssetsHelper
   end
 
   def js_load(**options)
-    r, _ = origin_js_load(options)
+    r, _ = origin_js_load(**options)
     r
   end
 
   def remote_js_load(**options)
-    _, r = origin_js_load(options)
+    _, r = origin_js_load(**options)
     r
   end
 
