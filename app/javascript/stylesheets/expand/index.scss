@@ -1,16 +1,10 @@
 @import 'collections/menu';
+@import 'collections/side';
+@import 'collections/form';
 @import 'elements/fa';
-
-.ui.form textarea {
-  border-radius: 0;
-  z-index: 1;
-}
-
-.ui.form .attached.segment {
-  width: 100%;
-  border-top: none;
-}
-
+@import 'elements/item';
+@import 'elements/list';
+@import 'elements/segment';
 
 
 @media only screen and (min-width: 1200px) {

@@ -1,5 +1,6 @@
 main.ui.side {
   margin-top: -1rem;
+  justify-content: space-between;
 }
 
 .ui.side > .content {

@@ -1,0 +1,9 @@
+.ui.form textarea {
+  border-radius: 0;
+  z-index: 1;
+}
+
+.ui.form .attached.segment {
+  width: 100%;
+  border-top: none;
+}
