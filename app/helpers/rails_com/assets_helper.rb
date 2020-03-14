@@ -4,9 +4,13 @@ module RailsCom::AssetsHelper
   # Assets path: app/assets/javascripts/controllers
   def origin_js_load(**options)
     exts = ['.js'] + Array(options.delete(:ext))
-    asset_path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    path, ext = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
-    [javascript_include_tag(asset_path, options).html_safe, asset_path(asset_path + ext)]
+    if path
+      [javascript_pack_tag(path, options).html_safe, asset_pack_path(path + ext)]
+    else
+      []
+    end
   end
 
   def js_load(**options)
@@ -26,9 +30,11 @@ module RailsCom::AssetsHelper
   # Assets path: app/assets/stylesheets/controllers
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
-    asset_path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
 
-    stylesheet_pack_tag(asset_path, options).html_safe
+    if path
+      stylesheet_pack_tag(path, options).html_safe
+    end
   end
 
   private
