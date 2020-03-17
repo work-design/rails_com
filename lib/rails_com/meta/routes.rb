@@ -29,24 +29,15 @@ module RailsCom::Routes
   def routes_wrapper(cached = true)
     return @routes_wrapper if cached && defined?(@routes_wrapper)
 
-    @routes_wrapper = []
-    routes.each do |route|
-      @routes_wrapper << detail(route)
+    @routes_wrapper = routes.map do |route|
+      {
+        verb: route.verb,
+        path: route.path.spec.to_s,
+        module: route.defaults[:controller].to_s.split('/')[0..-2],
+        controller: route.defaults[:controller],
+        action: route.defaults[:action]
+      }
     end
-
-    @routes_wrapper
-  end
-
-  def detail(route)
-    wrap = ActionDispatch::Routing::RouteWrapper.new(route)
-    info = route.defaults
-
-    {
-      verb: route.verb,
-      path: wrap.path,
-      controller: info[:controller],
-      action: info[:action]
-    }
   end
 
   def routes
