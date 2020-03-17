@@ -18,12 +18,7 @@ module RailsCom::Routes
   end
 
   def modules
-    controllers.keys.map do |i|
-      x = i.split('/')
-      if x.size >= 2
-        x[0..-2].join('/')
-      end
-    end.compact.uniq
+    routes_wrapper.group_by(&->(i){ i[:module] })
   end
 
   def routes_wrapper(cached = true)
