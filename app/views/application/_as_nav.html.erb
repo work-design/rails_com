@@ -1,5 +1,4 @@
-<% if rails_role_user.any_role?('active_storage_ext/admin') %>
-<div class="item">
+<div class="item" data-controller="menu">
   <a class="<%= active_helper(controllers: ['blob_defaults', 'blobs', 'attachments'], active_class: 'title active', item_class: 'title') %>">
     <i class="fas fa-images fa-fw"></i>
     <span>资源</span>
@@ -11,4 +10,3 @@
     <%= link_to 'attachments', admin_attachments_path, class: active_helper(controllers: 'attachments') %>
   </div>
 </div>
-<% end %>
