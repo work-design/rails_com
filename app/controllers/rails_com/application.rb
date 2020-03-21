@@ -11,7 +11,11 @@ module RailsCom::Application
   included do
     before_action :set_locale, :set_timezone, :set_variant
     layout :set_layout if respond_to?(:layout)
-    helper_method :current_receiver
+    helper_method :current_receiver, :current_title
+  end
+
+  def current_title
+    t('.title', default: :site_name)
   end
 
   def set_variant
@@ -23,7 +27,7 @@ module RailsCom::Application
     if request.user_agent =~ /MicroMessenger/
       variant << :wechat
     end
-    
+
     request.variant = variant
     logger.debug "  ==========> Variant: #{request.variant}"
   end
@@ -106,7 +110,7 @@ module RailsCom::Application
   def default_params
     {}
   end
-  
+
   def default_form_params
     {}
   end

@@ -4,7 +4,7 @@
     <% if content_for?(:title) %>
     <title><%= yield(:title) %></title>
     <% else %>
-    <title><%= t('.title', default: :site_name) %></title>
+    <title><%= current_title %></title>
     <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="description" content="<%= yield(:meta_description) %>">
