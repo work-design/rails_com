@@ -1,9 +1,11 @@
-<div class="ui simple dropdown item">
-  <i class="fas fa-globe"></i>
-  <span><%= t(I18n.locale) %></span>
-  <div class="menu">
+<div class="navbar-item has-dropdown is-hoverable">
+  <div class="navbar-link is-arrowless">
+    <i class="fas fa-globe"></i>
+    <span><%= t(I18n.locale) %></span>
+  </div>
+  <div class="navbar-dropdown">
     <% User.options_i18n(:locale).each do |text, value| %>
-      <%= link_to text, { locale: value }, class: 'item' %>
+      <%= link_to text, { locale: value }, class: 'navbar-item' %>
     <% end %>
   </div>
 </div>
