@@ -37,7 +37,7 @@ module RailsCom::ActiveHelper
   #   active_helper 'work/employee': ['index', 'show']
   # params:
   #   active_helper controller: 'users', action: 'show', id: 371
-  def active_helper(paths: [], controllers: [], modules: [], active_class: 'item active', item_class: 'navbar-item', **options)
+  def active_helper(paths: [], controllers: [], modules: [], active_class: 'navbar-item is-active', item_class: 'navbar-item', **options)
     check_parameters = options.delete(:check_parameters)
 
     if paths.present?

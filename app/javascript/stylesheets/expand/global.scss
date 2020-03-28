@@ -1,0 +1,17 @@
+body {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+main,
+.main {
+  flex-grow: 1;
+  flex-shrink: 0;
+}

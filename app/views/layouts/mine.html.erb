@@ -15,15 +15,15 @@
   </head>
   <body>
     <%= render 'nav_bar' %>
-    <main class="ui inverted side">
-      <div class="sidebar" style="width: 260px;">
+    <main class="columns">
+      <div class="column is-narrow" style="width: 260px;">
         <% if content_for?(:nav) %>
           <%= yield :nav %>
         <% else %>
           <%= render 'nav' %>
         <% end %>
       </div>
-      <div class="content">
+      <div class="column">
         <div class="main">
           <%= yield %>
         </div>

@@ -1,0 +1,32 @@
+.menu.ex-accordion {
+  .menu-label {
+    display: block;
+
+    .dropdown {
+      float: right;
+    }
+    .dropdown:before {
+      content: '\f0d9';
+    }
+  }
+  .menu-list {
+    display: none;
+    a {
+      font-size: 1em;
+    }
+  }
+}
+
+.menu.ex-accordion.is-active {
+  .menu-label {
+    .dropdown:before {
+      content: '\f0d7';
+    }
+  }
+
+  .menu-list {
+    display: block;
+  }
+}
+
+
