@@ -1,10 +1,10 @@
-<div class="item" data-controller="menu">
-  <a class="<%= active_helper(controllers: ['blob_defaults', 'blobs', 'attachments'], active_class: 'title active', item_class: 'title') %>">
+<div class="<%= active_helper(modules: 'com/admin', active_class: 'menu ex-accordion is-active', item_class: 'menu ex-accordion') %>" data-controller="menu">
+  <a class="menu-label" data-action="menu#toggle">
     <i class="fas fa-images fa-fw"></i>
     <span>资源</span>
-    <i class="dropdown icon"></i>
+    <i class="fas dropdown"></i>
   </a>
-  <div class="<%= active_helper(controllers: ['blob_defaults', 'blobs', 'attachments'], active_class: 'menu content active', item_class: 'menu content') %>">
+  <div class="menu-list">
     <%= link_to '默认', admin_blob_defaults_path, class: active_helper(controllers: 'blob_defaults') %>
     <%= link_to 'blobs', admin_blobs_path, class: active_helper(controllers: 'blobs') %>
     <%= link_to 'attachments', admin_attachments_path, class: active_helper(controllers: 'attachments') %>

@@ -10,6 +10,10 @@ class MenuController extends Controller {
     }
   }
 
+  toggle() {
+    this.element.classList.toggle('is-active')
+  }
+
 }
 
 application.register('menu', MenuController)
