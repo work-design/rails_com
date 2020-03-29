@@ -2,9 +2,9 @@
 @import './mixins';
 
 :root {
-  --balloon-color: #{$balloon-bg};
-  --balloon-font-size: #{$balloon-base-size};
-  --balloon-move: #{$balloon-move};
+  --tip-color: #{$tip-bg};
+  --tip-font-size: #{$tip-base-size};
+  --tip-move: #{$tip-move};
 }
 
 // IE 11 button bugfix
@@ -25,7 +25,7 @@ button[aria-label] {
     @include base-effects();
     @include normalized-text();
 
-    background: var(--balloon-color);
+    background: var(--tip-color);
     border-radius: 2px;
     color: #fff;
     content: attr(aria-label);
@@ -79,14 +79,14 @@ button[aria-label] {
   &:after {
     bottom: 100%;
     left: 50%;
-    margin-bottom: $balloon-arrow-size + 5px;;
-    transform: translate(-50%, var(--balloon-move));
+    margin-bottom: $tip-arrow-size + 5px;;
+    transform: translate(-50%, var(--tip-move));
     transform-origin: top;
   }
   &:before {
     bottom: 100%;
     left: 50%;
-    transform: translate(-50%, var(--balloon-move));
+    transform: translate(-50%, var(--tip-move));
     transform-origin: top;
   }
 
@@ -104,14 +104,14 @@ button[aria-label] {
     &:after {
       bottom: 100%;
       left: 0;
-      margin-bottom: $balloon-arrow-size + 5px;;
-      transform: translate(0, var(--balloon-move));
+      margin-bottom: $tip-arrow-size + 5px;;
+      transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
     &:before {
       bottom: 100%;
       left: 5px;
-      transform: translate(0, var(--balloon-move));
+      transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
 
@@ -130,14 +130,14 @@ button[aria-label] {
     &:after {
       bottom: 100%;
       right: 0;
-      margin-bottom: $balloon-arrow-size + 5px;;
-      transform: translate(0, var(--balloon-move));
+      margin-bottom: $tip-arrow-size + 5px;;
+      transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
     &:before {
       bottom: 100%;
       right: 5px;
-      transform: translate(0, var(--balloon-move));
+      transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
 
@@ -155,9 +155,9 @@ button[aria-label] {
   &[data-tip_pos="down"] {
     &:after {
       left: 50%;
-      margin-top: $balloon-arrow-size + 5px;;
+      margin-top: $tip-arrow-size + 5px;;
       top: 100%;
-      transform: translate(-50%, calc(var(--balloon-move) * -1));
+      transform: translate(-50%, calc(var(--tip-move) * -1));
     }
 
     &:before {
@@ -165,7 +165,7 @@ button[aria-label] {
 
       left: 50%;
       top: 100%;
-      transform: translate(-50%, calc(var(--balloon-move) * -1));
+      transform: translate(-50%, calc(var(--tip-move) * -1));
     }
 
     &:hover, &[data-tip_visible] {
@@ -182,9 +182,9 @@ button[aria-label] {
   &[data-tip_pos="down-left"] {
     &:after {
       left: 0;
-      margin-top: $balloon-arrow-size + 5px;;
+      margin-top: $tip-arrow-size + 5px;;
       top: 100%;
-      transform: translate(0, calc(var(--balloon-move) * -1));
+      transform: translate(0, calc(var(--tip-move) * -1));
     }
 
     &:before {
@@ -192,7 +192,7 @@ button[aria-label] {
 
       left: 5px;
       top: 100%;
-      transform: translate(0, calc(var(--balloon-move) * -1));
+      transform: translate(0, calc(var(--tip-move) * -1));
     }
 
     &:hover, &[data-tip_visible] {
@@ -209,9 +209,9 @@ button[aria-label] {
   &[data-tip_pos="down-right"] {
     &:after {
       right: 0;
-      margin-top: $balloon-arrow-size + 5px;;
+      margin-top: $tip-arrow-size + 5px;;
       top: 100%;
-      transform: translate(0, calc(var(--balloon-move) * -1));
+      transform: translate(0, calc(var(--tip-move) * -1));
     }
 
     &:before {
@@ -219,7 +219,7 @@ button[aria-label] {
 
       right: 5px;
       top: 100%;
-      transform: translate(0, calc(var(--balloon-move) * -1));
+      transform: translate(0, calc(var(--tip-move) * -1));
     }
 
     &:hover, &[data-tip_visible] {
@@ -235,10 +235,10 @@ button[aria-label] {
 
   &[data-tip_pos="left"] {
     &:after {
-      margin-right: $balloon-arrow-size + 5px;;
+      margin-right: $tip-arrow-size + 5px;;
       right: 100%;
       top: 50%;
-      transform: translate(var(--balloon-move), -50%);
+      transform: translate(var(--tip-move), -50%);
     }
 
     &:before {
@@ -246,7 +246,7 @@ button[aria-label] {
 
       right: 100%;
       top: 50%;
-      transform: translate(var(--balloon-move), -50%);
+      transform: translate(var(--tip-move), -50%);
     }
 
     &:hover, &[data-tip_visible] {
@@ -265,9 +265,9 @@ button[aria-label] {
     &:after {
 
       left: 100%;
-      margin-left: $balloon-arrow-size + 5px;;
+      margin-left: $tip-arrow-size + 5px;;
       top: 50%;
-      transform: translate(calc(var(--balloon-move) * -1), -50%);
+      transform: translate(calc(var(--tip-move) * -1), -50%);
     }
 
     &:before {
@@ -275,7 +275,7 @@ button[aria-label] {
 
       left: 100%;
       top: 50%;
-      transform: translate(calc(var(--balloon-move) * -1), -50%);
+      transform: translate(calc(var(--tip-move) * -1), -50%);
     }
 
     &:hover, &[data-tip_visible] {

@@ -1,29 +1,29 @@
 @mixin arrow-down() {
   width: 0;
   height: 0;
-  border: $balloon-arrow-size solid transparent;
-  border-top-color: var(--balloon-color);
+  border: $tip-arrow-size solid transparent;
+  border-top-color: var(--tip-color);
 }
 
 @mixin arrow-up() {
   width: 0;
   height: 0;
-  border: $balloon-arrow-size solid transparent;
-  border-bottom-color: var(--balloon-color);
+  border: $tip-arrow-size solid transparent;
+  border-bottom-color: var(--tip-color);
 }
 
 @mixin arrow-left() {
   width: 0;
   height: 0;
-  border: $balloon-arrow-size solid transparent;
-  border-right-color: var(--balloon-color);
+  border: $tip-arrow-size solid transparent;
+  border-right-color: var(--tip-color);
 }
 
 @mixin arrow-right() {
   width: 0;
   height: 0;
-  border: $balloon-arrow-size solid transparent;
-  border-left-color: var(--balloon-color);
+  border: $tip-arrow-size solid transparent;
+  border-left-color: var(--tip-color);
 }
 
 @mixin base-effects() {
@@ -43,5 +43,5 @@
   font-weight: normal;
   font-style: normal;
   text-shadow: none;
-  font-size: var(--balloon-font-size);
+  font-size: var(--tip-font-size);
 }
