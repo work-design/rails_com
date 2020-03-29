@@ -1,6 +1,6 @@
 @mixin arrow-down() {
-  width: 0;
-  height: 0;
+  width: 10px;
+  height: 10px;
   border: $tip-arrow-size solid transparent;
   border-top-color: var(--tip-color);
 }
@@ -30,6 +30,7 @@
   opacity: 0;
   pointer-events: none;
   transition: all 0.18s ease-out 0.18s;
+  box-shadow: 1px 1px 0 0 #bababc;
 }
 
 @mixin no-effects() {

@@ -39,7 +39,8 @@ button[aria-label] {
     @include arrow-down();
     @include base-effects();
 
-    content: "";
+    background: var(--tip-color);
+    content: '';
     position: absolute;
     z-index: 10;
   }
@@ -86,8 +87,9 @@ button[aria-label] {
   &:before {
     bottom: 100%;
     left: 50%;
-    transform: translate(-50%, var(--tip-move));
+    transform: rotate(45deg) scale(1) translate(-50%, var(--tip-move));
     transform-origin: top;
+    margin-bottom: -2px;
   }
 
   &:hover, &[data-tip_visible] {
@@ -96,7 +98,7 @@ button[aria-label] {
     }
 
     &:before {
-      transform: translate(-50%, 0);
+      transform: rotate(45deg) scale(1) translate(-50%, 0);
     }
   }
 
