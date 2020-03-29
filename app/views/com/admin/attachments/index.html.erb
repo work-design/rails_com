@@ -29,7 +29,7 @@
       <td><%= attachment.blob_id %></td>
       <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
       <td>
-        <%= link_to delete_admin_attachment_path(attachment), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
+        <%= link_to delete_admin_attachment_path(attachment), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>

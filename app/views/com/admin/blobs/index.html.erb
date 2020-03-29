@@ -48,10 +48,10 @@
         <% end %>
       </td>
       <td>
-        <%= link_to admin_blob_path(blob), method: :delete, remote: true, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+        <%= link_to admin_blob_path(blob), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
-        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', data: { tooltip: t('.play') }, class: 'ui mini circular icon button' do %>
+        <%= link_to rails_ext_audio_path(blob.id), target: '_blank', aria: { label: t('.play') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-play"></i>
         <% end %>
       </td>
