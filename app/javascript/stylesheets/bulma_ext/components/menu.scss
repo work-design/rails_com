@@ -2,11 +2,12 @@
   padding: 1em 1.5em;
   .menu-label {
     font-size: 1em;
-    display: flex;
+    display: block;
     margin-bottom: 0;
 
     .dropdown {
       float: right;
+      line-height: 1.5;
     }
     .dropdown:before {
       content: '\f0d9';
