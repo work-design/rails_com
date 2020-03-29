@@ -1,10 +1,12 @@
-<div class="ui modal" id="modal">
-  <i class="fas fa-times close"></i>
-  <div class="ui header">
-    <%= t('.new') %>
-  </div>
-
-  <div class="content">
-    <%= render 'form' %>
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title"><%= t('.new') %></p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <%= render 'form' %>
+    </section>
   </div>
 </div>

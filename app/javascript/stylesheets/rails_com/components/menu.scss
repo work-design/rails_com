@@ -1,6 +1,9 @@
 .menu.ex-accordion {
+  padding: 1em 1.5em;
   .menu-label {
     display: block;
+    font-size: .85em;
+    margin-bottom: 0;
 
     .dropdown {
       float: right;
@@ -12,7 +15,7 @@
   .menu-list {
     display: none;
     a {
-      font-size: 1em;
+      font-size: .9em;
     }
   }
 }
