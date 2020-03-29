@@ -1,4 +1,4 @@
-import InputAttachment from './attachment'
+import InputAttachment from 'rails_com/attachment'
 import { Controller } from 'stimulus'
 
 // <input type="file" data-controller="picture">
