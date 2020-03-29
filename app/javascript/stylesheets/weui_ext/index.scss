@@ -1,16 +1,13 @@
+@import 'weui/dist/style/weui';
+
 @import 'ext/article';
 @import 'ext/cell';
 @import 'ext/media';
 @import 'ext/panel';
+@import 'ext/icon';
 
 html, body {
   height: 100%;
-}
-
-.weui-tabbar__icon .weui-badge {
-  position: absolute;
-  top: -.4em;
-  right: -.4em;
 }
 
 .weui-label {
