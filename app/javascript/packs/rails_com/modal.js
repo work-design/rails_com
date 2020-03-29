@@ -1,0 +1,18 @@
+import { Controller } from 'stimulus'
+
+// data-controller="modal"
+class ModalController extends Controller {
+
+  connect() {
+    console.log('Modal Controller works!')
+    document.documentElement.classList.add('is-clipped')
+  }
+
+  close() {
+    this.element.remove()
+    document.documentElement.classList.remove('is-clipped')
+  }
+
+}
+
+application.register('modal', ModalController)

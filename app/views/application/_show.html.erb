@@ -1,10 +1,15 @@
-<div class="ui modal" id="modal">
-  <i class="fas fa-times close"></i>
-  <div class="ui header">
-    <%= t('.show') %>
-  </div>
-
-  <div class="content">
-    <%= render 'show_table' %>
+<div class="modal is-active" data-controller="modal">
+  <div class="modal-background" data-action="click->modal#close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title"><%= t('.show') %></p>
+      <button class="delete" aria-label="close" data-action="modal#close"></button>
+    </header>
+    <section class="modal-card-body">
+      <%= render 'show_table' %>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="delete" data-action="modal#close"></button>
+    </footer>
   </div>
 </div>
