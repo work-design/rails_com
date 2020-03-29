@@ -8,10 +8,6 @@ document.querySelectorAll('form[method="get"]').forEach(function(el) {
       if ( this[i].name === 'commit' ) {
         this[i].disabled = true
       }
-
-      if ( this[i].name === 'utf8' ) {
-        this[i].disabled = true
-      }
     }
   })
 })
