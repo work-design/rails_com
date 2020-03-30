@@ -1,0 +1,14 @@
+.as-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.as-header {
+  flex-shrink: 0;
+}
+
+.as-main {
+  flex-grow: 1;
+  flex-shrink: 0;
+}

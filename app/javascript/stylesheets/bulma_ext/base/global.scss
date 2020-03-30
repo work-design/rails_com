@@ -1,40 +1,7 @@
 body {
   overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 nav {
-  flex-shrink: 0;
   margin-bottom: 1rem;
-}
-
-main,
-.main {
-  flex-grow: 1;
-  flex-shrink: 0;
-}
-
-dl {
-  display: table-row;
-}
-
-dd {
-  display: table-cell;
-}
-
-dd .button {
-  margin-bottom: 8px;
-}
-
-dt {
-  display: table-cell;
-  padding: .5em;
-  text-align: right;
-}
-
-dt:after {
-  content: ':';
-  color: #888;
 }
