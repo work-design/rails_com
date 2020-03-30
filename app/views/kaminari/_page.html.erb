@@ -1,1 +1,1 @@
-<%= link_to page, url, remote: remote, class: active_assert(page.current?) %>
+<li><%= link_to page, url, remote: remote, class: active_assert(page.current?, expected: 'pagination-link is-current', unexpected: 'pagination-link') %></li>
