@@ -1,9 +1,11 @@
 <%= form_with theme: 'search', model: BlobDefault.new do |f| %>
-  <div class="fields">
+  <div class="field-body">
     <%= f.text_field :record_class %>
     <%= f.text_field :name %>
-    <%= f.submit %>
-    <%= link_to t('.clear'), filter_params(except: [:record_class, :name]), class: 'ui button' %>
+    <div class="field is-narrow">
+      <%= f.submit %>
+      <%= link_to t('.clear'), filter_params(except: [:record_class, :name]), class: 'button is-light' %>
+    </div>
   </div>
 <% end %>
 

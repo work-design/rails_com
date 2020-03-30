@@ -1,6 +1,8 @@
 @charset "utf-8";
 
 $body-size: 14px;
+// todo use $border
+$table-head-background-color: hsl(0, 0%, 96%);
 @import '~bulma/bulma';
 
 @import 'base/global';
