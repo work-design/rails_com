@@ -1,0 +1,7 @@
+.breadcrumb {
+  li {
+    &.is-active:before {
+      padding-right: 0.75em;
+    }
+  }
+}
