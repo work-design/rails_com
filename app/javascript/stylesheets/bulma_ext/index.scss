@@ -9,6 +9,8 @@ $table-head-background-color: hsl(0, 0%, 96%);
 @import 'base/dl';
 @import 'base/main';
 
+@import 'grid/columns';
+
 @import 'elements/table';
 @import 'elements/image';
 @import 'components/breadcrumb';
