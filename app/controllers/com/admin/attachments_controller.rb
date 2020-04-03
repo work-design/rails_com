@@ -14,6 +14,7 @@ class Com::Admin::AttachmentsController < Com::Admin::BaseController
 
   def delete
     @attachment.destroy
+    render 'destroy'
   end
 
   def destroy

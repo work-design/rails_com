@@ -1,11 +1,15 @@
-<div class="ui top attached borderless menu">
-  <%= link_to t('.all'), admin_attachments_path, class: active_helper(action: 'index') %>
-  <%= link_to 'Garbled', garbled_admin_attachments_path, class: active_helper(action: 'garbled') %>
+<div class="tabs">
+  <ul>
+    <li>
+      <%= link_to t('.all'), admin_attachments_path, class: active_helper(action: 'index', active_class: 'is-active', item_class: nil) %>
+    </li>
+    <li>
+      <%= link_to 'Garbled', garbled_admin_attachments_path, class: active_helper(action: 'garbled', active_class: 'is-active', item_class: nil) %>
+    </li>
+  </ul>
 </div>
 
-<div class="ui attached segment">
-  <%= render 'filter' %>
-</div>
+<%= render 'filter' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
