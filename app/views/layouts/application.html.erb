@@ -16,8 +16,10 @@
   <body class="as-body">
     <%= render 'nav_bar' %>
     <%= render 'shared/alert' %>
-    <main class="as-main">
-      <%= yield %>
+    <main class="columns is-fluid is-centered as-main">
+      <div class="column container is-full">
+        <%= yield %>
+      </div>
     </main>
     <%= render 'footer' %>
     <div id="modal"></div>
