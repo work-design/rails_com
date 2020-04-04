@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : t('site_name') %></title>
-    <meta name="description" content="<%= yield(:meta_description) %>">
-    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
-    <meta name="turbolinks-cache-control" content="no-preview">
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= css_load media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= js_ready 'data-turbolinks-track': 'reload' %>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= csp_meta_tag %>
-  </head>
+<%= render layout: 'layouts/application_layout' do %>
   <body class="as-body">
     <%= render 'nav_bar' %>
     <%= render 'shared/alert' %>
@@ -25,4 +11,4 @@
     <div id="modal"></div>
     <%= js_load %>
   </body>
-</html>
+<% end %>
