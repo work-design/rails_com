@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'open3'
 
 module Deploy
   SHARED_DIRS = [
@@ -53,21 +54,26 @@ module Deploy
     end.flatten
   end
 
-  def shes(env = Rails.env, skip_precompile: false)
+  def prepare_cmds(env = Rails.env, skip_precompile: false)
     r = []
-    r << "git pull"
+    r << 'git pull'
     r += ln_shared_paths
-    r << "bundle install --without development test --path vendor/bundle --deployment"
+    r << 'bundle install --without development test --path vendor/bundle --deployment'
     r << "RAILS_ENV=#{env} bundle exec rake webpacker:compile" unless skip_precompile
     r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
-    r << "bundle exec pumactl restart"
+    r << 'bundle exec pumactl restart'
+    r << 'systemctl --user restart sidekiq'
     r
   end
 
-  def works(env = Rails.env, options = {})
-    shes(env, **options).each do |sh|
-      puts "doing: #{sh}"
-      `#{sh}`
+  def exec_cmds(env = Rails.env, options = {})
+    prepare_cmds(env, **options).each do |cmd|
+      puts "=====> #{cmd}"
+      Open3.popen2e(cmd) do |_, output, _|
+        output.each_line do |line|
+          puts line
+        end
+      end
     end
   end
 
