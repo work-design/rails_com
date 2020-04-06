@@ -69,7 +69,8 @@ module Deploy
   def exec_cmds(env = Rails.env, options = {})
     prepare_cmds(env, **options).each do |cmd|
       puts "=====> #{cmd}"
-      Open3.popen2e(cmd) do |_, output, _|
+      Open3.popen2e(cmd) do |_, output, thread|
+        puts "-----> #{thread.pid}"
         output.each_line do |line|
           puts line
         end
