@@ -9,3 +9,22 @@
 .table td {
   vertical-align: middle;
 }
+
+table.as-search {
+  th {
+    text-align: right;
+    white-space: nowrap;
+  }
+  th:after {
+    content: ':';
+    color: #888;
+  }
+  td {
+    width: 100%;
+  }
+  td, th {
+    padding: 0 .5em .75em 0;
+    vertical-align: middle;
+  }
+
+}
