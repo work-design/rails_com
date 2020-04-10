@@ -23,5 +23,5 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= render partial: 'com/attachments/default_image_item' %>
+  <%= render partial: 'com/attachments/default_image_item', locals: { target: target } %>
 <% end %>

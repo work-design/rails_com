@@ -1,9 +1,16 @@
-<div class="ui image attached">
-  <div class="ui placeholder">
-    <div class="image" style="text-align: center;line-height: 100px;">
-      <i class="fas fa-plus"></i>
-    </div>
-  </div>
+<% f_object = form_object(target.record) %>
+<div class="file has-name is-boxed">
+  <label class="file-label">
+    <%= f_object.file_field target.name, can: { wrap_input: false, label: false, wrap_all: false }, data: { action: 'picture#upload' }, direct_upload: true, class: 'file-input' %>
+    <span class="file-cta">
+      <span class="file-icon">
+        <i class="fas fa-upload"></i>
+      </span>
+    </span>
+    <span class="file-name">
+      Screen Shot 2017-07-29 at 15.54.25.png
+    </span>
+  </label>
 </div>
 
 <div class="ui image" id="file_template" style="display: none;">
