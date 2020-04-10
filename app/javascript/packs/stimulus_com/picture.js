@@ -6,7 +6,7 @@ import { Controller } from 'stimulus'
 
 // <input type="file" data-controller="picture">
 class PictureController extends Controller {
-  static targets = ['src', 'previewDiv']
+  static targets = ['src', 'filename', 'preview']
 
   connect() {
     console.log('Picture Controller works!')
@@ -18,47 +18,68 @@ class PictureController extends Controller {
   upload(event) {
     let input = event.currentTarget
     Array.from(input.files).forEach(file => {
-      window.xcontroller = new DirectUploadController(input, file)
+      this.filenameTarget.innerText = file.name
+      // todo file is image
+      this.previewFile(file)
+      let controller = new DirectUploadController(input, file)
+      if (controller) {
+        controller.start(error => {
+          if (error) {
+            callback(error)
+            this.dispatch('end')
+          }
+        })
+      }
     })
-
-
-    let options = {}
-    options['editor'] = input
-    options['fileInput'] = fileInput
-    let fileInput = document.getElementById(options['fileInput'])
-    let inlineAttach = new InputAttachment(options)
   }
 
-  preview() {
-    var fileInput = document.getElementById(options['fileInput'])
-    options['fileInput'] = fileInput
-    var inlineAttach = new InputAttachment(options)
+  xxx(event) {
+    alert('ddd')
+  }
 
-    if (fileInput) {
-      fileInput.addEventListener('change', function(e) {
-        inlineAttach.imagePreview(e, options['previewDiv'])
-      }, false)
+  dropFile(event) {
+    alert('drop')
+    event.preventDefault()
+    event.stopPropagation()
+    for (var i = 0; i < event.dataTransfer.files.length; i++) {
+      var file = e.dataTransfer.files[i]
+      console.log(file.name)
     }
   }
 
-  previewFile(file, previewDiv) {
-    let fileList = document.getElementById(this.previewDivTarget)
-    let templateDiv = document.getElementById(this.settings.templateDiv)
-    let template = document.createElement('template')
-    fileList.querySelectorAll('[data-preview=true]').forEach(e => e.parentNode.removeChild(e));
-    template.innerHTML = templateDiv.outerHTML.trim()
-    var img_div = template.content.firstChild
-    img_div.style.display = 'inline-block'
-    img_div.dataset['preview'] = true
-    img_div.id = null
-    var img = img_div.lastElementChild
+  pasteFile(event) {
+    alert('xxx')
+    var result = false,
+      clipboardData = event.clipboardData,
+      items;
 
+    if (typeof clipboardData === 'object') {
+      items = clipboardData.items || clipboardData.files || []
+
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i]
+        console.log(item)
+      }
+    }
+
+    if (result) { event.preventDefault(); }
+
+    return result;
+  };
+
+  previewFile(file) {
+    let template = this.previewTarget
+    let cloned = template.cloneNode(true)
+    cloned.style.display = 'block'
+
+    let img = cloned.querySelector('img')
     img.src = window.URL.createObjectURL(file) //创建一个object URL，并不是你的本地路径
     img.onload = function(e) {
-      window.URL.revokeObjectURL(this.src) //图片加载后，释放object URL
+      console.log(e)
+      window.URL.revokeObjectURL(img.src) //图片加载后，释放object URL
     }
 
-    fileList.appendChild(img_div)
+    template.after(cloned)
   }
 
 }
