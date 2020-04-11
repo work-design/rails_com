@@ -260,52 +260,6 @@ export default class InputAttachment {
     }
   };
 
-  /**
-   * Called when a paste event occurred
-   * @param  {Event} e
-   * @return {Boolean} if the event was handled
-   */
-  onPaste(e) {
-    var result = false,
-      clipboardData = e.clipboardData,
-      items;
-
-    if (typeof clipboardData === 'object') {
-      items = clipboardData.items || clipboardData.files || [];
-
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        if (this.isFileAllowed(item)) {
-          result = true;
-          this.onFileInserted(item.getAsFile());
-          this.uploadFile(item.getAsFile());
-        }
-      }
-    }
-
-    if (result) { e.preventDefault(); }
-
-    return result;
-  };
-
-  /**
-   * Called when a drop event occurs
-   * @param  {Event} e
-   * @return {Boolean} if the event was handled
-   */
-  onDrop(e) {
-    var result = false;
-    for (var i = 0; i < e.dataTransfer.files.length; i++) {
-      var file = e.dataTransfer.files[i];
-      if (this.isFileAllowed(file)) {
-        result = true;
-        this.onFileInserted(file);
-        this.uploadFile(file);
-      }
-    }
-
-    return result;
-  };
 
   onFileInputChange(e) {
     var result = false;

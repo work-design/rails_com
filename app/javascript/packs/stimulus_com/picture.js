@@ -1,6 +1,3 @@
-import InputAttachment from 'rails_com/attachment'
-import { DirectUpload } from '@rails/activestorage/src/direct_upload'
-import { start } from '@rails/activestorage/src/ujs'
 import { DirectUploadController } from '@rails/activestorage/src/direct_upload_controller'
 import { Controller } from 'stimulus'
 
@@ -17,6 +14,9 @@ class PictureController extends Controller {
   **/
   upload(event) {
     let input = event.currentTarget
+    let button = input.form.querySelector('input[type=submit], button[type=submit]')
+    input.disabled = true
+    button.disabled = true
     Array.from(input.files).forEach(file => {
       this.filenameTarget.innerText = file.name
       // todo file is image
@@ -25,20 +25,17 @@ class PictureController extends Controller {
       if (controller) {
         controller.start(error => {
           if (error) {
+            input.disabled = false
             callback(error)
             this.dispatch('end')
           }
+          button.disabled = false
         })
       }
     })
   }
 
-  xxx(event) {
-    alert('ddd')
-  }
-
   dropFile(event) {
-    alert('drop')
     event.preventDefault()
     event.stopPropagation()
     for (var i = 0; i < event.dataTransfer.files.length; i++) {
@@ -48,10 +45,9 @@ class PictureController extends Controller {
   }
 
   pasteFile(event) {
-    alert('xxx')
     var result = false,
       clipboardData = event.clipboardData,
-      items;
+      items
 
     if (typeof clipboardData === 'object') {
       items = clipboardData.items || clipboardData.files || []
@@ -62,10 +58,8 @@ class PictureController extends Controller {
       }
     }
 
-    if (result) { event.preventDefault(); }
-
-    return result;
-  };
+    if (result) { event.preventDefault() }
+  }
 
   previewFile(file) {
     let template = this.previewTarget
@@ -80,6 +74,26 @@ class PictureController extends Controller {
     }
 
     template.after(cloned)
+  }
+
+  submitStatus(form) {
+
+
+    if (button) {
+      const { disabled } = button
+      button.disabled = false
+      button.focus()
+      button.click()
+      button.disabled = disabled
+    } else {
+      button = document.createElement("input")
+      button.type = "submit"
+      button.style.display = "none"
+      form.appendChild(button)
+      button.click()
+      form.removeChild(button)
+    }
+    submitButtonsByForm.delete(form)
   }
 
 }
