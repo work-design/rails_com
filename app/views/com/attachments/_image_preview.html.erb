@@ -1,16 +1,16 @@
 <% if image.attached? %>
   <div class="field is-narrow" data-target="picture.preview">
     <div class="image">
-      <button class="button is-danger as-corner" data-action="picture#remove">
+      <a class="button is-danger as-corner" data-action="picture#removePreview">
         <i class="fas fa-trash-alt"></i>
-      </button>
+      </a>
       <%= image_tag image.variant(resize_to_limit: [300, 300]), id: "attachment_#{image.id}", data: { target: 'picture.src' }, class: 'image is-96x96' %>
     </div>
   </div>
 <% else %>
-  <div class="field is-narrow" style="display: none;" data-target="picture.preview">
+  <div class="field is-narrow" data-target="picture.preview" style="display: none">
     <div class="image">
-      <button class="button is-danger as-corner" data-action="picture#remove">
+      <button class="button is-danger as-corner" data-action="picture#removePreview">
         <i class="fas fa-trash-alt"></i>
       </button>
       <%= image_pack_tag 'default_avatar.jpg', data: { target: 'picture.src' }, class: 'image is-96x96' %>

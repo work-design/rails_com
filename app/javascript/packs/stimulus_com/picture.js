@@ -3,7 +3,7 @@ import { Controller } from 'stimulus'
 
 // <input type="file" data-controller="picture">
 class PictureController extends Controller {
-  static targets = ['src', 'filename', 'preview']
+  static targets = ['src', 'filename', 'preview', 'uploadDiv']
 
   connect() {
     console.log('Picture Controller works!')
@@ -76,24 +76,12 @@ class PictureController extends Controller {
     template.after(cloned)
   }
 
-  submitStatus(form) {
-
-
-    if (button) {
-      const { disabled } = button
-      button.disabled = false
-      button.focus()
-      button.click()
-      button.disabled = disabled
-    } else {
-      button = document.createElement("input")
-      button.type = "submit"
-      button.style.display = "none"
-      form.appendChild(button)
-      button.click()
-      form.removeChild(button)
-    }
-    submitButtonsByForm.delete(form)
+  removePreview(event) {
+    event.currentTarget.parentNode.parentNode.style.display = 'none'
+    let up = this.uploadDivTarget
+    let input = up.querySelector('input[type=file]')
+    up.style.display = 'block'
+    input.disabled = false
   }
 
 }

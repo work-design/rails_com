@@ -1,6 +1,6 @@
 <% if target.is_a?(ActiveStorage::Attached::One) %>
   <%= render partial: 'com/attachments/file_upload', locals: { target: target } %>
-  <% if target.content_type.to_s.start_with?('image') %>
+  <% if !target.attached? || target.content_type.to_s.start_with?('image') %>
     <%= render partial: 'com/attachments/image_preview', locals: { image: target } %>
   <% elsif target.content_type.to_s.start_with?('video') %>
     <%= render partial: 'com/attachments/video_item', locals: { video: target } %>
