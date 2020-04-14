@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title>管理后台</title>
+    <% if content_for?(:title) %>
+      <title><%= yield(:title) %></title>
+    <% else %>
+      <title><%= current_title %></title>
+    <% end %>
     <meta name="turbolinks-cache-control" content="no-preview">
     <%= stylesheet_packs_with_chunks_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= css_load media: 'all', 'data-turbolinks-track': 'reload' %>

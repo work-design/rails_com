@@ -3,6 +3,7 @@
 $body-size: 14px;
 // todo use $border
 $table-head-background-color: hsl(0, 0%, 96%);
+$table-head-cell-border-width: 0 0 1px;
 @import '~bulma/bulma';
 
 @import 'base/global';
