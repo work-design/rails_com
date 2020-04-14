@@ -8,6 +8,7 @@ module RailsCom #:nodoc:
   configure do |config|
     config.app_controller = 'ApplicationController'
     config.admin_controller = 'AdminController'
+    config.panel_controller = 'PanelController'
     config.custom_webpacker = true
     config.github_hmac_key = 'must_change_this'
     config.default_error_message = '服务端发生错误'

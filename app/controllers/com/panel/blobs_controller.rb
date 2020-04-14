@@ -1,4 +1,4 @@
-class Com::Admin::BlobsController < Com::Admin::BaseController
+class Com::Panel::BlobsController < Com::Panel::BaseController
   before_action :set_blob, only: [:destroy]
 
   def index

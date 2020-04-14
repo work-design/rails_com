@@ -1,4 +1,4 @@
-class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
+class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
   before_action :set_blob_default, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -25,7 +25,7 @@ class Com::Admin::BlobDefaultsController < Com::Admin::BaseController
 
   def update
     @blob_default.assign_attributes(blob_default_params)
-    
+
     unless @blob_default.save
       render :edit, locals: { model: @blob_default }, status: :unprocessable_entity
     end

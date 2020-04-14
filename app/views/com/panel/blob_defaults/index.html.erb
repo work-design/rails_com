@@ -9,7 +9,7 @@
       <th><%= BlobDefault.human_attribute_name(:file) %></th>
       <th><%= BlobDefault.human_attribute_name(:private) %></th>
       <th>
-        <%= link_to new_admin_blob_default_path, remote: true, class: 'button is-link is-small' do %>
+        <%= link_to new_panel_blob_default_path, remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -27,10 +27,10 @@
       </td>
       <td><%= blob_default.private %></td>
       <td>
-        <%= link_to edit_admin_blob_default_path(blob_default), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to edit_panel_blob_default_path(blob_default), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to admin_blob_default_path(blob_default), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to panel_blob_default_path(blob_default), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>

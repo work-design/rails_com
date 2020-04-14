@@ -1,0 +1,12 @@
+<div class="<%= active_helper(modules: 'com/panel', active_class: 'menu ex-accordion is-active', item_class: 'menu ex-accordion') %>" data-controller="menu">
+  <%= content_tag :div, class: 'menu-list' do -%>
+    <%= link_to '默认', panel_blob_defaults_path, class: active_helper(controllers: 'blob_defaults') %>
+    <%= link_to 'blobs', panel_blobs_path, class: active_helper(controllers: 'blobs') %>
+    <%= link_to 'attachments', panel_attachments_path, class: active_helper(controllers: 'attachments') %>
+  <% end %>
+  <a class="menu-label" data-action="menu#toggle">
+    <i class="fas fa-images fa-fw"></i>
+    <span>资源</span>
+    <i class="fas dropdown"></i>
+  </a>
+</div>

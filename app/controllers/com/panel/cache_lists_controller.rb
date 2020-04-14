@@ -1,4 +1,4 @@
-class Com::Admin::CacheListsController < Com::Admin::BaseController
+class Com::Panel::CacheListsController < Com::Panel::BaseController
   before_action :set_cache_list, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,7 +11,7 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def create
     @cache_list = CacheList.new(cache_list_params)
-    
+
     unless @cache_list.save
       render :new, locals: { model: @cache_list }, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Com::Admin::CacheListsController < Com::Admin::BaseController
 
   def update
     @cache_list.assign_attributes(cache_list_params)
-    
+
     unless @cache_list.save
       render :edit, locals: { model: @cache_list }, status: :unprocessable_entity
     end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   scope module: 'com' do
     controller :common do
       get :infos
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :admin, module: 'com/admin', as: :admin do
+  scope :panel, module: 'com/panel', as: :panel do
     resources :infos
     resources :cache_lists
     resources :attachments, only: [:index, :destroy] do

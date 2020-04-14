@@ -1,4 +1,4 @@
-class Com::Admin::AttachmentsController < Com::Admin::BaseController
+class Com::Panel::AttachmentsController < Com::Panel::BaseController
   before_action :set_attachment, only: [:delete, :destroy]
 
   def index

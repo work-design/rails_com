@@ -1,10 +1,10 @@
 <div class="tabs">
   <ul>
     <li>
-      <%= link_to t('.all'), admin_attachments_path, class: active_helper(action: 'index', active_class: 'is-active', item_class: nil) %>
+      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active_class: 'is-active', item_class: nil) %>
     </li>
     <li>
-      <%= link_to 'Garbled', garbled_admin_attachments_path, class: active_helper(action: 'garbled', active_class: 'is-active', item_class: nil) %>
+      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active_class: 'is-active', item_class: nil) %>
     </li>
   </ul>
 </div>
@@ -33,7 +33,7 @@
       <td><%= attachment.blob_id %></td>
       <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
       <td>
-        <%= link_to delete_admin_attachment_path(attachment), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to delete_panel_attachment_path(attachment), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>
