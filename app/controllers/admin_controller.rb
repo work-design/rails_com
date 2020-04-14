@@ -1,3 +1,3 @@
-class AdminController < defined?(PanelController) ? PanelController : ApplicationController
+class AdminController < ApplicationController
 
 end unless defined? AdminController

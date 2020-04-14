@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <% if content_for?(:title) %>
+      <title><%= yield(:title) %></title>
+    <% else %>
+      <title><%= current_title %></title>
+    <% end %>
+    <meta name="turbolinks-cache-control" content="no-preview">
+    <%= stylesheet_packs_with_chunks_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= css_load media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin/application', 'data-turbolinks-track': 'reload' %>
+    <%= js_ready 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= csp_meta_tag %>
+  </head>
+  <%= yield %>
+</html>
+
