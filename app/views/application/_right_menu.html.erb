@@ -1,7 +1,7 @@
 <%= render partial: 'shared/locales' %>
 <%= render partial: 'notice_link' %>
 <% if defined?(current_user) && current_user %>
-  <div class="navbar-item has-dropdown is-hoverable">
+  <div class="navbar-item has-dropdown is-hoverable is-right">
     <div class="navbar-link">
       <%= image_tag current_user.avatar, class: 'ui avatar image' if current_user.avatar.attached? %>
       <%= current_user.name %>
