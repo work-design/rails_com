@@ -1,4 +1,12 @@
 zh:
   com:
     panel:
-      blob_defaults: 默认
+      blob_defaults:
+        index:
+          title: 默认图片
+      blobs:
+        index:
+          title: 文件
+      attachments:
+        index:
+          title: 附件管理
