@@ -1,10 +1,10 @@
 <div class="tabs">
   <ul>
     <li>
-      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active_class: 'is-active', item_class: nil) %>
+      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active: 'is-active', item: nil) %>
     </li>
     <li>
-      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active_class: 'is-active', item_class: nil) %>
+      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active: 'is-active', item: nil) %>
     </li>
   </ul>
 </div>

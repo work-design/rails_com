@@ -1,4 +1,4 @@
-<div class="<%= active_helper(modules: 'com/panel', active_class: 'menu ex-accordion is-active', item_class: 'menu ex-accordion') %>" data-controller="menu">
+<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu">
   <%= content_tag :div, class: 'menu-list' do %>
     <%= link_to t('com.panel.blob_defaults.index.title'), panel_blob_defaults_path, class: active_helper(controllers: 'blob_defaults') %>
     <%= link_to t('com.panel.blobs.index.title'), panel_blobs_path, class: active_helper(controllers: 'blobs') %>

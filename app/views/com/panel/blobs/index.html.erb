@@ -1,7 +1,7 @@
 <div class="tabs">
   <ul>
-    <li><%= link_to t('.all'), panel_blobs_path, class: active_helper(action: 'index', active_class: 'is-active', item_class: nil) %></li>
-    <li><%= link_to 'Unattached', unattached_panel_blobs_path, class: active_helper(action: 'unattached', active_class: 'is-active', item_class: nil) %></li>
+    <li><%= link_to t('.all'), panel_blobs_path, class: active_helper(action: 'index', active: 'is-active', item: nil) %></li>
+    <li><%= link_to 'Unattached', unattached_panel_blobs_path, class: active_helper(action: 'unattached', active: 'is-active', item: nil) %></li>
   </ul>
 </div>
 
