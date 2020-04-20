@@ -1,14 +1,9 @@
 <nav class="navbar is-dark">
-  <div class="navbar-brand">
-  
-  </div>
-  <div class="navbar-start">
-    <% if defined?(current_user) && current_user %>
-      <%= render 'nav_with_login' %>
-    <% else %>
-      <%= render 'nav_without_login' %>
-    <% end %>
-  </div>
+  <% if defined?(current_user) && current_user %>
+    <%= render 'nav_with_login' %>
+  <% else %>
+    <%= render 'nav_without_login' %>
+  <% end %>
   <div class="navbar-end">
     <%= render 'right_menu' %>
   </div>
