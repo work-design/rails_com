@@ -55,6 +55,7 @@ development:
     quiet: false
     headers:
       'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Headers': x-csrf-token, x-requested-with
     watch_options:
       ignored: '**/node_modules/**'
 test:
