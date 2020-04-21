@@ -37,6 +37,7 @@ default: &default
   - .gif
   - .jpeg
   - .jpg
+  ignore: '**/_*.scss'
 development:
   <<: *default
   compile: true
@@ -54,8 +55,8 @@ development:
     use_local_ip: false
     quiet: false
     headers:
-      'Access-Control-Allow-Origin': '*'
-      'Access-Control-Allow-Headers': x-csrf-token, x-requested-with
+      Access-Control-Allow-Origin: '*'
+      Access-Control-Allow-Headers: x-csrf-token, x-requested-with
     watch_options:
       ignored: '**/node_modules/**'
 test:

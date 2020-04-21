@@ -4,23 +4,17 @@ $body-size: 14px;
 // todo use $border
 $table-head-background-color: hsl(0, 0%, 96%);
 $table-head-cell-border-width: 0 0 1px;
-@import '~bulma/bulma';
 
-@import 'base/global';
-@import 'base/main';
+@import '~bulma/sass/utilities/_all';
+@import '~bulma/sass/base/_all';
+@import '~bulma/sass/elements/_all';
+@import '~bulma/sass/form/_all';
+@import '~bulma/sass/components/_all';
+@import '~bulma/sass/grid/_all';
+@import '~bulma/sass/layout/_all';
 
-@import 'grid/columns';
-
-@import 'elements/button';
-@import 'elements/fa';
-@import 'elements/table';
-@import 'elements/image';
-
-@import 'form/file';
-@import 'form/tools';
-
-@import 'components/breadcrumb';
-@import 'components/menu';
-@import 'components/media';
-
-@import 'base/choices';
+@import 'base/_all';
+@import 'components/_all';
+@import 'elements/_all';
+@import 'form/_all';
+@import 'grid/_all';
