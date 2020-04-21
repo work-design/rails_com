@@ -1,0 +1,6 @@
+.field {
+  &.is-horizontal {
+    @include tablet;
+    align-items: center;
+  }
+}
