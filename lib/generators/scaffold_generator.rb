@@ -8,7 +8,7 @@ class Erb::Generators::ScaffoldGenerator
     available_views = [
       'index.html',
       '_form.html',
-      '_filter.html',
+      '_filter_form.html',
       '_show_table.html'
     ]
 

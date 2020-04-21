@@ -1,6 +1,4 @@
-<div class="ui top attached segment">
-  <%%= render 'filter' %>
-</div>
+<%%= render 'filter_form' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
@@ -9,7 +7,7 @@
       <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
 <% end -%>
       <th>
-        <%%= link_to new_<%= singular_route_name %>_path, remote: true, class: 'ui mini green button' do %>
+        <%%= link_to new_<%= singular_route_name %>_path, remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%%= t('.new') %>
         <%% end %>
       </th>
