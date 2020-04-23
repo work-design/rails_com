@@ -37,6 +37,10 @@ class InputController extends Controller {
     Turbolinks.visit(url)
   }
 
+  remove() {
+    this.element.remove()
+  }
+
 }
 
 application.register('input', InputController)
