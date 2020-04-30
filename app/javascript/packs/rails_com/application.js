@@ -2,6 +2,7 @@ import Rails from '@rails/ujs'
 import Turbolinks from '@qinmingyuan/turbolinks'
 import 'rails_com/package/remote_js_load'
 
+Rails.start()
 Turbolinks.start()
 
 const timeForLocalized = () => {
