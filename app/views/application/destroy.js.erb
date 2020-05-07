@@ -2,5 +2,5 @@ Turbolinks.clearCache()
 <% if defined? return_to %>
 Turbolinks.visit('<%= return_to.html_safe %>', { action: 'replace' })
 <% else %>
-Turbolinks.visit(location, { action: 'replace' })
+Turbolinks.visit(location.href, { action: 'replace' })
 <% end %>
