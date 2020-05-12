@@ -1,21 +1,23 @@
 <%= render layout: 'layouts/application_head' do %>
-  <body>
+  <body class="as-body">
     <%= render 'nav_bar' %>
-    <main class="columns">
-      <div class="column is-narrow" style="width: 260px;">
-        <% if content_for?(:nav) %>
-          <%= yield :nav %>
-        <% else %>
-          <%= render 'nav' %>
-        <% end %>
-      </div>
-      <div class="column as-body">
-        <div class="as-main">
+    <main class="columns as-main">
+      <div class="container column">
+        <div class="columns">
+        <div class="column is-narrow" style="width: 260px;">
+          <% if content_for?(:nav) %>
+            <%= yield :nav %>
+          <% else %>
+            <%= render 'nav' %>
+          <% end %>
+        </div>
+        <div class="column">
           <%= yield %>
         </div>
-        <%= render 'footer' %>
+        </div>
       </div>
     </main>
+    <%= render 'footer' %>
     <div id="modal"></div>
     <%= js_load %>
     <%= javascript_pack_tag 'footer' %>
