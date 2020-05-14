@@ -1,5 +1,6 @@
-.navbar + .columns {
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
+main.columns {
+  margin: 0;
+}
+main.columns:not(:last-child) {
+  margin-bottom: 0;
 }
