@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : t('site_name') %></title>
+    <% if content_for?(:title) %>
+      <title><%= yield(:title) %></title>
+    <% else %>
+      <title><%= current_title %></title>
+    <% end %>
     <meta name="description" content="<%= yield(:meta_description) %>">
     <meta name="keywords" content="<%= yield(:meta_keywords) %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
