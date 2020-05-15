@@ -25,7 +25,7 @@ module RailsCom::ActiveHelper
   #   active_helper 'work/employee': ['index', 'show']
   # params:
   #   active_helper controller: 'users', action: 'show', id: 371
-  def active_helper(paths: [], controllers: [], modules: [], active: 'navbar-item is-active', item: 'navbar-item', **options)
+  def active_helper(paths: [], controllers: [], modules: [], active: nil, item: nil, **options)
     check_parameters = options.delete(:check_parameters)
 
     if paths.present?
@@ -56,7 +56,7 @@ module RailsCom::ActiveHelper
 
   # return value by params
   #   active_params state: 'xxx', organ_id: 1
-  def active_params(active: 'navbar-item is-active', item: 'navbar-item', **options)
+  def active_params(active: nil, item: nil, **options)
     options.compact.each do |k, v|
       if params[k].to_s == v.to_s
         return active
