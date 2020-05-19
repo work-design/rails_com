@@ -3,3 +3,9 @@
     align-items: center;
   }
 }
+
+@include mobile {
+  .media {
+    flex-direction: column;
+  }
+}
