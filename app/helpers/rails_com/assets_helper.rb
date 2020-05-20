@@ -23,10 +23,6 @@ module RailsCom::AssetsHelper
     r
   end
 
-  def js_ready(**options)
-    js_load(suffix: 'ready', **options)
-  end
-
   # Assets path: app/assets/stylesheets/controllers
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
