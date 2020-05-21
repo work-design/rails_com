@@ -6,7 +6,7 @@ Rails.start()
 Turbolinks.start()
 
 const timeForLocalized = () => {
-  document.querySelectorAll('time:not([data-localized="true"])').forEach(function(el) {
+  document.querySelectorAll('time:not([data-localized="true"])').forEach(el => {
     if (el.textContent.length > 0) {
       let format = el.dataset['format'] || 'YYYY-MM-DD HH:mm'
       el.textContent = moment.utc(el.textContent).local().format(format)
@@ -29,8 +29,7 @@ document.addEventListener('ajax:success', function() {
 })
 
 document.addEventListener('ajax:beforeSend', function(event) {
-  let detail = event.detail
-  let xhr = detail[0]
+  let xhr = event.detail[0]
   let offset = (new Date).getTimezoneOffset()
   xhr.setRequestHeader('Utc-Offset', offset)
   xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
