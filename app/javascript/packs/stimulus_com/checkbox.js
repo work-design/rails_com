@@ -25,7 +25,7 @@ class CheckController extends Controller {
 
   addedIds() {
     let ids = []
-    this.addedTargets.forEach((item) => {
+    this.addedTargets.forEach(item => {
       ids.push(item.value)
     })
     return ids.join(',')
@@ -33,7 +33,7 @@ class CheckController extends Controller {
 
   movedIds() {
     let ids = []
-    this.movedTargets.forEach((item) => {
+    this.movedTargets.forEach(item => {
       ids.push(item.value)
     })
     return ids.join(',')
