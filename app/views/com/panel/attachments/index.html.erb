@@ -1,15 +1,15 @@
 <div class="tabs">
   <ul>
     <li>
-      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active: 'is-active', item: nil) %>
+      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active: 'is-active') %>
     </li>
     <li>
-      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active: 'is-active', item: nil) %>
+      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active: 'is-active') %>
     </li>
   </ul>
 </div>
 
-<%= render 'filter' %>
+<%= render 'filter_form' %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
