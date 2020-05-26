@@ -15,7 +15,6 @@ module Deploy
     "config/credentials/staging.key"
   ].freeze
   INIT_DIRS = [
-    'config',
     'tmp/sockets',
     'tmp/dirs'
   ].freeze
@@ -33,21 +32,21 @@ module Deploy
     SHARED_DIRS + SHARED_FILES
   end
 
-  def init_shared_paths(root = '../shared')
+  def init_shared_paths(root = Pathname.pwd.join('../shared'))
     SHARED_DIRS.map do |dir|
-      `mkdir -p #{root}/#{dir}`
+      `mkdir -p #{root.join(dir)}`
     end
     INIT_DIRS.map do |dir|
-      `mkdir #{root}/#{dir}`
+      `mkdir -p #{root.join(dir)}`
     end
     SHARED_FILES.map do |path|
-      `touch #{root}/#{path}`
+      `touch #{root.join(path)}`
     end
   end
 
   def ln_shared_paths(env, root = Pathname.pwd)
     shared_paths(env).map do |path|
-      "ln -sf #{root.join('../shared', path)} #{root.join(path)}"
+      "ln -Tsf #{root.join('../shared', path)} #{root.join(path)}"
     end
   end
 
