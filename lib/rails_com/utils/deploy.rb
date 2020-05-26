@@ -29,7 +29,7 @@ module Deploy
     OpenSSL::HMAC.hexdigest('sha1', RailsCom.config.github_hmac_key, data)
   end
 
-  def shared_paths
+  def shared_paths(env)
     SHARED_DIRS + SHARED_FILES
   end
 
@@ -45,16 +45,16 @@ module Deploy
     end
   end
 
-  def ln_shared_paths(root = Pathname.pwd)
-    shared_paths.map do |path|
+  def ln_shared_paths(env, root = Pathname.pwd)
+    shared_paths(env).map do |path|
       "ln -sf #{root.join('../shared', path)} #{root.join(path)}"
     end
   end
 
-  def prepare_cmds(env = Rails.env, skip_precompile: false)
+  def prepare_cmds(env, skip_precompile: false)
     r = []
     r << 'git pull'
-    r += ln_shared_paths
+    r += ln_shared_paths(env)
     r << 'bundle install --without development test --path vendor/bundle --deployment'
     r << "RAILS_ENV=#{env} bundle exec rake webpacker:compile" unless skip_precompile
     r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
@@ -63,7 +63,7 @@ module Deploy
     r
   end
 
-  def exec_cmds(env = Rails.env, options = {})
+  def exec_cmds(env, options = {})
     prepare_cmds(env, **options).each do |cmd|
       puts "=====> #{cmd}"
       Open3.popen2e(cmd) do |_, output, thread|
