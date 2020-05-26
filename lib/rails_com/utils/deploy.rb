@@ -8,11 +8,11 @@ module Deploy
     'storage',
     'node_modules',
     'public/packs',
-    'vendor/bundle'
+    'vendor/bundle',
+    'config/credentials'
   ].freeze
   SHARED_FILES = [
-    'config/database.yml',
-    'config/master.key'
+    'config/database.yml'
   ].freeze
   INIT_DIRS = [
     'config',
