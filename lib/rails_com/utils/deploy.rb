@@ -45,7 +45,7 @@ module Deploy
     end
   end
 
-  def ln_shared_paths(root = Dir.pwd)
+  def ln_shared_paths(root = Pathname.pwd)
     shared_paths.map do |path|
       "ln -sf #{root.join('../shared', path)} #{root.join(path)}"
     end
