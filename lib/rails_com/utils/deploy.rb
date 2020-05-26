@@ -12,7 +12,7 @@ module Deploy
   ].freeze
   SHARED_FILES = [
     'config/database.yml',
-    "config/credentials/#{Rails.env}.key"
+    "config/credentials/staging.key"
   ].freeze
   INIT_DIRS = [
     'config',
