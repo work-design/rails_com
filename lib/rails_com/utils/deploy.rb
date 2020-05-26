@@ -8,11 +8,11 @@ module Deploy
     'storage',
     'node_modules',
     'public/packs',
-    'vendor/bundle',
-    'config/credentials'
+    'vendor/bundle'
   ].freeze
   SHARED_FILES = [
-    'config/database.yml'
+    'config/database.yml',
+    "config/credentials/#{Rails.env}.key"
   ].freeze
   INIT_DIRS = [
     'config',
@@ -45,13 +45,10 @@ module Deploy
     end
   end
 
-  def ln_shared_paths
+  def ln_shared_paths(root = Rails.root)
     shared_paths.map do |path|
-      [
-        "rm -rf #{path}",
-        "ln -s #{'../' * path.split('/').size}shared/#{path} ./#{path}"
-      ]
-    end.flatten
+      "ln -sf #{root.join('../shared', path)} #{root.join(path)}"
+    end
   end
 
   def prepare_cmds(env = Rails.env, skip_precompile: false)
