@@ -9,11 +9,3 @@ input[type=file]::-webkit-file-upload-button {
   background: lightgray;
   border: none;
 }
-
-input:invalid {
-  background-color: #ffdddd;
-}
-
-input:required:invalid {
-  border-color: #C00000;
-}
