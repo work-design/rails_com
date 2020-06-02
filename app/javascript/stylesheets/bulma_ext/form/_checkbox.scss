@@ -224,4 +224,44 @@ $switch-focus: 1px dotted $grey-light !default;
       }
       &.is-thin {
         &.is-outlined {
-          + label { &::after,&:after { box-shadow: none; } } } } }&.is-unchecked-\#{$name} { + label { &::before,&:before { background: $color; } }&.is-outlined { + label { &::before,&:before { background-color: transparent;border-color: $color !important; }&::after,&:after { background: $color; } } } } } }.field-body { .switch[type=\"checkbox\"] { + label { margin-top: .375em; } } }
+          + label {
+            &::after,
+            &:after {
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+    &.is-unchecked-#{$name} {
+      + label {
+        &::before,
+        &:before {
+          background: $color;
+        }
+      }
+
+      &.is-outlined {
+        + label {
+          &::before,
+          &:before {
+            background-color: transparent;
+            border-color: $color !important;
+          }
+          &::after,
+          &:after {
+            background: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.field-body {
+  .switch[type="checkbox"] {
+    + label {
+      margin-top: .375em;
+    }
+  }
+}
