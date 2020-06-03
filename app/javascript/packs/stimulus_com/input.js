@@ -5,6 +5,10 @@ class InputController extends Controller {
 
   connect() {
     console.log('Input Controller works!')
+    this.element.querySelector('label').addEventListener('click', el => {
+      let input = this.element.querySelector('input')
+      input.click()
+    })
   }
 
   submit(event) {
