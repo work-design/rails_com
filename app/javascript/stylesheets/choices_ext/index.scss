@@ -3,6 +3,8 @@
 .#{$choices-selector}__inner {
   min-height: 2.5em;
   height: 2.5em;
+  padding-top: 3.5px;
+  padding-bottom: 3.5px;
 }
 
 .#{$choices-selector}__list--dropdown {
