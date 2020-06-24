@@ -32,7 +32,6 @@ class SearchController extends Controller {
 
   cancel() {
     this.element.classList.remove('weui-search-bar_focusing')
-    this.labelTarget.show()
     this.inputTarget.blur()
   }
 
