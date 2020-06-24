@@ -10,3 +10,6 @@ import './choice' // Dependent on Choices.js
 
 // Dependent on Bulma CSS
 import './modal'
+
+// dependent on Weui
+import './search'
