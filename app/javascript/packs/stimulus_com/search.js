@@ -7,11 +7,6 @@ class SearchController extends Controller {
     console.log('Search Controller works!')
   }
 
-  cancelSearch() {
-    hideSearchResult()
-
-  }
-
   focus() {
     this.element.classList.add('weui-search-bar_focusing')
     this.inputTarget.focus()
@@ -19,13 +14,14 @@ class SearchController extends Controller {
 
   doSearch(element) {
     let ele = element.currentTarget
-    if(ele.value.length) {
+    alert(ele.value)
+    if (ele.value.length) {
       alert(ele.value)
     }
   }
 
-  hide(element) {
-    let ele = element.currentTarget
+  clear() {
+    Turbolinks.visit(location.pathname, { action: 'replace' })
     this.inputTarget.value = ''
     this.inputTarget.focus()
   }
