@@ -14,9 +14,8 @@ class SearchController extends Controller {
 
   doSearch(element) {
     let ele = element.currentTarget
-    alert(ele.value)
     if (ele.value.length) {
-      alert(ele.value)
+
     }
   }
 
