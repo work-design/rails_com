@@ -7,6 +7,16 @@ class SlideController extends Controller {
     console.log('Slide Controller works!')
   }
 
+  offset(touch) {
+    let offset = {
+      x: touch.pageX - this.startPos.x,
+      y: touch.pageY - this.startPos.y
+    }
+    console.log(offset)
+
+    return offset
+  }
+
   start(event) {
     let touch = event.targetTouches[0]
     this.startPos = {
@@ -18,26 +28,17 @@ class SlideController extends Controller {
   // data-action="touchmove->slide#move touchstart->slide#start"
   move(event) {
     let ele = event.currentTarget
-
     if (event.targetTouches.length > 1 || event.scale && event.scale !== 1) {
       return
     }
-    let touch = event.targetTouches[0]
-    let offset = {
-      x: touch.pageX - this.startPos.x,
-      y: touch.pageY - this.startPos.y
-    }
-    console.log(offset)
+    let offset = this.offset(event.targetTouches[0])
+
     let pad = Math.abs(offset.x)
-    let isMore = pad > this.element.clientWidth / 2 ? 1 : 0
     let isScrolling = pad < Math.abs(offset.y) ? 1 : 0
     if (isScrolling === 0 && offset.x < 0) {
       event.preventDefault()
       let next = ele.nextElementSibling
-      if (next && isMore) {
-        ele.style.right = this.element.clientWidth + 'px'
-        next.style.left = 0
-      } else if (next) {
+      if (next) {
         ele.style.right = pad + 'px'
         next.style.left = (this.element.clientWidth - pad) + 'px'
       }
@@ -54,8 +55,19 @@ class SlideController extends Controller {
   // data-action="touchend->slide#end"
   end(event) {
     let ele = event.currentTarget
-    ele.style.transitionProperty = 'left'
-    ele.style.transitionDuration = '1s'
+    if (event.changedTouches.length > 1 || event.scale && event.scale !== 1) {
+      return
+    }
+    let offset = this.offset(event.changedTouches[0])
+    let pad = Math.abs(offset.x)
+    let isMore = pad > this.element.clientWidth / 2 ? 1 : 0
+    let next = ele.nextElementSibling
+    if (next && isMore) {
+      ele.style.right = this.element.clientWidth + 'px'
+      next.style.left = 0
+      next.style.transitionProperty = 'left'
+      next.style.transitionDuration = '1s'
+    }
   }
 
   get index() {
