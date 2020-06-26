@@ -14,4 +14,7 @@ figure.image {
     padding: 3px;
     text-align: center;
   }
+  img {
+    max-height: inherit;
+  }
 }
