@@ -28,12 +28,16 @@ class SlideController extends Controller {
       y: touch.pageY - this.startPos.y
     }
     console.log(offset)
-    let isScrolling = Math.abs(offset.x) < Math.abs(offset.y) ? 1 : 0
+    let pad = Math.abs(offset.x)
+    let isMore = pad > this.element.clientWidth / 2 ? 1 : 0
+    let isScrolling = pad < Math.abs(offset.y) ? 1 : 0
     if (isScrolling === 0 && offset.x < 0) {
       event.preventDefault()
       let next = ele.nextElementSibling
-      if (next) {
-        let pad = Math.abs(offset.x)
+      if (next && isMore) {
+        ele.style.right = this.element.clientWidth + 'px'
+        next.style.left = 0
+      } else if (next) {
         ele.style.right = pad + 'px'
         next.style.left = (this.element.clientWidth - pad) + 'px'
       }
@@ -41,19 +45,17 @@ class SlideController extends Controller {
       event.preventDefault()
       let prev = ele.previousElementSibling
       if (prev) {
-        let pad = Math.abs(offset.x)
-        ele.style.right = pad + 'px'
-        prev.style.right = pad
+        ele.style.left = pad + 'px'
+        prev.style.right = (this.element.clientWidth - pad) + 'px'
       }
     }
   }
 
-  end() {
-    let styles = {
-      width: '150px',
-      'transition-property': 'width'
-    }
-    Object.assign(this.openTarget.style, styles)
+  // data-action="touchend->slide#end"
+  end(event) {
+    let ele = event.currentTarget
+    ele.style.transitionProperty = 'left'
+    ele.style.transitionDuration = '1s'
   }
 
   get index() {
