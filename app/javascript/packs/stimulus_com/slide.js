@@ -64,6 +64,8 @@ class SlideController extends Controller {
     let next = ele.nextElementSibling
     if (next && isMore) {
       ele.style.right = this.element.clientWidth + 'px'
+      ele.style.transitionProperty = 'right'
+      ele.style.transitionDuration = '1s'
       next.style.left = 0
       next.style.transitionProperty = 'left'
       next.style.transitionDuration = '1s'
