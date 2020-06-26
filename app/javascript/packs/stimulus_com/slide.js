@@ -67,6 +67,10 @@ class SlideController extends Controller {
       next.style.left = 0
       next.style.transitionProperty = 'left'
       next.style.transitionDuration = '1s'
+    } else if (isMore === 0) {
+      ele.style.right = 0
+      ele.style.transitionProperty = 'right'
+      ele.style.transitionDuration = '1s'
     }
   }
 
