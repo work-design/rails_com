@@ -2,3 +2,16 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+figure.image {
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+
+  figcaption {
+    background-color: #222;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+  }
+}
