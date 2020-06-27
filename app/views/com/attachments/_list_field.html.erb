@@ -1,5 +1,7 @@
-<div class="field is-horizontal" id="<%= "#{target.record.class.name.underscore}_attachments_#{target.record.id}" %>">
-  <div class="field-label"></div>
+<div class="field is-horizontal">
+  <div class="field-label">
+    <label class="label"><%= target.record.class.human_attribute_name(target.name) %></label>
+  </div>
   <div class="field-body control" data-controller="picture">
     <%= render partial: 'com/attachments/list_edit', locals: { target: target } %>
   </div>
