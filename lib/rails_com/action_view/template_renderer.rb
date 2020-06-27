@@ -15,6 +15,7 @@ module RailsCom
       # todo better implement
       @lookup_context.send :_set_detail, :formats, _formats
 
+      # 支持在views/:controller 目录下，用 _action 开头的子目录进一步分组，会优先查找该目录下文件
       context_prefix = @lookup_context.prefixes[0]
       if context_prefix.include?('_')
         @lookup_context.prefixes[0] = [@lookup_context.prefixes[1], "_#{request.params['action']}"].join('/')
