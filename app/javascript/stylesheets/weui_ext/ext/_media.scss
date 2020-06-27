@@ -17,6 +17,12 @@
   margin-bottom: -16px;
 }
 
+.weui-media-box__ft.x {
+  width: 0;
+  display: none;
+  transition: width 1s linear;
+}
+
 .weui-media-box__ft .weui-btn {
   border-radius: 0;
   height: 100%;

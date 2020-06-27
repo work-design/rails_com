@@ -1,3 +1,11 @@
-.weui-tab__panel > :first-child {
-  margin-top: 0;
+.weui-panel__bd {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.weui-panel__extra {
+  color: grey;
+  font-weight: lighter;
 }

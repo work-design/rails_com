@@ -5,6 +5,7 @@ import './menu'
 import './navbar'
 import './picture'
 import './slide'
+import './sticky'
 import './swipe'
 
 import './sortable' // dependent on sortable
