@@ -13,8 +13,8 @@ module RailsCom
       end
 
       # todo better implement
-      #binding.pry
       @lookup_context.send :_set_detail, :formats, _formats
+      @lookup_context.prefixes.prepend [@lookup_context.prefixes.first, "_#{request.params['action']}"].join('/')
       context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
