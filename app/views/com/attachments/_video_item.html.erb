@@ -1,6 +1,5 @@
 <p id="attachment_<%= video.id %>">
-  <%= link_to video.filename, rails_video_path(video), target: '_blank' %>
-  <%= link_to 'transfer', transfer_rails_video_path(video.id), method: :put, data: { confirm: t('.confirm') }, class: 'ui label' %>
-  <%= link_to 'x', rails_attachment_path(video.id), method: :delete, data: {confirm: t('.confirm')}, remote: true %>
+  <%= link_to video.filename, rails_ext_video_path(video), target: '_blank' %>
+  <%= link_to 'x', panel_attachment_path(video.id), method: :delete, data: {confirm: t('.confirm')}, remote: true %>
 </p>
 
