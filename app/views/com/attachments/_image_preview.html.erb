@@ -1,4 +1,5 @@
 <div class="field is-narrow" data-target="picture.preview">
+  <%= hidden_field_tag "#{f.object_name}[#{image.name}#{}][]", image.signed_id, id: nil %>
   <div class="image">
     <a class="button is-danger as-corner" data-action="picture#removePreview">
       <i class="fas fa-trash-alt"></i>

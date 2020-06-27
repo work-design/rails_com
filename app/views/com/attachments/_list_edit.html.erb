@@ -15,9 +15,9 @@
   <%= render partial: 'com/attachments/file_upload', locals: { target: target, f: f } %>
   <% target.each do |file| %>
     <% if file.content_type.to_s.start_with?('image') %>
-      <%= render partial: 'com/attachments/image_preview', locals: { image: file } %>
+      <%= render partial: 'com/attachments/image_preview', locals: { image: file, f: f } %>
     <% elsif file.content_type.to_s.start_with?('video') %>
-      <%= render partial: 'com/attachments/video_item', locals: { video: file } %>
+      <%= render partial: 'com/attachments/video_item', locals: { video: file, f: f } %>
     <% else %>
       <p id="attachment_<%= file.id %>">
         <%= link_to file.filename, rails_ext_blob_path(file) %>
