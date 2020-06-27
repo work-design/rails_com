@@ -4,7 +4,7 @@ import { Controller } from 'stimulus'
 class MenuController extends Controller {
 
   connect() {
-    console.log('Menu Controller works!')
+    console.debug('Menu Controller works!')
   }
 
   toggle() {

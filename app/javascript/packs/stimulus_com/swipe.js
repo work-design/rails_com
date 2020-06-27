@@ -4,7 +4,7 @@ class SwipeController extends Controller {
   static targets = ['open']
 
   connect() {
-    console.log('Swipe Controller works!')
+    console.debug('Swipe Controller works!')
   }
 
   start(event) {
@@ -25,7 +25,7 @@ class SwipeController extends Controller {
       x: touch.pageX - this.startPos.x,
       y: touch.pageY - this.startPos.y
     }
-    console.log(offset)
+    console.debug(offset)
     let isScrolling = Math.abs(offset.x) < Math.abs(offset.y) ? 1 : 0
     if (isScrolling === 0 && offset.x < 0) {
       event.preventDefault()

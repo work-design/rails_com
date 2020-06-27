@@ -6,7 +6,7 @@ class PictureController extends Controller {
   static targets = ['src', 'filename', 'preview', 'uploadDiv']
 
   connect() {
-    console.log('Picture Controller works!')
+    console.debug('Picture Controller works!')
   }
 
   /*
@@ -40,7 +40,7 @@ class PictureController extends Controller {
     event.stopPropagation()
     for (var i = 0; i < event.dataTransfer.files.length; i++) {
       var file = e.dataTransfer.files[i]
-      console.log(file.name)
+      console.debug('drop文件', file.name)
     }
   }
 
@@ -54,7 +54,7 @@ class PictureController extends Controller {
 
       for (var i = 0; i < items.length; i++) {
         var item = items[i]
-        console.log(item)
+        console.debug('粘贴', item)
       }
     }
 
@@ -69,7 +69,7 @@ class PictureController extends Controller {
     let img = cloned.querySelector('img')
     img.src = window.URL.createObjectURL(file) //创建一个object URL，并不是你的本地路径
     img.onload = function(e) {
-      console.log(e)
+      console.debug(e)
       window.URL.revokeObjectURL(img.src) //图片加载后，释放object URL
     }
 

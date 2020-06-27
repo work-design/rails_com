@@ -4,7 +4,7 @@ import { Controller } from 'stimulus'
 class InputController extends Controller {
 
   connect() {
-    console.log('Input Controller works!')
+    console.debug('Input Controller works!')
 
     let label = this.element.querySelector('label')
     if (label) {

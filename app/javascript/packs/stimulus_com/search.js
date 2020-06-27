@@ -4,7 +4,7 @@ class SearchController extends Controller {
   static targets = ['input', 'label']
 
   connect() {
-    console.log('Search Controller works!')
+    console.debug('Search Controller works!')
   }
 
   focus() {

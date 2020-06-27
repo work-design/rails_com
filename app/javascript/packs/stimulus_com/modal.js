@@ -4,7 +4,7 @@ import { Controller } from 'stimulus'
 class ModalController extends Controller {
 
   connect() {
-    console.log('Modal Controller works!')
+    console.debug('Modal Controller works!')
     document.documentElement.classList.add('is-clipped')
   }
 
