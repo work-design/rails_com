@@ -77,7 +77,9 @@ class PictureController extends Controller {
   }
 
   removePreview(event) {
-    event.currentTarget.parentNode.parentNode.style.display = 'none'
+    let wrap = event.currentTarget.parentNode.parentNode
+    wrap.style.display = 'none'
+    wrap.querySelector('input').remove()
     let up = this.uploadDivTarget
     let input = up.querySelector('input[type=file]')
     up.style.display = 'block'
