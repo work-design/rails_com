@@ -28,21 +28,24 @@ class SlideController extends Controller {
   // data-action="touchmove->slide#move touchstart->slide#start"
   move(event) {
     let ele = event.currentTarget
-    if (event.targetTouches.length > 1 || event.scale && event.scale !== 1) {
+    if (event.targetTouches.length > 1 || event.scale && event.scale !== 1) {  // scale && scale !== 表示缩放了
       return
     }
     let offset = this.offset(event.targetTouches[0])
-
     let pad = Math.abs(offset.x)
-    let isScrolling = pad < Math.abs(offset.y) ? 1 : 0
-    if (isScrolling === 0 && offset.x < 0) {
+    let isScrolling = pad < Math.abs(offset.y) ? 1 : 0  // 1 上下滚动，0 左右滑动
+    if (isScrolling !== 0) {
+      return
+    }
+
+    if (offset.x < 0) {  // offset.x < 0 表示向左滑动
       event.preventDefault()
       let next = ele.nextElementSibling
       if (next) {
         ele.style.right = pad + 'px'
         next.style.left = (this.element.clientWidth - pad) + 'px'
       }
-    } else if (isScrolling === 0 && offset.x > 0) {
+    } else if (offset.x > 0) {  // offset.x > 0 表示向右滑动
       event.preventDefault()
       let prev = ele.previousElementSibling
       if (prev) {
@@ -60,7 +63,12 @@ class SlideController extends Controller {
     }
     let offset = this.offset(event.changedTouches[0])
     let pad = Math.abs(offset.x)
-    let isMore = pad > this.element.clientWidth / 2 ? 1 : 0
+    let isScrolling = pad < Math.abs(offset.y) ? 1 : 0  // 1 上下滚动，0 左右滑动
+    if (isScrolling !== 0) {
+      return
+    }
+    
+    let isMore = pad > this.element.clientWidth / 2 ? 1 : 0  // 滑动距离是否超过元素宽度一半
     let next = ele.nextElementSibling
     if (next && isMore) {
       ele.style.right = this.element.clientWidth + 'px'
