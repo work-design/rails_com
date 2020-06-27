@@ -3,7 +3,7 @@ import { Controller } from 'stimulus'
 class SlideController extends Controller {
 
   connect() {
-    console.log('Slide Controller works!')
+    console.debug('Slide Controller works!')
   }
 
   offset(touch) {
@@ -11,7 +11,7 @@ class SlideController extends Controller {
       x: touch.pageX - this.startPos.x,
       y: touch.pageY - this.startPos.y
     }
-    console.log(offset)
+    console.debug('offset', offset)
 
     return offset
   }
@@ -71,7 +71,7 @@ class SlideController extends Controller {
 
     let isMore = pad > this.element.clientWidth / 2 ? 1 : 0  // 滑动距离是否超过元素宽度一半
     let speed = pad / (endTime - this.startTime)  // 手势速度
-    console.log('手势速度', speed)  // 大于 0.1
+    console.debug('手势速度', speed)  // 大于 0.1
 
     if (isMore || speed > 0.1) {
       if (offset.x < 0) {
