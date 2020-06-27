@@ -14,7 +14,14 @@ module RailsCom
 
       # todo better implement
       @lookup_context.send :_set_detail, :formats, _formats
-      @lookup_context.prefixes.prepend [@lookup_context.prefixes.first, "_#{request.params['action']}"].join('/')
+
+      context_prefix = @lookup_context.prefixes[0]
+      if context_prefix.include?('_')
+        @lookup_context.prefixes[0] = [@lookup_context.prefixes[1], "_#{request.params['action']}"].join('/')
+      else
+        @lookup_context.prefixes.prepend [context_prefix, "_#{request.params['action']}"].join('/')
+      end
+
       context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
