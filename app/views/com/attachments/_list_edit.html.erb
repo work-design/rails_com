@@ -1,11 +1,10 @@
 <% if target.is_a?(ActiveStorage::Attached::One) %>
-  <%= render partial: 'com/attachments/file_upload', locals: { target: target, f: f } %>
   <% if target.content_type.to_s.start_with?('image') %>
     <%= render partial: 'com/attachments/image_preview', locals: { image: target } %>
   <% elsif target.content_type.to_s.start_with?('video') %>
     <%= render partial: 'com/attachments/video_item', locals: { video: target } %>
   <% elsif !target.attached? %>
-    <%= render partial: 'com/attachments/hold_preview', locals: { image: target } %>
+    <%= render partial: 'com/attachments/file_upload', locals: { image: target } %>
   <% else %>
     <p id="attachment_<%= target.id %>">
       <%= link_to target.filename, rails_ext_blob_path(target) %>

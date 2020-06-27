@@ -1,6 +1,6 @@
-<div class="field is-narrow file has-name is-boxed" data-target="picture.uploadDiv" style="display: <%= target.attached? ? 'none' : 'block' %>">
+<div class="field is-narrow file has-name is-boxed" data-target="picture.uploadDiv">
   <label class="file-label">
-    <%= f.file_field target.name, disabled: target.attached?, direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
+    <%= f.file_field target.name, direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
     <span class="file-cta">
       <span class="file-icon">
         <i class="fas fa-upload"></i>
@@ -8,4 +8,12 @@
     </span>
     <span class="file-name" data-target="picture.filename"></span>
   </label>
+</div>
+<div class="field is-narrow" data-target="picture.preview" style="display: none;">
+  <div class="image">
+    <button class="button is-danger as-corner" data-action="picture#removePreview">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+    <%= image_pack_tag 'default_avatar.jpg', data: { target: 'picture.src' }, class: 'image is-96x96' %>
+  </div>
 </div>
