@@ -1,14 +1,11 @@
-<% f_object = form_object(target.record) %>
 <div class="field is-narrow file has-name is-boxed" data-target="picture.uploadDiv" style="display: <%= target.attached? ? 'none' : 'block' %>">
   <label class="file-label">
-    <%= f_object.file_field target.name, disabled: target.attached?, direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
+    <%= f.file_field target.name, disabled: target.attached?, direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
     <span class="file-cta">
       <span class="file-icon">
         <i class="fas fa-upload"></i>
       </span>
     </span>
-    <span class="file-name" data-target="picture.filename">
-    
-    </span>
+    <span class="file-name" data-target="picture.filename"></span>
   </label>
 </div>

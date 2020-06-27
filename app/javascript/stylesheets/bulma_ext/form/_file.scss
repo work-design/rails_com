@@ -9,3 +9,15 @@ input[type=file]::-webkit-file-upload-button {
   background: lightgray;
   border: none;
 }
+
+.file-label {
+  height: 100%;
+}
+
+.file.is-boxed .file-cta {
+  height: 100%;
+}
+
+.file-name {
+  text-align: center;
+}

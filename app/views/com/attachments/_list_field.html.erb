@@ -1,8 +1,6 @@
 <div class="field is-horizontal">
-  <div class="field-label">
-    <label class="label"><%= target.record.class.human_attribute_name(target.name) %></label>
-  </div>
+  <%= f.label target.name %>
   <div class="field-body control" data-controller="picture">
-    <%= render partial: 'com/attachments/list_edit', locals: { target: target } %>
+    <%= render partial: 'com/attachments/list_edit', locals: { target: target, f: f } %>
   </div>
 </div>
