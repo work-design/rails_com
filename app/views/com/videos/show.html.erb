@@ -1,6 +1,9 @@
 <div class="ui basic center aligned segment">
-  <%= video_tag @video.service_url(disposition: params[:disposition]),
-                controls: true,
-                preload: 'auto'
+  <%=
+    video_tag(
+      @video.service_url(disposition: params[:disposition]),
+      controls: true,
+      preload: 'auto'
+    )
   %>
 </div>

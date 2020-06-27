@@ -17,4 +17,8 @@ figure.image {
   img {
     max-height: inherit;
   }
+  video {
+    max-height: inherit;
+    height: inherit;
+  }
 }

@@ -15,12 +15,16 @@ Rails.application.routes.draw do
     resources :direct_uploads, only: [:create]
   end
 
-  scope :rails, module: 'com', as: 'rails_ext' do
+  scope :rails, module: 'com', as: :rails_ext do
     resources :videos, only: [:show] do
-      put :transfer, on: :member
+      member do
+        put :transfer
+      end
     end
     resources :audios, only: [:show] do
-      put :transfer, on: :member
+      member do
+        put :transfer
+      end
     end
     resources :pdfs, only: [:show] do
       member do
@@ -34,11 +38,17 @@ Rails.application.routes.draw do
     resources :infos
     resources :cache_lists
     resources :attachments, only: [:index, :destroy] do
-      get :garbled, on: :collection
-      delete :delete, on: :member
+      collection do
+        get :garbled
+      end
+      member do
+        delete :delete
+      end
     end
-    resources :blobs, only: [:index, :new, :create, :destroy] do
-      get :unattached, on: :collection
+    resources :blobs, only: [:index, :show, :new, :create, :destroy] do
+      collection do
+        get :unattached
+      end
     end
     resources :blob_defaults
   end
