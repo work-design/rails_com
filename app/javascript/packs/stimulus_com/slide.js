@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus'
 
 class SlideController extends Controller {
-  static targets = ['open']
 
   connect() {
     console.log('Slide Controller works!')
