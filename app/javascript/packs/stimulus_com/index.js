@@ -16,3 +16,4 @@ import './modal'
 
 // dependent on Weui
 import './search'
+import './wechat'
