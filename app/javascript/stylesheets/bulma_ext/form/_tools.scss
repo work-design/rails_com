@@ -1,10 +1,5 @@
 .field {
-  &.is-horizontal {
-    @include tablet;
-    align-items: center;
-  }
   &.has-addons {
-    align-items: center;
     a {
       margin-right: .75rem;
     }
