@@ -1,4 +1,4 @@
-class Com::BaseController < RailsCom.config.app_controller.constantize
+class Com::BaseController < ApplicationController
 
 
-end
+end unless defined? Com::BaseController

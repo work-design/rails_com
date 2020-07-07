@@ -1,4 +1,4 @@
-class Com::Panel::BaseController < RailsCom.config.panel_controller.constantize
+class Com::Panel::BaseController < PanelController
   include ActiveStorage::SetCurrent
 
-end
+end unless defined? Com::Panel::BaseController
