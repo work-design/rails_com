@@ -3,7 +3,7 @@
 module RailsCom
   module TranslationHelper
 
-    def t(key, options = {})
+    def t(key, **options)
       options[:default] ||= default_keys(key)
       super
     end
