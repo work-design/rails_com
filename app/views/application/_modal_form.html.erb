@@ -1,12 +1,12 @@
 <div class="modal is-active" data-controller="modal">
-  <div class="modal-background" data-action="event->modal#close"></div>
+  <div class="modal-background" data-action="click->modal#close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title"><%= t('.edit') %></p>
+      <p class="modal-card-title"><%= t(".#{action}") %></p>
       <button class="delete" data-action="modal#close"></button>
     </header>
     <section class="modal-card-body">
-      <%= render 'edit_form' %>
+      <%= render "#{action}_form" %>
     </section>
   </div>
 </div>

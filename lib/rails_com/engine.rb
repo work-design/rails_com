@@ -13,6 +13,14 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
   initializer 'rails_com.add_generator_templates'do |app|
     app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
+    app.config.generators do |g|
+      g.stylesheets false
+      g.javasricpts false
+      g.javascript_engine false
+      g.helper false
+      g.jbuilder true
+      g.fixture_replacement :factory_bot
+    end
   end
 
   initializer 'rails_com.default_initializer' do |app|
