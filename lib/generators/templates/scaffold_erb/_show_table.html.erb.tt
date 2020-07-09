@@ -1,10 +1,10 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th class="six wide">
-        <%%= link_to t('.edit'), edit_<%= singular_route_name %>_path(@<%= singular_name %>), class: 'ui mini blue right floated button', remote: true %>
+      <th>
+        <%%= link_to t('.edit'), edit_<%= singular_route_name %>_path(@<%= singular_name %>), class: 'button is-small is-link', remote: true %>
       </th>
-      <th class="ten wide"></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

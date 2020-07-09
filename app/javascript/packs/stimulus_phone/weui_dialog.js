@@ -8,7 +8,6 @@ class WeuiDialogController extends Controller {
   }
 
   close() {
-    console.log(this.dialogTarget)
     let ele = this.element
     ele.style.display = 'none'
     ele.style.opacity = 0
