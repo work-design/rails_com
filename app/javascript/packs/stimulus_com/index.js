@@ -7,6 +7,7 @@ import './picture'
 import './slide'
 import './sticky'
 import './swipe'
+import './typer'
 
 import './sortable' // dependent on sortable
 import './choice' // Dependent on Choices.js

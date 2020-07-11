@@ -8,7 +8,7 @@ class InputController extends Controller {
 
     let label = this.element.querySelector('label')
     if (label) {
-      label.addEventListener('click', el => {
+      label.addEventListener('click', () => {
         let input = this.element.querySelector('input')
         input.click()
       })
