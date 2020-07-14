@@ -16,7 +16,8 @@ module Deploy
   ].freeze
   INIT_DIRS = [
     'tmp/sockets',
-    'tmp/dirs'
+    'tmp/dirs',
+    'config/credentials'
   ].freeze
   extend self
 
@@ -33,12 +34,11 @@ module Deploy
   end
 
   def init_shared_paths(root = Pathname.pwd.join('../shared'))
-    SHARED_DIRS.map do |dir|
-      `mkdir -p #{root.join(dir)}`
-    end
-    INIT_DIRS.map do |dir|
-      `mkdir -p #{root.join(dir)}`
-    end
+    dirs = []
+    dirs += SHARED_DIRS.map { |dir| root.join(dir) }
+    dirs += INIT_DIRS.map { |dir| root.join(dir) }
+    FileUtils.mkdir_p dirs
+
     SHARED_FILES.map do |path|
       `touch #{root.join(path)}`
     end
