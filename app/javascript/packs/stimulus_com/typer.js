@@ -17,8 +17,21 @@ class TyperController extends Controller {
   }
 
   form(event) {
-    if (event.currentTarget.value) {
-      Rails.fire(event.target.form, 'submit')
+    let ele = event.currentTarget
+    if (!ele.value) {
+      return
+    }
+
+    let url = ele.dataset['url']
+    if (url) {
+      Rails.ajax({
+        url: url,
+        type: 'GET',
+        data: `${ele.name}=${ele.value}`,
+        dataType: 'script'
+      })
+    } else {
+      Rails.fire(ele.form, 'submit')
     }
   }
 

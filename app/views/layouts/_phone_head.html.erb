@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <% if content_for?(:title) %>
+    <title><%= yield(:title) %></title>
+    <% else %>
+    <title><%= current_title %></title>
+    <% end %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="description" content="<%= yield(:meta_description) %>">
+    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
+    <meta name="turbolinks-cache-control" content="no-preview">
+    <%= stylesheet_pack_tag 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= css_load suffix: 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'phone', 'data-turbolinks-track': 'reload' %>
+    <%= js_load suffix: 'phone', 'data-turbolinks-track': 'reload' %>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <% if content_for?(:wechat_js) %>
+      <%= yield(:wechat_js) %>
+    <% end %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= csp_meta_tag %>
+  </head>
+  <%= yield %>
+</html>
