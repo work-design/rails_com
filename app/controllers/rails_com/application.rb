@@ -10,7 +10,6 @@ module RailsCom::Application
 
   included do
     before_action :set_locale, :set_timezone, :set_variant
-    layout :set_layout if respond_to?(:layout)
     helper_method :current_receiver, :current_title
   end
 
@@ -30,10 +29,6 @@ module RailsCom::Application
 
     request.variant = variant
     logger.debug "  ==========> Variant: #{request.variant}"
-  end
-
-  def set_layout
-    request.variant.first.to_s if request.variant.present?
   end
 
   def set_timezone
