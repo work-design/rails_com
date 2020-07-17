@@ -16,6 +16,11 @@ module RailsCom::AcmeOrder
     @order = acme_account.client.new_order(identifiers: identifiers)
   end
 
+  def authorization
+    return @authorization if defined? @authorization
+    @authorization = order.authorizations[0]
+  end
+
   def identifiers
     [identifier]
   end
@@ -25,7 +30,11 @@ module RailsCom::AcmeOrder
   end
 
   def dns_challenge
-
+    dns = authorization.dns
+    self.record_name = dns.record_name
+    self.record_content = dns.record_content
+    self.save
+    self
   end
 
 end
