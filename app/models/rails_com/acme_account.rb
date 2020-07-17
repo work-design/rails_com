@@ -42,7 +42,11 @@ module RailsCom::AcmeAccount
 
   def client
     return @client if defined? @client
-    @client = Acme::Client.new(private_key: private_key, directory: 'https://acme-staging-v02.api.letsencrypt.org/directory')
+    @client = Acme::Client.new(private_key: private_key, directory: directory)
+  end
+
+  def directory
+    RailsCom.config.acme_url
   end
 
   def contact
