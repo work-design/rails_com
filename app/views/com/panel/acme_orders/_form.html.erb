@@ -1,5 +1,5 @@
 <%= form_with model: @acme_order, url: panel_acme_account_orders_path(@acme_account) do |f| %>
   <%= render 'shared/error_messages', target: @acme_order %>
-  <%= f.text_field :identifiers %>
+  <%= render partial: 'item_field', locals: { f: f, index: 0, value: nil } %>
   <%= f.submit %>
 <% end %>

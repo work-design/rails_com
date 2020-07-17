@@ -23,6 +23,13 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
     end
   end
 
+  def add_item
+    @acme_order = @acme_account.acme_orders.build
+  end
+
+  def remove_item
+  end
+
   def show
   end
 
