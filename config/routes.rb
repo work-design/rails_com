@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     end
     resources :blob_defaults
     resources :acme_accounts do
-      resources :acme_orders
+      resources :acme_orders, as: :orders
     end
   end
 

@@ -4,6 +4,9 @@ zh:
       acme_accounts:
         index:
           title: SSL证书申请
+      acme_orders:
+        index:
+          title: SSL订单
       blob_defaults:
         index:
           title: 默认图片

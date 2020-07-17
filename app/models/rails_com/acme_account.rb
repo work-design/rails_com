@@ -6,6 +6,8 @@ module RailsCom::AcmeAccount
     attribute :email, :string
     attribute :kid, :string
 
+    has_many :acme_orders, dependent: :destroy
+
     has_one_attached :private_pem
 
     after_create_commit :store_private_pem
