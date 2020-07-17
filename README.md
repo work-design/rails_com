@@ -18,6 +18,7 @@ Rails 通用基础库
   - TimeHelper
   - Jobber
   - IpHelper
+* 支持通过 ACME 自动申请及更新 SSL 证书
   
 ### Locals support
 
