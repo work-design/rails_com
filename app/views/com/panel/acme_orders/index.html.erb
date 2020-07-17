@@ -4,10 +4,18 @@
   <thead>
     <tr>
       <th><%= AcmeOrder.human_attribute_name(:identifier) %></th>
-      <th><%= AcmeOrder.human_attribute_name(:file_name) %></th>
-      <th><%= AcmeOrder.human_attribute_name(:file_content) %></th>
-      <th><%= AcmeOrder.human_attribute_name(:record_name) %></th>
-      <th><%= AcmeOrder.human_attribute_name(:record_content) %></th>
+      <th>
+        <p><%= AcmeOrder.human_attribute_name(:file_name) %></p>
+        <p><%= AcmeOrder.human_attribute_name(:file_content) %></p>
+      </th>
+      <th>
+        <p><%= AcmeOrder.human_attribute_name(:record_name) %></p>
+        <p><%= AcmeOrder.human_attribute_name(:record_content) %></p>
+      </th>
+      <th>
+        <p><%= AcmeAccount.human_attribute_name(:private_pem) %></p>
+        <p><%= AcmeAccount.human_attribute_name(:cert_key) %></p>
+      </th>
       <th>
         <%= link_to new_panel_acme_account_order_path(@acme_account), remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
@@ -19,10 +27,22 @@
   <% @acme_orders.each do |acme_order| %>
     <tr>
       <td><%= acme_order.identifier %></td>
-      <td><%= acme_order.file_name %></td>
-      <td><%= acme_order.file_content %></td>
-      <td><%= acme_order.record_name %></td>
-      <td><%= acme_order.record_content %></td>
+      <td>
+        <p><%= acme_order.file_name %></p>
+        <p><%= acme_order.file_content %></p>
+      </td>
+      <td>
+        <p><%= acme_order.record_name %></p>
+        <p><%= acme_order.record_content %></p>
+      </td>
+      <td>
+        <% if acme_order.private_pem_blob %>
+          <p><%= link_to acme_order.private_pem_blob.filename, acme_order.private_pem_blob.service_url %></p>
+        <% end %>
+        <% if acme_order.cert_key_blob %>
+          <p><%= link_to acme_order.cert_key_blob.filename, acme_order.cert_key_blob.service_url %></p>
+        <% end %>
+      </td>
       <td>
         <%= link_to panel_acme_account_order_path(@acme_account, acme_order), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-eye"></i>
