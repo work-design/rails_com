@@ -9,7 +9,7 @@
       <th><%= AcmeOrder.human_attribute_name(:record_name) %></th>
       <th><%= AcmeOrder.human_attribute_name(:record_content) %></th>
       <th>
-        <%= link_to new_panel_acme_order_path, remote: true, class: 'button is-link is-small' do %>
+        <%= link_to new_panel_acme_account_order_path(@acme_account), remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -24,13 +24,13 @@
       <td><%= acme_order.record_name %></td>
       <td><%= acme_order.record_content %></td>
       <td>
-        <%= link_to panel_acme_order_path(acme_order), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to panel_acme_account_order_path(@acme_account, acme_order), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-eye"></i>
         <% end %>
-        <%= link_to edit_panel_acme_order_path(acme_order), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to edit_panel_acme_account_order_path(@acme_account, acme_order), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to panel_acme_order_path(acme_order), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to panel_acme_account_order_path(@acme_account, acme_order), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>

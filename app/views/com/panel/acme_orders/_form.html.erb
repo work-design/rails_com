@@ -1,9 +1,5 @@
-<%= form_with model: @acme_order do |f| %>
+<%= form_with model: @acme_order, url: panel_acme_account_orders_path(@acme_account) do |f| %>
   <%= render 'shared/error_messages', target: @acme_order %>
   <%= f.text_field :identifiers %>
-  <%= f.text_field :file_name %>
-  <%= f.text_field :file_content %>
-  <%= f.text_field :record_name %>
-  <%= f.text_field :record_content %>
   <%= f.submit %>
 <% end %>
