@@ -10,7 +10,7 @@ module RailsCom::AcmeAccount
 
     has_one_attached :private_pem
 
-    after_create_commit :store_private_pem
+    after_create_commit :generate_account
   end
 
   def name
@@ -19,7 +19,15 @@ module RailsCom::AcmeAccount
 
   def private_key
     return @private_key if defined? @private_key
-    @private_key = OpenSSL::PKey::RSA.new(4096)
+    if private_pem_blob
+      @private_key = OpenSSL::PKey::RSA.new(private_pem_blob.download)
+    else
+      @private_key = OpenSSL::PKey::RSA.new(4096)
+    end
+  end
+
+  def generate_account
+    self.update(kid: account.kid)
   end
 
   def store_private_pem
@@ -43,8 +51,6 @@ module RailsCom::AcmeAccount
   def account
     return @account if defined? @account
     @account = client.new_account(contact: contact, terms_of_service_agreed: true)
-    self.update(kid: @account.kid)
-    @account
   end
 
 end
