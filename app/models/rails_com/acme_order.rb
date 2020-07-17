@@ -2,7 +2,7 @@ module RailsCom::AcmeOrder
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifiers, :string, array: true
+    attribute :identifier, :string
     attribute :file_name, :string
     attribute :file_content, :string
     attribute :record_name, :string
@@ -11,6 +11,14 @@ module RailsCom::AcmeOrder
     belongs_to :acme_account
   end
 
+  def order
+    return @order if defined? @order
+    @order = acme_account.client.new_order(identifiers: identifiers)
+  end
+
+  def identifiers
+    [identifier]
+  end
 
   def http_challenge
 
