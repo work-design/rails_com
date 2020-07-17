@@ -6,11 +6,27 @@ module RailsCom::AcmeAccount
     attribute :email, :string
     attribute :kid, :string
 
+    has_one_attached :private_pem
+
+    after_create_commit :store_private_pem
+  end
+
+  def name
+    email.split('@')[0]
   end
 
   def private_key
     return @private_key if defined? @private_key
     @private_key = OpenSSL::PKey::RSA.new(4096)
+  end
+
+  def store_private_pem
+    Tempfile.open do |file|
+      file.binmode
+      file.write private_key.to_pem
+      file.rewind
+      self.private_pem.attach io: file, filename: "#{name}.pem"
+    end
   end
 
   def client

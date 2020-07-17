@@ -51,6 +51,9 @@ Rails.application.routes.draw do
       end
     end
     resources :blob_defaults
+    resources :acme_accounts do
+      resources :acme_orders
+    end
   end
 
 end

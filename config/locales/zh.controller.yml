@@ -1,6 +1,9 @@
 zh:
   com:
     panel:
+      acme_accounts:
+        index:
+          title: SSL证书申请
       blob_defaults:
         index:
           title: 默认图片
