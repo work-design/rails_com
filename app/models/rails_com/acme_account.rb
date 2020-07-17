@@ -27,6 +27,7 @@ module RailsCom::AcmeAccount
   end
 
   def generate_account
+    store_private_pem unless private_pem_blob
     self.update(kid: account.kid)
   end
 
