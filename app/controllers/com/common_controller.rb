@@ -7,6 +7,9 @@ class Com::CommonController < Com::BaseController
     @infos = Info.default_where(q_params)
   end
 
+  def cancel
+  end
+
   def cache_list
     render json: CacheList.all.as_json(only: [:path, :key], methods: [:etag])
   end
@@ -15,13 +18,13 @@ class Com::CommonController < Com::BaseController
     r = I18n.backend.translations[I18n.locale][:activerecord][:enum]
     render json: { locale: I18n.locale, values: r }
   end
-  
+
   def qrcode
     options = qrcode_params.to_h.symbolize_keys
     buffer = QrcodeHelper.code_png(params[:url], **options)
     send_data buffer, filename: 'cert_file.png', disposition: 'inline', type: 'image/png'
   end
-  
+
   def test_raise
     raise 'error from test raise'
   end
@@ -36,7 +39,7 @@ class Com::CommonController < Com::BaseController
 
     render plain: result
   end
-  
+
   private
   def qrcode_params
     params.permit(

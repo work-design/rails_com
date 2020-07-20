@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :enum_list
       get :qrcode
       get :test_raise
+      get :cancel
       match :deploy, via: [:get, :post]
     end
   end
