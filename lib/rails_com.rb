@@ -37,6 +37,9 @@ require 'rails_com/utils/babel'
 require 'rails_com/utils/deploy'
 require 'rails_com/utils/qrcode_helper'
 
+# active storage
+require 'active_storage/service/disc_service'
+
 # outside
 require 'default_where'
 require 'kaminari'
