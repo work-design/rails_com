@@ -3,7 +3,7 @@
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= AcmeOrder.human_attribute_name(:identifier) %></th>
+      <th><%= AcmeOrder.human_attribute_name(:identifiers) %></th>
       <th>
         <p><%= AcmeOrder.human_attribute_name(:file_name) %></p>
         <p><%= AcmeOrder.human_attribute_name(:file_content) %></p>
@@ -26,7 +26,7 @@
   <tbody>
   <% @acme_orders.each do |acme_order| %>
     <tr>
-      <td><%= acme_order.identifier %></td>
+      <td><%= simple_format acme_order.identifiers %></td>
       <td>
         <p><%= acme_order.file_name %></p>
         <p><%= acme_order.file_content %></p>

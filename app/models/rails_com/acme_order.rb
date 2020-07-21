@@ -3,7 +3,7 @@ module RailsCom::AcmeOrder
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifier, :string
+    attribute :identifiers, :string, array: true
     attribute :file_name, :string
     attribute :file_content, :string
     attribute :record_name, :string
@@ -26,13 +26,9 @@ module RailsCom::AcmeOrder
     @authorization = order.authorizations[0]
   end
 
-  def identifiers
-    [identifier]
-  end
-
   def csr
     return @csr if defined? @csr
-    @csr = Acme::Client::CertificateRequest.new(subject: { common_name: identifier })
+    @csr = Acme::Client::CertificateRequest.new(subject: { common_name: identifiers })
     Tempfile.open do |file|
       file.binmode
       file.write @csr.private_key.to_pem

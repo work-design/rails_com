@@ -59,7 +59,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   def acme_order_params
     params.fetch(:acme_order, {}).permit(
-      :identifier
+      identifiers: []
     )
   end
 
