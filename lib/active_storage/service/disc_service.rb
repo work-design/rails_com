@@ -1,5 +1,6 @@
+require 'active_storage/service/disk_service'
 module ActiveStorage
-  module Service
+  class Service
     class DiscService < DiskService
 
       def path_for(key)
