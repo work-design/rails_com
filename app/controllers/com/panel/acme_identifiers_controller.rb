@@ -3,15 +3,15 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
   before_action :set_acme_identifier, only: [:show, :edit, :update, :destroy]
 
   def index
-    @acme_identifiers = AcmeIdentifier.page(params[:page])
+    @acme_identifiers = @acme_order.acme_identifiers
   end
 
   def new
-    @acme_identifier = AcmeIdentifier.new
+    @acme_identifier = @acme_order.acme_identifiers.build
   end
 
   def create
-    @acme_identifier = AcmeIdentifier.new(acme_identifier_params)
+    @acme_identifier = @acme_order.acme_identifiers.build(acme_identifier_params)
 
     unless @acme_identifier.save
       render :new, locals: { model: @acme_identifier }, status: :unprocessable_entity

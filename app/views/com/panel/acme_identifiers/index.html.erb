@@ -10,7 +10,7 @@
       <th><%= AcmeIdentifier.human_attribute_name(:record_content) %></th>
       <th><%= AcmeIdentifier.human_attribute_name(:domain) %></th>
       <th>
-        <%= link_to new_panel_acme_identifier_path, remote: true, class: 'button is-link is-small' do %>
+        <%= link_to new_panel_acme_order_identifier_path(@acme_order), remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
       </th>
@@ -40,5 +40,3 @@
   <% end %>
   </tbody>
 </table>
-
-<%= paginate @acme_identifiers %>

@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><%= AcmeOrder.human_attribute_name(:identifiers) %></th>
+      <th><%= AcmeOrder.human_attribute_name(:orderid) %></th>
       <th>
         <p><%= AcmeAccount.human_attribute_name(:private_pem) %></p>
         <p><%= AcmeAccount.human_attribute_name(:cert_key) %></p>
@@ -19,6 +20,7 @@
   <% @acme_orders.each do |acme_order| %>
     <tr>
       <td><%= simple_format acme_order.identifiers %></td>
+      <td><%= acme_order.orderid %></td>
       <td>
         <% if acme_order.private_pem_blob %>
           <p><%= link_to acme_order.private_pem_blob.filename, acme_order.private_pem_blob.service_url %></p>
@@ -28,7 +30,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to panel_acme_account_order_path(@acme_account, acme_order), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to panel_acme_order_identifiers_path(acme_order), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-eye"></i>
         <% end %>
         <%= link_to edit_panel_acme_account_order_path(@acme_account, acme_order), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
