@@ -42,7 +42,12 @@ module RailsCom::AcmeAccount
 
   def client
     return @client if defined? @client
-    @client = Acme::Client.new(private_key: private_key, directory: directory)
+
+    if self.kid
+      @client = Acme::Client.new(private_key: private_key, directory: directory, kid: kid)
+    else
+      @client = Acme::Client.new(private_key: private_key, directory: directory)
+    end
   end
 
   def directory

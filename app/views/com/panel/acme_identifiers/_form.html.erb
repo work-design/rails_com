@@ -1,0 +1,5 @@
+<%= form_with model: @acme_identifier do |f| %>
+  <%= render 'shared/error_messages', target: @acme_identifier %>
+  <%= f.text_field :identifier %>
+  <%= f.submit %>
+<% end %>

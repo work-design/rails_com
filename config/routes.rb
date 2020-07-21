@@ -59,6 +59,9 @@ Rails.application.routes.draw do
           get :remove_item
         end
       end
+      resources :acme_orders, shallow: true, only: [] do
+        resources :acme_identifiers, as: :identifiers
+      end
     end
   end
 

@@ -3,14 +3,11 @@ module RailsCom::AcmeOrder
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifiers, :string, array: true
-    attribute :file_name, :string
-    attribute :file_content, :string
-    attribute :record_name, :string
-    attribute :record_content, :string
-    attribute :domain, :string
+    attribute :orderid, :string
 
     belongs_to :acme_account
+    has_many :acme_identifiers, dependent: :delete_all
+    accepts_nested_attributes_for :acme_identifiers
 
     has_one_attached :private_pem
     has_one_attached :cert_key
@@ -19,11 +16,18 @@ module RailsCom::AcmeOrder
   def order
     return @order if defined? @order
     @order = acme_account.client.new_order(identifiers: identifiers)
+    save_orderid
+    @order
   end
 
-  def authorization
-    return @authorization if defined? @authorization
-    @authorization = order.authorizations[0]
+  def save_orderid
+    self.orderid = order.to_h[:url].split('/')[-1]
+    self.save
+  end
+
+  def authorizations
+    return @authorizations if defined? @authorizations
+    @authorizations = order.authorizations
   end
 
   def csr

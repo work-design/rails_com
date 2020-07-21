@@ -1,0 +1,44 @@
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th><%= AcmeIdentifier.human_attribute_name(:identifier) %></th>
+      <th><%= AcmeIdentifier.human_attribute_name(:file_name) %></th>
+      <th><%= AcmeIdentifier.human_attribute_name(:file_content) %></th>
+      <th><%= AcmeIdentifier.human_attribute_name(:record_name) %></th>
+      <th><%= AcmeIdentifier.human_attribute_name(:record_content) %></th>
+      <th><%= AcmeIdentifier.human_attribute_name(:domain) %></th>
+      <th>
+        <%= link_to new_panel_acme_identifier_path, remote: true, class: 'button is-link is-small' do %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @acme_identifiers.each do |acme_identifier| %>
+    <tr>
+      <td><%= acme_identifier.identifier %></td>
+      <td><%= acme_identifier.file_name %></td>
+      <td><%= acme_identifier.file_content %></td>
+      <td><%= acme_identifier.record_name %></td>
+      <td><%= acme_identifier.record_content %></td>
+      <td><%= acme_identifier.domain %></td>
+      <td>
+        <%= link_to panel_acme_identifier_path(acme_identifier), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <%= link_to edit_panel_acme_identifier_path(acme_identifier), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-pencil-alt"></i>
+        <% end %>
+        <%= link_to panel_acme_identifier_path(acme_identifier), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @acme_identifiers %>
