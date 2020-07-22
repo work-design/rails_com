@@ -18,6 +18,9 @@ module RailsCom::AcmeIdentifier
   def compute_wildcard
     if identifier.start_with?('*.')
       self.wildcard = true
+      self.domain = identifier.delete_prefix('*.')
+    else
+      self.domain = identifier
     end
   end
 
