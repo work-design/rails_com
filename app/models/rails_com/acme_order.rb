@@ -46,12 +46,12 @@ module RailsCom::AcmeOrder
   end
 
   def identifiers_string
-    identifiers.join(' ')
+    identifiers.first
   end
 
   def csr
     return @csr if defined? @csr
-    @csr = Acme::Client::CertificateRequest.new(subject: { common_name: identifiers_string })
+    @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: identifiers_string })
     Tempfile.open do |file|
       file.binmode
       file.write @csr.private_key.to_pem
@@ -62,17 +62,20 @@ module RailsCom::AcmeOrder
   end
 
   def cert
-    order.finalize(csr: csr)
-    while order.status == 'processing'
+    order.reload
+    if ['valid'].include?(order.status) && order.certificate_url.present?
+      r = order.certificate
+      Tempfile.open do |file|
+        file.binmode
+        file.write r
+        file.rewind
+        self.cert_key.attach io: file, filename: "#{identifiers_string}.key"
+      end
+    else
+      order.finalize(csr: csr)
       sleep(1)
-      order.reload
-    end
-    r = order.certificate
-    Tempfile.open do |file|
-      file.binmode
-      file.write r
-      file.rewind
-      self.cert_key.attach io: file, filename: "#{identifier}.key"
+      cert
+      r = nil
     end
     r
   end
