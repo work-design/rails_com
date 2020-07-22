@@ -36,7 +36,7 @@ module RailsCom::AcmeOrder
     @authorizations = order.authorizations
     @authorizations.each do |auth|
       ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
-      ident.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content) if ident
+      ident.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content, url: auth.url) if ident
     end
     @authorizations
   end
@@ -52,7 +52,7 @@ module RailsCom::AcmeOrder
       file.binmode
       file.write @csr.private_key.to_pem
       file.rewind
-      self.private_pem.attach io: file, filename: "#{identifier}.pem"
+      self.private_pem.attach io: file, filename: "#{identifiers}.pem"
     end
     @csr
   end

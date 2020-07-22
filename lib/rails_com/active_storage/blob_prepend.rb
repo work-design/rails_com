@@ -7,9 +7,10 @@ module RailsCom::BlobPrepend
     klass.attribute :key, :string, null: false, index: { unique: true }
     klass.attribute :filename, :string, null: false
     klass.attribute :content_type, :string
-    klass.attribute :metadata, :text
+    klass.attribute :metadata, :json
     klass.attribute :byte_size, :integer, null: false
     klass.attribute :checksum, :string
+    klass.attribute :service_name, :string, null: false
     klass.attribute :created_at, :datetime, null: false
   end
 
