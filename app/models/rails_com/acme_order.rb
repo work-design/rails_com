@@ -49,6 +49,10 @@ module RailsCom::AcmeOrder
     identifiers.first
   end
 
+  def all_valid?
+    acme_identifiers.map(&:dns_valid?).all? true
+  end
+
   def csr
     return @csr if defined? @csr
     @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: identifiers_string })
