@@ -8,8 +8,17 @@ module RailsCom::AcmeIdentifier
     attribute :record_name, :string
     attribute :record_content, :string
     attribute :domain, :string
+    attribute :wildcard, :boolean
 
     belongs_to :acme_order
+
+    before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
+  end
+
+  def compute_wildcard
+    if identifier.start_with?('*.')
+      self.wildcard = true
+    end
   end
 
   def dns_resolv
@@ -25,6 +34,10 @@ module RailsCom::AcmeIdentifier
 
   def dns_host
     "#{record_name}.#{domain}"
+  end
+
+  def authorization
+
   end
 
   def dns_challenge

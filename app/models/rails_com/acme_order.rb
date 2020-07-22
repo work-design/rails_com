@@ -17,7 +17,7 @@ module RailsCom::AcmeOrder
   def order
     return @order if defined? @order
     if url
-      acme_account.client.order(url: url)
+      @order = acme_account.client.order(url: url)
     else
       @order = acme_account.client.new_order(identifiers: identifiers)
       save_orderid

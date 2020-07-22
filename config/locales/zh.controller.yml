@@ -3,10 +3,13 @@ zh:
     panel:
       acme_accounts:
         index:
-          title: SSL证书申请
+          title: SSL 证书申请
       acme_orders:
         index:
-          title: SSL订单
+          title: SSL 订单
+      acme_identifiers:
+        index:
+          title: SSL 订单详情
       blob_defaults:
         index:
           title: 默认图片
