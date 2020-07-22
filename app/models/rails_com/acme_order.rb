@@ -14,6 +14,7 @@ module RailsCom::AcmeOrder
     has_one_attached :cert_key, service: :acme
   end
 
+  # status: pending
   def order
     return @order if defined? @order
     if url
@@ -49,6 +50,7 @@ module RailsCom::AcmeOrder
     identifiers.first
   end
 
+  # status: ready
   def all_valid?
     acme_identifiers.map(&:dns_valid?).all? true
   end
@@ -65,6 +67,7 @@ module RailsCom::AcmeOrder
     @csr
   end
 
+  # status: valid
   def finalize
     order.finalize(csr: csr)
   end
