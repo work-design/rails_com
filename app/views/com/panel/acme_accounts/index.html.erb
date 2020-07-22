@@ -20,7 +20,7 @@
       <td><%= acme_account.kid %></td>
       <td>
         <% if acme_account.private_pem_blob %>
-          <%= link_to acme_account.private_pem_blob.filename, acme_account.private_pem_blob.service_url %>
+          <%= link_to acme_account.private_pem_blob.filename, rails_storage_redirect_path(acme_account.private_pem) %>
         <% end %>
       </td>
       <td>
