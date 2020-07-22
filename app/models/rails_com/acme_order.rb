@@ -65,8 +65,11 @@ module RailsCom::AcmeOrder
     @csr
   end
 
+  def finalize
+    order.finalize(csr: csr)
+  end
+
   def cert
-    order.reload
     if ['valid'].include?(order.status) && order.certificate_url.present?
       r = order.certificate
       Tempfile.open do |file|
@@ -76,9 +79,8 @@ module RailsCom::AcmeOrder
         self.cert_key.attach io: file, filename: "#{identifiers_string}.key"
       end
     else
-      order.finalize(csr: csr)
-      sleep(1)
-      cert
+      order.reload
+      logger.info "order status is #{order.status}"
       r = nil
     end
     r
