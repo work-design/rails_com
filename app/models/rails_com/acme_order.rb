@@ -42,17 +42,21 @@ module RailsCom::AcmeOrder
   end
 
   def identifiers
-    acme_identifiers.pluck(:identifier)
+    acme_identifiers.pluck(:identifier).sort
+  end
+
+  def identifiers_string
+    identifiers.join(' ')
   end
 
   def csr
     return @csr if defined? @csr
-    @csr = Acme::Client::CertificateRequest.new(subject: { common_name: identifiers })
+    @csr = Acme::Client::CertificateRequest.new(subject: { common_name: identifiers_string })
     Tempfile.open do |file|
       file.binmode
       file.write @csr.private_key.to_pem
       file.rewind
-      self.private_pem.attach io: file, filename: "#{identifiers}.pem"
+      self.private_pem.attach io: file, filename: "#{identifiers_string}.pem"
     end
     @csr
   end
