@@ -34,6 +34,11 @@ module RailsCom::AcmeOrder
   def authorizations
     return @authorizations if defined? @authorizations
     @authorizations = order.authorizations
+    @authorizations.each do |auth|
+      ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
+      ident.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content) if ident
+    end
+    @authorizations
   end
 
   def identifiers
