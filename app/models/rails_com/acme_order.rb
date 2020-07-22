@@ -10,8 +10,8 @@ module RailsCom::AcmeOrder
     has_many :acme_identifiers, dependent: :delete_all
     accepts_nested_attributes_for :acme_identifiers
 
-    has_one_attached :private_pem
-    has_one_attached :cert_key
+    has_one_attached :private_pem, service: :disc
+    has_one_attached :cert_key, service: :disc
   end
 
   def order

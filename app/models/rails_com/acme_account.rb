@@ -8,7 +8,7 @@ module RailsCom::AcmeAccount
 
     has_many :acme_orders, dependent: :destroy
 
-    has_one_attached :private_pem
+    has_one_attached :private_pem, service: :disc
 
     after_create_commit :generate_account
   end
