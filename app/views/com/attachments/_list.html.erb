@@ -14,7 +14,7 @@
       <%= image_tag file, style: 'max-width: 100%', class: 'image is-48x48' %>
     <% elsif file.content_type.to_s.start_with?('video') %>
       <figure id="attachment_<%= file.id %>" class="image is-48x48">
-        <%= video_tag file.service_url, controls: true %>
+        <%= video_tag file.url, controls: true %>
         <figcaption><%= link_to file.filename, rails_ext_video_path(file), target: '_blank' %></figcaption>
       </figure>
     <% else %>
