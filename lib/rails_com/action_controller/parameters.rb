@@ -5,6 +5,7 @@ module RailsCom::Parameters
       super
     rescue ArgumentError => e
       Rails.logger.debug e.backtrace
+      self[key]
     ensure
       @required_params ||= []
       @required_params << key
