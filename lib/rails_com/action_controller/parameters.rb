@@ -3,6 +3,8 @@ module RailsCom::Parameters
   def require(key)
     begin
       super
+    rescue ArgumentError => e
+      Rails.logger.debug e.backtrace
     ensure
       @required_params ||= []
       @required_params << key
