@@ -11,3 +11,7 @@
   height: auto;
   line-height: normal;
 }
+
+.weui-cell__hd + .weui-cell__bd {
+  padding-left: .25em;
+}
