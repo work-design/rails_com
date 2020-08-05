@@ -40,6 +40,7 @@ default: &default
   ignore: '**/_*.scss'
 development:
   <<: *default
+  public_output_path: packs_dev
   compile: true
   check_yarn_integrity: true
   dev_server:
