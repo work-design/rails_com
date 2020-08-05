@@ -58,6 +58,9 @@ Rails.application.routes.draw do
           get :add_item
           get :remove_item
         end
+        member do
+          patch :order
+        end
       end
       resources :acme_orders, shallow: true, only: [] do
         resources :acme_identifiers, only: [:index, :new, :create], as: :identifiers

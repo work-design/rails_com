@@ -62,7 +62,7 @@ module RailsCom::AcmeOrder
       file.binmode
       file.write @csr.private_key.to_pem
       file.rewind
-      self.private_pem.attach io: file, filename: "#{identifiers_string}.pem"
+      self.private_pem.attach io: file, filename: "#{identifiers_string}.key"
     end
     @csr
   end
@@ -79,7 +79,7 @@ module RailsCom::AcmeOrder
         file.binmode
         file.write r
         file.rewind
-        self.cert_key.attach io: file, filename: "#{identifiers_string}.key"
+        self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
       end
     else
       order.reload
