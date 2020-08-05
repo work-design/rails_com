@@ -58,7 +58,6 @@ module Deploy
     r << "RAILS_ENV=#{env} bundle exec rake webpacker:compile" unless skip_precompile
     r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
     r << 'bundle exec pumactl restart'
-    r << 'systemctl --user restart sidekiq'
     r
   end
 
