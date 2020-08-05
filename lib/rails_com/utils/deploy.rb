@@ -62,8 +62,10 @@ module Deploy
     r
   end
 
-  def exec_cmds(env, options = {})
-    prepare_cmds(env, **options).each do |cmd|
+  def exec_cmds(env, added_cmds: [], **options)
+    cmds = prepare_cmds(env, **options)
+    cmds += added_cmds
+    cmds.each do |cmd|
       puts "=====> #{cmd}"
       Open3.popen2e(cmd) do |_, output, thread|
         puts "-----> #{thread.pid}"
