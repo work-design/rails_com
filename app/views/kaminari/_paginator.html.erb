@@ -1,5 +1,5 @@
 <%= paginator.render do %>
-  <nav class="<%= @options[:class] || 'pagination' %>">
+  <nav class="<%= @options[:class] || 'pagination is-centered' %>">
     <%# first_page_tag unless current_page.first? %>
     <%= prev_page_tag unless current_page.first? %>
     <ul class="pagination-list">
