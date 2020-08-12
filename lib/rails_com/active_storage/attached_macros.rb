@@ -13,18 +13,6 @@ module RailsCom::AttachedOne
     @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id)) if id
   end
 
-  def attached?
-    attachment&.persisted?
-  end
-
-  def present?
-    attachment.present?
-  end
-
-  def blank?
-    attachment.nil?
-  end
-
   def copy(from, from_name)
     from_attachment = from.send "#{from_name}_attachment"
     record.send "create_#{name}_attachment", blob_id: from_attachment.blob_id
