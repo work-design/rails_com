@@ -10,7 +10,14 @@ module RailsCom::AttachedOne
     end
 
     id = BlobDefault.defaults["#{record.class.name}_#{name}"]
-    @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id)) if id
+    if id
+      begin
+        @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id))
+      rescue ActiveRecord::RecordNotFound => e
+        Rails.cache.delete('blob_default/default')
+        retry
+      end
+    end
   end
 
   def copy(from, from_name)
