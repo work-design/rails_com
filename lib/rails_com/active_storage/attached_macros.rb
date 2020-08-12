@@ -14,7 +14,7 @@ module RailsCom::AttachedOne
   end
 
   def attached?
-    attachment&.id?
+    attachment&.persisted?
   end
 
   def present?
