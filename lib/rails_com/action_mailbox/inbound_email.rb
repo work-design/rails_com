@@ -7,6 +7,12 @@ module RailsCom::ActionMailbox::InboundEmail
     index [ :message_id, :message_checksum ], name: 'index_action_mailbox_inbound_emails_uniqueness', unique: true
   end
 
+  def docx
+    mail.attachments.map do |attachment|
+      Docx::Document.new(attachment.body.to_s) if attachment.filename.end_with?('.docx')
+    end
+  end
+
 end
 
 ActiveSupport.on_load :action_mailbox_inbound_email do
