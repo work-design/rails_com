@@ -6,11 +6,11 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
   end
 
   def new
-    @inbound_email = InboundEmail.new
+    @inbound_email = ActionMailbox::InboundEmail.new
   end
 
   def create
-    @inbound_email = InboundEmail.new(inbound_email_params)
+    @inbound_email = ActionMailbox::InboundEmail.new(inbound_email_params)
 
     unless @inbound_email.save
       render :new, locals: { model: @inbound_email }, status: :unprocessable_entity
@@ -37,7 +37,7 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
 
   private
   def set_inbound_email
-    @inbound_email = InboundEmail.find(params[:id])
+    @inbound_email = ActionMailbox::InboundEmail.find(params[:id])
   end
 
   def inbound_email_params
