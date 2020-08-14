@@ -20,7 +20,7 @@
     <tr>
       <td><%= inbound_email.id %></td>
       <td><%= inbound_email.status_i18n %></td>
-      <td><%= simple_format inbound_email.mail.from %></td>
+      <td><%= simple_format inbound_email.mail.from.force_encoding('utf-8') %></td>
       <td><%= simple_format inbound_email.mail.to %></td>
       <td><%= inbound_email.mail.subject %></td>
       <td>
