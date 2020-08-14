@@ -21,7 +21,7 @@
       <td><%= inbound_email.id %></td>
       <td><%= inbound_email.status_i18n %></td>
       <td><%# simple_format inbound_email.mail.from.unpack('C*').pack('U*') %></td>
-      <td><%= simple_format inbound_email.mail.to %></td>
+      <td><%# simple_format inbound_email.mail.to %></td>
       <td><%= inbound_email.mail.subject %></td>
       <td>
         <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
