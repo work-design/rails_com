@@ -20,3 +20,6 @@ zh:
       attachments:
         index:
           title: 附件管理
+      inbound_emails:
+        index:
+          title: 邮件管理

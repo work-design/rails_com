@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   scope :panel, module: 'com/panel', as: :panel do
     resources :infos
     resources :cache_lists
+    resources :inbound_emails
     resources :attachments, only: [:index, :destroy] do
       collection do
         get :garbled
