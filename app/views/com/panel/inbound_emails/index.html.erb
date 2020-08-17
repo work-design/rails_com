@@ -20,9 +20,9 @@
     <tr>
       <td><%= inbound_email.id %></td>
       <td><%= inbound_email.status_i18n %></td>
-      <td><%# simple_format inbound_email.mail.from.unpack('C*').pack('U*') %></td>
-      <td><%# simple_format inbound_email.mail.to %></td>
-      <td><%= inbound_email.mail.subject %></td>
+      <td><%= simple_format inbound_email.mail.from.html_safe %></td>
+      <td><%= simple_format inbound_email.mail.to.html_safe %></td>
+      <td><%= inbound_email.mail.subject.html_safe %></td>
       <td>
         <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
           <i class="fas fa-eye"></i>
