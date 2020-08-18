@@ -11,7 +11,7 @@
     <tr>
       <td class="has-text-right"><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></td>
       <td>
-        <%= @inbound_email.docx.each do |doc| %>
+        <% @inbound_email.docx.each do |doc| %>
           <div class="content">
             <%= doc.to_html %>
           </div>
