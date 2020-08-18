@@ -5,7 +5,14 @@ module RailsCom::MailExt
   end
 
   def to
-    super.encode('utf-8', replace: '')
+    r = super
+    if r.is_a?(String)
+      r.encode('utf-8', replace: '')
+    elsif r.is_a?(Array)
+      r.join(',').encode('utf-8', replace: '')
+    else
+      super
+    end
   end
 
   def subject
