@@ -13,7 +13,7 @@
       <td>
         <% @inbound_email.docx.each do |doc| %>
           <div class="content">
-            <%= doc.to_html %>
+            <%= doc.to_html.html_safe %>
           </div>
         <% end %>
       </td>
