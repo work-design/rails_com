@@ -1,5 +1,6 @@
 <% flash.each do |type, msg| %>
-<div id="flash_toast">
+<div class="notification is-radiusless is-danger" data-controller="notice">
+  <button class="delete" data-action="notice#close"></button>
   <%= msg %>
 </div>
 <div class="ui bottom attached warning progress" data-percent="0">
