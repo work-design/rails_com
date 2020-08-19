@@ -5,7 +5,7 @@ module RailsCom::MailExt
     if r.is_a?(String)
       r.encode('utf-8', replace: '')
     elsif r.is_a?(Array)
-      r.join(',').encode('utf-8', replace: '')
+      r.map { |i| i.encode('utf-8', replace: '') }
     else
       super
     end
@@ -16,7 +16,7 @@ module RailsCom::MailExt
     if r.is_a?(String)
       r.encode('utf-8', replace: '')
     elsif r.is_a?(Array)
-      r.join(',').encode('utf-8', replace: '')
+      r.map { |i| i.encode('utf-8', replace: '') }
     else
       super
     end
