@@ -143,6 +143,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -196,7 +197,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     timers (4.3.0)
@@ -224,10 +224,10 @@ DEPENDENCIES
   jbuilder
   kaminari
   listen
+  pg
   pry-rails
   rails_com!
   sdoc
-  sqlite3
   webpacker
 
 BUNDLED WITH

@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'webpacker'
-gem 'sqlite3'
+gem 'pg'
 gem 'image_processing'
 
 gem 'factory_bot_rails', require: false
