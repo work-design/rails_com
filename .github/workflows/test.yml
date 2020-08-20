@@ -8,9 +8,10 @@ jobs:
       uses: actions/checkout@v1
       with:
         submodules: recursive
-    - name: Set up System
+    - name: Run Postgresql
       run: |
-        sudo apt install libsqlite3-dev
+        sudo systemctl enable postgresql.service
+        sudo systemctl start postgresql
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
