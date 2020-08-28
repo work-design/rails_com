@@ -104,10 +104,3 @@ Style/OptionalArguments:
 
 Style/SpecialGlobalVars:
   EnforcedStyle: use_perl_names
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/WhenThen:
-  Exclude:
-    - 'config/locales/zh.rb'
-
