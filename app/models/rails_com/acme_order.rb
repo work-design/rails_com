@@ -39,7 +39,7 @@ module RailsCom::AcmeOrder
     @authorizations = order.authorizations
     @authorizations.each do |auth|
       ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
-      ident.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content, url: auth.url) if ident
+      ident&.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content, url: auth.url)
     end
     @authorizations
   end

@@ -5,7 +5,7 @@ module ActiveRecord::Type
     end
 
     def deserialize(value)
-      if super && super.respond_to?(:[])
+      if super&.respond_to?(:[])
         super[::I18n.locale.to_s]
       else
         value
