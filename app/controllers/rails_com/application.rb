@@ -99,13 +99,13 @@ module RailsCom::Application
   end
 
   def json_format?
-    self.request.format.json?
+    request.format.json?
   end
 
   # after_action :process_js
   def process_js
-    return unless self.request.xhr?
+    return unless request.xhr?
 
-    self.response.body = Babel.transform(self.response.body)
+    response.body = Babel.transform(response.body)
   end
 end

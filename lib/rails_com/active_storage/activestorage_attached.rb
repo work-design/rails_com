@@ -14,7 +14,7 @@ module ActiveStorage
         end
 
         file.rewind
-        self.attach io: file, filename: filename
+        attach io: file, filename: filename
       end
     end
 

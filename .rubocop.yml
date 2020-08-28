@@ -108,26 +108,6 @@ Style/OptionalArguments:
     - 'lib/rails_com/webpacker/yaml_helper.rb'
 
 
-# Offense count: 41
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'app/controllers/rails_com/application.rb'
-    - 'app/models/rails_com/acme_account.rb'
-    - 'app/models/rails_com/acme_order.rb'
-    - 'app/models/rails_com/state_machine.rb'
-    - 'lib/rails_com/action_controller/extend.rb'
-    - 'lib/rails_com/action_controller/include.rb'
-    - 'lib/rails_com/active_record/extend.rb'
-    - 'lib/rails_com/active_record/include.rb'
-    - 'lib/rails_com/active_record/translation.rb'
-    - 'lib/rails_com/active_storage/activestorage_attached.rb'
-    - 'lib/rails_com/active_storage/attachment_transfer.rb'
-    - 'lib/rails_com/active_storage/blob_prepend.rb'
-    - 'lib/rails_com/active_storage/video_response.rb'
-    - 'lib/rails_com/core/array.rb'
-    - 'lib/rails_com/core/hash.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

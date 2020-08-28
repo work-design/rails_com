@@ -15,7 +15,7 @@ module RailsCom::ActiveRecord::Include
   class_methods do
     def index(name, **options)
       h = { index: name, **options }
-      self.indexes_to_define_after_schema_loads = self.indexes_to_define_after_schema_loads + [h]
+      self.indexes_to_define_after_schema_loads = indexes_to_define_after_schema_loads + [h]
     end
   end
 end

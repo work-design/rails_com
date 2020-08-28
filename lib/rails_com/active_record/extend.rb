@@ -8,7 +8,7 @@ module RailsCom::ActiveRecord::Extend
     require 'generators/factory_bot/model/model_generator'
 
     args = [
-      self.name.underscore
+      name.underscore
     ]
     cols = columns.reject(&->(i) { ['id', 'created_at', 'updated_at'].include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
 

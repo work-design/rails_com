@@ -21,18 +21,18 @@ module RailsCom::AttachmentTransfer
   end
 
   def transfer_faststart
-    attach = self.record.send(self.name)
+    attach = record.send(name)
     r = nil
     blob.open do |input|
-      Tempfile.open(['ActiveStorage', self.filename.extension_with_delimiter], Dir.tmpdir) do |file|
+      Tempfile.open(['ActiveStorage', filename.extension_with_delimiter], Dir.tmpdir) do |file|
         file.binmode
         argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart', '-f', 'mp4', '-y', file.path]
         system(*argv)
         file.rewind
-        r = attach.attach io: file, filename: self.filename.to_s, content_type: 'video/mp4'
+        r = attach.attach io: file, filename: filename.to_s, content_type: 'video/mp4'
       end
     end
-    self.purge
+    purge
 
     if attach.is_a?(ActiveStorage::Attached::One)
       r

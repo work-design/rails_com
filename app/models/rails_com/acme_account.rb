@@ -29,7 +29,7 @@ module RailsCom::AcmeAccount
 
   def generate_account
     store_private_pem unless private_pem_blob
-    self.update(kid: account.kid)
+    update(kid: account.kid)
   end
 
   def store_private_pem
@@ -37,14 +37,14 @@ module RailsCom::AcmeAccount
       file.binmode
       file.write private_key.to_pem
       file.rewind
-      self.private_pem.attach io: file, filename: "#{name}.pem"
+      private_pem.attach io: file, filename: "#{name}.pem"
     end
   end
 
   def client
     return @client if defined? @client
 
-    @client = if self.kid
+    @client = if kid
                 Acme::Client.new(private_key: private_key, directory: directory, kid: kid)
               else
                 Acme::Client.new(private_key: private_key, directory: directory)

@@ -1,7 +1,7 @@
 module RailsCom::ActionController
   module Include
     def whether_filter(filter)
-      callback = self.__callbacks[:process_action].find { |i| i.filter == filter.to_sym }
+      callback = __callbacks[:process_action].find { |i| i.filter == filter.to_sym }
       return false unless callback
 
       if_condition = callback.instance_variable_get(:@if).map do |c|
@@ -19,7 +19,7 @@ module RailsCom::ActionController
       except_condition = _protected_ivars.to_a + [
         :@marked_for_same_origin_verification
       ]
-      self.instance_variables - except_condition
+      instance_variables - except_condition
     end
   end
 end

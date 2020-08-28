@@ -41,7 +41,7 @@ class Array
   #   raw_data.to_combine_h
   #   #=> { a: [1, 2], b: 2 }
   def to_combine_h
-    self.inject({}) do |memo, obj|
+    inject({}) do |memo, obj|
       memo.merge(obj) do |_, old_val, new_val|
         v = (Array(old_val) + Array(new_val)).uniq
         v.size > 1 ? v : v[0]
@@ -58,7 +58,7 @@ class Array
   # raw_data.to_array_h
   # #=> [ { a: 1 }, { a: 2 }, { b: 2 } ]
   def to_array_h
-    self.map { |x, y| { x => y } }
+    map { |x, y| { x => y } }
   end
 
   # 2D array to csv file
@@ -69,7 +69,7 @@ class Array
   #   data.to_csv_file
   def to_csv_file(file = 'export.csv')
     CSV.open(file, 'w') do |csv|
-      self.each { |ar| csv << ar }
+      each { |ar| csv << ar }
     end
   end
 end

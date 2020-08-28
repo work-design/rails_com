@@ -9,7 +9,7 @@ class Hash
   # a.toggle! a: 3
   # => { a: [1, 2, 3] }
   def toggle!(remove = true, other_hash)
-    common_keys = self.keys & other_hash.keys
+    common_keys = keys & other_hash.keys
     common_keys.each do |key|
       removed = if remove
                   Array(self[key]) & Array(other_hash[key])
@@ -19,20 +19,20 @@ class Hash
       added = Array(other_hash[key]) - Array(self[key])
       self[key] = Array(self[key]) - removed + added
       if self[key].empty?
-        self.delete(key)
+        delete(key)
       elsif self[key].size == 1
         self[key] = self[key][0]
       end
     end
     other_hash.except!(*common_keys)
-    self.merge! other_hash
+    merge! other_hash
     self
   end
 
   def diff_toggle(remove = true, other_hash)
     removed = {}
     added = {}
-    o = other_hash.extract!(*(self.keys & other_hash.keys))
+    o = other_hash.extract!(*(keys & other_hash.keys))
 
     removed.merge! o.common_basic(self) if remove
     added.merge! o.diff_basic(self)

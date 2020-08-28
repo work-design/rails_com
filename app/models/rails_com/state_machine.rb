@@ -7,7 +7,7 @@ module RailsCom::StateMachine
   def next_to(options = {}, &block)
     options.each do |column, value|
       state = if self.class.method_defined? "next_#{column}_states"
-                self.send("next_#{column}_states").first
+                send("next_#{column}_states").first
               else
                 next_state(column, &block)
               end
@@ -23,14 +23,14 @@ module RailsCom::StateMachine
   end
 
   def next_to!(options = {}, &block)
-    self.next_to(options, &block)
-    self.save!
+    next_to(options, &block)
+    save!
   end
 
   def trigger_to(options = {}, &block)
     options.each do |column, value|
       states = if self.class.method_defined? "next_#{column}_states"
-                 self.send "next_#{column}_states"
+                 send "next_#{column}_states"
                else
                  next_states(column, &block)
                end
@@ -46,8 +46,8 @@ module RailsCom::StateMachine
   end
 
   def trigger_to!(options = {}, &block)
-    self.trigger_to(options, &block)
-    self.save!
+    trigger_to(options, &block)
+    save!
   end
 
   def next_state(state_name, &block)
@@ -59,7 +59,7 @@ module RailsCom::StateMachine
   # end
   def next_states(state_name, &block)
     states = self.class.send(state_name.to_s.pluralize).keys
-    state = self.send(state_name)
+    state = send(state_name)
 
     if state.nil?
       next_index = 0

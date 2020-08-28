@@ -9,14 +9,14 @@ module RailsCom::I18n
 
   def update_i18n_column
     str = []
-    self.changes.slice(*i18n_attributes).each do |key, _|
-      value = self.public_send("#{key}_before_type_cast")
+    changes.slice(*i18n_attributes).each do |key, _|
+      value = public_send("#{key}_before_type_cast")
       str << "#{key} = #{key}::jsonb || '#{value.to_json}'::jsonb"
     end
     return if str.blank?
 
     s = str.join(', ')
-    self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{self.id}"
+    self.class.connection.execute "UPDATE #{self.class.table_name} SET #{s} WHERE id = #{id}"
   end
 
   def attributes_with_values_for_create(attribute_names)
