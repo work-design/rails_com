@@ -113,38 +113,8 @@ Style/SelfAssignment:
   Exclude:
     - 'lib/rails_com/utils/uid_helper.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: .
-# SupportedStyles: use_perl_names, use_english_names
 Style/SpecialGlobalVars:
   EnforcedStyle: use_perl_names
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, require_no_parentheses
-Style/StabbyLambdaParentheses:
-  Exclude:
-    - 'lib/rails_com/engine.rb'
-
-# Offense count: 139
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'app/helpers/rails_com/format_helper.rb'
-    - 'config/locales/zh.rb'
-    - 'lib/rails_com/utils/deploy.rb'
-    - 'test/factories/active_storage_attachments.rb'
-    - 'test/factories/active_storage_blobs.rb'
-    - 'test/factories/cache_lists.rb'
-    - 'test/system/com/panel/acme_accounts_test.rb'
-    - 'test/system/com/panel/acme_authorizations_test.rb'
-    - 'test/system/com/panel/acme_identifiers_test.rb'
-    - 'test/system/com/panel/acme_orders_test.rb'
-    - 'test/system/com/panel/inbound_emails_test.rb'
 
 # Offense count: 26
 # Cop supports --auto-correct.

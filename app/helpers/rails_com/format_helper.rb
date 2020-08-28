@@ -23,7 +23,7 @@ module RailsCom::FormatHelper
     text = text.to_str
     text.gsub!(/\n?/, "</p>\n#{start_tag}")
     text.insert 0, start_tag
-    text.html_safe.safe_concat("</p>")
+    text.html_safe.safe_concat('</p>')
   end
 
   def simple_format(text, html_options = {}, options = {})

@@ -18,10 +18,10 @@
             num_modulo = number.to_i.abs % 100
             num_modulo %= 10 if num_modulo > 13
             case num_modulo
-            when 1; "st"
-            when 2; "nd"
-            when 3; "rd"
-            else    "th"
+            when 1; 'st'
+            when 2; 'nd'
+            when 3; 'rd'
+            else    'th'
             end
           end
         end,

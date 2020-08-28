@@ -13,7 +13,7 @@ module Deploy
   ].freeze
   SHARED_FILES = [
     'config/database.yml',
-    "config/credentials/staging.key"
+    'config/credentials/staging.key'
   ].freeze
   INIT_DIRS = [
     'tmp/sockets',
