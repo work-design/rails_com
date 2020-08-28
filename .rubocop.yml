@@ -19,16 +19,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundMethodBody:
-  Exclude:
-    - 'app/models/rails_com/cache_list.rb'
-    - 'examples/app/controllers/the_guards_controller.rb'
-    - 'lib/rails_com/active_record/translation.rb'
-    - 'lib/rails_com/active_storage/activestorage_attached.rb'
-    - 'lib/rails_com/utils/deploy.rb'
-
 # Offense count: 70
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

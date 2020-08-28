@@ -7,7 +7,6 @@ module RailsCom::CacheList
   end
 
   def etag
-
   end
 
 end

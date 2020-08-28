@@ -23,7 +23,6 @@ module Deploy
   extend self
 
   def restart
-
   end
 
   def github_hmac(data)

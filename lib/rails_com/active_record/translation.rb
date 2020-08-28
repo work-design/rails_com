@@ -53,7 +53,6 @@ module RailsCom::Translation
 
       RUBY_EVAL
     end
-
   end
 
   def _update_record(values, constraints)
