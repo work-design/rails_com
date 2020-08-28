@@ -24,7 +24,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
 
   initializer 'rails_com.default_initializer' do |app|
-    app.config.content_security_policy_nonce_generator = -> request {
+    app.config.content_security_policy_nonce_generator = ->request {
       request.headers['X-Csp-Nonce'] || SecureRandom.base64(16)
     }
     app.config.action_dispatch.rescue_responses.merge!({
