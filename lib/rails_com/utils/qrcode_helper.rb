@@ -11,7 +11,7 @@ module QrcodeHelper
     border_modules: 1,  # 二维码图片padding
     module_px_size: 6,
     file: nil
-  }
+  }.freeze
 
   def code_file(url, **options)
     png = code_png url, options
