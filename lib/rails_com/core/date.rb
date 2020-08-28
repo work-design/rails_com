@@ -4,7 +4,7 @@ class Date
   #   '2018-01-31'.to_date.contract_after(1.month) => '2018-02-28'
   def contract_after(*afters, less: true)
     parts = {}
-    # todo use inject or something
+    # TODO: use inject or something
     afters.each do |after|
       parts.merge! after.parts
     end
