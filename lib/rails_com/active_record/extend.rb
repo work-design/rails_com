@@ -10,7 +10,8 @@ module RailsCom::ActiveRecord::Extend
     args = [
       name.underscore
     ]
-    cols = columns.reject(&->(i) { %w[id created_at updated_at].include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
+    cols = columns.reject(&->(i) { %w[id created_at updated_at].include?(i.name) })
+                  .map { |col| "#{col.name}:#{col.type}" }
 
     generator = FactoryBot::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root)
     generator.invoke_all

@@ -4,7 +4,9 @@ module RailsCom::Routes
   extend self
 
   def verbs(controller, action)
-    routes_wrapper.select { |i| i[:controller] == controller.to_s && i[:action] == action.to_s }.map { |i| i[:verb] }.uniq
+    routes_wrapper.select { |i| i[:controller] == controller.to_s && i[:action] == action.to_s }
+                  .map { |i| i[:verb] }
+                  .uniq
   end
 
   def actions(controller)

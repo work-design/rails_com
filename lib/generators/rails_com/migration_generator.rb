@@ -26,6 +26,8 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
 
     abort "#{file_name} not defined!" unless record_class
 
-    abort "#{record_class.name} is not an ActiveRecord Object!" unless record_class.ancestors.include?(ActiveRecord::Base)
+    return if record_class.ancestors.include?(ActiveRecord::Base)
+
+    abort "#{record_class.name} is not an ActiveRecord Object!"
   end
 end

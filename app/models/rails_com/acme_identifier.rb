@@ -46,7 +46,9 @@ module RailsCom::AcmeIdentifier
     @authorization = if url
                        acme_order.acme_account.client.authorization(url: url)
                      else
-                       acme_order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
+                       acme_order.authorizations.find do |auth|
+                         domain == auth.domain && wildcard.present? == auth.wildcard.present?
+                       end
                      end
   end
 end

@@ -13,7 +13,8 @@ class RailsCom::MigrationAttributes
   end
 
   def to_hash
-    r = instance_values.slice('table_exists', 'timestamps', 'indexes', 'new_references', 'new_attributes', 'custom_attributes')
+    r = instance_values.slice('table_exists', 'timestamps', 'indexes', 'new_references',
+                              'new_attributes', 'custom_attributes')
     r.symbolize_keys!
   end
 
@@ -24,8 +25,8 @@ class RailsCom::MigrationAttributes
   def set_new_references
     @new_references = {}
     refs = record_class.reflections.values.select(&:belongs_to?)
-    refs.reject! { |reflection| record_class.attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
-    refs.reject! { |reflection| @table_exists && record_class.column_names.include?(reflection.foreign_key.to_s) }
+    refs.reject! { |ref| record_class.attributes_to_define_after_schema_loads.keys.include?(ref.foreign_key.to_s) }
+    refs.reject! { |ref| @table_exists && record_class.column_names.include?(ref.foreign_key.to_s) }
     refs.each do |ref|
       r = { name: ref.name }
       r.merge! polymorphic: true if ref.polymorphic?
@@ -67,7 +68,8 @@ class RailsCom::MigrationAttributes
   end
 
   def attribute_options(attribute)
-    attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+    attribute.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size)
+             .inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
   end
 
   def index_options(index)

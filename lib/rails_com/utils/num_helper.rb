@@ -9,7 +9,11 @@ module NumHelper
   extend self
 
   def to_rmb(num)
-    left, right = num.to_s(:rounded, precision: 2, strip_insignificant_zeros: true, separator: '.', delimiter: ',', delimiter_pattern: DELIMITER_REGEX).split('.')
+    left, right = num.to_s(:rounded, precision: 2,
+                                     strip_insignificant_zeros: true,
+                                     separator: '.',
+                                     delimiter: ',',
+                                     delimiter_pattern: DELIMITER_REGEX).split('.')
 
     left_str = to_parts(left, unit: UNIT, del: DEL)
 

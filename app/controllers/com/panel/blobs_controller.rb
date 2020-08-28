@@ -22,7 +22,8 @@ class Com::Panel::BlobsController < Com::Panel::BaseController
   end
 
   def create
-    @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
+    @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile,
+                                                   filename: blob_params[:io].original_filename)
 
     render :new, locals: { model: @blob }, status: :unprocessable_entity unless @blob.save
   end
