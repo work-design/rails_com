@@ -24,7 +24,7 @@ class Hash
         self[key] = self[key][0]
       end
     end
-    other_hash.except! *common_keys
+    other_hash.except!(*common_keys)
     self.merge! other_hash
     self
   end

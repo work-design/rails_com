@@ -24,6 +24,6 @@ module QrcodeHelper
 
   def code_png(url, **options)
     qrcode = RQRCode::QRCode.new(url)
-    qrcode.as_png **OPTIONS.merge(options)
+    qrcode.as_png(**OPTIONS.merge(options))
   end
 end

@@ -28,13 +28,6 @@ Layout/SpaceAroundKeyword:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'lib/rails_com/core/hash.rb'
-    - 'lib/rails_com/utils/qrcode_helper.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
 Lint/AmbiguousRegexpLiteral:
   Exclude:
     - 'examples/qiniu_helper.rb'
