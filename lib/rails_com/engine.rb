@@ -10,7 +10,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     g.templates.unshift File.expand_path('lib/templates', root)
   end
 
-  initializer 'rails_com.add_generator_templates'do |app|
+  initializer 'rails_com.add_generator_templates' do |app|
     app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
     # todo check if really works
     app.config.generators do |g|
