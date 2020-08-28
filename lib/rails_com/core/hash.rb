@@ -11,11 +11,11 @@ class Hash
   def toggle!(remove = true, other_hash)
     common_keys = self.keys & other_hash.keys
     common_keys.each do |key|
-      if remove
-        removed = Array(self[key]) & Array(other_hash[key])
-      else
-        removed = []
-      end
+      removed = if remove
+                  Array(self[key]) & Array(other_hash[key])
+                else
+                  []
+                end
       added = Array(other_hash[key]) - Array(self[key])
       self[key] = Array(self[key]) - removed + added
       if self[key].empty?

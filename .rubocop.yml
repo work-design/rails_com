@@ -84,25 +84,6 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
-# SupportedStyles: assign_to_condition, assign_inside_condition
-Style/ConditionalAssignment:
-  Exclude:
-    - 'app/controllers/rails_com/application.rb'
-    - 'app/helpers/rails_com/format_helper.rb'
-    - 'app/models/rails_com/acme_account.rb'
-    - 'app/models/rails_com/acme_identifier.rb'
-    - 'app/models/rails_com/state_machine.rb'
-    - 'lib/rails_com/action_controller/public_exceptions.rb'
-    - 'lib/rails_com/action_view/partial_renderer.rb'
-    - 'lib/rails_com/action_view/template_renderer.rb'
-    - 'lib/rails_com/active_record/extend.rb'
-    - 'lib/rails_com/core/hash.rb'
-    - 'lib/rails_com/utils/setting.rb'
-    - 'lib/rails_com/utils/time_helper.rb'
-
 # Offense count: 106
 Style/Documentation:
   Enabled: false

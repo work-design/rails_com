@@ -61,11 +61,11 @@ module RailsCom::Application
     end.uniq!
     locales = I18n.available_locales.map(&:to_s) & request_locales
 
-    if locales.include?(I18n.default_locale.to_s)
-      q_locale = I18n.default_locale
-    else
-      q_locale = locales[-1]
-    end
+    q_locale = if locales.include?(I18n.default_locale.to_s)
+                 I18n.default_locale
+               else
+                 locales[-1]
+               end
 
     locales = [params[:locale].presence, session[:locale].presence, q_locale].compact
     locale = locales[0]

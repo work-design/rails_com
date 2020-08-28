@@ -20,11 +20,11 @@ module RailsCom::AcmeAccount
   def private_key
     return @private_key if defined? @private_key
 
-    if private_pem_blob
-      @private_key = OpenSSL::PKey::RSA.new(private_pem_blob.download)
-    else
-      @private_key = OpenSSL::PKey::RSA.new(4096)
-    end
+    @private_key = if private_pem_blob
+                     OpenSSL::PKey::RSA.new(private_pem_blob.download)
+                   else
+                     OpenSSL::PKey::RSA.new(4096)
+                   end
   end
 
   def generate_account
@@ -44,11 +44,11 @@ module RailsCom::AcmeAccount
   def client
     return @client if defined? @client
 
-    if self.kid
-      @client = Acme::Client.new(private_key: private_key, directory: directory, kid: kid)
-    else
-      @client = Acme::Client.new(private_key: private_key, directory: directory)
-    end
+    @client = if self.kid
+                Acme::Client.new(private_key: private_key, directory: directory, kid: kid)
+              else
+                Acme::Client.new(private_key: private_key, directory: directory)
+              end
   end
 
   def directory

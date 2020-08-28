@@ -4,13 +4,13 @@ class RailsCom::Setting < OpenStruct
     @hash_table = {}
 
     hash.each do |k, v|
-      if v.is_a?(Hash)
-        @table[k.to_sym] = self.class.new(v)
-      elsif v.is_a?(Array)
-        @table[k.to_sym] = v.map { |h| h.is_a?(Hash) ? self.class.new(h) : h }
-      else
-        @table[k.to_sym] = v
-      end
+      @table[k.to_sym] = if v.is_a?(Hash)
+                           self.class.new(v)
+                         elsif v.is_a?(Array)
+                           v.map { |h| h.is_a?(Hash) ? self.class.new(h) : h }
+                         else
+                           v
+                         end
       @hash_table[k.to_sym] = v
       new_ostruct_member!(k)
     end

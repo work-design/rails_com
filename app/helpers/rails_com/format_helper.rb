@@ -5,11 +5,11 @@ module RailsCom::FormatHelper
     wrapper_tag = options.fetch(:wrapper_tag, :p)
 
     hash_text.map do |k, v|
-      if k.to_s.rstrip.end_with?(':')
-        text = k.to_s + ' ' + v.to_s
-      else
-        text = k.to_s + ': ' + v.to_s
-      end
+      text = if k.to_s.rstrip.end_with?(':')
+               k.to_s + ' ' + v.to_s
+             else
+               k.to_s + ': ' + v.to_s
+             end
 
       content_tag(wrapper_tag, text, html_options)
     end.join("\n\n").html_safe

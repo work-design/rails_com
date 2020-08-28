@@ -11,11 +11,11 @@ module RailsCom::PublicExceptions
     if @exp.respond_to?(:id)
       error.merge! id: @exp.id
     end
-    if @exp.respond_to?(:record)
-      message = @exp.record.error_text
-    else
-      message = RailsCom.config.default_error_message.presence || @exp.message
-    end
+    message = if @exp.respond_to?(:record)
+                @exp.record.error_text
+              else
+                RailsCom.config.default_error_message.presence || @exp.message
+              end
     body = {
       error: error,
       message: message

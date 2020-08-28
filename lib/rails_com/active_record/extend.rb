@@ -31,11 +31,11 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def new_attributes
-    if table_exists?
-      news = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
-    else
-      news = attributes_to_define_after_schema_loads
-    end
+    news = if table_exists?
+             attributes_to_define_after_schema_loads.except(*columns_hash.keys)
+           else
+             attributes_to_define_after_schema_loads
+           end
     news.map do |name, column|
       r = {
         name: name.to_sym,

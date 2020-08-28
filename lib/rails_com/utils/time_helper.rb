@@ -48,17 +48,17 @@ module TimeHelper
     interval_start_at = start_at.change hour: hour, min: min
     interval_finish_at = interval_start_at.since(since)
 
-    if start_at < interval_start_at && finish_at > interval_finish_at
-      seconds = ((finish_at - start_at) - since).to_i
-    elsif start_at < interval_start_at && finish_at >= interval_start_at && finish_at <= interval_finish_at
-      seconds = interval_start_at - start_at
-    elsif start_at >= interval_start_at && start_at <= interval_finish_at && finish_at > interval_finish_at
-      seconds = finish_at - interval_finish_at
-    elsif start_at >= interval_start_at && start_at <= interval_finish_at && finish_at <= interval_finish_at
-      seconds = 0
-    else
-      seconds = finish_at - start_at
-    end
+    seconds = if start_at < interval_start_at && finish_at > interval_finish_at
+                ((finish_at - start_at) - since).to_i
+              elsif start_at < interval_start_at && finish_at >= interval_start_at && finish_at <= interval_finish_at
+                interval_start_at - start_at
+              elsif start_at >= interval_start_at && start_at <= interval_finish_at && finish_at > interval_finish_at
+                finish_at - interval_finish_at
+              elsif start_at >= interval_start_at && start_at <= interval_finish_at && finish_at <= interval_finish_at
+                0
+              else
+                finish_at - start_at
+              end
     seconds
   end
 end
