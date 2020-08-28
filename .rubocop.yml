@@ -75,15 +75,8 @@ Metrics/PerceivedComplexity:
 # MethodDefinitionMacros: define_method, define_singleton_method
 Naming/PredicateName:
   Exclude:
-    - 'spec/**/*'
     - 'lib/rails_com/active_record/translation.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect.
-Security/JSONLoad:
-  Exclude:
-    - 'lib/rails_com/utils/jobber.rb'
 
 # Offense count: 5
 # Configuration parameters: AllowedChars.

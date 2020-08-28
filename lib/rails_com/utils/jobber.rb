@@ -12,7 +12,7 @@ module Jobber
         conn.lrange(queue_key, 0, 0)
       end
     end
-    JSON.load(r[1].first)
+    JSON.parse(r[1].first)
   end
 
   def job_data(job, args, _at: nil)
@@ -39,18 +39,14 @@ module Jobber
     result = redis_pool.with do |conn|
       conn.lrange(queue_key, -size, -1)
     end
-    result.map do |r|
-      JSON.load(r)
-    end
+    result.map { |r| JSON.parse(r) }
   end
 
   def ljobs(size = 1)
     result = redis_pool.with do |conn|
       conn.lrange(queue_key, 0, size - 1)
     end
-    result.map do |r|
-      JSON.load(r)
-    end
+    result.map { |r| JSON.parse(r) }
   end
 
   def queue_key
