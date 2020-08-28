@@ -29,8 +29,8 @@ module RailsCom::FormatHelper
   def simple_format(text, html_options = {}, options = {})
     if text.is_a?(Hash)
       return simple_format_hash(text, html_options, options)
-      #elsif text.is_a?(String)
-      #return ex_simple_format(text, html_options, options)
+      # elsif text.is_a?(String)
+      # return ex_simple_format(text, html_options, options)
     end
 
     if text.is_a?(Array)
