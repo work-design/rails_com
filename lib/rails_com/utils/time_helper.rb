@@ -19,17 +19,17 @@ module TimeHelper
     days = to_time.mday - from_time.mday
     day_seconds = to_time.seconds_since_midnight.to_i - from_time.seconds_since_midnight.to_i
 
-    if day_seconds < 0
+    if day_seconds.negative?
       days -= 1
       day_seconds = 86_400 + day_seconds
     end
 
-    if days < 0
+    if days.negative?
       months -= 1
       days = to_time.prev_month.end_of_month.mday + days
     end
 
-    if months < 0
+    if months.negative?
       years -= 1
       months = 12 + months
     end

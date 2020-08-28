@@ -35,14 +35,14 @@ module RailsCom::ActiveHelper
     end
 
     if controllers.present?
-      return active if (Array(controllers) & [controller_name, controller_path]).size > 0
+      return active if (Array(controllers) & [controller_name, controller_path]).size.positive?
     end
 
     if modules.present?
       this_modules = controller_path.split('/')
       this_modules.pop
       active_modules = this_modules.map.with_index { |_, index| this_modules[0, index + 1].join('/') }
-      return active if (Array(modules) & active_modules).size > 0
+      return active if (Array(modules) & active_modules).size.positive?
     end
 
     return active if options.present? && current_page?(options)
