@@ -19,6 +19,9 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
