@@ -42,6 +42,5 @@ module NumHelper
 
     han_arr.reverse.join
   end
-
 end
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::AssetsHelper
-
   # Assets path: app/assets/javascripts/controllers
   def origin_js_load(**options)
     exts = ['.js'] + Array(options.delete(:ext))
@@ -49,5 +48,4 @@ module RailsCom::AssetsHelper
 
     []
   end
-
 end

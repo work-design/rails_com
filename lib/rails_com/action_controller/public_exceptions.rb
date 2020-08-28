@@ -26,7 +26,6 @@ module RailsCom::PublicExceptions
     
     super
   end
-
 end
 
 ActionDispatch::PublicExceptions.prepend RailsCom::PublicExceptions

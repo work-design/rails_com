@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::FormatHelper
-
   def simple_format_hash(hash_text, html_options = {}, options = {})
     wrapper_tag = options.fetch(:wrapper_tag, :p)
 
@@ -47,5 +46,4 @@ module RailsCom::FormatHelper
 
     super
   end
-
 end

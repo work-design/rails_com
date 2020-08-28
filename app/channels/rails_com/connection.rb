@@ -27,5 +27,4 @@ module RailsCom::Connection
     session_key = Rails.configuration.session_options[:key]
     cookies.encrypted[session_key]
   end
-
 end

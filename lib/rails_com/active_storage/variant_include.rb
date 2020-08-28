@@ -6,7 +6,6 @@ module RailsCom::VariantInclude
   included do
     attribute :variation_digest, :string, null: false
   end
-
 end
 
 ActiveSupport.on_load(:active_storage_blob) do

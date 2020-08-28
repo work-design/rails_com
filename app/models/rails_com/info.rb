@@ -23,5 +23,4 @@ module RailsCom::Info
       result
     end
   end
-
 end

@@ -18,7 +18,6 @@ module RailsCom::ActiveRecord::Include
       self.indexes_to_define_after_schema_loads = self.indexes_to_define_after_schema_loads + [h]
     end
   end
-
 end
 
 ActiveSupport.on_load :active_record do

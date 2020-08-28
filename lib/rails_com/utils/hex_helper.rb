@@ -8,5 +8,4 @@ module HexHelper
   def rgb_sample
     "##{sample}"
   end
-
 end

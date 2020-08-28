@@ -12,7 +12,6 @@ module RailsCom::ActionMailbox::InboundEmail
       Docx::Document.new(attachment.body.to_s) if attachment.filename.end_with?('.docx')
     end
   end
-
 end
 
 ActiveSupport.on_load :action_mailbox_inbound_email do

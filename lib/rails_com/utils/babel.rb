@@ -36,5 +36,4 @@ module Babel
     tmpfile.close
     r
   end
-
 end

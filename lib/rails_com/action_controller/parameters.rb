@@ -1,5 +1,4 @@
 module RailsCom::Parameters
-
   def require(key)
     begin
       super
@@ -11,7 +10,6 @@ module RailsCom::Parameters
       @required_params << key
     end
   end
-
 end
 
 ActiveSupport.on_load :action_controller_base do

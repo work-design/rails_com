@@ -39,5 +39,4 @@ module RailsCom::BlobDefault
       Rails.cache.delete('blob_default/default')
     end
   end
-
 end

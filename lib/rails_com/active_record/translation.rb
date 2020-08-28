@@ -26,11 +26,9 @@ module RailsCom::I18n
     end
     r
   end
-
 end
 
 module RailsCom::Translation
-
   # name
   # * store as jsonb in database;
   # * read with i18n scope
@@ -60,7 +58,6 @@ module RailsCom::Translation
     values.except!(*i18n_attributes)
     super
   end
-
 end
 
 ActiveSupport.on_load :active_record do

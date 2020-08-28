@@ -2,7 +2,6 @@
 
 module RailsCom
   module TemplateRenderer
-
     def render(context, options)
       return super if defined?(WebConsole) && context.is_a?(WebConsole::View)
 
@@ -28,7 +27,6 @@ module RailsCom
       context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
-
   end
 end
 

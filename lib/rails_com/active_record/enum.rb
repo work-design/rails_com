@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::ActiveRecord::Enum
-
   def options_i18n(attribute)
     h = I18n.t enum_key(attribute), default: {}
     h.compact!
@@ -65,7 +64,6 @@ module RailsCom::ActiveRecord::Enum
       end
     end
   end
-
 end
 
 ActiveSupport.on_load :active_record do

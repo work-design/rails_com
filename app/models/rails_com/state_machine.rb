@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::StateMachine
-
   # to defined next_xxx_states in class
 
   # obj.next_to state: 'xxx'
@@ -77,5 +76,4 @@ module RailsCom::StateMachine
       result
     end
   end
-
 end

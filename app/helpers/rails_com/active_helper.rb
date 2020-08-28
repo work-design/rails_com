@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::ActiveHelper
-
   # return value by each keys which is true
   #   active_asserts(active: true, item: false)
   #   #=> 'active'
@@ -91,5 +90,4 @@ module RailsCom::ActiveHelper
     end
     query
   end
-
 end

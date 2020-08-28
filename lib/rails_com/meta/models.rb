@@ -17,5 +17,4 @@ module RailsCom::Models
   def model_names
     models.map(&:to_s)
   end
-
 end

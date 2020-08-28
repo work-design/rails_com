@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::BlobPrepend
-
   def self.prepended(klass)
     klass.class_attribute :private_service
     klass.attribute :key, :string, null: false, index: { unique: true }
@@ -44,7 +43,6 @@ module RailsCom::BlobPrepend
   def identify_later
     ActiveStorage::IdentifyJob.perform_later(self)
   end
-
 end
 
 ActiveSupport.on_load(:active_storage_blob) do

@@ -1,6 +1,5 @@
 module RailsCom::ActionController
   module Include
-
     def whether_filter(filter)
       callback = self.__callbacks[:process_action].find { |i| i.filter == filter.to_sym }
       return false unless callback
@@ -22,7 +21,6 @@ module RailsCom::ActionController
       ]
       self.instance_variables - _except
     end
-
   end
 end
 

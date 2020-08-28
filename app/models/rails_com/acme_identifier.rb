@@ -49,5 +49,4 @@ module RailsCom::AcmeIdentifier
       @authorization = acme_order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
     end
   end
-
 end

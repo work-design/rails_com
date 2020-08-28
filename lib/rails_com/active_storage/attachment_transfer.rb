@@ -46,7 +46,6 @@ module RailsCom::AttachmentTransfer
   def ffmpeg_path
     ActiveStorage.paths[:ffmpeg] || 'ffmpeg'
   end
-
 end
 
 ActiveSupport.on_load(:active_storage_attachment) do

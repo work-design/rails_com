@@ -25,5 +25,4 @@ module RailsCom::VideoResponse
       response.status = 206
     end
   end
-
 end

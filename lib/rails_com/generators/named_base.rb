@@ -2,7 +2,6 @@
 
 require 'rails/generators'
 module RailsCom::NamedBase
-
   def class_name
     file_name.classify
   end
@@ -14,7 +13,6 @@ module RailsCom::NamedBase
   def plural_route_name
     [class_path[-1], plural_name].join('_')
   end
-
 end
 
 Rails::Generators::NamedBase.prepend RailsCom::NamedBase

@@ -61,5 +61,4 @@ module TimeHelper
     end
     seconds
   end
-
 end

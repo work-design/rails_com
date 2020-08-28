@@ -75,7 +75,6 @@ module RailsCom::ActiveRecord::Extend
       r.symbolize_keys!
     end
   end
-
 end
 
 ActiveSupport.on_load :active_record do

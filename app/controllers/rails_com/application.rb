@@ -116,5 +116,4 @@ module RailsCom::Application
       self.response.body = Babel.transform(self.response.body)
     end
   end
-
 end

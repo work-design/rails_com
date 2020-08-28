@@ -68,5 +68,4 @@ module Jobber
   def config
     @config ||= Rails.application.config_for('jobber')
   end
-
 end

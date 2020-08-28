@@ -17,5 +17,4 @@ module IpHelper
       end
     end
   end
-
 end

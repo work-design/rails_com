@@ -12,5 +12,4 @@ module RailsCom::Controllers
       controller
     end
   end
-
 end

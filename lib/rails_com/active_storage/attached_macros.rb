@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module RailsCom::AttachedOne
-
   def attachment
     if super
       return super
@@ -24,5 +23,4 @@ module RailsCom::AttachedOne
     from_attachment = from.send "#{from_name}_attachment"
     record.send "create_#{name}_attachment", blob_id: from_attachment.blob_id
   end
-
 end

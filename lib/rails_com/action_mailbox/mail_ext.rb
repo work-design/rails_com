@@ -1,5 +1,4 @@
 module RailsCom::MailExt
-
   def from
     r = super
     if r.is_a?(String)
@@ -25,7 +24,6 @@ module RailsCom::MailExt
   def subject
     super.encode('utf-8', replace: '')
   end
-
 end
 
 require 'mail'

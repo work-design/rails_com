@@ -56,5 +56,4 @@ module UidHelper
       raise 'Can not parse the format string!'
     end
   end
-
 end

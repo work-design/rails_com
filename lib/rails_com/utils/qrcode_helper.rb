@@ -26,7 +26,6 @@ module QrcodeHelper
     qrcode = RQRCode::QRCode.new(url)
     qrcode.as_png **OPTIONS.merge(options)
   end
-
 end
 
 

@@ -8,7 +8,6 @@ module RailsCom::ActionText::RichText
     attribute :record_id, :integer, null: false
     index [ :record_type, :record_id, :name ], name: 'index_action_text_rich_texts_uniqueness', unique: true
   end
-
 end
 
 ActiveSupport.on_load :action_text_rich_text do

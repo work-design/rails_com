@@ -38,5 +38,4 @@ module RailsCom::Routes
   def routes
     @routes ||= Rails.application.routes.routes
   end
-
 end

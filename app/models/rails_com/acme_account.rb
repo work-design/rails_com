@@ -64,5 +64,4 @@ module RailsCom::AcmeAccount
 
     @account = client.new_account(contact: contact, terms_of_service_agreed: true)
   end
-
 end
