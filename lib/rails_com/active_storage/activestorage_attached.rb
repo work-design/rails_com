@@ -5,10 +5,10 @@ module ActiveStorage
   class Attached
     def url_sync(url)
       filename = File.basename URI(url).path
-      
+
       Tempfile.open do |file|
         file.binmode
-        
+
         HTTPX.get(url).body.each do |fragment|
           file.write fragment
         end

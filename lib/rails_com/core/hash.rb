@@ -2,7 +2,7 @@ class Hash
   def toggle(remove = true, other_hash)
     dup.toggle!(remove, other_hash)
   end
-  
+
   # a = {a: 1}
   # a.toggle! a: 2
   # => { a: [1, 2] }
@@ -28,21 +28,21 @@ class Hash
     self.merge! other_hash
     self
   end
-  
+
   def diff_toggle(remove = true, other_hash)
     removed = {}
     added = {}
     o = other_hash.extract!(*(self.keys & other_hash.keys))
-    
+
     if remove
       removed.merge! o.common_basic(self)
     end
     added.merge! o.diff_basic(self)
     added.merge! other_hash
-    
+
     [removed, added]
   end
-  
+
   # a = { a:1, b: 2 }
   # a.diff_remove { a: [1,2] }
   # => removes: { b: 2 }
@@ -60,7 +60,7 @@ class Hash
   def diff_changes(other_hash)
     [diff_remove(other_hash), diff_add(other_hash)]
   end
-  
+
   def diff_basic(h = {}, other_hash)
     each do |key, value|
       v = Array(value) - Array(other_hash[key])

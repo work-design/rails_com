@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Array
-  
   #   arr = [1, 2, 3]
   #   arr.ljust! 5, nil
   #   # => [nil, nil, 1, 2, 3]

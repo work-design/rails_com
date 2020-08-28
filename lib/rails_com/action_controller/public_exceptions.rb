@@ -1,12 +1,11 @@
 module RailsCom::PublicExceptions
-  
   def call(env)
     @exp = env['action_dispatch.exception']
     super
   end
-  
+
   private
-  
+
   def render(status, content_type, body)
     error = {
       class: @exp.class.inspect
@@ -23,7 +22,7 @@ module RailsCom::PublicExceptions
       error: error,
       message: message
     }
-    
+
     super
   end
 end

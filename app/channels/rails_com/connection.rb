@@ -7,7 +7,7 @@ module RailsCom::Connection
   def connect
     self.verified_receiver = find_verified_receiver
   end
-  
+
   protected
 
   def find_verified_receiver
@@ -22,7 +22,7 @@ module RailsCom::Connection
     logger.error 'An unauthorized connection attempt was rejected'
     nil
   end
-  
+
   def session
     session_key = Rails.configuration.session_options[:key]
     cookies.encrypted[session_key]

@@ -26,12 +26,6 @@ Layout/SpaceAroundKeyword:
     - 'lib/rails_com/engine.rb'
 
 
-# Offense count: 57
-# Cop supports --auto-correct.
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Enabled: false
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/AmbiguousOperator:
