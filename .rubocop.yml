@@ -19,38 +19,21 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Layout/EmptyLineAfterGuardClause:
-#   Exclude:
-#     - 'app/controllers/com/common_controller.rb'
-#     - 'app/models/rails_com/acme_account.rb'
-#     - 'app/models/rails_com/acme_identifier.rb'
-#     - 'app/models/rails_com/acme_order.rb'
-#     - 'examples/qiniu_helper.rb'
-#     - 'lib/rails_com/action_view/template_renderer.rb'
-#     - 'lib/rails_com/active_record/enum.rb'
-#     - 'lib/rails_com/active_record/translation.rb'
-#     - 'lib/rails_com/active_storage/attachment_transfer.rb'
-#     - 'lib/rails_com/active_storage/blob_prepend.rb'
-#     - 'lib/rails_com/core/array.rb'
-#     - 'lib/rails_com/engine.rb'
-#     - 'lib/rails_com/webpacker/yaml_helper.rb'
 
 # Offense count: 10
 # Cop supports --auto-correct.
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'app/controllers/com/pdfs_controller.rb'
-    - 'app/helpers/rails_com/active_helper.rb'
-    - 'app/helpers/rails_com/assets_helper.rb'
-    - 'app/helpers/rails_com/format_helper.rb'
-    - 'app/helpers/rails_com/time_helper.rb'
-    - 'config/locales/zh.rb'
-    - 'lib/generators/rails_com/migration_generator.rb'
-    - 'lib/generators/rails_com/migrations_generator.rb'
-    - 'lib/rails_com/action_view.rb'
-    - 'lib/rails_com/utils/deploy.rb'
+# Layout/EmptyLineAfterMagicComment:
+#   Exclude:
+#     - 'app/controllers/com/pdfs_controller.rb'
+#     - 'app/helpers/rails_com/active_helper.rb'
+#     - 'app/helpers/rails_com/assets_helper.rb'
+#     - 'app/helpers/rails_com/format_helper.rb'
+#     - 'app/helpers/rails_com/time_helper.rb'
+#     - 'config/locales/zh.rb'
+#     - 'lib/generators/rails_com/migration_generator.rb'
+#     - 'lib/generators/rails_com/migrations_generator.rb'
+#     - 'lib/rails_com/action_view.rb'
+#     - 'lib/rails_com/utils/deploy.rb'
 
 # Offense count: 8
 # Cop supports --auto-correct.

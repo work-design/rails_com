@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module RailsCom::TimeHelper
 
   def exact_distance_time(from_time, to_time, options = {})

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module RailsCom::AssetsHelper
 
   # Assets path: app/assets/javascripts/controllers

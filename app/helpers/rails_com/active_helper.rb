@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module RailsCom::ActiveHelper
 
   # return value by each keys which is true
