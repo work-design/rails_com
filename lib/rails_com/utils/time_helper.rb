@@ -21,7 +21,7 @@ module TimeHelper
 
     if day_seconds < 0
       days -= 1
-      day_seconds = 86400 + day_seconds
+      day_seconds = 86_400 + day_seconds
     end
 
     if days < 0

@@ -100,12 +100,6 @@ Style/FrozenStringLiteralComment:
 Style/ModuleFunction:
   EnforcedStyle: extend_self
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Strict.
-Style/NumericLiterals:
-  MinDigits: 6
-
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle, IgnoredMethods.
