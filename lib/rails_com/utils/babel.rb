@@ -30,7 +30,7 @@ module Babel
   end
 
   def write_to_tempfile(contents)
-    tmpfile = Tempfile.open(['babel', 'js'])
+    tmpfile = Tempfile.open(%w[babel js])
     tmpfile.write(contents)
     r = tmpfile.path
     tmpfile.close

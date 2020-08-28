@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module NumHelper
-  NUM = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'].freeze
+  NUM = %w[零 壹 贰 叁 肆 伍 陆 柒 捌 玖].freeze
   DEL = ['', '拾', '佰', '仟'].freeze
-  SUB_DEL = ['分', '角'].freeze
-  UNIT = ['元', '万', '亿', '兆', '京'].freeze
+  SUB_DEL = %w[分 角].freeze
+  UNIT = %w[元 万 亿 兆 京].freeze
   DELIMITER_REGEX = /(\d)(?=(\d\d\d\d)+(?!\d))/.freeze
   extend self
 

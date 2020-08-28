@@ -39,7 +39,7 @@ class RailsCom::MigrationAttributes
   def set_new_attributes
     @new_attributes = record_class.new_attributes
     @new_attributes.map! do |attribute|
-      @timestamps.append attribute[:name].to_s if ['created_at', 'updated_at'].include?(attribute[:name].to_s)
+      @timestamps.append attribute[:name].to_s if %w[created_at updated_at].include?(attribute[:name].to_s)
       attribute.merge! attribute_options: attribute_options(attribute)
     end
   end

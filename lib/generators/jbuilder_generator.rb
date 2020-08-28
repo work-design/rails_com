@@ -4,7 +4,7 @@ class Rails::Generators::JbuilderGenerator
   source_root File.expand_path('templates/jbuilder', __dir__)
 
   def copy_view_files
-    ['index', 'show'].each do |view|
+    %w[index show].each do |view|
       filename = filename_with_extensions(view)
       template filename, File.join('app/views', controller_file_path, filename)
     end

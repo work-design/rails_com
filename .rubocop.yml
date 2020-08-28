@@ -129,19 +129,6 @@ Style/WhenThen:
   Exclude:
     - 'config/locales/zh.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/WhileUntilDo:
-  Exclude:
-    - 'examples/qiniu_helper.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: brackets
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/ZeroLengthPredicate:
