@@ -98,13 +98,6 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoredMethods.
-Style/MethodCallWithoutArgsParentheses:
-  Exclude:
-    - 'app/controllers/com/panel/inbound_emails_controller.rb'
-
 # Offense count: 13
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, Autocorrect.

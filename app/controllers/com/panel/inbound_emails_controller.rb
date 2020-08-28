@@ -38,7 +38,6 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
   end
 
   def inbound_email_params
-    params.fetch(:inbound_email, {}).permit(
-    )
+    params.fetch(:inbound_email, {}).permit
   end
 end
