@@ -32,7 +32,6 @@ module RailsCom
   end
 end
 
-
 ActiveSupport.on_load :action_view do
   ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
 end

@@ -37,13 +37,13 @@ Gemspec/RequiredRubyVersion:
 
 # Offense count: 8
 # Cop supports --auto-correct.
-Layout/EmptyLines:
-  Exclude:
-    - 'app/controllers/com/base_controller.rb'
-    - 'lib/rails_com/action_controller/public_exceptions.rb'
-    - 'lib/rails_com/action_view/template_renderer.rb'
-    - 'test/lib/rails_com/utils/uid_helper_test.rb'
-    - 'test/models/active_storage/blob_default_test.rb'
+# Layout/EmptyLines:
+#   Exclude:
+#     - 'app/controllers/com/base_controller.rb'
+#     - 'lib/rails_com/action_controller/public_exceptions.rb'
+#     - 'lib/rails_com/action_view/template_renderer.rb'
+#     - 'test/lib/rails_com/utils/uid_helper_test.rb'
+#     - 'test/models/active_storage/blob_default_test.rb'
 
 # Offense count: 18
 # Cop supports --auto-correct.
