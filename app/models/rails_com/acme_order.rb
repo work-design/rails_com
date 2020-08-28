@@ -17,6 +17,7 @@ module RailsCom::AcmeOrder
   # status: pending
   def order
     return @order if defined? @order
+
     if url
       @order = acme_account.client.order(url: url)
     else
@@ -34,6 +35,7 @@ module RailsCom::AcmeOrder
 
   def authorizations
     return @authorizations if defined? @authorizations
+
     @authorizations = order.authorizations
     @authorizations.each do |auth|
       ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
@@ -57,6 +59,7 @@ module RailsCom::AcmeOrder
 
   def csr
     return @csr if defined? @csr
+
     @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: identifiers_string })
     Tempfile.open do |file|
       file.binmode

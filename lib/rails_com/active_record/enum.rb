@@ -23,6 +23,7 @@ module RailsCom::ActiveRecord::Enum
 
   def help_i18n(attribute)
     return nil if attribute.blank?
+
     help_key = RailsCom.config.help_key.call(self, attribute)
     I18n.t help_key, default: nil
   end

@@ -19,6 +19,7 @@ module RailsCom::AcmeAccount
 
   def private_key
     return @private_key if defined? @private_key
+
     if private_pem_blob
       @private_key = OpenSSL::PKey::RSA.new(private_pem_blob.download)
     else
@@ -60,6 +61,7 @@ module RailsCom::AcmeAccount
 
   def account
     return @account if defined? @account
+
     @account = client.new_account(contact: contact, terms_of_service_agreed: true)
   end
 

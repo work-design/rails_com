@@ -11,6 +11,7 @@ module RailsCom::AttachmentTransfer
 
   def copy
     raise 'Only Support mirror service' unless service.is_a?(ActiveStorage::Service::MirrorService)
+
     blob.open do |io|
       checksum = blob.send(:compute_checksum_in_chunks, io)
       service.mirrors.map do |service|

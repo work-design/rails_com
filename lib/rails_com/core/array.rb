@@ -7,6 +7,7 @@ class Array
   #   # => [nil, nil, 1, 2, 3]
   def ljust!(n, x)
     return self if n < length
+
     insert(0, *Array.new([0, n-length].max, x))
   end
 
@@ -16,6 +17,7 @@ class Array
   #   # => [1, 2, 3, nil, nil]
   def rjust!(n, x)
     return self if n < length
+
     fill(x, length...n)
   end
 
@@ -25,6 +27,7 @@ class Array
   #   # => [1, 2, nil, nil, 3]
   def mjust!(n, x)
     return self if n < length
+
     insert((length / 2.0).ceil, *Array.new(n - length, x))
   end
 

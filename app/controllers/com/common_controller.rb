@@ -34,6 +34,7 @@ class Com::CommonController < Com::BaseController
     digest.sub!('sha1=', '')
 
     return unless digest == Deploy.github_hmac(request.body.read)
+
     result = ''
     Deploy.works
 

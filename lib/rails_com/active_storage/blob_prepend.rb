@@ -33,6 +33,7 @@ module RailsCom::BlobPrepend
 
   def private
     return @private if defined?(@private)
+
     rts = self.attachments.pluck(:record_type, :name).uniq.to_array_h.to_combine_h
     ps = Rails.cache.fetch('blob_default/private') do
       BlobDefault.where(private: true).pluck(:record_class, :name).to_array_h.to_combine_h

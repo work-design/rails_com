@@ -5,6 +5,7 @@ module RailsCom
 
     def render(context, options)
       return super if defined?(WebConsole) && context.is_a?(WebConsole::View)
+
       request = context.request
       if request && request.format.symbol
         _formats = [context.request.format.symbol]
