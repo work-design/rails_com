@@ -34,6 +34,7 @@ class Com::Panel::BlobsController < Com::Panel::BaseController
   end
 
   private
+
   def set_blob
     @blob = ActiveStorage::Blob.find(params[:id])
   end

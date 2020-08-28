@@ -14,6 +14,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   end
   
   private
+
   def set_local_assigns!
     Zeitwerk::Loader.eager_load_all
     @tables = ActiveRecord::Base.descendants

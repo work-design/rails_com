@@ -36,6 +36,7 @@ class Com::Panel::InfosController < Com::Panel::BaseController
   end
 
   private
+
   def set_info
     @info = Info.find(params[:id])
   end

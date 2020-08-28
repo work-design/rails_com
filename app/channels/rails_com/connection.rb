@@ -9,6 +9,7 @@ module RailsCom::Connection
   end
   
   protected
+
   def find_verified_receiver
     if session && session['auth_token']
       Rails.logger.silence do

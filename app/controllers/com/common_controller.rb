@@ -42,6 +42,7 @@ class Com::CommonController < Com::BaseController
   end
 
   private
+
   def qrcode_params
     params.permit(
       :resize_gte_to,

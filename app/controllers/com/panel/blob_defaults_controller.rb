@@ -36,6 +36,7 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
   end
 
   private
+
   def set_blob_default
     @blob_default = BlobDefault.find(params[:id])
   end

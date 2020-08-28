@@ -36,6 +36,7 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
   end
 
   private
+
   def set_inbound_email
     @inbound_email = ActionMailbox::InboundEmail.find(params[:id])
   end

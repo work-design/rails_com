@@ -54,6 +54,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   end
 
   private
+
   def set_acme_account
     @acme_account = AcmeAccount.find params[:acme_account_id]
   end

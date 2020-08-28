@@ -6,6 +6,7 @@ module RailsCom::PublicExceptions
   end
   
   private
+  
   def render(status, content_type, body)
     error = {
       class: @exp.class.inspect

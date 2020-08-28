@@ -35,6 +35,7 @@ module RailsCom::AssetsHelper
   end
 
   private
+
   def assets_load_path(exts: [], suffix: nil)
     exts.uniq!
     filename = "controllers/#{controller_path}/#{@_rendered_template}"

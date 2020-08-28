@@ -36,6 +36,7 @@ class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
   end
 
   private
+
   def set_acme_account
     @acme_account = AcmeAccount.find(params[:id])
   end

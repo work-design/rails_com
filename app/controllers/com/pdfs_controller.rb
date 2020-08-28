@@ -22,6 +22,7 @@ class Com::PdfsController < Com::BaseController
   end
 
   private
+
   def set_pdf
     @pdf_class = params[:id].constantize
     @pdf ||= @pdf_class.new(**pdf_params)

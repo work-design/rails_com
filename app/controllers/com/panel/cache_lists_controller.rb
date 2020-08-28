@@ -36,6 +36,7 @@ class Com::Panel::CacheListsController < Com::Panel::BaseController
   end
 
   private
+
   def set_cache_list
     @cache_list = CacheList.find(params[:id])
   end

@@ -37,6 +37,7 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
   end
 
   private
+
   def set_acme_order
     @acme_order = AcmeOrder.find params[:acme_order_id]
   end
