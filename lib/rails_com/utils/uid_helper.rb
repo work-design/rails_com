@@ -8,9 +8,7 @@ module UidHelper
     str = str + suffix
     str = str.upcase.scan(/.{1,4}/).join(separator)
 
-    if prefix.present?
-      str = prefix + '-' + str
-    end
+    str = prefix + '-' + str if prefix.present?
 
     str
   end

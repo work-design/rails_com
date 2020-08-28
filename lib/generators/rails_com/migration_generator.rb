@@ -15,9 +15,7 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   private
 
   def set_local_assigns!
-    unless record_class.table_exists?
-      @file_name = "create_#{file_name}"
-    end
+    @file_name = "create_#{file_name}" unless record_class.table_exists?
     @tables = {
       record_class.table_name => RailsCom::MigrationAttributes.new(record_class).to_hash
     }

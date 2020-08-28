@@ -8,9 +8,7 @@ module RailsCom::PublicExceptions
 
   def render(status, content_type, body)
     error = { class: @exp.class.inspect }
-    if @exp.respond_to?(:id)
-      error.merge! id: @exp.id
-    end
+    error.merge! id: @exp.id if @exp.respond_to?(:id)
     message = if @exp.respond_to?(:record)
                 @exp.record.error_text
               else

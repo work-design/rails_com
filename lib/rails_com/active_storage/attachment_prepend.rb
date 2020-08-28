@@ -1,8 +1,6 @@
 module RailsCom::AttachmentPrepend
   def identify_blob
-    if record.respond_to? "sync_#{name}"
-      record.send "sync_#{name}"
-    end
+    record.send "sync_#{name}" if record.respond_to? "sync_#{name}"
     blob.identify_later
   end
 end

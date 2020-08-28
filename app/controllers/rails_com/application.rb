@@ -19,13 +19,9 @@ module RailsCom::Application
 
   def set_variant
     variant = []
-    if request.user_agent =~ /iPad|iPhone|iPod|Android/
-      variant << :phone
-    end
+    variant << :phone if request.user_agent =~ /iPad|iPhone|iPod|Android/
 
-    if request.user_agent =~ /MicroMessenger/
-      variant << :wechat
-    end
+    variant << :wechat if request.user_agent =~ /MicroMessenger/
 
     request.variant = variant
     logger.debug "  ==========> Variant: #{request.variant}"
@@ -40,9 +36,7 @@ module RailsCom::Application
       session[:zone] = zone
     end
 
-    if current_user && current_user.timezone.blank?
-      current_user.update timezone: Time.zone.name
-    end
+    current_user.update timezone: Time.zone.name if current_user && current_user.timezone.blank?
     logger.debug "  ==========> Zone: #{Time.zone}"
   end
 
@@ -73,9 +67,7 @@ module RailsCom::Application
     I18n.locale = locale
     session[:locale] = locale
 
-    if current_user && current_user.locale.to_s != I18n.locale.to_s
-      current_user.update locale: I18n.locale
-    end
+    current_user.update locale: I18n.locale if current_user && current_user.locale.to_s != I18n.locale.to_s
 
     logger.debug "  ==========> Locale: #{I18n.locale}"
   end

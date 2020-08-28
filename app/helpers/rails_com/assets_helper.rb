@@ -40,9 +40,7 @@ module RailsCom::AssetsHelper
     filename = [filename, '-', suffix].join if suffix
 
     exts.each do |ext|
-      if Webpacker.manifest.lookup(filename + ext)
-        return [filename, ext]
-      end
+      return [filename, ext] if Webpacker.manifest.lookup(filename + ext)
     end
 
     []

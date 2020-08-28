@@ -5,9 +5,7 @@ module RailsCom::ActiveRecord::Enum
     h = I18n.t enum_key(attribute), default: {}
     h.compact!
 
-    if h.is_a?(Hash) && h.present?
-      return h.invert
-    end
+    return h.invert if h.is_a?(Hash) && h.present?
 
     if h.blank?
       name = attribute.to_s.pluralize
@@ -36,13 +34,9 @@ module RailsCom::ActiveRecord::Enum
       v = h[value] ? h[value] : h[value.to_s.to_sym]
     end
 
-    if v.nil? && value.blank?
-      v = value.to_s
-    end
+    v = value.to_s if v.nil? && value.blank?
 
-    if v.nil?
-      v = human_attribute_name(value)
-    end
+    v = human_attribute_name(value) if v.nil?
 
     v
   end

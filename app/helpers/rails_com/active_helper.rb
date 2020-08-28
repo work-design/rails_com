@@ -58,13 +58,9 @@ module RailsCom::ActiveHelper
   #   active_params state: 'xxx', organ_id: 1
   def active_params(active: nil, item: nil, **options)
     options.compact.each do |k, v|
-      if params[k].to_s == v.to_s
-        return active
-      end
+      return active if params[k].to_s == v.to_s
 
-      if !params.key?(k) && session[k].to_s == v.to_s
-        return active
-      end
+      return active if !params.key?(k) && session[k].to_s == v.to_s
     end
 
     item

@@ -34,9 +34,7 @@ class Hash
     added = {}
     o = other_hash.extract!(*(self.keys & other_hash.keys))
 
-    if remove
-      removed.merge! o.common_basic(self)
-    end
+    removed.merge! o.common_basic(self) if remove
     added.merge! o.diff_basic(self)
     added.merge! other_hash
 
