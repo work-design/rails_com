@@ -30,9 +30,7 @@ module RailsCom::ActiveRecord::Enum
     h.compact!
 
     v = nil
-    if h.is_a?(Hash)
-      v = h[value] ? h[value] : h[value.to_s.to_sym]
-    end
+    v = h[value] || h[value.to_s.to_sym] if h.is_a?(Hash)
 
     v = value.to_s if v.nil? && value.blank?
 

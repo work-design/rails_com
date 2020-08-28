@@ -51,7 +51,7 @@ module RailsCom::Application
     request_locales.sort_by! { |i| i[-1] }
     request_locales.map! do |i|
       r = LOCALE_MAP[i[0]]
-      r ? r : i[0]
+      r || i[0]
     end.uniq!
     locales = I18n.available_locales.map(&:to_s) & request_locales
 

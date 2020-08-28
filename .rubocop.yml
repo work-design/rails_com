@@ -107,14 +107,6 @@ Style/OptionalArguments:
     - 'lib/rails_com/utils/time_helper.rb'
     - 'lib/rails_com/webpacker/yaml_helper.rb'
 
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/RedundantCondition:
-  Exclude:
-    - 'app/controllers/rails_com/application.rb'
-    - 'lib/rails_com/active_record/enum.rb'
-
 # Offense count: 11
 # Cop supports --auto-correct.
 Style/RedundantInterpolation:
