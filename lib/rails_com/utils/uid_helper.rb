@@ -5,7 +5,7 @@ module UidHelper
 
   def uuid(int, prefix: '', suffix: '', separator: '')
     str = int.to_s(36)
-    str = str + suffix
+    str += suffix
     str = str.upcase.scan(/.{1,4}/).join(separator)
 
     str = prefix + '-' + str if prefix.present?
