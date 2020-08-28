@@ -17,7 +17,7 @@ module Babel
     `#{script_path} #{file}`
   end
 
-  def transform(code, options = {})
+  def transform(code, _options = {})
     tmpfile = write_to_tempfile(code)
 
     begin

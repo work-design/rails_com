@@ -15,7 +15,7 @@ module Jobber
     JSON.load(r[1].first)
   end
 
-  def job_data(job, args, at: nil)
+  def job_data(job, args, _at: nil)
     {
       class: 'ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper',
       wrapped: job,

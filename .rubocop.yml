@@ -31,18 +31,6 @@ Lint/SuppressedException:
   Exclude:
     - 'lib/rails_com/all.rb'
 
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - 'examples/config/initializers/time_format.rb'
-    - 'lib/rails_com/active_model/type_value.rb'
-    - 'lib/rails_com/utils/babel.rb'
-    - 'lib/rails_com/utils/deploy.rb'
-    - 'lib/rails_com/utils/jobber.rb'
-
 # Offense count: 1
 Lint/UselessAssignment:
   Exclude:

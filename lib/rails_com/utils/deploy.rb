@@ -29,7 +29,7 @@ module Deploy
     OpenSSL::HMAC.hexdigest('sha1', RailsCom.config.github_hmac_key, data)
   end
 
-  def shared_paths(env)
+  def shared_paths(_env)
     SHARED_DIRS + SHARED_FILES
   end
 
