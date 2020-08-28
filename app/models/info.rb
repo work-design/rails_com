@@ -1,3 +1,5 @@
-class Info < ApplicationRecord
-  include RailsCom::Info
-end unless defined? Info
+unless defined? Info
+  class Info < ApplicationRecord
+    include RailsCom::Info
+  end
+end

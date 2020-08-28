@@ -1,2 +1,4 @@
-class Com::BaseController < BaseController
-end unless defined? Com::BaseController
+unless defined? Com::BaseController
+  class Com::BaseController < BaseController
+  end
+end

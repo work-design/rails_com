@@ -1,2 +1,4 @@
-class AdminController < ApplicationController
-end unless defined? AdminController
+unless defined? AdminController
+  class AdminController < ApplicationController
+  end
+end

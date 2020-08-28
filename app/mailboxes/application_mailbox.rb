@@ -1,2 +1,4 @@
-class ApplicationMailbox < ActionMailbox::Base
-end unless defined? ApplicationMailbox
+unless defined? ApplicationMailbox
+  class ApplicationMailbox < ActionMailbox::Base
+  end
+end

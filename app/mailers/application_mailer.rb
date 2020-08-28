@@ -1,3 +1,5 @@
-class ApplicationMailer < ActionMailer::Base
-  layout 'mailer'
-end unless defined? ApplicationMailer
+unless defined? ApplicationMailer
+  class ApplicationMailer < ActionMailer::Base
+    layout 'mailer'
+  end
+end

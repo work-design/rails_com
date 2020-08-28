@@ -1,3 +1,5 @@
-class AcmeAccount < ApplicationRecord
-  include RailsCom::AcmeAccount
-end unless defined? AcmeAccount
+unless defined? AcmeAccount
+  class AcmeAccount < ApplicationRecord
+    include RailsCom::AcmeAccount
+  end
+end

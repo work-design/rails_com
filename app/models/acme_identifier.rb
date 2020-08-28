@@ -1,3 +1,5 @@
-class AcmeIdentifier < ApplicationRecord
-  include RailsCom::AcmeIdentifier
-end unless defined? AcmeIdentifier
+unless defined? AcmeIdentifier
+  class AcmeIdentifier < ApplicationRecord
+    include RailsCom::AcmeIdentifier
+  end
+end

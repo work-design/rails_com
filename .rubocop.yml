@@ -97,31 +97,8 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, Autocorrect.
-# SupportedStyles: module_function, extend_self, forbidden
 Style/ModuleFunction:
-  Exclude:
-    - 'lib/rails_com/meta/controllers.rb'
-    - 'lib/rails_com/meta/env.rb'
-    - 'lib/rails_com/meta/models.rb'
-    - 'lib/rails_com/meta/routes.rb'
-    - 'lib/rails_com/utils/babel.rb'
-    - 'lib/rails_com/utils/deploy.rb'
-    - 'lib/rails_com/utils/hex_helper.rb'
-    - 'lib/rails_com/utils/ip_helper.rb'
-    - 'lib/rails_com/utils/jobber.rb'
-    - 'lib/rails_com/utils/num_helper.rb'
-    - 'lib/rails_com/utils/qrcode_helper.rb'
-    - 'lib/rails_com/utils/time_helper.rb'
-    - 'lib/rails_com/utils/uid_helper.rb'
-
-# Offense count: 17
-# Cop supports --auto-correct.
-Style/MultilineIfModifier:
-  Enabled: false
+  EnforcedStyle: extend_self
 
 # Offense count: 1
 # Cop supports --auto-correct.

@@ -1,3 +1,5 @@
-class ApplicationRecord < ActiveRecord::Base
-  self.abstract_class = true
-end unless defined? ApplicationRecord
+unless defined? ApplicationRecord
+  class ApplicationRecord < ActiveRecord::Base
+    self.abstract_class = true
+  end
+end

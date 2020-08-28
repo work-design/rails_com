@@ -1,2 +1,4 @@
-class ApplicationJob < ActiveJob::Base
-end unless defined? ApplicationJob
+unless defined? ApplicationJob
+  class ApplicationJob < ActiveJob::Base
+  end
+end
