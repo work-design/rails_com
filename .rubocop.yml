@@ -19,14 +19,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, no_space
-Layout/SpaceAroundEqualsInParameterDefault:
-  Exclude:
-    - 'app/helpers/rails_com/format_helper.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Layout/SpaceAroundKeyword:
