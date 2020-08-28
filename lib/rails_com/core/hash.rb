@@ -61,31 +61,31 @@ class Hash
     [diff_remove(other_hash), diff_add(other_hash)]
   end
 
-  def diff_basic(h = {}, other_hash)
+  def diff_basic(target_hash = {}, other_hash)
     each do |key, value|
       v = Array(value) - Array(other_hash[key])
       if v.size > 1
-        h[key] = v
+        target_hash[key] = v
       elsif v.size == 1
-        h[key] = v[0]
+        target_hash[key] = v[0]
       elsif v.empty?
-        h.delete(key)
+        target_hash.delete(key)
       end
     end
-    h
+    target_hash
   end
 
-  def common_basic(h = {}, other_hash)
+  def common_basic(target_hash = {}, other_hash)
     each do |key, value|
       v = Array(value) & Array(other_hash[key])
       if v.size > 1
-        h[key] = v
+        target_hash[key] = v
       elsif v.size == 1
-        h[key] = v[0]
+        target_hash[key] = v[0]
       elsif v.empty?
-        h.delete(key)
+        target_hash.delete(key)
       end
     end
-    h
+    target_hash
   end
 end

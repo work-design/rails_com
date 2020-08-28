@@ -67,14 +67,6 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 17
 
-# Offense count: 8
-# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
-# AllowedNames: at, by, db, id, in, io, ip, of, on, os, pp, to
-Naming/MethodParameterName:
-  Exclude:
-    - 'lib/rails_com/core/array.rb'
-    - 'lib/rails_com/core/hash.rb'
-
 # Offense count: 1
 # Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
 # NamePrefix: is_, has_, have_

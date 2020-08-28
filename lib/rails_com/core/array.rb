@@ -4,30 +4,30 @@ class Array
   #   arr = [1, 2, 3]
   #   arr.ljust! 5, nil
   #   # => [nil, nil, 1, 2, 3]
-  def ljust!(n, x)
-    return self if n < length
+  def ljust!(integer, padstr)
+    return self if integer < length
 
-    insert(0, *Array.new([0, n - length].max, x))
+    insert(0, *Array.new([0, integer - length].max, padstr))
   end
 
   # fill an array with the given elements left;
   #   arr = [1, 2, 3]
   #   arr.rjust! 5, nil
   #   # => [1, 2, 3, nil, nil]
-  def rjust!(n, x)
-    return self if n < length
+  def rjust!(integer, padstr)
+    return self if integer < length
 
-    fill(x, length...n)
+    fill(padstr, length...integer)
   end
 
   ##
   #   arr = [1, 2, 3]
   #   arr.mjust!(5, nil)
   #   # => [1, 2, nil, nil, 3]
-  def mjust!(n, x)
-    return self if n < length
+  def mjust!(integer, padstr)
+    return self if integer < length
 
-    insert((length / 2.0).ceil, *Array.new(n - length, x))
+    insert((length / 2.0).ceil, *Array.new(integer - length, padstr))
   end
 
   ##
