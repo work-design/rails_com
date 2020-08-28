@@ -25,19 +25,6 @@ Layout/SpaceAroundKeyword:
   Exclude:
     - 'lib/rails_com/engine.rb'
 
-# Offense count: 11
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceBeforeBlockBraces:
-  Exclude:
-    - 'lib/rails_com/active_record/extend.rb'
-    - 'lib/rails_com/config.rb'
-    - 'lib/rails_com/core/time_format.rb'
-    - 'lib/rails_com/engine.rb'
-    - 'lib/rails_com/meta/routes.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

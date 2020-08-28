@@ -12,13 +12,13 @@ module RailsCom::Routes
   end
 
   def controllers
-    _controllers = routes_wrapper.group_by(&->(i){ i[:controller] })
+    _controllers = routes_wrapper.group_by(&->(i) { i[:controller] })
     _controllers.delete(nil)
     _controllers
   end
 
   def modules
-    routes_wrapper.group_by(&->(i){ i[:module] })
+    routes_wrapper.group_by(&->(i) { i[:module] })
   end
 
   def routes_wrapper(cached = true)
