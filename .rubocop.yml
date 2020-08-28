@@ -25,13 +25,6 @@ Layout/SpaceAroundKeyword:
   Exclude:
     - 'lib/rails_com/engine.rb'
 
-
-# Offense count: 1
-# Configuration parameters: MaximumRangeSize.
-Lint/MissingCopEnableDirective:
-  Exclude:
-    - 'lib/rails_com/all.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Lint/RedundantCopDisableDirective:
