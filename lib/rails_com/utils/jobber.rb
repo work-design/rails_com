@@ -20,14 +20,14 @@ module Jobber
       class: 'ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper',
       wrapped: job,
       queue: config['queue'],
-      args: [ {
+      args: [{
         job_class: job,
         job_id: SecureRandom.uuid,
         queue_name: config['queue'],
         priority: nil,
         arguments: args,
         locale: 'en'
-      } ],
+      }],
       retry: true,
       jid: SecureRandom.hex(12),
       created_at: Time.now.to_f,

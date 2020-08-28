@@ -25,18 +25,6 @@ Layout/SpaceAroundKeyword:
   Exclude:
     - 'lib/rails_com/engine.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideArrayLiteralBrackets:
-  Exclude:
-    - 'lib/rails_com/action_mailbox/inbound_email.rb'
-    - 'lib/rails_com/action_text/rich_text.rb'
-    - 'lib/rails_com/active_storage/attachment_transfer.rb'
-    - 'lib/rails_com/utils/jobber.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.

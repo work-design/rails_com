@@ -24,7 +24,7 @@ module RailsCom::AttachmentTransfer
     attach = self.record.send(self.name)
     r = nil
     blob.open do |input|
-      Tempfile.open([ 'ActiveStorage', self.filename.extension_with_delimiter ], Dir.tmpdir) do |file|
+      Tempfile.open(['ActiveStorage', self.filename.extension_with_delimiter], Dir.tmpdir) do |file|
         file.binmode
         argv = [ffmpeg_path, '-i', input.path, '-codec', 'copy', '-movflags', 'faststart', '-f', 'mp4', '-y', file.path]
         system(*argv)
