@@ -1,0 +1,703 @@
+AllCops:
+  NewCops: disable
+  Exclude:
+    - 'bin/**/*'
+    - 'doc/**/*'
+    - 'examples/**/*'
+    - 'log/**/*'
+    - 'test/**/*'
+
+Bundler/OrderedGems:
+  Exclude:
+    - 'Gemfile'
+
+Gemspec/OrderedDependencies:
+  Exclude:
+    - 'rails_com.gemspec'
+
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - 'rails_com.gemspec'
+
+# Offense count: 18
+# Cop supports --auto-correct.
+# Layout/EmptyLineAfterGuardClause:
+#   Exclude:
+#     - 'app/controllers/com/common_controller.rb'
+#     - 'app/models/rails_com/acme_account.rb'
+#     - 'app/models/rails_com/acme_identifier.rb'
+#     - 'app/models/rails_com/acme_order.rb'
+#     - 'examples/qiniu_helper.rb'
+#     - 'lib/rails_com/action_view/template_renderer.rb'
+#     - 'lib/rails_com/active_record/enum.rb'
+#     - 'lib/rails_com/active_record/translation.rb'
+#     - 'lib/rails_com/active_storage/attachment_transfer.rb'
+#     - 'lib/rails_com/active_storage/blob_prepend.rb'
+#     - 'lib/rails_com/core/array.rb'
+#     - 'lib/rails_com/engine.rb'
+#     - 'lib/rails_com/webpacker/yaml_helper.rb'
+
+# Offense count: 10
+# Cop supports --auto-correct.
+Layout/EmptyLineAfterMagicComment:
+  Exclude:
+    - 'app/controllers/com/pdfs_controller.rb'
+    - 'app/helpers/rails_com/active_helper.rb'
+    - 'app/helpers/rails_com/assets_helper.rb'
+    - 'app/helpers/rails_com/format_helper.rb'
+    - 'app/helpers/rails_com/time_helper.rb'
+    - 'config/locales/zh.rb'
+    - 'lib/generators/rails_com/migration_generator.rb'
+    - 'lib/generators/rails_com/migrations_generator.rb'
+    - 'lib/rails_com/action_view.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+Layout/EmptyLines:
+  Exclude:
+    - 'app/controllers/com/base_controller.rb'
+    - 'lib/rails_com/action_controller/public_exceptions.rb'
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'test/lib/rails_com/utils/uid_helper_test.rb'
+    - 'test/models/active_storage/blob_default_test.rb'
+
+# Offense count: 18
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: around, only_before
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'config/routes.rb'
+    - 'examples/config/routes.rb'
+
+# Offense count: 75
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+Layout/EmptyLinesAroundMethodBody:
+  Exclude:
+    - 'app/models/rails_com/cache_list.rb'
+    - 'examples/app/controllers/the_guards_controller.rb'
+    - 'lib/rails_com/active_record/translation.rb'
+    - 'lib/rails_com/active_storage/activestorage_attached.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+
+# Offense count: 70
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+# Offense count: 1
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: native, lf, crlf
+Layout/EndOfLine:
+  Exclude:
+    - 'examples/config/initializers/time_format.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Exclude:
+    - 'test/lib/rails_com/utils/uid_helper_test.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_braces
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
+Layout/LeadingCommentSpace:
+  Exclude:
+    - 'app/helpers/rails_com/format_helper.rb'
+    - 'test/test_helper.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: space, no_space
+Layout/SpaceAroundEqualsInParameterDefault:
+  Exclude:
+    - 'app/helpers/rails_com/format_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Layout/SpaceAroundKeyword:
+  Exclude:
+    - 'lib/rails_com/engine.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
+# SupportedStylesForExponentOperator: space, no_space
+Layout/SpaceAroundOperators:
+  Exclude:
+    - 'lib/generators/jbuilder_generator.rb'
+    - 'lib/rails_com/core/array.rb'
+    - 'test/lib/rails_com/utils/uid_helper_test.rb'
+
+# Offense count: 11
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceBeforeBlockBraces:
+  Exclude:
+    - 'lib/rails_com/active_record/extend.rb'
+    - 'lib/rails_com/config.rb'
+    - 'lib/rails_com/core/time_format.rb'
+    - 'lib/rails_com/engine.rb'
+    - 'lib/rails_com/meta/routes.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: require_no_space, require_space
+Layout/SpaceInLambdaLiteral:
+  Exclude:
+    - 'lib/rails_com/engine.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBrackets: space, no_space
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'lib/rails_com/action_mailbox/inbound_email.rb'
+    - 'lib/rails_com/action_text/rich_text.rb'
+    - 'lib/rails_com/active_storage/attachment_transfer.rb'
+    - 'lib/rails_com/utils/jobber.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideBlockBraces:
+  Exclude:
+    - 'lib/generators/jbuilder_generator.rb'
+    - 'test/factories/blob_defaults.rb'
+
+# Offense count: 15
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: final_newline, final_blank_line
+Layout/TrailingEmptyLines:
+  Exclude:
+    - 'Rakefile'
+    - 'examples/app/controllers/concerns/controller_helper.rb'
+    - 'examples/config/initializers/time_format.rb'
+    - 'examples/config/puma/development.rb'
+    - 'examples/config/puma/staging.rb'
+    - 'examples/qiniu_helper.rb'
+    - 'lib/generators/jbuilder_generator.rb'
+    - 'lib/generators/scaffold_generator.rb'
+    - 'lib/rails_com/active_record/pg_coder.rb'
+    - 'lib/rails_com/core/numeric.rb'
+    - 'lib/rails_com/core/string.rb'
+    - 'lib/rails_com/utils/ip_helper.rb'
+    - 'lib/rails_com/utils/num_helper.rb'
+    - 'lib/rails_com/utils/qrcode_helper.rb'
+    - 'test/lib/rails_com/utils/uid_helper_test.rb'
+
+# Offense count: 57
+# Cop supports --auto-correct.
+# Configuration parameters: AllowInHeredoc.
+Layout/TrailingWhitespace:
+  Enabled: false
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Lint/AmbiguousOperator:
+  Exclude:
+    - 'lib/rails_com/core/hash.rb'
+    - 'lib/rails_com/utils/qrcode_helper.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Lint/AmbiguousRegexpLiteral:
+  Exclude:
+    - 'examples/qiniu_helper.rb'
+    - 'lib/rails_com/utils/ip_helper.rb'
+
+# Offense count: 1
+# Configuration parameters: MaximumRangeSize.
+Lint/MissingCopEnableDirective:
+  Exclude:
+    - 'lib/rails_com/all.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Lint/RedundantCopDisableDirective:
+  Exclude:
+    - 'lib/rails_com/all.rb'
+
+# Offense count: 1
+# Configuration parameters: IgnoreImplicitReferences.
+Lint/ShadowedArgument:
+  Exclude:
+    - 'lib/rails_com/action_controller/public_exceptions.rb'
+
+# Offense count: 1
+# Configuration parameters: AllowComments.
+Lint/SuppressedException:
+  Exclude:
+    - 'lib/rails_com/all.rb'
+
+# Offense count: 10
+# Configuration parameters: AllowKeywordBlockArguments.
+Lint/UnderscorePrefixedVariableName:
+  Exclude:
+    - 'app/helpers/rails_com/active_helper.rb'
+    - 'app/models/rails_com/state_machine.rb'
+    - 'lib/rails_com/action_controller/include.rb'
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'lib/rails_com/meta/routes.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'lib/rails_com/active_record/translation.rb'
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'examples/config/initializers/time_format.rb'
+    - 'lib/rails_com/active_model/type_value.rb'
+    - 'lib/rails_com/utils/babel.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+    - 'lib/rails_com/utils/jobber.rb'
+
+# Offense count: 1
+Lint/UselessAssignment:
+  Exclude:
+    - 'lib/rails_com/active_storage/attached_macros.rb'
+
+# Offense count: 25
+# Configuration parameters: IgnoredMethods.
+Metrics/AbcSize:
+  Max: 51
+
+# Offense count: 2
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+# ExcludedMethods: refine
+Metrics/BlockLength:
+  Max: 66
+
+# Offense count: 7
+# Configuration parameters: IgnoredMethods.
+Metrics/CyclomaticComplexity:
+  Max: 16
+
+# Offense count: 33
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+Metrics/MethodLength:
+  Max: 27
+
+# Offense count: 1
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 6
+
+# Offense count: 5
+# Configuration parameters: IgnoredMethods.
+Metrics/PerceivedComplexity:
+  Max: 17
+
+# Offense count: 8
+# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
+# AllowedNames: at, by, db, id, in, io, ip, of, on, os, pp, to
+Naming/MethodParameterName:
+  Exclude:
+    - 'lib/rails_com/core/array.rb'
+    - 'lib/rails_com/core/hash.rb'
+
+# Offense count: 1
+# Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
+# NamePrefix: is_, has_, have_
+# ForbiddenPrefixes: is_, has_, have_
+# AllowedMethods: is_a?
+# MethodDefinitionMacros: define_method, define_singleton_method
+Naming/PredicateName:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/rails_com/active_record/translation.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect.
+Security/JSONLoad:
+  Exclude:
+    - 'lib/rails_com/utils/jobber.rb'
+
+# Offense count: 5
+# Configuration parameters: AllowedChars.
+Style/AsciiComments:
+  Exclude:
+    - 'lib/rails_com/action_mailbox/inbound_email.rb'
+    - 'lib/rails_com/action_view/partial_renderer.rb'
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'lib/rails_com/utils/ip_helper.rb'
+    - 'lib/rails_com/utils/qrcode_helper.rb'
+
+# Offense count: 78
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, EnforcedStyle.
+# SupportedStyles: nested, compact
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: Keywords.
+# Keywords: TODO, FIXME, OPTIMIZE, HACK, REVIEW
+Style/CommentAnnotation:
+  Exclude:
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'lib/rails_com/core/date.rb'
+    - 'lib/rails_com/engine.rb'
+
+# Offense count: 14
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Exclude:
+    - 'app/controllers/rails_com/application.rb'
+    - 'app/helpers/rails_com/format_helper.rb'
+    - 'app/models/rails_com/acme_account.rb'
+    - 'app/models/rails_com/acme_identifier.rb'
+    - 'app/models/rails_com/state_machine.rb'
+    - 'lib/rails_com/action_controller/public_exceptions.rb'
+    - 'lib/rails_com/action_view/partial_renderer.rb'
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'lib/rails_com/active_record/extend.rb'
+    - 'lib/rails_com/core/hash.rb'
+    - 'lib/rails_com/utils/setting.rb'
+    - 'lib/rails_com/utils/time_helper.rb'
+
+# Offense count: 106
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 20
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: compact, expanded
+Style/EmptyMethod:
+  Exclude:
+    - 'app/controllers/com/common_controller.rb'
+    - 'app/controllers/com/panel/acme_accounts_controller.rb'
+    - 'app/controllers/com/panel/acme_identifiers_controller.rb'
+    - 'app/controllers/com/panel/acme_orders_controller.rb'
+    - 'app/controllers/com/panel/blob_defaults_controller.rb'
+    - 'app/controllers/com/panel/blobs_controller.rb'
+    - 'app/controllers/com/panel/cache_lists_controller.rb'
+    - 'app/controllers/com/panel/inbound_emails_controller.rb'
+    - 'app/controllers/com/panel/infos_controller.rb'
+    - 'app/models/rails_com/cache_list.rb'
+    - 'examples/app/controllers/the_guards_controller.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+
+# Offense count: 104
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, always_true, never
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Offense count: 25
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: false
+
+# Offense count: 2
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'lib/rails_com/utils/uid_helper.rb'
+
+# Offense count: 36
+# Cop supports --auto-correct.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/InfiniteLoop:
+  Exclude:
+    - 'examples/qiniu_helper.rb'
+
+# Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: line_count_dependent, lambda, literal
+Style/Lambda:
+  Exclude:
+    - 'lib/rails_com/core/time_format.rb'
+    - 'lib/rails_com/engine.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+Style/MethodCallWithoutArgsParentheses:
+  Exclude:
+    - 'app/controllers/com/panel/inbound_emails_controller.rb'
+
+# Offense count: 13
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, Autocorrect.
+# SupportedStyles: module_function, extend_self, forbidden
+Style/ModuleFunction:
+  Exclude:
+    - 'lib/rails_com/meta/controllers.rb'
+    - 'lib/rails_com/meta/env.rb'
+    - 'lib/rails_com/meta/models.rb'
+    - 'lib/rails_com/meta/routes.rb'
+    - 'lib/rails_com/utils/babel.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+    - 'lib/rails_com/utils/hex_helper.rb'
+    - 'lib/rails_com/utils/ip_helper.rb'
+    - 'lib/rails_com/utils/jobber.rb'
+    - 'lib/rails_com/utils/num_helper.rb'
+    - 'lib/rails_com/utils/qrcode_helper.rb'
+    - 'lib/rails_com/utils/time_helper.rb'
+    - 'lib/rails_com/utils/uid_helper.rb'
+
+# Offense count: 17
+# Cop supports --auto-correct.
+Style/MultilineIfModifier:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: literals, strict
+Style/MutableConstant:
+  Exclude:
+    - 'lib/rails_com/utils/qrcode_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: Strict.
+Style/NumericLiterals:
+  MinDigits: 6
+
+# Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, EnforcedStyle, IgnoredMethods.
+# SupportedStyles: predicate, comparison
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/helpers/rails_com/active_helper.rb'
+    - 'app/helpers/rails_com/time_helper.rb'
+    - 'lib/rails_com/utils/time_helper.rb'
+
+# Offense count: 7
+Style/OptionalArguments:
+  Exclude:
+    - 'lib/rails_com/core/hash.rb'
+    - 'lib/rails_com/utils/time_helper.rb'
+    - 'lib/rails_com/webpacker/yaml_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/RedundantBegin:
+  Exclude:
+    - 'lib/rails_com/action_controller/parameters.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/RedundantCondition:
+  Exclude:
+    - 'app/controllers/rails_com/application.rb'
+    - 'lib/rails_com/active_record/enum.rb'
+
+# Offense count: 11
+# Cop supports --auto-correct.
+Style/RedundantInterpolation:
+  Exclude:
+    - 'examples/config/puma.rb'
+    - 'examples/config/puma/development.rb'
+    - 'examples/config/puma/production.rb'
+    - 'examples/config/puma/staging.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/RedundantParentheses:
+  Exclude:
+    - 'lib/rails_com/utils/num_helper.rb'
+
+# Offense count: 41
+# Cop supports --auto-correct.
+Style/RedundantSelf:
+  Exclude:
+    - 'app/controllers/rails_com/application.rb'
+    - 'app/models/rails_com/acme_account.rb'
+    - 'app/models/rails_com/acme_order.rb'
+    - 'app/models/rails_com/state_machine.rb'
+    - 'lib/rails_com/action_controller/extend.rb'
+    - 'lib/rails_com/action_controller/include.rb'
+    - 'lib/rails_com/active_record/extend.rb'
+    - 'lib/rails_com/active_record/include.rb'
+    - 'lib/rails_com/active_record/translation.rb'
+    - 'lib/rails_com/active_storage/activestorage_attached.rb'
+    - 'lib/rails_com/active_storage/attachment_transfer.rb'
+    - 'lib/rails_com/active_storage/blob_prepend.rb'
+    - 'lib/rails_com/active_storage/video_response.rb'
+    - 'lib/rails_com/core/array.rb'
+    - 'lib/rails_com/core/hash.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: implicit, explicit
+Style/RescueStandardError:
+  Exclude:
+    - 'app/channels/rails_com/connection.rb'
+    - 'lib/rails_com/meta/models.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods.
+# AllowedMethods: present?, blank?, presence, try, try!
+Style/SafeNavigation:
+  Exclude:
+    - 'app/models/rails_com/acme_order.rb'
+    - 'lib/rails_com/action_view/template_renderer.rb'
+    - 'lib/rails_com/active_record/i18n.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/SelfAssignment:
+  Exclude:
+    - 'lib/rails_com/utils/uid_helper.rb'
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+Style/Semicolon:
+  Exclude:
+    - 'config/locales/zh.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: .
+# SupportedStyles: use_perl_names, use_english_names
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: require_parentheses, require_no_parentheses
+Style/StabbyLambdaParentheses:
+  Exclude:
+    - 'lib/rails_com/engine.rb'
+
+# Offense count: 139
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  Exclude:
+    - 'app/helpers/rails_com/format_helper.rb'
+    - 'config/locales/zh.rb'
+    - 'lib/rails_com/utils/deploy.rb'
+    - 'test/factories/active_storage_attachments.rb'
+    - 'test/factories/active_storage_blobs.rb'
+    - 'test/factories/cache_lists.rb'
+    - 'test/system/com/panel/acme_accounts_test.rb'
+    - 'test/system/com/panel/acme_authorizations_test.rb'
+    - 'test/system/com/panel/acme_identifiers_test.rb'
+    - 'test/system/com/panel/acme_orders_test.rb'
+    - 'test/system/com/panel/inbound_emails_test.rb'
+
+# Offense count: 26
+# Cop supports --auto-correct.
+# Configuration parameters: MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+# IgnoredMethods: respond_to, define_method
+Style/SymbolProc:
+  Exclude:
+    - 'lib/generators/rails_com/migrations_generator.rb'
+    - 'lib/rails_com/action_controller/extend.rb'
+    - 'lib/rails_com/active_record/extend.rb'
+    - 'lib/rails_com/generators/migration_attributes.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  Exclude:
+    - 'lib/rails_com/all.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: AllowNamedUnderscoreVariables.
+Style/TrailingUnderscoreVariable:
+  Exclude:
+    - 'app/helpers/rails_com/assets_helper.rb'
+
+# Offense count: 3
+# Cop supports --auto-correct.
+Style/WhenThen:
+  Exclude:
+    - 'config/locales/zh.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/WhileUntilDo:
+  Exclude:
+    - 'examples/qiniu_helper.rb'
+
+# Offense count: 8
+# Cop supports --auto-correct.
+# Configuration parameters: MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  EnforcedStyle: brackets
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Style/ZeroLengthPredicate:
+  Exclude:
+    - 'app/helpers/rails_com/active_helper.rb'
+
+# Offense count: 9
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 162
