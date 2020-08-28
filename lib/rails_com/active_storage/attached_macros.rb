@@ -10,7 +10,7 @@ module RailsCom::AttachedOne
 
     begin
       @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id))
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       Rails.cache.delete('blob_default/default')
       retry
     end

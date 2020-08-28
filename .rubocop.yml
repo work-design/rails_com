@@ -31,11 +31,6 @@ Lint/SuppressedException:
   Exclude:
     - 'lib/rails_com/all.rb'
 
-# Offense count: 1
-Lint/UselessAssignment:
-  Exclude:
-    - 'lib/rails_com/active_storage/attached_macros.rb'
-
 # Offense count: 25
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
