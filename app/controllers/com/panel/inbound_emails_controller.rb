@@ -1,5 +1,5 @@
 class Com::Panel::InboundEmailsController < Com::Panel::BaseController
-  before_action :set_inbound_email, only: [:show, :edit, :update, :destroy]
+  before_action :set_inbound_email, only: %i[show edit update destroy]
 
   def index
     @inbound_emails = ActionMailbox::InboundEmail.page(params[:page])

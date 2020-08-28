@@ -1,5 +1,5 @@
 class Com::Panel::CacheListsController < Com::Panel::BaseController
-  before_action :set_cache_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_cache_list, only: %i[show edit update destroy]
 
   def index
     @cache_lists = CacheList.page(params[:page])

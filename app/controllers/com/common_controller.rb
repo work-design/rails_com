@@ -11,7 +11,7 @@ class Com::CommonController < Com::BaseController
   end
 
   def cache_list
-    render json: CacheList.all.as_json(only: [:path, :key], methods: [:etag])
+    render json: CacheList.all.as_json(only: %i[path key], methods: [:etag])
   end
 
   def enum_list

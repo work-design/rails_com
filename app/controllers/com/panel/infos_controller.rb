@@ -1,5 +1,5 @@
 class Com::Panel::InfosController < Com::Panel::BaseController
-  before_action :set_info, only: [:show, :edit, :update, :destroy]
+  before_action :set_info, only: %i[show edit update destroy]
 
   def index
     @infos = Info.page(params[:page])

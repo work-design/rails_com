@@ -1,5 +1,5 @@
 class Com::Panel::BlobsController < Com::Panel::BaseController
-  before_action :set_blob, only: [:show, :destroy]
+  before_action :set_blob, only: %i[show destroy]
 
   def index
     q_params = {}

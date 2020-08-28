@@ -1,5 +1,5 @@
 class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
-  before_action :set_acme_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_acme_account, only: %i[show edit update destroy]
 
   def index
     @acme_accounts = AcmeAccount.page(params[:page])

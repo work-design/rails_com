@@ -1,5 +1,5 @@
 class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
-  before_action :set_blob_default, only: [:show, :edit, :update, :destroy]
+  before_action :set_blob_default, only: %i[show edit update destroy]
 
   def index
     @blob_defaults = BlobDefault.page(params[:page])

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :qrcode
       get :test_raise
       get :cancel
-      match :deploy, via: [:get, :post]
+      match :deploy, via: %i[get post]
     end
   end
 
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :infos
     resources :cache_lists
     resources :inbound_emails
-    resources :attachments, only: [:index, :destroy] do
+    resources :attachments, only: %i[index destroy] do
       collection do
         get :garbled
       end
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
         delete :delete
       end
     end
-    resources :blobs, only: [:index, :show, :new, :create, :destroy] do
+    resources :blobs, only: %i[index show new create destroy] do
       collection do
         get :unattached
       end
@@ -63,8 +63,8 @@ Rails.application.routes.draw do
         end
       end
       resources :acme_orders, shallow: true, only: [] do
-        resources :acme_identifiers, only: [:index, :new, :create], as: :identifiers
-        resources :acme_identifiers, only: [:edit, :update, :destroy]
+        resources :acme_identifiers, only: %i[index new create], as: :identifiers
+        resources :acme_identifiers, only: %i[edit update destroy]
       end
     end
   end

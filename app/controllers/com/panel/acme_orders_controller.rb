@@ -1,6 +1,6 @@
 class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   before_action :set_acme_account
-  before_action :set_acme_order, only: [:show, :edit, :order, :update, :destroy]
+  before_action :set_acme_order, only: %i[show edit order update destroy]
 
   def index
     q_params = {

@@ -13,7 +13,7 @@ class Date
     return r unless less
 
     # if result day less than day, so
-    if (parts.keys & [:months, :years]).present?
+    if (parts.keys & %i[months years]).present?
       r.day < day ? r : r - 1
     else
       r

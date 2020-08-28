@@ -10,7 +10,7 @@ module RailsCom::BlobDefault
 
     has_one_attached :file
 
-    after_commit :delete_private_cache, :delete_default_cache, on: [:create, :destroy]
+    after_commit :delete_private_cache, :delete_default_cache, on: %i[create destroy]
     after_update_commit :delete_private_cache, if: -> { saved_change_to_private? }
     after_update_commit :delete_default_cache
   end

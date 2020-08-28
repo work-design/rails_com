@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Com::PdfsController < Com::BaseController
-  before_action :set_pdf, only: [:show, :png, :jpg]
+  before_action :set_pdf, only: %i[show png jpg]
 
   def show
     send_data @pdf.render, filename: 'cert_file.pdf', disposition: @disposition, type: 'application/pdf'

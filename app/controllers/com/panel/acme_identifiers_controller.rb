@@ -1,6 +1,6 @@
 class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
-  before_action :set_acme_order, only: [:index, :new, :create]
-  before_action :set_acme_identifier, only: [:show, :edit, :update, :destroy]
+  before_action :set_acme_order, only: %i[index new create]
+  before_action :set_acme_identifier, only: %i[show edit update destroy]
 
   def index
     @acme_identifiers = @acme_order.acme_identifiers

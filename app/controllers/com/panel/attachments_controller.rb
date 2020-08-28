@@ -1,5 +1,5 @@
 class Com::Panel::AttachmentsController < Com::Panel::BaseController
-  before_action :set_attachment, only: [:delete, :destroy]
+  before_action :set_attachment, only: %i[delete destroy]
 
   def index
     q_params = {}

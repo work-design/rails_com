@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Com::VideosController < Com::BaseController
-  before_action :set_video, only: [:show, :transfer]
+  before_action :set_video, only: %i[show transfer]
   before_action do
     ActiveStorage::Current.host = request.base_url
   end

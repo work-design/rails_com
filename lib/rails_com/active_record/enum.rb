@@ -48,7 +48,7 @@ module RailsCom::ActiveRecord::Enum
 
     mod.class_exec do
       def attribute_i18n(attr)
-        if [:json, :jsonb].include? self.class.columns_hash[attr]&.type
+        if %i[json jsonb].include? self.class.columns_hash[attr]&.type
           send(attr)&.transform_keys! { |key| self.class.human_attribute_name(key) }
         else
           self.class.enum_i18n attr, send(attr)
