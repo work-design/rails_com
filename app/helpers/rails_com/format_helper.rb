@@ -15,7 +15,7 @@ module RailsCom::FormatHelper
     end.join("\n\n").html_safe
   end
 
-  def ex_simple_format(text, html_options={}, options={})
+  def ex_simple_format(text, html_options = {}, options = {})
     text = '' if text.nil?
     text = text.dup
     start_tag = tag('p', html_options, true)

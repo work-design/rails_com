@@ -25,16 +25,6 @@ Layout/SpaceAroundKeyword:
   Exclude:
     - 'lib/rails_com/engine.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
-# SupportedStylesForExponentOperator: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'lib/generators/jbuilder_generator.rb'
-    - 'lib/rails_com/core/array.rb'
-    - 'test/lib/rails_com/utils/uid_helper_test.rb'
-
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.

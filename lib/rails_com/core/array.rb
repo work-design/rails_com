@@ -8,7 +8,7 @@ class Array
   def ljust!(n, x)
     return self if n < length
 
-    insert(0, *Array.new([0, n-length].max, x))
+    insert(0, *Array.new([0, n - length].max, x))
   end
 
   # fill an array with the given elements left;
