@@ -123,16 +123,6 @@ Style/SpecialGlobalVars:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoredMethods.
-# IgnoredMethods: respond_to, define_method
-Style/SymbolProc:
-  Exclude:
-    - 'lib/generators/rails_com/migrations_generator.rb'
-    - 'lib/rails_com/action_controller/extend.rb'
-    - 'lib/rails_com/active_record/extend.rb'
-    - 'lib/rails_com/generators/migration_attributes.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

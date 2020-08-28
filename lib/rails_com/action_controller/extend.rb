@@ -8,7 +8,7 @@ module RailsCom::ActionController
     end
 
     def raw_view_paths
-      view_paths.paths.map { |i| i.path }
+      view_paths.paths.map(&:path)
     end
   end
 end

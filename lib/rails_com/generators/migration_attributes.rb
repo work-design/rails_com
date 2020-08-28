@@ -23,7 +23,7 @@ class RailsCom::MigrationAttributes
 
   def set_new_references
     @new_references = {}
-    refs = record_class.reflections.values.select { |reflection| reflection.belongs_to? }
+    refs = record_class.reflections.values.select(&:belongs_to?)
     refs.reject! { |reflection| record_class.attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
     refs.reject! { |reflection| @table_exists && record_class.column_names.include?(reflection.foreign_key.to_s) }
     refs.each do |ref|

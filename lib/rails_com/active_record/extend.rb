@@ -52,7 +52,7 @@ module RailsCom::ActiveRecord::Extend
   def custom_attributes
     defined_keys = attributes_to_define_after_schema_loads.keys
 
-    ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
+    ref_ids = reflections.values.select(&:belongs_to?)
     ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
     ref_ids.flatten!
     ref_ids.compact!
