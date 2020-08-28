@@ -6,14 +6,14 @@ module RailsCom
       return super if defined?(WebConsole) && context.is_a?(WebConsole::View)
 
       request = context.request
-      if request && request.format.symbol
-        _formats = [context.request.format.symbol]
-      else
-        _formats = @lookup_context.formats[0..0].presence || [:html]
-      end
+      request_formats = if request && request.format.symbol
+                          [context.request.format.symbol]
+                        else
+                          @lookup_context.formats[0..0].presence || [:html]
+                        end
 
       # todo better implement
-      @lookup_context.send :_set_detail, :formats, _formats
+      @lookup_context.send :_set_detail, :formats, request_formats
 
       # 支持在views/:controller 目录下，用 _action 开头的子目录进一步分组，会优先查找该目录下文件
       context_prefix = @lookup_context.prefixes[0]

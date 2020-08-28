@@ -12,9 +12,9 @@ module RailsCom::Routes
   end
 
   def controllers
-    _controllers = routes_wrapper.group_by(&->(i) { i[:controller] })
-    _controllers.delete(nil)
-    _controllers
+    grouped_controllers = routes_wrapper.group_by(&->(i) { i[:controller] })
+    grouped_controllers.delete(nil)
+    grouped_controllers
   end
 
   def modules

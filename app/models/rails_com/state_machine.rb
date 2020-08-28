@@ -6,16 +6,16 @@ module RailsCom::StateMachine
   # obj.next_to state: 'xxx'
   def next_to(options = {}, &block)
     options.each do |column, value|
-      if self.class.method_defined? "next_#{column}_states"
-        _next_state = self.send("next_#{column}_states").first
-      else
-        _next_state = next_state(column, &block)
-      end
+      state = if self.class.method_defined? "next_#{column}_states"
+                self.send("next_#{column}_states").first
+              else
+                next_state(column, &block)
+              end
 
-      if _next_state == value.to_s
+      if state == value.to_s
         assign_attributes(column => value)
       else
-        error_msg = "Next state is wrong, should be #{_next_state}"
+        error_msg = "Next state is wrong, should be #{state}"
         errors.add column, error_msg
         raise ActiveRecord::Rollback, error_msg
       end
@@ -29,16 +29,16 @@ module RailsCom::StateMachine
 
   def trigger_to(options = {}, &block)
     options.each do |column, value|
-      if self.class.method_defined? "next_#{column}_states"
-        _next_states = self.send "next_#{column}_states"
-      else
-        _next_states = next_states(column, &block)
-      end
+      states = if self.class.method_defined? "next_#{column}_states"
+                 self.send "next_#{column}_states"
+               else
+                 next_states(column, &block)
+               end
 
-      if _next_states.include?(value.to_s)
+      if states.include?(value.to_s)
         assign_attributes(column => value)
       else
-        error_msg = "Next state is wrong, should be one of #{_next_states.join(', ')}"
+        error_msg = "Next state is wrong, should be one of #{states.join(', ')}"
         errors.add column, error_msg
         raise ActiveRecord::Rollback, error_msg
       end
@@ -58,17 +58,16 @@ module RailsCom::StateMachine
   #   result.reject
   # end
   def next_states(state_name, &block)
-    _states = self.class.send(state_name.to_s.pluralize)
-    _states = _states.keys
-    _state = self.send(state_name)
+    states = self.class.send(state_name.to_s.pluralize).keys
+    state = self.send(state_name)
 
-    if _state.nil?
+    if state.nil?
       next_index = 0
     else
-      i = _states.index(_state)
+      i = states.index(state)
       next_index = i + 1
     end
-    result = _states[next_index..(_states.size - 1)]
+    result = states[next_index..(states.size - 1)]
 
     if block_given?
       yield block.call(result)

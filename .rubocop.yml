@@ -19,13 +19,11 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-
 # Offense count: 1
 # Configuration parameters: IgnoreImplicitReferences.
 Lint/ShadowedArgument:
   Exclude:
     - 'lib/rails_com/action_controller/public_exceptions.rb'
-
 
 # Offense count: 1
 # Configuration parameters: AllowComments.
@@ -33,15 +31,6 @@ Lint/SuppressedException:
   Exclude:
     - 'lib/rails_com/all.rb'
 
-# Offense count: 10
-# Configuration parameters: AllowKeywordBlockArguments.
-Lint/UnderscorePrefixedVariableName:
-  Exclude:
-    - 'app/helpers/rails_com/active_helper.rb'
-    - 'app/models/rails_com/state_machine.rb'
-    - 'lib/rails_com/action_controller/include.rb'
-    - 'lib/rails_com/action_view/template_renderer.rb'
-    - 'lib/rails_com/meta/routes.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

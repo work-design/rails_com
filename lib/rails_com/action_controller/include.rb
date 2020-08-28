@@ -4,22 +4,22 @@ module RailsCom::ActionController
       callback = self.__callbacks[:process_action].find { |i| i.filter == filter.to_sym }
       return false unless callback
 
-      _if = callback.instance_variable_get(:@if).map do |c|
+      if_condition = callback.instance_variable_get(:@if).map do |c|
         c.call(self)
       end
 
-      _unless = callback.instance_variable_get(:@unless).map do |c|
+      unless_condition = callback.instance_variable_get(:@unless).map do |c|
         !c.call(self)
       end
 
-      !(_if + _unless).uniq.include?(false)
+      !(if_condition + unless_condition).uniq.include?(false)
     end
 
     def valid_ivars
-      _except = _protected_ivars.to_a + [
+      except_condition = _protected_ivars.to_a + [
         :@marked_for_same_origin_verification
       ]
-      self.instance_variables - _except
+      self.instance_variables - except_condition
     end
   end
 end
