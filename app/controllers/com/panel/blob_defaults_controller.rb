@@ -12,9 +12,7 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
   def create
     @blob_default = BlobDefault.new(blob_default_params)
 
-    unless @blob_default.save
-      render :new, locals: { model: @blob_default }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @blob_default }, status: :unprocessable_entity unless @blob_default.save
   end
 
   def show
@@ -26,9 +24,7 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
   def update
     @blob_default.assign_attributes(blob_default_params)
 
-    unless @blob_default.save
-      render :edit, locals: { model: @blob_default }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @blob_default }, status: :unprocessable_entity unless @blob_default.save
   end
 
   def destroy

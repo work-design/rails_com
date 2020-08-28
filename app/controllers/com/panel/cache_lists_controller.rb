@@ -12,9 +12,7 @@ class Com::Panel::CacheListsController < Com::Panel::BaseController
   def create
     @cache_list = CacheList.new(cache_list_params)
 
-    unless @cache_list.save
-      render :new, locals: { model: @cache_list }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @cache_list }, status: :unprocessable_entity unless @cache_list.save
   end
 
   def show
@@ -26,9 +24,7 @@ class Com::Panel::CacheListsController < Com::Panel::BaseController
   def update
     @cache_list.assign_attributes(cache_list_params)
 
-    unless @cache_list.save
-      render :edit, locals: { model: @cache_list }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @cache_list }, status: :unprocessable_entity unless @cache_list.save
   end
 
   def destroy

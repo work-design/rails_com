@@ -25,11 +25,9 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
 
   def check_model_exist?
     @record_class = file_name.classify.safe_constantize
-    unless record_class
-      abort "#{file_name} not defined!"
-    end
-    unless record_class.ancestors.include?(ActiveRecord::Base)
-      abort "#{record_class.name} is not an ActiveRecord Object!"
-    end
+
+    abort "#{file_name} not defined!" unless record_class
+
+    abort "#{record_class.name} is not an ActiveRecord Object!" unless record_class.ancestors.include?(ActiveRecord::Base)
   end
 end

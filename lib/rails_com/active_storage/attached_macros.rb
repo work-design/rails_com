@@ -2,20 +2,17 @@
 
 module RailsCom::AttachedOne
   def attachment
-    if super
-      return super
-    elsif defined?(@attachment)
-      return @attachment
-    end
+    return super if super
+    return @attachment if defined?(@attachment)
 
     id = BlobDefault.defaults["#{record.class.name}_#{name}"]
-    if id
-      begin
-        @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id))
-      rescue ActiveRecord::RecordNotFound => e
-        Rails.cache.delete('blob_default/default')
-        retry
-      end
+    return unless id
+
+    begin
+      @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id))
+    rescue ActiveRecord::RecordNotFound => e
+      Rails.cache.delete('blob_default/default')
+      retry
     end
   end
 

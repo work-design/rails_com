@@ -83,40 +83,18 @@ Style/AsciiComments:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-
 # Offense count: 106
 Style/Documentation:
   Enabled: false
 
-# Offense count: 20
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
 Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/com/common_controller.rb'
-    - 'app/controllers/com/panel/acme_accounts_controller.rb'
-    - 'app/controllers/com/panel/acme_identifiers_controller.rb'
-    - 'app/controllers/com/panel/acme_orders_controller.rb'
-    - 'app/controllers/com/panel/blob_defaults_controller.rb'
-    - 'app/controllers/com/panel/blobs_controller.rb'
-    - 'app/controllers/com/panel/cache_lists_controller.rb'
-    - 'app/controllers/com/panel/inbound_emails_controller.rb'
-    - 'app/controllers/com/panel/infos_controller.rb'
-    - 'app/models/rails_com/cache_list.rb'
-    - 'examples/app/controllers/the_guards_controller.rb'
-    - 'lib/rails_com/utils/deploy.rb'
+  EnforcedStyle: expanded
 
 # Offense count: 104
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# Offense count: 25
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
   Enabled: false
 
 # Offense count: 2

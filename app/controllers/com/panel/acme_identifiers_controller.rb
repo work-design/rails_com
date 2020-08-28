@@ -13,9 +13,7 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
   def create
     @acme_identifier = @acme_order.acme_identifiers.build(acme_identifier_params)
 
-    unless @acme_identifier.save
-      render :new, locals: { model: @acme_identifier }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @acme_identifier }, status: :unprocessable_entity unless @acme_identifier.save
   end
 
   def show
@@ -27,9 +25,7 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
   def update
     @acme_identifier.assign_attributes(acme_identifier_params)
 
-    unless @acme_identifier.save
-      render :edit, locals: { model: @acme_identifier }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @acme_identifier }, status: :unprocessable_entity unless @acme_identifier.save
   end
 
   def destroy

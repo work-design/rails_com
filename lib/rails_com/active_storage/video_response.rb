@@ -8,9 +8,9 @@ module RailsCom::VideoResponse
   end
 
   def wrap_video
-    if ['video/mp4'].include? self.response.media_type
-      add_range_headers
-    end
+    return unless ['video/mp4'].include?(self.response.media_type)
+
+    add_range_headers
   end
 
   def add_range_headers
@@ -19,10 +19,10 @@ module RailsCom::VideoResponse
     match = Array(match)
     file_begin = match[1].presence
     file_end = match[2].presence
-    if file_begin && file_end
-      response.header['Content-Range'] = 'bytes ' + file_begin.to_s + '-' + file_end.to_s + '/' + file_size.to_s
-      response.header['Content-Length'] = (file_end.to_i - file_begin.to_i + 1).to_s
-      response.status = 206
-    end
+    return unless file_begin || file_end
+
+    response.header['Content-Range'] = 'bytes ' + file_begin.to_s + '-' + file_end.to_s + '/' + file_size.to_s
+    response.header['Content-Length'] = (file_end.to_i - file_begin.to_i + 1).to_s
+    response.status = 206
   end
 end

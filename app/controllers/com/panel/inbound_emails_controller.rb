@@ -12,9 +12,7 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
   def create
     @inbound_email = ActionMailbox::InboundEmail.new(inbound_email_params)
 
-    unless @inbound_email.save
-      render :new, locals: { model: @inbound_email }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @inbound_email }, status: :unprocessable_entity unless @inbound_email.save
   end
 
   def show
@@ -26,9 +24,7 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
   def update
     @inbound_email.assign_attributes(inbound_email_params)
 
-    unless @inbound_email.save
-      render :edit, locals: { model: @inbound_email }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @inbound_email }, status: :unprocessable_entity unless @inbound_email.save
   end
 
   def destroy

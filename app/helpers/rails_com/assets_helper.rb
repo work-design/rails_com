@@ -27,10 +27,9 @@ module RailsCom::AssetsHelper
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
     path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    return unless path
 
-    if path
-      stylesheet_pack_tag(path, **options).html_safe
-    end
+    stylesheet_pack_tag(path, **options).html_safe
   end
 
   private

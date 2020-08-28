@@ -12,9 +12,7 @@ class Com::Panel::InfosController < Com::Panel::BaseController
   def create
     @info = Info.new(info_params)
 
-    unless @info.save
-      render :new, locals: { model: @info }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @info }, status: :unprocessable_entity unless @info.save
   end
 
   def show
@@ -26,9 +24,7 @@ class Com::Panel::InfosController < Com::Panel::BaseController
   def update
     @info.assign_attributes(info_params)
 
-    unless @info.save
-      render :edit, locals: { model: @info }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @info }, status: :unprocessable_entity unless @info.save
   end
 
   def destroy

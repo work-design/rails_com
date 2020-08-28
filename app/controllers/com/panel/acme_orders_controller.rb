@@ -18,9 +18,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   def create
     @acme_order = @acme_account.acme_orders.build(acme_order_params)
 
-    unless @acme_order.save
-      render :new, locals: { model: @acme_order }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @acme_order }, status: :unprocessable_entity unless @acme_order.save
   end
 
   def add_item
@@ -44,9 +42,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   def update
     @acme_order.assign_attributes(acme_order_params)
 
-    unless @acme_order.save
-      render :edit, locals: { model: @acme_order }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @acme_order }, status: :unprocessable_entity unless @acme_order.save
   end
 
   def destroy

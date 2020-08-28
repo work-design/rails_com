@@ -12,9 +12,7 @@ class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
   def create
     @acme_account = AcmeAccount.new(acme_account_params)
 
-    unless @acme_account.save
-      render :new, locals: { model: @acme_account }, status: :unprocessable_entity
-    end
+    render :new, locals: { model: @acme_account }, status: :unprocessable_entity unless @acme_account.save
   end
 
   def show
@@ -26,9 +24,7 @@ class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
   def update
     @acme_account.assign_attributes(acme_account_params)
 
-    unless @acme_account.save
-      render :edit, locals: { model: @acme_account }, status: :unprocessable_entity
-    end
+    render :edit, locals: { model: @acme_account }, status: :unprocessable_entity unless @acme_account.save
   end
 
   def destroy

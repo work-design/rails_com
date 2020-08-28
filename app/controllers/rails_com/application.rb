@@ -112,8 +112,8 @@ module RailsCom::Application
 
   # after_action :process_js
   def process_js
-    if self.request.xhr?
-      self.response.body = Babel.transform(self.response.body)
-    end
+    return unless self.request.xhr?
+
+    self.response.body = Babel.transform(self.response.body)
   end
 end
