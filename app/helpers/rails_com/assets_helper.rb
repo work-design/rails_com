@@ -14,7 +14,7 @@ module RailsCom::AssetsHelper
   end
 
   def js_load(**options)
-    r, _ = origin_js_load(**options)
+    r, = origin_js_load(**options)
     r
   end
 
@@ -26,7 +26,7 @@ module RailsCom::AssetsHelper
   # Assets path: app/assets/stylesheets/controllers
   def css_load(**options)
     exts = ['.css'] + Array(options.delete(:ext))
-    path, _ = assets_load_path(exts: exts, suffix: options.delete(:suffix))
+    path, = assets_load_path(exts: exts, suffix: options.delete(:suffix))
     return unless path
 
     stylesheet_pack_tag(path, **options).html_safe

@@ -123,14 +123,6 @@ Style/SpecialGlobalVars:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowNamedUnderscoreVariables.
-Style/TrailingUnderscoreVariable:
-  Exclude:
-    - 'app/helpers/rails_com/assets_helper.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Style/WhenThen:
