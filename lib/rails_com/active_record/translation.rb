@@ -21,7 +21,7 @@ module RailsCom::I18n
 
   def attributes_with_values_for_create(attribute_names)
     r = super
-    r.slice(*i18n_attributes).each do |key, v|
+    r.slice(*i18n_attributes).each do |key, _v|
       r[key] = public_send "#{key}_before_type_cast"
     end
     r
