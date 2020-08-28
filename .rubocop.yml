@@ -26,13 +26,6 @@ Layout/SpaceAroundKeyword:
     - 'lib/rails_com/engine.rb'
 
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Lint/AmbiguousRegexpLiteral:
-  Exclude:
-    - 'examples/qiniu_helper.rb'
-    - 'lib/rails_com/utils/ip_helper.rb'
-
 # Offense count: 1
 # Configuration parameters: MaximumRangeSize.
 Lint/MissingCopEnableDirective:

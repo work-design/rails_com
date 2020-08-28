@@ -7,7 +7,7 @@ module IpHelper
 
   def read(name)
     IO.foreach(name) do |x|
-      if x.match? /apnic\|CN\|ipv4/
+      if x.match?(/apnic\|CN\|ipv4/)
         r = x.split('|').values_at(3, 4)
         int_min = IPAddr.new(r[0]).to_i
         int_max = min + r[1].to_i - 1
