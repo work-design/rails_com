@@ -113,13 +113,6 @@ Style/SelfAssignment:
   Exclude:
     - 'lib/rails_com/utils/uid_helper.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAsExpressionSeparator.
-Style/Semicolon:
-  Exclude:
-    - 'config/locales/zh.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: .

@@ -6,13 +6,13 @@
       nth: {
         ordinals: lambda do |_key, number:, **_options|
           case number
-          when 1;
+          when 1
             'st'
-          when 2;
+          when 2
             'nd'
-          when 3;
+          when 3
             'rd'
-          when 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
+          when 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
             'th'
           else
             num_modulo = number.to_i.abs % 100
