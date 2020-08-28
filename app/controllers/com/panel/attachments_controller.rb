@@ -23,7 +23,7 @@ class Com::Panel::AttachmentsController < Com::Panel::BaseController
 
   private
 
-  def set_attachment
-    @attachment = ActiveStorage::Attachment.find(params[:id])
-  end
+    def set_attachment
+      @attachment = ActiveStorage::Attachment.find(params[:id])
+    end
 end

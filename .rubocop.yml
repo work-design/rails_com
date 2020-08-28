@@ -19,6 +19,9 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
 # Offense count: 1
 # Configuration parameters: IgnoreImplicitReferences.
 Lint/ShadowedArgument:

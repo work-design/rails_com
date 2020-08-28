@@ -23,14 +23,14 @@ class Com::PdfsController < Com::BaseController
 
   private
 
-  def set_pdf
-    @pdf_class = params[:id].constantize
-    @pdf ||= @pdf_class.new(**pdf_params)
-    @disposition = params[:disposition] || 'inline'
-  end
+    def set_pdf
+      @pdf_class = params[:id].constantize
+      @pdf ||= @pdf_class.new(**pdf_params)
+      @disposition = params[:disposition] || 'inline'
+    end
 
-  def pdf_params
-    keys = @pdf_class.instance_method(:initialize).parameters.to_array_h.to_combine_h[:key]
-    params.permit(*keys).to_h.symbolize_keys
-  end
+    def pdf_params
+      keys = @pdf_class.instance_method(:initialize).parameters.to_array_h.to_combine_h[:key]
+      params.permit(*keys).to_h.symbolize_keys
+    end
 end

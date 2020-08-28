@@ -33,11 +33,11 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
 
   private
 
-  def set_inbound_email
-    @inbound_email = ActionMailbox::InboundEmail.find(params[:id])
-  end
+    def set_inbound_email
+      @inbound_email = ActionMailbox::InboundEmail.find(params[:id])
+    end
 
-  def inbound_email_params
-    params.fetch(:inbound_email, {}).permit
-  end
+    def inbound_email_params
+      params.fetch(:inbound_email, {}).permit
+    end
 end

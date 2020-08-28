@@ -33,14 +33,14 @@ class Com::Panel::CacheListsController < Com::Panel::BaseController
 
   private
 
-  def set_cache_list
-    @cache_list = CacheList.find(params[:id])
-  end
+    def set_cache_list
+      @cache_list = CacheList.find(params[:id])
+    end
 
-  def cache_list_params
-    params.fetch(:cache_list, {}).permit(
-      :path,
-      :key
-    )
-  end
+    def cache_list_params
+      params.fetch(:cache_list, {}).permit(
+        :path,
+        :key
+      )
+    end
 end

@@ -34,14 +34,14 @@ class Com::Panel::BlobsController < Com::Panel::BaseController
 
   private
 
-  def set_blob
-    @blob = ActiveStorage::Blob.find(params[:id])
-  end
+    def set_blob
+      @blob = ActiveStorage::Blob.find(params[:id])
+    end
 
-  def blob_params
-    params.fetch(:blob, {}).permit(
-      :key,
-      :io
-    )
-  end
+    def blob_params
+      params.fetch(:blob, {}).permit(
+        :key,
+        :io
+      )
+    end
 end

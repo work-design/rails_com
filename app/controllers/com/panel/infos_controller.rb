@@ -33,16 +33,16 @@ class Com::Panel::InfosController < Com::Panel::BaseController
 
   private
 
-  def set_info
-    @info = Info.find(params[:id])
-  end
+    def set_info
+      @info = Info.find(params[:id])
+    end
 
-  def info_params
-    params.fetch(:info, {}).permit(
-      :code,
-      :value,
-      :version,
-      :platform
-    )
-  end
+    def info_params
+      params.fetch(:info, {}).permit(
+        :code,
+        :value,
+        :version,
+        :platform
+      )
+    end
 end

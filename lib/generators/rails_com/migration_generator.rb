@@ -14,20 +14,20 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
 
   private
 
-  def set_local_assigns!
-    @file_name = "create_#{file_name}" unless record_class.table_exists?
-    @tables = {
-      record_class.table_name => RailsCom::MigrationAttributes.new(record_class).to_hash
-    }
-  end
+    def set_local_assigns!
+      @file_name = "create_#{file_name}" unless record_class.table_exists?
+      @tables = {
+        record_class.table_name => RailsCom::MigrationAttributes.new(record_class).to_hash
+      }
+    end
 
-  def check_model_exist?
-    @record_class = file_name.classify.safe_constantize
+    def check_model_exist?
+      @record_class = file_name.classify.safe_constantize
 
-    abort "#{file_name} not defined!" unless record_class
+      abort "#{file_name} not defined!" unless record_class
 
-    return if record_class.ancestors.include?(ActiveRecord::Base)
+      return if record_class.ancestors.include?(ActiveRecord::Base)
 
-    abort "#{record_class.name} is not an ActiveRecord Object!"
-  end
+      abort "#{record_class.name} is not an ActiveRecord Object!"
+    end
 end

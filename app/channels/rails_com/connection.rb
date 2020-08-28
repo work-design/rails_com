@@ -10,21 +10,21 @@ module RailsCom::Connection
 
   protected
 
-  def find_verified_receiver
-    if session && session['auth_token']
-      Rails.logger.silence do
-        AuthorizedToken.find_by token: session['auth_token']
+    def find_verified_receiver
+      if session && session['auth_token']
+        Rails.logger.silence do
+          AuthorizedToken.find_by token: session['auth_token']
+        end
+      else
+        session['session_id']
       end
-    else
-      session['session_id']
+    rescue StandardError
+      logger.error 'An unauthorized connection attempt was rejected'
+      nil
     end
-  rescue StandardError
-    logger.error 'An unauthorized connection attempt was rejected'
-    nil
-  end
 
-  def session
-    session_key = Rails.configuration.session_options[:key]
-    cookies.encrypted[session_key]
-  end
+    def session
+      session_key = Rails.configuration.session_options[:key]
+      cookies.encrypted[session_key]
+    end
 end

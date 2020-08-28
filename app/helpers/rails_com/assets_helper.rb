@@ -34,15 +34,15 @@ module RailsCom::AssetsHelper
 
   private
 
-  def assets_load_path(exts: [], suffix: nil)
-    exts.uniq!
-    filename = "controllers/#{controller_path}/#{@_rendered_template}"
-    filename = [filename, '-', suffix].join if suffix
+    def assets_load_path(exts: [], suffix: nil)
+      exts.uniq!
+      filename = "controllers/#{controller_path}/#{@_rendered_template}"
+      filename = [filename, '-', suffix].join if suffix
 
-    exts.each do |ext|
-      return [filename, ext] if Webpacker.manifest.lookup(filename + ext)
+      exts.each do |ext|
+        return [filename, ext] if Webpacker.manifest.lookup(filename + ext)
+      end
+
+      []
     end
-
-    []
-  end
 end

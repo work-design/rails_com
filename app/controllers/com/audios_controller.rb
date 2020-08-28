@@ -20,7 +20,7 @@ class Com::AudiosController < Com::BaseController
 
   private
 
-  def set_video
-    @audio = ActiveStorage::Blob.find(params[:id])
-  end
+    def set_video
+      @audio = ActiveStorage::Blob.find(params[:id])
+    end
 end

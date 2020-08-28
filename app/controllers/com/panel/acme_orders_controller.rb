@@ -51,17 +51,17 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   private
 
-  def set_acme_account
-    @acme_account = AcmeAccount.find params[:acme_account_id]
-  end
+    def set_acme_account
+      @acme_account = AcmeAccount.find params[:acme_account_id]
+    end
 
-  def set_acme_order
-    @acme_order = @acme_account.acme_orders.find(params[:id])
-  end
+    def set_acme_order
+      @acme_order = @acme_account.acme_orders.find(params[:id])
+    end
 
-  def acme_order_params
-    params.fetch(:acme_order, {}).permit(
-      acme_authorizations_attributes: {}
-    )
-  end
+    def acme_order_params
+      params.fetch(:acme_order, {}).permit(
+        acme_authorizations_attributes: {}
+      )
+    end
 end

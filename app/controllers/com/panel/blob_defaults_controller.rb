@@ -33,16 +33,16 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
 
   private
 
-  def set_blob_default
-    @blob_default = BlobDefault.find(params[:id])
-  end
+    def set_blob_default
+      @blob_default = BlobDefault.find(params[:id])
+    end
 
-  def blob_default_params
-    params.fetch(:blob_default, {}).permit(
-      :record_class,
-      :name,
-      :file,
-      :private
-    )
-  end
+    def blob_default_params
+      params.fetch(:blob_default, {}).permit(
+        :record_class,
+        :name,
+        :file,
+        :private
+      )
+    end
 end

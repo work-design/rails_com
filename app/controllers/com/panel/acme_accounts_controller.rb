@@ -33,13 +33,13 @@ class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
 
   private
 
-  def set_acme_account
-    @acme_account = AcmeAccount.find(params[:id])
-  end
+    def set_acme_account
+      @acme_account = AcmeAccount.find(params[:id])
+    end
 
-  def acme_account_params
-    params.fetch(:acme_account, {}).permit(
-      :email
-    )
-  end
+    def acme_account_params
+      params.fetch(:acme_account, {}).permit(
+        :email
+      )
+    end
 end

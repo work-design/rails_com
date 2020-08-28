@@ -34,17 +34,17 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
 
   private
 
-  def set_acme_order
-    @acme_order = AcmeOrder.find params[:acme_order_id]
-  end
+    def set_acme_order
+      @acme_order = AcmeOrder.find params[:acme_order_id]
+    end
 
-  def set_acme_identifier
-    @acme_identifier = AcmeIdentifier.find(params[:id])
-  end
+    def set_acme_identifier
+      @acme_identifier = AcmeIdentifier.find(params[:id])
+    end
 
-  def acme_identifier_params
-    params.fetch(:acme_identifier, {}).permit(
-      :identifier
-    )
-  end
+    def acme_identifier_params
+      params.fetch(:acme_identifier, {}).permit(
+        :identifier
+      )
+    end
 end

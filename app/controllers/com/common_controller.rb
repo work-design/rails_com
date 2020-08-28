@@ -43,15 +43,15 @@ class Com::CommonController < Com::BaseController
 
   private
 
-  def qrcode_params
-    params.permit(
-      :resize_gte_to,
-      :resize_exactly_to,
-      :fill,
-      :color,
-      :size,
-      :border_modules,
-      :module_px_size
-    )
-  end
+    def qrcode_params
+      params.permit(
+        :resize_gte_to,
+        :resize_exactly_to,
+        :fill,
+        :color,
+        :size,
+        :border_modules,
+        :module_px_size
+      )
+    end
 end
