@@ -23,5 +23,4 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
       [record_class.table_name, RailsCom::MigrationAttributes.new(record_class).to_hash]
     end
   end
-
 end

@@ -1,6 +1,5 @@
 module ActiveRecord::Type
   class I18n < Json
-
     def type
       :i18n
     end
@@ -12,7 +11,6 @@ module ActiveRecord::Type
         value
       end
     end
-
   end
 end
 

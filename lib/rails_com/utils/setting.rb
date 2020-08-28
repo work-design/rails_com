@@ -1,5 +1,4 @@
 class RailsCom::Setting < OpenStruct
-
   def initialize(hash = {})
     @table = {}
     @hash_table = {}
@@ -20,15 +19,12 @@ class RailsCom::Setting < OpenStruct
   def to_hash
     @hash_table.with_indifferent_access
   end
-
 end
 
 class RailsCom::Settings < Array
-
   def initialize(data = [])
     data.map do |h|
       self << RailsCom::Setting.new(h)
     end
   end
-
 end

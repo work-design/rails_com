@@ -51,5 +51,4 @@ class Com::Panel::AcmeIdentifiersController < Com::Panel::BaseController
       :identifier
     )
   end
-
 end

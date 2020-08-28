@@ -23,5 +23,4 @@ class Com::AudiosController < Com::BaseController
   def set_video
     @audio = ActiveStorage::Blob.find(params[:id])
   end
-
 end

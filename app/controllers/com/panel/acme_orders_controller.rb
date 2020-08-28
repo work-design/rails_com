@@ -68,5 +68,4 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
       acme_authorizations_attributes: {}
     )
   end
-
 end

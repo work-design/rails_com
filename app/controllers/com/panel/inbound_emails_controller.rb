@@ -45,5 +45,4 @@ class Com::Panel::InboundEmailsController < Com::Panel::BaseController
     params.fetch(:inbound_email, {}).permit(
     )
   end
-
 end

@@ -1,5 +1,4 @@
 class String
-
   def integer?
     Integer(self).is_a?(Integer)
   rescue ArgumentError, TypeError
@@ -11,5 +10,4 @@ class String
   rescue ArgumentError, TypeError
     false
   end
-
 end

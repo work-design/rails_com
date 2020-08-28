@@ -3,7 +3,6 @@
 require 'httpx'
 module ActiveStorage
   class Attached
-
     def url_sync(url)
       filename = File.basename URI(url).path
       
@@ -21,7 +20,6 @@ module ActiveStorage
     end
 
     class One
-
       def variant(transformations)
         if attachment&.variable?
           attachment.variant(transformations)
@@ -29,7 +27,6 @@ module ActiveStorage
           self
         end
       end
-
     end
   end
 

@@ -19,13 +19,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-# Offense count: 75
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-
 # Offense count: 5
 # Cop supports --auto-correct.
 Layout/EmptyLinesAroundMethodBody:

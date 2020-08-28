@@ -47,5 +47,4 @@ class Com::Panel::CacheListsController < Com::Panel::BaseController
       :key
     )
   end
-
 end

@@ -73,5 +73,4 @@ class Array
       self.each { |ar| csv << ar }
     end
   end
-
 end

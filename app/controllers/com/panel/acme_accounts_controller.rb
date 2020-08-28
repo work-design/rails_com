@@ -46,5 +46,4 @@ class Com::Panel::AcmeAccountsController < Com::Panel::BaseController
       :email
     )
   end
-
 end

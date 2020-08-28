@@ -1,5 +1,4 @@
 class Hash
-
   def toggle(remove = true, other_hash)
     dup.toggle!(remove, other_hash)
   end
@@ -89,5 +88,4 @@ class Hash
     end
     h
   end
-
 end

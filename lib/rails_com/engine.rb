@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RailsCom::Engine < ::Rails::Engine #:nodoc:
-
   config.generators do |g|
     g.stylesheets false
     g.javasricpts false
@@ -57,5 +56,4 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     end
     ActiveStorage::Current.host = RailsCom.config.host
   end
-
 end

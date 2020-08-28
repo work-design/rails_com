@@ -33,5 +33,4 @@ class Com::PdfsController < Com::BaseController
     keys = @pdf_class.instance_method(:initialize).parameters.to_array_h.to_combine_h[:key]
     params.permit(*keys).to_h.symbolize_keys
   end
-
 end

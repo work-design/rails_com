@@ -1,5 +1,4 @@
 class Date
-
   # Chinese custom after date
   #   '2018-01-01'.to_date.contract_after(2.month) => '2018-02-31'
   #   '2018-01-31'.to_date.contract_after(1.month) => '2018-02-28'
@@ -28,5 +27,4 @@ class Date
       day: day
     }
   end
-
 end

@@ -45,5 +45,4 @@ class Com::Panel::BlobsController < Com::Panel::BaseController
       :io
     )
   end
-
 end

@@ -5,5 +5,4 @@ class Com::DirectUploadsController < ActiveStorage::DirectUploadsController
   def create
     super
   end
-
 end

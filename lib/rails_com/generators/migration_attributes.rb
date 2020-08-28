@@ -75,5 +75,4 @@ class RailsCom::MigrationAttributes
   def index_options(index)
     index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
   end
-
 end

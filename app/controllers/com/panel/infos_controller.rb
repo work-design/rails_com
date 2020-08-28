@@ -49,5 +49,4 @@ class Com::Panel::InfosController < Com::Panel::BaseController
       :platform
     )
   end
-
 end

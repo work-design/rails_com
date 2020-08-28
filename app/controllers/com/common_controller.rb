@@ -54,5 +54,4 @@ class Com::CommonController < Com::BaseController
       :module_px_size
     )
   end
-
 end

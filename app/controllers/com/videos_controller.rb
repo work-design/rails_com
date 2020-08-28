@@ -24,5 +24,4 @@ class Com::VideosController < Com::BaseController
     @attachment = ActiveStorage::Attachment.find(params[:id])
     @video = @attachment.blob
   end
-
 end

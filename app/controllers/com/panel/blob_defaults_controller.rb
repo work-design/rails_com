@@ -49,5 +49,4 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
       :private
     )
   end
-
 end

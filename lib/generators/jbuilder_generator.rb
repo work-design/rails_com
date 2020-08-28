@@ -14,7 +14,6 @@ class Rails::Generators::JbuilderGenerator
   def attributes_list(attributes = attributes_names)
     attributes.map { |a| ":#{a}"}.join(",\n" + ' '*14)
   end
-
 end
 
 
