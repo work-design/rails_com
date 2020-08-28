@@ -28,9 +28,9 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       request.headers['X-Csp-Nonce'] || SecureRandom.base64(16)
     }
     app.config.action_dispatch.rescue_responses.merge!({
-      'ActionController::ForbiddenError' => :forbidden,
-      'ActionController::UnauthorizedError' => :unauthorized
-    })
+                                                         'ActionController::ForbiddenError' => :forbidden,
+                                                         'ActionController::UnauthorizedError' => :unauthorized
+                                                       })
 
     ActiveStorage::DiskController.include RailsCom::VideoResponse
     ActiveStorage::Attached::One.prepend RailsCom::AttachedOne

@@ -19,27 +19,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'rails_com.gemspec'
 
-# Offense count: 1
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: native, lf, crlf
-Layout/EndOfLine:
-  Exclude:
-    - 'examples/config/initializers/time_format.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'test/lib/rails_com/utils/uid_helper_test.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/FirstHashElementIndentation:
-  EnforcedStyle: consistent
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AllowDoxygenCommentStyle, AllowGemfileRubyComment.
