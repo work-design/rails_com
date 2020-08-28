@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   scope module: 'com' do
     controller :common do
       get :infos
@@ -69,5 +68,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end
