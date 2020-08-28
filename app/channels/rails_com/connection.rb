@@ -18,7 +18,7 @@ module RailsCom::Connection
     else
       session['session_id']
     end
-  rescue
+  rescue StandardError
     logger.error 'An unauthorized connection attempt was rejected'
     nil
   end

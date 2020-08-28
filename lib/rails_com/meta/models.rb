@@ -6,7 +6,7 @@ module RailsCom::Models
       begin
         klass = table.classify.constantize
         klass.ancestors.include?(ActiveRecord::Base) ? klass : nil
-      rescue
+      rescue StandardError
         nil
       end
     end
