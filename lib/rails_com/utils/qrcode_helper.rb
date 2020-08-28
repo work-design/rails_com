@@ -27,5 +27,3 @@ module QrcodeHelper
     qrcode.as_png **OPTIONS.merge(options)
   end
 end
-
-

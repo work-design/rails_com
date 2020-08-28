@@ -18,5 +18,3 @@ class Erb::Generators::ScaffoldGenerator
     end
   end
 end
-
-

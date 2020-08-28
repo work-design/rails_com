@@ -15,5 +15,3 @@ class Rails::Generators::JbuilderGenerator
     attributes.map { |a| ":#{a}" }.join(",\n" + ' ' * 14)
   end
 end
-
-

@@ -9,4 +9,3 @@ class ActiveRecord::PgCoder
   end
   
 end
-
