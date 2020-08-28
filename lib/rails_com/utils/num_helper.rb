@@ -33,9 +33,9 @@ module NumHelper
         end
       end
       if xx.chomp!('零')
-        xx << (unit[index].to_s) << '零'
+        xx << unit[index].to_s << '零'
       else
-        xx << (unit[index].to_s)
+        xx << unit[index].to_s
       end
       xx
     end
