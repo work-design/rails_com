@@ -38,13 +38,12 @@ module UidHelper
   end
 
   def decode_uuid(uuid, prefix: true)
-    if prefix
-      str_arr = uuid.split('-')
-      str = str_arr[1..-1].join
-    else
-      str_arr = uuid.split('-')
-      str = str_arr.join
-    end
+    str_arr = uuid.split('-')
+    str = if prefix
+            str_arr[1..-1].join
+          else
+            str_arr.join
+          end
 
     if str.size >= 12
       str = str[0..11]

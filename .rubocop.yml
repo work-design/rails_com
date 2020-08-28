@@ -97,10 +97,6 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-# Offense count: 2
-Style/IdenticalConditionalBranches:
-  Exclude:
-    - 'lib/rails_com/utils/uid_helper.rb'
 
 # Offense count: 36
 # Cop supports --auto-correct.
