@@ -1,1 +1,5 @@
+<% if defined? error_text %>
+alert('<%= error_text %>')
+<% else %>
 alert('<%= model.error_text %>')
+<% end %>
