@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'rqrcode'
 
 module QrcodeHelper
   extend self
@@ -12,7 +13,7 @@ module QrcodeHelper
     module_px_size: 6,
     file: nil
   }
-  
+
   def code_file(url, **options)
     png = code_png url, options
     tmp = Tempfile.new
@@ -21,7 +22,7 @@ module QrcodeHelper
     tmp.rewind
     tmp
   end
-  
+
   def code_png(url, **options)
     qrcode = RQRCode::QRCode.new(url)
     qrcode.as_png **OPTIONS.merge(options)
