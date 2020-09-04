@@ -60,7 +60,7 @@ module RailsCom::AcmeOrder
 
   def csr
     return @csr if defined? @csr
-    @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: identifiers_string })
+    @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: identifiers.first })
     Tempfile.open do |file|
       file.binmode
       file.write @csr.private_key.to_pem
