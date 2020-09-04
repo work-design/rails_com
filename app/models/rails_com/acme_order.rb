@@ -47,7 +47,10 @@ module RailsCom::AcmeOrder
   end
 
   def identifiers_string
-    identifiers.first
+    r = identifiers.first
+    r.delete_prefix! '*.'
+    r.gsub!('.', '_')
+    r
   end
 
   # status: ready
