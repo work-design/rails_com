@@ -48,9 +48,8 @@ module RailsCom::AcmeOrder
 
   def identifiers_string
     r = identifiers.first
-    r.delete_prefix! '*.'
-    r.gsub!('.', '_')
-    r
+    r = r.delete_prefix '*.'
+    r.gsub('.', '_')
   end
 
   def common_name
