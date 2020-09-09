@@ -1,4 +1,5 @@
 Turbolinks.clearCache()
+document.documentElement.classList.remove('is-clipped')
 <% if defined? return_to %>
 Turbolinks.visit('<%= return_to.html_safe %>', { action: 'replace' })
 <% else %>
