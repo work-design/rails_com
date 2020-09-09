@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'default_where', '~> 2.2'
   s.add_dependency 'kaminari'
   s.add_dependency 'acme-client'
+  s.add_dependency 'rqrcode'
 end
