@@ -46,10 +46,7 @@ module RailsCom::ActiveHelper
     end
 
     return active if options.present? && current_page?(options)
-
-    options.select { |k, _| [controller_name, controller_path].include?(k.to_s) }.each do |_, value|
-      return active if Array(value).include?(action_name)
-    end
+    return active if options.find { |key, value| [controller_name, controller_path].include?(key.to_s) && Array(value).include?(action_name) }
 
     item
   end
