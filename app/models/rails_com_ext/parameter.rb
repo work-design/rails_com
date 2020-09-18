@@ -8,7 +8,7 @@ module RailsComExt::Parameter
   end
 
   def form_parameters
-    r = parameters.map { |k, v| { key: k, value: v } }
+    r = Hash(parameters).map { |k, v| { key: k, value: v } }
     if r.blank?
       r = [{ key: nil, value: nil }]
     end
