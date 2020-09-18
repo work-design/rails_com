@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get :cancel
       match :deploy, via: [:get, :post]
     end
+    controller :parameter do
+
+    end
   end
 
   scope 'rails/active_storage', module: :com do
