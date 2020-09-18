@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :cancel
       match :deploy, via: [:get, :post]
     end
-    controller :parameter do
+    scope 'parameter', as: :parameter, controller: :parameter do
       get :add_item
       get :remove_item
     end

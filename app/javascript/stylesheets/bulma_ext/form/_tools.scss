@@ -7,6 +7,11 @@
       align-items: center;
     }
   }
+
+  .is-flex {
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 
 .checkbox + .checkbox {
