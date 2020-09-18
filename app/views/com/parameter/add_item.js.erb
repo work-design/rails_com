@@ -1,4 +1,4 @@
 <% form_object = form_object(@data_list, wrap: { all: false, input: 'two wide field', wrap_id: true, label: false, placeholder: true }) %>
 
 var template = '<%= j(render partial: 'item_form', locals: { f: form_object }) %>'
-$('#parameters_<%= params[:index].to_i - 1 %>').after(template)
+document.getElementById('parameters_<%= params[:index].to_i - 1 %>').insertAdjacentHTML('afterend', template)
