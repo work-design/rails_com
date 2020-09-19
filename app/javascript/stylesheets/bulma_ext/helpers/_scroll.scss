@@ -9,3 +9,7 @@
 .is-scrollable-y {
   overflow-y: scroll;
 }
+
+.is-drawable:hover {
+  cursor: grab;
+}
