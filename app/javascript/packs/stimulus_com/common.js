@@ -7,7 +7,8 @@ class CommonController extends Controller {
     console.debug('Common Controller works!')
   }
 
-  cancel() {
+  cancel(event) {
+    event.preventDefault()
     Turbolinks.clearCache()
     Turbolinks.visit(location.href, { action: 'replace' })
   }
