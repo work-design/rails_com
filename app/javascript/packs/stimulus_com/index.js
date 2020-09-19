@@ -1,5 +1,6 @@
 import './base'
 import './checkbox'
+import './common'
 import './input'
 import './menu'
 import './navbar'
