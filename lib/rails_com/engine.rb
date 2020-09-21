@@ -43,7 +43,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       Rails::Engine.subclasses.each do |engine|
         next unless engine.root.join('app/javascript').exist?
         engine.root.join('app/javascript').children.select(&->(i){ i.directory? }).each do |path|
-          webpack.append 'resolved_paths', path.to_s
+          webpack.append 'additional_paths', path.to_s
         end
       end
       webpack.dump
