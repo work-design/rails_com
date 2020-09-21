@@ -8,7 +8,7 @@ const paths = () => {
   let glob = extensions.length === 1 ? `**/*${extensions[0]}` : `**/*{${extensions.join(',')}}`
   let result = {}
 
-  config.resolved_paths.forEach((rootPath) => {
+  config.additional_paths.forEach((rootPath) => {
     const ab_paths = sync(join(rootPath, glob), { ignore: ignore })
 
     ab_paths.forEach((path) => {
