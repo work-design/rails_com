@@ -34,7 +34,6 @@ require 'rails_com/utils/uid_helper'
 require 'rails_com/utils/hex_helper'
 require 'rails_com/utils/jobber'
 require 'rails_com/utils/babel'
-require 'rails_com/utils/deploy'
 require 'rails_com/utils/qrcode_helper'
 
 # active storage
