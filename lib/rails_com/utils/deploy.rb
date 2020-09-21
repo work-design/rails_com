@@ -12,7 +12,8 @@ module Deploy
   ].freeze
   SHARED_FILES = [
     'config/database.yml',
-    "config/credentials/staging.key"
+    'config/credentials/staging.key',
+    'config/credentials/production.key'
   ].freeze
   INIT_DIRS = [
     'tmp/sockets',
@@ -50,12 +51,11 @@ module Deploy
     end
   end
 
-  def prepare_cmds(env, skip_precompile: false)
+  def prepare_cmds(env, **options)
     r = []
     r << 'git pull'
     r += ln_shared_paths(env)
-    r << 'bundle install --without development test --path vendor/bundle --deployment'
-    r << "RAILS_ENV=#{env} bundle exec rake webpacker:compile" unless skip_precompile
+    r << 'bundle install'
     r << "RAILS_ENV=#{env} bundle exec rake db:migrate"
     r << 'bundle exec pumactl restart'
     r
