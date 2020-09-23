@@ -10,6 +10,13 @@
         <% end %>
       </div>
       <div class="column as-body">
+        <% if content_for?(:breadcrumb) %>
+          <div class="breadcrumb has-succeeds-separator">
+            <%= yield(:breadcrumb) %>
+          </div>
+        <% else %>
+          <%= render 'breadcrumb' %>
+        <% end %>
         <div class="as-main">
           <%= yield %>
         </div>
