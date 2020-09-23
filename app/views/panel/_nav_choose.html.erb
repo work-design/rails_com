@@ -1,1 +1,3 @@
-<%= link_to 'index', root_url(host: RailsCom.config.host), class: 'navbar-item' %>
+<%= link_to root_url(host: RailsCom.config.host), class: 'navbar-item' do %>
+  <%= image_pack_tag 'logo.png', class: 'image' %>
+<% end %>
