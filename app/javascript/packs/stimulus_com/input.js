@@ -38,11 +38,22 @@ class InputController extends Controller {
   }
 
   filter(event) {
-    let el = event.target
-    let url = new URL(location)
-    url.searchParams.set(el.name, el.value)
+    let ele = event.currentTarget
+    if (!ele.value) {
+      return
+    }
 
-    Turbolinks.visit(url)
+    let url = ele.dataset['url']
+    if (url) {
+      Rails.ajax({
+        url: url,
+        type: 'GET',
+        data: `${ele.name}=${ele.value}`,
+        dataType: 'script'
+      })
+    } else {
+      Rails.fire(ele.form, 'submit')
+    }
   }
 
   remove() {
