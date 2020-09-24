@@ -7,9 +7,7 @@
       </div>
       <div class="column as-body">
         <% if content_for?(:breadcrumb) %>
-          <div class="breadcrumb has-succeeds-separator">
-            <%= yield(:breadcrumb) %>
-          </div>
+          <%= yield(:breadcrumb) %>
         <% else %>
           <%= render 'breadcrumb' %>
         <% end %>
