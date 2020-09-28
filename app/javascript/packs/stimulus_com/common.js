@@ -9,7 +9,6 @@ class CommonController extends Controller {
 
   cancel(event) {
     event.preventDefault()
-    Turbolinks.clearCache()
     Turbolinks.visit(location.href, { action: 'replace' })
   }
 
