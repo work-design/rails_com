@@ -1,9 +1,11 @@
+<% content_for :breadcrumb do %>
 <div class="tabs">
   <ul>
-    <li><%= link_to t('.all'), panel_blobs_path, class: active_helper(action: 'index', active: 'is-active') %></li>
-    <li><%= link_to 'Unattached', unattached_panel_blobs_path, class: active_helper(action: 'unattached', active: 'is-active') %></li>
+    <li class="<%= active_helper(action: 'index', active: 'is-active') %>"><%= link_to t('.all'), panel_blobs_path %></li>
+    <li class="<%= active_helper(action: 'unattached', active: 'is-active') %>"><%= link_to 'Unattached', unattached_panel_blobs_path %></li>
   </ul>
 </div>
+<% end %>
 
 <%= render 'filter_form' %>
 

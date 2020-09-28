@@ -1,13 +1,11 @@
+<%= content_for :breadcrumb do %>
 <div class="tabs">
   <ul>
-    <li>
-      <%= link_to t('.all'), panel_attachments_path, class: active_helper(action: 'index', active: 'is-active') %>
-    </li>
-    <li>
-      <%= link_to 'Garbled', garbled_panel_attachments_path, class: active_helper(action: 'garbled', active: 'is-active') %>
-    </li>
+    <li class="<%= active_helper(action: 'index', active: 'is-active') %>"><%= link_to t('.all'), panel_attachments_path %></li>
+    <li class="<%= active_helper(action: 'garbled', active: 'is-active') %>"><%= link_to 'Garbled', garbled_panel_attachments_path %></li>
   </ul>
 </div>
+<% end %>
 
 <%= render 'filter_form' %>
 
