@@ -17,3 +17,9 @@
 .checkbox + .checkbox {
   margin-left: .5em;
 }
+
+.checkbox {
+  input + span {
+    padding-left: .25em;
+  }
+}
