@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>
-        <%%= link_to t('.edit'), edit_<%= singular_route_name %>_path(@<%= singular_name %>), class: 'button is-small is-link', remote: true %>
+        <%%= link_to t('.edit'), { action: 'edit', id: @<%= singular_name %>.id }, remote: true, class: 'button is-small is-link' %>
       </th>
       <th></th>
     </tr>
