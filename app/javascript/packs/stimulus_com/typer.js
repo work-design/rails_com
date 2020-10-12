@@ -23,7 +23,16 @@ class TyperController extends Controller {
     }
 
     let url = ele.dataset['url']
-    if (url) {
+    let method = ele.dataset['method']
+    if (url && method === 'post') {
+      let body = new FormData(ele.form)
+      Rails.ajax({
+        url: url,
+        type: 'POST',
+        data: body,
+        dataType: 'script'
+      })
+    } else if (url) {
       Rails.ajax({
         url: url,
         type: 'GET',
