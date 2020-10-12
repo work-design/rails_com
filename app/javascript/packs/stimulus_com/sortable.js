@@ -17,7 +17,12 @@ class SortableController extends Controller {
         body.append('old_index', evt.oldIndex)
         body.append('new_index', evt.newIndex)
 
-        Rails.ajax({ url: url, type: 'PATCH', dataType: 'script', data: body })
+        Rails.ajax({
+          url: url,
+          type: 'PATCH',
+          dataType: 'script',
+          data: body
+        })
       }
     })
   }
