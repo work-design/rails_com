@@ -1,4 +1,4 @@
-<% form_object = form_object(as: params[:as]) %>
+<% form_object = form_object(scope: params[:scope]) %>
 
 var template = '<%= j(render partial: 'item_form', locals: { f: form_object }) %>'
 document.getElementById('parameters_<%= params[:index].to_i - 1 %>').insertAdjacentHTML('afterend', template)
