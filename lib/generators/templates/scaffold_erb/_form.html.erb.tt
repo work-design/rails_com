@@ -1,7 +1,5 @@
-<%%= form_with model: @<%= singular_name %> do |f| %>
-  <%%= render 'shared/error_messages', target: @<%= singular_name %> %>
+<%%= render 'shared/error_messages', target: @<%= singular_name %> %>
 <% attributes.each do |attribute| -%>
-  <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+<%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
 <% end -%>
-  <%%= f.submit %>
-<%% end %>
+<%%= f.submit %>

@@ -1,0 +1,3 @@
+<%%= form_with model: @<%= singular_name %>, url: { action: 'update', id: @<%= singular_name %>.id } do |f| %>
+  <%%= render partial: 'form', locals: { f: f } %>
+<%% end %>
