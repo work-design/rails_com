@@ -17,6 +17,8 @@ zh:
       blobs:
         index:
           title: 文件
+        unattached:
+          title: 游离文件
       attachments:
         index:
           title: 附件管理
