@@ -1,4 +1,4 @@
-module RailsTaxon::Sequence
+module RailsComExt::Sequence
   extend ActiveSupport::Concern
 
   included do

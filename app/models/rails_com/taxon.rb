@@ -1,6 +1,6 @@
 # required fields
 # :parent_id
-module RailsTaxon::Node
+module RailsCom::Taxon
 
   def self.included(model)
     if model.table_exists? && model.column_names.include?('position')
@@ -8,7 +8,7 @@ module RailsTaxon::Node
     else
       model.has_closure_tree
     end
-    model.include RailsTaxon::Model
+    model.include RailsComExt::Taxon
 
     model.attribute :parent_ancestors, :json
     model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? }
