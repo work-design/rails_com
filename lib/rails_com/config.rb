@@ -16,11 +16,28 @@ module RailsCom #:nodoc:
     config.enum_key = ->(o, attribute){ "#{o.i18n_scope}.enum.#{o.base_class.model_name.i18n_key}.#{attribute}" }
     config.help_key = ->(o, attribute){ "#{o.i18n_scope}.help.#{o.base_class.model_name.i18n_key}.#{attribute}" }
 
-    config.mapping.date = { input: 'date', output: 'to_date' }
-    config.mapping.integer = { input: 'number', output: 'to_i' }
-    config.mapping.string = { input: 'text', output: 'to_s' }
-    config.mapping.text = { input: 'textarea', output: 'to_s' }
-    config.mapping.array = { input: 'array', output: 'to_s' }
+    config.mapping.date = {
+      input: 'date_field',
+      output: 'to_date'
+    }
+    config.mapping.integer = {
+      input: 'number_field',
+      options: { step: 1 },
+      output: 'to_i'
+    }
+    config.mapping.string = {
+      input: 'text_field',
+      output: 'to_s'
+    }
+    config.mapping.text = {
+      input: 'text_area',
+      output: 'to_s'
+    }
+    config.mapping.array = {
+      input: 'array',
+      options: { multiple: true },
+      output: 'to_s'
+    }
   end
 
 end

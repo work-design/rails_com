@@ -1,5 +1,5 @@
 <%= f.fields 'parameters' do |ef| %>
   <% taxon.parameters.each do |k, v| %>
-    <%= ef.text_field "#{k}", value: f.object.parameters[k.to_s], type: RailsCom.config.mapping[v.to_sym][:input], class: 'input', label: k.to_s %>
+    <%= ef.send  "#{k}", value: f.object.parameters[k.to_s], type: RailsCom.config.mapping[v.to_sym][:input], class: 'input', label: k.to_s %>
   <% end %>
 <% end %>
