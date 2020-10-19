@@ -1,0 +1,12 @@
+<% form_object = form_object(@new_node, **params.permit(:index).to_h.to_options) %>
+
+var node = document.getElementById('<%= params[:html_id] %>')
+var el = node.nextElementSibling
+while (el && el.dataset.title === 'parent_ancestors_input') {
+  el.remove()
+  el = node.nextElementSibling
+}
+
+<% if @node.children.present? %>
+node.insertAdjacentHTML('afterend', '<%= j(render partial: 'children_options', locals: { f: form_object, node: @node, depth: @node.depth + 1 }) %>')
+<% end %>

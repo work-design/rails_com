@@ -1,9 +1,27 @@
 module RailsCom::ActiveRecord::Extend
-  
+
   def human_name
     model_name.human
   end
-  
+
+  def has_taxons(*columns)
+    columns.each do |column|
+      attribute "#{column}_ancestors", :json
+      class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
+        before_validation :sync_#{column}_id, if: -> { #{column}_ancestors_changed? }
+
+        def sync_#{column}_id
+          _outer_id = Hash(#{column}_ancestors).values.compact.last
+          if _outer_id
+            self.#{column}_id = _outer_id
+          else
+            self.#{column}_id = nil
+          end
+        end
+      RUBY_EVAL
+    end
+  end
+
   def to_factory_bot
     require 'rails/generators'
     require 'generators/factory_bot/model/model_generator'
@@ -30,7 +48,7 @@ module RailsCom::ActiveRecord::Extend
       r.symbolize_keys!
     end
   end
-  
+
   def new_attributes
     if table_exists?
       news = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
@@ -62,7 +80,7 @@ module RailsCom::ActiveRecord::Extend
     defined_keys += all_timestamp_attributes_in_model
     defined_keys.prepend primary_key
     defined_keys.map(&:to_s)
-    
+
     columns_hash.except(*defined_keys).map do |name, column|
       r = {
         name: name.to_sym,

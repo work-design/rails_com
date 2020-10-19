@@ -1,0 +1,12 @@
+<% f_object = form_object(scope: params[:scope]) %>
+
+var node = document.getElementById('<%= params[:html_id] %>')
+var el = node.nextElementSibling
+while (el && el.dataset.title === 'outer_ancestors_input') {
+  el.remove()
+  el = node.nextElementSibling
+}
+
+<% if @node.children.present? %>
+node.insertAdjacentHTML('afterend', '<%= j(render partial: 'outer_children_options', locals: { f: f_object, node: @node, depth: @node.depth + 1, outer: params[:outer] }) %>')
+<% end %>

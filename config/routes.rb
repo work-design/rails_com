@@ -14,6 +14,13 @@ Rails.application.routes.draw do
       get :add_item
       get :remove_item
     end
+    resources :nodes, only: [] do
+      collection do
+        get :children
+        get :outer
+        get :outer_search
+      end
+    end
   end
 
   scope 'rails/active_storage', module: :com do
