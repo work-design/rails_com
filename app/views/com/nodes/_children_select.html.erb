@@ -3,13 +3,13 @@
     <%= f.label :parent_ancestors %>
     <div class="field-body control">
     <% f.object.ancestors.reverse_each do |item| %>
-      <%= render partial: 'taxon/nodes/siblings_options', locals: { f: f, node: item } %>
+      <%= render partial: 'com/nodes/siblings_options', locals: { f: f, node: item } %>
     <% end %>
     </div>
   <% elsif node %>
     <%= f.label :parent_ancestors %>
     <div class="field-body control">
-      <%= render partial: 'taxon/nodes/children_options', locals: { f: f, node: node } %>
+      <%= render partial: 'com/nodes/children_options', locals: { f: f, node: node } %>
     </div>
   <% end %>
 </div>
