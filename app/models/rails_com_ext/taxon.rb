@@ -1,4 +1,4 @@
-module RailsTaxon::Model
+module RailsComExt::Taxon
 
   def self_and_siblings
     if self.class.column_names.include?('organ_id')
