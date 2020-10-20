@@ -4,7 +4,7 @@ module RailsComExt::Extra
   extend ActiveSupport::Concern
 
   included do
-    attribute :parameters, :json, default: {}
+    attribute :extra, :json, default: {}
   end
 
   def form_parameters
