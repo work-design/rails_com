@@ -1,4 +1,4 @@
-class Taxon::NodesController < Taxon::BaseController
+class Com::NodesController < Com::BaseController
   before_action :set_node, only: [:children, :outer, :outer_search]
   skip_before_action :verify_authenticity_token, only: [:children, :outer, :outer_search]
 
