@@ -1,5 +1,5 @@
 <%= f.fields 'parameters' do |ef| %>
   <% taxon.parameters.each do |k, v| %>
-    <%= ef.send  "#{k}", value: f.object.parameters[k.to_s], type: RailsCom.config.mapping[v.to_sym][:input], class: 'input', label: k.to_s %>
+    <%= render partial: "com/parameter/#{RailsCom.config.mapping[v.to_sym][:input]}", locals: { f: f, ef: ef, k: k }  %>
   <% end %>
 <% end %>
