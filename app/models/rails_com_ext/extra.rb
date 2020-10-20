@@ -7,8 +7,13 @@ module RailsComExt::Extra
     attribute :extra, :json, default: {}
   end
 
-  def form_parameters
-    RailsCom::Settings.new(extra)
+  def form_extra
+    r = {}
+    extra.each do |k, v|
+      r.merge! k => v.send(RailsCom.config.mapping.dig(taxon.parameters[k].to_sym, :output))
+    end
+
+    RailsCom::Setting.new(r)
   end
 
 end

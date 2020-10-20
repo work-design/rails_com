@@ -1,4 +1,4 @@
-<%= f.fields 'extra', model: f.object.extra do |ef| %>
+<%= f.fields 'extra', model: f.object.form_extra do |ef| %>
   <% taxon.parameters.each do |k, v| %>
     <%= render partial: "com/extra/#{RailsCom.config.mapping[v.to_sym][:input]}", locals: { f: f, ef: ef, k: k }  %>
   <% end %>

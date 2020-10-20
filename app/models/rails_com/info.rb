@@ -16,12 +16,14 @@ module RailsCom::Info
   end
 
   class_methods do
+
     def verbose(q_params = nil)
       r = Info.default_where(q_params).as_json(only: [:code, :value])
       result = {}
       r.map { |i| result[i['code']] = i['value'] }
       result
     end
+
   end
 
 end
