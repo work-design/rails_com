@@ -34,9 +34,13 @@ module RailsCom #:nodoc:
       output: 'to_s'
     }
     config.mapping.array = {
-      input: 'array',
+      input: 'text_field',
       options: { multiple: true },
       output: 'to_s'
+    }
+    config.mapping.area = {
+      input: 'out_select',
+      options: { outer: 'area' }
     }
   end
 
