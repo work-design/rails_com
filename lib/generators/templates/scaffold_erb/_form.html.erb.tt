@@ -2,4 +2,3 @@
 <% attributes.each do |attribute| -%>
 <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
 <% end -%>
-<%%= f.submit %>
