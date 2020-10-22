@@ -1,0 +1,20 @@
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <% cache do %>
+        <%= render 'thead' %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% @project_stages.each do |project_stage| %>
+    <tr>
+      <%= render partial: 'tbody', locals: { project_stage: project_stage } %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @project_stages %>
