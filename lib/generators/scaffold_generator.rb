@@ -7,6 +7,8 @@ class Erb::Generators::ScaffoldGenerator
   def copy_view_files
     available_views = [
       'index.html',
+      '_index_thead.html',
+      '_index_tbody.html',
       '_form.html',
       '_new_form.html',
       '_edit_form.html',
