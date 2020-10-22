@@ -1,18 +1,6 @@
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>
-        <%%= link_to t('.edit'), { action: 'edit', id: @<%= singular_name %>.id }, remote: true, class: 'button is-small is-link' %>
-      </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
 <% attributes.each do |attribute| -%>
-    <tr>
-      <td class="has-text-right"><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></td>
-      <td><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
-    </tr>
+  <tr>
+    <td class="has-text-right"><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></td>
+    <td><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
+  </tr>
 <% end -%>
-  </tbody>
-</table>
