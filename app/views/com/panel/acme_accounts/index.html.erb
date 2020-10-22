@@ -1,42 +1,5 @@
-<%= render 'filter_form' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= AcmeAccount.human_attribute_name(:email) %></th>
-      <th><%= AcmeAccount.human_attribute_name(:kid) %></th>
-      <th><%= AcmeAccount.human_attribute_name(:private_pem) %></th>
-      <th>
-        <%= link_to new_panel_acme_account_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @acme_accounts.each do |acme_account| %>
-    <tr>
-      <td><%= acme_account.email %></td>
-      <td><%= acme_account.kid %></td>
-      <td>
-        <% if acme_account.private_pem_blob %>
-          <%= link_to acme_account.private_pem_blob.filename, rails_storage_redirect_path(acme_account.private_pem) %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to panel_acme_account_orders_path(acme_account), aria: { label: t('com.panel.acme_orders.index.title') }, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-shopping-bag"></i>
-        <% end %>
-        <%= link_to edit_panel_acme_account_path(acme_account), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to panel_acme_account_path(acme_account), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: AcmeAccount.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @acme_accounts, as: :acme_account %>
+<% end %>
 
 <%= paginate @acme_accounts %>

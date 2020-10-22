@@ -1,42 +1,5 @@
-<%= render 'filter_form' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= ActionMailbox::InboundEmail.human_attribute_name(:id) %></th>
-      <th><%= ActionMailbox::InboundEmail.human_attribute_name(:status) %></th>
-      <th><%= ActionMailbox::InboundEmail.human_attribute_name(:from) %></th>
-      <th><%= ActionMailbox::InboundEmail.human_attribute_name(:to) %></th>
-      <th><%= ActionMailbox::InboundEmail.human_attribute_name(:subject) %></th>
-      <th>
-        <%= link_to new_panel_inbound_email_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @inbound_emails.each do |inbound_email| %>
-    <tr>
-      <td><%= inbound_email.id %></td>
-      <td><%= inbound_email.status_i18n %></td>
-      <td><%= simple_format inbound_email.mail.from %></td>
-      <td><%= simple_format inbound_email.mail.to %></td>
-      <td><%= link_to inbound_email.mail.subject, panel_inbound_email_path(inbound_email) %></td>
-      <td>
-        <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-eye"></i>
-        <% end %>
-        <%= link_to edit_panel_inbound_email_path(inbound_email), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to panel_inbound_email_path(inbound_email), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: ActionMailbox::InboundEmail.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @inbound_emails, as: :inbound_email %>
+<% end %>
 
 <%= paginate @inbound_emails %>

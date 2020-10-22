@@ -1,40 +1,5 @@
-<%= render 'filter' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= CacheList.human_attribute_name(:id) %></th>
-      <th><%= CacheList.human_attribute_name(:path) %></th>
-      <th><%= CacheList.human_attribute_name(:key) %></th>
-      <th><%= CacheList.human_attribute_name(:etag) %></th>
-      <th>
-        <%= link_to new_panel_cache_list_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @cache_lists.each do |cache_list| %>
-    <tr>
-      <td><%= cache_list.id %></td>
-      <td><%= cache_list.path %></td>
-      <td><%= cache_list.key %></td>
-      <td><%= cache_list.etag %></td>
-      <td>
-        <%= link_to panel_cache_list_path(cache_list), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-eye"></i>
-        <% end %>
-        <%= link_to edit_panel_cache_list_path(cache_list), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to panel_cache_list_path(cache_list), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: CacheList.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @cache_lists, as: :cache_list %>
+<% end %>
 
 <%= paginate @cache_lists %>

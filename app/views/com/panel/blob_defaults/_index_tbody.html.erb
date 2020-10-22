@@ -1,0 +1,18 @@
+<tr>
+  <td><%= blob_default.id %></td>
+  <td><%= blob_default.record_class %></td>
+  <td><%= blob_default.name %></td>
+  <td>
+    <%= blob_default.file_blob.key if blob_default.file_blob %>
+    <%= render 'com/attachments/list', target: blob_default.file %>
+  </td>
+  <td><%= blob_default.private %></td>
+  <td>
+    <%= link_to edit_panel_blob_default_path(blob_default), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to panel_blob_default_path(blob_default), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>

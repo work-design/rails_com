@@ -1,43 +1,5 @@
-<%= content_for :breadcrumb do %>
-<div class="tabs">
-  <ul>
-    <li class="<%= active_helper(action: 'index', active: 'is-active') %>"><%= link_to t('.all'), panel_attachments_path %></li>
-    <li class="<%= active_helper(action: 'garbled', active: 'is-active') %>"><%= link_to 'Garbled', garbled_panel_attachments_path %></li>
-  </ul>
-</div>
+<%= render layout: 'index_table', locals: { cache_key: ActiveStorage::Attachment.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @attachments, as: :attachment %>
 <% end %>
-
-<%= render 'filter_form' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:id) %></th>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:name) %></th>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:record_type) %></th>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:record_id) %></th>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:blob_id) %></th>
-      <th><%= ActiveStorage::Attachment.human_attribute_name(:created_at) %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @attachments.each do |attachment| %>
-    <tr id="attachment_<%= attachment.id %>">
-      <td><%= attachment.id %></td>
-      <td><%= attachment.name %></td>
-      <td><%= attachment.record_type %></td>
-      <td><%= attachment.record_id %></td>
-      <td><%= attachment.blob_id %></td>
-      <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
-      <td>
-        <%= link_to delete_panel_attachment_path(attachment), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
 
 <%= paginate @attachments %>

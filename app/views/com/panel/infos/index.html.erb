@@ -1,39 +1,5 @@
-<%= render 'filter_form' %>
-
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= Info.human_attribute_name(:id) %></th>
-      <th><%= Info.human_attribute_name(:code) %></th>
-      <th><%= Info.human_attribute_name(:value) %></th>
-      <th><%= Info.human_attribute_name(:platform) %></th>
-      <th><%= Info.human_attribute_name(:version) %></th>
-      <th>
-        <%= link_to new_panel_info_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @infos.each do |info| %>
-    <tr>
-      <td><%= info.id %></td>
-      <td><%= info.code %></td>
-      <td><%= info.value %></td>
-      <td><%= info.platform_i18n %></td>
-      <td><%= info.version %></td>
-      <td>
-        <%= link_to edit_panel_info_path(info), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to panel_info_path(info), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: Info.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @infos, as: :info %>
+<% end %>
 
 <%= paginate @infos %>

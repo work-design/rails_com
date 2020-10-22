@@ -1,0 +1,20 @@
+<tr>
+  <td><%= acme_account.email %></td>
+  <td><%= acme_account.kid %></td>
+  <td>
+    <% if acme_account.private_pem_blob %>
+      <%= link_to acme_account.private_pem_blob.filename, rails_storage_redirect_path(acme_account.private_pem) %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to panel_acme_account_orders_path(acme_account), aria: { label: t('com.panel.acme_orders.index.title') }, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-shopping-bag"></i>
+    <% end %>
+    <%= link_to edit_panel_acme_account_path(acme_account), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to panel_acme_account_path(acme_account), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>
