@@ -1,3 +1,4 @@
 <% attributes.each do |attribute| -%>
 <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
 <% end -%>
+<th></th>
