@@ -8,7 +8,6 @@
     </div>
     <div class="navbar-dropdown is-right">
       <%= link_to '个人中心', board_root_url(host: RailsCom.config.host), class: active_helper(controllers: ['users'], active: 'navbar-item is-active', item: 'navbar-item') %>
-      <%= link_to '管理', panel_root_url(host: RailsCom.config.host), class: 'navbar-item' %>
       <%= link_to '退出', logout_path, data: { confirm: '确认退出' }, remote: true, class: 'navbar-item' %>
     </div>
   </div>
