@@ -56,10 +56,12 @@ module RailsCom::ActiveRecord::Extend
       news = attributes_to_define_after_schema_loads
     end
     news.map do |name, column|
-      r = {
-        name: name.to_sym,
-        type: column[0]
-      }
+      r = { name: name.to_sym }
+      if column[0].respond_to? :call
+        r.merge! type: column[0].call(ActiveRecord::Type.default_value).type
+      else
+        r.merge! type: column[0]
+      end
       dt = column[1].delete(:default)
       dt = nil if dt.respond_to?(:call)
       r.merge! default: dt if dt
