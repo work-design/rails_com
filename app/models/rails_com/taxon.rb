@@ -1,5 +1,6 @@
 # required fields
 # :parent_id
+require 'closure_tree'
 module RailsCom::Taxon
 
   def self.included(model)
