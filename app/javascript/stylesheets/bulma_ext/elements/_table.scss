@@ -18,6 +18,10 @@
 }
 
 table.as-search {
+  th, td {
+    padding: 0 .5em .75em 0;
+    vertical-align: middle;
+  }
   th {
     text-align: right;
     white-space: nowrap;
@@ -29,9 +33,4 @@ table.as-search {
   td {
     width: 100%;
   }
-  td, th {
-    padding: 0 .5em .75em 0;
-    vertical-align: middle;
-  }
-
 }
