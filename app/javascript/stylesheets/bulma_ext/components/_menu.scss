@@ -48,6 +48,9 @@
       border-bottom: solid 1px rgba(34, 36, 38, .1);
     }
   }
+}
+
+.menu {
   @each $name, $pair in $colors {
     $color: nth($pair, 1);
     $color-invert: nth($pair, 2);
@@ -56,6 +59,17 @@
       .menu-label {
         border-bottom: solid 1px $color;
         color: $color-invert;
+      }
+      .menu-list {
+        a {
+          color: $color-invert;
+        }
+        &:hover {
+          color: $color-invert;
+        }
+        &.is-active {
+          color: $color-invert;
+        }
       }
     }
   }
