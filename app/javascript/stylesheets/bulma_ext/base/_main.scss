@@ -1,10 +1,10 @@
-.as-body {
+body {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
-.as-main {
+main {
   flex-grow: 1;
 }
 
