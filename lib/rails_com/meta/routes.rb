@@ -17,8 +17,8 @@ module RailsCom::Routes
     _controllers
   end
 
-  def modules
-    routes_wrapper.group_by(&->(i){ i[:module] })
+  def businesses
+    routes_wrapper.group_by(&->(i){ i[:business] })
   end
 
   def routes_wrapper(cached = true)
@@ -28,7 +28,8 @@ module RailsCom::Routes
       {
         verb: route.verb,
         path: route.path.spec.to_s,
-        module: route.defaults[:controller].to_s.split('/')[0..-2],
+        namespace: route.defaults[:namespace],
+        business: route.defaults[:business],
         controller: route.defaults[:controller],
         action: route.defaults[:action]
       }
