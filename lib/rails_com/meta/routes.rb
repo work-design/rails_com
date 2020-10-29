@@ -21,6 +21,10 @@ module RailsCom::Routes
     routes_wrapper.group_by(&->(i){ i[:business] })
   end
 
+  def namespaces
+    routes_wrapper.group_by(&->(i){ i[:namespace] })
+  end
+
   def routes_wrapper(cached = true)
     return @routes_wrapper if cached && defined?(@routes_wrapper)
 
