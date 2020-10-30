@@ -6,8 +6,8 @@ class TreeController extends Controller {
     console.debug('Tree Controller works!')
   }
 
-  collapse(element) {
-    let ele = element.currentTarget
+  collapse(event) {
+    let ele = event.currentTarget
     let par = ele.parentNode.parentNode
 
     let el = par.nextElementSibling
@@ -20,8 +20,8 @@ class TreeController extends Controller {
     ele.dataset['action'] = 'click->tree#expand'
   }
 
-  expand(element) {
-    let ele = element.currentTarget
+  expand(event) {
+    let ele = event.currentTarget
     let par = ele.parentNode.parentNode
 
     let el = par.nextElementSibling
