@@ -1,13 +1,13 @@
 import { Controller } from 'stimulus'
 
-class TreeController extends Controller {
+class RemoteTreeController extends Controller {
 
   connect() {
-    console.debug('Tree Controller works!')
+    console.debug('Remote Tree Controller works!')
   }
 
   collapse(element) {
-    let ele = element.currentTarget
+    let ele = element.target
     let par = ele.parentNode.parentNode
 
     let el = par.nextElementSibling
@@ -36,4 +36,4 @@ class TreeController extends Controller {
 
 }
 
-application.register('tree', TreeController)
+application.register('remote_tree', RemoteTreeController)
