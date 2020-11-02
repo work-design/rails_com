@@ -16,7 +16,7 @@ class InputController extends Controller {
   }
 
   submit(event) {
-    let el = event.target
+    let el = event.currentTarget
     if (el.dataset['params']) {
       el.dataset['params'] += '&'
     } else {
