@@ -4,3 +4,13 @@
 @import 'select';
 @import 'tools';
 @import 'checkbox';
+
+form.button_to {
+  display: inline;
+  button {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+  }
+}
