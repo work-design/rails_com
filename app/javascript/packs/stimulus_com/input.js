@@ -17,18 +17,20 @@ class InputController extends Controller {
 
   submit(event) {
     let el = event.currentTarget
-    if (el.dataset['params']) {
-      el.dataset['params'] += '&'
-    } else {
-      el.dataset['params'] = ''
-    }
     let str
+
     if (el.defaultValue === '') {
       str = el.name + '=' + el.checked
     } else if (el.nodeName === 'SELECT') {
       str = el.name + '=' + el.value
     } else {
       str = el.name + '=' + el.defaultValue
+    }
+
+    if (el.dataset['params']) {
+      el.dataset['params'] += '&'
+    } else {
+      el.dataset['params'] = ''
     }
     el.dataset['params'] += str
   }
