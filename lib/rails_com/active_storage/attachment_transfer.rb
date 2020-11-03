@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_storage/downloading'
 module RailsCom::AttachmentTransfer
   extend ActiveSupport::Concern
 
