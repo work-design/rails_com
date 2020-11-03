@@ -18,7 +18,7 @@ class TreeRemoteController extends Controller {
     }
 
     ele.classList.replace('fa-caret-down', 'fa-caret-right')
-    ele.dataset['action'] = 'click->remote_tree#expand'
+    ele.dataset['action'] = 'click->tree_remote#expand'
   }
 
   expand(event) {
@@ -26,7 +26,7 @@ class TreeRemoteController extends Controller {
     ele.parentNode.removeEventListener('click', this.disableLink)
 
     ele.classList.replace('fa-caret-right', 'fa-caret-down')
-    ele.dataset['action'] = 'click->remote_tree#collapse'
+    ele.dataset['action'] = 'click->tree_remote#collapse'
   }
 
   disableLink(event) {
