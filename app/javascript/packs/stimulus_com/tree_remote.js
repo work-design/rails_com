@@ -1,9 +1,9 @@
 import { Controller } from 'stimulus'
 
-class RemoteTreeController extends Controller {
+class TreeRemoteController extends Controller {
 
   connect() {
-    console.debug('Remote Tree Controller works!')
+    console.debug('Tree Remote Controller works!')
   }
 
   collapse(event) {
@@ -38,4 +38,4 @@ class RemoteTreeController extends Controller {
 
 }
 
-application.register('remote_tree', RemoteTreeController)
+application.register('tree_remote', TreeRemoteController)
