@@ -1,5 +1,6 @@
 module RailsCom::ActiveRecord::Include
   extend ActiveSupport::Concern
+
   included do
     class_attribute :indexes_to_define_after_schema_loads, instance_accessor: false, default: []
   end
