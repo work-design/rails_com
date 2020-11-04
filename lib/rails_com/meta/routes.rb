@@ -11,28 +11,32 @@ module RailsCom::Routes
     controllers[controller.to_s].map { |i| i[:action] }.uniq
   end
 
-  def controllers
-    return @controllers if defined? @controllers
+  def controllers(cached = true)
+    return @controllers if cached && defined? @controllers
 
-    @controllers = routes_wrapper.group_by(&->(i){ i[:controller] }).transform_values! do |v|
+    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:controller] }).transform_values! do |v|
       v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
     end
     @controllers.delete(nil)
     @controllers
   end
 
-  def businesses
-    routes_wrapper.group_by(&->(i){ i[:business] })
+  def businesses(cached = true)
+    return @businesses if cached && defined? @businesses
+
+    @businesses = routes_wrapper(cached).group_by(&->(i){ i[:business] })
   end
 
-  def namespaces
-    routes_wrapper.group_by(&->(i){ i[:namespace] })
+  def namespaces(cached = true)
+    return @namespaces if cached && defined? @namespaces
+
+    @namespaces = routes_wrapper(cached).group_by(&->(i){ i[:namespace] })
   end
 
   def routes_wrapper(cached = true)
     return @routes_wrapper if cached && defined?(@routes_wrapper)
 
-    @routes_wrapper = routes.map do |route|
+    @routes_wrapper = Rails.application.routes.routes.map do |route|
       {
         verb: route.verb,
         path: route.path.spec.to_s,
@@ -42,10 +46,6 @@ module RailsCom::Routes
         action: route.defaults[:action]
       }
     end
-  end
-
-  def routes
-    @routes ||= Rails.application.routes.routes
   end
 
 end
