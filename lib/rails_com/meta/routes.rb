@@ -12,9 +12,13 @@ module RailsCom::Routes
   end
 
   def controllers
-    _controllers = routes_wrapper.group_by(&->(i){ i[:controller] })
-    _controllers.delete(nil)
-    _controllers
+    return @controllers if defined? @controllers
+
+    @controllers = routes_wrapper.group_by(&->(i){ i[:controller] }).transform_values! do |v|
+      v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
+    end
+    @controllers.delete(nil)
+    @controllers
   end
 
   def businesses
