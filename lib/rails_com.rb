@@ -16,7 +16,6 @@ require 'rails_com/active_storage'
 # Meta for Rails
 require 'rails_com/meta/routes'
 require 'rails_com/meta/models'
-require 'rails_com/meta/controllers'
 require 'rails_com/meta/env'
 
 # Rails extension
