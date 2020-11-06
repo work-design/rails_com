@@ -7,13 +7,21 @@ class ShowController extends Controller {
     console.debug('Show Controller works!')
   }
 
-  show(element) {
+  initEvent() {
+    let ele = this.element
+    ele.addEventListener('mouseenter', this.showItem)
+    ele.addEventListener('mouseleave', this.hideItem)
+  }
+
+  show() {
+    console.log(this)
     this.itemTargets.forEach(el => {
       el.style.visibility = 'visible'
     })
   }
 
-  hide(element) {
+  hide(event) {
+    console.log(event.target)
     this.itemTargets.forEach(el => {
       el.style.visibility = 'hidden'
     })
