@@ -12,7 +12,7 @@ module RailsCom::Taxon
     model.include RailsComExt::Taxon
 
     model.attribute :parent_ancestors, :json, default: {}
-    model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? }
+    model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? && (parent_ancestors.presence != parent_ancestors_was.presence) }
     model.hierarchy_class.attribute :ancestor_id, :integer, null: false
     model.hierarchy_class.attribute :descendant_id, :integer, null: false, index: { name: "#{model.name.underscore}_desc_idx" }
     model.hierarchy_class.attribute :generations, :integer, null: false
