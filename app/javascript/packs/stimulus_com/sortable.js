@@ -5,6 +5,7 @@ class SortableController extends Controller {
 
   reload(element) {
     Sortable.create(element, {
+      handle: '.is-drawable',
       onEnd: function(evt) {
         if (evt.oldIndex === evt.newIndex) {
           return
