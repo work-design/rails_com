@@ -1,0 +1,14 @@
+.as-tooltip {
+  position: absolute;
+  top: 1rem;
+  left: 80%;
+  border-width: 2rem;
+  z-index: 1;
+  border-color: white transparent transparent transparent;
+  width: max-content;
+}
+
+.nav-angle-right {
+  position: relative;
+  right: 0;
+}

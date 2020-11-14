@@ -14,15 +14,13 @@ class HoverController extends Controller {
     let _this = this
     if (this.hasCardTarget) {
       this.cardTarget.classList.remove('is-hidden')
-    } else if ('' === this.urlValue) {
-      return
-    } else {
+    } else if (this.urlValue) {
       Rails.ajax({
         url: this.urlValue,
         type: 'GET',
         dataType: 'text/html',
         success: function(html) {
-          _this.element.insertAdjacentHTML('beforeend', html.body.innerHTML);
+          _this.element.insertAdjacentHTML('beforeend', html.body.innerHTML)
         },
         error: function(data) {
           console.debug('error', data)
@@ -42,6 +40,7 @@ class HoverController extends Controller {
       this.cardTarget.remove()
     }
   }
+
 }
 
 application.register('hover', HoverController)
