@@ -29,6 +29,7 @@ require 'rails_com/webpacker/yaml_helper'
 # Utils
 require 'rails_com/utils/time_helper'
 require 'rails_com/utils/num_helper'
+require 'rails_com/utils/qrcode_helper'
 require 'rails_com/utils/uid_helper'
 require 'rails_com/utils/hex_helper'
 require 'rails_com/utils/jobber'
