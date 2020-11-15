@@ -15,7 +15,8 @@ button[aria-label] {
   }
 }
 
-[aria-label] {
+[aria-label],
+.as-tooltip {
   position: relative; // alt. absolute or fixed
 
   // Fixing iOS Safari event issue.
@@ -48,7 +49,8 @@ button[aria-label] {
     z-index: 11;
   }
 
-  &:hover, &[data-tip_visible], &:not([data-tip_nofocus]):focus {
+  &:hover,
+  &.tip-visible, &:not([data-tip_nofocus]):focus {
     &:before,
     &:after {
       opacity: 1;
@@ -79,7 +81,6 @@ button[aria-label] {
       @include no-effects();
     }
   }
-
   &:after {
     bottom: 100%;
     left: 50%;
@@ -94,18 +95,17 @@ button[aria-label] {
     transform-origin: top;
     margin-bottom: -2px;
   }
-
-  &:hover, &[data-tip_visible] {
+  &:hover,
+  &.tip-visible {
     &:after {
       transform: translate(-50%, 0);
     }
-
     &:before {
       transform: rotate(45deg) scale(1) translate(-50%, 0);
     }
   }
 
-  &[data-tip_pos="up-left"] {
+  &.tip-up-left {
     &:after {
       bottom: 100%;
       left: 0;
@@ -119,19 +119,18 @@ button[aria-label] {
       transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(0, 0);
       }
-
       &:before {
         transform: translate(0, 0);
       }
     }
   }
 
-  &[data-tip_pos="up-right"] {
+  &.tip-up-right {
     &:after {
       bottom: 100%;
       right: 0;
@@ -146,144 +145,127 @@ button[aria-label] {
       transform-origin: top;
     }
 
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(0, 0);
       }
-
       &:before {
         transform: translate(0, 0);
       }
     }
   }
 
-  &[data-tip_pos="down"] {
+  &.tip-down {
     &:after {
       left: 50%;
       margin-top: $tip-arrow-size + 7px;
       top: 100%;
       transform: translate(-50%, calc(var(--tip-move) * -1));
     }
-
     &:before {
       @include arrow-up();
-
       left: 50%;
       top: 100%;
       transform: translate(-50%, calc(var(--tip-move) * -1));
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(-50%, 0);
       }
-
       &:before {
         transform: translate(-50%, 0);
       }
     }
   }
 
-  &[data-tip_pos="down-left"] {
+  &.tip-down-left {
     &:after {
       left: 0;
       margin-top: $tip-arrow-size + 7px;
       top: 100%;
       transform: translate(0, calc(var(--tip-move) * -1));
     }
-
     &:before {
       @include arrow-up();
-
       left: 5px;
       top: 100%;
       transform: translate(0, calc(var(--tip-move) * -1));
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(0, 0);
       }
-
       &:before {
         transform: translate(0, 0);
       }
     }
   }
 
-  &[data-tip_pos="down-right"] {
+  &.tip-down-right {
     &:after {
       right: 0;
       margin-top: $tip-arrow-size + 7px;
       top: 100%;
       transform: translate(0, calc(var(--tip-move) * -1));
     }
-
     &:before {
       @include arrow-up();
-
       right: 5px;
       top: 100%;
       transform: translate(0, calc(var(--tip-move) * -1));
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(0, 0);
       }
-
       &:before {
         transform: translate(0, 0);
       }
     }
   }
 
-  &[data-tip_pos="left"] {
+  &.tip-left {
     &:after {
       margin-right: $tip-arrow-size + 7px;
       right: 100%;
       top: 50%;
       transform: translate(var(--tip-move), -50%);
     }
-
     &:before {
       @include arrow-right();
-
       right: 100%;
       top: 50%;
       transform: translate(var(--tip-move), -50%);
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover, &.tip-visible {
       &:after {
         transform: translate(0, -50%);
       }
-
       &:before {
         transform: translate(0, -50%);
       }
     }
-
   }
 
-  &[data-tip_pos="right"] {
+  &.tip-right {
     &:after {
-
       left: 100%;
       margin-left: $tip-arrow-size + 7px;
       top: 50%;
       transform: translate(calc(var(--tip-move) * -1), -50%);
     }
-
     &:before {
       @include arrow-left();
-
       left: 100%;
       top: 50%;
       transform: translate(calc(var(--tip-move) * -1), -50%);
     }
-
-    &:hover, &[data-tip_visible] {
+    &:hover,
+    &.tip-visible {
       &:after {
         transform: translate(0, -50%);
       }
@@ -291,46 +273,6 @@ button[aria-label] {
       &:before {
         transform: translate(0, -50%);
       }
-    }
-  }
-
-  &[data-tip_length="small"] {
-    &:after {
-      white-space: normal;
-      width: 80px;
-    }
-  }
-
-  &[data-tip_length="medium"] {
-    &:after {
-      white-space: normal;
-      width: 150px;
-    }
-  }
-
-  &[data-tip_length="large"] {
-    &:after {
-      white-space: normal;
-      width: 260px;
-    }
-  }
-
-  &[data-tip_length="xlarge"] {
-    &:after {
-      white-space: normal;
-      width: 380px;
-
-      @media screen and (max-width: 768px) {
-        white-space: normal;
-        width: 90vw;
-      }
-    }
-  }
-
-  &[data-tip_length="fit"] {
-    &:after {
-      white-space: normal;
-      width: 100%;
     }
   }
 
