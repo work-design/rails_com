@@ -50,7 +50,8 @@ button[aria-label] {
   }
 
   &:hover,
-  &.tip-visible, &:not([data-tip_nofocus]):focus {
+  &.tip-visible,
+  &:not([data-tip_nofocus]):focus {
     &:before,
     &:after {
       opacity: 1;
@@ -144,7 +145,6 @@ button[aria-label] {
       transform: translate(0, var(--tip-move));
       transform-origin: top;
     }
-
     &:hover,
     &.tip-visible {
       &:after {
