@@ -10,8 +10,8 @@ class HoverController extends Controller {
     console.debug(this.identifier, 'connected')
   }
 
-  show() {
-    let _this = this
+  show(event) {
+    let ele = event.currentTarget
     if (this.hasCardTarget) {
       this.cardTarget.classList.remove('is-hidden')
     } else if (this.urlValue) {
@@ -20,7 +20,7 @@ class HoverController extends Controller {
         type: 'GET',
         dataType: 'text/html',
         success: function(html) {
-          _this.element.insertAdjacentHTML('beforeend', html.body.innerHTML)
+          ele.insertAdjacentHTML('beforebegin', html.body.innerHTML)
         },
         error: function(data) {
           console.debug('error', data)
