@@ -1,6 +1,13 @@
 .as-tooltip {
   position: absolute;
   bottom: 100%;
-  min-width: fit-content;
+  min-width: max-content;
   z-index: 1;
+  .as-tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #217AFF;
+  }
 }
