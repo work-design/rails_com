@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'rqrcode'
 
 module QrcodeHelper
   extend self
@@ -28,6 +27,4 @@ module QrcodeHelper
     qrcode.as_png **OPTIONS.merge(options)
   end
 
-end
-
-
+end if defined? RQRCode
