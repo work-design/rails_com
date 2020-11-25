@@ -9,6 +9,10 @@ class Com::Panel::BlobDefaultsController < Com::Panel::BaseController
     @blob_default = BlobDefault.new
   end
 
+  def add
+    @blob_default = BlobDefault.new
+  end
+
   def create
     @blob_default = BlobDefault.new(blob_default_params)
 

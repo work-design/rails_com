@@ -63,7 +63,11 @@ Rails.application.routes.draw do
         get :unattached
       end
     end
-    resources :blob_defaults
+    resources :blob_defaults do
+      collection do
+        get :add
+      end
+    end
     resources :acme_accounts do
       resources :acme_orders, as: :orders do
         collection do
