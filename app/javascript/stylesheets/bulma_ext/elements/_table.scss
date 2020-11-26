@@ -3,17 +3,22 @@
   &.is-borderless {
     border: none;
   }
-}
 
-.table th,
-.table td {
-  vertical-align: middle;
-}
+  tbody + tbody {
+    tr:first-child td,
+    tr:last-child th {
+      border-top-width: 1px;
+    }
+  }
 
-.table tbody + tbody {
-  tr:first-child td,
-  tr:last-child th {
-    border-top-width: 1px;
+  th, td {
+    vertical-align: middle;
+  }
+
+  td.has-text-right::after {
+    content: ':';
+    padding-left: .25em;
+    color: #888;
   }
 }
 
@@ -26,7 +31,7 @@ table.as-search {
     text-align: right;
     white-space: nowrap;
   }
-  th:after {
+  th::after {
     content: ':';
     color: #888;
   }
