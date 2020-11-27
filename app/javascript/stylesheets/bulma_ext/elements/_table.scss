@@ -15,10 +15,12 @@
     vertical-align: middle;
   }
 
-  td.has-text-right::after {
-    content: ':';
-    padding-left: .25em;
-    color: #888;
+  &.as-show {
+    td.has-text-right::after {
+      content: ':';
+      padding-left: .25em;
+      color: #888;
+    }
   }
 }
 
