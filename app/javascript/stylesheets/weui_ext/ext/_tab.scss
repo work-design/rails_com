@@ -3,6 +3,7 @@
 }
 
 .weui-tab__panel {
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: visible;
   margin-bottom: 60px;
 }
