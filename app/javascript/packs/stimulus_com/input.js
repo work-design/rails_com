@@ -35,7 +35,13 @@ class InputController extends Controller {
     el.dataset['params'] += str
   }
 
+  uncheck(event) {
+
+  }
+
   form(event) {
+    let el = event.currentTarget
+
     Rails.fire(event.target.form, 'submit')
   }
 
