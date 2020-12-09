@@ -5,12 +5,12 @@ module RailsCom::Debug
     before_validation :debug_before_validation
     after_validation :debug_after_validation
     before_save :debug_before_save
-    around_save :debug_around_save
+    #around_save :debug_around_save
 
     before_create :debug_before_create
     before_update :debug_before_update
-    around_create :debug_around_create
-    around_update :debug_around_update
+    #around_create :debug_around_create
+    #around_update :debug_around_update
     after_create :debug_after_create
     after_update :debug_after_update
 
