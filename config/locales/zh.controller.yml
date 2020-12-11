@@ -1,4 +1,7 @@
 zh:
+  application:
+    modal_form:
+      title: 编辑/新建
   com:
     title: 系统配置
     panel:
