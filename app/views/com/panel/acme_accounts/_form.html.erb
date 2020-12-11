@@ -1,5 +1,2 @@
-<%= form_with model: [:panel, @acme_account] do |f| %>
-  <%= render 'shared/error_messages', target: @acme_account %>
-  <%= f.text_field :email %>
-  <%= f.submit %>
-<% end %>
+<%= render 'shared/error_messages', target: f.object %>
+<%= f.text_field :email %>

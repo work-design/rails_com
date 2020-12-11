@@ -1,8 +1,5 @@
-<%= form_with model: [:panel, @info] do |f| %>
-  <%= render 'shared/error_messages', target: @info %>
-  <%= f.text_field :code %>
-  <%= f.text_field :value %>
-  <%= f.text_field :version %>
-  <%= f.select :platform, options_for_select(Info.options_i18n(:platform), @info.platform), prompt: 'All' %>
-  <%= f.submit %>
-<% end %>
+<%= render 'shared/error_messages', target: f.object %>
+<%= f.text_field :code %>
+<%= f.text_field :value %>
+<%= f.text_field :version %>
+<%= f.select :platform, options_for_select(Info.options_i18n(:platform), @info.platform), prompt: 'All' %>

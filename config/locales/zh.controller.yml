@@ -15,6 +15,8 @@ zh:
       blob_defaults:
         index:
           title: 默认图片
+        new:
+          title: 新建图片
       blobs:
         index:
           title: 文件
