@@ -2,10 +2,11 @@ import { Controller } from 'stimulus'
 
 // data-controller="typer"
 class TyperController extends Controller {
+  static targets = ['input', 'value']
 
   connect() {
     console.debug('Typer Controller works!')
-    let ele = this.element
+    let ele = this.inputTarget
     ele.addEventListener('input', this.form)
     ele.addEventListener('compositionstart', event => {
       event.target.removeEventListener('input', this.form)
@@ -42,6 +43,13 @@ class TyperController extends Controller {
     } else {
       Rails.fire(ele.form, 'submit')
     }
+  }
+
+  // click->typer#choose
+  choose(event) {
+    let ele = event.currentTarget
+    this.valueTarget.value = ele.dataset['id']
+    this.inputTarget.value = ele.dataset['name']
   }
 
 }
