@@ -10,7 +10,7 @@ module RailsCom::Application
 
   included do
     before_action :set_locale, :set_timezone, :set_variant
-    helper_method :current_title
+    helper_method :current_title, :default_params
   end
 
   def current_title
