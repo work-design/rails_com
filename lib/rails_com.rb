@@ -40,3 +40,4 @@ require 'active_storage/service/disc_service'
 # outside
 require 'default_where'
 require 'kaminari'
+require 'acts_as_list'

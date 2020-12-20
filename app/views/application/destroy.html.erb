@@ -1,8 +1,0 @@
-<%= javascript_tag nonce: true do %>
-  if (typeof Turbolinks === 'undefined') {
-    window.location = document.referrer
-  } else {
-    Turbolinks.clearCache()
-    Turbolinks.visit(document.referrer, {action: 'replace'})
-  }
-<% end %>
