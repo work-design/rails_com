@@ -33,11 +33,12 @@ module RailsCom::AcmeIdentifier
     end
   end
 
-  def dns_valid?
+  def dns_verify?
     r = dns_resolv.include?(record_content) && authorization.dns.request_validation
     if r
       self.update dns_valid: true
     end
+    dns_valid
   end
 
   def dns_host

@@ -58,7 +58,7 @@ module RailsCom::AcmeOrder
 
   # status: ready
   def all_verify?
-    acme_identifiers.map(&:dns_valid?).all? true
+    acme_identifiers.map(&:dns_verify?).all? true
   end
 
   def csr
