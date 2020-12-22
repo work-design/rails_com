@@ -5,6 +5,7 @@
   <td><%= acme_identifier.record_name %></td>
   <td><%= acme_identifier.record_content %></td>
   <td><%= acme_identifier.domain %></td>
+  <td><%= acme_identifier.dns_valid %></td>
   <td>
     <%= link_to panel_acme_identifier_path(acme_identifier), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-info"></i>

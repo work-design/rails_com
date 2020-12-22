@@ -1,6 +1,6 @@
 class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   before_action :set_acme_account
-  before_action :set_acme_order, only: [:show, :edit, :order, :update, :destroy]
+  before_action :set_acme_order, only: [:show, :edit, :order, :verify, :update, :destroy]
 
   def index
     q_params = {
@@ -33,7 +33,17 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   end
 
   def order
-    @acme_order.order
+    r = @acme_order.order
+    if r.respond_to?(:status) && ['pending'].include?(r.status)
+      @acme_order.authorizations
+    end
+
+    render 'update'
+  end
+
+  def verify
+    r = @acme_order.all_verify?
+
     render 'update'
   end
 

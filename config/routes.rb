@@ -76,6 +76,7 @@ Rails.application.routes.draw do
         end
         member do
           patch :order
+          patch :verify
         end
       end
       resources :acme_orders, shallow: true, only: [] do

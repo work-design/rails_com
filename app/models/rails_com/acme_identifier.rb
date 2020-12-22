@@ -10,6 +10,7 @@ module RailsCom::AcmeIdentifier
     attribute :domain, :string
     attribute :wildcard, :boolean
     attribute :url, :string
+    attribute :dns_valid, :boolean, default: false
 
     belongs_to :acme_order
 
@@ -33,7 +34,10 @@ module RailsCom::AcmeIdentifier
   end
 
   def dns_valid?
-    dns_resolv.include?(record_content) && authorization.dns.request_validation
+    r = dns_resolv.include?(record_content) && authorization.dns.request_validation
+    if r
+      self.update dns_valid: true
+    end
   end
 
   def dns_host

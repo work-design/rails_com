@@ -57,7 +57,7 @@ module RailsCom::AcmeOrder
   end
 
   # status: ready
-  def all_valid?
+  def all_verify?
     acme_identifiers.map(&:dns_valid?).all? true
   end
 
