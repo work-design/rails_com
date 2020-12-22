@@ -34,6 +34,7 @@ module RailsCom::AcmeIdentifier
   end
 
   def dns_verify?
+    return dns_valid if dns_valid
     r = dns_resolv.include?(record_content) && authorization.dns.request_validation
     if r
       self.update dns_valid: true
