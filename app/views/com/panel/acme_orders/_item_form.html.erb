@@ -1,0 +1,18 @@
+<div class="field is-horizontal" id="card_template_advances_<%= ef.index %>">
+  <% if ef.index == 0 %>
+    <%= ef.label :acme_identifiers %>
+  <% else %>
+    <label class="field-label"></label>
+  <% end %>
+  <div class="field-body">
+    <%= ef.text_field :identifier, label: nil, placeholder: AcmeIdentifier.human_attribute_name(:identifier) %>
+    <div class="field has-addons has-addons-middle">
+      <%= link_to({ action: 'add_item', index: ef.index }, data: { title: 'add_item' }, remote: true) do %>
+        <i class="fas fa-plus-circle"></i>
+      <% end %>
+      <%= link_to({ action: 'remove_item', index: ef.index }, remote: true) do %>
+        <i class="fas fa-minus-circle"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -54,7 +54,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       configs = app.config.active_storage.service_configurations
       ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
     end
-    ActiveStorage::Current.host = SETTING.host
+    ActiveStorage::Current.host = SETTING.host if defined? SETTING  # todo setting may not get
   end
 
 end

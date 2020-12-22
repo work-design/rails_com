@@ -13,6 +13,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   def new
     @acme_order = @acme_account.acme_orders.build
+    @acme_order.acme_identifiers.build
   end
 
   def create
@@ -25,6 +26,7 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   def add_item
     @acme_order = @acme_account.acme_orders.build
+    @acme_order.acme_identifiers.build
   end
 
   def remove_item
@@ -64,7 +66,8 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   def acme_order_params
     params.fetch(:acme_order, {}).permit(
-      acme_authorizations_attributes: {}
+      acme_authorizations_attributes: {},
+      acme_identifiers_attributes: {}
     )
   end
 
