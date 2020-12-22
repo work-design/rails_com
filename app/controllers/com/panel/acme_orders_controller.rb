@@ -1,6 +1,6 @@
 class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
   before_action :set_acme_account
-  before_action :set_acme_order, only: [:show, :edit, :order, :verify, :update, :destroy]
+  before_action :set_acme_order, only: [:show, :edit, :order, :verify, :cert, :update, :destroy]
 
   def index
     q_params = {
@@ -43,6 +43,13 @@ class Com::Panel::AcmeOrdersController < Com::Panel::BaseController
 
   def verify
     r = @acme_order.all_verify?
+
+    render 'update'
+  end
+
+  def cert
+    r = @acme_order.finalize
+    @acme_order.cert
 
     render 'update'
   end
