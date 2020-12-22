@@ -4,7 +4,7 @@ document.addEventListener('ajax:beforeSend', event => {
   xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
 })
 
-document.addEventListener('turbolinks:request-start', event => {
+document.addEventListener('turbo:submit-start', event => {
   let xhr = event.data.xhr
   xhr.setRequestHeader('Utc-Offset', (new Date).getTimezoneOffset())
   xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
