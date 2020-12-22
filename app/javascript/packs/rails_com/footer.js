@@ -21,7 +21,7 @@ export function prepareFormFilter() {
         }
       }
 
-      Turbolinks.visit(url.href)
+      Turbo.visit(url.href)
     })
   })
 }

@@ -9,7 +9,7 @@ class CommonController extends Controller {
 
   cancel(event) {
     event.preventDefault()
-    Turbolinks.visit(location.href, { action: 'replace' })
+    Turbo.visit(location.href, { action: 'replace' })
   }
 
 }

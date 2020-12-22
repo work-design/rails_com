@@ -1,13 +1,13 @@
-Turbolinks.clearCache()
+Turbo.clearCache()
 document.documentElement.classList.remove('is-clipped')
 <% if defined? return_to %>
-Turbolinks.visit('<%= return_to.html_safe %>', { action: 'replace' })
+Turbo.visit('<%= return_to.html_safe %>', { action: 'replace' })
 <% elsif defined? query %>
 let url = new URL(location)
 <% query.each do |k, v| %>
 url.searchParams.set('<%= k %>', '<%= v %>')
 <% end %>
-Turbolinks.visit(url, { action: 'replace' })
+Turbo.visit(url, { action: 'replace' })
 <% else %>
-Turbolinks.visit(location.href, { action: 'replace' })
+Turbo.visit(location.href, { action: 'replace' })
 <% end %>

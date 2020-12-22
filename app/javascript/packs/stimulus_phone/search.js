@@ -20,7 +20,7 @@ class SearchController extends Controller {
   }
 
   clear() {
-    Turbolinks.visit(location.pathname, { action: 'replace' })
+    Turbo.visit(location.pathname, { action: 'replace' })
     this.inputTarget.value = ''
     this.inputTarget.focus()
   }
