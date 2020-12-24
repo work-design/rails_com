@@ -7,9 +7,9 @@ module RailsCom
       return super if defined?(WebConsole) && context.is_a?(WebConsole::View)
       request = context.request
       if request && request.format.symbol
-        _formats = [context.request.format.symbol]
+        _formats = [context.request.format.symbol] | [:html]
       else
-        _formats = @lookup_context.formats[0..0].presence || [:html]
+        _formats = @lookup_context.formats[0..0].presence | [:html]
       end
 
       # todo better implement
