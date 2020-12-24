@@ -1,9 +1,7 @@
 module.exports = {
-  test: require.resolve('@hotwired/turbo-rails'),
-  use: [
-    {
-      loader: 'expose-loader',
-      options: 'Turbo'
-    }
-  ]
+  test: require.resolve('@hotwired/turbo'),
+  loader: 'expose-loader',
+  options: {
+    exposes: 'Turbo'
+  }
 }

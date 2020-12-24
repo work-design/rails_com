@@ -1,9 +1,7 @@
 module.exports = {
   test: require.resolve('moment'),
-  use: [
-    {
-      loader: 'expose-loader',
-      options: 'moment'
-    }
-  ]
+  loader: 'expose-loader',
+  options: {
+    options: 'moment'
+  }
 }
