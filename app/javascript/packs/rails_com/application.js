@@ -1,5 +1,4 @@
 import Turbo from '@hotwired/turbo'
-import 'rails_com/package/remote_js_load'
 import './event'
 import { timeForLocalized, prepareFormFilter } from './footer'
 import { prepareFormValid } from 'default_form/footer'
