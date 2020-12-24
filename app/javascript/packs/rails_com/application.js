@@ -1,4 +1,4 @@
-import '@hotwired/turbo'
+import * as Turbo from '@hotwired/turbo'
 import { timeForLocalized, prepareFormFilter } from './footer'
 import { prepareFormValid } from 'default_form/footer'
 

@@ -1,5 +1,5 @@
 module.exports = {
-  test: require.resolve('@hotwired/turbo'),
+  test: require.resolve('@hotwired/turbo-rails'),
   use: [
     {
       loader: 'expose-loader',
