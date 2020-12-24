@@ -1,6 +1,6 @@
 {
   "name": "rails_com",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Rails Common Javascript",
   "main": "package/index.js",
   "files": [
