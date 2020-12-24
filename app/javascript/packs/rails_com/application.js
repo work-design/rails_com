@@ -21,7 +21,7 @@ document.addEventListener('ajax:beforeSend', event => {
   //xhr.setRequestHeader('X-Csp-Nonce', Rails.cspNonce())
 })
 document.addEventListener('turbo:before-fetch-request', event => {
-  xhr = event.detail.fetchOptions
+  let xhr = event.detail.fetchOptions
   xhr.headers['Utc-Offset'] = (new Date).getTimezoneOffset()
   //xhr.headers['X-Csp-Nonce'] = Rails.cspNonce()
 })
