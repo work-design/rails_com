@@ -1,11 +1,8 @@
-import Rails from '@rails/ujs'
 import Turbo from '@hotwired/turbo'
 import 'rails_com/package/remote_js_load'
 import './event'
 import { timeForLocalized, prepareFormFilter } from './footer'
 import { prepareFormValid } from 'default_form/footer'
-
-Rails.start()
 
 document.addEventListener('DOMContentLoaded', function() {
   timeForLocalized()
