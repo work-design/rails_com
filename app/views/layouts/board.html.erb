@@ -1,19 +1,16 @@
 <%= render layout: 'layouts/application_head' do %>
-  <body>
-    <%= render 'nav_bar' %>
-    <main class="columns">
-      <div class="container column">
-        <div class="columns">
-          <div class="column is-narrow" style="width: 260px;">
-            <%= render 'nav' %>
-          </div>
-          <div class="column">
-            <%= yield %>
-          </div>
+  <%= render 'nav_bar' %>
+  <main class="columns">
+    <div class="container column">
+      <div class="columns">
+        <div class="column is-narrow" style="width: 260px;">
+          <%= render 'nav' %>
+        </div>
+        <div class="column">
+          <%= yield %>
         </div>
       </div>
-    </main>
-    <%= render 'footer' %>
-    <div id="modal"></div>
-  </body>
+    </div>
+  </main>
+  <%= render 'footer' %>
 <% end %>

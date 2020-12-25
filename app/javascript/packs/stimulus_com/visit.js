@@ -12,6 +12,8 @@ class VisitController extends Controller {
     } else {
       Turbo.visit(location.href, { action: 'replace' })
     }
+
+    this.element.remove()
   }
 
 }

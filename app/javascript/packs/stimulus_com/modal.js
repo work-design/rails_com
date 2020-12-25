@@ -11,6 +11,7 @@ class ModalController extends Controller {
   close() {
     this.element.remove()
     document.documentElement.classList.remove('is-clipped')
+    history.back()
   }
 
 }

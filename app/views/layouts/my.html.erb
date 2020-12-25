@@ -1,26 +1,23 @@
 <%= render layout: 'layouts/application_head' do %>
-  <body>
-    <%= render 'nav_bar' %>
-    <main class="columns">
-      <div class="column is-narrow" style="width: 260px;">
-        <% if content_for?(:nav) %>
-          <%= yield :nav %>
-        <% else %>
-          <%= render 'nav' %>
-        <% end %>
+  <%= render 'nav_bar' %>
+  <main class="columns">
+    <div class="column is-narrow" style="width: 260px;">
+      <% if content_for?(:nav) %>
+        <%= yield :nav %>
+      <% else %>
+        <%= render 'nav' %>
+      <% end %>
+    </div>
+    <div class="column">
+      <% if content_for?(:breadcrumb) %>
+        <%= yield(:breadcrumb) %>
+      <% else %>
+        <%= render 'breadcrumb' %>
+      <% end %>
+      <div>
+        <%= yield %>
       </div>
-      <div class="column">
-        <% if content_for?(:breadcrumb) %>
-          <%= yield(:breadcrumb) %>
-        <% else %>
-          <%= render 'breadcrumb' %>
-        <% end %>
-        <div>
-          <%= yield %>
-        </div>
-      </div>
-    </main>
-    <%= render 'footer' %>
-    <div id="modal"></div>
-  </body>
+    </div>
+  </main>
+  <%= render 'footer' %>
 <% end %>

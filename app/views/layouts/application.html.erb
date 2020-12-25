@@ -1,13 +1,10 @@
 <%= render layout: 'layouts/application_head' do %>
-  <body>
-    <%= render 'nav_bar' %>
-    <%= render 'shared/alert' %>
-    <main class="columns is-fluid is-centered">
-      <div class="column container is-full">
-        <%= yield %>
-      </div>
-    </main>
-    <%= render 'footer' %>
-    <div id="modal"></div>
-  </body>
+  <%= render 'nav_bar' %>
+  <%= render 'shared/alert' %>
+  <main class="columns is-fluid is-centered">
+    <div class="column container is-full">
+      <%= yield %>
+    </div>
+  </main>
+  <%= render 'footer' %>
 <% end %>

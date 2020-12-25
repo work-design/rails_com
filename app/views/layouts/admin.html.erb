@@ -1,15 +1,12 @@
 <%= render layout: 'layouts/admin_head' do %>
-  <body>
-    <%= render 'nav_bar' %>
-    <main class="columns">
-      <div class="column is-narrow p-0" style="width:260px">
-        <%= render 'nav' %>
-      </div>
-      <div class="column">
-        <%= render 'breadcrumb' %>
-        <%= yield %>
-      </div>
-    </main>
-    <div id="modal"></div>
-  </body>
+  <%= render 'nav_bar' %>
+  <main class="columns">
+    <div class="column is-narrow p-0" style="width:260px">
+      <%= render 'nav' %>
+    </div>
+    <div class="column">
+      <%= render 'breadcrumb' %>
+      <%= yield %>
+    </div>
+  </main>
 <% end %>

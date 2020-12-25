@@ -19,5 +19,9 @@
     <%= csp_meta_tag %>
     <%= yield :head %>
   </head>
-  <%= yield %>
+  <body>
+    <%= yield %>
+    <div id="modal"></div>
+    <div id="visit"></div>
+  </body>
 </html>
