@@ -1,4 +1,5 @@
-import '@hotwired/turbo'
+import * as Turbo from '@hotwired/turbo'
+window.Turbo = Turbo
 import { timeForLocalized, prepareFormFilter } from './footer'
 import { prepareFormValid } from 'default_form/footer'
 

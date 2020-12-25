@@ -16,6 +16,7 @@ import './taxon'
 import './tree'
 import './tree_remote'
 import './typer'
+import './visit'
 
 import './sortable' // dependent on sortable
 import './choice' // Dependent on Choices.js
