@@ -10,10 +10,10 @@
     <meta name="description" content="<%= yield(:meta_description) %>">
     <meta name="keywords" content="<%= yield(:meta_keywords) %>">
     <meta name="turbolinks-cache-control" content="no-preview">
-    <%= stylesheet_pack_tag 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= css_load suffix: 'phone', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'phone', 'data-turbolinks-track': 'reload' %>
-    <%= js_load suffix: 'phone', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'phone', 'data-turbo-track': 'reload' %>
+    <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <% if content_for?(:wechat_js) %>
       <%= yield(:wechat_js) %>
