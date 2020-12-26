@@ -8,6 +8,7 @@ default: &default
   webpack_compile_output: false
   additional_paths:
   - app/javascript/stylesheets
+  engine_paths: []
   cache_manifest: false
   extract_css: true
   ignore: '**/_*.scss'
