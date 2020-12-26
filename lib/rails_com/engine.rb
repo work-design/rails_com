@@ -46,9 +46,9 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
           java_root.children.select(&->(i){ i.directory? }).each do |path|
             webpack.append 'additional_paths', path.to_s
           end
-
-          webpack.append 'entry_paths', java_root.to_s
         end
+
+        webpack.append 'engine_paths', engine.root.join('app/views').to_s
       end
       webpack.dump
     end
