@@ -48,7 +48,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
           end
         end
 
-        webpack.append 'engine_paths', engine.root.join('app/views').to_s
+        webpack.append 'engine_paths', engine.root.join('app/views').to_s if engine.root.join('app/views').directory?
       end
       webpack.dump
     end
