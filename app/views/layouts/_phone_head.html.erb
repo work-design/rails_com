@@ -10,7 +10,7 @@
     <meta name="description" content="<%= yield(:meta_description) %>">
     <meta name="keywords" content="<%= yield(:meta_keywords) %>">
     <meta name="turbolinks-cache-control" content="no-preview">
-    <%= stylesheet_pack_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_packs_with_chunks_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_pack_tag 'phone', 'data-turbo-track': 'reload' %>
     <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
