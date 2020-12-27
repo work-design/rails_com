@@ -44,13 +44,16 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
         java_root = engine.root.join('app/javascript')
         java_root.children.select(&->(i){ i.directory? }).each do |path|
           webpack.append 'additional_paths', path.to_s
-        end if java_root.exist?
+        end if java_root.directory?
         asset_root = engine.root.join('app/assets')
         asset_root.children.select(&->(i){ i.directory? }).each do |path|
           webpack.append 'additional_paths', path.to_s
-        end if asset_root.exist?
-
-        webpack.append 'engine_paths', engine.root.join('app/views').to_s if engine.root.join('app/views').directory?
+        end if asset_root.directory?
+        view_root = engine.root.join('app/views')
+        if view_root.directory?
+          webpack.append 'additional_paths', view_root.to_s
+          webpack.append 'engine_paths', view_root.to_s
+        end
       end
       webpack.dump
     end
