@@ -42,11 +42,11 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       webpack = Webpacker::YamlHelper.new
       Rails::Engine.subclasses.each do |engine|
         java_root = engine.root.join('app/javascript')
-        java_root.children.select(&->(i){ i.directory? }).each do |path|
+        java_root.children.select(&:directory?).each do |path|
           webpack.append 'additional_paths', path.to_s
         end if java_root.directory?
         asset_root = engine.root.join('app/assets')
-        Dir.glob("#{asset_root}/**/*").select(&->(i){ File.directory?(i) }).each do |path|
+        asset_root.children.select(&:directory?).each do |path|
           webpack.append 'additional_paths', path.to_s
         end if asset_root.directory?
         view_root = engine.root.join('app/views')
