@@ -5,21 +5,18 @@ default: &default
   public_output_path: packs
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
-  additional_paths:
-  - app/javascript/stylesheets
+  additional_paths: []
   engine_paths: []
   cache_manifest: false
-  extract_css: true
-  ignore: '**/_*.scss'
 development:
   <<: *default
-  public_output_path: packs_dev
   compile: true
+  public_output_path: packs-dev
   dev_server:
     https: false
     host: localhost
-    port: 3100
-    public: localhost:3100
+    port: 3035
+    public: localhost:3035
     hmr: false
     inline: true
     overlay: true
@@ -27,6 +24,7 @@ development:
     disable_host_check: true
     use_local_ip: false
     quiet: false
+    pretty: false
     headers:
       Access-Control-Allow-Origin: '*'
       Access-Control-Allow-Headers: x-csrf-token, x-requested-with
@@ -36,7 +34,6 @@ test:
   <<: *default
   compile: true
   public_output_path: packs-test
-  cache_manifest: true
 staging:
   <<: *default
   compile: false
