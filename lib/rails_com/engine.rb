@@ -46,7 +46,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
           webpack.append 'additional_paths', path.to_s
         end if java_root.directory?
         asset_root = engine.root.join('app/assets')
-        asset_root.children.select(&->(i){ i.directory? }).each do |path|
+        Dir.glob("#{asset_root}/**/*").select(&->(i){ File.directory?(i) }).each do |path|
           webpack.append 'additional_paths', path.to_s
         end if asset_root.directory?
         view_root = engine.root.join('app/views')
