@@ -1,3 +1,1 @@
-<%= turbo_stream.update 'visit' do %>
-  <div data-controller="visit"></div>
-<% end %>
+<%= turbo_stream.prepend 'tbody', partial: 'index_tbody' %>
