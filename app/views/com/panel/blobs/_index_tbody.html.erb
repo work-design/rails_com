@@ -19,7 +19,7 @@
     <% end %>
   </td>
   <td>
-    <%= link_to panel_blob_path(blob), method: :delete, remote: true, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to panel_blob_path(blob), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
     <%= link_to rails_ext_audio_path(blob.id), target: '_blank', aria: { label: t('.play') }, class: 'button is-small is-rounded is-light' do %>

@@ -13,19 +13,19 @@
     <%= link_to panel_acme_order_identifiers_path(acme_order), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-info"></i>
     <% end %>
-    <%= link_to({ action: 'order', id: acme_order.id }, aria: { label: t('.order') }, method: :patch, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'order', id: acme_order.id }, aria: { label: t('.order') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-shopping-cart"></i>
     <% end %>
-    <%= link_to({ action: 'verify', id: acme_order.id }, aria: { label: t('.verify') }, method: :patch, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'verify', id: acme_order.id }, aria: { label: t('.verify') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-check"></i>
     <% end %>
-    <%= link_to({ action: 'cert', id: acme_order.id }, aria: { label: t('.cert') }, method: :patch, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'cert', id: acme_order.id }, aria: { label: t('.cert') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-certificate"></i>
     <% end %>
-    <%= link_to({ action: 'edit', id: acme_order.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'edit', id: acme_order.id }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to({ action: 'destroy', id: acme_order.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'destroy', id: acme_order.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

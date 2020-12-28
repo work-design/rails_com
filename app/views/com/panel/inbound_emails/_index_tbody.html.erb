@@ -5,13 +5,13 @@
   <td><%= simple_format inbound_email.mail.to %></td>
   <td><%= link_to inbound_email.mail.subject, panel_inbound_email_path(inbound_email) %></td>
   <td>
-    <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-info"></i>
     <% end %>
-    <%= link_to edit_panel_inbound_email_path(inbound_email), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to edit_panel_inbound_email_path(inbound_email), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to panel_inbound_email_path(inbound_email), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to panel_inbound_email_path(inbound_email), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

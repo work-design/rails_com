@@ -8,7 +8,7 @@
   <% else %>
     <p id="attachment_<%= target.id %>">
       <%= link_to target.filename, rails_ext_blob_path(target) %>
-      <%= link_to 'x', admin_attachment_path(target.id), method: :delete, data: { confirm: t('.confirm') }, remote: true %>
+      <%= link_to 'x', admin_attachment_path(target.id), method: :delete, data: { confirm: t('.confirm') } %>
     </p>
   <% end %>
 <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
@@ -21,7 +21,7 @@
     <% else %>
       <p id="attachment_<%= file.id %>">
         <%= link_to file.filename, rails_ext_blob_path(file) %>
-        <%= link_to 'x', admin_attachment_path(file.id), method: :delete, data: { confirm: t('.confirm') }, remote: true %>
+        <%= link_to 'x', admin_attachment_path(file.id), method: :delete, data: { confirm: t('.confirm') } %>
       </p>
     <% end %>
   <% end %>

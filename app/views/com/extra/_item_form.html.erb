@@ -5,10 +5,10 @@
       <%= pf.text_field :column %>
       <%= pf.select :value, options_for_select(RailsCom.config.mapping.keys), class: 'ui dropdown selection' %>
       <div class="field is-flex">
-        <%= link_to extra_add_item_path(index: params[:index].to_i + 1, scope: params[:scope]), remote: true do %>
+        <%= link_to extra_add_item_path(index: params[:index].to_i + 1, scope: params[:scope]) do %>
           <i class="fas fa-plus"></i>
         <% end %>
-        <%= link_to extra_remove_item_path(index: params[:index].to_i, scope: params[:scope]), remote: true do %>
+        <%= link_to extra_remove_item_path(index: params[:index].to_i, scope: params[:scope]) do %>
           <i class="fas fa-minus"></i>
         <% end %>
       </div>
