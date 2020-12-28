@@ -1,1 +1,2 @@
-<%= turbo_stream.prepend 'tbody', partial: 'index_tbody' %>
+<%= turbo_stream.prepend 'tbody', partial: 'index_tbody', locals: { controller_name.singularize.to_sym => instance_variable_get("@#{controller_name.singularize}") } %>
+<%= turbo_stream.remove 'modal' %>
