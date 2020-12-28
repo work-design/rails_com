@@ -36,7 +36,7 @@ module RailsCom::AssetsHelper
   private
   def assets_load_path(exts: [], suffix: nil)
     exts.uniq!
-    filename = "controllers/#{controller_path}/#{@_rendered_template}"
+    filename = "#{controller_path}/#{@_rendered_template}"
     filename = [filename, '-', suffix].join if suffix
 
     exts.each do |ext|
