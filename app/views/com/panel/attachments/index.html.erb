@@ -1,5 +1,5 @@
 <%= render layout: 'index_table', locals: { cache_key: ActiveStorage::Attachment.column_names.hash } do %>
-  <%= render partial: 'index_tbody', collection: @attachments, as: :attachment %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @attachments, as: :attachment %>
 <% end %>
 
 <%= paginate @attachments %>

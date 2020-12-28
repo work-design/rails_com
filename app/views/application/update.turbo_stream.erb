@@ -1,2 +1,2 @@
-<%= turbo_stream.replace "tr_#{params[:id]}", partial: 'index_tbody', locals: { controller_name.singularize.to_sym => instance_variable_get("@#{controller_name.singularize}") } %>
-<%= turbo_stream.remove 'modal' %>
+<%= turbo_stream.replace "tr_#{params[:id]}", partial: 'index_tbody', layout: 'index_tr', locals: { model: instance_variable_get("@#{controller_name.singularize}") } %>
+<%= turbo_stream.update 'modal' %>

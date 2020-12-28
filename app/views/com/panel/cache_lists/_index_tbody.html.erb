@@ -1,17 +1,4 @@
-<tr>
-  <td><%= cache_list.id %></td>
-  <td><%= cache_list.path %></td>
-  <td><%= cache_list.key %></td>
-  <td><%= cache_list.etag %></td>
-  <td>
-    <%= link_to panel_cache_list_path(cache_list), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-info"></i>
-    <% end %>
-    <%= link_to edit_panel_cache_list_path(cache_list), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to panel_cache_list_path(cache_list), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.id %></td>
+<td><%= model.path %></td>
+<td><%= model.key %></td>
+<td><%= model.etag %></td>

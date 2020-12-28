@@ -1,0 +1,11 @@
+<tr>
+  <%= yield %>
+  <td>
+    <%= link_to edit_panel_blob_default_path(blob_default), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to panel_blob_default_path(blob_default), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>

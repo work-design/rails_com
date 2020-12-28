@@ -1,28 +1,28 @@
-<tr id="blob_<%= blob.id %>">
-  <td><%= blob.id %></td>
-  <td><%= blob.key %></td>
+<tr id="blob_<%= model.id %>">
+  <td><%= model.id %></td>
+  <td><%= model.key %></td>
   <td>
-    <p><%= image_tag blob.variant(resize_to_limit: [100, 100]) if blob.image? %></p>
-    <% if blob.url.present? %>
-      <p><%= link_to blob.filename, blob.url %></p>
+    <p><%= image_tag model.variant(resize_to_limit: [100, 100]) if model.image? %></p>
+    <% if model.url.present? %>
+      <p><%= link_to model.filename, model.url %></p>
     <% else %>
-      <p><%= blob.filename %></p>
+      <p><%= model.filename %></p>
     <% end %>
   </td>
-  <td><%= blob.content_type %></td>
-  <td><%= simple_format(blob.metadata) %></td>
-  <td><%= number_to_human_size(blob.byte_size) %></td>
-  <td><time><%= blob.created_at.to_s(:rfc822) %></time></td>
+  <td><%= model.content_type %></td>
+  <td><%= simple_format(model.metadata) %></td>
+  <td><%= number_to_human_size(model.byte_size) %></td>
+  <td><time><%= model.created_at.to_s(:rfc822) %></time></td>
   <td>
-    <% blob.attachments.each do |attachment| %>
+    <% model.attachments.each do |attachment| %>
       <%= link_to "#{attachment.record_type}_#{attachment.record_id}", panel_attachments_path(id: attachment.id) %>
     <% end %>
   </td>
   <td>
-    <%= link_to panel_blob_path(blob), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to panel_blob_path(model), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
-    <%= link_to rails_ext_audio_path(blob.id), target: '_blank', aria: { label: t('.play') }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to rails_ext_audio_path(model.id), target: '_blank', aria: { label: t('.play') }, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-play"></i>
     <% end %>
   </td>

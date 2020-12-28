@@ -1,5 +1,5 @@
 <%= render layout: 'index_table', locals: { cache_key: BlobDefault.column_names.hash } do %>
-  <%= render partial: 'index_tbody', collection: @blob_defaults, as: :blob_default %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @blob_defaults, as: :model %>
 <% end %>
 
 <%= paginate @blob_defaults %>
