@@ -1,5 +1,6 @@
 <turbo-frame id="new_form">
-<%= link_to({ action: 'new' }, class: 'button is-link') do %>
-  <i class="fas fa-plus"></i><span><%= t('.new') %></span>
-<% end %>
+  <%= link_to({ action: 'new' }, class: 'button is-link') do %>
+    <i class="fas fa-plus"></i><span><%= t('.new') %></span>
+  <% end %>
+  <div id="modal"></div>
 </turbo-frame>
