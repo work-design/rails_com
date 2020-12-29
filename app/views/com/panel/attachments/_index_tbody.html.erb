@@ -1,13 +1,6 @@
-<tr id="attachment_<%= attachment.id %>">
-  <td><%= attachment.id %></td>
-  <td><%= attachment.name %></td>
-  <td><%= attachment.record_type %></td>
-  <td><%= attachment.record_id %></td>
-  <td><%= attachment.blob_id %></td>
-  <td><time><%= attachment.created_at.to_s(:rfc822) %></time></td>
-  <td>
-    <%= link_to delete_panel_attachment_path(attachment), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.id %></td>
+<td><%= model.name %></td>
+<td><%= model.record_type %></td>
+<td><%= model.record_id %></td>
+<td><%= model.blob_id %></td>
+<td data-controller="time"><%= model.created_at.to_s(:rfc822) %></td>
