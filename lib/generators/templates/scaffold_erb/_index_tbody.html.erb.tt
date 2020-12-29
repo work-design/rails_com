@@ -1,16 +1,3 @@
-<tr>
 <% attributes.each do |attribute| -%>
-  <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
+  <td><%%= model.<%= attribute.name %> %></td>
 <% end -%>
-  <td>
-    <%%= link_to({ action: 'show', id: <%= singular_name %>.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-info"></i>
-    <%% end %>
-    <%%= link_to({ action: 'edit', id: <%= singular_name %>.id }, { aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-pencil-alt"></i>
-    <%% end %>
-    <%%= link_to({ action: 'destroy', id: <%= singular_name %>.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-trash-alt"></i>
-    <%% end %>
-  </td>
-</tr>
