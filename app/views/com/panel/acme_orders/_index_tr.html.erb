@@ -2,7 +2,7 @@
   <%= yield %>
   <td>
     <turbo-frame data-show-target="item" style="visibility: hidden">
-      <%= link_to panel_acme_order_identifiers_path(model), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
+      <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, data: { turbo_frame: '_top' }, aria: { label: t('.show') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-info"></i>
       <% end %>
       <%= link_to({ action: 'order', id: model.id }, aria: { label: t('.order') }, method: :patch, class: 'button is-small is-rounded is-light') do %>

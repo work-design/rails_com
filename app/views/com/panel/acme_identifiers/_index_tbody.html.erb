@@ -1,20 +1,7 @@
-<tr>
-  <td><%= acme_identifier.identifier %></td>
-  <td><%= acme_identifier.file_name %></td>
-  <td><%= acme_identifier.file_content %></td>
-  <td><%= acme_identifier.record_name %></td>
-  <td><%= acme_identifier.record_content %></td>
-  <td><%= acme_identifier.domain %></td>
-  <td><%= acme_identifier.dns_valid %></td>
-  <td>
-    <%= link_to panel_acme_identifier_path(acme_identifier), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-info"></i>
-    <% end %>
-    <%= link_to edit_panel_acme_identifier_path(acme_identifier), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to panel_acme_identifier_path(acme_identifier), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.identifier %></td>
+<td><%= model.file_name %></td>
+<td><%= model.file_content %></td>
+<td><%= model.record_name %></td>
+<td><%= model.record_content %></td>
+<td><%= model.domain %></td>
+<td><%= model.dns_valid %></td>

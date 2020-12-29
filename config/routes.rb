@@ -82,7 +82,7 @@ Rails.application.routes.draw do
       end
       resources :acme_orders, shallow: true, only: [] do
         resources :acme_identifiers, only: [:index, :new, :create], as: :identifiers
-        resources :acme_identifiers, only: [:edit, :update, :destroy]
+        resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
       end
     end
   end
