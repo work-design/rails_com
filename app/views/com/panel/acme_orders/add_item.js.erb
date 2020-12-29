@@ -1,6 +1,0 @@
-<% f_object = form_object(@acme_order) %>
-
-document.getElementById('card_template_advances_<%= params[:index] %>').insertAdjacentHTML(
-  'afterend',
-  '<%= j(render partial: 'item_field', locals: { f: f_object, index: UidHelper.sec_uuid }) %>'
-)

@@ -5,19 +5,19 @@
       <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, data: { turbo_frame: '_top' }, aria: { label: t('.show') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-info"></i>
       <% end %>
-      <%= link_to({ action: 'order', id: model.id }, aria: { label: t('.order') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+      <%= button_to({ action: 'order', id: model.id }, method: :patch, aria: { label: t('.order') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-shopping-cart"></i>
       <% end %>
-      <%= link_to({ action: 'verify', id: model.id }, aria: { label: t('.verify') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+      <%= button_to({ action: 'verify', id: model.id }, method: :patch, aria: { label: t('.verify') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-check"></i>
       <% end %>
-      <%= link_to({ action: 'cert', id: model.id }, aria: { label: t('.cert') }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+      <%= button_to({ action: 'cert', id: model.id }, method: :patch, aria: { label: t('.cert') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-certificate"></i>
       <% end %>
       <%= link_to({ action: 'edit', id: model.id }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-pencil-alt"></i>
       <% end %>
-      <%= link_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
+      <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </turbo-frame>
