@@ -1,2 +1,3 @@
-<%= turbo_stream.replace "tr_#{params[:id]}", partial: 'index_tbody', layout: 'index_tr', locals: { model: instance_variable_get("@#{controller_name.singularize}") } %>
-<%= turbo_stream.update 'modal' %>
+<%= turbo_stream.update 'visit' do %>
+  <div data-controller="visit" data-visit-url-value="<%= url_for(action: controller.available_action?(:index) ? 'index' : 'show') %>"></div>
+<% end %>
