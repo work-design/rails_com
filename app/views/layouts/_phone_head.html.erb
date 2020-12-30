@@ -12,7 +12,7 @@
     <meta name="turbolinks-cache-control" content="no-preview">
     <%= stylesheet_packs_with_chunks_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_pack_tag 'phone', 'data-turbo-track': 'reload' %>
+    <%= javascript_packs_with_chunks_tag 'phone', 'data-turbo-track': 'reload' %>
     <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <% if content_for?(:wechat_js) %>
