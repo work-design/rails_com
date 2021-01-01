@@ -1,5 +1,6 @@
 module RailsCom::Connection
   extend ActiveSupport::Concern
+
   included do
     identified_by :verified_receiver
   end
@@ -7,7 +8,7 @@ module RailsCom::Connection
   def connect
     self.verified_receiver = find_verified_receiver
   end
-  
+
   protected
   def find_verified_receiver
     if session && session['auth_token']
@@ -21,7 +22,7 @@ module RailsCom::Connection
     logger.error 'An unauthorized connection attempt was rejected'
     nil
   end
-  
+
   def session
     session_key = Rails.configuration.session_options[:key]
     cookies.encrypted[session_key]
