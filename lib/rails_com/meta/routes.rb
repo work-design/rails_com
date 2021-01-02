@@ -7,17 +7,29 @@ module RailsCom::Routes
     routes_wrapper.select { |i| i[:controller] == controller.to_s && i[:action] == action.to_s }.map { |i| i[:verb] }.uniq
   end
 
-  def actions(controller)
-    controllers[controller.to_s].map { |i| i[:action] }.uniq
+  def actions(cached = true)
+    return @actions if cached && defined? @actions
+
+    @actions = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |business|
+      business.group_by(&->(i){ i[:namespace] }).transform_values! do |namespace|
+        namespace.group_by(&->(i){ i[:controller_name] }).transform_values! do |v|
+          v.map! { |i| i[:action] }.uniq
+        end
+      end
+    end
   end
 
   def controllers(cached = true)
     return @controllers if cached && defined? @controllers
 
-    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:controller] }).transform_values! do |v|
-      v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
+    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |business|
+      business.group_by(&->(i){ i[:namespace] }).transform_values! do |namespace|
+        namespace.group_by(&->(i){ i[:controller_name] }).transform_values! do |v|
+          v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
+        end
+      end
     end
-    @controllers.delete(nil)
+    #@controllers.delete(nil)
     @controllers
   end
 
@@ -43,6 +55,7 @@ module RailsCom::Routes
         namespace: route.defaults[:namespace],
         business: route.defaults[:business],
         controller: route.defaults[:controller],
+        controller_name: route.defaults[:controller].to_s.split('/')[-1],
         action: route.defaults[:action]
       }
     end
