@@ -22,12 +22,8 @@ module RailsCom::Routes
   def controllers(cached = true)
     return @controllers if cached && defined? @controllers
 
-    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |businesses|
-      businesses.group_by(&->(i){ i[:namespace] }).transform_values! do |namespaces|
-        namespaces.group_by(&->(i){ i[:controller_name] }).transform_values! do |controllers|
-          controllers.each_with_object({}) { |i, h| h.merge! i[:action] => i }
-        end
-      end
+    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:controller] }).transform_values! do |v|
+      v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
     end
     #@controllers.delete(nil)
     @controllers

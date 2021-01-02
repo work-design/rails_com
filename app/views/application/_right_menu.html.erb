@@ -8,7 +8,7 @@
     </div>
     <div class="navbar-dropdown is-right">
       <%= link_to '个人中心', board_root_path, class: active_helper(controllers: ['users'], active: 'navbar-item is-active', item: 'navbar-item') %>
-      <%= link_to '退出', logout_path, data: { confirm: '确认退出' }, class: 'navbar-item' %>
+      <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { confirm: '确认退出' }, class: 'navbar-item' %>
     </div>
   </div>
 <% elsif defined?(RailsAuth) %>
