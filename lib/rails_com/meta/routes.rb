@@ -25,8 +25,6 @@ module RailsCom::Routes
     @controllers = routes_wrapper(cached).group_by(&->(i){ i[:controller] }).transform_values! do |v|
       v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
     end
-    #@controllers.delete(nil)
-    @controllers
   end
 
   def businesses(cached = true)
