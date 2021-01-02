@@ -10,10 +10,10 @@ module RailsCom::Routes
   def actions(cached = true)
     return @actions if cached && defined? @actions
 
-    @actions = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |business|
-      business.group_by(&->(i){ i[:namespace] }).transform_values! do |namespace|
-        namespace.group_by(&->(i){ i[:controller_name] }).transform_values! do |v|
-          v.map! { |i| i[:action] }.uniq
+    @actions = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |businesses|
+      businesses.group_by(&->(i){ i[:namespace] }).transform_values! do |namespaces|
+        namespaces.group_by(&->(i){ i[:controller_name] }).transform_values! do |controllers|
+          controllers.map!(&->(i){ i[:action] }).uniq
         end
       end
     end
@@ -22,10 +22,10 @@ module RailsCom::Routes
   def controllers(cached = true)
     return @controllers if cached && defined? @controllers
 
-    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |business|
-      business.group_by(&->(i){ i[:namespace] }).transform_values! do |namespace|
-        namespace.group_by(&->(i){ i[:controller_name] }).transform_values! do |v|
-          v.each_with_object({}) { |i, h| h.merge! i[:action] => i }
+    @controllers = routes_wrapper(cached).group_by(&->(i){ i[:business] }).transform_values! do |businesses|
+      businesses.group_by(&->(i){ i[:namespace] }).transform_values! do |namespaces|
+        namespaces.group_by(&->(i){ i[:controller_name] }).transform_values! do |controllers|
+          controllers.each_with_object({}) { |i, h| h.merge! i[:action] => i }
         end
       end
     end
