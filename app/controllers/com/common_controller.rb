@@ -30,12 +30,13 @@ class Com::CommonController < Com::BaseController
   end
 
   def deploy
+    require 'deploy'
     digest = request.headers['X-Hub-Signature'].to_s
     digest.sub!('sha1=', '')
 
     return unless digest == Deploy.github_hmac(request.body.read)
     result = ''
-    Deploy.works
+    Deploy.exec_cmds Rails.env
 
     render plain: result
   end
