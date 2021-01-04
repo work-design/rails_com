@@ -35,7 +35,8 @@ class Com::CommonController < Com::BaseController
     digest.sub!('sha1=', '')
 
     if digest == Deploy.github_hmac(request.body.read)
-      Deploy.exec_cmds Rails.env
+      r = Deploy.exec_cmds Rails.env.to_s
+      logger.debug "=========> Deploy Result: #{r}"
       result = ''
     else
       result = ''
