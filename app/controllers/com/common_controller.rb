@@ -37,9 +37,7 @@ class Com::CommonController < Com::BaseController
     payload = JSON.parse(params[:payload])
 
     if digest == Deploy.github_hmac(request.body.read) && payload.dig('head_commit', 'message').to_s.end_with?('@deploy')
-      r = Deploy.exec_cmds Rails.env.to_s
-      logger.debug "=========> Deploy Result: #{r}"
-      result = ''
+      result = Deploy.exec_cmds Rails.env.to_s
     else
       result = ''
       logger.debug "==========> Deploy failed"
