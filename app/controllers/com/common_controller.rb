@@ -29,12 +29,14 @@ class Com::CommonController < Com::BaseController
     raise 'error from test raise'
   end
 
+  # commit message end with '@deploy'
   def deploy
     require 'deploy'
     digest = request.headers['X-Hub-Signature'].to_s
     digest.sub!('sha1=', '')
+    payload = JSON.parse(params[:payload])
 
-    if digest == Deploy.github_hmac(request.body.read)
+    if digest == Deploy.github_hmac(request.body.read) && payload.dig('head_commit', 'message').to_s.end_with?('@deploy')
       r = Deploy.exec_cmds Rails.env.to_s
       logger.debug "=========> Deploy Result: #{r}"
       result = ''
