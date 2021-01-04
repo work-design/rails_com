@@ -40,6 +40,7 @@ class Com::CommonController < Com::BaseController
       result = ''
     else
       result = ''
+      logger.debug "==========> Deploy failed"
     end
 
     render plain: result
