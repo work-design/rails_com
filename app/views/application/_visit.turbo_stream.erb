@@ -11,3 +11,7 @@ Turbo.visit(url, { action: 'replace' })
 <% else %>
 Turbo.visit(location.href, { action: 'replace' })
 <% end %>
+
+<%= turbo_stream.update 'visit' do %>
+  <div data-controller="visit" data-visit-url-value="<%= url_for(action: controller.available_action?(:index) ? 'index' : 'show') %>"></div>
+<% end %>
