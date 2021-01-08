@@ -1,17 +1,3 @@
-Turbo.clearCache()
-document.documentElement.classList.remove('is-clipped')
-<% if defined? return_to %>
-Turbo.visit('<%= return_to.html_safe %>', { action: 'replace' })
-<% elsif defined? query %>
-let url = new URL(location)
-<% query.each do |k, v| %>
-url.searchParams.set('<%= k %>', '<%= v %>')
-<% end %>
-Turbo.visit(url, { action: 'replace' })
-<% else %>
-Turbo.visit(location.href, { action: 'replace' })
-<% end %>
-
 <%= turbo_stream.update 'visit' do %>
   <div data-controller="visit" data-visit-url-value="<%= url_for(action: controller.available_action?(:index) ? 'index' : 'show') %>"></div>
 <% end %>
