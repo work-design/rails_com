@@ -1,4 +1,5 @@
 default: &default
+  additional_paths: []
   engine_paths: []
 development:
   <<: *default
