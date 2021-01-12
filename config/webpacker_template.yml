@@ -5,6 +5,7 @@ development:
   <<: *default
   public_output_path: packs-dev
   dev_server:
+    disableHostCheck: true
     headers:
       Access-Control-Allow-Headers: x-csrf-token, x-requested-with
 test:
