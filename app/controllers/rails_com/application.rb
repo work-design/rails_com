@@ -40,7 +40,7 @@ module RailsCom::Application
       session[:zone] = zone
     end
 
-    if current_user && current_user.timezone.blank?
+    if defined?(current_user) && current_user&.timezone.blank?
       current_user.update timezone: Time.zone.name
     end
     logger.debug "  ==========> Zone: #{Time.zone}"
@@ -73,7 +73,7 @@ module RailsCom::Application
     I18n.locale = locale
     session[:locale] = locale
 
-    if current_user && current_user.locale.to_s != I18n.locale.to_s
+    if defined?(current_user) && current_user&.locale.to_s != I18n.locale.to_s
       current_user.update locale: I18n.locale
     end
 

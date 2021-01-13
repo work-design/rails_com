@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'webpacker'
+gem 'puma'
 gem 'pg'
 gem 'image_processing'
 

@@ -1,15 +1,4 @@
-<tr>
-  <td><%= info.id %></td>
-  <td><%= info.code %></td>
-  <td><%= info.value %></td>
-  <td><%= info.platform_i18n %></td>
-  <td><%= info.version %></td>
-  <td>
-    <%= link_to edit_panel_info_path(info), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to panel_info_path(info), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.code %></td>
+<td><%= model.value %></td>
+<td><%= model.platform_i18n %></td>
+<td><%= model.version %></td>
