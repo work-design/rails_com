@@ -29,7 +29,7 @@ module Com
       def defaults
         Rails.cache.fetch('blob_default/default') do
           BlobDefault.includes(:file_attachment).map do |i|
-            ["#{i.record_class}_#{i.name}", i.file_attachment.blob_id]
+            ["#{i.record_class}_#{i.name}", i.file_attachment&.blob_id]
           end.compact.to_h
         end
       end
