@@ -1,18 +1,5 @@
-<tr>
-  <td><%= inbound_email.id %></td>
-  <td><%= inbound_email.status_i18n %></td>
-  <td><%= simple_format inbound_email.mail.from %></td>
-  <td><%= simple_format inbound_email.mail.to %></td>
-  <td><%= link_to inbound_email.mail.subject, panel_inbound_email_path(inbound_email) %></td>
-  <td>
-    <%= link_to panel_inbound_email_path(inbound_email), aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-info"></i>
-    <% end %>
-    <%= link_to edit_panel_inbound_email_path(inbound_email), aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to panel_inbound_email_path(inbound_email), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.id %></td>
+<td><%= model.status_i18n %></td>
+<td><%= simple_format model.mail.from %></td>
+<td><%= simple_format model.mail.to %></td>
+<td><%= link_to model.mail.subject, panel_inbound_email_path(model) %></td>

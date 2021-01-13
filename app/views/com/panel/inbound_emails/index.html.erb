@@ -1,5 +1,5 @@
 <%= render layout: 'index_table', locals: { cache_key: ActionMailbox::InboundEmail.column_names.hash } do %>
-  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @inbound_emails, as: :inbound_email %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @inbound_emails, as: :model %>
 <% end %>
 
 <%= paginate @inbound_emails %>

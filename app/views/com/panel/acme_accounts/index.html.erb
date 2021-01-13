@@ -1,4 +1,4 @@
-<%= render layout: 'index_table', locals: { cache_key: AcmeAccount.column_names.hash } do %>
+<%= render layout: 'index_table', locals: { cache_key: Com::AcmeAccount.column_names.hash } do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @acme_accounts, as: :model %>
 <% end %>
 
