@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/hotwired/turbo-rails.git
+  revision: 32b7af782136d60bb0712614c0d85a76475e6fb7
+  branch: main
+  specs:
+    turbo-rails (0.5.4)
+      rails (>= 6.0.0)
+
+GIT
   remote: https://github.com/qinmingyuan/default_form.git
   revision: 1e72c95dd3d13dbfa70661d63bdf644169c8d03f
   specs:
@@ -13,13 +21,6 @@ GIT
       activerecord (>= 4.0, <= 6.1)
 
 GIT
-  remote: https://github.com/qinmingyuan/turbo-rails.git
-  revision: 495eb1e34463db9ace802eee8b5338ef6e178e43
-  specs:
-    turbo-rails (0.5.3)
-      rails (>= 6.0.0)
-
-GIT
   remote: https://github.com/rails/webpacker.git
   revision: 1aca8aaebd21a075d42e718d2b60dfba8e8d1b70
   specs:
@@ -31,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_log.git
-  revision: 92e3d39dab6c3f72bbc911c983dc699bb6b62f90
+  revision: c9d1910c19a3c2676baca44b53a43e1ff0f5f158
   specs:
     rails_log (2.1.6)
       rails_com (~> 1.2)

@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'webpacker', github: 'rails/webpacker'
-gem 'turbo-rails', github: 'qinmingyuan/turbo-rails'
+gem 'turbo-rails', github: 'hotwired/turbo-rails', branch: 'main'
 gem 'puma'
 gem 'pg'
 gem 'image_processing'
