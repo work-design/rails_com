@@ -9,7 +9,7 @@ module RailsCom::AttachedOne
       return @attachment
     end
 
-    id = BlobDefault.defaults["#{record.class.name}_#{name}"]
+    id = Com::BlobDefault.defaults["#{record.class.name}_#{name}"]
     if id
       begin
         @attachment = ActiveStorage::Attachment.new(record: record, name: name, blob: ActiveStorage::Blob.find(id))

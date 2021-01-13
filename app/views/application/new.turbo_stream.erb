@@ -1,1 +1,4 @@
-<%= turbo_stream.update 'modal', partial: 'modal_form', locals: { action: 'new' } %>
+<turbo-frame id="new_form">
+  <%= render 'button' %>
+  <%= render partial: 'modal_form', locals: { action: 'new' } %>
+</turbo-frame>
