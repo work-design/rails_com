@@ -37,6 +37,14 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
   end
 
+  config.to_prepare do
+    overrides = RailsCom::Engine.root.join('app/overrides')
+    Rails.autoloaders.main.ignore(overrides)
+    Dir.glob("#{overrides}/**/*_override.rb").each do |override|
+      load override
+    end
+  end
+
   config.after_initialize do |app|
     if RailsCom.config.custom_webpacker
       webpack = Webpacker::YamlHelper.new
