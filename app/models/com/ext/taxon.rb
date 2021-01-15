@@ -10,7 +10,7 @@ module Com
       else
         model.has_closure_tree
       end
-      model.include RailsComExt::Taxon
+      model.include Com::Ext::TaxonPrepend
 
       model.attribute :parent_ancestors, :json, default: {}
       model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? && (parent_ancestors.presence != parent_ancestors_was.presence) }
