@@ -28,7 +28,7 @@ module RailsCom::Application
     end
 
     request.variant = variant
-    logger.debug "  ==========> Variant: #{request.variant}"
+    logger.debug "  \e[35m===== Variant: #{request.variant} =====\e[0m"
   end
 
   def set_timezone
@@ -43,7 +43,7 @@ module RailsCom::Application
     if defined?(current_user) && current_user&.timezone.blank?
       current_user&.update timezone: Time.zone.name
     end
-    logger.debug "  ==========> Zone: #{Time.zone}"
+    logger.debug "  \e[35m===== Zone: #{Time.zone} =====\e[0m"
   end
 
   # Accept-Language: "en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
@@ -77,7 +77,7 @@ module RailsCom::Application
       current_user&.update locale: I18n.locale
     end
 
-    logger.debug "  ==========> Locale: #{I18n.locale}"
+    logger.debug "  \e[35m===== Locale: #{I18n.locale} =====\e[0m"
   end
 
   def set_country
