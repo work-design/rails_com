@@ -49,7 +49,8 @@ module RailsCom::Routes
         namespace: route.defaults[:namespace],
         business: route.defaults[:business],
         controller: route.defaults[:controller],
-        action: route.defaults[:action]
+        action: route.defaults[:action],
+        required_parts: routes.required_parts
       }
     end
   end
