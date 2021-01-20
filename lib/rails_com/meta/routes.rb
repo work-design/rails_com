@@ -50,7 +50,7 @@ module RailsCom::Routes
         business: route.defaults[:business],
         controller: route.defaults[:controller],
         action: route.defaults[:action],
-        required_parts: routes.required_parts
+        required_parts: route.required_parts
       }
     end
   end

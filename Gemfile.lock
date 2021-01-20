@@ -18,7 +18,7 @@ GIT
   revision: e2085480367e97f9786b851134ee87fa06d78125
   specs:
     default_where (2.2.3)
-      activerecord (>= 4.0, <= 6.1)
+      activerecord (>= 4.0, <= 7.0)
 
 GIT
   remote: https://github.com/rails/webpacker.git
