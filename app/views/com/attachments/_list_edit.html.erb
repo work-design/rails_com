@@ -21,7 +21,7 @@
     <% else %>
       <p id="attachment_<%= file.id %>">
         <%= link_to file.filename, rails_ext_blob_path(file) %>
-        <%= link_to 'x', admin_attachment_path(file.id), method: :delete, data: { confirm: t('.confirm') } %>
+        <%= button_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: file.id }, method: :delete, data: { confirm: t('.confirm') } %>
       </p>
     <% end %>
   <% end %>
