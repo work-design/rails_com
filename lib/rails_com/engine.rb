@@ -49,7 +49,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     if RailsCom.config.custom_webpacker
       webpack = Webpacker::YamlHelper.new
       Rails::Engine.subclasses.each do |engine|
-        java_root = engine.root.join('app/javascript')
+        java_root = engine.root.join('app/packs')
         java_root.children.select(&:directory?).each do |path|
           webpack.append 'additional_paths', path.to_s
         end if java_root.directory?
