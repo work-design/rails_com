@@ -7,17 +7,17 @@ module ActiveStorage
         path = filename.to_s
 
         instrument :upload, key: key, checksum: checksum do
-          IO.copy_stream(io, make_filename_path_for(path)) if path.present?
-          ensure_integrity_of(key, checksum) if checksum
+          IO.copy_stream(io, make_path_for(path)) if path.present?
+          ensure_integrity_of(path, checksum) if checksum
         end
       end
 
-      def make_filename_path_for(key)
-        filename_path_for(key).tap { |path| FileUtils.mkdir_p File.dirname(path) }
+      def make_path_for(path)
+        path_for(path).tap { |p| FileUtils.mkdir_p File.dirname(p) }
       end
 
-      def filename_path_for(key)
-        File.join root, key
+      def path_for(path)
+        File.join root, path
       end
 
     end

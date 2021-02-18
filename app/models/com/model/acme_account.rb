@@ -12,10 +12,8 @@ module Com
       has_one_attached :private_pem, service: :acme
 
       after_create_commit :generate_account
-    end
 
-    def name
-      email.split('@')[0]
+      validates :email, uniqueness: true
     end
 
     def private_key
@@ -37,7 +35,7 @@ module Com
         file.binmode
         file.write private_key.to_pem
         file.rewind
-        self.private_pem.attach io: file, filename: "#{name}.pem"
+        self.private_pem.attach io: file, filename: "#{email}.pem"
       end
     end
 
