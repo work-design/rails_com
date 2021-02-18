@@ -1,3 +1,3 @@
-<%= f.fields :acme_identifiers, wrap: { all: nil, input: 'field' }, label: false, placeholder: true do |ef| %>
+<%= f.fields :acme_identifiers, child_index: index, wrap: { all: nil, input: 'field' }, label: false, placeholder: true do |ef| %>
   <%= render partial: 'item_form', locals: { ef: ef } %>
 <% end %>
