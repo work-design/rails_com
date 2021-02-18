@@ -1,5 +1,5 @@
 zh:
   activerecord:
     attributes:
-      acme_order:
+      com/acme_order:
         acme_identifiers_attributes: 域名
