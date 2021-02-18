@@ -41,3 +41,11 @@ require 'active_storage/service/disc_service'
 require 'default_where'
 require 'kaminari'
 require 'acts_as_list'
+
+module Com
+
+  def self.use_relative_model_naming?
+    true
+  end
+
+end

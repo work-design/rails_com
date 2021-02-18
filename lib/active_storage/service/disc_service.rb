@@ -3,12 +3,13 @@ module ActiveStorage
   class Service
     class DiscService < DiskService
 
-      def upload(key, io, checksum: nil, **metadata)
-        path = metadata[:filename].to_s
-        IO.copy_stream(io, make_filename_path_for(path)) if path.present?
-        io.rewind
+      def upload(key, io, checksum: nil, filename: nil, **)
+        path = filename.to_s
 
-        super
+        instrument :upload, key: key, checksum: checksum do
+          IO.copy_stream(io, make_filename_path_for(path)) if path.present?
+          ensure_integrity_of(key, checksum) if checksum
+        end
       end
 
       def make_filename_path_for(key)
