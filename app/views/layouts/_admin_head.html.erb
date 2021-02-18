@@ -7,9 +7,9 @@
       <title><%= current_title %></title>
     <% end %>
     <meta name="turbo-cache-control" content="no-preview">
-    <%= stylesheet_packs_with_chunks_tag 'admin/application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_pack_tag 'admin/application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= css_load media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_packs_with_chunks_tag 'admin/application', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'admin/application', 'data-turbo-track': 'reload' %>
     <%= js_load 'data-turbo-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
