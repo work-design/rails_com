@@ -69,7 +69,7 @@ Rails.application.routes.draw do
       end
     end
     resources :acme_accounts do
-      resources :acme_orders, as: :orders do
+      resources :acme_orders do
         collection do
           get :add_item
           get :remove_item
@@ -81,7 +81,7 @@ Rails.application.routes.draw do
         end
       end
       resources :acme_orders, shallow: true, only: [] do
-        resources :acme_identifiers, only: [:index, :new, :create], as: :identifiers
+        resources :acme_identifiers, only: [:index, :new, :create]
         resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
       end
     end

@@ -1,4 +1,4 @@
-<%= form_with model: @acme_order, url: panel_acme_account_order_path(@acme_account, @acme_order) do |f| %>
+<%= form_with model: @acme_order, url: { action: 'update' } do |f| %>
   <%= render 'shared/error_messages', target: @acme_order %>
   <% @acme_order.identifiers.each do |identifier| %>
     <%= render partial: 'item_field', locals: { f: f, index: 0, value: identifier } %>
