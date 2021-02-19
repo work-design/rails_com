@@ -46,13 +46,7 @@ module Com
       @authorizations = order.authorizations
       @authorizations.each do |auth|
         ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
-        ident.update(
-          record_name: auth.dns.record_name,
-          record_content: auth.dns.record_content,
-          file_name: auth.http&.filename,
-          file_content: auth.http&.file_content,
-          url: auth.url
-        ) if ident
+        ident.save_auth(auth) if ident
       end
       @authorizations
     end
