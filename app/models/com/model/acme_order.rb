@@ -49,6 +49,8 @@ module Com
         ident.update(
           record_name: auth.dns.record_name,
           record_content: auth.dns.record_content,
+          file_name: auth.http.filename,
+          file_content: auth.http.file_content,
           url: auth.url
         ) if ident
       end
