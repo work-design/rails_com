@@ -7,6 +7,10 @@ module Com
       attribute :orderid, :string
       attribute :url, :string
 
+      enum status: {
+        pending: 'pending'
+      }
+
       belongs_to :acme_account
       has_many :acme_identifiers, dependent: :delete_all
       accepts_nested_attributes_for :acme_identifiers
@@ -31,14 +35,10 @@ module Com
     # x
     def renew_order
       r = acme_account.client.new_order(identifiers: identifiers)
-      save_orderid
-      r
-    end
-
-    def save_orderid
-      self.orderid = order.to_h[:url].split('/')[-1]
-      self.url = order.to_h[:url]
+      self.orderid = r.to_h[:url].split('/')[-1]
+      self.url = r.to_h[:url]
       self.save
+      r
     end
 
     def authorizations
@@ -46,7 +46,11 @@ module Com
       @authorizations = order.authorizations
       @authorizations.each do |auth|
         ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
-        ident.update(record_name: auth.dns.record_name, record_content: auth.dns.record_content, url: auth.url) if ident
+        ident.update(
+          record_name: auth.dns.record_name,
+          record_content: auth.dns.record_content,
+          url: auth.url
+        ) if ident
       end
       @authorizations
     end

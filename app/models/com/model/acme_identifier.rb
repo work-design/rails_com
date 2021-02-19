@@ -6,6 +6,7 @@ module Com
       attribute :identifier, :string
       attribute :file_name, :string
       attribute :file_content, :string
+      attribute :token, :string
       attribute :record_name, :string
       attribute :record_content, :string
       attribute :domain, :string
