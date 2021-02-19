@@ -44,6 +44,21 @@ module Com
       dns_valid
     end
 
+    def write_file
+      file_path = Rails.root.join('public', file_name)
+      file_path.dirname.exist? || file_path.dirname.mkpath
+
+      if file_name.present?
+        File.open(file_path, 'w') do |f|
+          f.write file_content
+        end
+      end
+    end
+
+    def file_verify?
+      authorization.http.request_validation
+    end
+
     def dns_host
       "#{record_name}.#{domain}"
     end
