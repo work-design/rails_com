@@ -16,15 +16,23 @@ module Com
     end
 
     # status: pending
-    def order
+    def order(renewal = false)
       return @order if defined? @order
-      if url
+
+      if !renewal && url
         @order = acme_account.client.order(url: url)
       else
-        @order = acme_account.client.new_order(identifiers: identifiers)
-        save_orderid
+        @order = renew_order
       end
+
       @order
+    end
+
+    # x
+    def renew_order
+      r = acme_account.client.new_order(identifiers: identifiers)
+      save_orderid
+      r
     end
 
     def save_orderid
