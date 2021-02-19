@@ -82,5 +82,9 @@ module Com
       end
     end
 
+    def deactivate
+      acme_order.acme_account.client.deactivate_authorization(url: url)
+    end
+
   end
 end
