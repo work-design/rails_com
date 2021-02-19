@@ -59,7 +59,7 @@ module Com
       authorization.http.request_validation
     end
 
-    def save_auth(auth)
+    def save_auth(auth = authorization)
       update(
         record_name: auth.dns.record_name,
         record_content: auth.dns.record_content,
