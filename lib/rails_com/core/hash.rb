@@ -38,7 +38,7 @@ class Hash
     if remove
       removed.merge! o.common_basic(self)
     end
-    added.merge! o.diff_basic(self)
+    added.merge! o.diff_remove(self)
     added.merge! other_hash
 
     [removed, added]
@@ -47,33 +47,30 @@ class Hash
   # a = { a:1, b: 2 }
   # a.diff_remove { a: [1,2] }
   # => removes: { b: 2 }
-  def diff_remove(other_hash)
-    diff_basic(other_hash)
+  def diff_remove(other_hash, diff = {})
+    (keys | other_hash.keys).each do |key|
+      if self[key] != other_hash[key]
+        if self[key].is_a?(Hash) && other_hash[key].is_a?(Hash)
+          diff[key] = self[key].diff_remove(other_hash[key])
+        elsif self[key].is_a?(Array) && other_hash[key].is_a?(Array)
+          diff[key] = self[key] - other_hash[key]
+        elsif other_hash[key].is_a?(NilClass)
+          diff[key] = self[key]
+        end
+      end
+    end
+    diff
   end
 
   # a = { a:1, b: 2 }
   # a.diff_add { a: [1,2] }
   # => adds: { b: 2 }
   def diff_add(other_hash)
-    other_hash.diff_basic(self)
+    other_hash.diff_remove(self)
   end
 
   def diff_changes(other_hash)
     [diff_remove(other_hash), diff_add(other_hash)]
-  end
-
-  def diff_basic(h = {}, other_hash)
-    each do |key, value|
-      v = Array(value) - Array(other_hash[key])
-      if v.size > 1
-        h[key] = v
-      elsif v.size == 1
-        h[key] = v[0]
-      elsif v.empty?
-        h.delete(key)
-      end
-    end
-    h
   end
 
   def common_basic(h = {}, other_hash)
