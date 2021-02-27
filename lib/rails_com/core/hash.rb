@@ -59,6 +59,7 @@ class Hash
         end
       end
     end
+
     diff
   end
 
@@ -85,6 +86,20 @@ class Hash
       end
     end
     h
+  end
+
+  def deepest_values
+    r = []
+
+    values.each do |value|
+      if value.is_a?(Hash)
+        r += value.deepest_values
+      else
+        r << value
+      end
+    end
+
+    r
   end
 
 end
