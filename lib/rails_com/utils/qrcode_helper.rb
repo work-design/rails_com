@@ -14,7 +14,7 @@ module QrcodeHelper
   }
 
   def code_file(url, **options)
-    png = code_png url, options
+    png = code_png url, **options
     tmp = Tempfile.new
     tmp.binmode
     tmp.write png.to_s
