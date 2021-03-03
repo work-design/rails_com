@@ -9,14 +9,8 @@
       <% end %>
     </div>
     <div class="column">
-      <% if content_for?(:breadcrumb) %>
-        <%= yield(:breadcrumb) %>
-      <% else %>
-        <%= render 'breadcrumb' %>
-      <% end %>
-      <div>
-        <%= yield %>
-      </div>
+      <%= render 'breadcrumb' %>
+      <%= yield %>
     </div>
   </main>
   <%= render 'footer' %>
