@@ -6,13 +6,13 @@
   <% end %>
   <div class="field-body">
     <%= ef.text_field :identifier, label: nil, placeholder: Com::AcmeIdentifier.human_attribute_name(:identifier) %>
-    <turbo-frame class="field has-addons has-addons-middle">
-      <%= link_to({ action: 'add_item', index: ef.index }, data: { title: 'add_item' }) do %>
+    <span class="field has-addons has-addons-middle">
+      <%= button_to({ action: 'add_item', index: ef.index }) do %>
         <i class="fas fa-plus-circle"></i>
       <% end %>
-      <%= link_to({ action: 'remove_item', index: ef.index }) do %>
+      <%= button_to({ action: 'remove_item', index: ef.index }) do %>
         <i class="fas fa-minus-circle"></i>
       <% end %>
-    </turbo-frame>
+    </span>
   </div>
 </div>

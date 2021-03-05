@@ -71,8 +71,8 @@ Rails.application.routes.draw do
     resources :acme_accounts do
       resources :acme_orders do
         collection do
-          get :add_item
-          get :remove_item
+          post :add_item
+          post :remove_item
         end
         member do
           patch :order
