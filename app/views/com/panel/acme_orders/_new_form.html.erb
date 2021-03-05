@@ -1,5 +1,5 @@
 <%= form_with model: @acme_order, url: { action: 'create' } do |f| %>
-  <%= render 'shared/error_messages', target: @acme_order %>
+  <%= render 'shared/error_messages', target: f.object %>
   <%= f.fields :acme_identifiers, label: nil do |ef| %>
     <%= render partial: 'item_form', locals: { ef: ef } %>
   <% end %>
