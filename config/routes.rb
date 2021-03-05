@@ -70,10 +70,6 @@ Rails.application.routes.draw do
     end
     resources :acme_accounts do
       resources :acme_orders do
-        collection do
-          post :add_item
-          post :remove_item
-        end
         member do
           patch :order
           patch :verify

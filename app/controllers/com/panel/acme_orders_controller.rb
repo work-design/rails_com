@@ -25,14 +25,6 @@ module Com
       end
     end
 
-    def add_item
-      @acme_order = @acme_account.acme_orders.build
-      @acme_order.acme_identifiers.build
-    end
-
-    def remove_item
-    end
-
     def order
       r = @acme_order.order(true)
       if r.respond_to?(:status) && ['pending'].include?(r.status)
