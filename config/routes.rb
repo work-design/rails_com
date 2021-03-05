@@ -10,10 +10,6 @@ Rails.application.routes.draw do
       get :cancel
       match :deploy, via: [:get, :post]
     end
-    scope 'extra', as: :extra, controller: :extra do
-      get :add_item
-      get :remove_item
-    end
     resources :nodes, only: [] do
       collection do
         get :children
