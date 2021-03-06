@@ -1,14 +1,15 @@
 module RailsCom::TreeHelper
 
   # first locals must be node
-  def draw_tree(object:, partial:, **options)
+  def draw_tree(partial:, locals:, **options)
     str = ''
 
-    object.children.each do |child|
-      concat(render partial: partial, **options)
+    locals[:model].children.each do |child|
+      locals[:model] = child
+      concat(render partial: partial, locals: locals, **options)
 
       if child.children.any?
-        draw_tree(partial: partial, **options)
+        draw_tree(partial: partial, locals: locals, **options)
       end
     end
 
