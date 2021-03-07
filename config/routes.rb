@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope module: 'com', defaults: { namespace: 'application', business: 'com' } do
+  scope module: 'com', defaults: { business: 'com' } do
     controller :common do
       get :infos
       get :cache_list
@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
-  scope 'rails/active_storage', module: :com, defaults: { namespace: 'application', business: 'com' } do
+  scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
     resources :direct_uploads, only: [:create]
   end
 
-  scope :rails, module: 'com', as: :rails_ext, defaults: { namespace: 'application', business: 'com' } do
+  scope :rails, module: 'com', as: :rails_ext, defaults: { business: 'com' } do
     resources :videos, only: [:show] do
       member do
         put :transfer
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :panel, module: 'com/panel', as: :panel, defaults: { namespace: 'panel', business: 'com' } do
+  scope :panel, module: 'com/panel', as: :panel, defaults: { business: 'com', namespace: 'panel' } do
     resources :infos
     resources :cache_lists
     resources :inbound_emails

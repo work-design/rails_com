@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_log.git
-  revision: af67d94cc87e89594862e9d71a15c74becbdfbe7
+  revision: c5c855338abb7ab1c8277387f932e3318b812d01
   specs:
     rails_log (2.1.6)
       rails_com (~> 1.2)
