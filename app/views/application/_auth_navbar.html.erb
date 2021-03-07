@@ -5,7 +5,8 @@
       <span><%= current_user.name %></span>
     </div>
     <div class="navbar-dropdown is-right">
-      <%= link_to '个人中心', { controller: '/board/home' }, class: active_helper(controllers: ['users'], active: 'navbar-item is-active', item: 'navbar-item') %>
+      <%= link_to '个人中心', { controller: '/my/home' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
+      <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
       <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { confirm: '确认退出' }, class: 'navbar-item' %>
     </div>
   </div>
