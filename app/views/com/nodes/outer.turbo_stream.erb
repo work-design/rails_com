@@ -1,5 +1,3 @@
-<% f_object = form_object(scope: params[:scope]) %>
-
 <% if @node.children.present? %>
-<%= turbo_stream.after params[:html_id], partial: 'outer_children_options', locals: { f: f_object, node: @node, depth: @node.depth + 1, outer: params[:outer] } %>
+  <%= turbo_stream.after params[:html_id], partial: 'outer_children_options', locals: { f: form_object(scope: params[:scope]), node: @node, depth: @node.depth + 1, outer: params[:outer] } %>
 <% end %>
