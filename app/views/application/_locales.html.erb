@@ -4,7 +4,7 @@
     <span><%= t(I18n.locale) %></span>
   </div>
   <div class="navbar-dropdown">
-    <% User.options_i18n(:locale).each do |text, value| %>
+    <% Auth::User.options_i18n(:locale).each do |text, value| %>
       <%= link_to text, { locale: value }, class: 'navbar-item' %>
     <% end %>
   </div>
