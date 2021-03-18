@@ -5,6 +5,7 @@
 require 'rails'
 
 [
+  'active_model/railtie',
   'active_record/railtie',
   'active_storage/engine',
   'action_controller/railtie',
@@ -14,7 +15,7 @@ require 'rails'
   'action_cable/engine',
   'action_mailbox/engine',
   'action_text/engine',
-  'rails/test_unit/railtie',
+  'rails/test_unit/railtie'
 ].each do |railtie|
   begin
     require railtie
