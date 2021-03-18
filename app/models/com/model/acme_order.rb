@@ -15,8 +15,13 @@ module Com
       has_many :acme_identifiers, dependent: :delete_all
       accepts_nested_attributes_for :acme_identifiers
 
-      has_one_attached :private_pem, service: :acme
-      has_one_attached :cert_key, service: :acme
+      if ActiveStorage::Blob.services.instance_values.dig('configurations', :acme)
+        has_one_attached :private_pem, service: :acme
+        has_one_attached :cert_key, service: :acme
+      else
+        has_one_attached :private_pem
+        has_one_attached :cert_key
+      end
     end
 
     # status: pending

@@ -9,7 +9,11 @@ module Com
 
       has_many :acme_orders, dependent: :destroy
 
-      has_one_attached :private_pem, service: :acme
+      if ActiveStorage::Blob.services.instance_values.dig('configurations', :acme)
+        has_one_attached :private_pem, service: :acme
+      else
+        has_one_attached :private_pem
+      end
 
       after_create_commit :generate_account
 

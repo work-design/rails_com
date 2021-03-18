@@ -1,7 +1,6 @@
 module Com
   class NodesController < BaseController
     before_action :set_node, only: [:children, :outer, :outer_search]
-    skip_before_action :verify_authenticity_token, only: [:children, :outer, :outer_search]
 
     def children
       @new_node = params[:node_type].constantize.new
