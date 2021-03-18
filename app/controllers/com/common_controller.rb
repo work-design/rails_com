@@ -1,6 +1,8 @@
 module Com
   class CommonController < BaseController
-    skip_before_action :verify_authenticity_token, only: [:deploy]
+    if respond_to? :verify_authenticity_token
+      skip_before_action :verify_authenticity_token, only: [:deploy]
+    end
 
     def info
       q_params = {}
@@ -18,12 +20,14 @@ module Com
 
     def enum_list
       r = I18n.backend.translations[I18n.locale][:activerecord][:enum]
+
       render json: { locale: I18n.locale, values: r }
     end
 
     def qrcode
       options = qrcode_params.to_h.symbolize_keys
       buffer = QrcodeHelper.code_png(params[:url], **options)
+
       send_data buffer, filename: 'cert_file.png', disposition: 'inline', type: 'image/png'
     end
 
