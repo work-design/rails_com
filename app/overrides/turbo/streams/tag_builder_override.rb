@@ -4,4 +4,4 @@ Turbo::Streams::TagBuilder.class_eval do
     action :after, target, content, **rendering, &block
   end
 
-end
+end if defined? Turbo::Streams::TagBuilder
