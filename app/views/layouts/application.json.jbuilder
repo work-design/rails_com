@@ -1,2 +1,2 @@
 json.results JSON.parse(yield)
-json.partial! 'pagination', items: @users
+json.partial! 'pagination', items: @models
