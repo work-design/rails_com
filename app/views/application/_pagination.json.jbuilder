@@ -1,4 +1,4 @@
-json.pagination do
+json.page do
   json.total_count items.total_count
   json.total_pages items.total_pages
   json.prev_page items.prev_page
