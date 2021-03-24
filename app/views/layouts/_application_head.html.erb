@@ -21,7 +21,9 @@
   </head>
   <body>
     <%= yield %>
-    <turbo-frame id="modal"></turbo-frame>
+    <turbo-frame id="modal">
+      <%= render 'modal' %>
+    </turbo-frame>
     <turbo-frame id="visit"></turbo-frame>
   </body>
 </html>
