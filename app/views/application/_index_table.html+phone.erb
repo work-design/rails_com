@@ -1,0 +1,12 @@
+<%= render 'filter_form' %>
+<%= render 'filter_table' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <tbody id="tbody">
+    <%= yield %>
+  </tbody>
+</table>
+
+<div class="buttons is-centered">
+  <%= render 'button' %>
+</div>
