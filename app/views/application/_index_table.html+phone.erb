@@ -1,12 +1,13 @@
 <%= render 'filter_form' %>
 <%= render 'filter_table' %>
 
-<table class="table is-hoverable is-fullwidth">
-  <tbody id="tbody">
-    <%= yield %>
-  </tbody>
-</table>
-
-<div class="buttons is-centered">
-  <%= render 'button' %>
+<div class="weui-panel">
+  <div class="weui-panel__hd"><%= t('.title') %></div>
+  <div class="weui-panel__bd">
+    <div class="weui-cells mt-0">
+      <%= yield %>
+    </div>
+  </div>
 </div>
+
+<%= render 'button' %>
