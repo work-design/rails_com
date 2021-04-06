@@ -1,13 +1,14 @@
 <div data-controller="weui-actionsheet" id="actionsheet">
   <div data-weui-actionsheet-target="mask" data-action="click->weui-actionsheet#close" class="weui-mask" style="opacity: 0; display: none"></div>
   <div class="weui-actionsheet" data-weui-actionsheet-target="sheet">
-    <div class="weui-actionsheet__title">
-      <p class="weui-actionsheet__title-text">这是一个标题，可以为一行或者两行。</p>
-    </div>
     <div class="weui-actionsheet__menu">
-      <div class="weui-actionsheet__cell">示例菜单</div>
+      <div class="weui-actionsheet__cell">
+        <%= link_to({ action: 'edit' }) do %>
+          <i class="fas fa-pencil-alt"></i><span><%= t('.edit') %></span>
+        <% end %>
+      </div>
       <div class="weui-actionsheet__cell weui-actionsheet__cell_warn">
-        <%= button_to({ action: 'destroy' }, method: :delete, data: { confirm: t('.confirm') }) do %>
+        <%= button_to({ action: 'destroy' }, method: :delete, data: { confirm: t('.confirm') }, class: 'has-text-danger') do %>
           <i class="fas fa-trash-alt"></i><span><%= t('.destroy') %></span>
         <% end %>
       </div>
