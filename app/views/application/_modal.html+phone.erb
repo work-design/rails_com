@@ -1,0 +1,14 @@
+<div class="modal" data-controller="modal">
+  <div class="modal-background" data-action="click->modal#close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title"><%= t('.title') %></p>
+      <button class="delete" data-action="modal#close"></button>
+    </header>
+    <turbo-frame class="modal-card-body p-0" id="modal" data-action="turbo:frame-render->modal#loaded">
+      <% if defined? action %>
+        <%= render action %>
+      <% end %>
+    </turbo-frame>
+  </div>
+</div>
