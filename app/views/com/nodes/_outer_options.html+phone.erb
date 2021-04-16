@@ -1,0 +1,2 @@
+<% f_method = "#{outer}_ancestors(#{depth}i)" %>
+<%= f.collection_select(f_method, node.self_and_siblings, :id, :name, { selected: node.id, include_blank: true, label: false, wrap: { all: nil, select: nil } }, { data: { action: 'taxon#choose' }, class: 'weui-select' }) %>
