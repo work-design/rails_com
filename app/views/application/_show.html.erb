@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>
-        <%= link_to t('.edit'), { action: 'edit' }, data: { turbo_frame: 'modal' }, class: 'button is-small is-link' %>
+        <%= link_to t('.edit'), { action: 'edit' }, data: { turbo_frame: 'modal' }, class: 'button is-small is-link' if controller.available_action?('edit') == 'default_render' %>
       </th>
       <th></th>
     </tr>
