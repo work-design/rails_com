@@ -14,6 +14,7 @@ module Com
 
       model.attribute :parent_ancestors, :json, default: {}
       model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? && (parent_ancestors.presence != parent_ancestors_was.presence) }
+      model.before_validation :set_parent_ancestors, if: -> { parent.present? && parent_ancestors.blank? }  # todo 考虑 parent 改变的情况
       model.hierarchy_class.attribute :ancestor_id, :integer, null: false
       model.hierarchy_class.attribute :descendant_id, :integer, null: false, index: { name: "#{model.name.underscore}_desc_idx" }
       model.hierarchy_class.attribute :generations, :integer, null: false
@@ -38,6 +39,10 @@ module Com
 
     def depth_str
       (0..self.class.max_depth - self.depth).to_a.reverse.join
+    end
+
+    def set_parent_ancestors
+      self.parent_ancestors = parent.parent_ancestors.merge! parent.depth.to_s => parent.id
     end
 
     def sync_parent_id
