@@ -16,7 +16,12 @@ module Com
 
       belongs_to :acme_order
 
+      before_save :renew_valid, if: -> { record_content_changed? }
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
+    end
+
+    def renew_valid
+      self.dns_valid = false
     end
 
     def compute_wildcard
