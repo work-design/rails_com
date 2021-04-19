@@ -5,7 +5,7 @@
       <p class="modal-card-title"><%= t('.title') %></p>
       <button class="delete" data-action="modal#close"></button>
     </header>
-    <turbo-frame class="modal-card-body p-0" id="modal" data-action="turbo:frame-render->modal#loaded">
+    <turbo-frame class="modal-card-body p-0" id="modal" data-action="turbo:frame-load->modal#loaded">
       <% if defined? action %>
         <%= render action %>
       <% end %>
