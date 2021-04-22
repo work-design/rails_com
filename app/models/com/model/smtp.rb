@@ -8,7 +8,7 @@ module Com
       attribute :user_name, :string
       attribute :password, :string
       attribute :enable_starttls_auto, :boolean, default: true
-      attribute :openssl_verify_mode, :boolean, 
+      attribute :openssl_verify_mode, :boolean, default: true
 
       enum authentication: {
         plain: 'plain',
