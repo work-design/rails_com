@@ -7,6 +7,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     g.javasricpts false
     g.javascript_engine false
     g.helper false
+    g.resource_route false
     g.jbuilder false
     g.templates.unshift File.expand_path('lib/templates', root)
   end
@@ -19,6 +20,7 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       g.javasricpts false
       g.javascript_engine false
       g.helper false
+      g.resource_route false
       g.jbuilder true
       g.fixture_replacement :factory_bot
     end
