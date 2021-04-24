@@ -3,7 +3,7 @@
 module RailsCom
   module PartialRenderer
 
-    # 支持在views/:controller 目录下，用 _ 开头的子目录进一步分组
+    # 支持在views/:controller 目录下，用 _:action 开头的子目录进一步分组
     def find_template(path, locals)
       if path.include?('/') && !path.start_with?('_')
         prefixes = []

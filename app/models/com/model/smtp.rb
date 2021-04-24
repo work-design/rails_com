@@ -5,21 +5,21 @@ module Com
     included do
       attribute :address, :string
       attribute :port, :string
-      attribute :user_name, :string
-      attribute :password, :string
       attribute :enable_starttls_auto, :boolean, default: true
-      attribute :openssl_verify_mode, :boolean, default: true
+      attribute :ssl, :boolean, default: true
 
       enum authentication: {
         plain: 'plain',
         login: 'login',
         cram_md5: 'cram_md5'
       }
+      enum openssl_verify_mode: {
+        none: 'none',
+        peer: 'peer'
+      }
 
-
+      has_many :smtp_accounts
     end
-
-
 
   end
 end
