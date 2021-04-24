@@ -43,10 +43,13 @@ Rails.application.routes.draw do
   end
 
   namespace :com, defaults: { business: 'com' } do
-    namespace :panel, defaults: { namespace: 'com' } do
+    namespace :admin, defaults: { namespace: 'admin' } do
       resources :smtps do
         resources :smtp_accounts
       end
+    end
+    namespace :panel, defaults: { namespace: 'panel' } do
+      resources :smtps
       resources :infos
       resources :cache_lists
       resources :inbound_emails
