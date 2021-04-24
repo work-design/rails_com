@@ -1,11 +1,11 @@
 <div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-dark is-active', item: 'menu ex-accordion is-dark') %>" data-controller="menu">
   <%= content_tag :div, class: 'menu-list' do %>
-    <%= link_to t('com.panel.blob_defaults.index.title'), panel_blob_defaults_path, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
-    <%= link_to t('com.panel.blobs.index.title'), panel_blobs_path, class: active_helper(controllers: 'blobs', active: 'is-active') %>
-    <%= link_to t('com.panel.attachments.index.title'), panel_attachments_path, class: active_helper(controllers: 'attachments', active: 'is-active') %>
-    <%= link_to t('com.panel.inbound_emails.index.title'), panel_inbound_emails_path, class: active_helper(controllers: 'inbound_emails', active: 'is-active') %>
-    <%= link_to t('com.panel.acme_accounts.index.title'), panel_acme_accounts_path, class: active_helper(controllers: 'acme_accounts', active: 'is-active') -%>
-<% end %>
+    <%= link_to t('com.panel.blob_defaults.index.title'), { controller: 'com/panel/blob_defaults' }, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
+    <%= link_to t('com.panel.blobs.index.title'), { controller: 'com/panel/blobs' }, class: active_helper(controllers: 'blobs', active: 'is-active') %>
+    <%= link_to t('com.panel.attachments.index.title'), { controller: 'com/panel/attachments' }, class: active_helper(controllers: 'attachments', active: 'is-active') %>
+    <%= link_to t('com.panel.inbound_emails.index.title'), { controller: 'com/panel/inbound_emails' }, class: active_helper(controllers: 'inbound_emails', active: 'is-active') %>
+    <%= link_to t('com.panel.acme_accounts.index.title'), { controller: 'com/panel/acme_accounts' }, class: active_helper(controllers: 'acme_accounts', active: 'is-active') -%>
+  <% end %>
   <a class="menu-label" data-action="menu#toggle">
     <i class="fas fa-images fa-fw"></i>
     <span>资源</span>
