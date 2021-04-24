@@ -42,39 +42,44 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :panel, module: 'com/panel', as: :panel, defaults: { business: 'com', namespace: 'panel' } do
-    resources :infos
-    resources :cache_lists
-    resources :inbound_emails
-    resources :attachments, only: [:index, :destroy] do
-      collection do
-        get :garbled
+  namespace :com, defaults: { business: 'com' } do
+    namespace :panel, defaults: { namespace: 'com' } do
+      resources :smtps do
+        resources :smtp_accounts
       end
-      member do
-        delete :delete
-      end
-    end
-    resources :blobs, only: [:index, :show, :new, :create, :destroy] do
-      collection do
-        get :unattached
-      end
-    end
-    resources :blob_defaults do
-      collection do
-        get :add
-      end
-    end
-    resources :acme_accounts do
-      resources :acme_orders do
+      resources :infos
+      resources :cache_lists
+      resources :inbound_emails
+      resources :attachments, only: [:index, :destroy] do
+        collection do
+          get :garbled
+        end
         member do
-          patch :order
-          patch :verify
-          patch :cert
+          delete :delete
         end
       end
-      resources :acme_orders, shallow: true, only: [] do
-        resources :acme_identifiers, only: [:index, :new, :create]
-        resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
+      resources :blobs, only: [:index, :show, :new, :create, :destroy] do
+        collection do
+          get :unattached
+        end
+      end
+      resources :blob_defaults do
+        collection do
+          get :add
+        end
+      end
+      resources :acme_accounts do
+        resources :acme_orders do
+          member do
+            patch :order
+            patch :verify
+            patch :cert
+          end
+        end
+        resources :acme_orders, shallow: true, only: [] do
+          resources :acme_identifiers, only: [:index, :new, :create]
+          resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
+        end
       end
     end
   end
