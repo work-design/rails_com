@@ -43,6 +43,7 @@ module Com
 
     def smtp_params
       params.fetch(:smtp, {}).permit(
+        :name,
         :address,
         :port,
         :authentication,

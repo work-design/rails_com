@@ -1,4 +1,4 @@
 module Com
-  class BaseController < AdminController
+  class Admin::BaseController < AdminController
   end
 end

@@ -4,6 +4,10 @@ zh:
       title: 编辑/新建
   com:
     title: 系统配置
+    admin:
+      smtp_accounts:
+        index:
+          title: SMTP 邮箱
     panel:
       acme_accounts:
         index:
@@ -35,4 +39,4 @@ zh:
           title: 邮件管理
       smtps:
         index:
-          title: 邮件SMTP 发送
+          title: 邮件 SMTP 发送
