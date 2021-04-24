@@ -1,4 +1,4 @@
-<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-dark is-active', item: 'menu ex-accordion is-dark') %>" data-controller="menu">
+<div class="<%= active_helper(modules: 'com/admin', active: 'menu ex-accordion is-dark is-active', item: 'menu ex-accordion is-dark') %>" data-controller="menu">
   <%= content_tag :div, class: 'menu-list' do %>
     <%= link_to t('com.panel.smtps.index.title'), { controller: 'com/panel/smtps' }, class: active_helper(controllers: ['smtps', 'smtp_accounts'], active: 'is-active') -%>
   <% end %>
