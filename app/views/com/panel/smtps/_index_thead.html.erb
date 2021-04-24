@@ -1,7 +1,9 @@
 <th><%= Com::Smtp.human_attribute_name(:address) %></th>
 <th><%= Com::Smtp.human_attribute_name(:port) %></th>
 <th><%= Com::Smtp.human_attribute_name(:authentication) %></th>
-<th><%= Com::Smtp.human_attribute_name(:enable_starttls_auto) %></th>
-<th><%= Com::Smtp.human_attribute_name(:ssl) %></th>
-<th><%= Com::Smtp.human_attribute_name(:openssl_verify_mode) %></th>
+<th>
+  <p><%= Com::Smtp.human_attribute_name(:ssl) %></p>
+  <p><%= Com::Smtp.human_attribute_name(:enable_starttls_auto) %></p>
+  <p><%= Com::Smtp.human_attribute_name(:openssl_verify_mode) %></p>
+</th>
 <th></th>
