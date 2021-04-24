@@ -1,54 +1,56 @@
-class Com::Panel::SmtpsController < Com::Panel::BaseController
-  before_action :set_smtp, only: [:show, :edit, :update, :destroy]
+module Com
+  class Panel::SmtpsController < Panel::BaseController
+    before_action :set_smtp, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @smtps = Smtp.page(params[:page])
-  end
-
-  def new
-    @smtp = Smtp.new
-  end
-
-  def create
-    @smtp = Smtp.new(smtp_params)
-
-    unless @smtp.save
-      render :new, locals: { model: @smtp }, status: :unprocessable_entity
+    def index
+      @smtps = Smtp.page(params[:page])
     end
-  end
 
-  def show
-  end
-
-  def edit
-  end
-
-  def update
-    @smtp.assign_attributes(smtp_params)
-
-    unless @smtp.save
-      render :edit, locals: { model: @smtp }, status: :unprocessable_entity
+    def new
+      @smtp = Smtp.new
     end
-  end
 
-  def destroy
-    @smtp.destroy
-  end
+    def create
+      @smtp = Smtp.new(smtp_params)
 
-  private
-  def set_smtp
-    @smtp = Smtp.find(params[:id])
-  end
+      unless @smtp.save
+        render :new, locals: { model: @smtp }, status: :unprocessable_entity
+      end
+    end
 
-  def smtp_params
-    params.fetch(:smtp, {}).permit(
-      :address,
-      :port,
-      :authentication,
-      :enable_starttls_auto,
-      :ssl,
-      :openssl_verify_mode
-    )
-  end
+    def show
+    end
 
+    def edit
+    end
+
+    def update
+      @smtp.assign_attributes(smtp_params)
+
+      unless @smtp.save
+        render :edit, locals: { model: @smtp }, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @smtp.destroy
+    end
+
+    private
+    def set_smtp
+      @smtp = Smtp.find(params[:id])
+    end
+
+    def smtp_params
+      params.fetch(:smtp, {}).permit(
+        :address,
+        :port,
+        :authentication,
+        :enable_starttls_auto,
+        :ssl,
+        :openssl_verify_mode
+      )
+    end
+
+  end
 end

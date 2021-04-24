@@ -16,7 +16,7 @@ module Com
       enum openssl_verify_mode: {
         none: 'none',
         peer: 'peer'
-      }
+      }, _prefix: true
 
       has_many :smtp_accounts
     end
