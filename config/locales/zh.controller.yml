@@ -5,6 +5,9 @@ zh:
   com:
     title: 系统配置
     admin:
+      smtps:
+        index:
+          title: SMTP 服务
       smtp_accounts:
         index:
           title: SMTP 邮箱
