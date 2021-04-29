@@ -2,7 +2,7 @@
 Rails 通用基础库
 
 ## 功能
-* examples: puma, configs etc.
+* 
 * rails and ruby core extension;
 * methods deal rails model/controller/routes etc.
 * some helpers, for generator uuid based on time and more;
@@ -19,7 +19,11 @@ Rails 通用基础库
   - Jobber
   - IpHelper
 * 支持通过 ACME 自动申请及更新 SSL 证书
-  
+
+## [例子](examples)
+* puma
+* configs
+
 ### Locals support
 
 ```erb
