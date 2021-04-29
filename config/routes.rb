@@ -33,6 +33,10 @@ Rails.application.routes.draw do
       get :cancel
       match :deploy, via: [:get, :post]
     end
+    controller :log do
+      get '/not_founds' => :index
+      post '/csp_violation_report' => :csp
+    end
     resources :nodes, only: [] do
       collection do
         get :children
@@ -43,13 +47,9 @@ Rails.application.routes.draw do
   end
 
   namespace :com, defaults: { business: 'com' } do
-    namespace :admin, defaults: { namespace: 'admin' } do
-      resources :smtps do
-        resources :smtp_accounts
-      end
-    end
     namespace :panel, defaults: { namespace: 'panel' } do
-      resources :smtps
+      resources :log_records, only: [:index, :show, :destroy]
+      resources :log_csps, only: [:index, :show, :destroy]
       resources :infos
       resources :cache_lists
       resources :inbound_emails
