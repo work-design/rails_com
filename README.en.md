@@ -7,7 +7,7 @@ Rails 通用基础库
 * methods deal rails model/controller/routes etc.
 * some helpers, for generator uuid based on time and more;
 
-## 模块
+## Module
 * Ruby core extension
 * Rails meta information: Controller/Model/Routes
 * Rails core extension
@@ -54,5 +54,5 @@ activerecord:
 ## 注意
 * 仅支持 webpacker, 不再支持 sprockets
 
-## 版权
-采用 MIT 版权协议 [MIT](https://opensource.org/licenses/MIT).
+## License
+The gem is available as open source under the terms of the [LGPL License](https://opensource.org/licenses/LGPL-3.0).
