@@ -39,6 +39,12 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
   end
 
+  initializer 'rails_com.quiet_logs' do |app|
+    if RailsCom.config.quiet_logs.present?
+      app.middleware.insert_before ::Rails::Rack::Logger, ::RailsCom::QuietLogs
+    end
+  end
+
   config.to_prepare do
     overrides = RailsCom::Engine.root.join('app/overrides')
     Rails.autoloaders.main.ignore(overrides)

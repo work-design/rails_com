@@ -1,24 +1,5 @@
 Rails.application.routes.draw do
 
-  scope module: 'com', defaults: { business: 'com' } do
-    controller :common do
-      get :infos
-      get :cache_list
-      get :enum_list
-      get :qrcode
-      get :test_raise
-      get :cancel
-      match :deploy, via: [:get, :post]
-    end
-    resources :nodes, only: [] do
-      collection do
-        get :children
-        get :outer
-        get :outer_search
-      end
-    end
-  end
-
   scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
     resources :direct_uploads, only: [:create]
   end
@@ -38,6 +19,25 @@ Rails.application.routes.draw do
       member do
         get :png
         get :jpg
+      end
+    end
+  end
+
+  scope module: 'com', defaults: { business: 'com' } do
+    controller :common do
+      get :infos
+      get :cache_list
+      get :enum_list
+      get :qrcode
+      get :test_raise
+      get :cancel
+      match :deploy, via: [:get, :post]
+    end
+    resources :nodes, only: [] do
+      collection do
+        get :children
+        get :outer
+        get :outer_search
       end
     end
   end
@@ -88,3 +88,7 @@ Rails.application.routes.draw do
   end
 
 end
+
+Rails.application.routes.append do
+  match '*path' => 'com/log#not_found', via: :all
+end if RailsCom.config.intercept_not_found

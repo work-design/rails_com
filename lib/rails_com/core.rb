@@ -9,4 +9,5 @@ require 'rails_com/core/numeric'
 require 'rails_com/core/string'
 require 'rails_com/core/time_format'
 
+# Ruby Strand Library extensions
 require 'rails_com/core/pathname'

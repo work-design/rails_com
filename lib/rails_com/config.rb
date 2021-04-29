@@ -6,8 +6,17 @@ module RailsCom #:nodoc:
   include ActiveSupport::Configurable
 
   configure do |config|
-    config.mapping = ActiveSupport::OrderedOptions.new
-
+    config.ignore_exception = [
+      'ActionController::UnknownFormat',
+      'ActiveRecord::RecordNotFound'
+    ]
+    config.quiet_logs = [
+      '/rails/active_storage'
+    ]
+    config.disable_debug = true
+    config.notify_bot = 'WorkWechatBot'
+    config.notify_key = ''
+    config.not_found_logger = ActiveSupport::Logger.new('log/not_found.log')
     config.custom_webpacker = true
     config.github_hmac_key = 'must_change_this'
     config.default_error_message = '服务端发生错误'
@@ -15,6 +24,7 @@ module RailsCom #:nodoc:
     config.enum_key = ->(o, attribute){ "#{o.i18n_scope}.enum.#{o.base_class.model_name.i18n_key}.#{attribute}" }
     config.help_key = ->(o, attribute){ "#{o.i18n_scope}.help.#{o.base_class.model_name.i18n_key}.#{attribute}" }
 
+    config.mapping = ActiveSupport::OrderedOptions.new
     config.mapping.date = {
       input: 'date_field',
       output: 'to_date'
