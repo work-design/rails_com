@@ -7,13 +7,11 @@ Rails 通用基础库，对 Rails 的各个组件进行了扩展。
   * ActiveStorage：[链接](lib/rails_com/active_storage) 
     * 通过 url 同步文件；
     * 将文件复制到镜像服务器；
-* methods deal rails model/controller/routes etc.
-* some helpers, for generator uuid based on time and more;
 * 支持通过 ACME 自动申请及更新 SSL 证书
-* Rails meta information: Controller/Model/Routes
+* Rails 元信息 : Controller/Model/Routes
   
 ### 工具类
-  * UidHelper
+  * UidHelper：基于时间生成 UUID，精确到微秒
   * TimeHelper
   * Jobber
   * IpHelper
@@ -55,7 +53,7 @@ activerecord:
 ```
 
 ## 注意
-* 仅支持 webpacker, 不再支持 sprockets
+* 仅支持 [webpacker](https://github.com/rails/webpacker)，不再支持 [sprockets](https://github.com/rails/sprockets)
 
 ## 版权
 采用 MIT 版权协议 [MIT](https://opensource.org/licenses/MIT).
