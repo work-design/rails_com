@@ -1,24 +1,22 @@
 # RailsCom
-Rails 通用基础库
+Rails 通用基础库，对 Rails 的各个组件进行了扩展。
 
-## 功能
-* 
-* rails and ruby core extension;
+## 功能模块
+* 对 Ruby 的核心类进行扩展，[链接](lib/rails_com/core)
+* 对 Rails 的核心类进行扩展
+  * ActiveStorage：[链接](lib/rails_com/active_storage) 
+    * 通过 url 同步文件；
+    * 将文件复制到镜像服务器；
 * methods deal rails model/controller/routes etc.
 * some helpers, for generator uuid based on time and more;
-
-## 模块
-* Ruby core extension
-* Rails meta information: Controller/Model/Routes
-* Rails core extension
-  - ActiveStorage sync with url
-  - ActiveStorage copy to mirror
-* Utils
-  - UidHelper
-  - TimeHelper
-  - Jobber
-  - IpHelper
 * 支持通过 ACME 自动申请及更新 SSL 证书
+* Rails meta information: Controller/Model/Routes
+  
+### 工具类
+  * UidHelper
+  * TimeHelper
+  * Jobber
+  * IpHelper
 
 ## 例子 
 [examples](examples)
