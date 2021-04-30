@@ -1,5 +1,5 @@
 module Com
-  module Model::LogCsp
+  module Model::Csp
     extend ActiveSupport::Concern
 
     included do

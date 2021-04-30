@@ -1,5 +1,5 @@
 module Com
-  module Model::LogRecord
+  module Model::Err
     extend ActiveSupport::Concern
 
     included do
@@ -21,7 +21,7 @@ module Com
     end
 
     def send_message
-      RailsLog.config.notify_bot.constantize.new(self).send_message
+      RailsCom.config.notify_bot.constantize.new(self).send_message
     end
 
     def user_info
@@ -43,7 +43,7 @@ module Com
 
     class_methods do
       def record_to_log(controller, exp)
-        return if Rails.env.development? && RailsLog.config.disable_debug
+        return if Rails.env.development? && RailsCom.config.disable_debug
 
         request = controller.request
         headers = request.headers

@@ -12,6 +12,7 @@ require 'rails_com/action_mailbox'
 require 'rails_com/active_record'
 require 'rails_com/active_model'
 require 'rails_com/active_storage'
+require 'rails_com/quiet_logs'
 
 # Meta for Rails
 require 'rails_com/meta/routes'

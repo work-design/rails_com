@@ -1,0 +1,48 @@
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:document_uri) %></td>
+  <td><%= @csp.document_uri %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:referrer) %></td>
+  <td><%= @csp.referrer %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:blocked_uri) %></td>
+  <td><%= @csp.blocked_uri %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:violated_directive) %></td>
+  <td><%= @csp.violated_directive %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:effective_directive) %></td>
+  <td><%= @csp.effective_directive %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:original_policy) %></td>
+  <td><%= simple_format @csp.original_policy.split('; ') %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:disposition) %></td>
+  <td><%= @csp.disposition %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:source_file) %></td>
+  <td><%= @csp.source_file %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:line_number) %></td>
+  <td><%= @csp.line_number %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:column_number) %></td>
+  <td><%= @csp.column_number %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:status_code) %></td>
+  <td><%= @csp.status_code %></td>
+</tr>
+<tr>
+  <td class="has-text-right"><%= Com::Csp.human_attribute_name(:script_sample) %></td>
+  <td><%= @csp.script_sample %></td>
+</tr>
