@@ -4,10 +4,8 @@
     <%= link_to t('com.panel.blobs.index.title'), { controller: 'com/panel/blobs' }, class: active_helper(controllers: 'blobs', active: 'is-active') %>
     <%= link_to t('com.panel.attachments.index.title'), { controller: 'com/panel/attachments' }, class: active_helper(controllers: 'attachments', active: 'is-active') %>
     <%= link_to t('com.panel.inbound_emails.index.title'), { controller: 'com/panel/inbound_emails' }, class: active_helper(controllers: 'inbound_emails', active: 'is-active') %>
-    <%= link_to t('logged.panel.log_records.index.title'), { controller: 'logged/panel/log_records' }, class: active_helper(controllers: 'log_records', active: 'is-active') %>
-    <%= link_to t('logged.panel.log_csps.index.title'), { controller: 'logged/panel/log_csps' }, class: active_helper(controllers: 'log_csps', active: 'is-active') -%>
-    
-    
+    <%= link_to t('com.panel.errs.index.title'), { controller: 'com/panel/errs' }, class: active_helper(controllers: 'errs', active: 'is-active') %>
+    <%= link_to t('com.panel.csps.index.title'), { controller: 'com/panel/csps' }, class: active_helper(controllers: 'csps', active: 'is-active') -%>
   <% end %>
   <a class="menu-label" data-action="menu#toggle">
     <i class="fas fa-images fa-fw"></i>
