@@ -48,8 +48,8 @@ Rails.application.routes.draw do
 
   namespace :com, defaults: { business: 'com' } do
     namespace :panel, defaults: { namespace: 'panel' } do
-      resources :log_records, only: [:index, :show, :destroy]
-      resources :log_csps, only: [:index, :show, :destroy]
+      resources :errs, only: [:index, :show, :destroy]
+      resources :csps, only: [:index, :show, :destroy]
       resources :infos
       resources :cache_lists
       resources :inbound_emails

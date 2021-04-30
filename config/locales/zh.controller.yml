@@ -4,13 +4,6 @@ zh:
       title: 编辑/新建
   com:
     title: 系统配置
-    admin:
-      smtps:
-        index:
-          title: SMTP 服务
-      smtp_accounts:
-        index:
-          title: SMTP 邮箱
     panel:
       acme_accounts:
         index:
@@ -37,9 +30,12 @@ zh:
       attachments:
         index:
           title: 附件管理
+      errs:
+        index:
+          title: 错误日志
+      csps:
+        index:
+          title: 内容安全
       inbound_emails:
         index:
           title: 邮件管理
-      smtps:
-        index:
-          title: 邮件 SMTP 发送
