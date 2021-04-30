@@ -5,7 +5,7 @@ module RailsCom::ActionController
       return unless logger.debug?
       payload = event.payload
       raw_headers = payload.fetch(:headers, {})
-      real_headers = Com::LogRecord.request_headers(raw_headers)
+      real_headers = Com::Err.request_headers(raw_headers)
       session_key = Rails.configuration.session_options[:key]
       cookies = Hash(raw_headers['rack.request.cookie_hash']).except(session_key)
 
@@ -29,12 +29,12 @@ module RailsCom::ActionController
     def record_to_log(payload)
       raw_headers = payload.fetch(:headers, {})
 
-      lc = Com::LogRecord.new
+      lc = Com::Err.new
       lc.path = payload[:path]
       lc.controller_name = payload[:controller]
       lc.action_name = payload[:action]
-      lc.params = Com::LogRecord.filter_params(payload[:params])
-      lc.headers = Com::LogRecord.request_headers(raw_headers)
+      lc.params = Com::Err.filter_params(payload[:params])
+      lc.headers = Com::Err.request_headers(raw_headers)
       lc.ip = raw_headers['action_dispatch.remote_ip'].to_s
       lc.cookie = raw_headers['rack.request.cookie_hash']
       lc.session = raw_headers['rack.session'].to_h
@@ -45,7 +45,7 @@ module RailsCom::ActionController
     end
 
     def columns_limit
-      Com::LogRecord.columns_limit
+      Com::Err.columns_limit
     end
 
     self.attach_to :action_controller
