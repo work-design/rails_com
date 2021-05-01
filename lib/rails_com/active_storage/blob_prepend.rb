@@ -14,6 +14,11 @@ module RailsCom::BlobPrepend
     klass.attribute :created_at, :datetime, null: false
   end
 
+  def data_url
+    return @data_url if defined? @data_url
+    @data_url = "data:#{content_type};base64,#{Base64.encode64(download)}"
+  end
+
   def duration
     (metadata[:duration] || 0).to_f
   end
