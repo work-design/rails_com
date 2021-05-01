@@ -38,7 +38,7 @@ module Com
     end
 
     def process_job
-      LogRecordNotifyJob.perform_later(self)
+      ErrJob.perform_later(self)
     end
 
     class_methods do
