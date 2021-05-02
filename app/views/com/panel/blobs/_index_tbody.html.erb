@@ -14,6 +14,6 @@
 <td><time data-controller="time"><%= model.created_at.to_s(:rfc822) %></time></td>
 <td>
   <% model.attachments.each do |attachment| %>
-    <%= link_to "#{attachment.record_type}_#{attachment.record_id}", panel_attachments_path(id: attachment.id) %>
+    <%= link_to "#{attachment.record_type}_#{attachment.record_id}", { controller: 'com/panel/attachments', id: attachment.id } %>
   <% end %>
 </td>
