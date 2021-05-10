@@ -2,6 +2,10 @@ zh:
   application:
     modal:
       title: 编辑/新建
+  panel:
+    home:
+      index:
+        title: 后台
   com:
     title: 系统配置
     panel:
