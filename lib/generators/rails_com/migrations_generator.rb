@@ -9,7 +9,6 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
 
   def create_migration_file
     set_local_assigns!
-    binding.pry
     file_name = 'rails_com_migration'
     migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end

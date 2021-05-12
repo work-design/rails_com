@@ -19,7 +19,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
       t.references :<%= options[:name] %><%= options[:reference_options] %>
     <%- end -%>
     <%- attributes[:new_attributes].each do |attribute, options| -%>
-      t.<%= attribute[:type] %> :<%= attribute %><%= options[:attribute_options] %>
+      t.<%= options[:type] %> :<%= attribute %><%= options[:attribute_options] %>
     <%- end -%>
     <%- if attributes[:timestamps].blank? -%>
       t.timestamps
