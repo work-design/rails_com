@@ -50,13 +50,14 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def new_attributes
+    news = {}
     if table_exists?
-      news = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
+      new_columns = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
     else
-      news = attributes_to_define_after_schema_loads
+      new_columns = attributes_to_define_after_schema_loads
     end
-    news.map do |name, column|
-      r = { name: name.to_sym }
+    new_columns.each do |name, column|
+      r = {}
       if column[0].respond_to? :call
         r.merge! type: column[0].call(ActiveRecord::Type.default_value).type
       else
@@ -71,10 +72,15 @@ module RailsCom::ActiveRecord::Extend
       r.merge! default: dt if dt
       r.merge! column[1]
       r.symbolize_keys!
+
+      news.merge! name.to_sym => r
     end
+
+    news
   end
 
   def custom_attributes
+    results = {}
     defined_keys = attributes_to_define_after_schema_loads.keys
 
     ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
@@ -87,9 +93,8 @@ module RailsCom::ActiveRecord::Extend
     defined_keys.prepend primary_key
     defined_keys.map(&:to_s)
 
-    columns_hash.except(*defined_keys).map do |name, column|
+    columns_hash.except(*defined_keys).each do |name, column|
       r = {
-        name: name.to_sym,
         type: column.type
       }
       r.merge! null: column.null unless column.null
@@ -97,7 +102,11 @@ module RailsCom::ActiveRecord::Extend
       r.merge! comment: column.comment if column.comment.present?
       r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
+
+      results.merge! name.to_sym => r
     end
+
+    results
   end
 
 end
