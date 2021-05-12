@@ -21,7 +21,13 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
     tables = ActiveRecord::Base.descendants
     tables.reject! { |k| k.abstract_class? }
     tables.each do |record_class|
-      @tables[record_class.table_name] = RailsCom::MigrationAttributes.new(record_class).to_hash
+      r = RailsCom::MigrationAttributes.new(record_class).to_hash
+      if @tables.key? record_class.table_name
+        @tables[record_class.table_name][:new_attributes].merge! r[:new_attributes]
+        @tables[record_class.table_name][:new_references].merge! r[:new_references]
+      else
+        @tables[record_class.table_name] = r
+      end
     end
   end
 

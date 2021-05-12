@@ -33,7 +33,7 @@ class RailsCom::MigrationAttributes
       @new_references[ref.foreign_key.to_sym] = r unless @new_references.key?(ref.foreign_key.to_sym)
     end
 
-    @new_references = @new_references.values
+    @new_references
   end
 
   def set_new_attributes
@@ -53,7 +53,7 @@ class RailsCom::MigrationAttributes
         @custom_attributes[attribute].merge! attribute_options: attribute_options(options)
       end
     else
-      @custom_attributes = []
+      @custom_attributes = {}
     end
   end
 
