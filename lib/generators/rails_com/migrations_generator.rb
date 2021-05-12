@@ -9,6 +9,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
 
   def create_migration_file
     set_local_assigns!
+    binding.pry
     file_name = 'rails_com_migration'
     migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end
@@ -16,10 +17,11 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   private
   def set_local_assigns!
     Zeitwerk::Loader.eager_load_all
-    @tables = ActiveRecord::Base.descendants
-    @tables.reject! { |k| k.abstract_class? }
-    @tables.map! do |record_class|
-      [record_class.table_name, RailsCom::MigrationAttributes.new(record_class).to_hash]
+    @tables = {}
+    tables = ActiveRecord::Base.descendants
+    tables.reject! { |k| k.abstract_class? }
+    tables.each do |record_class|
+      @tables[record_class.table_name] = RailsCom::MigrationAttributes.new(record_class).to_hash
     end
   end
 

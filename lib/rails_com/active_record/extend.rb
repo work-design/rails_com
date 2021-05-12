@@ -63,7 +63,11 @@ module RailsCom::ActiveRecord::Extend
         r.merge! type: column[0]
       end
       dt = column[1].delete(:default)
-      dt = nil if dt.respond_to?(:call)
+      if dt.respond_to?(:call)
+        dt = dt.call
+      else
+        dt = nil
+      end
       r.merge! default: dt if dt
       r.merge! column[1]
       r.symbolize_keys!
