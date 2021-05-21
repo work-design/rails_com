@@ -21,10 +21,10 @@ module RailsCom::Models
         r[:new_attributes].merge! record_class.to_add_attributes
         r[:new_references].merge! record_class.to_add_references
         r[:custom_attributes] = r[:custom_attributes].slice(*(r[:custom_attributes].keys & record_class.to_remove_attributes.keys))
-        r[:timestamps] = [:created_at, :updated_at] | r[:new_attributes].keys
+        r[:timestamps] = [:created_at, :updated_at] & r[:new_attributes].keys
         r[:indexes] = record_class.xx_indexes
       end
-      @tables[table_name] = r
+      @tables[table_name] = r unless r[:new_attributes].blank? && r[:new_references].blank? && r[:custom_attributes].blank? 
     end
 
     @tables
