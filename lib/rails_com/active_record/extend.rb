@@ -92,6 +92,8 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def to_remove_attributes
+    return {} unless PlatformConfig.table_exists?
+
     results = {}
     defined_keys = attributes_to_define_after_schema_loads.keys
 

@@ -15,7 +15,7 @@ module RailsCom::Models
       r[:new_attributes] = record_class.to_add_attributes
       r[:new_references] = record_class.to_add_references
       r[:custom_attributes] = record_class.to_remove_attributes
-      r[:timestamps] = ['created_at', 'updated_at'] | []
+      r[:timestamps] = [:created_at, :updated_at] | r[:new_attributes].keys
       r[:indexes] = record_class.xx_indexes
 
       if @tables.key? table_name
