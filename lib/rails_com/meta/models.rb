@@ -10,20 +10,20 @@ module RailsCom::Models
 
   def tables_hash
     @tables = {}
-    models.group_by(&:table_name).each do |table_name, record_class|
-      r[:table_exists] = true
-      r[:new_attributes] = record_class.to_add_attributes
-      r[:new_references] = record_class.to_add_references
-      r[:custom_attributes] = record_class.to_remove_attributes
-      r[:timestamps] = [:created_at, :updated_at] | r[:new_attributes].keys
-      r[:indexes] = record_class.xx_indexes
-
-      if @tables.key? table_name
-        @tables[table_name][:new_attributes].merge! r[:new_attributes]
-        @tables[table_name][:new_references].merge! r[:new_references]
-      else
-        @tables[table_name] = r
+    models.group_by(&:table_name).each do |table_name, record_classes|
+      r = @tables[table_name] || {}
+      r[:new_attributes] ||= {}
+      r[:new_references] ||= {}
+      r[:custom_attributes] ||= {}
+      record_classes.each do |record_class|
+        r[:table_exists] = r[:table_exists] || record_class.table_exists?
+        r[:new_attributes].merge! record_class.to_add_attributes
+        r[:new_references].merge! record_class.to_add_references
+        r[:custom_attributes] = r[:custom_attributes] & record_class.to_remove_attributes
+        r[:timestamps] = [:created_at, :updated_at] | r[:new_attributes].keys
+        r[:indexes] = record_class.xx_indexes
       end
+      @tables[table_name] = r
     end
   end
 
