@@ -49,7 +49,7 @@ module RailsCom::ActiveRecord::Extend
     end
   end
 
-  def new_attributes
+  def to_add_attributes
     news = {}
     if table_exists?
       new_columns = attributes_to_define_after_schema_loads.except(*columns_hash.keys)
@@ -68,6 +68,7 @@ module RailsCom::ActiveRecord::Extend
       r.merge! default: dt if dt
       r.merge! column[1]
       r.symbolize_keys!
+      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
       news.merge! name.to_sym => r
     end
@@ -75,7 +76,22 @@ module RailsCom::ActiveRecord::Extend
     news
   end
 
-  def custom_attributes
+  def to_add_references
+    results = {}
+    refs = reflections.values.select { |reflection| reflection.belongs_to? }
+    refs.reject! { |reflection| attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
+    refs.reject! { |reflection| table_exists? && column_names.include?(reflection.foreign_key.to_s) }
+    refs.each do |ref|
+      r = { name: ref.name }
+      r.merge! polymorphic: true if ref.polymorphic?
+      r.merge! reference_options: r.slice(:polymorphic).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+      results[ref.foreign_key.to_sym] = r unless results.key?(ref.foreign_key.to_sym)
+    end
+
+    results
+  end
+
+  def to_remove_attributes
     results = {}
     defined_keys = attributes_to_define_after_schema_loads.keys
 
@@ -98,11 +114,19 @@ module RailsCom::ActiveRecord::Extend
       r.merge! comment: column.comment if column.comment.present?
       r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
+      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
       results.merge! name.to_sym => r
     end
 
     results
+  end
+
+  def xx_indexes
+    indexes = indexes_to_define_after_schema_loads
+    indexes.map! do |index|
+      index.merge! index_options: index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+    end
   end
 
 end

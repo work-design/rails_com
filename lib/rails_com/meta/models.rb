@@ -1,28 +1,30 @@
 module RailsCom::Models
   extend self
 
-  def xx
-    Zeitwerk::Loader.eager_load_all
-    tables = ActiveRecord::Base.descendants
-    tables.reject!(&:abstract_class?)
-    tables
-  end
-
-  def zz
-    xx.group_by(&:table_name)
-  end
-
   def models
-    models = ActiveRecord::Base.connection.tables.map do |table|
-      begin
-        klass = table.classify.constantize
-        klass.ancestors.include?(ActiveRecord::Base) ? klass : nil
-      rescue
-        nil
+    Zeitwerk::Loader.eager_load_all
+    result = ActiveRecord::Base.descendants
+    result.reject!(&:abstract_class?)
+    result
+  end
+
+  def tables_hash
+    @tables = {}
+    models.group_by(&:table_name).each do |table_name, record_class|
+      r[:table_exists] = true
+      r[:new_attributes] = record_class.to_add_attributes
+      r[:new_references] = record_class.to_add_references
+      r[:custom_attributes] = record_class.to_remove_attributes
+      r[:timestamps] = ['created_at', 'updated_at'] | []
+      r[:indexes] = record_class.xx_indexes
+
+      if @tables.key? table_name
+        @tables[table_name][:new_attributes].merge! r[:new_attributes]
+        @tables[table_name][:new_references].merge! r[:new_references]
+      else
+        @tables[table_name] = r
       end
     end
-
-    models.compact
   end
 
   def model_names

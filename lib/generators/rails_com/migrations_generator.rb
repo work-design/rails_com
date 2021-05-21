@@ -8,24 +8,10 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   attr_reader :tables
 
   def create_migration_file
-    set_local_assigns!
+    @tables = set_local_assigns!
+    binding.pry
     file_name = 'rails_com_migration'
     migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
-  end
-
-  private
-  def set_local_assigns!
-    @tables = {}
-    tables = RailsCom::Models.xx
-    tables.each do |record_class|
-      r = RailsCom::MigrationAttributes.new(record_class).to_hash
-      if @tables.key? record_class.table_name
-        @tables[record_class.table_name][:new_attributes].merge! r[:new_attributes]
-        @tables[record_class.table_name][:new_references].merge! r[:new_references]
-      else
-        @tables[record_class.table_name] = r
-      end
-    end
   end
 
 end
