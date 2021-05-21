@@ -10,7 +10,7 @@ module RailsCom::Models
 
   def tables_hash
     @tables = {}
-    
+
     models.group_by(&:table_name).each do |table_name, record_classes|
       r = @tables[table_name] || {}
       r[:new_attributes] ||= {}
