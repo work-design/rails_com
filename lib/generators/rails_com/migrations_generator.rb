@@ -15,10 +15,8 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
 
   private
   def set_local_assigns!
-    Zeitwerk::Loader.eager_load_all
     @tables = {}
-    tables = ActiveRecord::Base.descendants
-    tables.reject! { |k| k.abstract_class? }
+    tables = RailsCom::Models.xx
     tables.each do |record_class|
       r = RailsCom::MigrationAttributes.new(record_class).to_hash
       if @tables.key? record_class.table_name
