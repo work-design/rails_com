@@ -17,9 +17,7 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
     unless record_class.table_exists?
       @file_name = "create_#{file_name}"
     end
-    @tables = {
-      record_class.table_name => RailsCom::MigrationAttributes.new(record_class).to_hash
-    }
+    @tables = RailsCom::Models.tables_hash.slice(record_class.table_name)
   end
 
   def check_model_exist?
