@@ -46,6 +46,10 @@ module RailsCom::Models
       end
     end
 
+    arr = @modules.values
+    result = arr.find_all { |e| arr.rindex(e) != arr.index(e) }
+    warn "Please check #{result}"
+
     @modules
   end
 

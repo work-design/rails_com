@@ -8,19 +8,9 @@ class RailsCom::RenameModuleGenerator < Rails::Generators::Base
   attr_reader :tables
 
   def create_migration_file
-    @tables = RailsCom::Models.modules_hash
+    @tables = RailsCom::Models.modules_hash.invert
     file_name = 'rails_com_rename_module'
     migration_template 'rename_module.rb', File.join(db_migrate_path, "#{file_name}.rb")
-  end
-
-  def check_model_exist?
-    @module_name = file_name.classify.safe_constantize
-    unless @module_name
-      abort "#{file_name} not defined any Module!"
-    end
-    unless record_class.ancestors.include?(ActiveRecord::Base)
-      abort "#{record_class.name} is not an ActiveRecord Object!"
-    end
   end
 
 end
