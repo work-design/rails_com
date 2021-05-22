@@ -17,7 +17,6 @@ module RailsCom::Models
       r[:new_references] ||= {}
       record_classes.each do |record_class|
         r[:table_exists] = r[:table_exists] || record_class.table_exists?
-        r[:defined_attributes] = r[:defined_attributes] & record_class.attributes_to_define_after_schema_loads.keys
         r[:new_attributes].merge! record_class.defined_attributes_by_model.except(*record_class.defined_attributes_by_db.keys)
         r[:new_references].merge! record_class.defined_references_by_model.except(*record_class.defined_attributes_by_db.keys)
         r[:custom_attributes] ||= record_class.defined_attributes_by_db
@@ -26,7 +25,7 @@ module RailsCom::Models
         r[:indexes] = record_class.xx_indexes
       end
 
-      @tables[table_name] = r #unless r[:new_attributes].blank? && r[:new_references].blank? && r[:custom_attributes].blank?
+      @tables[table_name] = r unless r[:new_attributes].blank? && r[:new_references].blank? && r[:custom_attributes].blank?
     end
 
     @tables
