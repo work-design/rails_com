@@ -31,6 +31,10 @@ module RailsCom::Models
     @tables
   end
 
+  def modules_hash
+
+  end
+
   def model_names
     models.map(&:to_s)
   end

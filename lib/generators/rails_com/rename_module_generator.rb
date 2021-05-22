@@ -1,12 +1,13 @@
 # frozen_string_literal: true
-# bin/rails g rails_com:migration User
+# bin/rails g rails_com:rename_module new old
 require 'rails/generators/active_record'
 
-class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
+class RailsCom::RenameModuleGenerator < ActiveRecord::Generators::Base
   source_root File.expand_path('templates', __dir__)
   attr_reader :tables, :record_class
 
   def create_migration_file
+    binding.pry
     check_model_exist?
     set_local_assigns!
     migration_template 'change_module.rb', File.join(db_migrate_path, "#{file_name}.rb")
@@ -21,9 +22,9 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   end
 
   def check_model_exist?
-    @record_class = file_name.classify.safe_constantize
-    unless record_class
-      abort "#{file_name} not defined!"
+    @module_name = file_name.classify.safe_constantize
+    unless @module_name
+      abort "#{file_name} not defined any Module!"
     end
     unless record_class.ancestors.include?(ActiveRecord::Base)
       abort "#{record_class.name} is not an ActiveRecord Object!"

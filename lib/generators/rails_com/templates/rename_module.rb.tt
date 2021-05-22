@@ -1,10 +1,8 @@
 class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
 
   def change
-<% tables.each do |table_name, attributes| -%>
-  <%- attributes[:remove_attributes].each do |attribute, options| -%>
-    rename_table :<%= table_name %>, :<%= attribute %>
-  <%- end -%>
+<% tables.each do |new_name, old_name| -%>
+    rename_table :<%= old_name %>, :<%= new_name %>
 <%- end -%>
   end
 
