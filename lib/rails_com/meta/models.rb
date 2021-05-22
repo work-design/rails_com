@@ -32,7 +32,25 @@ module RailsCom::Models
   end
 
   def modules_hash
+    @modules = {}
 
+    models.group_by(&:module_parent).each do |module_name, record_classes|
+      new_prefix = (module_name.respond_to?(:table_name_prefix) && module_name.table_name_prefix) || ''
+      old_prefix = (module_name.respond_to?(:old_table_name_prefix) && module_name.old_table_name_prefix) || ''
+
+      record_classes.each do |record_class|
+        unless record_class.table_exists?
+          possible = record_class.table_name.sub(/^#{new_prefix}/, old_prefix)
+          @modules.merge! record_class.table_name => possible if tables.any?(possible)
+        end
+      end
+    end
+
+    @modules
+  end
+
+  def tables
+    ActiveRecord::Base.connection.tables
   end
 
   def model_names
