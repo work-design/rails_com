@@ -9,7 +9,7 @@ class RailsCom::MigrationGenerator < ActiveRecord::Generators::Base
   def create_migration_file
     check_model_exist?
     set_local_assigns!
-    migration_template 'migration.rb', File.join(db_migrate_path, "#{file_name}.rb")
+    migration_template 'change_module.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end
 
   private
