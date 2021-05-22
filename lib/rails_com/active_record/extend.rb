@@ -49,31 +49,18 @@ module RailsCom::ActiveRecord::Extend
     end
   end
 
-  def defined_references_by_belongs
+  def defined_references_by_model
     results = {}
     refs = reflections.values.select { |reflection| reflection.belongs_to? }
-    refs.reject! { |reflection| attributes_to_define_after_schema_loads.keys.include?(reflection.foreign_key.to_s) }
-    refs.reject! { |reflection| table_exists? && column_names.include?(reflection.foreign_key.to_s) }
+    refs.reject! { |reflection| reflection.foreign_key.to_s != "#{ref.name}_id" }
     refs.each do |ref|
       r = { name: ref.name }
       r.merge! polymorphic: true if ref.polymorphic?
       r.merge! reference_options: r.slice(:polymorphic).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
-      results[ref.foreign_key.to_sym] = r unless results.key?(ref.foreign_key.to_sym)
+      results[ref.foreign_key] = r unless results.key?(ref.foreign_key.to_sym)
     end
 
     results
-  end
-
-  def defined_attributes_by_belongs
-    ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
-    ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
-    ref_ids.flatten!
-    ref_ids.compact!
-    ref_ids
-  end
-
-  def defined_attributes_by_default
-    [primary_key] + all_timestamp_attributes_in_model
   end
 
   def defined_attributes_by_model
@@ -103,9 +90,7 @@ module RailsCom::ActiveRecord::Extend
     results = {}
 
     columns_hash.each do |name, column|
-      r = {
-        type: column.type
-      }
+      r = { type: column.type }
       r.merge! null: column.null unless column.null
       r.merge! default: column.default unless column.default.nil?
       r.merge! comment: column.comment if column.comment.present?
@@ -117,6 +102,18 @@ module RailsCom::ActiveRecord::Extend
     end
 
     results
+  end
+
+  def defined_attributes_by_belongs
+    ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
+    ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
+    ref_ids.flatten!
+    ref_ids.compact!
+    ref_ids
+  end
+
+  def defined_attributes_by_default
+    [primary_key] + all_timestamp_attributes_in_model
   end
 
   def xx_indexes
