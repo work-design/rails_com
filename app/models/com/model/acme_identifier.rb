@@ -105,7 +105,7 @@ module Com
     end
 
     def authorization(renewal = false)
-      if defined? @authorization && !renewal
+      if defined?(@authorization) && !renewal
         return @authorization
       end
 
