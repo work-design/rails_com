@@ -46,8 +46,15 @@ module Com
       r
     end
 
+    def get_cert
+      renew_order
+      authorizations
+      acme_identifiers.each(&:auto_verify)
+      finalize
+      cert
+    end
+
     def authorizations
-      return @authorizations if defined? @authorizations
       @authorizations = order.authorizations
       @authorizations.each do |auth|
         ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
