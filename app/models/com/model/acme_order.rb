@@ -27,7 +27,9 @@ module Com
 
     # status: pending
     def order(renewal = false)
-      return @order if defined? @order
+      if defined? @order && !renewal
+        return @order
+      end
 
       if !renewal && url
         begin

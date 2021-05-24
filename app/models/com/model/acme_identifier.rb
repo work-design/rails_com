@@ -105,7 +105,9 @@ module Com
     end
 
     def authorization(renewal = false)
-      return @authorization if defined? @authorization
+      if defined? @authorization && !renewal
+        return @authorization
+      end
 
       if !renewal && url
         @authorization = acme_order.acme_account.client.authorization(url: url)
