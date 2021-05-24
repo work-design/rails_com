@@ -34,7 +34,7 @@ module Com
     end
 
     # todo use aliyun temply
-    def write_dns
+    def ensure_dns
       r = AliDns.add_acme_record domain, record_content
       if r['RecordId']
         AliDns.check_record(domain, record_content)
@@ -59,10 +59,10 @@ module Com
 
     def auto_verify
       if file_available?
-        write_file
+        ensure_file
         file_verify?
       else
-        write_dns
+        ensure_dns
         dns_verify?
       end
     end
@@ -71,14 +71,17 @@ module Com
       file_name.present? && file_content.present?
     end
 
-    def write_file
-      file_path = Rails.root.join('public', file_name)
-      file_path.dirname.exist? || file_path.dirname.mkpath
+    def file_path
+      Rails.root.join('public', file_name)
+    end
 
-      if file_name.present?
-        File.open(file_path, 'w') do |f|
-          f.write file_content
-        end
+    def ensure_file
+      return unless file_available?
+      return true if file_path.file? && file_path.read == file_content
+
+      file_path.dirname.exist? || file_path.dirname.mkpath
+      File.open(file_path, 'w') do |f|
+        f.write file_content
       end
     end
 
