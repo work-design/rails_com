@@ -104,12 +104,13 @@ module Com
       "#{record_name}.#{domain}"
     end
 
-    def authorization
+    def authorization(renewal = false)
       return @authorization if defined? @authorization
-      if url
+
+      if !renewal && url
         @authorization = acme_order.acme_account.client.authorization(url: url)
       else
-        @authorization = acme_order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
+        @authorization = acme_order.order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
         save_auth(@authorization)
         @authorization
       end
