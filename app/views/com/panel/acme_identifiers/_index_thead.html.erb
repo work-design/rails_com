@@ -1,4 +1,7 @@
-<th><%= Com::AcmeIdentifier.human_attribute_name(:identifier) %></th>
+<th>
+  <p><%= Com::AcmeIdentifier.human_attribute_name(:domain) %></p>
+  <p><%= Com::AcmeIdentifier.human_attribute_name(:identifier) %></p>
+</th>
 <th>
   <p><%= Com::AcmeIdentifier.human_attribute_name(:file_name) %></p>
   <p><%= Com::AcmeIdentifier.human_attribute_name(:file_content) %></p>
@@ -7,6 +10,8 @@
   <p><%= Com::AcmeIdentifier.human_attribute_name(:record_name) %></p>
   <p><%= Com::AcmeIdentifier.human_attribute_name(:record_content) %></p>
 </th>
-<th><%= Com::AcmeIdentifier.human_attribute_name(:domain) %></th>
-<th><%= Com::AcmeIdentifier.human_attribute_name(:dns_valid) %></th>
+<th>
+  <p><%= Com::AcmeIdentifier.human_attribute_name(:dns_valid) %></p>
+  <p><%= Com::AcmeIdentifier.human_attribute_name(:file_valid) %></p>
+</th>
 <th></th>

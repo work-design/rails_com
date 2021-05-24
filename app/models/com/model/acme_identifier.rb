@@ -13,6 +13,7 @@ module Com
       attribute :wildcard, :boolean
       attribute :url, :string
       attribute :dns_valid, :boolean, default: false
+      attribute :file_valid, :boolean, default: false
 
       belongs_to :acme_order
 
