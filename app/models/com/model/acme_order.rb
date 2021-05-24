@@ -23,6 +23,8 @@ module Com
         has_one_attached :private_pem
         has_one_attached :cert_key
       end
+
+      after_update_commit :renew_before_expired, if: -> { saved_change_to_issued_at? && issued_at.present? }
     end
 
     # status: pending
@@ -131,6 +133,10 @@ module Com
         r = nil
       end
       r
+    end
+
+    def renew_before_expired
+      AcmeJob.set(wait_until: issued_at + 2.months).perform_later(self)
     end
 
   end
