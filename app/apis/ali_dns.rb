@@ -12,12 +12,29 @@ module AliDns
     )
   end
 
-  def xx
+  def records(domain)
     body = {
       action: 'DescribeDomainRecords'
     }
     body.merge! params: {
-      DomainName: 'work.design'
+      DomainName: domain
+    }
+    body.merge! opts: {
+      method: 'POST',
+      timeout: 15000
+    }
+    response = client.request(**body)
+  end
+
+  def add_acme_record(domain, value)
+    body = {
+      action: 'AddDomainRecord'
+    }
+    body.merge! params: {
+      DomainName: domain,
+      Type: 'TXT',
+      RR: "_acme-challenge",
+      value: value
     }
     body.merge! opts: {
       method: 'POST',
