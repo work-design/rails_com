@@ -9,7 +9,7 @@ module Com
       }
       q_params.merge! params.permit(:acme_account_id)
 
-      @acme_orders = AcmeOrder.default_where(q_params).page(params[:page])
+      @acme_orders = AcmeOrder.default_where(q_params).order(id: :desc).page(params[:page])
     end
 
     def new

@@ -6,6 +6,7 @@ module Com
     included do
       attribute :orderid, :string
       attribute :url, :string
+      attribute :issued_at, :datetime
 
       enum status: {
         pending: 'pending'
@@ -29,7 +30,11 @@ module Com
       return @order if defined? @order
 
       if !renewal && url
-        @order = acme_account.client.order(url: url)
+        begin
+          @order = acme_account.client.order(url: url)
+        rescue Acme::Client::Error::NotFound => e
+          @order = renew_order
+        end
       else
         @order = renew_order
       end
@@ -47,20 +52,17 @@ module Com
     end
 
     def get_cert
-      renew_order
-      authorizations
+      if order.status == 'pending'
+        authorizations
+      end
+
       acme_identifiers.each(&:auto_verify)
       finalize
       cert
     end
 
     def authorizations
-      @authorizations = order.authorizations
-      @authorizations.each do |auth|
-        ident = acme_identifiers.find { |i| i.domain == auth.domain && i.wildcard.present? == auth.wildcard.present? }
-        ident.save_auth(auth) if ident
-      end
-      @authorizations
+      acme_identifiers.map(&:authorization)
     end
 
     def identifiers

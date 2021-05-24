@@ -106,6 +106,8 @@ module Com
         @authorization = acme_order.acme_account.client.authorization(url: url)
       else
         @authorization = acme_order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
+        save_auth(@authorization)
+        @authorization
       end
     end
 
