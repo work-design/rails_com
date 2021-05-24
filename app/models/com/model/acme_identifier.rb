@@ -61,10 +61,10 @@ module Com
     def auto_verify
       if file_available?
         ensure_file
-        file_verify?
+        file_verify? && authorization.reload && authorization.status == 'valid'
       else
         ensure_dns
-        dns_verify?
+        dns_verify? && authorization.reload && authorization.status == 'valid'
       end
     end
 

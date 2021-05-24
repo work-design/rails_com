@@ -55,12 +55,24 @@ module Com
 
     def get_cert
       if order.status == 'pending'
-        authorizations
+        all_verify? && order.reload
       end
 
-      acme_identifiers.each(&:auto_verify)
-      finalize
-      cert
+      if order.status == 'ready'
+        begin
+          finalize && order.reload
+        rescue Acme::Client::Error::BadNonce => e
+          finalize && order.reload
+        end
+      end
+
+      if order.status == 'valid'
+        begin
+          cert
+        rescue Acme::Client::Error::BadNonce => e
+          cert
+        end
+      end
     end
 
     def authorizations
@@ -83,7 +95,7 @@ module Com
 
     # status: ready
     def all_verify?
-      acme_identifiers.map(&:dns_verify?).all? true
+      acme_identifiers.map(&:auto_verify).all? true
     end
 
     def csr
@@ -110,6 +122,7 @@ module Com
           file.binmode
           file.write r
           file.rewind
+          self.issued_at = Time.current
           self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
         end
       else
