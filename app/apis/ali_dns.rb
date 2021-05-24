@@ -23,7 +23,14 @@ module AliDns
       method: 'POST',
       timeout: 15000
     }
-    response = client.request(**body)
+    client.request(**body)
+  end
+
+  def check_record(domain, value)
+    result = records(domain).dig('DomainRecords', 'Record')
+    if result
+      result.find { |i| i['Type'] == 'TXT' && i['Value'] == value }
+    end
   end
 
   def add_acme_record(domain, value)

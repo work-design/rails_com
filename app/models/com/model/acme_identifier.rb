@@ -33,6 +33,14 @@ module Com
       end
     end
 
+    # todo use aliyun temply
+    def write_dns
+      r = AliDns.add_acme_record domain, record_content
+      if r['RecordId']
+        AliDns.check_record(domain, record_content)
+      end
+    end
+
     def dns_resolv
       Resolv::DNS.open do |dns|
         records = dns.getresources dns_host, Resolv::DNS::Resource::IN::TXT
@@ -47,6 +55,20 @@ module Com
         self.update dns_valid: true
       end
       dns_valid
+    end
+
+    def auto_verify
+      if file_available?
+        write_file
+        file_verify?
+      else
+        write_dns
+        dns_verify?
+      end
+    end
+
+    def file_available?
+      file_name.present? && file_content.present?
     end
 
     def write_file
