@@ -113,7 +113,11 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def defined_attributes_by_default
-    [primary_key] + all_timestamp_attributes_in_model
+    if table_exists?
+      [primary_key] + all_timestamp_attributes_in_model
+    else
+      []
+    end
   end
 
   def xx_indexes
