@@ -1,7 +1,7 @@
 class FeishuBot < LogRecordBot
 
   def send_message
-    url = "https://open.feishu.cn/open-apis/bot/hook/#{RailsLog.config.notify_key}"
+    url = "https://open.feishu.cn/open-apis/bot/hook/#{RailsCom.config.notify_key}"
     HTTPX.post(url, json: body)
   end
 
