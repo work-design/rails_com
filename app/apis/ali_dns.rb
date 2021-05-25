@@ -50,4 +50,4 @@ module AliDns
     response = client.request(**body)
   end
 
-end
+end if defined? AliyunSDKCore
