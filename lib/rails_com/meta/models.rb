@@ -53,6 +53,10 @@ module RailsCom::Models
     @modules
   end
 
+  def unbound_tables
+    tables - models.map(&:table_name) - ['schema_migrations', 'ar_internal_metadata']
+  end
+
   def tables
     ActiveRecord::Base.connection.tables
   end
