@@ -15,10 +15,8 @@ module Com
       model.attribute :parent_ancestors, :json, default: {}
       model.before_validation :sync_parent_id, if: -> { parent_ancestors_changed? && (parent_ancestors.presence != parent_ancestors_was.presence) }
       model.before_validation :set_parent_ancestors, if: -> { parent.present? && parent_ancestors.blank? }  # todo 考虑 parent 改变的情况
-      model.hierarchy_class.attribute :ancestor_id, :integer, null: false
-      model.hierarchy_class.attribute :descendant_id, :integer, null: false, index: { name: "#{model.name.underscore}_desc_idx" }
       model.hierarchy_class.attribute :generations, :integer, null: false
-      model.hierarchy_class.attribute :created_at, :datetime, null: true
+      model.hierarchy_class.attribute :created_at, :datetime, null: true  # 需要 created_at/updated_at 可为空值
       model.hierarchy_class.attribute :updated_at, :datetime, null: true
       model.hierarchy_class.index [:ancestor_id, :descendant_id, :generations], unique: true, name: "#{model.name.underscore}_anc_desc_idx"
 
