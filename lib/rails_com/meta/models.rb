@@ -21,7 +21,7 @@ module RailsCom::Models
         r[:add_references].merge! record_class.defined_references_by_model.except(*record_class.defined_attributes_by_db.keys)
         r[:remove_attributes] ||= record_class.defined_attributes_by_db
         r[:remove_attributes].except!(*record_class.defined_attributes_by_model.keys, *record_class.defined_attributes_by_default, *record_class.defined_attributes_by_belongs)
-        r[:timestamps] = [:created_at, :updated_at] & r[:add_attributes].keys
+        r[:timestamps] = ['created_at', 'updated_at'] & r[:add_attributes].keys
         r[:indexes] = record_class.xx_indexes
       end
 
