@@ -1,6 +1,6 @@
 default: &default
   additional_paths: []
-  engine_paths: []
+  engine_paths: [app/views]
 development:
   <<: *default
   public_output_path: packs-dev
