@@ -41,36 +41,54 @@ module Com
       ErrJob.perform_later(self)
     end
 
+    def record(payload)
+      err.path = payload[:path]
+      err.controller_name = payload[:controller]
+      err.action_name = payload[:action]
+      err.exception = payload[:exception].join("\r\n")[0..self.class.columns_limit['exception']]
+      err.exception_object = payload[:exception_object].class.to_s
+      err.exception_backtrace = payload[:exception_object].backtrace
+      err.params = filter_params(payload[:params])
+
+      raw_headers = payload.fetch(:headers, {})
+      err.headers = request_headers(raw_headers)
+      err.ip = raw_headers['action_dispatch.remote_ip'].to_s
+      err.cookie = raw_headers['rack.request.cookie_hash']
+      err.session = raw_headers['rack.session'].to_h
+    end
+
+    def record!(payload)
+      record(payload)
+      save
+      self
+    end
+
+    def request_headers(headers)
+      result = headers.select { |k, _| k.start_with?('HTTP_') && k != 'HTTP_COOKIE' }
+      result = result.collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
+      result.sort.to_h
+    end
+
+    def filter_params(params)
+      params.deep_transform_values(&:to_s).except('controller', 'action')
+    end
+
     class_methods do
       def record_to_log(controller, exp)
         return if Rails.env.development? && RailsCom.config.disable_debug
-
         request = controller.request
-        headers = request.headers
 
         lc = self.new
-        lc.path = request.fullpath
-        lc.controller_name = controller.class.name
-        lc.action_name = controller.action_name
-        lc.ip = request.remote_ip
-        lc.params = filter_params(request.filtered_parameters)
-        lc.headers = request_headers(headers)
-        lc.cookie = headers['rack.request.cookie_hash']
-        lc.session = Hash.new(headers['rack.session'])
-        lc.exception = [exp.class.name, exp.message].join("\r\n")[0..columns_limit['exception']]
-        lc.exception_object = exp.class.to_s
-        lc.exception_backtrace = exp.backtrace
-        lc.save
-      end
-
-      def request_headers(headers)
-        result = headers.select { |k, _| k.start_with?('HTTP_') && k != 'HTTP_COOKIE' }
-        result = result.collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
-        result.sort.to_h
-      end
-
-      def filter_params(params)
-        params.deep_transform_values(&:to_s).except('controller', 'action')
+        payload = {
+          path: request.fullpath,
+          controller: controller.class.name,
+          action: controller.action_name,
+          params: request.filtered_parameters,
+          headers: request.headers,
+          exception: [exp.class.name, exp.message],
+          exception_object: exp
+        }
+        lc.record!(payload)
       end
 
       def columns_limit
