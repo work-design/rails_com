@@ -3,6 +3,7 @@ en:
     modal:
       title: 编辑/新建
   panel:
+    title: Panel
     home:
       index:
         title: 后台
