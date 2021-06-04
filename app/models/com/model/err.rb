@@ -48,10 +48,10 @@ module Com
       err.exception = payload[:exception].join("\r\n")[0..self.class.columns_limit['exception']]
       err.exception_object = payload[:exception_object].class.to_s
       err.exception_backtrace = payload[:exception_object].backtrace
-      err.params = filter_params(payload[:params])
+      err.params = self.class.filter_params(payload[:params])
 
       raw_headers = payload.fetch(:headers, {})
-      err.headers = request_headers(raw_headers)
+      err.headers = self.class.request_headers(raw_headers)
       err.ip = raw_headers['action_dispatch.remote_ip'].to_s
       err.cookie = raw_headers['rack.request.cookie_hash']
       err.session = raw_headers['rack.session'].to_h
@@ -61,16 +61,6 @@ module Com
       record(payload)
       save
       self
-    end
-
-    def request_headers(headers)
-      result = headers.select { |k, _| k.start_with?('HTTP_') && k != 'HTTP_COOKIE' }
-      result = result.collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
-      result.sort.to_h
-    end
-
-    def filter_params(params)
-      params.deep_transform_values(&:to_s).except('controller', 'action')
     end
 
     class_methods do
@@ -89,6 +79,16 @@ module Com
           exception_object: exp
         }
         lc.record!(payload)
+      end
+
+      def request_headers(headers)
+        result = headers.select { |k, _| k.start_with?('HTTP_') && k != 'HTTP_COOKIE' }
+        result = result.collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
+        result.sort.to_h
+      end
+
+      def filter_params(params)
+        params.deep_transform_values(&:to_s).except('controller', 'action')
       end
 
       def columns_limit
