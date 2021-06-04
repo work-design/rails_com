@@ -1,0 +1,45 @@
+en:
+  application:
+    modal:
+      title: 编辑/新建
+  panel:
+    home:
+      index:
+        title: 后台
+  com:
+    title: Settings
+    panel:
+      acme_accounts:
+        index:
+          title: SSL
+      acme_orders:
+        index:
+          title: SSL Orders
+          order: 生成订单
+          verify: DNS验证
+          cert: 办法证书
+      acme_identifiers:
+        index:
+          title: SSL 订单详情
+      blob_defaults:
+        index:
+          title: Default Blobs
+        new:
+          title: 新建图片
+      blobs:
+        index:
+          title: Blobs
+        unattached:
+          title: 游离文件
+      attachments:
+        index:
+          title: Attachments
+      errs:
+        index:
+          title: System Errors
+      csps:
+        index:
+          title: Content Secure
+      inbound_emails:
+        index:
+          title: Emails
