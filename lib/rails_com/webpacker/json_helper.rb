@@ -8,14 +8,15 @@ module Webpacker
     # config/webpacker_template.yml in Rails project will override this.
     def initialize(template: 'config/vite_template.json', export: 'config/vite.json')
       template_path = (Rails.root + template).existence || RailsCom::Engine.root + template
-      export_path = Rails.root + export
+      @export_path = Rails.root + export
 
       @json = JSON.parse File.read(template_path)
-      @io = File.new(export_path, 'w+')
     end
 
     def dump
-      @json.dump
+      File.open(@export_path, 'w') do |file|
+        JSON.dump(@json, file)
+      end
     end
 
     def append(env = 'all', key, value)

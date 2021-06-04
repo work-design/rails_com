@@ -3,6 +3,8 @@ module Webpacker
     extend self
 
     def export
+      webpack = YamlHelper.new
+      json = JsonHelper.new
       Rails::Engine.subclasses.each do |engine|
         java_root = engine.root.join('app/packs')
         java_root.children.select(&:directory?).each do |path|
@@ -21,14 +23,8 @@ module Webpacker
           json.append 'watchAdditionalPaths', view_root.to_s
         end
       end
-    end
-
-    def webpack
-      @webpack ||= YamlHelper.new
-    end
-
-    def json
-      @json ||= JsonHelper.new
+      json.dump
+      webpack.dump
     end
 
   end

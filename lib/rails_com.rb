@@ -27,6 +27,7 @@ require 'generators/jbuilder_generator' if defined?(Jbuilder)
 # controllers
 require 'rails_com/webpacker/yaml_helper'
 require 'rails_com/webpacker/json_helper'
+require 'rails_com/webpacker/helper'
 
 # Utils
 require 'rails_com/utils/time_helper'
