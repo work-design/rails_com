@@ -17,7 +17,6 @@ module RailsCom #:nodoc:
     config.notify_bot = 'WorkWechatBot'
     config.notify_key = ''
     config.not_found_logger = ActiveSupport::Logger.new('log/not_found.log')
-    config.custom_webpacker = true
     config.github_hmac_key = 'must_change_this'
     config.default_error_message = '服务端发生错误'
     config.acme_url = 'https://acme-v02.api.letsencrypt.org/directory'  # 用于 SSL 证书自动签发服务

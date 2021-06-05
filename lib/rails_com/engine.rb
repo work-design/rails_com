@@ -54,10 +54,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
   end
 
   config.after_initialize do |app|
-    if RailsCom.config.custom_webpacker
-      Webpacker::Helper.export
-    end
-
     config_choice = app.config.active_storage.private_service
     if config_choice
       configs = app.config.active_storage.service_configurations
