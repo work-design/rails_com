@@ -5,6 +5,9 @@ module RailsCom
 
     def render(context, options)
       return super if defined?(WebConsole) && context.is_a?(WebConsole::View)
+
+      # 默认Rails行为是： 在查找模板的时候，路径的优先级优于 format 的优先级；
+      # 我们需要 formats 的优先级优于路径；
       request = context.request
       if request && request.format.symbol
         _formats = [context.request.format.symbol] | [:html]
@@ -24,7 +27,12 @@ module RailsCom
         @lookup_context.prefixes.prepend [context_prefix, "_#{action}"].join('/')
       end
 
-      context.instance_variable_set(:@_rendered_template, options[:template])
+      super
+    end
+
+    def render_template(view, template, layout_name, locals)
+      binding.pry
+      view.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
 
