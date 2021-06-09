@@ -27,18 +27,18 @@ module RailsCom
         @lookup_context.prefixes.prepend [context_prefix, "_#{action}"].join('/')
       end
 
+      # 当前 template 名称
+      context.instance_variable_set(:@_rendered_template, options[:template])
       super
     end
 
     def render_template(view, template, layout_name, locals)
-      binding.pry
-      view.instance_variable_set(:@_rendered_template, options[:template])
+      view.instance_variable_set(:@_rendered_template_path, template.identifier)
       super
     end
 
   end
 end
-
 
 ActiveSupport.on_load :action_view do
   ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
