@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-cache-control" content="no-preview">
     <%# stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= css_load media: 'all', 'data-turbo-track': 'reload' %>
+    <%# css_load media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_vite_tag 'application.js' %>
-    <%# js_load 'data-turbo-track': 'reload' %>
+    <%= js_load 'data-turbo-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
