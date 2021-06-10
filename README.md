@@ -65,7 +65,7 @@ activerecord:
 ```
 
 ## 注意
-* 仅支持 [webpacker](https://github.com/rails/webpacker)，不再支持 [sprockets](https://github.com/rails/sprockets)
+
 
 ## 版权
 遵循 [MIT](https://opensource.org/licenses/MIT) 协议
