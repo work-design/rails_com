@@ -42,19 +42,19 @@ module Com
     end
 
     def record(payload)
-      err.path = payload[:path]
-      err.controller_name = payload[:controller]
-      err.action_name = payload[:action]
-      err.exception = payload[:exception].join("\r\n")[0..self.class.columns_limit['exception']]
-      err.exception_object = payload[:exception_object].class.to_s
-      err.exception_backtrace = payload[:exception_object].backtrace
-      err.params = self.class.filter_params(payload[:params])
+      self.path = payload[:path]
+      self.controller_name = payload[:controller]
+      self.action_name = payload[:action]
+      self.exception = payload[:exception].join("\r\n")[0..self.class.columns_limit['exception']]
+      self.exception_object = payload[:exception_object].class.to_s
+      self.exception_backtrace = payload[:exception_object].backtrace
+      self.params = self.class.filter_params(payload[:params])
 
       raw_headers = payload.fetch(:headers, {})
-      err.headers = self.class.request_headers(raw_headers)
-      err.ip = raw_headers['action_dispatch.remote_ip'].to_s
-      err.cookie = raw_headers['rack.request.cookie_hash']
-      err.session = raw_headers['rack.session'].to_h
+      self.headers = self.class.request_headers(raw_headers)
+      self.ip = raw_headers['action_dispatch.remote_ip'].to_s
+      self.cookie = raw_headers['rack.request.cookie_hash']
+      self.session = raw_headers['rack.session'].to_h
     end
 
     def record!(payload)
