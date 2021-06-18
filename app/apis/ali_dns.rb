@@ -52,7 +52,12 @@ module AliDns
       timeout: 15000
     }
 
-    response = client.request(**body)
+    begin
+      response = client.request(**body)
+    rescue StandardError => e
+    ensure
+      records(root_domain)
+    end
   end
 
 end if defined? AliyunSDKCore
