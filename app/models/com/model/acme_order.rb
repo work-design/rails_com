@@ -131,6 +131,7 @@ module Com
           self.issued_at = Time.current
           self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
         end
+        self.save
       else
         order.reload
         logger.info "order status is #{order.status}"
