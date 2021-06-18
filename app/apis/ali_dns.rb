@@ -34,19 +34,24 @@ module AliDns
   end
 
   def add_acme_record(domain, value)
+    domain_arr = domain.split('.')
+    root_domain = domain_arr[-2..-1].join('.')
+    rr = ['_acme-challenge', *domain_arr[0...-2]].join('.')
+
     body = {
       action: 'AddDomainRecord'
     }
     body.merge! params: {
-      DomainName: domain,
+      DomainName: root_domain,
       Type: 'TXT',
-      RR: "_acme-challenge",
+      RR: rr,
       value: value
     }
     body.merge! opts: {
       method: 'POST',
       timeout: 15000
     }
+
     response = client.request(**body)
   end
 
