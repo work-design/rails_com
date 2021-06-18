@@ -57,6 +57,10 @@ module Com
 
     def get_cert
       if order.status == 'pending'
+        if acme_identifiers.any?(&:authorize_pending?)
+          authorizations
+        end
+
         all_verify? && order.reload
       end
 

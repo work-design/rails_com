@@ -21,6 +21,14 @@ module Com
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
     end
 
+    def authorize_pending?
+      if wildcard
+        record_name.blank? || record_content.blank?
+      else
+        file_name.blank? || file_content.blank?
+      end
+    end
+
     def renew_valid
       self.dns_valid = false
     end
