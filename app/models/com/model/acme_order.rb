@@ -128,10 +128,9 @@ module Com
           file.binmode
           file.write r
           file.rewind
-          self.issued_at = Time.current
           self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
         end
-        self.save
+        self.update issued_at: Time.current
       else
         order.reload
         logger.info "order status is #{order.status}"
