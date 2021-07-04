@@ -5,6 +5,7 @@ module Com
     def index
       q_params = {}
       q_params.merge! params.permit(:id, :key, :filename, :content_type)
+
       @blobs = ActiveStorage::Blob.default_where(q_params).order(id: :desc).page(params[:page])
     end
 
