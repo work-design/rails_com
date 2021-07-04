@@ -10,7 +10,7 @@ module RailsCom
       # 我们需要 formats 的优先级优于路径；
       request = context.request
       if request && request.format.symbol
-        _formats = [context.request.format.symbol] | [:html]
+        _formats = [request.format.symbol]
       else
         _formats = @lookup_context.formats[0..0].presence | [:html]
       end
