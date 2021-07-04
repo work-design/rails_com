@@ -12,7 +12,7 @@ module RailsCom
       if request && request.format.symbol
         _formats = [request.format.symbol]
       else
-        _formats = @lookup_context.formats[0..0].presence | [:html]
+        _formats = @lookup_context.formats[0..0].presence || [:html]
       end
 
       # todo better implement
