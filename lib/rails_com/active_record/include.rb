@@ -13,6 +13,10 @@ module RailsCom::ActiveRecord::Include
     self.class.base_class.name
   end
 
+  def as_full_json
+    as_json(include: _reflections.keys)
+  end
+
   class_methods do
     def index(name, **options)
       h = { index: name, **options }
