@@ -8,10 +8,20 @@ module RailsCom::Models
     result
   end
 
-  def tables_hash
+  def xx
+    @xx = {}
+
+    models.group_by(&:connection_db_config).each do |db_name, record_classes|
+      @xx[db_name] = tables_hash(record_classes)
+    end
+
+    @xx
+  end
+
+  def tables_hash(records = models)
     @tables = {}
 
-    models.group_by(&:table_name).each do |table_name, record_classes|
+    records.group_by(&:table_name).each do |table_name, record_classes|
       r = @tables[table_name] || {}
       r[:add_attributes] ||= {}
       r[:add_references] ||= {}
