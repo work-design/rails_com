@@ -1,6 +1,6 @@
 module Com
   class LogController < BaseController
-    skip_before_action :verify_authenticity_token
+    skip_before_action :verify_authenticity_token if defined? verify_authenticity_token
 
     def not_found
       params.permit!
