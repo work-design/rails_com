@@ -1,4 +1,7 @@
-require 'aliyunsdkcore'
+begin
+  require 'aliyunsdkcore'
+rescue LoadError
+end
 
 module AliDns
   extend self
@@ -60,4 +63,4 @@ module AliDns
     end
   end
 
-end if defined? AliyunSDKCore
+end
