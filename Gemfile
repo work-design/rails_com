@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
-gem 'webpacker', github: 'rails/webpacker'
 gem 'turbo-rails'
 gem 'puma'
 gem 'pg'
