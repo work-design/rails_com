@@ -1,6 +1,6 @@
 <% module_namespacing do -%>
 class <%= controller_class_name %>Controller < ApplicationController
-  before_action :set_<%= singular_table_name %>, only: [:show :update :destroy]
+  before_action :set_<%= singular_table_name %>, only: [:show, :update, :destroy]
 
   def index
     @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
