@@ -12,6 +12,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
 
     @xxs = RailsCom::Models.xx
     @xxs.each do |db, tables|
+      next if tables.blank?
       @tables = tables
       path = db.migrations_paths || db_migrate_path
       migration_template 'migration.rb', File.join(path, "#{file_name}.rb")
