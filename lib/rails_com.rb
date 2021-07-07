@@ -21,6 +21,7 @@ require 'rails_com/meta/env'
 
 # Rails extension
 require 'rails_com/generators'
+require 'generators/scaffold_controller_generator'
 require 'generators/scaffold_generator'
 require 'generators/jbuilder_generator' if defined?(Jbuilder)
 
