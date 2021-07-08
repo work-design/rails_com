@@ -1,29 +1,31 @@
 <% module_namespacing do -%>
 class <%= controller_class_name %>Controller < ApplicationController
-  before_action :set_<%= singular_table_name %>, only: [:show, :update, :destroy]
+  before_action :set_<%= singular_name %>, only: [:show, :update, :destroy]
 
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    @<%= plural_name %> = <%= orm_class.all(class_name) %>
   end
 
   def show
   end
 
   def create
-    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+    @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
     if @<%= orm_instance.save %>
-      render :show, status: :created
+      render :create, status: :created
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render :new, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
     end
   end
 
   def update
-    if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      render :show, status: :ok
+    @<%= orm_instance.assign_attributes("#{singular_name}_params") %>
+
+    if @<%= orm_instance.save %>
+      render :update, status: :ok
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render :edit, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
     end
   end
 
@@ -32,15 +34,15 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
 
   private
-  def set_<%= singular_table_name %>
-    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+  def set_<%= singular_name %>
+    @<%= singular_name %> = <%= orm_class.find(class_name, "params[:id]") %>
   end
 
-  def <%= "#{singular_table_name}_params" %>
+  def <%= "#{singular_name}_params" %>
     <%- if attributes_names.empty? -%>
-    params.fetch(<%= ":#{singular_table_name}" %>, {})
+    params.fetch(<%= ":#{singular_name}" %>, {})
     <%- else -%>
-    params.require(<%= ":#{singular_table_name}" %>).permit(<%= permitted_params %>)
+    params.require(<%= ":#{singular_name}" %>).permit(<%= permitted_params %>)
     <%- end -%>
   end
 end
