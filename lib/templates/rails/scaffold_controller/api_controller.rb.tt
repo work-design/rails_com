@@ -3,7 +3,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   before_action :set_<%= singular_name %>, only: [:show, :update, :destroy]
 
   def index
-    @<%= plural_name %> = <%= orm_class.all(class_name) %>
+    @<%= plural_name %> = <%= class_name %>.page(params[:page])
   end
 
   def show
@@ -12,7 +12,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def create
     @<%= singular_name %> = <%= orm_class.build(class_name, "#{singular_name}_params") %>
 
-    if @<%= orm_instance.save %>
+    if @<%= orm_instance(singular_name).save %>
       render :create, status: :created
     else
       render :new, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
@@ -20,9 +20,9 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
 
   def update
-    @<%= orm_instance.assign_attributes("#{singular_name}_params") %>
+    @<%= singular_name %>.assign_attributes(<%= singular_name %>_params)
 
-    if @<%= orm_instance.save %>
+    if @<%= orm_instance(singular_name).save %>
       render :update, status: :ok
     else
       render :edit, locals: { model: @<%= singular_name %> }, status: :unprocessable_entity
@@ -30,7 +30,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
 
   def destroy
-    @<%= orm_instance.destroy %>
+    @<%= orm_instance(singular_name).destroy %>
   end
 
   private
