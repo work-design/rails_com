@@ -4,6 +4,16 @@ Rails.application.routes.draw do
     resources :direct_uploads, only: [:create]
   end
 
+  controller :home do
+    get :index
+  end
+
+  namespace :panel, defaults: { namespace: 'panel' } do
+    controller :home do
+      get :index
+    end
+  end
+
   scope :rails, module: 'com', as: :rails_ext, defaults: { business: 'com' } do
     resources :videos, only: [:show] do
       member do

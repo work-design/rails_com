@@ -6,6 +6,6 @@
   <div class="navbar-dropdown">
     <% Auth::User.options_i18n(:locale).each do |text, value| %>
       <%= link_to text, { locale: value }, class: 'navbar-item' %>
-    <% end %>
+    <% end if defined? RailsAuth %>
   </div>
 </div>
