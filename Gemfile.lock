@@ -24,6 +24,7 @@ PATH
       httpx (~> 0.8)
       kaminari
       rails (~> 6.0)
+      turbo-rails
 
 GEM
   remote: https://rubygems.org/
@@ -241,4 +242,4 @@ DEPENDENCIES
   turbo-rails
 
 BUNDLED WITH
-   2.2.15
+   2.2.22

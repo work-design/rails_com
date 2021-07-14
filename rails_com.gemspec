@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'closure_tree', '>= 7.2'
   s.add_dependency 'acts_as_list', '>= 1.0'
   s.add_dependency 'acme-client'
+  s.add_dependency 'turbo-rails'
 end
