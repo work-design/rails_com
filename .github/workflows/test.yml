@@ -1,0 +1,49 @@
+name: Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up System
+      run: |
+        sudo systemctl start postgresql
+        sudo systemctl status postgresql
+        sudo su postgres && psql -c "create role runner with login password 'runner';" && exit
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.x
+        bundler-cache: true
+    - name: Set up Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: Fetch Project
+      uses: actions/checkout@v1
+      with:
+        submodules: recursive
+    - name: Cache Bundle
+      uses: actions/cache@v1
+      with:
+        path: bundle
+        key: ${{ runner.OS }}-bundle-${{ hashFiles('Gemfile.lock') }}
+    - name: Cache Node Modules
+      uses: actions/cache@v1
+      with:
+        path: test/dummy/node_modules
+        key: ${{ runner.OS }}-yarn-${{ hashFiles('test/dummy/yarn.lock') }}
+    - name: Install Dependencies
+      run: |
+        gem install bundler
+        bundle install --path=bundle --jobs=4 --retry=3
+        test/dummy/bin/yarn install --check-files
+    - name: Prepare DB
+      run: |
+        cp test/dummy/config/database.yml.example test/dummy/config/database.yml
+        bin/rails db:drop
+        bin/rails db:create
+        bin/rails g rails_com:migrations --force
+        bin/rails db:migrate
+    - name: Run Test
+      run: |
+        bin/rails test -v -b
