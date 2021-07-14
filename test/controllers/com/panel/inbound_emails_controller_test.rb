@@ -17,7 +17,7 @@ class Com::Panel::InboundEmailsControllerTest < ActionDispatch::IntegrationTest
 
   test 'create ok' do
     assert_difference('InboundEmail.count') do
-      post panel_inbound_emails_url, params: { #{singular_table_name}: { #{attributes_string} } }
+      post panel_inbound_emails_url, params: { }
     end
 
     assert_response :success
@@ -34,7 +34,7 @@ class Com::Panel::InboundEmailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'update ok' do
-    patch panel_inbound_email_url(@com_panel_inbound_email), params: { #{singular_table_name}: { #{attributes_string} } }
+    patch panel_inbound_email_url(@com_panel_inbound_email), params: { }
     assert_response :success
   end
 

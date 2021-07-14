@@ -17,7 +17,7 @@ class Com::Panel::AcmeIdentifiersControllerTest < ActionDispatch::IntegrationTes
 
   test 'create ok' do
     assert_difference('AcmeIdentifier.count') do
-      post panel_acme_identifiers_url, params: { #{singular_table_name}: { #{attributes_string} } }
+      post panel_acme_identifiers_url, params: { }
     end
 
     assert_response :success
@@ -34,7 +34,7 @@ class Com::Panel::AcmeIdentifiersControllerTest < ActionDispatch::IntegrationTes
   end
 
   test 'update ok' do
-    patch panel_acme_identifier_url(@com_panel_acme_identifier), params: { #{singular_table_name}: { #{attributes_string} } }
+    patch panel_acme_identifier_url(@com_panel_acme_identifier), params: { }
     assert_response :success
   end
 

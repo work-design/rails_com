@@ -17,7 +17,7 @@ class Com::Panel::AcmeOrdersControllerTest < ActionDispatch::IntegrationTest
 
   test 'create ok' do
     assert_difference('AcmeOrder.count') do
-      post panel_acme_orders_url, params: { #{singular_table_name}: { #{attributes_string} } }
+      post panel_acme_orders_url, params: { }
     end
 
     assert_response :success
@@ -34,7 +34,7 @@ class Com::Panel::AcmeOrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'update ok' do
-    patch panel_acme_order_url(@com_panel_acme_order), params: { #{singular_table_name}: { #{attributes_string} } }
+    patch panel_acme_order_url(@com_panel_acme_order), params: { }
     assert_response :success
   end
 
