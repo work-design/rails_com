@@ -22,7 +22,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
       g.helper false
       g.resource_route false
       g.jbuilder true
-      g.fixture_replacement :factory_bot
     end
   end
 

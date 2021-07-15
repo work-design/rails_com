@@ -22,16 +22,16 @@ module RailsCom::ActiveRecord::Extend
     end
   end
 
-  def to_factory_bot
-    require 'rails/generators'
-    require 'generators/factory_bot/model/model_generator'
+  def to_fixture
+    require 'rails/generators/test_unit/model/model_generator'
 
     args = [
       self.name.underscore
     ]
     cols = columns.reject(&->(i){ ['id', 'created_at', 'updated_at'].include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
 
-    generator = FactoryBot::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root)
+    generator = TestUnit::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root, fixture: true)
+    generator.instance_variable_set :@source_paths, Array(RailsCom::Engine.root.join('lib/templates', 'test_unit/model'))
     generator.invoke_all
   end
 
