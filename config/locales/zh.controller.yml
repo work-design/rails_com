@@ -7,8 +7,8 @@ zh:
       index:
         title: 后台
   com:
-    title: 系统配置
     panel:
+      title: 系统配置
       acme_accounts:
         index:
           title: SSL 证书申请
