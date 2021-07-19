@@ -1,5 +1,6 @@
 <aside class="menu is-light" style="height: 100%">
   <%= render 'com_nav' %>
+  <%= render 'auth_nav' if defined? RailsAuth %>
   <%= render 'role_nav' if defined? RailsRole %>
   <%= render 'data_nav' if defined? RailsData %>
 </aside>
