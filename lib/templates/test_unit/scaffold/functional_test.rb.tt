@@ -21,7 +21,7 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
   test 'create ok' do
     assert_difference('<%= class_name %>.count') do
       post(
-        url_for(controller: '<%= controller_name %>', action: 'show'),
+        url_for(controller: '<%= controller_name %>', action: 'create'),
         params: { <%= "#{singular_name}: { #{attributes_string} }" %> },
         as: :turbo_stream
       )
