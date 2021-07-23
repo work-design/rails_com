@@ -3,16 +3,18 @@ require 'test_helper'
 class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @<%= singular_name %> = <%= fixture_name %>(:one)
+    @<%= singular_name %> = <%= fixture_file_name %>(:one)
   end
 
   test 'index ok' do
     get url_for(controller: '<%= controller_name %>')
+
     assert_response :success
   end
 
   test 'new ok' do
     get url_for(controller: '<%= controller_name %>')
+
     assert_response :success
   end
 
@@ -30,11 +32,13 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
 
   test 'show ok' do
     get url_for(controller: '<%= controller_name %>', action: 'show', id: @<%= singular_name %>.id)
+
     assert_response :success
   end
 
   test 'edit ok' do
     get url_for(controller: '<%= controller_name %>', action: 'edit', id: @<%= singular_name %>.id)
+
     assert_response :success
   end
 
@@ -44,6 +48,7 @@ class <%= controller_class_name %>ControllerTest < ActionDispatch::IntegrationTe
       params: { <%= "#{singular_name}: { #{attributes_string} }" %> },
       as: :turbo_stream
     )
+
     assert_response :success
   end
 
