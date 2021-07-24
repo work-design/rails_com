@@ -1,5 +1,5 @@
 one:
-  acme_order_id: 1
+  acme_order: one
   identifier: MyString
   file_name: MyString
   file_content: MyString
@@ -12,7 +12,7 @@ one:
   dns_valid: false
   file_valid: false
 two:
-  acme_order_id: 1
+  acme_order: one
   identifier: MyString
   file_name: MyString
   file_content: MyString
