@@ -1,4 +1,4 @@
-one_order:
+one:
   acme_account: one
   orderid: MyString
   url: MyString

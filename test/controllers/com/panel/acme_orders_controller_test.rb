@@ -2,13 +2,8 @@ require 'test_helper'
 class Com::Panel::AcmeOrdersControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    begin
-      @acme_account = Com::AcmeAccount.create email: 'test3@work.design'
-      @acme_order = Com::AcmeOrder.create com_acme_orders(:one).attributes.slice('id')
-    rescue
-      @acme_order = com_acme_orders(:one)
-      @acme_account = @acme_order.acme_account
-    end
+    @acme_order = com_acme_orders(:one)
+    @acme_account = @acme_order.acme_account
   end
 
   test 'index ok' do
