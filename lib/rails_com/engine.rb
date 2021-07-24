@@ -4,8 +4,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
 
   config.generators do |g|
     g.stylesheets false
-    g.javasricpts false
-    g.javascript_engine false
     g.helper false
     g.resource_route false
     g.jbuilder false
@@ -17,8 +15,6 @@ class RailsCom::Engine < ::Rails::Engine #:nodoc:
     # todo check if really works
     app.config.generators do |g|
       g.stylesheets false
-      g.javasricpts false
-      g.javascript_engine false
       g.helper false
       g.resource_route false
       g.jbuilder true

@@ -2,45 +2,53 @@ require 'test_helper'
 class Com::Panel::CacheListsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @cache_list = create :cache_list
+    @cache_list = com_cache_lists(:one)
   end
 
   test 'index ok' do
-    get panel_cache_lists_url
+    get url_for(controller: 'com/panel/cache_lists')
     assert_response :success
   end
 
   test 'new ok' do
-    get new_panel_cache_list_url, xhr: true
+    get url_for(controller: 'com/panel/cache_lists', action: 'new')
     assert_response :success
   end
 
   test 'create ok' do
-    assert_difference('CacheList.count') do
-      post panel_cache_lists_url, params: { cache_list: { key: 'xx' } }, xhr: true
+    assert_difference('Com::CacheList.count') do
+      post(
+        url_for(controller: 'com/panel/cache_lists', action: 'create'),
+        params: { cache_list: { key: 'xx' } },
+        as: :turbo_stream
+      )
     end
 
     assert_response :success
   end
 
   test 'show ok' do
-    get panel_cache_list_url(@cache_list), xhr: true
+    get url_for(controller: 'com/panel/cache_lists', action: 'new', id: @cache_list.id)
     assert_response :success
   end
 
   test 'edit ok' do
-    get edit_panel_cache_list_url(@cache_list), xhr: true
+    get url_for(controller: 'com/panel/cache_lists', action: 'edit', id: @cache_list.id)
     assert_response :success
   end
 
   test 'update ok' do
-    patch panel_cache_list_url(@cache_list), params: { cache_list: { key: 'xx' } }, xhr: true
+    patch(
+      url_for(controller: 'com/panel/cache_lists', action: 'update', id: @cache_list.id),
+      params: { cache_list: { key: 'xx' } },
+      as: :turbo_stream
+    )
     assert_response :success
   end
 
   test 'destroy ok' do
-    assert_difference('CacheList.count', -1) do
-      delete panel_cache_list_url(@cache_list), xhr: true
+    assert_difference('Com::CacheList.count', -1) do
+      delete url_for(controller: 'com/panel/cache_lists', action: 'destroy', id: @cache_list.id), as: :turbo_stream
     end
 
     assert_response :success

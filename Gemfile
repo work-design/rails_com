@@ -7,7 +7,6 @@ gem 'puma'
 gem 'pg'
 gem 'image_processing'
 
-gem 'factory_bot_rails', require: false
 gem 'sdoc'
 
 gem 'pry-rails'

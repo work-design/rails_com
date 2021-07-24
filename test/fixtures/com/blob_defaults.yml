@@ -1,0 +1,8 @@
+one:
+  record_class: User
+  name: MyString
+  private: false
+two:
+  record_class: User
+  name: MyString
+  private: false
