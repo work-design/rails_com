@@ -4,7 +4,6 @@ module Com
 
     def index
       @inbound_emails = ActionMailbox::InboundEmail.page(params[:page])
-      binding.pry
     end
 
     def show
