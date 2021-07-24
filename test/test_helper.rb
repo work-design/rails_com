@@ -10,5 +10,5 @@ class ActiveSupport::TestCase
   self.file_fixture_path = fixture_path + '/files'
   ActionDispatch::IntegrationTest.fixture_path = self.fixture_path
   fixtures :all
-  parallelize(workers: :number_of_processors)
+  #parallelize(workers: :number_of_processors)
 end

@@ -23,7 +23,6 @@ class Com::Panel::CacheListsControllerTest < ActionDispatch::IntegrationTest
         as: :turbo_stream
       )
     end
-
     assert_response :success
   end
 
