@@ -1,4 +1,4 @@
-<%= form_with theme: 'search', model: Com::AcmeIdentifier.new, url: { action: 'index' } do |f| %>
+<%= form_with theme: 'search', model: Com::AcmeIdentifier.new, url: { action: params[:action] } do |f| %>
   <div class="field-body">
     <%= f.text_field :name %>
     <div class="field is-narrow">

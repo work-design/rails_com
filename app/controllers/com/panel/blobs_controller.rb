@@ -15,6 +15,7 @@ module Com
     def unattached
       q_params = {}
       q_params.merge! params.permit(:id, :key, :filename, :content_type)
+
       @blobs = ActiveStorage::Blob.unattached.default_where(q_params).order(id: :desc).page(params[:page])
       render :index
     end
@@ -24,9 +25,9 @@ module Com
     end
 
     def create
-      @blob = ActiveStorage::Blob.build_after_upload(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
+      @blob = ActiveStorage::Blob.create_and_upload!(io: blob_params[:io].tempfile, filename: blob_params[:io].original_filename)
 
-      unless @blob.save
+      unless @blob.persisted?
         render :new, locals: { model: @blob }, status: :unprocessable_entity
       end
     end

@@ -1,4 +1,4 @@
-<%= form_with theme: 'search' do |f| %>
+<%= form_with theme: 'search', url: { action: params[:action] } do |f| %>
   <div class="field-body">
     <%= f.text_field :key, placeholder: ActiveStorage::Blob.human_attribute_name(:key) %>
     <%= f.text_field :filename, placeholder: ActiveStorage::Blob.human_attribute_name(:filename) %>
