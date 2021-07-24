@@ -1,16 +1,15 @@
 require 'test_helper'
 class Com::VideosControllerTest < ActionDispatch::IntegrationTest
- 
-  setup do
-    User.has_one_attached :avatar
-    @user = create :user
-    @user.avatar.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'
 
-    @active_storage_video = @user.avatar.attachment
+  setup do
+    @blob_default = com_blob_defaults(:one)
+    @blob_default.file.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'
+
+    @active_storage_video = @blob_default.file.attachment
   end
 
   test 'show ok' do
-    get rails_ext_video_url(@active_storage_video)
+    get url_for(controller: 'com/videos', action: 'show', id: @active_storage_video.id)
     assert_response :success
   end
 
