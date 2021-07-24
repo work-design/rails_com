@@ -2,31 +2,35 @@ require 'test_helper'
 class Com::Panel::BlobDefaultsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @blob_default = create :blob_default
+    @blob_default = com_blob_defaults(:one)
     @blob_default.file.attach io: file_fixture('empty_file.txt').open, filename: 'xx.txt'
   end
 
   test 'index ok' do
-    get panel_blob_defaults_url
+    get url_for(controller: 'com/panel/blob_defaults')
     assert_response :success
   end
 
   test 'new ok' do
-    get new_panel_blob_default_url, xhr: true
+    get url_for(controller: 'com/panel/blob_defaults', action: 'new')
     assert_response :success
   end
 
   test 'create ok' do
-    assert_difference('BlobDefault.count') do
-      post panel_blob_defaults_url, params: { blob_default: { record_class: 'User', name: 'avatar' } }, xhr: true
+    assert_difference('Com::BlobDefault.count') do
+      post(
+        url_for(controller: 'com/panel/blob_defaults', action: 'create'),
+        params: { blob_default: { record_class: 'User', name: 'avatar' } },
+        as: :turbo_stream
+      )
     end
 
     assert_response :success
   end
 
   test 'destroy ok' do
-    assert_difference('BlobDefault.count', -1) do
-      delete panel_blob_default_url(@blob_default), xhr: true
+    assert_difference('Com::BlobDefault.count', -1) do
+      delete url_for(controller: 'com/panel/blob_defaults', action: 'destroy', id: @blob_default.id), as: :turbo_stream
     end
 
     assert_response :success
