@@ -14,6 +14,4 @@ gem 'awesome_print'
 gem 'kaminari'
 gem 'jbuilder'
 
-gem 'default_form', github: 'qinmingyuan/default_form'
-gem 'default_where', github: 'qinmingyuan/default_where'
-
+gem 'viter', github: 'qinmingyuan/viter'
