@@ -10,7 +10,7 @@ module RailsCom::ActionMailbox::InboundEmail
   def docx
     mail.attachments.map do |attachment|
       Docx::Document.new(attachment.body.to_s) if attachment.filename.end_with?('.docx')
-    end
+    end.compact
   end
 
 end

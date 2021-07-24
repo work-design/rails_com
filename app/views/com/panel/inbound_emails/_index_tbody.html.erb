@@ -2,4 +2,4 @@
 <td><%= model.status_i18n %></td>
 <td><%= simple_format model.mail.from %></td>
 <td><%= simple_format model.mail.to %></td>
-<td><%= link_to model.mail.subject, panel_inbound_email_path(model) %></td>
+<td><%= link_to model.mail.subject, { action: 'show', id: model.id } %></td>
