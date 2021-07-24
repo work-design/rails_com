@@ -19,7 +19,7 @@ class Com::Panel::AcmeAccountsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Com::AcmeAccount.count') do
       post(
         url_for(controller: 'com/panel/acme_accounts', action: 'create'),
-        params: { email: 'test2@work.design' },
+        params: { acme_account: { email: 'test2@work.design' } },
         as: :turbo_stream
       )
     end
@@ -35,7 +35,7 @@ class Com::Panel::AcmeAccountsControllerTest < ActionDispatch::IntegrationTest
   test 'update ok' do
     patch(
       url_for(controller: 'com/panel/acme_accounts', action: 'update', id: @acme_account.id),
-      params: { email: 'test1@work.design' },
+      params: { acme_account: { email: 'test1@work.design' } },
       as: :turbo_stream
     )
 
