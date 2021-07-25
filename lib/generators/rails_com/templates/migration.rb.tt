@@ -16,7 +16,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
   <%- else -%>
     create_table :<%= table_name %> do |t|
     <%- attributes[:add_references].each do |reference, options| -%>
-      t.references :<%= options[:name] %><%= options[:reference_options] %>
+      t.belongs_to :<%= options[:name] %><%= options[:reference_options] %>
     <%- end -%>
     <%- attributes[:add_attributes].each do |attribute, options| -%>
       t.<%= options[:type] %> :<%= attribute %><%= options[:attribute_options] %>
