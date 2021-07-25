@@ -1,6 +1,0 @@
-Turbo.clearCache()
-<% if defined? return_to %>
-Turbo.visit('<%= return_to.html_safe %>', { action: 'replace' })
-<% else %>
-Turbo.visit(location.href, { action: 'replace' })
-<% end %>
