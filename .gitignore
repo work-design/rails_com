@@ -1,8 +1,10 @@
 .bundle/
 docs/
-log/*.log
 db/
+node_modules/
+log/*.log
+tmp/**/*.*
+!tmp/.keep
+!tmp/sockets/.keep
 
 *.gem
-/tmp/**/*
-!/tmp/sockets/.keep
