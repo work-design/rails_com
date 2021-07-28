@@ -13,8 +13,10 @@ Rails 通用基础库，对 Rails 的各个组件进行了扩展。
   * 支持机器人发送通知
     * 企业微信机器人：`WorkWechatBot`
     * 飞书机器人：`FeishuBot`
-* 在开发环境中（Loglevel 为 debug），打印 request headers 信息；
-
+* 日志功能扩展：
+  * 在开发环境中（Loglevel 为 debug），打印 request headers 信息；
+  * 注重性能：使用订阅通知机制实现，而非 `rescue_from` 或者 `Rack middleware`;
+  * 在 err model 中记录了详尽的 debug 上下文信息，包含：cookies, session, headers, params，当前用户 等;
 ```
 Started GET "/admin/log_csps" for 127.0.0.1 at 2018-11-06 15:11:45 +0800
 Processing by Log::Admin::LogCspsController#index as HTML
