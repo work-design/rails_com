@@ -8,6 +8,7 @@ module RailsCom
 
     def call(env)
       if env['PATH_INFO'] =~ @assets_regex
+        Rails.logger.debug "Silenced: #{env['PATH_INFO']}"
         Rails.logger.silence { @app.call(env) }
       else
         @app.call(env)
