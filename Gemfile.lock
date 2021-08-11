@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/qinmingyuan/viter.git
-  revision: f007952bb7cf5f1c30d56d0bbb9b1c37bc73317e
+  revision: 69e5b6e5585471aa973aa1fd807e38544295b886
   specs:
     viter (0.1.0)
       rails
