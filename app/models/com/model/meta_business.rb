@@ -26,8 +26,8 @@ module Com
       identifier
     end
 
-    def name_spaces
-      NameSpace.where(identifier: Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
+    def meta_namespaces
+      MetaNamespace.where(identifier: MetaController.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
     end
 
     def role_hash
@@ -38,9 +38,9 @@ module Com
 
     def namespace_hash
       r = {}
-      name_spaces.each do |name_space|
-        nr = name_space.role_hash(identifier)
-        r.merge! name_space.identifier => nr if nr.present?
+      meta_namespaces.each do |meta_namespace|
+        nr = meta_namespace.role_hash(identifier)
+        r.merge! meta_namespace.identifier => nr if nr.present?
       end
       r
     end

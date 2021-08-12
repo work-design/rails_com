@@ -8,18 +8,18 @@
       <i class="fas fa-arrow-down"></i>
     <% end %>
     <span aria-label="<%= meta_controller.identifier %>"><%= meta_controller.name %></span>
-    <%= link_to edit_panel_meta_controller_path(meta_controller), aria: { label: t('.edit') }, class: 'has-text-grey-lighter' do %>
+    <%= link_to({ action: 'edit', id: meta_controller.id }, aria: { label: t('.edit') }, class: 'has-text-grey-lighter') do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
   </td>
   <td>
-    <% meta_controller.rules.each do |rule| %>
+    <% meta_controller.meta_actions.each do |meta_action| %>
       <div>
-        <span aria-label="<%= rule.action_name %>"><%= rule.name %></span>
-        <%= link_to roles_panel_meta_controller_rule_path(meta_controller, rule), id: "roles_#{rule.id}", class: 'has-text-grey-lighter' do %>
+        <span aria-label="<%= meta_action.action_name %>"><%= meta_action.name %></span>
+        <%= link_to({ controller: 'meta_actions', action: 'edit', meta_controller_id: meta_controller.id, id: meta_action.id }, id: "roles_#{meta_action.id}", class: 'has-text-grey-lighter') do %>
           <i class="fas fa-users"></i>
         <% end %>
-        <%= link_to edit_panel_meta_controller_rule_path(meta_controller, rule), aria: { label: t('.edit') }, class: 'has-text-grey-lighter' do %>
+        <%= link_to({ controller: 'meta_actions', action: 'edit', meta_controller_id: meta_controller.id, id: meta_action.id }, aria: { label: t('.edit') }, class: 'has-text-grey-lighter') do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
       </div>

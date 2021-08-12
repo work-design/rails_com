@@ -2,7 +2,7 @@
 <tr id="tr_<%= meta_controller.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
-    <%= button_to({ action: 'rules', meta_controller_id: meta_controller.id }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'meta_actions', meta_controller_id: meta_controller.id }, data: { turbo_frame: 'visit' }) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= meta_controller.name %></span>

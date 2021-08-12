@@ -14,9 +14,9 @@ module Com
       attribute :position, :integer
       attribute :landmark, :boolean
 
-      belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
-      belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
-      belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_path, primary_key: :controller_path, optional: true
+      belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_controller, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_path, primary_key: :controller_path, optional: true
 
       enum operation: {
         list: 'list',

@@ -14,9 +14,9 @@ module Com
       MetaController.sync
     end
 
-    def namespaces
+    def meta_namespaces
       @meta_business = MetaBusiness.find_by identifier: params[:business_identifier]
-      @meta_namespaces = @meta_business.name_spaces
+      @meta_namespaces = @meta_business.meta_namespaces
     end
 
     def meta_controllers
@@ -30,7 +30,7 @@ module Com
       @meta_controllers = MetaController.default_where(q_params)
     end
 
-    def rules
+    def meta_actions
       @meta_controller = MetaController.find params[:meta_controller_id]
       @meta_actions = @meta_controller.meta_actions
     end
