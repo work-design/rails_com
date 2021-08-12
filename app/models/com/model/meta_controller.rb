@@ -9,10 +9,10 @@ module Com
       attribute :controller_name, :string
       attribute :position, :integer
 
-      belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
-      belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
 
-      has_many :rules, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :govern
+      has_many :meta_actions, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :govern
       has_many :role_rules, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy
 
       accepts_nested_attributes_for :rules, allow_destroy: true

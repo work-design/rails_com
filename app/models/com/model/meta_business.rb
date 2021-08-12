@@ -7,8 +7,8 @@ module Com
       attribute :identifier, :string
       attribute :position, :integer
 
-      has_many :governs, foreign_key: :business_identifier, primary_key: :identifier
-      has_many :rules, foreign_key: :business_identifier, primary_key: :identifier
+      has_many :meta_controllers, foreign_key: :business_identifier, primary_key: :identifier
+      has_many :meta_actions, foreign_key: :business_identifier, primary_key: :identifier
 
       has_one_attached :logo
 
@@ -48,14 +48,14 @@ module Com
     class_methods do
 
       def sync
-        existing = Busyness.select(:identifier).distinct.pluck(:identifier)
+        existing = self.select(:identifier).distinct.pluck(:identifier)
         (RailsCom::Routes.businesses.keys - existing).each do |business|
-          busyness = Busyness.find_or_initialize_by(identifier: business)
-          busyness.save
+          b = self.find_or_initialize_by(identifier: business)
+          b.save
         end
 
         (existing - RailsCom::Routes.businesses.keys).each do |business|
-          Busyness.find_by(identifier: business)&.destroy
+          self.find_by(identifier: business)&.destroy
         end
       end
 

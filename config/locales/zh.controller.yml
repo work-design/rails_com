@@ -43,3 +43,9 @@ zh:
       inbound_emails:
         index:
           title: 邮件管理
+      meta_businesses:
+        index:
+          title: 业务
+      meta_namespaces:
+        index:
+          title: 命名空间

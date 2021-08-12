@@ -27,7 +27,7 @@ module Com
     end
 
     def set_meta_business
-      @meta_business = Busyness.find(params[:id])
+      @meta_business = MetaBusiness.find(params[:id])
     end
 
   end

@@ -1,5 +1,5 @@
 module Com
-  module MetaModel
+  module Model::MetaModel
     extend ActiveSupport::Concern
 
   end

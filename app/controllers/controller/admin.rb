@@ -37,11 +37,5 @@ module Com
       model.destroy
     end
 
-    class_eval do
-      def "#{controller_name}_params"
-        params.requie("#{controller_name}").permit!
-      end
-    end
-
   end
 end

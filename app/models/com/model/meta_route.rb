@@ -1,5 +1,5 @@
 module Com
-  module MetaRoute
+  module Model::MetaRoute
     extend ActiveSupport::Concern
 
   end
