@@ -4,7 +4,7 @@ module Com
     before_action :set_meta_model, only: [:show, :edit, :update, :destroy]
 
     def index
-      @meta_models = MetaModel.page(params[:page])
+      @meta_models = MetaModel.order(record_name: :asc).page(params[:page])
     end
 
     def sync
