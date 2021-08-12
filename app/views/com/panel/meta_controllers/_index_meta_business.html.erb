@@ -1,0 +1,16 @@
+<tr id="tr_<%= meta_business.identifier.blank? ? '_' : meta_business.identifier %>" data-controller="tree-remote show" data-tree-remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
+  <td>
+    <%= button_to({ action: 'namespaces', business_identifier: meta_business.identifier }, data: { turbo_frame: 'visit' }) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+    <% end %>
+    <span><%= meta_business.name %></span>
+    <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
+    <%= button_to({ controller: 'meta_businesses', action: 'move_higher', id: meta_business.id }, method: :patch, data: { show_target: 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-up"></i>
+    <% end %>
+    <%= button_to({ controller: 'meta_businesses', action: 'move_lower', id: meta_business.id }, method: :patch, data: { show_target: 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-down"></i>
+    <% end %>
+  </td>
+  <td></td>
+</tr>
