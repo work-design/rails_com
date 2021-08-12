@@ -13,7 +13,7 @@ module Com
 
     def update
       model = instance_variable_get "@#{controller_name.singularize}"
-      model_params = public_send "#{controller_name.singularize}_params"
+      model_params = send "#{controller_name.singularize}_params"
       model.assign_attributes(model_params)
 
       if model.save

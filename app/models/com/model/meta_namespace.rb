@@ -33,14 +33,14 @@ module Com
     class_methods do
 
       def sync
-        existing = NameSpace.select(:identifier).distinct.pluck(:identifier)
+        existing = self.select(:identifier).distinct.pluck(:identifier)
         (RailsCom::Routes.namespaces.keys - existing).each do |namespace|
-          namespace = NameSpace.find_or_initialize_by(identifier: namespace)
-          namespace.save
+          n = self.find_or_initialize_by(identifier: namespace)
+          n.save
         end
 
         (existing - RailsCom::Routes.namespaces.keys).each do |namespace|
-          NameSpace.find_by(identifier: namespace).destroy
+          self.find_by(identifier: namespace).destroy
         end
       end
 
