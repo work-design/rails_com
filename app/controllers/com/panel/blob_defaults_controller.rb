@@ -6,38 +6,8 @@ module Com
       @blob_defaults = BlobDefault.page(params[:page])
     end
 
-    def new
-      @blob_default = BlobDefault.new
-    end
-
     def add
       @blob_default = BlobDefault.new
-    end
-
-    def create
-      @blob_default = BlobDefault.new(blob_default_params)
-
-      unless @blob_default.save
-        render :new, locals: { model: @blob_default }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @blob_default.assign_attributes(blob_default_params)
-
-      unless @blob_default.save
-        render :edit, locals: { model: @blob_default }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @blob_default.destroy
     end
 
     private

@@ -1,5 +1,5 @@
 module Com
-  module Admin
+  module Controller::Admin
 
     def create
       model = instance_variable_get "@#{controller_name.singularize}"
@@ -35,6 +35,12 @@ module Com
     def destroy
       model = instance_variable_get "@#{controller_name.singularize}"
       model.destroy
+    end
+
+    class_eval do
+      def "#{controller_name}_params"
+        params.requie("#{controller_name}").permit!
+      end
     end
 
   end

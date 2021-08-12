@@ -60,6 +60,24 @@ Rails.application.routes.draw do
     namespace :panel, defaults: { namespace: 'panel' } do
       resources :errs, only: [:index, :show, :destroy]
       resources :csps, only: [:index, :show, :destroy]
+      resources :meta_namespaces do
+        collection do
+          post :sync
+        end
+        member do
+          patch :move_lower
+          patch :move_higher
+        end
+      end
+      resources :meta_businesses do
+        collection do
+          post :sync
+        end
+        member do
+          patch :move_lower
+          patch :move_higher
+        end
+      end
       resources :infos
       resources :cache_lists
       resources :inbound_emails
