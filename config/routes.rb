@@ -97,6 +97,9 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :meta_models do
+        resources :meta_columns
+      end
       resources :infos
       resources :cache_lists
       resources :inbound_emails
