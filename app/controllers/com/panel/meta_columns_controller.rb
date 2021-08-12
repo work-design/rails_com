@@ -1,19 +1,24 @@
 module Com
   class Panel::MetaColumnsController < Panel::BaseController
+    before_action :set_meta_model
     before_action :set_new_meta_column, only: [:new, :create]
     before_action :set_meta_column, only: [:show, :edit, :update, :destroy]
 
     def index
-      @meta_columns = MetaColumn.page(params[:page])
+      @meta_columns = @meta_model.meta_columns.page(params[:page])
     end
 
     private
+    def set_meta_model
+      @meta_model = MetaModel.find params[:meta_model_id]
+    end
+
     def set_meta_column
-      @meta_column = MetaColumn.find(params[:id])
+      @meta_column = @meta_model.meta_columns.find(params[:id])
     end
 
     def set_new_meta_column
-      @meta_column = MetaColumn.new(meta_column_params)
+      @meta_column = @meta_model.meta_columns.build(meta_column_params)
     end
 
     def meta_column_params
