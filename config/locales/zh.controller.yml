@@ -52,3 +52,6 @@ zh:
       meta_controllers:
         index:
           title: Controllers
+      meta_actions:
+        index:
+          title: 方法 / 动作
