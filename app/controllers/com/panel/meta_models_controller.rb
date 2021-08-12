@@ -19,7 +19,7 @@ module Com
     def meta_model_params
       params.fetch(:meta_model, {}).permit(
         :name,
-        :model_name,
+        :record_name,
         :description
       )
     end

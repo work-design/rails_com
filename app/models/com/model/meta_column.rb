@@ -8,8 +8,9 @@ module Com
       attribute :sql_type, :string
       attribute :column_type, :string
       attribute :column_limit, :integer
+      attribute :comment, :string
 
-      belongs_to :meta_models, foreign_key: :record_name, primary_key: :record_name
+      belongs_to :meta_model, foreign_key: :record_name, primary_key: :record_name
     end
 
   end
