@@ -8,9 +8,9 @@ module Com
       model = instance_variable_get "@#{controller_name.singularize}"
 
       if model.save
-        render 'create'
+        render :create, status: :created
       else
-        render action: 'new', locals: { model: model }, status: :unprocessable_entity
+        render :new, locals: { model: model }, status: :unprocessable_entity
       end
     end
 
@@ -20,9 +20,9 @@ module Com
       model.assign_attributes(model_params)
 
       if model.save
-        render 'update'
+        render :update
       else
-        render action: 'edit', locals: { model: model }, status: :unprocessable_entity
+        render :edit, locals: { model: model }, status: :unprocessable_entity
       end
     end
 
