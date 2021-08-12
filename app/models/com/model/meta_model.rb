@@ -23,6 +23,8 @@ module Com
             meta_column.sql_type = column.sql_type
             meta_column.column_limit = column.limit
             meta_column.comment = column.comment
+            meta_column.defined_db = true
+            meta_column.defined_model = true if model.attributes_to_define_after_schema_loads.keys.include?(column.name)
 
             present_meta_columns = meta_model.meta_columns.pluck(:column_name)
             meta_model.meta_columns.select(&->(i){ (present_meta_columns - model.column_names).include?(i.column_name) }).each do |needless_column|

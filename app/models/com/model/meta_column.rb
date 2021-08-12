@@ -9,6 +9,8 @@ module Com
       attribute :column_type, :string
       attribute :column_limit, :integer
       attribute :comment, :string
+      attribute :defined_db, :boolean, default: false
+      attribute :defined_model, :boolean, default: false
 
       belongs_to :meta_model, foreign_key: :record_name, primary_key: :record_name
     end
