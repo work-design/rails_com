@@ -49,3 +49,6 @@ zh:
       meta_namespaces:
         index:
           title: 命名空间
+      meta_controllers:
+        index:
+          title: Controllers
