@@ -78,6 +78,25 @@ Rails.application.routes.draw do
           patch :move_higher
         end
       end
+      resources :meta_controllers, only: [:index] do
+        collection do
+          post :sync
+          post :namespaces
+          post :governs
+          post :rules
+        end
+        member do
+          patch :move_lower
+          patch :move_higher
+        end
+        resources :meta_actions do
+          member do
+            patch :move_lower
+            patch :move_higher
+            get :roles
+          end
+        end
+      end
       resources :infos
       resources :cache_lists
       resources :inbound_emails
