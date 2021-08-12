@@ -1,6 +1,9 @@
 module Com
   module Controller::Admin
 
+    def new
+    end
+
     def create
       model = instance_variable_get "@#{controller_name.singularize}"
 
@@ -29,7 +32,14 @@ module Com
     def edit
     end
 
-    def new
+    def move_higher
+      model = instance_variable_get "@#{controller_name.singularize}"
+      model.move_higher
+    end
+
+    def move_lower
+      model = instance_variable_get "@#{controller_name.singularize}"
+      model.move_lower
     end
 
     def destroy
