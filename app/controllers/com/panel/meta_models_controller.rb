@@ -7,6 +7,10 @@ module Com
       @meta_models = MetaModel.page(params[:page])
     end
 
+    def sync
+      MetaModel.sync
+    end
+
     private
     def set_meta_model
       @meta_model = MetaModel.find(params[:id])

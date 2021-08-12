@@ -98,6 +98,9 @@ Rails.application.routes.draw do
         end
       end
       resources :meta_models do
+        collection do
+          post :sync
+        end
         resources :meta_columns
       end
       resources :infos
