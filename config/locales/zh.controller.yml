@@ -61,3 +61,5 @@ zh:
       meta_columns:
         index:
           title: 属性列表
+          sync: 同步
+          test: 测试

@@ -101,7 +101,12 @@ Rails.application.routes.draw do
         collection do
           post :sync
         end
-        resources :meta_columns
+        resources :meta_columns do
+          member do
+            patch :sync
+            patch :test
+          end
+        end
       end
       resources :infos
       resources :cache_lists
