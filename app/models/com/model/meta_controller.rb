@@ -12,10 +12,10 @@ module Com
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
       belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
 
-      has_many :meta_actions, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :govern
-      has_many :role_rules, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy
+      has_many :meta_actions, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :meta_controller
+      has_many :role_meta_actions, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy
 
-      accepts_nested_attributes_for :rules, allow_destroy: true
+      accepts_nested_attributes_for :meta_actions, allow_destroy: true
 
       default_scope -> { order(position: :asc, id: :asc) }
 
@@ -50,16 +50,16 @@ module Com
     end
 
     def role_hash
-      rules.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
+      meta_actions.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
     end
 
     class_methods do
 
       def actions
         result = {}
-        Busyness.all.includes(governs: :rules).each do |busyness|
-          result.merge! busyness.identifier => busyness.governs.group_by(&:namespace_identifier).transform_values!(&->(governs){
-            governs.each_with_object({}) { |govern, h| h.merge! govern.controller_name => govern.rules.pluck(:action_name) }
+        MetaBusiness.all.includes(meta_controllers: :meta_actions).each do |meta_business|
+          result.merge! meta_business.identifier => meta_business.meta_controllers.group_by(&:namespace_identifier).transform_values!(&->(meta_controllers){
+            meta_controllers.each_with_object({}) { |meta_controller, h| h.merge! meta_controller.controller_name => meta_controller.meta_actions.pluck(:action_name) }
           })
         end
         result
@@ -69,28 +69,28 @@ module Com
         RailsCom::Routes.actions.each do |business, namespaces|
           namespaces.each do |namespace, controllers|
             controllers.each do |controller, actions|
-              govern = Govern.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
-              govern.controller_name = controller.to_s.split('/')[-1]
+              meta_controller = MetaController.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
+              meta_controller.controller_name = controller.to_s.split('/')[-1]
 
               actions.each do |action_name, action|
-                rule = govern.rules.find_or_initialize_by(action_name: action_name)
-                rule.controller_name = govern.controller_name
-                rule.path = action[:path]
-                rule.verb = action[:verb]
-                rule.required_parts = action[:required_parts]
+                meta_action = meta_controller.meta_actions.find_or_initialize_by(action_name: action_name)
+                meta_action.controller_name = meta_controller.controller_name
+                meta_action.path = action[:path]
+                meta_action.verb = action[:verb]
+                meta_action.required_parts = action[:required_parts]
               end
 
-              present_rules = govern.rules.pluck(:action_name)
-              govern.rules.select(&->(i){ (present_rules - actions.keys).include?(i.action_name) }).each do |rule|
-                rule.mark_for_destruction
+              present_meta_actions = meta_controller.meta_actions.pluck(:action_name)
+              meta_controller.meta_actions.select(&->(i){ (present_meta_actions - actions.keys).include?(i.action_name) }).each do |meta_action|
+                meta_action.mark_for_destruction
               end
 
-              govern.save if govern.rules.length > 0
+              meta_controller.save if meta_controller.meta_actions.length > 0
             end
 
-            present_controllers = Govern.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
-            Govern.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |govern|
-              govern.destroy
+            present_controllers = MetaController.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
+            MetaController.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |meta_controller|
+              meta_controller.destroy
             end
           end
         end

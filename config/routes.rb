@@ -81,9 +81,9 @@ Rails.application.routes.draw do
       resources :meta_controllers, only: [:index] do
         collection do
           post :sync
-          post :namespaces
-          post :governs
-          post :rules
+          post :meta_namespaces
+          post :meta_controllers
+          post :meta_actions
         end
         member do
           patch :move_lower

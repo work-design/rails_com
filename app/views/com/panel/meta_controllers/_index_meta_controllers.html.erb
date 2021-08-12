@@ -1,0 +1,17 @@
+<% @meta_controllers.each do |meta_controller| %>
+<tr id="tr_<%= meta_controller.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
+  <td>
+    <span style="width: 2.86em; display: inline-block"></span>
+    <%= button_to({ action: 'rules', meta_controller_id: meta_controller.id }, data: { turbo_frame: 'visit' }) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+    <% end %>
+    <span><%= meta_controller.name %></span>
+    <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
+  </td>
+  <td>
+    <%= link_to({ controller: 'meta_actions', meta_controller_id: meta_controller.id }) do %>
+      <i class="fas fa-list"></i><span><%= t('roled.panel.rules.index.title') %></span>
+    <% end %>
+  </td>
+</tr>
+<% end %>

@@ -1,0 +1,12 @@
+<% @meta_namespaces.each do |meta_namespace| %>
+<tr id="tr_<%= params[:business_identifier] %>_<%= meta_namespace.identifier.blank? ? '_' : meta_namespace.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
+  <td>
+    <span style="width: 1.43em; display: inline-block"></span>
+    <%= button_to({ action: 'meta_controllers', business_identifier: @busyness.identifier, namespace_identifier: meta_namespace.identifier }, data: { turbo_frame: 'visit' }) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+    <% end %>
+    <span><%= meta_namespace.name %></span>
+  </td>
+  <td></td>
+</tr>
+<% end %>

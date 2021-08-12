@@ -1,6 +1,6 @@
 <tr id="tr_<%= meta_business.identifier.blank? ? '_' : meta_business.identifier %>" data-controller="tree-remote show" data-tree-remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
-    <%= button_to({ action: 'namespaces', business_identifier: meta_business.identifier }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'meta_namespaces', business_identifier: meta_business.identifier }, data: { turbo_frame: 'visit' }) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= meta_business.name %></span>
