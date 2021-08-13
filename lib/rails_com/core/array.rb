@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Array
-  
+
   #   arr = [1, 2, 3]
   #   arr.ljust! 5, nil
   #   # => [nil, nil, 1, 2, 3]
@@ -69,6 +69,11 @@ class Array
     CSV.open(file, 'w') do |csv|
       self.each { |ar| csv << ar }
     end
+  end
+
+  # 比较两个数组忽略排序的情况下是否相等
+  def compare(other)
+    (self - other).empty? && (other - self).empty?
   end
 
 end

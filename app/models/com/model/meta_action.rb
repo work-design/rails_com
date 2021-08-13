@@ -26,8 +26,6 @@ module Com
         remove: 'remove'
       }, _default: 'read'
 
-
-
       default_scope -> { order(position: :asc, id: :asc) }
 
       acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_path]

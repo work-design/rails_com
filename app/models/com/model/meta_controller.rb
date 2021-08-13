@@ -12,7 +12,14 @@ module Com
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
       belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
 
-      has_many :meta_actions, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :meta_controller
+      has_many(
+        :meta_actions,
+        ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) },
+        foreign_key: :controller_path,
+        primary_key: :controller_path,
+        dependent: :destroy,
+        inverse_of: :meta_controller
+      )
       accepts_nested_attributes_for :meta_actions, allow_destroy: true
 
       default_scope -> { order(position: :asc, id: :asc) }
