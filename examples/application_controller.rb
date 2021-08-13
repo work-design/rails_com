@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include RailsAuth::Application
+  include Auth::Controller::Application
   include RailsCom::Application
   include RailsOrg::Application
   include RailsRole::Application
