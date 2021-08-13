@@ -23,7 +23,7 @@ module Com
     end
 
     def role_hash(business_identifier)
-      MetaRule.where(business_identifier: business_identifier, namespace_identifier: identifier)
+      MetaAction.where(business_identifier: business_identifier, namespace_identifier: identifier)
       .select(:controller_path, :action_name, :id)
       .group_by(&:controller_path).transform_values! do |v|
         v.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
