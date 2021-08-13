@@ -1,6 +1,10 @@
 module Com
-  module MetaPermission
+  module Model::MetaPermission
     extend ActiveSupport::Concern
+
+    included do
+
+    end
 
   end
 end
