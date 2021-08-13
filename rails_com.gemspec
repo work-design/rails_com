@@ -19,12 +19,12 @@ Gem::Specification.new do |s|
   ]
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~> 6.0'
-  s.add_dependency 'httpx', '~> 0.8'
-  s.add_dependency 'http-form_data', '~> 2.2'
+  s.add_dependency 'rails', '~> 6.1'
+  s.add_dependency 'httpx', '~> 0.16'
+  s.add_dependency 'http-form_data', '~> 2.3'
   s.add_dependency 'default_where', '~> 2.2'
   s.add_dependency 'kaminari'
-  s.add_dependency 'closure_tree', '>= 7.2'
+  s.add_dependency 'closure_tree', '>= 7.3'
   s.add_dependency 'acts_as_list', '>= 1.0'
   s.add_dependency 'acme-client'
   s.add_dependency 'turbo-rails'
