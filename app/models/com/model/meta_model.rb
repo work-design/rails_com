@@ -6,6 +6,8 @@ module Com
       attribute :name, :string
       attribute :record_name, :string, index: true
       attribute :description, :string
+      attribute :defined_db, :boolean, default: false
+      attribute :customizable, :boolean, default: false, comment: '是否允许用户定制'
 
       has_many :meta_columns, foreign_key: :record_name, primary_key: :record_name, inverse_of: :meta_model
     end
@@ -16,6 +18,7 @@ module Com
         RailsCom::Models.models.each do |model|
           next unless model.table_exists?
           meta_model = self.find_or_initialize_by(record_name: model.name)
+          meta_model.defined_db = true
 
           model.columns.each do |column|
             meta_column = meta_model.meta_columns.find_or_initialize_by(column_name: column.name)
@@ -38,6 +41,11 @@ module Com
             needless_model.destroy
           end
         end
+      end
+
+      # todo 导出为 json 配置
+      def dump
+
       end
 
     end

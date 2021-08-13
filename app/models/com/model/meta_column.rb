@@ -11,6 +11,8 @@ module Com
       attribute :comment, :string
       attribute :defined_db, :boolean, default: false
       attribute :defined_model, :boolean, default: false
+      attribute :belongs_enable, :boolean, default: false
+      attribute :belongs_table, :string
 
       belongs_to :meta_model, foreign_key: :record_name, primary_key: :record_name
     end
