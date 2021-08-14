@@ -8,8 +8,8 @@ class HashTest < ActiveSupport::TestCase
       a: 1,
       b: { c: 2 }
     }
-    
-    assert_equal [1,2], h.leaves
+
+    assert_equal [1, 2], h.leaves
   end
 
 end
