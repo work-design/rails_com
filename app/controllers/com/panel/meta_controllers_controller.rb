@@ -20,14 +20,10 @@ module Com
     end
 
     def meta_controllers
-      q_params = {
-        business_identifier: nil,
-        namespace_identifier: nil,
-        allow: { business_identifier: nil, namespace_identifier: nil }
-      }
+      q_params = {}
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @meta_controllers = MetaController.default_where(q_params)
+      @meta_controllers = MetaController.where(q_params)
     end
 
     def meta_actions
