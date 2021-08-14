@@ -54,8 +54,18 @@ module Com
       controller_path
     end
 
+    def role_path
+      {
+        business_identifier.to_s => {
+          namespace_identifier.to_s => {
+            controller_path => role_hash
+          }
+        }
+      }
+    end
+
     def role_hash
-      meta_actions.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
+      meta_actions.each_with_object({}) { |i, h| h.merge! i.role_hash }
     end
 
     class_methods do

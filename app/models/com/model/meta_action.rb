@@ -31,6 +31,20 @@ module Com
       acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_path]
     end
 
+    def role_path
+      {
+        business_identifier.to_s => {
+          namespace_identifier.to_s => {
+            controller_path => role_hash
+          }
+        }
+      }
+    end
+
+    def role_hash
+      { i.action_name => i.id }
+    end
+
     def identifier
       [business_identifier, namespace_identifier, controller_path, (action_name.blank? ? '_' : action_name)].join('_')
     end

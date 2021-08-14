@@ -26,6 +26,14 @@ module Com
       "#{business_identifier}_#{identifier.blank? ? '_' : identifier}"
     end
 
+    def role_path(business_identifier)
+      {
+        business_identifier.to_s => {
+          identifier => role_hash(business_identifier.presence)
+        }
+      }
+    end
+
     def role_hash(business_identifier)
       MetaAction.where(business_identifier: business_identifier, namespace_identifier: identifier)
       .select(:controller_path, :action_name, :id)
