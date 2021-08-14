@@ -9,13 +9,6 @@ module Com
       @csps = Csp.default_where(q_params).page(params[:page])
     end
 
-    def show
-    end
-
-    def destroy
-      @csp.destroy
-    end
-
     private
     def set_csp
       @csp = Csp.find(params[:id])

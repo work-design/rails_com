@@ -18,24 +18,6 @@ module Com
       end
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @info.assign_attributes(info_params)
-
-      unless @info.save
-        render :edit, locals: { model: @info }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @info.destroy
-    end
-
     private
     def set_info
       @info = Info.find(params[:id])

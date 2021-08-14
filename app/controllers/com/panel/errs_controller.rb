@@ -9,13 +9,6 @@ module Com
       @errs = Err.default_where(q_params).page(params[:page]).per(params[:per])
     end
 
-    def show
-    end
-
-    def destroy
-      @err.destroy
-    end
-
     private
     def set_err
       @err = Err.find(params[:id])

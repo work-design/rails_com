@@ -18,24 +18,6 @@ module Com
       end
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @cache_list.assign_attributes(cache_list_params)
-
-      unless @cache_list.save
-        render :edit, locals: { model: @cache_list }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @cache_list.destroy
-    end
-
     private
     def set_cache_list
       @cache_list = CacheList.find(params[:id])
