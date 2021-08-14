@@ -3,9 +3,9 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :namespace_identifier, :string, index: true
-      attribute :business_identifier, :string, index: true
-      attribute :controller_path, :string
+      attribute :namespace_identifier, :string, default: '', null: false, index: true
+      attribute :business_identifier, :string, default: '', null: false, index: true
+      attribute :controller_path, :string, null: false, index: true
       attribute :controller_name, :string
       attribute :position, :integer
 

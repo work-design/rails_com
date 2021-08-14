@@ -4,12 +4,13 @@ module Com
 
     included do
       attribute :name, :string
-      attribute :identifier, :string
+      attribute :identifier, :string, default: '', null: false, index: true
       attribute :verify_organ, :boolean, default: false
       attribute :verify_member, :boolean, default: false
       attribute :verify_user, :boolean, default: false
 
       has_many :meta_controllers, foreign_key: :namespace_identifier, primary_key: :identifier
+      has_many :meta_actions, foreign_key: :namespace_identifier, primary_key: :identifier
 
       validates :identifier, uniqueness: true
     end
