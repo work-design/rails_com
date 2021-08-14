@@ -32,7 +32,7 @@ module Com
 
     def role_hash
       {
-        identifier => meta_namespaces.each_with_object({}) { |i, h| h.merge i.role_hash(identifier) }
+        identifier => meta_namespaces.each_with_object({}) { |i, h| h.merge! i.role_hash(identifier) }
       }
     end
     alias_method :role_path, :role_hash
