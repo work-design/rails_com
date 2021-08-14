@@ -88,12 +88,13 @@ class Hash
     h
   end
 
-  def deepest_values
+  # 遍历出一个 hash 的根节点
+  def leaves
     r = []
 
     values.each do |value|
       if value.is_a?(Hash)
-        r += value.deepest_values
+        r += value.leaves
       else
         r << value
       end
