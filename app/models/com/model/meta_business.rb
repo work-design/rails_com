@@ -32,7 +32,7 @@ module Com
 
     def role_hash
       {
-        identifier.to_s => meta_namespaces.each_with_object({}) { |meta_namespace| meta_namespace.role_hash(identifier) }
+        identifier => meta_namespaces.each_with_object({}) { |i, h| h.merge i.role_hash(identifier) }
       }
     end
     alias_method :role_path, :role_hash
@@ -44,7 +44,7 @@ module Com
         business_keys = RailsCom::Routes.businesses.keys
 
         (business_keys - existing).each do |business|
-          b = self.find_or_initialize_by(identifier: business.to_s)
+          b = self.find_or_initialize_by(identifier: business)
           b.save
         end
 

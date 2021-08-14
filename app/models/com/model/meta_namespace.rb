@@ -27,16 +27,16 @@ module Com
       "#{business_identifier}_#{identifier.blank? ? '_' : identifier}"
     end
 
-    def role_path(business_identifier = nil)
+    def role_path(business_identifier = '')
       {
         business_identifier.to_s => role_hash(business_identifier)
       }
     end
 
-    def role_hash(business_identifier = nil)
-      meta_controllers = MetaController.includes(:meta_actions).where(business_identifier: business_identifier.to_s, namespace_identifier: identifier.to_s)
+    def role_hash(business_identifier = '')
+      meta_controllers = MetaController.includes(:meta_actions).where(business_identifier: business_identifier.to_s, namespace_identifier: identifier)
       {
-        identifier.to_s => meta_controllers.each_with_object({}) { |i, h| h.merge! i.role_hash }
+        identifier => meta_controllers.each_with_object({}) { |i, h| h.merge! i.role_hash }
       }
     end
 
