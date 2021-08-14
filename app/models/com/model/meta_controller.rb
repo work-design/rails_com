@@ -6,7 +6,7 @@ module Com
       attribute :namespace_identifier, :string, default: '', null: false, index: true
       attribute :business_identifier, :string, default: '', null: false, index: true
       attribute :controller_path, :string, null: false, index: true
-      attribute :controller_name, :string
+      attribute :controller_name, :string, null: false
       attribute :position, :integer
 
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
