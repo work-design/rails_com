@@ -43,16 +43,31 @@ module RailsCom::Routes
     return @routes_wrapper if cached && defined?(@routes_wrapper)
 
     @routes_wrapper = Rails.application.routes.routes.map do |route|
-      {
-        verb: route.verb,
-        path: route.path.spec.to_s,
-        namespace: route.defaults[:namespace].to_s,
-        business: route.defaults[:business].to_s,
-        controller: route.defaults[:controller],
-        action: route.defaults[:action],
-        required_parts: route.required_parts
-      }
-    end
+      next if (route.defaults[:controller].blank? || route.defaults[:action].blank?)
+      detail(route)
+    end.compact
+  end
+
+  def blank_routes_wrapper(cached = true)
+    return @blank_routes_wrapper if cached && defined?(@blank_routes_wrapper)
+
+    @blank_routes_wrapper = Rails.application.routes.routes.map do |route|
+      next unless (route.defaults[:controller].blank? || route.defaults[:action].blank?)
+      detail(route)
+    end.compact
+  end
+
+  private
+  def detail(route)
+    {
+      verb: route.verb,
+      path: route.path.spec.to_s,
+      namespace: route.defaults[:namespace].to_s,
+      business: route.defaults[:business].to_s,
+      controller: route.defaults[:controller],
+      action: route.defaults[:action],
+      required_parts: route.required_parts
+    }
   end
 
 end

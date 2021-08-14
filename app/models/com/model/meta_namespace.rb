@@ -44,12 +44,13 @@ module Com
 
       def sync
         existing = self.select(:identifier).distinct.pluck(:identifier)
-        (RailsCom::Routes.namespaces.keys - existing).each do |namespace|
+        namespace_keys = RailsCom::Routes.namespaces.keys
+        (namespace_keys - existing).each do |namespace|
           n = self.find_or_initialize_by(identifier: namespace)
           n.save
         end
 
-        (existing - RailsCom::Routes.namespaces.keys).each do |namespace|
+        (existing - namespace_keys).each do |namespace|
           self.find_by(identifier: namespace).destroy
         end
       end

@@ -49,7 +49,7 @@ module Com
         end
 
         (existing - business_keys).each do |business|
-          self.find_by(identifier: business)&.destroy
+          self.find_by(identifier: business).destroy
         end
       end
 
