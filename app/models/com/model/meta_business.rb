@@ -35,6 +35,7 @@ module Com
         identifier.to_s => meta_namespaces.each_with_object({}) { |meta_namespace| meta_namespace.role_hash(identifier) }
       }
     end
+    alias_method :role_path, :role_hash
 
     class_methods do
 
