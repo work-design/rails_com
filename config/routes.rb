@@ -137,7 +137,7 @@ Rails.application.routes.draw do
             patch :cert
           end
         end
-        resources :acme_orders, shallow: true, only: [] do
+        resources :acme_orders, only: [] do
           resources :acme_identifiers, only: [:index, :new, :create]
           resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
         end

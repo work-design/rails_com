@@ -2,39 +2,10 @@ module Com
   class Panel::AcmeIdentifiersController < Panel::BaseController
     before_action :set_acme_order
     before_action :set_acme_identifier, only: [:show, :edit, :update, :destroy]
+    before_action :set_new_acme_identifier, only: [:new, :create]
 
     def index
       @acme_identifiers = @acme_order.acme_identifiers
-    end
-
-    def new
-      @acme_identifier = @acme_order.acme_identifiers.build
-    end
-
-    def create
-      @acme_identifier = @acme_order.acme_identifiers.build(acme_identifier_params)
-
-      unless @acme_identifier.save
-        render :new, locals: { model: @acme_identifier }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @acme_identifier.assign_attributes(acme_identifier_params)
-
-      unless @acme_identifier.save
-        render :edit, locals: { model: @acme_identifier }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @acme_identifier.destroy
     end
 
     private
@@ -44,6 +15,10 @@ module Com
 
     def set_acme_identifier
       @acme_identifier = AcmeIdentifier.find(params[:id])
+    end
+
+    def set_new_acme_identifier
+      @acme_identifier = @acme_order.acme_identifiers.build(acme_identifier_params)
     end
 
     def acme_identifier_params
