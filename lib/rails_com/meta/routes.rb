@@ -46,8 +46,8 @@ module RailsCom::Routes
       {
         verb: route.verb,
         path: route.path.spec.to_s,
-        namespace: route.defaults[:namespace],
-        business: route.defaults[:business],
+        namespace: route.defaults[:namespace].to_s,
+        business: route.defaults[:business].to_s,
         controller: route.defaults[:controller],
         action: route.defaults[:action],
         required_parts: route.required_parts

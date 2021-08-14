@@ -41,12 +41,14 @@ module Com
 
       def sync
         existing = self.select(:identifier).distinct.pluck(:identifier)
-        (RailsCom::Routes.businesses.keys - existing).each do |business|
-          b = self.find_or_initialize_by(identifier: business)
+        business_keys = RailsCom::Routes.businesses.keys
+
+        (business_keys - existing).each do |business|
+          b = self.find_or_initialize_by(identifier: business.to_s)
           b.save
         end
 
-        (existing - RailsCom::Routes.businesses.keys).each do |business|
+        (existing - business_keys).each do |business|
           self.find_by(identifier: business)&.destroy
         end
       end
