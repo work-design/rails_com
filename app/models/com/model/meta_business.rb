@@ -31,18 +31,9 @@ module Com
     end
 
     def role_hash
-      r = {}
-      r.merge! identifier => namespace_hash if namespace_hash.present?
-      r
-    end
-
-    def namespace_hash
-      r = {}
-      meta_namespaces.each do |meta_namespace|
-        nr = meta_namespace.role_hash(identifier)
-        r.merge! meta_namespace.identifier => nr if nr.present?
-      end
-      r
+      {
+        identifier.to_s => meta_namespaces.each_with_object({}) { |meta_namespace| meta_namespace.role_hash(identifier) }
+      }
     end
 
     class_methods do

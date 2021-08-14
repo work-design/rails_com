@@ -42,7 +42,7 @@ module Com
     end
 
     def role_hash
-      { i.action_name => i.id }
+      { action_name => id }
     end
 
     def identifier
