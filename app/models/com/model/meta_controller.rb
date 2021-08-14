@@ -14,7 +14,7 @@ module Com
 
       has_many(
         :meta_actions,
-        ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) },
+        -> { order(position: :asc) },
         foreign_key: :controller_path,
         primary_key: :controller_path,
         dependent: :destroy,
