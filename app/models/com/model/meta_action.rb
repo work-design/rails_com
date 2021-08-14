@@ -14,9 +14,9 @@ module Com
       attribute :position, :integer
       attribute :landmark, :boolean
 
-      belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
-      belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
-      belongs_to :meta_controller, foreign_key: :controller_path, primary_key: :controller_path, optional: true
+      belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier
+      belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier
+      belongs_to :meta_controller, foreign_key: :controller_path, primary_key: :controller_path
 
       enum operation: {
         list: 'list',
@@ -29,6 +29,8 @@ module Com
       default_scope -> { order(position: :asc, id: :asc) }
 
       acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_path]
+
+      before_validation :sync_from_controller, if: -> { meta_controller && (controller_path_changed? || meta_controller.new_record?) }
     end
 
     def role_path
@@ -57,6 +59,11 @@ module Com
       return t2 if t2
 
       identifier
+    end
+
+    def sync_from_controller
+      self.business_identifier = meta_controller.business_identifier
+      self.namespace_identifier = meta_controller.namespace_identifier
     end
 
   end
