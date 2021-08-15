@@ -29,15 +29,15 @@ module Com
 
     def role_path(business_identifier = '')
       {
-        business_identifier.to_s => role_hash(business_identifier)
+        business_identifier.to_s => {
+          identifier => role_hash(business_identifier)
+        }
       }
     end
 
     def role_hash(business_identifier = '')
       meta_controllers = MetaController.includes(:meta_actions).where(business_identifier: business_identifier.to_s, namespace_identifier: identifier)
-      {
-        identifier => meta_controllers.each_with_object({}) { |i, h| h.merge! i.role_hash }
-      }
+      meta_controllers.each_with_object({}) { |i, h| h.merge! i.controller_path => i.role_hash }
     end
 
     class_methods do

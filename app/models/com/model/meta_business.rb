@@ -30,12 +30,15 @@ module Com
       MetaNamespace.where(identifier: MetaController.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
     end
 
-    def role_hash
+    def role_path
       {
-        identifier => meta_namespaces.each_with_object({}) { |i, h| h.merge! i.role_hash(identifier) }
+        identifier => role_hash
       }
     end
-    alias_method :role_path, :role_hash
+
+    def role_hash
+      meta_namespaces.each_with_object({}) { |i, h| h.merge! i.identifier => i.role_hash(identifier) }
+    end
 
     class_methods do
 

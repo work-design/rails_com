@@ -37,14 +37,14 @@ module Com
       {
         business_identifier.to_s => {
           namespace_identifier.to_s => {
-            controller_path => role_hash
+            controller_path => { action_name => role_hash }
           }
         }
       }
     end
 
     def role_hash
-      { action_name => id }
+      id
     end
 
     def identifier
