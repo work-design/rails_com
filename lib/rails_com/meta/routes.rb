@@ -27,6 +27,14 @@ module RailsCom::Routes
     end
   end
 
+  def controller_paths(cached = true)
+    return @controller_paths if cached && defined? @controller_paths
+
+    @controller_paths = routes_wrapper(cached).group_by(&->(i){ i[:controller] }).transform_values! do |controllers|
+      controllers[0].slice(:business, :namespace)
+    end
+  end
+
   def businesses(cached = true)
     return @businesses if cached && defined? @businesses
 
