@@ -26,6 +26,10 @@ module Com
       identifier
     end
 
+    def tr_id
+      "tr_#{identifier.blank? ? '_' : identifier}"
+    end
+
     def meta_namespaces
       MetaNamespace.where(identifier: MetaController.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
     end

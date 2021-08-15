@@ -23,8 +23,8 @@ module Com
       end
     end
 
-    def id_by_business(business_identifier)
-      "#{business_identifier}_#{identifier.blank? ? '_' : identifier}"
+    def tr_id(business_identifier)
+      "tr_#{business_identifier}_#{identifier.blank? ? '_' : identifier}"
     end
 
     def role_path(business_identifier = '')
