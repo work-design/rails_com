@@ -5,12 +5,6 @@
     <% end %>
     <span><%= meta_business.name %></span>
     <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
-    <%= button_to({ controller: 'meta_businesses', action: 'move_higher', id: meta_business.id }, method: :patch, data: { show_target: 'item' }, style: 'visibility: hidden') do %>
-      <i class="fas fa-arrow-up"></i>
-    <% end %>
-    <%= button_to({ controller: 'meta_businesses', action: 'move_lower', id: meta_business.id }, method: :patch, data: { show_target: 'item' }, style: 'visibility: hidden') do %>
-      <i class="fas fa-arrow-down"></i>
-    <% end %>
   </td>
   <td></td>
 </tr>
