@@ -5,13 +5,11 @@
     <%= button_to({ action: 'meta_actions', meta_controller_id: meta_controller.id }, data: { turbo_frame: 'visit' }) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
-    <span><%= meta_controller.name %></span>
-    <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
-  </td>
-  <td>
     <%= link_to({ controller: 'meta_actions', meta_controller_id: meta_controller.id }) do %>
-      <i class="fas fa-list"></i><span><%= t('com.panel.meta_actions.index.title') %></span>
+      <span><%= meta_controller.name %></span>
+      <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
     <% end %>
   </td>
+  <td></td>
 </tr>
 <% end %>
