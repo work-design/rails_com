@@ -167,6 +167,8 @@ GEM
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
+    minitest-hooks (1.5.0)
+      minitest (> 5.3)
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.12.3)
@@ -246,6 +248,7 @@ DEPENDENCIES
   image_processing
   jbuilder
   kaminari
+  minitest-hooks
   pg
   pry-rails
   puma

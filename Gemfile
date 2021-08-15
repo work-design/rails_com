@@ -5,6 +5,9 @@ gemspec
 gem 'turbo-rails'
 gem 'puma'
 gem 'pg'
+
+gem 'minitest-hooks'
+
 gem 'image_processing'
 
 gem 'sdoc'
