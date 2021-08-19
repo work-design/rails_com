@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'rails_com/engine'
 require 'rails_com/config'
+require 'rails_com/engine'
 
 require 'rails_com/core'
 require 'rails_com/action_controller'
