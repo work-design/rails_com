@@ -1,9 +1,8 @@
 $:.push File.expand_path('lib', __dir__)
-require 'rails_com/version'
 
 Gem::Specification.new do |s|
   s.name = 'rails_com'
-  s.version = RailsCom::VERSION
+  s.version = '1.2.9'
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
   s.homepage = 'https://github.com/work-design/rails_com'

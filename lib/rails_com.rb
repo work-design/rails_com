@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_com/version'
 require 'rails_com/engine'
 require 'rails_com/config'
 
