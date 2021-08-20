@@ -8,7 +8,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   attr_reader :tables
 
   def create_migration_file
-    file_name = 'rails_com_migration'
+    file_name = "rails_com_migration_#{Time.now.to_i}"
 
     @xxs = RailsCom::Models.xx
     @xxs.each do |db, tables|

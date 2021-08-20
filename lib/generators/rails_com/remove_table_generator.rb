@@ -9,7 +9,7 @@ class RailsCom::RemoveTableGenerator < Rails::Generators::Base
 
   def create_migration_file
     @tables = RailsCom::Models.unbound_tables
-    file_name = 'rails_com_remove_table'
+    file_name = "rails_com_remove_table_#{Time.now.to_i}"
     migration_template 'remove_table.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end
 

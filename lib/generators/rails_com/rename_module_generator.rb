@@ -9,7 +9,7 @@ class RailsCom::RenameModuleGenerator < Rails::Generators::Base
 
   def create_migration_file
     @tables = RailsCom::Models.modules_hash.invert
-    file_name = 'rails_com_rename_module'
+    file_name = "rails_com_rename_module_#{Time.now.to_i}"
     migration_template 'rename_module.rb', File.join(db_migrate_path, "#{file_name}.rb")
   end
 
