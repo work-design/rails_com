@@ -78,10 +78,14 @@ module RailsCom::ActiveRecord::Extend
       r.merge! column[1]
       r.symbolize_keys!
 
-      if r[:array] && not_postgres?
+      if r[:array] && !postgres?
         r.delete(:array)
         r[:type] = :json
         r[:default] = {} if r[:default].is_a? Array
+      end
+
+      if r[:type] == :json && postgres?
+        r[:type] = :jsonb
       end
 
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
@@ -134,8 +138,8 @@ module RailsCom::ActiveRecord::Extend
     end
   end
 
-  def not_postgres?
-    !(defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter))
+  def postgres?
+    defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
   end
 
 end
