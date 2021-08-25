@@ -85,8 +85,11 @@ module RailsCom::ActiveRecord::Extend
       end
 
       if r[:type] == :json
-        r[:type] = :jsonb if postgres?
-        r.delete(:default)
+        if postgres?
+          r[:type] = :jsonb
+        else
+          r.delete(:default)
+        end
       end
 
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
