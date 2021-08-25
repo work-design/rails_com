@@ -81,6 +81,7 @@ module RailsCom::ActiveRecord::Extend
       if r[:array] && not_postgres?
         r.delete(:array)
         r[:type] = :json
+        r[:default] = {} if r[:default].is_a? Array
       end
 
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
