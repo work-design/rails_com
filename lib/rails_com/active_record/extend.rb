@@ -81,7 +81,7 @@ module RailsCom::ActiveRecord::Extend
       if r[:array] && !postgres?
         r.delete(:array)
         r[:type] = :json
-        r[:default] = {} if r[:default].is_a? Array
+        r.delete(:default) if r[:default].is_a? Array
       end
 
       if r[:type] == :json && postgres?
