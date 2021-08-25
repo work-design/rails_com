@@ -77,6 +77,12 @@ module RailsCom::ActiveRecord::Extend
       r.merge! default: dt if dt
       r.merge! column[1]
       r.symbolize_keys!
+
+      if r[:array] && not_postgres?
+        r.delete(:array)
+        r[:type] = :json
+      end
+
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
       news.merge! name => r
@@ -125,6 +131,10 @@ module RailsCom::ActiveRecord::Extend
     indexes.map! do |index|
       index.merge! index_options: index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
     end
+  end
+
+  def not_postgres?
+    !(defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter))
   end
 
 end
