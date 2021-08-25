@@ -23,9 +23,11 @@ module RailsCom::Models
 
     records.group_by(&:table_name).each do |table_name, record_classes|
       r = @tables[table_name] || {}
+      r[:models] ||= []
       r[:add_attributes] ||= {}
       r[:add_references] ||= {}
       record_classes.each do |record_class|
+        r[:models] << record_class.name
         r[:table_exists] = r[:table_exists] || record_class.table_exists?
         r[:add_attributes].merge! record_class.defined_attributes_by_model.except(*record_class.defined_attributes_by_db.keys)
         r[:add_references].merge! record_class.defined_references_by_model.except(*record_class.defined_attributes_by_db.keys)
