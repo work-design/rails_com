@@ -85,7 +85,7 @@ module RailsCom::ActiveRecord::Extend
       end
 
       if r[:type] == :json
-        if postgres?
+        if postgres? # Postgres 替换 json 为 jsonb
           r[:type] = :jsonb
         else
           r.delete(:default)
