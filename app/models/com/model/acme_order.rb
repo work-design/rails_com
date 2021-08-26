@@ -124,13 +124,12 @@ module Com
     def cert
       if ['valid'].include?(order.status) && order.certificate_url.present?
         r = order.certificate
-        Tempfile.open do |file|
-          file.binmode
-          file.write r
-          file.rewind
-          self.issued_at = Time.current
-          self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
-        end
+        file = Tempfile.new
+        file.binmode
+        file.write r
+        file.rewind
+        self.issued_at = Time.current
+        self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
       else
         order.reload
         logger.info "order status is #{order.status}"
