@@ -21,6 +21,21 @@ module Com
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
     end
 
+    def reset
+      self.url = nil
+      self.file_name = nil
+      self.file_content = nil
+      self.record_name = nil
+      self.record_content = nil
+      self.dns_valid = false
+      self.file_valid = false
+    end
+
+    def reset!
+      reset
+      save
+    end
+
     def authorize_pending?
       if wildcard
         record_name.blank? || record_content.blank?
@@ -68,9 +83,11 @@ module Com
 
     def auto_verify
       if file_available?
+        return if file_verify?
         ensure_file
         file_verify? && authorization.reload && authorization.status == 'valid'
       else
+        return if dns_verify?
         ensure_dns
         dns_verify? && authorization.reload && authorization.status == 'valid'
       end
