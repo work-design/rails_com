@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~> 6.1'
+  s.add_dependency 'rails', '>= 6.1'
   s.add_dependency 'httpx', '~> 0.16'
   s.add_dependency 'http-form_data', '~> 2.3'
   s.add_dependency 'default_where', '~> 2.2'

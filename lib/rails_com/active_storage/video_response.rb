@@ -27,3 +27,7 @@ module RailsCom::VideoResponse
   end
 
 end
+
+ActiveSupport.on_load :action_controller do
+  ActiveStorage::DiskController.include RailsCom::VideoResponse
+end

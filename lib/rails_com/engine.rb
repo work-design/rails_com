@@ -30,8 +30,6 @@ module RailsCom
         'ActionController::ForbiddenError' => :forbidden,
         'ActionController::UnauthorizedError' => :unauthorized
       })
-
-      ActiveStorage::DiskController.include RailsCom::VideoResponse
       ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
     end
 
