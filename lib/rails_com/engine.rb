@@ -48,11 +48,6 @@ module RailsCom
     end
 
     config.after_initialize do |app|
-      config_choice = app.config.active_storage.private_service
-      if config_choice
-        configs = app.config.active_storage.service_configurations
-        ActiveStorage::Blob.private_service = ActiveStorage::Service.configure config_choice, configs
-      end
       ActiveStorage::Current.host = SETTING.host if defined? SETTING  # todo setting may not get
     end
 
