@@ -19,8 +19,7 @@ module Com
       params.fetch(:blob_default, {}).permit(
         :record_class,
         :name,
-        :file,
-        :private
+        :file
       )
     end
 
