@@ -4,7 +4,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :code, :string, default: 'ss', limit: '2', comment: 'dddd'
+      attribute :code, :string
       attribute :value, :string
       attribute :version, :string
 

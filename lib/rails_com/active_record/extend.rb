@@ -54,6 +54,12 @@ module RailsCom::ActiveRecord::Extend
       if column[0].respond_to? :call
         type = column[0].call(ActiveRecord::Type.default_value)
       elsif column[0].respond_to? :subtype
+        case column[0].class.name
+        when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array'
+          r.merge! array: true
+        when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Range'
+          r.merge! range: true
+        end
         type = column[0].subtype
       else
         type = column[0]
@@ -85,7 +91,7 @@ module RailsCom::ActiveRecord::Extend
         end
       end
 
-      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :null, :index, :array, :range, :size, :default, :comment).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
       news.merge! name => r
     end
