@@ -21,4 +21,6 @@ gem 'viter', github: 'qinmingyuan/viter'
 gem 'default_form', github: 'qinmingyuan/default_form'
 gem 'rails_ui', github: 'work-design/rails_ui'
 
-gem 'debug', '>= 1.0.0.beta'
+group :development do
+  gem 'debug', '>= 1.0.0.beta'
+end
