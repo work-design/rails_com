@@ -26,3 +26,7 @@ module RailsCom::AttachedOne
   end
 
 end
+
+ActiveSupport.on_load(:active_storage_record) do
+  ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
+end

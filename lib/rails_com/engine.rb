@@ -30,7 +30,7 @@ module RailsCom
         'ActionController::ForbiddenError' => :forbidden,
         'ActionController::UnauthorizedError' => :unauthorized
       })
-      ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
+      #ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
     end
 
     initializer 'rails_com.quiet_logs' do |app|
@@ -45,10 +45,6 @@ module RailsCom
       Dir.glob("#{overrides}/**/*_override.rb").each do |override|
         load override
       end
-    end
-
-    config.after_initialize do |app|
-      ActiveStorage::Current.host = SETTING.host if defined? SETTING  # todo setting may not get
     end
 
   end
