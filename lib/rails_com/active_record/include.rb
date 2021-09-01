@@ -13,10 +13,15 @@ module RailsCom::ActiveRecord::Include
     self.class.base_class.name
   end
 
-  def attributes_with_type
-    except = ['id', 'created_at', 'updated_at']
+  def attributes_with_type(except: ['id', 'created_at', 'updated_at'], only: [])
     r = {}
-    attributes.except(*except).each do |key, value|
+    if only.present?
+      cols = attributes.slice(*only)
+    else
+      cols = attributes.except(*except)
+    end
+
+    cols.each do |key, value|
       type = self.class.columns_hash[key]
       r.merge! key => {
         value: value,

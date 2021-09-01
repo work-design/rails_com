@@ -8,7 +8,6 @@ module Com
 
     def new
       @acme_account = AcmeAccount.new
-      binding.break
     end
 
     def create
