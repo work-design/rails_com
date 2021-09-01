@@ -49,15 +49,26 @@ module RailsCom::ActiveRecord::Extend
     news = {}
     attributes_to_define_after_schema_loads.each do |name, column|
       r = {}
+
+      # 处理 type
       if column[0].respond_to? :call
-        r.merge! type: column[0].call(ActiveRecord::Type.default_value).type
+        type = column[0].call(ActiveRecord::Type.default_value)
+      elsif column[0].respond_to? :subtype
+        type = column[0].subtype
       else
-        r.merge! type: column[0]
+        type = column[0]
       end
-      dt = column[1].delete(:default)
-      dt = nil if dt.respond_to?(:call)
+      if type.respond_to?(:type)
+        r.merge! type: type.type || :string
+      else
+        r.merge! type: type
+      end
+
+      # 处理默认值
+      dt = column[1]
+      dt = nil if dt.respond_to?(:call) || dt.instance_of?(Object)
       r.merge! default: dt if dt
-      r.merge! column[1]
+      r.merge! type.options unless type.options.nil?
       r.symbolize_keys!
 
       if r[:array] && !postgres?

@@ -1,11 +1,15 @@
 require 'active_model/type/value'
-module RailsCom::ActiveModel
-  module TypeValue
+module RailsCom
+  module ActiveModel
+    module TypeValue
+      attr_reader :options
 
-    def initialize(precision: nil, limit: nil, scale: nil, **options)
-      super(precision: precision, limit: scale, scale: limit)
+      def initialize(precision: nil, limit: nil, scale: nil, **options)
+        @options = options
+        super(precision: precision, limit: scale, scale: limit)
+      end
+
     end
-
   end
 end
 
