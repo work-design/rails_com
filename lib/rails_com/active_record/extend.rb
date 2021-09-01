@@ -87,6 +87,13 @@ module RailsCom::ActiveRecord::Extend
         if postgres? # Postgres 替换 json 为 jsonb
           r[:type] = :jsonb
         else
+          r.delete(:default) # mysql 数据库不能接受 json 的默认值
+        end
+      end
+
+      if r[:type] == :jsonb
+        unless postgres?
+          r[:type] == :json
           r.delete(:default)
         end
       end
