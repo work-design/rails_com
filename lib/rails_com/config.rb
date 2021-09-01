@@ -35,6 +35,10 @@ module RailsCom #:nodoc:
       options: { step: 1 },
       output: 'to_i'
     }
+    config.mapping.decimal = {
+      input: 'number_field',
+      options: { step: 0.01 }
+    }
     config.mapping.string = {
       input: 'text_field',
       output: 'to_s'

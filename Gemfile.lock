@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 9ac1827331e85f01490b57f27e9cdf75a9cd1b69
+  revision: f01b541fdfcecf1438d284a288b0e4029c4c7ece
   specs:
     actioncable (7.0.0.alpha)
       actionpack (= 7.0.0.alpha)
@@ -195,14 +195,12 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.1)
-    mini_portile2 (2.6.1)
     minitest (5.14.4)
     minitest-hooks (1.5.0)
       minitest (> 5.3)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.4)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.12.4-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
     puma (5.4.0)

@@ -7,7 +7,6 @@ module Com
       attribute :code, :string
       attribute :value, :string
       attribute :version, :string
-      attribute :xx, :string
 
       enum platform: {
         ios: 'ios',

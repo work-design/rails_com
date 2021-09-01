@@ -1,0 +1,4 @@
+<%= render 'error_messages', target: f.object %>
+<% f.object.attributes_with_type.each do |name, column| %>
+  <%= f.send column[:input], name %>
+<% end %>

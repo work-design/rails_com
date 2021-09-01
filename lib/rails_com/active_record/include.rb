@@ -13,6 +13,21 @@ module RailsCom::ActiveRecord::Include
     self.class.base_class.name
   end
 
+  def attributes_with_type
+    except = ['id', 'created_at', 'updated_at']
+    r = {}
+    attributes.except(*except).each do |key, value|
+      type = self.class.columns_hash[key]
+      r.merge! key => {
+        value: value,
+        type: type.type,
+        **RailsCom.config.mapping.fetch(type.type, {})
+      }
+    end
+
+    r
+  end
+
   def as_full_json
     as_json(include: _reflections.keys)
   end

@@ -8,6 +8,7 @@ module Com
 
     def new
       @acme_account = AcmeAccount.new
+      binding.break
     end
 
     def create
@@ -16,24 +17,6 @@ module Com
       unless @acme_account.save
         render :new, locals: { model: @acme_account }, status: :unprocessable_entity
       end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @acme_account.assign_attributes(acme_account_params)
-
-      unless @acme_account.save
-        render :edit, locals: { model: @acme_account }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @acme_account.destroy
     end
 
     private
