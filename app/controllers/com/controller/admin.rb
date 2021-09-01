@@ -53,6 +53,7 @@ module Com
     end
 
     private
+    # 对应 方法 定义文件更改之后要重启，因为 source 是读取文件的文本实现的。
     def permit_keys
       str = method("#{controller_name.singularize}_params").source.slice(/permit\((.*)\)/m, 1)
       if str
