@@ -10,8 +10,7 @@ class RailsCom::MigrationsGenerator < Rails::Generators::Base
   def create_migration_file
     file_name = "rails_com_migration_#{file_index}"
 
-    @xxs = RailsCom::Models.xx
-    @xxs.each do |db, tables|
+    RailsCom::Models.database_tables_hash.each do |db, tables|
       next if tables.blank?
       @tables = tables
       path = db.migrations_paths || db_migrate_path

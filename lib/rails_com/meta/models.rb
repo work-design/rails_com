@@ -8,14 +8,14 @@ module RailsCom::Models
     result
   end
 
-  def xx
-    @xx = {}
+  def database_tables_hash
+    result = {}
 
     models.group_by(&:connection_db_config).each do |db_name, record_classes|
-      @xx[db_name] = tables_hash(record_classes)
+      result[db_name] = tables_hash(record_classes)
     end
 
-    @xx
+    result
   end
 
   def tables_hash(records = models)
