@@ -7,6 +7,7 @@ module Com
     end
 
     def new
+      binding.break
       @acme_account = AcmeAccount.new
     end
 
@@ -24,9 +25,7 @@ module Com
     end
 
     def acme_account_params
-      params.fetch(:acme_account, {}).permit(
-        :email
-      )
+      [:email]
     end
 
   end

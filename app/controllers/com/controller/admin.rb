@@ -7,6 +7,7 @@ module Com
     end
 
     def new
+      instance_variable_set "@#{controller_name.singularize}", self.class.root_module.const_get(controller_name.classify).send(:new)
     end
 
     def create
@@ -55,12 +56,17 @@ module Com
     private
     # 对应 方法 定义文件更改之后要重启，因为 source 是读取文件的文本实现的。
     def permit_keys
-      str = method("#{controller_name.singularize}_params").source.slice(/permit\((.*)\)/m, 1)
+      str = method().source.slice(/permit\((.*)\)/m, 1)
       if str
         str.split("\n").map(&->(i){ i.strip.delete_prefix(':').presence }).compact
       else
         []
       end
+    end
+
+    def xx
+      r = send "#{controller_name.singularize}_params"
+      params.fetch("#{controller_name.singularize}", {}).permit(*r)
     end
 
   end

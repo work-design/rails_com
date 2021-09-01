@@ -8,6 +8,7 @@ require 'rails_com/core/date'
 require 'rails_com/core/numeric'
 require 'rails_com/core/string'
 require 'rails_com/core/time_format'
+require 'rails_com/core/module'
 
 # Ruby Strand Library extensions
 require 'rails_com/core/pathname'
