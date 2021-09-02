@@ -84,7 +84,11 @@ module Com
     end
 
     def permit_keys
-      send("#{model_name}_permit_params").map(&:to_s)
+      if self.class.private_method_defined?("#{model_name}_permit_params") || self.class.method_defined?("#{model_name}_permit_params")
+        send("#{model_name}_permit_params").map(&:to_s)
+      else
+        model_klass.column_names - ['id', 'created_at', 'updated_at']
+      end
     end
 
   end
