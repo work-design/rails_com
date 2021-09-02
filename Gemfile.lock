@@ -6,14 +6,7 @@ GIT
       rails_com (~> 1.2)
 
 GIT
-  remote: https://github.com/qinmingyuan/viter.git
-  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
-  specs:
-    viter (0.1)
-      rails
-
-GIT
-  remote: https://github.com/rails/rails.git
+  remote: https://github.com/qinmingyuan/rails.git
   revision: f01b541fdfcecf1438d284a288b0e4029c4c7ece
   specs:
     actioncable (7.0.0.alpha)
@@ -96,6 +89,13 @@ GIT
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+
+GIT
+  remote: https://github.com/qinmingyuan/viter.git
+  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
+  specs:
+    viter (0.1)
+      rails
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
@@ -203,8 +203,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
     puma (5.4.0)
