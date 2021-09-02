@@ -56,7 +56,7 @@ module Com
       @acme_order = @acme_account.acme_orders.find(params[:id])
     end
 
-    def acme_order_params
+    def acme_order_permit_params
       [
         acme_authorizations_attributes: {},
         acme_identifiers_attributes: {}

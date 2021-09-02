@@ -83,6 +83,7 @@ module Com
       params.fetch("#{model_name}", {}).permit(*r)
     end
 
+    # todo, 如果 super controller 定义了同名，则将参数进行 & 操作。
     def permit_keys
       if self.class.private_method_defined?("#{model_name}_permit_params") || self.class.method_defined?("#{model_name}_permit_params")
         send("#{model_name}_permit_params").map(&:to_s)

@@ -32,7 +32,7 @@ module Com
       @meta_action = @meta_controller.meta_actions.find(params[:id])
     end
 
-    def meta_action_params
+    def meta_action_permit_params
       [
         :operation,
         :name,
