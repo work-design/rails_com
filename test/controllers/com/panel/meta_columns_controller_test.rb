@@ -18,10 +18,10 @@ class Com::Panel::MetaColumnsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create ok' do
-    assert_difference('MetaColumn.count') do
+    assert_difference('Com::MetaColumn.count') do
       post(
         url_for(controller: 'com/panel/meta_columns', action: 'create'),
-        params: { meta_column: { column_limit: @com_panel_meta_column.column_limit, column_name: @com_panel_meta_column.column_name, column_type: @com_panel_meta_column.column_type, model_name: @com_panel_meta_column.model_name, sql_type: @com_panel_meta_column.sql_type } },
+        params: { meta_column: { column_limit: @meta_column.column_limit, column_name: @meta_column.column_name, column_type: @meta_column.column_type, model_name: @meta_column.model_name, sql_type: @meta_column.sql_type } },
         as: :turbo_stream
       )
     end
@@ -44,7 +44,7 @@ class Com::Panel::MetaColumnsControllerTest < ActionDispatch::IntegrationTest
   test 'update ok' do
     patch(
       url_for(controller: 'com/panel/meta_columns', action: 'update', id: @meta_column.id),
-      params: { meta_column: { column_limit: @com_panel_meta_column.column_limit, column_name: @com_panel_meta_column.column_name, column_type: @com_panel_meta_column.column_type, model_name: @com_panel_meta_column.model_name, sql_type: @com_panel_meta_column.sql_type } },
+      params: { meta_column: { column_limit: @meta_column.column_limit, column_name: @meta_column.column_name, column_type: @meta_column.column_type, model_name: @meta_column.model_name, sql_type: @meta_column.sql_type } },
       as: :turbo_stream
     )
 
@@ -52,7 +52,7 @@ class Com::Panel::MetaColumnsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'destroy ok' do
-    assert_difference('MetaColumn.count', -1) do
+    assert_difference('Com::MetaColumn.count', -1) do
       delete url_for(controller: 'com/panel/meta_columns', action: 'destroy', id: @meta_column.id), as: :turbo_stream
     end
 

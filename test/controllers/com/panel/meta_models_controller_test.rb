@@ -18,10 +18,10 @@ class Com::Panel::MetaModelsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create ok' do
-    assert_difference('MetaModel.count') do
+    assert_difference('Com::MetaModel.count') do
       post(
         url_for(controller: 'com/panel/meta_models', action: 'create'),
-        params: { meta_model: { description: @com_panel_meta_model.description, model_name: @com_panel_meta_model.model_name, name: @com_panel_meta_model.name } },
+        params: { meta_model: { description: @meta_model.description, model_name: @meta_model.model_name, name: @meta_model.name } },
         as: :turbo_stream
       )
     end
@@ -44,7 +44,7 @@ class Com::Panel::MetaModelsControllerTest < ActionDispatch::IntegrationTest
   test 'update ok' do
     patch(
       url_for(controller: 'com/panel/meta_models', action: 'update', id: @meta_model.id),
-      params: { meta_model: { description: @com_panel_meta_model.description, model_name: @com_panel_meta_model.model_name, name: @com_panel_meta_model.name } },
+      params: { meta_model: { description: @meta_model.description, model_name: @meta_model.model_name, name: @meta_model.name } },
       as: :turbo_stream
     )
 
@@ -52,7 +52,7 @@ class Com::Panel::MetaModelsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'destroy ok' do
-    assert_difference('MetaModel.count', -1) do
+    assert_difference('Com::MetaModel.count', -1) do
       delete url_for(controller: 'com/panel/meta_models', action: 'destroy', id: @meta_model.id), as: :turbo_stream
     end
 
