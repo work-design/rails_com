@@ -10,14 +10,6 @@ module Com
       MetaBusiness.sync
     end
 
-    def move_higher
-      @meta_business.move_higher
-    end
-
-    def move_lower
-      @meta_business.move_lower
-    end
-
     private
     def meta_business_params
       [
