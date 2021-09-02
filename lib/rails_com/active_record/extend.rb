@@ -67,14 +67,27 @@ module RailsCom::ActiveRecord::Extend
       if type.respond_to?(:type)
         r.merge! type: type.type || :string
       else
-        r.merge! type: type
+        r.merge! type: type  # todo rails 6
       end
 
       # 处理默认值
       dt = column[1]
-      dt = nil if dt.respond_to?(:call) || dt.instance_of?(Object)
-      r.merge! default: dt if dt
-      r.merge! type.options unless type.options.nil?
+      if dt.instance_of?(Object)
+
+      elsif dt.is_a? Hash  # todo rails6
+        r.merge! dt
+      else
+        r.merge! default: dt if dt
+      end
+
+      if type.respond_to?(:options) && type.options.present?
+        r.merge! type.options
+      end
+
+      if r[:default].respond_to?(:call)
+        r.delete(:default)
+      end
+
       r.symbolize_keys!
 
       if r[:array] && !postgres?
