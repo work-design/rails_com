@@ -47,24 +47,6 @@ module Com
       render 'update'
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @acme_order.assign_attributes(acme_order_params)
-
-      unless @acme_order.save
-        render :edit, locals: { model: @acme_order }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @acme_order.destroy
-    end
-
     private
     def set_acme_account
       @acme_account = AcmeAccount.find params[:acme_account_id]
@@ -75,10 +57,10 @@ module Com
     end
 
     def acme_order_params
-      params.fetch(:acme_order, {}).permit(
+      [
         acme_authorizations_attributes: {},
         acme_identifiers_attributes: {}
-      )
+      ]
     end
 
   end

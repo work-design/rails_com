@@ -16,11 +16,11 @@ module Com
     end
 
     def blob_default_params
-      params.fetch(:blob_default, {}).permit(
+      [
         :record_class,
         :name,
         :file
-      )
+      ]
     end
 
   end

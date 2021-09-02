@@ -20,12 +20,12 @@ module Com
       @meta_model = MetaModel.new(meta_model_params)
     end
 
-    def meta_model_params
-      params.fetch(:meta_model, {}).permit(
+    def meta_model_permit_params
+      [
         :name,
         :record_name,
         :description
-      )
+      ]
     end
 
   end

@@ -23,11 +23,11 @@ module Com
       @cache_list = CacheList.find(params[:id])
     end
 
-    def cache_list_params
-      params.fetch(:cache_list, {}).permit(
+    def cache_list_permit_params
+      [
         :path,
         :key
-      )
+      ]
     end
 
   end

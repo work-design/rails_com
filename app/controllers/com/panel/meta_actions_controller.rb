@@ -33,13 +33,13 @@ module Com
     end
 
     def meta_action_params
-      params.fetch(:meta_action, {}).permit(
+      [
         :operation,
         :name,
         :params,
         :position,
         :landmark
-      )
+      ]
     end
 
   end

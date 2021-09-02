@@ -6,12 +6,17 @@ module Com
       helper_method :permit_keys
     end
 
+    def index
+      instance_variable_set "@#{controller_name.pluralize}", model_klass.page(params[:page])
+    end
+
     def new
-      instance_variable_set "@#{controller_name.singularize}", self.class.root_module.const_get(controller_name.classify).send(:new)
+      instance_variable_set "@#{model_name}", model_klass.new
     end
 
     def create
-      model = instance_variable_get "@#{controller_name.singularize}"
+      instance_variable_set "@#{model_name}", model_klass.new(model_params)
+      model = model_object
 
       if model.save
         render :create, status: :created
@@ -21,8 +26,7 @@ module Com
     end
 
     def update
-      model = instance_variable_get "@#{controller_name.singularize}"
-      model_params = send "#{controller_name.singularize}_params"
+      model = model_object
       model.assign_attributes(model_params)
 
       if model.save
@@ -33,40 +37,54 @@ module Com
     end
 
     def show
+      model = model_object
+      render :show, locals: { model: model }
     end
 
     def edit
+      model = model_object
+      render :edit, locals: { model: model }
     end
 
     def move_higher
-      model = instance_variable_get "@#{controller_name.singularize}"
+      model = model_object
       model.move_higher
     end
 
     def move_lower
-      model = instance_variable_get "@#{controller_name.singularize}"
+      model = model_object
       model.move_lower
     end
 
     def destroy
-      model = instance_variable_get "@#{controller_name.singularize}"
+      model = model_object
       model.destroy
     end
 
     private
-    # 对应 方法 定义文件更改之后要重启，因为 source 是读取文件的文本实现的。
-    def permit_keys
-      str = method().source.slice(/permit\((.*)\)/m, 1)
-      if str
-        str.split("\n").map(&->(i){ i.strip.delete_prefix(':').presence }).compact
+    def model_klass
+      self.class.root_module.const_get(controller_name.classify)
+    end
+
+    def model_object
+      if instance_variable_defined? "@#{model_name}"
+        instance_variable_get "@#{model_name}"
       else
-        []
+        instance_variable_set "@#{model_name}", model_klass.find(params[:id])
       end
     end
 
-    def xx
-      r = send "#{controller_name.singularize}_params"
-      params.fetch("#{controller_name.singularize}", {}).permit(*r)
+    def model_name
+      controller_name.singularize
+    end
+
+    def model_params
+      r = permit_keys
+      params.fetch("#{model_name}", {}).permit(*r)
+    end
+
+    def permit_keys
+      send("#{model_name}_permit_params").map(&:to_s)
     end
 
   end

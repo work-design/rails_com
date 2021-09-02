@@ -29,14 +29,14 @@ module Com
       @meta_column = @meta_model.meta_columns.build(meta_column_params)
     end
 
-    def meta_column_params
-      params.fetch(:meta_column, {}).permit(
+    def meta_column_permit_params
+      [
         :model_name,
         :column_name,
         :column_type,
         :sql_type,
         :column_limit
-      )
+      ]
     end
 
   end

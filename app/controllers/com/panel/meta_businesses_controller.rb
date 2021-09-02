@@ -20,10 +20,10 @@ module Com
 
     private
     def meta_business_params
-      params.fetch(:meta_business, {}).permit(
+      [
         :name,
         :logo
-      )
+      ]
     end
 
     def set_meta_business

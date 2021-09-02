@@ -22,9 +22,9 @@ module Com
     end
 
     def acme_identifier_params
-      params.fetch(:acme_identifier, {}).permit(
+      [
         :identifier
-      )
+      ]
     end
 
   end

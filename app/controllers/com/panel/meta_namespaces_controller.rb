@@ -15,14 +15,14 @@ module Com
       @meta_namespace = MetaNamespace.find(params[:id])
     end
 
-    def meta_namespace_params
-      params.fetch(:meta_namespace, {}).permit(
+    def meta_namespace_permit_params
+      [
         :name,
         :identifier,
         :verify_organ,
         :verify_member,
         :verify_user
-      )
+      ]
     end
 
   end

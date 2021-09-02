@@ -31,23 +31,15 @@ module Com
       @meta_actions = @meta_controller.meta_actions
     end
 
-    def move_higher
-      @meta_controller.move_higher
-    end
-
-    def move_lower
-      @meta_controller.move_lower
-    end
-
     private
     def set_meta_controller
       @meta_controller = MetaController.find(params[:id])
     end
 
-    def meta_controller_params
-      params.fetch(:meta_controller, {}).permit(
+    def meta_controller_permit_params
+      [
         :position
-      )
+      ]
     end
 
   end
