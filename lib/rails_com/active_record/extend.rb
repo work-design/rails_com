@@ -143,6 +143,14 @@ module RailsCom::ActiveRecord::Extend
     results
   end
 
+  def attributes_by_default
+    if table_exists?
+      [primary_key] + all_timestamp_attributes_in_model
+    else
+      []
+    end
+  end
+
   def attributes_by_belongs
     ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
     ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
@@ -165,15 +173,7 @@ module RailsCom::ActiveRecord::Extend
     results
   end
 
-  def attributes_by_default
-    if table_exists?
-      [primary_key] + all_timestamp_attributes_in_model
-    else
-      []
-    end
-  end
-
-  def xx_indexes
+  def indexes_by_model
     indexes = indexes_to_define_after_schema_loads
     indexes.map! do |index|
       index.merge! index_options: index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }

@@ -34,7 +34,7 @@ module RailsCom::Models
         r[:remove_attributes] ||= record_class.attributes_by_db
         r[:remove_attributes].except!(*record_class.defined_attributes_by_model.keys, *record_class.attributes_by_default, *record_class.attributes_by_belongs)
         r[:timestamps] = ['created_at', 'updated_at'] & r[:add_attributes].keys
-        r[:indexes] = record_class.xx_indexes
+        r[:indexes] = record_class.indexes_by_model
       end
 
       @tables[table_name] = r unless r[:add_attributes].blank? && r[:add_references].blank? && r[:remove_attributes].blank?
