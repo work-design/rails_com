@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'default_form/builder/wrap'
+require 'default_form/builder/default'
 require 'default_form/builder/helper'
 require 'default_form/config'
 
@@ -14,7 +16,7 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     else
       @theme = 'default'
     end
-    set_file = Rails.root.join('config/default_form.yml').existence || DefaultForm::Engine.root.join('config/default_form.yml')
+    set_file = Rails.root.join('config/default_form.yml').existence || RailsCom::Engine.root.join('config/default_form.yml')
     set = YAML.load_file set_file
     settings = set.fetch(theme, {})
     settings.deep_symbolize_keys!
