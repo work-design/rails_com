@@ -2,4 +2,4 @@
 <%= f.text_field :code %>
 <%= f.text_field :value %>
 <%= f.text_field :version %>
-<%= f.select :platform, options_for_select(Com::Info.options_i18n(:platform), f.object.platform), prompt: 'All' %>
+<%= f.select :platform, options_for_select(Com::Info.options_i18n(:platform), f.object.platform), prompt: true %>

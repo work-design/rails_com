@@ -45,25 +45,46 @@ module RailsCom::ActiveRecord::Extend
     results
   end
 
-  def defined_attributes_by_model
-    news = {}
+  def attributes_by_model
+    cols = {}
+
     attributes_to_define_after_schema_loads.each do |name, column|
       r = {}
+      r.merge! type: column[0]
 
-      # 处理 type
-      if column[0].respond_to? :call
-        type = column[0].call(ActiveRecord::Type.default_value)
-      elsif column[0].respond_to? :subtype
-        case column[0].class.name
+      if r[:type].respond_to? :call
+        r.merge! type: r[:type].call(ActiveModel::Type::String.new)
+      end
+
+      if r[:type].respond_to? :subtype
+        case r[:type].class.name
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array'
           r.merge! array: true
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Range'
           r.merge! range: true
+        when 'ActiveRecord::Enum::EnumType'
+          r.merge! enum: true
+          r.merge! mapping: r[:type].send(:mapping)
         end
-        type = column[0].subtype
-      else
-        type = column[0]
+        r.merge! subtype: r[:type].subtype
       end
+
+      cols.merge! name => r
+    end
+
+    cols
+  end
+
+  def defined_attributes_by_model
+    news = {}
+    attributes_by_model.each do |name, column|
+      r = {}
+      r.merge! column
+
+      if column[:subtype]
+        r.merge! type: column[:subtype]
+      end
+
       if type.respond_to?(:type)
         r.merge! type: type.type || :string
       else
