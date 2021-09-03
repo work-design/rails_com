@@ -56,17 +56,31 @@ module RailsCom::ActiveRecord::Extend
         r.merge! type: r[:type].call(ActiveModel::Type::String.new)
       end
 
+      if r[:type].respond_to?(:type)
+        r.merge! migrate_type: r[:type].type || :string
+      else
+        r.merge! migrate_type: r[:type] # 兼容 rails 7 以下
+      end
+      r.merge! input_type: r[:migrate_type]
+
       if r[:type].respond_to? :subtype
         case r[:type].class.name
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array'
           r.merge! array: true
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Range'
           r.merge! range: true
+          r.merge! migrate_type: r[:type].subtype.type
+          r.merge! input_type: r[:migrate_type]
         when 'ActiveRecord::Enum::EnumType'
-          r.merge! enum: true
+          r.merge! input_type: :enum
           r.merge! mapping: r[:type].send(:mapping)
         end
-        r.merge! subtype: r[:type].subtype
+      end
+
+      if column[1].is_a? Hash # 兼容 rails 7 以下
+        r.merge! column[1]
+      elsif !column[1].instance_of?(Object) # 处理 Rails 7 默认值
+        r.merge! default: column[1]
       end
 
       cols.merge! name => r
@@ -80,54 +94,33 @@ module RailsCom::ActiveRecord::Extend
     attributes_by_model.each do |name, column|
       r = {}
       r.merge! column
+      r.symbolize_keys!
 
-      if column[:subtype]
-        r.merge! type: column[:subtype]
-      end
-
-      if type.respond_to?(:type)
-        r.merge! type: type.type || :string
-      else
-        r.merge! type: type  # todo rails 6
-      end
-
-      # 处理默认值
-      dt = column[1]
-      if dt.instance_of?(Object)
-
-      elsif dt.is_a? Hash  # todo rails6
-        r.merge! dt
-      else
-        r.merge! default: dt if dt
-      end
-
-      if type.respond_to?(:options) && type.options.present?
-        r.merge! type.options
+      if column[:type].respond_to?(:options) && column[:type].options.present?
+        r.merge! column[:type].options
       end
 
       if r[:default].respond_to?(:call)
         r.delete(:default)
       end
 
-      r.symbolize_keys!
-
       if r[:array] && !postgres?
         r.delete(:array)
-        r[:type] = :json
+        r[:migrate_type] = :json
         r.delete(:default) if r[:default].is_a? Array
       end
 
-      if r[:type] == :json
+      if r[:migrate_type] == :json
         if postgres? # Postgres 替换 json 为 jsonb
-          r[:type] = :jsonb
+          r[:migrate_type] = :jsonb
         else
           r.delete(:default) # mysql 数据库不能接受 json 的默认值
         end
       end
 
-      if r[:type] == :jsonb
+      if r[:migrate_type] == :jsonb
         unless postgres?
-          r[:type] == :json
+          r[:migrate_type] == :json
           r.delete(:default)
         end
       end

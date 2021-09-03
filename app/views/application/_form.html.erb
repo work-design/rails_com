@@ -1,4 +1,4 @@
 <%= render 'error_messages', target: f.object %>
 <% f.object.attributes_with_type(only: permit_keys).each do |name, column| %>
-  <%= f.send column[:input], name %>
+  <%= render partial: "default_form/#{column[:input]}", locals: { f: f, name: name, column: column } %>
 <% end %>

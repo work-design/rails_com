@@ -22,10 +22,10 @@ module RailsCom::ActiveRecord::Include
     end
 
     cols.each do |key, value|
-      type = self.class.columns_hash[key]
+      type = self.class.attributes_by_model[key]
       r.merge! key => {
         value: value,
-        type: type.type,
+        type: r[:type].type,
         **RailsCom.config.mapping.fetch(type.type, {})
       }
     end

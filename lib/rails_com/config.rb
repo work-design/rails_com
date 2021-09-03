@@ -56,6 +56,9 @@ module RailsCom #:nodoc:
       input: 'out_select',
       options: { outer: 'area' }
     }
+    config.mapping.enum = {
+      input: 'select_enum'
+    }
   end
 
 end
