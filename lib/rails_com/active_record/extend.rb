@@ -139,6 +139,7 @@ module RailsCom::ActiveRecord::Extend
 
     columns_hash.each do |name, column|
       r = { type: column.type }
+      r.merge! migrate_type: r[:type]
       r.merge! null: column.null unless column.null
       r.merge! default: column.default unless column.default.nil?
       r.merge! comment: column.comment if column.comment.present?

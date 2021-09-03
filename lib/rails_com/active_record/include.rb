@@ -25,8 +25,8 @@ module RailsCom::ActiveRecord::Include
       type = self.class.attributes_by_model[key]
       r.merge! key => {
         value: value,
-        type: r[:type].type,
-        **RailsCom.config.mapping.fetch(type.type, {})
+        input_type: type[:input_type],
+        **RailsCom.config.mapping.fetch(type[:input_type], {})
       }
     end
 
