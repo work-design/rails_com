@@ -24,41 +24,6 @@ module RailsCom #:nodoc:
     config.acme_url = 'https://acme-v02.api.letsencrypt.org/directory'  # 用于 SSL 证书自动签发服务
     config.enum_key = ->(o, attribute){ "#{o.i18n_scope}.enum.#{o.base_class.model_name.i18n_key}.#{attribute}" }
     config.help_key = ->(o, attribute){ "#{o.i18n_scope}.help.#{o.base_class.model_name.i18n_key}.#{attribute}" }
-
-    config.mapping = ActiveSupport::OrderedOptions.new
-    config.mapping.date = {
-      input: 'date_field',
-      output: 'to_date'
-    }
-    config.mapping.integer = {
-      input: 'number_field',
-      options: { step: 1 },
-      output: 'to_i'
-    }
-    config.mapping.decimal = {
-      input: 'number_field',
-      options: { step: 0.01 }
-    }
-    config.mapping.string = {
-      input: 'text_field',
-      output: 'to_s'
-    }
-    config.mapping.text = {
-      input: 'text_area',
-      output: 'to_s'
-    }
-    config.mapping.array = {
-      input: 'text_field',
-      options: { multiple: true },
-      output: 'to_s'
-    }
-    config.mapping.area = {
-      input: 'out_select',
-      options: { outer: 'area' }
-    }
-    config.mapping.enum = {
-      input: 'select_enum'
-    }
   end
 
 end

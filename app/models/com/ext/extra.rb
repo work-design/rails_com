@@ -10,7 +10,7 @@ module Com
     def form_extra
       r = {}
       extra.each do |k, v|
-        r.merge! k => v.send(RailsCom.config.mapping.dig(taxon.parameters[k].to_sym, :output))
+        r.merge! k => v.send(DefaultForm.config.mapping.dig(taxon.parameters[k].to_sym, :output))
       end
 
       RailsCom::Setting.new(r)

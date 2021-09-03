@@ -4,7 +4,7 @@
       <%= f.label :form_parameters, '参数' %>
       <div class="field-body">
         <%= pf.text_field :column, value: parameter.key %>
-        <%= pf.select :value, options_for_select(RailsCom.config.mapping.keys, parameter.value) %>
+        <%= pf.select :value, options_for_select(DefaultForm.config.mapping.keys, parameter.value) %>
         <div class="field is-flex">
           <i class="fas fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
           <i class="fas fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>

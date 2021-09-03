@@ -1,5 +1,5 @@
 <%= f.fields 'extra', model: f.object.form_extra do |ef| %>
   <% taxon.parameters.each do |k, v| %>
-    <%= render partial: "default_form/#{RailsCom.config.mapping[v.to_sym][:input]}", locals: { f: f, ef: ef, k: k }  %>
+    <%= render partial: "default_form/#{DefaultForm.config.mapping[v.to_sym][:input]}", locals: { f: f, ef: ef, k: k }  %>
   <% end %>
 <% end %>

@@ -26,7 +26,7 @@ module RailsCom::ActiveRecord::Include
       r.merge! key => {
         value: value,
         input_type: type[:input_type],
-        **RailsCom.config.mapping.fetch(type[:input_type], {})
+        **DefaultForm.config.mapping.fetch(type[:input_type], {})
       }
     end
 
