@@ -130,7 +130,7 @@ module RailsCom::ActiveRecord::Extend
       r.merge! comment: column.comment if column.comment.present?
       r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
-      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :comment, :default, :null, :index, :array, :size).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+      r.merge! attribute_options: r.slice(:limit, :precision, :scale, :null, :index, :array, :size, :default, :comment).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
       results.merge! name => r
     end

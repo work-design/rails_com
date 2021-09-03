@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 476ba7231079b1071415ad4e953b55ce16ae1d0d
+  revision: 94f5f0f7b8221b85cf93a1c50a5daaaa8276c464
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
@@ -99,7 +99,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: 75f6e0066cd052b2c050ff1103a05099f4ef984e
+  revision: 3c13609a205c98818d9d7cba18cc5da6e8a1d304
   specs:
     rails_ui (0.0.1)
       rails

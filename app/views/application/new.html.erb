@@ -1,3 +1,6 @@
 <%= turbo_frame_tagged 'modal' do %>
-  <%= render partial: 'new_form' %>
+  <%= form_with model: model, url: { action: 'create' } do |f| %>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= f.submit %>
+  <% end %>
 <% end %>

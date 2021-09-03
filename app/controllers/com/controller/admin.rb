@@ -11,12 +11,12 @@ module Com
     end
 
     def new
-      instance_variable_set "@#{model_name}", model_klass.new
+      model = instance_variable_set("@#{model_name}", model_klass.new)
+      render :new, locals: { model: model }
     end
 
     def create
-      instance_variable_set "@#{model_name}", model_klass.new(model_params)
-      model = model_object
+      model = instance_variable_set("@#{model_name}", model_klass.new(model_params))
 
       if model.save
         render :create, status: :created

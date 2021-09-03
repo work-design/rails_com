@@ -3,9 +3,9 @@
     <button class="delete"></button>
     <div class="header"><%= target.errors.count %> <% if target.errors.count == 1 %> error <% else %> errors <% end %>: </div>
     <ul class="list">
-      <% target.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+    <% target.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
     </ul>
   </div>
 <% end %>
