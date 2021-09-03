@@ -152,16 +152,22 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def attributes_by_belongs
-    ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
-    ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
-    ref_ids.flatten!
-    ref_ids.compact!
-    ref_ids
+    results = {}
+
+    reflections.values.select(&->(reflection){ reflection.belongs_to? }).each do |reflection|
+      results.merge! reflection.foreign_key => {
+        input_type: :integer  # todo 考虑 foreign_key 不是自增 ID 的场景
+      }
+      results.merge! reflection.foreign_type => { input_type: :string } if reflection.foreign_type
+    end
+    results.except! *attributes_by_model.keys.map(&:to_s)
+
+    results
   end
 
   def references_by_model
     results = {}
-    refs = reflections.values.select { |reflection| reflection.belongs_to? }
+    refs = reflections.values.select(&->(reflection){ reflection.belongs_to? })
     refs.reject! { |reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
     refs.each do |ref|
       r = { name: ref.name }

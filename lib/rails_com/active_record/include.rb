@@ -22,7 +22,7 @@ module RailsCom::ActiveRecord::Include
     end
 
     cols.each do |key, value|
-      type = self.class.attributes_by_model[key]
+      type = self.class.attributes_by_model[key] || self.class.attributes_by_belongs[key]
       r.merge! key => {
         value: value,
         input_type: type[:input_type],
