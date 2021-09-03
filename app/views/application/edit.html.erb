@@ -1,3 +1,7 @@
 <%= turbo_frame_tagged 'modal' do %>
+<% if defined? model %>
   <%= render partial: 'edit_form', locals: { model: model } %>
+<% else %>
+  <%= render partial: 'edit_form' %>
+<% end %>
 <% end %>
