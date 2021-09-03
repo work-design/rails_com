@@ -12,6 +12,8 @@ module Com
         ios: 'ios',
         android: 'android'
       }
+
+      validates :code, presence: true
     end
 
     class_methods do

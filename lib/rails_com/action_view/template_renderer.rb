@@ -15,6 +15,7 @@ module RailsCom
         _formats = @lookup_context.formats[0..0].presence || [:html]
       end
 
+      _formats += [:html] if _formats == [:turbo_stream]
       # todo better implement
       @lookup_context.send :_set_detail, :formats, _formats
 
