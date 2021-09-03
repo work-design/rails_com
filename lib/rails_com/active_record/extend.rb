@@ -1,4 +1,5 @@
 module RailsCom::ActiveRecord::Extend
+  DEFAULT_COLUMNS = ['id', 'created_at', 'updated_at']
 
   def human_name
     model_name.human
@@ -10,11 +11,15 @@ module RailsCom::ActiveRecord::Extend
     args = [
       self.name.underscore
     ]
-    cols = columns.reject(&->(i){ ['id', 'created_at', 'updated_at'].include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
+    cols = columns.reject(&->(i){ DEFAULT_COLUMNS.include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
 
     generator = TestUnit::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root, fixture: true)
     generator.instance_variable_set :@source_paths, Array(RailsCom::Engine.root.join('lib/templates', 'test_unit/model'))
     generator.invoke_all
+  end
+
+  def com_column_names
+    column_names - DEFAULT_COLUMNS
   end
 
   def column_attributes
