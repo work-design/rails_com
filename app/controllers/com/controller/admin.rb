@@ -3,7 +3,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      helper_method :permit_keys
+      helper_method :permit_keys, :model_klass
     end
 
     def index
@@ -72,6 +72,10 @@ module Com
       else
         instance_variable_set "@#{model_name}", model_klass.find(params[:id])
       end
+    end
+
+    def pluralize_model_name
+      controller_name.pluralize
     end
 
     def model_name
