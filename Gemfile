@@ -14,7 +14,6 @@ gem 'jbuilder'
 gem 'turbo-rails'
 
 gem 'viter', github: 'qinmingyuan/viter'
-gem 'default_form', github: 'qinmingyuan/default_form'
 gem 'rails_ui', github: 'work-design/rails_ui'
 
 group :development, :test do

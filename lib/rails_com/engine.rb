@@ -22,6 +22,8 @@ module RailsCom
       end
     end
 
+    config.action_view.field_error_proc = ->(html_tag, instance){ html_tag }
+
     initializer 'rails_com.default_initializer' do |app|
       app.config.content_security_policy_nonce_generator = -> request {
         request.headers['X-Csp-Nonce'] || SecureRandom.base64(16)

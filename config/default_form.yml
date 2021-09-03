@@ -1,0 +1,141 @@
+defaults: &defaults
+  autocomplete: true
+  label: true
+searches: &searches
+  method: get
+  placeholder: true
+  autofilter: true
+default:
+  <<: *defaults
+  origin:
+    label: label
+    offset: field-label
+    input: input
+    textarea: field textarea
+    submit: button is-primary
+    inline_checkbox: checkbox
+    inline_checkbox_checked: checkbox
+    inline_radio: radio
+    inline_radio_checked: radio
+  wrap:
+    all: field is-horizontal
+    all_required: field is-horizontal
+    all_error: field is-horizontal
+    label: field-label is-normal
+    input: field-body > field > control
+    select: field-body > field is-narrow > control > select is-fullwidth
+    checkbox: field-body > field > control > checkbox
+    checkboxes: field-body > field is-narrow > control
+    submit: field-body control
+  error:
+    input: input is-danger
+  label:
+    checkboxes: field-label
+search:
+  <<: *searches
+  origin:
+    form: field is-horizontal
+    input: input
+    submit: button is-primary
+  wrap:
+    input: field is-narrow
+switch:
+
+semantic:
+  <<: *defaults
+  origin:
+    form: ui form
+    label: six wide field
+    offset: six wide field
+    select: ui fluid search dropdown
+    multi_select: ui fluid search dropdown
+    checkbox: hidden
+    inline_checkbox: ui label checkbox
+    inline_checkbox_checked: ui teal label checkbox
+    inline_radio: ui label radio checkbox
+    inline_radio_checked: ui teal label radio checkbox
+    submit: ui blue button
+  wrap:
+    all: inline fields
+    all_error: inline error fields
+    all_required: inline required fields
+    input: six wide field
+    checkbox: ui toggle checkbox
+    checkboxes: six wide field ui labels
+    radios: six wide field ui labels
+semantic_search:
+  <<: *searches
+  autofilter: true
+  origin:
+    form: ui form
+    inline_checkbox: ui label checkbox
+    inline_checkbox_checked: ui teal label checkbox
+    radio: hidden
+    inline_radio: ui label radio checkbox
+    inline_radio_checked: ui teal label radio checkbox
+    submit: ui blue button
+  wrap:
+    input: field
+    checkbox: ui toggle checkbox
+    checkboxes: six wide field ui labels
+    radio: ui radio checkbox
+    radios: six wide field ui labels
+    submit: field
+weui:
+  <<: *defaults
+  origin:
+    form: weui-form
+    label: weui-label
+    input: weui-input
+    textarea: weui-textarea
+    select: weui-select
+    muilti_select: weui-select
+    submit: weui-btn weui-btn_primary
+  wrap:
+    all: weui-cell weui-cell_active
+    all_error: weui-cell
+    all_required: weui-cell
+    label: weui-cell__hd
+    input: weui-cell__bd
+    submit: weui-form__opr-area
+weui_search:
+  <<: *searches
+  origin:
+    form: weui-cells weui-cells_form
+    label: weui-label
+    input: weui-input
+    select: weui-select
+    muilti_select: weui-select
+    submit: weui-btn weui-btn_primary
+  wrap:
+    all: weui-cell
+    all_error: inline field error
+    input: weui-cell__bd
+    submit: weui-btn-area
+bootstrap:
+  <<: *defaults
+  origin:
+    form: form-horizontal
+    label: col-sm-2 control-label
+    input: form-control
+    checkbox: checkbox
+    inline_checkbox_checked: checkbox-inline
+    submit: btn btn-default
+  wrap:
+    all: form-group
+    all_error: form-group has-error
+    input: col-sm-10
+    checkbox: checkbox-inline
+    submit: col-sm-offset-2 col-sm-10
+bootstrap_search:
+  <<: *searches
+  origin:
+    form: form-inline
+    label: sr-only
+    input: form-control
+    checkbox: checkbox
+    submit: btn btn-default
+  wrap:
+    all: from-group
+    input: col-sm-10
+    checkbox: checkbox-inline

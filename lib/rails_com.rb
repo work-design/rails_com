@@ -23,6 +23,13 @@ require 'rails_com/generators'
 require 'generators/scaffold_generator'
 require 'generators/jbuilder_generator' if defined?(Jbuilder)
 
+# default_form
+require 'default_form/config'
+require 'default_form/override/action_view/helpers/tags/collection_check_boxes'
+require 'default_form/override/action_view/helpers/tags/collection_radio_buttons'
+require 'default_form/controller_helper'
+require 'default_form/view_helper'
+
 # Utils
 require 'rails_com/utils/time_helper'
 require 'rails_com/utils/num_helper'
