@@ -1,5 +1,4 @@
 module RailsCom::ActiveRecord::Extend
-  DEFAULT_COLUMNS = ['id', 'created_at', 'updated_at']
 
   def human_name
     model_name.human
@@ -11,7 +10,7 @@ module RailsCom::ActiveRecord::Extend
     args = [
       self.name.underscore
     ]
-    cols = columns.reject(&->(i){ DEFAULT_COLUMNS.include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
+    cols = columns.reject(&->(i){ attributes_by_default.include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
 
     generator = TestUnit::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root, fixture: true)
     generator.instance_variable_set :@source_paths, Array(RailsCom::Engine.root.join('lib/templates', 'test_unit/model'))
@@ -19,7 +18,7 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def com_column_names
-    column_names - DEFAULT_COLUMNS
+    column_names - attributes_by_default
   end
 
   def column_attributes
@@ -34,20 +33,6 @@ module RailsCom::ActiveRecord::Extend
       r.merge! column.sql_type_metadata.instance_values.slice('limit', 'precision', 'scale').compact
       r.symbolize_keys!
     end
-  end
-
-  def defined_references_by_model
-    results = {}
-    refs = reflections.values.select { |reflection| reflection.belongs_to? }
-    refs.reject! { |reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
-    refs.each do |ref|
-      r = { name: ref.name }
-      r.merge! polymorphic: true if ref.polymorphic?
-      r.merge! reference_options: r.slice(:polymorphic).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
-      results[ref.foreign_key] = r unless results.key?(ref.foreign_key.to_sym)
-    end
-
-    results
   end
 
   def attributes_by_model
@@ -138,7 +123,7 @@ module RailsCom::ActiveRecord::Extend
     news
   end
 
-  def defined_attributes_by_db
+  def attributes_by_db
     return {} unless table_exists?
     results = {}
 
@@ -158,7 +143,7 @@ module RailsCom::ActiveRecord::Extend
     results
   end
 
-  def defined_attributes_by_belongs
+  def attributes_by_belongs
     ref_ids = reflections.values.select { |reflection| reflection.belongs_to? }
     ref_ids.map! { |reflection| [reflection.foreign_key, reflection.foreign_type] }
     ref_ids.flatten!
@@ -166,7 +151,21 @@ module RailsCom::ActiveRecord::Extend
     ref_ids
   end
 
-  def defined_attributes_by_default
+  def references_by_model
+    results = {}
+    refs = reflections.values.select { |reflection| reflection.belongs_to? }
+    refs.reject! { |reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
+    refs.each do |ref|
+      r = { name: ref.name }
+      r.merge! polymorphic: true if ref.polymorphic?
+      r.merge! reference_options: r.slice(:polymorphic).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+      results[ref.foreign_key] = r unless results.key?(ref.foreign_key.to_sym)
+    end
+
+    results
+  end
+
+  def attributes_by_default
     if table_exists?
       [primary_key] + all_timestamp_attributes_in_model
     else

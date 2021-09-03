@@ -3,7 +3,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      helper_method :permit_keys, :model_klass
+      helper_method :permit_keys, :model_klass, :model_name
     end
 
     def index
@@ -90,9 +90,9 @@ module Com
     # todo, 如果 super controller 定义了同名，则将参数进行 & 操作。
     def permit_keys
       if self.class.private_method_defined?("#{model_name}_permit_params") || self.class.method_defined?("#{model_name}_permit_params")
-        send("#{model_name}_permit_params").map(&:to_s)
+        model_klass.com_column_names & send("#{model_name}_permit_params").map(&:to_s)
       else
-        model_klass.column_names - ['id', 'created_at', 'updated_at']
+        model_klass.com_column_names
       end
     end
 
