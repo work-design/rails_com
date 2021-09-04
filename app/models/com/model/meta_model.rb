@@ -12,6 +12,10 @@ module Com
       has_many :meta_columns, foreign_key: :record_name, primary_key: :record_name, inverse_of: :meta_model
     end
 
+    def record_class
+      record_name.constantize
+    end
+
     class_methods do
 
       def sync
