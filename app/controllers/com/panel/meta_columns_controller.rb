@@ -29,6 +29,10 @@ module Com
       @meta_column = @meta_model.meta_columns.build(meta_column_params)
     end
 
+    def meta_column_params
+      params.fetch(:meta_column, {}).permit(*meta_column_permit_params)
+    end
+
     def meta_column_permit_params
       [
         :model_name,
