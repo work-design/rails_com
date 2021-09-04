@@ -90,25 +90,23 @@ module RailsCom::ActiveRecord::Extend
         r.delete(:default)
       end
 
-      if r[:array] && !postgres?
+      if r[:array] && connection.adapter_name != 'PostgreSQL'
         r.delete(:array)
         r[:migrate_type] = :json
         r.delete(:default) if r[:default].is_a? Array
       end
 
       if r[:migrate_type] == :json
-        if postgres? # Postgres 替换 json 为 jsonb
+        if connection.adapter_name == 'PostgreSQL' # Postgres 替换 json 为 jsonb
           r[:migrate_type] = :jsonb
         else
           r.delete(:default) # mysql 数据库不能接受 json 的默认值
         end
       end
 
-      if r[:migrate_type] == :jsonb
-        unless postgres?
-          r[:migrate_type] == :json
-          r.delete(:default)
-        end
+      if r[:migrate_type] == :jsonb && connection.adapter_name != 'PostgreSQL'
+        r[:migrate_type] == :json
+        r.delete(:default)
       end
 
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :null, :index, :array, :range, :size, :default, :comment).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
@@ -180,10 +178,6 @@ module RailsCom::ActiveRecord::Extend
     indexes.map! do |index|
       index.merge! index_options: index.slice(:unique, :name).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
     end
-  end
-
-  def postgres?
-    defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && connection.is_a?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
   end
 
 end

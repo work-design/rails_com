@@ -1,6 +1,8 @@
 <td><%= model.column_name %></td>
-<td><%= model.column_type %></td>
-<td><%= model.sql_type %></td>
+<td>
+  <p><%= model.column_type %></p>
+  <p class="has-text-grey"><%= model.sql_type %></p>
+</td>
 <td><%= model.column_limit %></td>
 <td>
 <% if model.defined_db %>
