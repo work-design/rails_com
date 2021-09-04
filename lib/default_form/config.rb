@@ -39,12 +39,8 @@ module DefaultForm
       options: { multiple: true },
       output: 'to_s'
     }
-    config.mapping.area = {
-      input: 'out_select',
-      options: { outer: 'area' }
-    }
     config.mapping.taxon = {
-      input: 'out_select'
+      input: 'outer_select'
     }
     config.mapping.enum = {
       input: 'select_enum'
