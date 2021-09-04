@@ -62,7 +62,7 @@ module RailsCom::ActiveRecord::Extend
         end
       end
 
-      if r[:type].respond_to?(:options)
+      if r[:type].respond_to?(:options) && r[:type].options.present?
         r.merge! r[:type].options
       end
 
