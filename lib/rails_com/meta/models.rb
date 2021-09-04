@@ -12,13 +12,13 @@ module RailsCom::Models
     result = {}
 
     models.group_by(&:connection_db_config).each do |db_name, record_classes|
-      result[db_name] = tables_hash(record_classes)
+      result[db_name] = migrate_tables_hash(record_classes)
     end
 
     result
   end
 
-  def tables_hash(records = models)
+  def migrate_tables_hash(records = models)
     @tables = {}
 
     records.group_by(&:table_name).each do |table_name, record_classes|
@@ -43,7 +43,7 @@ module RailsCom::Models
     @tables
   end
 
-  def modules_hash
+  def migrate_modules_hash
     @modules = {}
 
     models.group_by(&:module_parent).each do |module_name, record_classes|
