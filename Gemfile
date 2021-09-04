@@ -17,7 +17,7 @@ gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_ui', github: 'work-design/rails_ui'
 
 group :development, :test do
-  gem 'debug', '>= 1.0.0.beta'
+  gem 'debug', '>= 1.0.0.rc'
   gem 'minitest-hooks'
   gem 'sdoc'
 end

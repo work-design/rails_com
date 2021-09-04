@@ -125,8 +125,9 @@ GEM
       with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    debug (1.0.0.beta8)
+    debug (1.0.0.rc2)
       irb
+      reline (>= 0.2.7)
     default_where (2.3.0)
       activerecord (>= 4.0, <= 7.0)
     erubi (1.10.0)
@@ -244,7 +245,7 @@ PLATFORMS
 
 DEPENDENCIES
   amazing_print
-  debug (>= 1.0.0.beta)
+  debug (>= 1.0.0.rc)
   image_processing
   jbuilder
   kaminari

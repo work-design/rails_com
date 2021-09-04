@@ -21,6 +21,10 @@ module DefaultForm::ActiveRecord
           end
         end
 
+        if inheritance_column.to_s == name
+          r.merge! input_type: :enum
+        end
+
         cols.merge! name => r
       end
 
