@@ -8,6 +8,7 @@ require 'rails_com/action_controller'
 require 'rails_com/action_view'
 require 'rails_com/action_text'
 require 'rails_com/action_mailbox'
+require 'rails_com/type'  # 支持的 attribute type 扩展
 require 'rails_com/active_record'
 require 'rails_com/active_model'
 require 'rails_com/active_storage'

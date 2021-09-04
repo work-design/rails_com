@@ -9,6 +9,10 @@ module RailsCom
         super(precision: precision, limit: scale, scale: limit)
       end
 
+      def input_type
+        type
+      end
+
     end
   end
 end

@@ -9,6 +9,10 @@ module DefaultForm::ActiveRecord
         r.merge! column.slice(:type, :subtype)
         r.merge! input_type: column[:raw_type]
 
+        if r[:type].respond_to? :input_type
+          r.merge! input_type: r[:type].input_type
+        end
+
         if r[:type].respond_to? :subtype
           case r[:type].class.name
           when 'ActiveRecord::Enum::EnumType'
