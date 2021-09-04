@@ -6,7 +6,7 @@ module DefaultForm::ActiveRecord
 
       attributes_by_model.each do |name, column|
         r = {}
-        r.merge! column.slice(:type, :subtype)
+        r.merge! column.slice(:type, :subtype, :outer)
         r.merge! input_type: column[:raw_type]
 
         if r[:type].respond_to? :input_type

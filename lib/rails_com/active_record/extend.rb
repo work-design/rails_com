@@ -62,6 +62,10 @@ module RailsCom::ActiveRecord::Extend
         end
       end
 
+      if r[:type].respond_to?(:options)
+        r.merge! r[:type].options
+      end
+
       if Rails::VERSION::MAJOR >= 7 && !column[1].instance_of?(Object) # Rails 7, column[1] 为默认值
         r.merge! default: column[1]
       elsif Rails::VERSION::MAJOR < 7 # rails 7 以下, column[1] 为 options
@@ -81,10 +85,6 @@ module RailsCom::ActiveRecord::Extend
       r.merge! column
       r.merge! migrate_type: column[:raw_type]
       r.symbolize_keys!
-
-      if column[:type].respond_to?(:options) && column[:type].options.present?
-        r.merge! column[:type].options
-      end
 
       if r[:default].respond_to?(:call)
         r.delete(:default)

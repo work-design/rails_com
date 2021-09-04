@@ -4,7 +4,7 @@ module RailsCom::ActiveRecord::Taxon
 
   def has_taxons(*columns)
     columns.each do |column|
-      attribute "#{column}_ancestors", :taxon
+      attribute "#{column}_ancestors", :taxon, outer: column
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
         before_validation :sync_#{column}_id, if: -> { #{column}_ancestors_changed? }
 
