@@ -51,7 +51,6 @@ module RailsCom::ActiveRecord::Extend
       else
         r.merge! migrate_type: r[:type] # 兼容 rails 7 以下
       end
-      r.merge! input_type: r[:migrate_type]
 
       if r[:type].respond_to? :subtype
         case r[:type].class.name
@@ -60,10 +59,6 @@ module RailsCom::ActiveRecord::Extend
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Range'
           r.merge! range: true
           r.merge! migrate_type: r[:type].subtype.type
-          r.merge! input_type: r[:migrate_type]
-        when 'ActiveRecord::Enum::EnumType'
-          r.merge! input_type: :enum
-          r.merge! mapping: r[:type].send(:mapping)
         end
       end
 
@@ -79,7 +74,7 @@ module RailsCom::ActiveRecord::Extend
     cols
   end
 
-  def defined_attributes_by_model
+  def migrate_attributes_by_model
     news = {}
     attributes_by_model.each do |name, column|
       r = {}
