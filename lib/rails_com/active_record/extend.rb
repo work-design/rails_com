@@ -47,9 +47,9 @@ module RailsCom::ActiveRecord::Extend
       end
 
       if r[:type].respond_to?(:type)
-        r.merge! migrate_type: r[:type].type || :string
+        r.merge! raw_type: r[:type].type || :string
       else
-        r.merge! migrate_type: r[:type] # 兼容 rails 7 以下
+        r.merge! raw_type: r[:type] # 兼容 rails 7 以下
       end
 
       if r[:type].respond_to? :subtype
@@ -58,14 +58,14 @@ module RailsCom::ActiveRecord::Extend
           r.merge! array: true
         when 'ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Range'
           r.merge! range: true
-          r.merge! migrate_type: r[:type].subtype.type
+          r.merge! raw_type: r[:type].subtype.type
         end
       end
 
-      if column[1].is_a? Hash # 兼容 rails 7 以下
-        r.merge! column[1]
-      elsif !column[1].instance_of?(Object) # 处理 Rails 7 默认值
+      if Rails::VERSION::MAJOR >= 7 && !column[1].instance_of?(Object) # Rails 7, column[1] 为默认值
         r.merge! default: column[1]
+      elsif Rails::VERSION::MAJOR < 7 # rails 7 以下, column[1] 为 options
+        r.merge! column[1]
       end
 
       cols.merge! name => r
@@ -75,10 +75,11 @@ module RailsCom::ActiveRecord::Extend
   end
 
   def migrate_attributes_by_model
-    news = {}
+    cols = {}
     attributes_by_model.each do |name, column|
       r = {}
       r.merge! column
+      r.merge! migrate_type: column[:raw_type]
       r.symbolize_keys!
 
       if column[:type].respond_to?(:options) && column[:type].options.present?
@@ -112,15 +113,15 @@ module RailsCom::ActiveRecord::Extend
 
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :null, :index, :array, :range, :size, :default, :comment).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
-      news.merge! name => r
+      cols.merge! name => r
     end
 
-    news
+    cols
   end
 
-  def attributes_by_db
+  def migrate_attributes_by_db
     return {} unless table_exists?
-    results = {}
+    cols = {}
 
     columns_hash.each do |name, column|
       r = { type: column.type }
@@ -132,10 +133,10 @@ module RailsCom::ActiveRecord::Extend
       r.symbolize_keys!
       r.merge! attribute_options: r.slice(:limit, :precision, :scale, :null, :index, :array, :size, :default, :comment).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
 
-      results.merge! name => r
+      cols.merge! name => r
     end
 
-    results
+    cols
   end
 
   def attributes_by_default

@@ -26,13 +26,13 @@ module RailsCom::Models
       r[:models] ||= []
       r[:add_attributes] ||= {}
       r[:add_references] ||= {}
+      r[:remove_attributes] ||= {}
       record_classes.each do |record_class|
         r[:models] << record_class.name
         r[:table_exists] = r[:table_exists] || record_class.table_exists?
-        r[:add_attributes].merge! record_class.migrate_attributes_by_model.except(*record_class.attributes_by_db.keys)
-        r[:add_references].merge! record_class.references_by_model.except(*record_class.attributes_by_db.keys)
-        r[:remove_attributes] ||= record_class.attributes_by_db
-        r[:remove_attributes].except!(*record_class.migrate_attributes_by_model.keys, *record_class.attributes_by_belongs.keys, *record_class.attributes_by_default)
+        r[:add_attributes].merge! record_class.migrate_attributes_by_model.except(*record_class.migrate_attributes_by_db.keys)
+        r[:add_references].merge! record_class.references_by_model.except(*record_class.migrate_attributes_by_db.keys)
+        r[:remove_attributes].merge! record_class.migrate_attributes_by_db.except!(*record_class.migrate_attributes_by_model.keys, *record_class.attributes_by_belongs.keys, *record_class.attributes_by_default)
         r[:timestamps] = ['created_at', 'updated_at'] & r[:add_attributes].keys
         r[:indexes] = record_class.indexes_by_model
       end
