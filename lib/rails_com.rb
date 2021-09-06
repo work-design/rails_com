@@ -3,21 +3,13 @@
 require 'rails_com/config'
 require 'rails_com/engine'
 
-require 'rails_com/core'
 require 'rails_com/action_controller'
 require 'rails_com/action_view'
 require 'rails_com/action_text'
 require 'rails_com/action_mailbox'
-require 'rails_com/type'  # 支持的 attribute type 扩展
 require 'rails_com/active_record'
-require 'rails_com/active_model'
 require 'rails_com/active_storage'
 require 'rails_com/quiet_logs'
-
-# Meta for Rails
-require 'rails_com/meta/routes'
-require 'rails_com/meta/models'
-require 'rails_com/meta/env'
 
 # Rails extension
 require 'rails_com/generators'
