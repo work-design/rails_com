@@ -11,7 +11,6 @@ require 'rails_com/active_storage'
 require 'rails_com/quiet_logs'
 
 # Rails extension
-require 'rails_com/generators'
 require 'generators/scaffold_generator'
 require 'generators/jbuilder_generator' if defined?(Jbuilder)
 

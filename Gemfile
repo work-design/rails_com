@@ -5,18 +5,14 @@ gemspec
 gem 'rails', github: 'qinmingyuan/rails'
 gem 'puma'
 gem 'pg'
-
-gem 'image_processing'
-
-gem 'amazing_print'
-gem 'kaminari'
 gem 'jbuilder'
-gem 'turbo-rails'
+gem 'image_processing'
 
 gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_ui', github: 'work-design/rails_ui'
 gem 'rails_extend', github: 'work-design/rails_extend'
 
+gem 'amazing_print'
 group :development, :test do
   gem 'debug', '>= 1.0.0.rc'
   gem 'minitest-hooks'

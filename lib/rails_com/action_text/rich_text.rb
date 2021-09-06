@@ -1,12 +1,14 @@
-module RailsCom::ActionText::RichText
-  extend ActiveSupport::Concern
+module RailsCom::ActionText
+  module RichText
+    extend ActiveSupport::Concern
 
-  included do
-    attribute :name, :string, null: false
-    attribute :body, :text, size: :long
-    index [:record_type, :record_id, :name], name: 'index_action_text_rich_texts_uniqueness', unique: true
+    included do
+      attribute :name, :string, null: false
+      attribute :body, :text, size: :long
+      index [:record_type, :record_id, :name], name: 'index_action_text_rich_texts_uniqueness', unique: true
+    end
+
   end
-
 end
 
 ActiveSupport.on_load :action_text_rich_text do
