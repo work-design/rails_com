@@ -24,6 +24,7 @@ module DefaultForm::ActiveRecord
         if inheritance_column.to_s == name
           r.merge! input_type: :enum
         end
+        r.merge! DefaultForm.config.mapping.fetch(r[:input_type], {})
 
         cols.merge! name => r
       end
