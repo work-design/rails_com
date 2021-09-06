@@ -2,13 +2,11 @@
 Rails 通用基础库，对 Rails 的各个组件进行了扩展。
 
 ## 功能模块
-* Ruby 核心类扩展，[链接](lib/rails_com/core)
 * Rails 核心类扩展
   * ActiveStorage：[链接](lib/rails_com/active_storage) 
     * 通过 url 同步文件；
     * 将文件复制到镜像服务器；
 * 支持通过 ACME 自动申请及更新 SSL 证书
-* Rails 元信息 : Controller/Model/Routes
 * 记录Rails应用报错日志到数据库中，包含出错时的各种详尽信息
   * 支持机器人发送通知
     * 企业微信机器人：`WorkWechatBot`
@@ -41,30 +39,7 @@ Processing by Log::Admin::LogCspsController#index as HTML
 <%= render 'shared/locales' %>
 ```
 
-## 支持 enum
-```yaml
-# zh.yml
-activerecord:
-  enum:
-    notification:
-      receiver_type:
-        User: 全体用户
-        Member: 成员
-```
 
-```ruby
-t.select :receiver_type, options_for_select(Notification.options_i18n(:receiver_type))
-```
-
-* Override 
-```yaml
-activerecord:
-  enum:
-    notification:
-      receiver_type:
-        User: 全体用户
-        Member: # remain this blank
-```
 
 ## 注意
 

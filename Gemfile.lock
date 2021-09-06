@@ -91,6 +91,13 @@ GIT
       rails
 
 GIT
+  remote: https://github.com/work-design/rails_extend.git
+  revision: 437307584639eb08f5cfe6dcd757f6d235f4c7e8
+  specs:
+    rails_extend (1.0.0)
+      rails (>= 6.1)
+
+GIT
   remote: https://github.com/work-design/rails_ui.git
   revision: b915e58f8582043db65dccf5ea014fc73ef98dc6
   specs:
@@ -109,6 +116,7 @@ PATH
       httpx (~> 0.16)
       kaminari
       rails (>= 6.1)
+      rails_extend
       turbo-rails
 
 GEM
@@ -198,6 +206,8 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-linux)
+      racc (~> 1.4)
     pg (1.2.3)
     puma (5.4.0)
       nio4r (~> 2.0)
@@ -254,6 +264,7 @@ DEPENDENCIES
   puma
   rails!
   rails_com!
+  rails_extend!
   rails_ui!
   sdoc
   turbo-rails

@@ -15,6 +15,7 @@ gem 'turbo-rails'
 
 gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_ui', github: 'work-design/rails_ui'
+gem 'rails_extend', github: 'work-design/rails_extend'
 
 group :development, :test do
   gem 'debug', '>= 1.0.0.rc'
