@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom
+module RailsCom::ActionView
   module PartialRenderer
 
     # 支持在views/:controller 目录下，用 _:action 开头的子目录进一步分组
@@ -18,5 +18,5 @@ module RailsCom
 end
 
 ActiveSupport.on_load :action_view do
-  ActionView::PartialRenderer.prepend RailsCom::PartialRenderer
+  ActionView::PartialRenderer.prepend RailsCom::ActionView::PartialRenderer
 end

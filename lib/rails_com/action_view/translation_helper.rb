@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom
+module RailsCom::ActionView
   module TranslationHelper
 
     def t(key, **options)
@@ -19,5 +19,5 @@ module RailsCom
 end
 
 ActiveSupport.on_load :action_view do
-  include RailsCom::TranslationHelper
+  include RailsCom::ActionView::TranslationHelper
 end

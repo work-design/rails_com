@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsCom
+module RailsCom::ActionView
   module TemplateRenderer
 
     def render(context, options)
@@ -37,5 +37,5 @@ module RailsCom
 end
 
 ActiveSupport.on_load :action_view do
-  ActionView::TemplateRenderer.prepend RailsCom::TemplateRenderer
+  ActionView::TemplateRenderer.prepend RailsCom::ActionView::TemplateRenderer
 end
