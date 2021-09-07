@@ -1,32 +1,34 @@
-module RailsCom::MailExt
+module RailsCom::ActionMailbox
+  module MailExt
 
-  def from
-    r = super
-    if r.is_a?(String)
-      r.encode('utf-8', replace: '')
-    elsif r.is_a?(Array)
-      r.map { |i| i.encode('utf-8', replace: '') }
-    else
-      super
+    def from
+      r = super
+      if r.is_a?(String)
+        r.encode('utf-8', replace: '')
+      elsif r.is_a?(Array)
+        r.map { |i| i.encode('utf-8', replace: '') }
+      else
+        super
+      end
     end
-  end
 
-  def to
-    r = super
-    if r.is_a?(String)
-      r.encode('utf-8', replace: '')
-    elsif r.is_a?(Array)
-      r.map { |i| i.encode('utf-8', replace: '') }
-    else
-      super
+    def to
+      r = super
+      if r.is_a?(String)
+        r.encode('utf-8', replace: '')
+      elsif r.is_a?(Array)
+        r.map { |i| i.encode('utf-8', replace: '') }
+      else
+        super
+      end
     end
-  end
 
-  def subject
-    super.encode('utf-8', replace: '')
-  end
+    def subject
+      super.encode('utf-8', replace: '')
+    end
 
+  end
 end
 
 require 'mail'
-Mail::Message.prepend RailsCom::MailExt
+Mail::Message.prepend RailsCom::ActionMailbox::MailExt

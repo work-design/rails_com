@@ -1,3 +1,1 @@
-if defined? @models
-json.array! @models.map(&:as_full_json)
-end
+json.array! instance_variable_get("@#{controller_name.pluralize}")
