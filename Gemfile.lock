@@ -92,7 +92,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 0f694f3450578b617bd44fe169e530bb284839ac
+  revision: 48e8b20f65097c981b8ecc3b9b35d2082512d9e8
   specs:
     rails_extend (1.0.0)
       rails (>= 6.0)
