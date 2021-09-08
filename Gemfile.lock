@@ -92,14 +92,14 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 02e059c621f81fa0f22f2610b8782c4d5da03e05
+  revision: 0f694f3450578b617bd44fe169e530bb284839ac
   specs:
     rails_extend (1.0.0)
-      rails (>= 6.1)
+      rails (>= 6.0)
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: b915e58f8582043db65dccf5ea014fc73ef98dc6
+  revision: c8d7bfe6d598c9433373e4e8c0e7c17ebc98b17a
   specs:
     rails_ui (0.0.1)
       rails
@@ -158,7 +158,7 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    ffi (1.15.3)
+    ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     http-2-next (0.5.0)
@@ -238,7 +238,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
-    turbo-rails (0.7.9)
+    turbo-rails (0.7.11)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -247,7 +247,7 @@ GEM
     websocket-extensions (0.1.5)
     with_advisory_lock (4.6.0)
       activerecord (>= 4.2)
-    zeitwerk (2.5.0.beta2)
+    zeitwerk (2.5.0.beta3)
 
 PLATFORMS
   ruby
