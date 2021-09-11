@@ -11,12 +11,12 @@ module Com
     end
 
     def new
-      model = instance_variable_set("@#{model_name}", model_klass.new)
+      model = model_new_object
       render :new, locals: { model: model }
     end
 
     def create
-      model = instance_variable_set("@#{model_name}", model_klass.new(model_params))
+      model = model_new_object
 
       if model.save
         render :create, status: :created
@@ -71,6 +71,14 @@ module Com
         instance_variable_get "@#{model_name}"
       else
         instance_variable_set "@#{model_name}", model_klass.find(params[:id])
+      end
+    end
+
+    def model_new_object
+      if instance_variable_defined? "@#{model_name}"
+        instance_variable_get "@#{model_name}"
+      else
+        instance_variable_set("@#{model_name}", model_klass.new(model_params))
       end
     end
 

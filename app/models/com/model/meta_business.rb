@@ -48,7 +48,7 @@ module Com
 
       def sync
         existing = self.select(:identifier).distinct.pluck(:identifier)
-        business_keys = RailsCom::Routes.businesses.keys
+        business_keys = RailsExtend::Routes.businesses.keys
 
         (business_keys - existing).each do |business|
           b = self.find_or_initialize_by(identifier: business)

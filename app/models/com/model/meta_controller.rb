@@ -79,7 +79,7 @@ module Com
       end
 
       def sync
-        RailsCom::Routes.actions.each do |business, namespaces|
+        RailsExtend::Routes.actions.each do |business, namespaces|
           namespaces.each do |namespace, controllers|
             controllers.each do |controller, actions|
               meta_controller = MetaController.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
