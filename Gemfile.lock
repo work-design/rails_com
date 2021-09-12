@@ -91,18 +91,18 @@ GIT
       rails
 
 GIT
+  remote: https://github.com/work-design/rails_design.git
+  revision: 074ee48cd8cd754977c8946f73479fe4a7e9b3f5
+  specs:
+    rails_design (0.0.1)
+      rails
+
+GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 48e8b20f65097c981b8ecc3b9b35d2082512d9e8
+  revision: 637bcedaaf358aa41e5fc6eec85e2cffb8ffd64e
   specs:
     rails_extend (1.0.0)
       rails (>= 6.0)
-
-GIT
-  remote: https://github.com/work-design/rails_ui.git
-  revision: c8d7bfe6d598c9433373e4e8c0e7c17ebc98b17a
-  specs:
-    rails_ui (0.0.1)
-      rails
 
 PATH
   remote: .
@@ -206,8 +206,6 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
-      racc (~> 1.4)
     pg (1.2.3)
     puma (5.4.0)
       nio4r (~> 2.0)
@@ -255,7 +253,7 @@ PLATFORMS
 
 DEPENDENCIES
   amazing_print
-  debug (>= 1.0.0.rc)
+  debug
   image_processing
   jbuilder
   minitest-hooks
@@ -263,8 +261,8 @@ DEPENDENCIES
   puma
   rails!
   rails_com!
+  rails_design!
   rails_extend!
-  rails_ui!
   sdoc
   viter!
 
