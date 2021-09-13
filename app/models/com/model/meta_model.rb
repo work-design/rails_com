@@ -19,7 +19,7 @@ module Com
     class_methods do
 
       def sync
-        RailsCom::Models.models.each do |model|
+        RailsExtend::Models.models.each do |model|
           next unless model.table_exists?
           meta_model = self.find_or_initialize_by(record_name: model.name)
           meta_model.defined_db = true
@@ -41,7 +41,7 @@ module Com
           meta_model.save if meta_model.meta_columns.length > 0
 
           present_models = self.pluck(:record_name)
-          self.where(record_name: (present_models - RailsCom::Models.model_names)).each do |needless_model|
+          self.where(record_name: (present_models - RailsExtend::Models.model_names)).each do |needless_model|
             needless_model.destroy
           end
         end
