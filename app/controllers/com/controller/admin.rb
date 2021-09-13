@@ -92,7 +92,7 @@ module Com
 
     def model_params
       r = permit_keys
-      params.fetch("#{model_name}", {}).permit(*r)
+      params.fetch(model_name, {}).permit(*r)
     end
 
     # todo, 如果 super controller 定义了同名，则将参数进行 & 操作。
