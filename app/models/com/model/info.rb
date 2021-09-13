@@ -4,10 +4,9 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :code, :string, default: ''
-      attribute :value, :string, default: nil
-      attribute :version, :string, array: true
-      attribute :tested, :boolean, default: false
+      attribute :code, :string
+      attribute :value, :string
+      attribute :version, :string
 
       enum platform: {
         ios: 'ios',
