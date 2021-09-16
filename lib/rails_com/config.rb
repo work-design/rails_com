@@ -10,11 +10,6 @@ module RailsCom #:nodoc:
       'ActionController::UnknownFormat',
       'ActiveRecord::RecordNotFound'
     ]
-    config.quiet_logs = [
-      '/rails/active_storage',
-      '/images',
-      '/@fs'
-    ]
     config.disable_debug = true
     config.notify_bot = 'WorkWechatBot'
     config.notify_key = ''

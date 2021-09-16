@@ -8,7 +8,6 @@ require 'rails_com/action_view'
 require 'rails_com/action_text'
 require 'rails_com/action_mailbox'
 require 'rails_com/active_storage'
-require 'rails_com/quiet_logs'
 
 # Rails extension
 require 'generators/scaffold_generator'
