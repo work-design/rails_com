@@ -17,6 +17,10 @@ module Com
 
       belongs_to :acme_order
 
+      enum status: {
+        pending: 'pending'
+      }, _prefix: true
+
       before_save :renew_dns_valid, if: -> { record_content_changed? }
       before_save :renew_file_valid, if: -> { file_content_changed? }
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
@@ -59,9 +63,10 @@ module Com
         ensure_dns
       end
 
-      authorization.dns.request_validation
-      if authorization.reload && authorization.status == 'valid'
-        self.update dns_valid: true
+      auth = authorization
+      auth.dns.request_validation
+      if auth.reload && auth.status == 'valid'
+        self.update dns_valid: true, status: 'valid'
       end
       dns_valid
     end
@@ -84,9 +89,10 @@ module Com
         end
       end
 
-      authorization.http.request_validation
-      if authorization.reload && authorization.status == 'valid'
-        self.update file_valid: true
+      auth = authorization
+      auth.http.request_validation
+      if auth.reload && auth.status == 'valid'
+        self.update file_valid: true, status: 'valid'
       end
 
       file_valid
@@ -94,11 +100,12 @@ module Com
 
     def save_auth(auth = authorization)
       update(
-        record_name: auth.dns.record_name,
-        record_content: auth.dns.record_content,
+        record_name: auth.dns&.record_name,
+        record_content: auth.dns&.record_content,
         file_name: auth.http&.filename,
         file_content: auth.http&.file_content,
-        url: auth.url
+        url: auth.url,
+        status: auth.status
       )
     end
 
