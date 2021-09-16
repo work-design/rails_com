@@ -71,11 +71,7 @@ module Com
 
       if order.status == 'pending'
         acme_identifiers.map(&:authorization)
-        if acme_identifiers.any?(&:authorize_pending?)
-
-        end
-
-        all_verify? && order.reload
+        acme_identifiers.map(&:auto_verify).all?(true) && order.reload
       end
 
       if order.status == 'ready'
@@ -107,11 +103,6 @@ module Com
 
     def common_name
       identifiers.first
-    end
-
-    # status: ready
-    def all_verify?
-      acme_identifiers.map(&:auto_verify).all? true
     end
 
     def csr

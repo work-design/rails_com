@@ -17,25 +17,17 @@ module Com
 
       belongs_to :acme_order
 
-      before_save :renew_valid, if: -> { record_content_changed? }
+      before_save :renew_dns_valid, if: -> { record_content_changed? }
+      before_save :renew_file_valid, if: -> { file_content_changed? }
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
     end
 
-    def reset
+    def renew_dns_valid
       self.dns_valid = false
+    end
+
+    def renew_file_valid
       self.file_valid = false
-    end
-
-    def authorize_pending?
-      if wildcard
-        record_name.blank? || record_content.blank?
-      else
-        file_name.blank? || file_content.blank?
-      end
-    end
-
-    def renew_valid
-      self.dns_valid = false
     end
 
     def compute_wildcard
@@ -63,46 +55,41 @@ module Com
     end
 
     def dns_verify?
-      return dns_valid if dns_valid
-      r = dns_resolv.include?(record_content) && authorization.dns.request_validation
-      if r
+      unless dns_resolv.include?(record_content)
+        ensure_dns
+      end
+
+      authorization.dns.request_validation
+      if authorization.reload && authorization.status == 'valid'
         self.update dns_valid: true
       end
       dns_valid
     end
 
     def auto_verify
-      if file_available?
-        return if file_verify?
-        ensure_file
-        file_verify? && authorization.reload && authorization.status == 'valid'
+      if file_name.present? && file_content.present?
+        file_verify?
       else
-        return if dns_verify?
-        ensure_dns
-        dns_verify? && authorization.reload && authorization.status == 'valid'
-      end
-    end
-
-    def file_available?
-      file_name.present? && file_content.present?
-    end
-
-    def file_path
-      Rails.root.join('public', file_name)
-    end
-
-    def ensure_file
-      return unless file_available?
-      return true if file_path.file? && file_path.read == file_content
-
-      file_path.dirname.exist? || file_path.dirname.mkpath
-      File.open(file_path, 'w') do |f|
-        f.write file_content
+        dns_verify?
       end
     end
 
     def file_verify?
+      file_path = Rails.root.join('public', file_name)
+
+      unless file_path.file? && file_path.read == file_content
+        file_path.dirname.exist? || file_path.dirname.mkpath
+        File.open(file_path, 'w') do |f|
+          f.write file_content
+        end
+      end
+
       authorization.http.request_validation
+      if authorization.reload && authorization.status == 'valid'
+        self.update file_valid: true
+      end
+
+      file_valid
     end
 
     def save_auth(auth = authorization)
