@@ -18,7 +18,9 @@ module Com
       belongs_to :acme_order
 
       enum status: {
-        pending: 'pending'
+        pending: 'pending',
+        valid: 'valid',
+        invalid: 'invalid'
       }, _prefix: true
 
       before_save :renew_dns_valid, if: -> { record_content_changed? }
