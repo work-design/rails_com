@@ -11,7 +11,9 @@ module RailsCom
         Rails.logger.debug "Silenced: #{env['PATH_INFO']}"
         Rails.logger.silence { @app.call(env) }
       else
-        Rails.logger.debug unless Rails.env.development?
+        unless Rails.env.development?
+          Rails.logger.debug " #{'- ~ ' * 20}-"
+        end
         @app.call(env)
       end
     end
