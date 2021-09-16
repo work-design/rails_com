@@ -22,18 +22,8 @@ module Com
     end
 
     def reset
-      self.url = nil
-      self.file_name = nil
-      self.file_content = nil
-      self.record_name = nil
-      self.record_content = nil
       self.dns_valid = false
       self.file_valid = false
-    end
-
-    def reset!
-      reset
-      save
     end
 
     def authorize_pending?
@@ -129,18 +119,13 @@ module Com
       "#{record_name}.#{domain}"
     end
 
-    def authorization(renewal = false)
-      if defined?(@authorization) && !renewal
-        return @authorization
-      end
-
-      if !renewal && url
-        @authorization = acme_order.acme_account.client.authorization(url: url)
-      else
-        @authorization = acme_order.order.authorizations.find { |auth| domain == auth.domain && wildcard.present? == auth.wildcard.present? }
-        save_auth(@authorization)
-        @authorization
-      end
+    def authorization
+      auth = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
+    rescue Acme::Client::Error::BadNonce
+      retry
+    else
+      save_auth(auth)
+      auth
     end
 
     def deactivate

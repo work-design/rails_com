@@ -27,9 +27,6 @@ module Com
 
     def order
       r = @acme_order.order(true)
-      if r.respond_to?(:status) && ['pending'].include?(r.status)
-        @acme_order.authorizations
-      end
 
       render 'update'
     end

@@ -7,6 +7,7 @@ module Com
       attribute :orderid, :string
       attribute :url, :string
       attribute :issued_at, :datetime
+      attribute :expire_at, :datetime, comment: '过期时间'
 
       enum status: {
         pending: 'pending',
@@ -39,6 +40,8 @@ module Com
       if !renewal && url
         begin
           @order = acme_account.client.order(url: url)
+        rescue Acme::Client::Error::BadNonce
+          retry
         rescue Acme::Client::Error::NotFound => e
           @order = renew_order
         end
@@ -52,6 +55,9 @@ module Com
     # x
     def renew_order
       r = acme_account.client.new_order(identifiers: identifiers)
+    rescue Acme::Client::Error::BadNonce
+      retry
+    else
       self.orderid = r.to_h[:url].split('/')[-1]
       self.assign_attributes r.to_h.slice(:status, :url)
       self.save
@@ -59,9 +65,14 @@ module Com
     end
 
     def get_cert
+      if order.status == 'invalid'
+        order(true)
+      end
+
       if order.status == 'pending'
+        acme_identifiers.map(&:authorization)
         if acme_identifiers.any?(&:authorize_pending?)
-          authorizations
+
         end
 
         all_verify? && order.reload
@@ -82,10 +93,6 @@ module Com
           cert
         end
       end
-    end
-
-    def authorizations
-      acme_identifiers.map(&:authorization)
     end
 
     def identifiers
