@@ -9,8 +9,11 @@ module Com
       attribute :issued_at, :datetime
 
       enum status: {
-        pending: 'pending'
-      }
+        pending: 'pending',
+        ready: 'ready',
+        valid: 'valid',
+        invalid: 'invalid'
+      }, _prefix: true
 
       belongs_to :acme_account
       has_many :acme_identifiers, dependent: :delete_all
@@ -50,7 +53,7 @@ module Com
     def renew_order
       r = acme_account.client.new_order(identifiers: identifiers)
       self.orderid = r.to_h[:url].split('/')[-1]
-      self.url = r.to_h[:url]
+      self.assign_attributes r.to_h.slice(:status, :url)
       self.save
       r
     end
