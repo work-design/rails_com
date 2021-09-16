@@ -12,7 +12,7 @@ module RailsCom
         Rails.logger.silence { @app.call(env) }
       else
         unless Rails.env.development?
-          Rails.logger.debug " #{'- ~ ' * 20}-"
+          Rails.logger.debug "\e[33m #{'- ~ ' * 40}- \e[0m"
         end
         @app.call(env)
       end
