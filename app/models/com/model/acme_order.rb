@@ -64,23 +64,20 @@ module Com
       r
     end
 
-    def get_cert
-      if order.status == 'invalid'
+    def get_cert(tries = 2)
+      case order.status
+      when 'invalid'
         order(true)
-      end
-
-      if order.status == 'pending'
+      when 'pending'
         acme_identifiers.map(&:authorization)
         acme_identifiers.map(&:auto_verify).all?(true) && order.reload
-      end
-
-      if order.status == 'ready'
+      when 'ready'
         finalize
+      when 'valid'
+        cert # order.certificate_url.present?
       end
-
-      if order.status == 'valid' && order.certificate_url.present?
-        cert
-      end
+    rescue
+      retry unless (tries -= 1).zero?
     end
 
     def identifiers
