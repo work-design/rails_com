@@ -75,19 +75,11 @@ module Com
       end
 
       if order.status == 'ready'
-        begin
-          finalize && order.reload
-        rescue Acme::Client::Error::BadNonce => e
-          finalize && order.reload
-        end
+        finalize
       end
 
-      if order.status == 'valid'
-        begin
-          cert
-        rescue Acme::Client::Error::BadNonce => e
-          cert
-        end
+      if order.status == 'valid' && order.certificate_url.present?
+        cert
       end
     end
 
@@ -120,22 +112,25 @@ module Com
     # status: valid
     def finalize
       order.finalize(csr: csr)
+    rescue Acme::Client::Error::BadNonce
+      retry
+    ensure
+      self.status = order.status
+      self.save
     end
 
     def cert
-      if ['valid'].include?(order.status) && order.certificate_url.present?
-        r = order.certificate
-        file = Tempfile.new
-        file.binmode
-        file.write r
-        file.rewind
-        self.issued_at = Time.current
-        self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
-      else
-        order.reload
-        logger.info "order status is #{order.status}"
-        r = nil
-      end
+      r = order.certificate
+    rescue Acme::Client::Error::BadNonce
+      retry
+    else
+      file = Tempfile.new
+      file.binmode
+      file.write r
+      file.rewind
+      self.issued_at = Time.current
+      self.status = order.status
+      self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
       r
     end
 
