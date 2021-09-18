@@ -85,7 +85,7 @@ GIT
 
 GIT
   remote: https://github.com/qinmingyuan/viter.git
-  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
+  revision: 82d46c2eed89cc27b89811e3ded0cb6797f3b807
   specs:
     viter (0.1)
       rails
@@ -114,6 +114,7 @@ PATH
       default_where (~> 2.2)
       http-form_data (~> 2.3)
       httpx (~> 0.16)
+      jbuilder
       kaminari
       rails (>= 6.1)
       rails_extend

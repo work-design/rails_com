@@ -13,12 +13,10 @@ module DefaultForm::ActiveRecord
           r.merge! input_type: r[:type].input_type
         end
 
-        if r[:type].respond_to? :subtype
-          case r[:type].class.name
-          when 'ActiveRecord::Enum::EnumType'
-            r.merge! input_type: :enum
-            r.merge! mapping: r[:type].send(:mapping)
-          end
+        case r[:type].class.name
+        when 'ActiveRecord::Enum::EnumType'
+          r.merge! input_type: :enum
+          r.merge! mapping: r[:type].send(:mapping)
         end
 
         if inheritance_column.to_s == name

@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'rails', '>= 6.1'
+  s.add_dependency 'jbuilder'
   s.add_dependency 'rails_extend'
   s.add_dependency 'httpx', '~> 0.16'
   s.add_dependency 'http-form_data', '~> 2.3'
