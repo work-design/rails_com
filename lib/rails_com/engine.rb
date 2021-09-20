@@ -32,6 +32,7 @@ module RailsCom
         'ActionController::ForbiddenError' => :forbidden,
         'ActionController::UnauthorizedError' => :unauthorized
       })
+      Mime::Type.register 'image/webp', :webp
       #ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
     end
 
