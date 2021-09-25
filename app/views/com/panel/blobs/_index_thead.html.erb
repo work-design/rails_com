@@ -3,7 +3,10 @@
 <th><%= ActiveStorage::Blob.human_attribute_name(:filename) %></th>
 <th><%= ActiveStorage::Blob.human_attribute_name(:content_type) %></th>
 <th><%= ActiveStorage::Blob.human_attribute_name(:metadata) %></th>
-<th><%= ActiveStorage::Blob.human_attribute_name(:size) %></th>
-<th><%= ActiveStorage::Blob.human_attribute_name(:created_at) %></th>
+<th>
+  <p><%= ActiveStorage::Blob.human_attribute_name(:size) %></p>
+  <p><%= ActiveStorage::Blob.human_attribute_name(:created_at) %></p>
+</th>
+<th><%= ActiveStorage::Blob.human_attribute_name(:service_name) %></th>
 <th></th>
 <th></th>

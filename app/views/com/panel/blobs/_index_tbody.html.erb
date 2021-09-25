@@ -10,8 +10,11 @@
 </td>
 <td><%= model.content_type %></td>
 <td><%= simple_format(model.metadata) %></td>
-<td><%= number_to_human_size(model.byte_size) %></td>
-<td><time data-controller="time"><%= model.created_at.to_s(:rfc822) %></time></td>
+<td>
+  <p><%= number_to_human_size(model.byte_size) %></p>
+  <p><time data-controller="time"><%= model.created_at.to_s(:rfc822) %></time></p>
+</td>
+<td><%= model.service_name %></td>
 <td>
   <% model.attachments.each do |attachment| %>
     <%= link_to "#{attachment.record_type}_#{attachment.record_id}", { controller: 'com/panel/attachments', id: attachment.id } %>
