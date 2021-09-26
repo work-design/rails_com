@@ -91,8 +91,11 @@ module Com
     end
 
     def model_params
-      r = permit_keys
-      params.fetch(model_name, {}).permit(*r)
+      if self.class.private_method_defined?("#{model_name}_params") || self.class.method_defined?("#{model_name}_params")
+        send "#{model_name}_params"
+      else
+        params.fetch(model_name, {}).permit(*permit_keys)
+      end
     end
 
     # todo, 如果 super controller 定义了同名，则将参数进行 & 操作。
