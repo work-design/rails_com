@@ -17,7 +17,7 @@ module Com
         -> { order(position: :asc) },
         foreign_key: :controller_path,
         primary_key: :controller_path,
-        dependent: :destroy,
+        dependent: :destroy_async,
         inverse_of: :meta_controller
       )
       accepts_nested_attributes_for :meta_actions, allow_destroy: true

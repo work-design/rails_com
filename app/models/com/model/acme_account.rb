@@ -7,7 +7,7 @@ module Com
       attribute :email, :string
       attribute :kid, :string
 
-      has_many :acme_orders, dependent: :destroy
+      has_many :acme_orders, dependent: :destroy_async
 
       if ActiveStorage::Blob.services.instance_values.dig('configurations', :acme)
         has_one_attached :private_pem, service: :acme
