@@ -94,7 +94,7 @@ module Com
       if self.class.private_method_defined?("#{model_name}_params") || self.class.method_defined?("#{model_name}_params")
         send "#{model_name}_params"
       else
-        model = model_object || model_new_object
+        model = model_object || model_klass.new
         p = params.fetch(model_name, {}).permit(*permit_keys)
         p.merge! default_form_params if model.respond_to?(:organ_id)
         p
