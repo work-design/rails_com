@@ -69,8 +69,10 @@ module Com
     def model_object
       if instance_variable_defined? "@#{model_name}"
         instance_variable_get "@#{model_name}"
-      else
+      elsif params[:id]
         instance_variable_set "@#{model_name}", model_klass.find(params[:id])
+      else
+        model_new_object
       end
     end
 
