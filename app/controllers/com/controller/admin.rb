@@ -71,8 +71,6 @@ module Com
         instance_variable_get "@#{model_name}"
       elsif params[:id]
         instance_variable_set "@#{model_name}", model_klass.find(params[:id])
-      else
-        model_new_object
       end
     end
 
@@ -96,8 +94,9 @@ module Com
       if self.class.private_method_defined?("#{model_name}_params") || self.class.method_defined?("#{model_name}_params")
         send "#{model_name}_params"
       else
+        model = model_object || model_new_object
         p = params.fetch(model_name, {}).permit(*permit_keys)
-        p.merge! default_form_params if model_object.respond_to?(:organ_id)
+        p.merge! default_form_params if model.respond_to?(:organ_id)
         p
       end
     end
