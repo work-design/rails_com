@@ -3,7 +3,7 @@
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
     <%= button_to({ action: 'meta_actions', meta_controller_id: meta_controller.id }, data: { turbo_frame: 'visit' }) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+      <i class="fa-light fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <%= link_to({ controller: 'meta_actions', meta_controller_id: meta_controller.id }) do %>
       <span><%= meta_controller.name %></span>

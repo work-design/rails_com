@@ -3,7 +3,7 @@
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
     <%= button_to({ action: 'meta_controllers', business_identifier: @meta_business.identifier, namespace_identifier: meta_namespace.identifier }, data: { turbo_frame: 'visit' }) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+      <i class="fa-light fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= meta_namespace.name %></span>
   </td>
