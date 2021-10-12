@@ -39,48 +39,6 @@ search:
     submit: button is-primary
   wrap:
     input: field is-narrow
-switch:
-
-semantic:
-  <<: *defaults
-  origin:
-    form: ui form
-    label: six wide field
-    offset: six wide field
-    select: ui fluid search dropdown
-    multi_select: ui fluid search dropdown
-    checkbox: hidden
-    inline_checkbox: ui label checkbox
-    inline_checkbox_checked: ui teal label checkbox
-    inline_radio: ui label radio checkbox
-    inline_radio_checked: ui teal label radio checkbox
-    submit: ui blue button
-  wrap:
-    all: inline fields
-    all_error: inline error fields
-    all_required: inline required fields
-    input: six wide field
-    checkbox: ui toggle checkbox
-    checkboxes: six wide field ui labels
-    radios: six wide field ui labels
-semantic_search:
-  <<: *searches
-  autofilter: true
-  origin:
-    form: ui form
-    inline_checkbox: ui label checkbox
-    inline_checkbox_checked: ui teal label checkbox
-    radio: hidden
-    inline_radio: ui label radio checkbox
-    inline_radio_checked: ui teal label radio checkbox
-    submit: ui blue button
-  wrap:
-    input: field
-    checkbox: ui toggle checkbox
-    checkboxes: six wide field ui labels
-    radio: ui radio checkbox
-    radios: six wide field ui labels
-    submit: field
 weui:
   <<: *defaults
   origin:
@@ -112,30 +70,3 @@ weui_search:
     all_error: inline field error
     input: weui-cell__bd
     submit: weui-btn-area
-bootstrap:
-  <<: *defaults
-  origin:
-    form: form-horizontal
-    label: col-sm-2 control-label
-    input: form-control
-    checkbox: checkbox
-    inline_checkbox_checked: checkbox-inline
-    submit: btn btn-default
-  wrap:
-    all: form-group
-    all_error: form-group has-error
-    input: col-sm-10
-    checkbox: checkbox-inline
-    submit: col-sm-offset-2 col-sm-10
-bootstrap_search:
-  <<: *searches
-  origin:
-    form: form-inline
-    label: sr-only
-    input: form-control
-    checkbox: checkbox
-    submit: btn btn-default
-  wrap:
-    all: from-group
-    input: col-sm-10
-    checkbox: checkbox-inline
