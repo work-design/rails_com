@@ -17,6 +17,8 @@ default:
     inline_checkbox_checked: checkbox
     inline_radio: radio
     inline_radio_checked: radio
+  offset:
+    submit: field-label
   wrap:
     all: field is-horizontal
     all_required: field is-horizontal

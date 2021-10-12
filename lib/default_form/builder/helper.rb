@@ -38,6 +38,7 @@ module DefaultForm::Builder
     end
 
     def submit(value = nil, options = {})
+      options[:wrap] = {  }
       wrap_all_with(nil, options) do |origin, wrap|
         options[:class] = origin[:submit] unless options.key?(:class)
 

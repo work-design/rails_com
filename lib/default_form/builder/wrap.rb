@@ -38,9 +38,9 @@ module DefaultForm::Builder
       end
     end
 
-    def offset(text = '', origin: {})
-      if origin[:offset].present?
-        content_tag(:div, text, class: origin[:offset])
+    def offset(css)
+      if css.present?
+        content_tag(:div, '', class: css)
       else
         ''.html_safe
       end
