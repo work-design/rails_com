@@ -2,7 +2,7 @@
   <%= hidden_field_tag "#{f.object_name}[#{image.name}#{}][]", image.signed_id, id: nil %>
   <div class="image">
     <a class="button is-danger as-corner" data-action="picture#removePreview">
-      <i class="fa-light fa-trash-alt"></i>
+      <i class="fa-light fa-trash"></i>
     </a>
     <%= image_tag image.variant(resize_to_limit: [300, 300]), id: "attachment_#{image.id}", data: { target: 'picture.src' }, class: 'image is-96x96' %>
   </div>
