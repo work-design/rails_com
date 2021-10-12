@@ -38,9 +38,9 @@ module DefaultForm::Builder
     end
 
     def submit(value = nil, options = {})
-      options[:wrap] = { all: nil }
       wrap_all_with(nil, options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
+        css[:wrap][:all] = css.dig(:wrap, :all_submit)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
         offset(css.dig(:offset, :submit)) + submit_content
