@@ -43,7 +43,7 @@ module DefaultForm::Builder
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
-        offset(origin: css[:origin]) + submit_content
+        offset(css.dig(:offset, :submit)) + submit_content
       end
     end
 
@@ -59,7 +59,7 @@ module DefaultForm::Builder
         end
         checkbox_content = wrapping(:checkbox, super + label_text, wrap: css[:wrap], tag: 'label')
 
-        offset(origin: css[:origin]) + checkbox_content
+        offset(css.dig(:offset, :submit)) + checkbox_content
       end
     end
 
