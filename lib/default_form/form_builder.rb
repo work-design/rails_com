@@ -7,7 +7,7 @@ require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   include DefaultForm::Builder::Helper
-  attr_reader :origin_css, :error_css, :wrap_css, :on_options, :theme, :params
+  attr_reader :origin_css, :wrap_css, :error_css, :offset_css, :on_options, :theme, :params
   delegate :content_tag, to: :@template
 
   def initialize(object_name, object, template, options)
@@ -30,12 +30,10 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
       options[:data][:controller] = 'default_valid'
     end
 
-    @origin_css = settings.fetch(:origin, {})
-    @origin_css.merge! options.fetch(:origin, {})
-    @error_css = settings.fetch(:error, {})
-    @error_css.merge! options.fetch(:error, {})
-    @wrap_css = settings.fetch(:wrap, {})
-    @wrap_css.merge! options.fetch(:wrap, {})
+    @origin_css = settings.fetch(:origin, {}).merge! options.fetch(:origin, {})
+    @wrap_css = settings.fetch(:wrap, {}).merge! options.fetch(:wrap, {})
+    @error_css = settings.fetch(:error, {}).merge! options.fetch(:error, {})
+    @offset_css = settings.fetch(:offset, {}).merge! options.fetch(:offset, {})
     @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label
     @on_options.merge! options.slice(:placeholder, :label, :autocomplete, :autofilter)
     @params = template.params
