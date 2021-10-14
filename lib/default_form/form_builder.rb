@@ -30,10 +30,10 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
       options[:data][:controller] = 'default_valid'
     end
 
-    @origin_css = settings.fetch(:origin, {}).merge! options.fetch(:origin, {})
-    @wrap_css = settings.fetch(:wrap, {}).merge! options.fetch(:wrap, {})
-    @error_css = settings.fetch(:error, {}).merge! options.fetch(:error, {})
-    @offset_css = settings.fetch(:offset, {}).merge! options.fetch(:offset, {})
+    @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
+    @wrap_css = settings.fetch(:wrap, {}).merge options.fetch(:wrap, {})
+    @error_css = settings.fetch(:error, {}).merge options.fetch(:error, {})
+    @offset_css = settings.fetch(:offset, {}).merge options.fetch(:offset, {})
     @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label
     @on_options.merge! options.slice(:placeholder, :label, :autocomplete, :autofilter)
     @params = template.params
