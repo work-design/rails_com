@@ -40,7 +40,7 @@ module Com
     end
 
     def set_parent_ancestors
-      self.parent_ancestors = parent.parent_ancestors.merge! parent.depth.to_s => parent.id
+      self.parent_ancestors = Hash(parent.parent_ancestors).merge! parent.depth.to_s => parent.id
     end
 
     def sync_parent_id
