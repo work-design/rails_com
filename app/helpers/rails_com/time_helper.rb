@@ -20,4 +20,27 @@ module RailsCom::TimeHelper
     end
   end
 
+  def extra_distance_date(from, to, options = {})
+    result = (to - from).to_i
+
+    options = {
+      scope: :'date.distance_in_words'
+    }.merge!(options)
+
+    I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
+      case result
+      when 0
+        locale.t :zero
+      when 1
+        locale.t :one
+      when 2
+        locale.t :two
+      when 3
+        locale.t :three
+      else
+        locale.t :other, count: result
+      end
+    end
+  end
+
 end
