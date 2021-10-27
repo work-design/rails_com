@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'rails_com'
-  s.version = '1.2.9'
+  s.version = '1.3.0'
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
   s.homepage = 'https://github.com/work-design/rails_com'
