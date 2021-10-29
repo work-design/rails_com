@@ -46,6 +46,11 @@ module Com
       render :edit, locals: { model: model }
     end
 
+    def actions
+      model = model_object
+      render :actions, locals: { model: model }
+    end
+
     def move_higher
       model = model_object
       model.move_higher
