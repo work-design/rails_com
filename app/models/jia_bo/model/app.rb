@@ -6,8 +6,11 @@ module JiaBo
     included do
       attribute :member_code, :string
       attribute :api_key, :string
+      attribute :devices_count, :integer, default: 0
+      attribute :templates_count, :integer, default: 0
 
       has_many :devices, dependent: :destroy_async
+      has_many :templates, dependent: :destroy_async
     end
 
     def common_params
@@ -40,6 +43,14 @@ module JiaBo
       end
     end
 
+    def sync_templates
+      r = list_templates.dig('data')
+      r.each do |list|
+        template = templates.find_or_initialize_by(code: list['code'])
+        template.title = list['title']
+      end
+    end
+
     def list_devices
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         BASE_URL + '/listDevice',
@@ -55,6 +66,15 @@ module JiaBo
       else
         r
       end
+    end
+
+    def sync_devices
+      r = list_devices.dig('deviceList')
+      r.each do |list|
+        device = devices.find_or_initialize_by(device_id: list['deviceID'])
+        device.dev_name = list['title']
+      end
+      self.save
     end
 
   end

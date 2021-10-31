@@ -7,7 +7,7 @@ module JiaBo
       attribute :dev_name, :string
       attribute :grp_id, :string
 
-      belongs_to :app
+      belongs_to :app, counter_cache: true
     end
 
   end
