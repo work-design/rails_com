@@ -63,3 +63,15 @@ zh:
           title: 属性列表
           sync: 同步
           test: 测试
+  jia_bo:
+    panel:
+      title: 佳博打印机
+      apps:
+        index:
+          title: 商户列表
+      devices:
+        index:
+          title: 设备列表
+      templates:
+        index:
+          title: 模板列表

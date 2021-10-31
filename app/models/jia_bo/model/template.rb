@@ -7,6 +7,7 @@ module JiaBo
       attribute :type, :string, comment: '模板类型'
       attribute :title, :string, comment: '模板名称'
 
+      belongs_to :app
       has_many :parameters
     end
 
