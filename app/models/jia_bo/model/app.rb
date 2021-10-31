@@ -23,9 +23,26 @@ module JiaBo
       []
     end
 
-    def list_devices
+    def list_templates
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         BASE_URL + '/listTemplate',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json'
+        },
+        params: common_params
+      )
+
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
+    end
+
+    def list_devices
+      r = HTTPX.with(debug: STDERR, debug_level: 2).post(
+        BASE_URL + '/listDevice',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json'
