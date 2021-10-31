@@ -1,4 +1,4 @@
 module JiaBo
-  class BaseController < PanelController
+  class Panel::BaseController < PanelController
   end
 end
