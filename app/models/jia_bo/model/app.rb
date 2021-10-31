@@ -49,6 +49,7 @@ module JiaBo
         template = templates.find_or_initialize_by(code: list['code'])
         template.title = list['title']
       end
+      self.save
     end
 
     def list_devices
