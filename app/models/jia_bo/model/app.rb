@@ -22,10 +22,6 @@ module JiaBo
       p.merge! securityCode: Digest::MD5.hexdigest(joined_str)
     end
 
-    def sign_params(params)
-      []
-    end
-
     def list_templates
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         BASE_URL + '/listTemplate',
