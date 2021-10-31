@@ -1,3 +1,5 @@
-class JiaBo::Panel::AppsController < JiaBo::Panel::BaseController
+module JiaBo
+  class Panel::AppsController < Panel::BaseController
 
+  end
 end
