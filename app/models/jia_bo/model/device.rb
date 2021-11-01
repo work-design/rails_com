@@ -19,7 +19,7 @@ module JiaBo
         templetID: template_id,
         charset: 4,
         msgNo: msg_no,
-        tData: data,
+        tData: data.to_json,
         reprint: reprint,
         multi: multi
       )
