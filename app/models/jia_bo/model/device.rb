@@ -28,7 +28,7 @@ module JiaBo
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json'
         },
-        params: params
+        form: params
       )
 
       if r.status == 200
