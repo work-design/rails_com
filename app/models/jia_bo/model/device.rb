@@ -17,7 +17,7 @@ module JiaBo
       params.merge!(
         deviceID: device_id,
         templetID: template_id,
-        charset: 4,
+        charset: 1,
         msgNo: msg_no,
         tData: data.to_json,
         reprint: reprint,
