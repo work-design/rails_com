@@ -1,6 +1,5 @@
 module JiaBo
   module Model::App
-    BASE_URL = 'https://api.poscom.cn/apisc'
     extend ActiveSupport::Concern
 
     included do
@@ -8,6 +7,7 @@ module JiaBo
       attribute :api_key, :string
       attribute :devices_count, :integer, default: 0
       attribute :templates_count, :integer, default: 0
+      attribute :base_url, :string, default: 'https://api.poscom.cn/apisc'
 
       has_many :devices, dependent: :destroy_async
       has_many :templates, dependent: :destroy_async
@@ -18,18 +18,23 @@ module JiaBo
         reqTime: (Time.now.to_f * 1000).round.to_s,
         memberCode: member_code
       }
-      joined_str = [p[:memberCode], p[:reqTime], api_key].join
+      joined_str = yield p
+
       p.merge! securityCode: Digest::MD5.hexdigest(joined_str)
     end
 
     def list_templates
+      params = common_params do |p|
+        [p[:memberCode], p[:reqTime], api_key].join
+      end
+
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
-        BASE_URL + '/listTemplate',
+        base_url + '/listTemplate',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json'
         },
-        params: common_params
+        params: params
       )
 
       if r.status == 200
@@ -49,13 +54,17 @@ module JiaBo
     end
 
     def list_devices
+      params = common_params do |p|
+        [p[:memberCode], p[:reqTime], api_key].join
+      end
+
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
-        BASE_URL + '/listDevice',
+        base_url + '/listDevice',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json'
         },
-        params: common_params
+        params: params
       )
 
       if r.status == 200
