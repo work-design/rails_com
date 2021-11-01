@@ -25,7 +25,6 @@ module JiaBo
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         app.base_url + '/templetPrint',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json'
         },
         form: params
