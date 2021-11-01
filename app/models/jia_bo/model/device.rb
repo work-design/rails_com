@@ -10,23 +10,22 @@ module JiaBo
       belongs_to :app, counter_cache: true
     end
 
-    def templet_print(msg_no:, template_id:, data: {})
+    def templet_print(msg_no:, template_id:, data: {}, reprint: 0, multi: 0)
       params = app.common_params do |p|
         [p[:memberCode], device_id, msg_no, p[:reqTime], app.api_key].join
       end
       params.merge!(
-        msgNo: msg_no,
         deviceID: device_id,
-        charset: 4,
         templetID: template_id,
-        tData: data
+        charset: 4,
+        msgNo: msg_no,
+        tData: data,
+        reprint: reprint,
+        multi: multi
       )
 
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         app.base_url + '/templetPrint',
-        headers: {
-          Accept: 'application/json'
-        },
         form: params
       )
 

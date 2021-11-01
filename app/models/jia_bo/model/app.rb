@@ -30,11 +30,7 @@ module JiaBo
 
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         base_url + '/listTemplate',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json'
-        },
-        params: params
+        form: params
       )
 
       if r.status == 200
@@ -60,11 +56,7 @@ module JiaBo
 
       r = HTTPX.with(debug: STDERR, debug_level: 2).post(
         base_url + '/listDevice',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json'
-        },
-        params: params
+        form: params
       )
 
       if r.status == 200
