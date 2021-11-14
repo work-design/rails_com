@@ -31,6 +31,7 @@ PATH
       httpx (~> 0.16)
       jbuilder
       kaminari
+      net-pop
       net-smtp
       rails (>= 6.1)
       rails_extend
@@ -178,6 +179,10 @@ GEM
     minitest-hooks (1.5.0)
       minitest (> 5.3)
     multipart-post (2.1.1)
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.1.0)
       io-wait
       timeout
