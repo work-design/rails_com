@@ -31,6 +31,8 @@ PATH
       httpx (~> 0.16)
       jbuilder
       kaminari
+      net-http
+      net-imap
       net-pop
       net-smtp
       rails (>= 6.1)
@@ -179,6 +181,13 @@ GEM
     minitest-hooks (1.5.0)
       minitest (> 5.3)
     multipart-post (2.1.1)
+    net-http (0.2.0)
+      net-protocol
+      uri
+    net-imap (0.1.1)
+      digest
+      net-protocol
+      strscan
     net-pop (0.1.1)
       digest
       net-protocol
@@ -193,6 +202,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
     puma (5.5.2)
@@ -244,12 +255,14 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strscan (3.0.0)
     thor (1.1.0)
     timeout (0.1.1)
     turbo-rails (7.1.1)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uri (0.11.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)

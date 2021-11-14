@@ -29,4 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'turbo-rails'
   s.add_dependency 'net-smtp'
   s.add_dependency 'net-pop'
+  s.add_dependency 'net-imap'
+  s.add_dependency 'net-http'
 end
