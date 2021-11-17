@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module RailsCom::TimeHelper
 
-  def exact_distance_time(from_time, to_time, options = {})
+  def exact_distance_time(from_time = Time.current, to_time, **options)
     result = TimeHelper.exact_distance_time(from_time, to_time)
 
     options = {
@@ -20,7 +20,7 @@ module RailsCom::TimeHelper
     end
   end
 
-  def extra_distance_date(from, to, options = {})
+  def extra_distance_date(from = Date.today, to, **options)
     result = (to - from).to_i
 
     options = {
