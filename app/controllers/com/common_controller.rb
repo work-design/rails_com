@@ -1,6 +1,6 @@
 module Com
   class CommonController < BaseController
-    if respond_to? :verify_authenticity_token
+    if whether_filter :verify_authenticity_token
       skip_before_action :verify_authenticity_token, only: [:deploy]
     end
 
