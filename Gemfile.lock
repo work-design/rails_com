@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 96922802fb9f21d43908bdd348d2bf9f3d0f7c7b
+  revision: 9ed5f4aa2f33fe08afd937696378b1f8af013fc1
   specs:
     rails_design (0.0.1)
       rails
@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_vite.git
-  revision: 231c4cf7eb14fc610ffd8d36b686df8e5d2351cd
+  revision: 9c3213edafc83d8b9273909ca05288ee34ebe1d3
   specs:
     rails_vite (0.0.1)
       rails
