@@ -9,10 +9,10 @@ module ActiveStorage
 
       Tempfile.open do |file|
         file.binmode
-
-        HTTPX.get(url).body.each do |fragment|
+        res = HTTPX.get(url)
+        res.body.each do |fragment|
           file.write fragment
-        end
+        end if res.error.nil?
 
         file.rewind
         self.attach io: file, filename: filename
