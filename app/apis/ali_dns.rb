@@ -55,12 +55,7 @@ module AliDns
       timeout: 15000
     }
 
-    begin
-      response = client.request(**body)
-    rescue StandardError => e
-    ensure
-      records(root_domain)
-    end
+    client.request(**body)
   end
 
 end

@@ -1,4 +1,5 @@
 <%= form_with model: model, scope: model_name, url: { action: 'update' } do |f| %>
+  <%= render 'error_messages', target: f.object %>
   <%= render partial: 'form', locals: { f: f } %>
   <%= f.submit %>
 <% end %>
