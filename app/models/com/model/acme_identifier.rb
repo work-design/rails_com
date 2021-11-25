@@ -45,11 +45,15 @@ module Com
       end
     end
 
+    def dns_client
+      acme_order.acme_account.dns
+    end
+
     # todo use aliyun temply
     def ensure_dns
-      r = AliDns.add_acme_record domain, record_content
+      r = dns_client.add_acme_record domain, record_content
       if r['RecordId']
-        AliDns.check_record(domain, record_content)
+        dns_client.check_record(domain, record_content)
       end
     end
 

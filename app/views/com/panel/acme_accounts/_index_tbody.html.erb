@@ -1,7 +1,0 @@
-<td><%= model.email %></td>
-<td><%= model.kid %></td>
-<td>
-  <% if model.private_pem_blob %>
-    <%= link_to model.private_pem_blob.filename, rails_storage_redirect_path(model.private_pem) %>
-  <% end %>
-</td>

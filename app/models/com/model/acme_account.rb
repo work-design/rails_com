@@ -6,6 +6,10 @@ module Com
     included do
       attribute :email, :string
       attribute :kid, :string
+      attribute :ali_key, :string, comment: '阿里云DNS'
+      attribute :ali_secret, :string
+
+      encrypts :ali_key, :ali_secret
 
       has_many :acme_orders, dependent: :destroy_async
 
@@ -51,6 +55,11 @@ module Com
       else
         @client = Acme::Client.new(private_key: private_key, directory: directory)
       end
+    end
+
+    def dns
+      return @dns if defined? @dns
+      @dns = AliDns.new(key, secret)
     end
 
     def directory

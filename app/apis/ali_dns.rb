@@ -3,15 +3,15 @@ begin
 rescue LoadError
 end
 
-module AliDns
-  extend self
+class AliDns
+  attr_reader :client
 
-  def client
+  def initialize(key, secret)
     @client = RPCClient.new(
       endpoint: 'https://alidns.cn-hangzhou.aliyuncs.com',
       api_version: '2015-01-09',
-      access_key_id: SETTING.aliyun[:key],
-      access_key_secret: SETTING.aliyun[:secret]
+      access_key_id: key,
+      access_key_secret: secret
     )
   end
 
@@ -26,6 +26,7 @@ module AliDns
       method: 'POST',
       timeout: 15000
     }
+
     client.request(**body)
   end
 
