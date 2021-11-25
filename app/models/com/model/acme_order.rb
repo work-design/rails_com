@@ -128,6 +128,7 @@ module Com
       self.issued_at = Time.current
       self.status = order.status
       self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
+      self.save
       r
     end
 
