@@ -59,7 +59,7 @@ module Com
 
     def dns
       return @dns if defined? @dns
-      @dns = AliDns.new(key, secret)
+      @dns = AliDns.new(ali_key, ali_secret)
     end
 
     def directory
