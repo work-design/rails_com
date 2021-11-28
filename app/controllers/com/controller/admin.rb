@@ -7,7 +7,7 @@ module Com
     end
 
     def index
-      instance_variable_set "@#{controller_name.pluralize}", model_klass.page(params[:page])
+      instance_variable_set "@#{controller_name.pluralize}", model_klass.order(id: :asc).page(params[:page])
     end
 
     def new
