@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       get :test_raise
       get :cancel
       match :deploy, via: [:get, :post]
+      get 'assets/*path' => :asset, constraints: ->(req) { [:jpeg, :png, :webp].include? req.format.symbol }
     end
     controller :log do
       get '/not_founds' => :index
