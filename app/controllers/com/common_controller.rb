@@ -53,7 +53,6 @@ module Com
     end
 
     def asset
-      path = params[:path].match(/assets\/.+/).to_s
       file = "#{params[:path]}.#{params[:format]}"
       real_path = Rails.root.join('app/views', "#{current_organ.code}/assets", file)
 
