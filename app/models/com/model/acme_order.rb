@@ -29,6 +29,11 @@ module Com
       end
 
       after_update_commit :renew_before_expired, if: -> { saved_change_to_issued_at? && issued_at.present? }
+      after_create_commit :get_order_later
+    end
+
+    def get_order_later
+      AcmeOrderJob.perform_later(self)
     end
 
     # status: pending
