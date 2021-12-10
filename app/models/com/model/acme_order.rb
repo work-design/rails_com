@@ -90,9 +90,7 @@ module Com
     end
 
     def identifiers_string
-      r = identifiers.first
-      r = r.delete_prefix '*.'
-      r.gsub('.', '_')
+      identifiers.first.delete_prefix '*.'
     end
 
     def common_name

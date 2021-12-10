@@ -20,7 +20,8 @@ module Com
       enum status: {
         pending: 'pending',
         valid: 'valid',
-        invalid: 'invalid'
+        invalid: 'invalid',
+        deactivated: 'deactivated'
       }, _prefix: true
 
       before_save :renew_dns_valid, if: -> { record_content_changed? }
