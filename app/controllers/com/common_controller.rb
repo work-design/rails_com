@@ -56,6 +56,7 @@ module Com
       file = "#{params[:path]}.#{params[:format]}"
       real_path = Rails.root.join('app/views', "#{current_organ.code}/assets", file)
 
+      expires_in 10.hours, public: true
       send_file real_path
     end
 
