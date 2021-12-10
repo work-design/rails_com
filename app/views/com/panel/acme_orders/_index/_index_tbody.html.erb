@@ -2,10 +2,10 @@
 <td><%= model.url %></td>
 <td>
   <% if model.private_pem_blob %>
-    <p><%= link_to model.private_pem_blob.filename, model.private_pem_blob.service_url %></p>
+    <p><%= link_to model.private_pem_blob.filename, model.private_pem_blob.url %></p>
   <% end %>
   <% if model.cert_key_blob %>
-    <p><%= link_to model.cert_key_blob.filename, model.cert_key_blob.service_url %></p>
+    <p><%= link_to model.cert_key_blob.filename, model.cert_key_blob.url %></p>
   <% end %>
 </td>
 <td><time data-controller="time"><%= model.issued_at.to_s(:iso8601) if model.issued_at %></time></td>
