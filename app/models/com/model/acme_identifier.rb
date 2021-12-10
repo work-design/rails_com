@@ -85,15 +85,19 @@ module Com
       end
     end
 
-    def file_verify?
+    def confirm_file
       file_path = Rails.root.join('public', file_name)
+      return true if file_path.file? && file_path.read == file_content
 
-      unless file_path.file? && file_path.read == file_content
-        file_path.dirname.exist? || file_path.dirname.mkpath
-        File.open(file_path, 'w') do |f|
-          f.write file_content
-        end
+      file_path.dirname.exist? || file_path.dirname.mkpath
+      File.open(file_path, 'w') do |f|
+        f.write file_content
       end
+      file_path.read == file_content
+    end
+
+    def file_verify?
+      confirm_file
 
       auth = authorization
       auth.http.request_validation
