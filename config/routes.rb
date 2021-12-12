@@ -150,11 +150,18 @@ Rails.application.routes.draw do
     namespace :panel, defaults: { namespace: 'panel' } do
       resources :apps do
         resources :devices do
+          collection do
+            post :sync
+          end
           member do
             patch :test
           end
         end
-        resources :templates
+        resources :templates do
+          collection do
+            post :sync
+          end
+        end
       end
     end
   end

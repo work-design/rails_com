@@ -4,6 +4,10 @@ module JiaBo
     before_action :set_device, only: [:show, :edit, :update, :destroy, :test]
     before_action :set_new_device, only: [:new, :create]
 
+    def sync
+      @app.sync_devices
+    end
+
     def test
       @device.test
     end

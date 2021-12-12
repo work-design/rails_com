@@ -8,6 +8,10 @@ module JiaBo
       @templates = @app.templates.includes(:parameters).page(params[:page])
     end
 
+    def sync
+      @app.sync_templates
+    end
+
     private
     def set_template
       @template = @app.templates.find params[:id]
