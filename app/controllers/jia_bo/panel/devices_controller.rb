@@ -29,7 +29,8 @@ module JiaBo
       params.fetch(:device, {}).permit(
         :device_id,
         :dev_name,
-        :grp_id
+        :grp_id,
+        :default
       )
     end
 
