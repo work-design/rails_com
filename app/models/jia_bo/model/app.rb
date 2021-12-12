@@ -45,8 +45,12 @@ module JiaBo
       r.each do |list|
         template = templates.find_or_initialize_by(code: list['code'])
         template.title = list['title']
+        template.thumb_url = list['thumb']
+        Hash(list['params'][0]).each do |key, _|
+          template.parameters.find_or_initialize_by(code: key)
+        end
+        template.save
       end
-      self.save
     end
 
     def list_devices
@@ -71,8 +75,8 @@ module JiaBo
       r.each do |list|
         device = devices.find_or_initialize_by(device_id: list['deviceID'])
         device.dev_name = list['title']
+        device.save
       end
-      self.save
     end
 
   end
