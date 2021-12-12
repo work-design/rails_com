@@ -149,7 +149,11 @@ Rails.application.routes.draw do
   namespace :jia_bo, defaults: { business: 'jia_bo' } do
     namespace :panel, defaults: { namespace: 'panel' } do
       resources :apps do
-        resources :devices
+        resources :devices do
+          member do
+            patch :test
+          end
+        end
         resources :templates
       end
     end

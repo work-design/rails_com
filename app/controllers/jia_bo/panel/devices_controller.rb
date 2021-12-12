@@ -1,8 +1,12 @@
 module JiaBo
   class Panel::DevicesController < Panel::BaseController
     before_action :set_app
-    before_action :set_device, only: [:show, :edit, :update, :destroy]
+    before_action :set_device, only: [:show, :edit, :update, :destroy, :test]
     before_action :set_new_device, only: [:new, :create]
+
+    def test
+      @device.test
+    end
 
     private
     def set_device

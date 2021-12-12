@@ -72,6 +72,7 @@ zh:
       devices:
         index:
           title: 设备列表
+          test: 打印测试
       templates:
         index:
           title: 模板列表
