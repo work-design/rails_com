@@ -1,4 +1,4 @@
 module Com
-  class BaseController < PanelController
+  class BaseController < BaseController
   end
 end
