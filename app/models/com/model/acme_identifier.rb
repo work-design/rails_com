@@ -79,11 +79,15 @@ module Com
     end
 
     def auto_verify
-      if file_name.present? && file_content.present?
+      if is_file?
         file_verify?
       else
         dns_verify?
       end
+    end
+
+    def is_file?
+      file_name.present? && file_content.present?
     end
 
     def confirm_file
