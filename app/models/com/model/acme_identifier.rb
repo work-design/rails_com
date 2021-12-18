@@ -37,6 +37,17 @@ module Com
       self.file_valid = false
     end
 
+    def reset
+      assign_attributes(
+        record_name: nil,
+        record_content: nil,
+        file_name: nil,
+        file_content: nil,
+        url: nil,
+        status: nil
+      )
+    end
+
     def compute_wildcard
       if identifier.start_with?('*.')
         self.wildcard = true

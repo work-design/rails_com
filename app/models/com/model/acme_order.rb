@@ -65,7 +65,11 @@ module Com
     else
       self.orderid = r.to_h[:url].split('/')[-1]
       self.assign_attributes r.to_h.slice(:status, :url)
-      self.save
+      self.acme_identifiers(&:reset)
+      self.class.transaction do
+        self.acme_identifiers(&:save!)
+        self.save!
+      end
       r
     end
 
