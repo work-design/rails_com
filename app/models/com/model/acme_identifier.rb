@@ -81,9 +81,8 @@ module Com
         ensure_dns
       end
 
-      auth = authorization
-      auth.dns.request_validation
-      if auth.reload && auth.status == 'valid'
+      authorization.dns.request_validation
+      if authorization.reload && authorization.status == 'valid'
         self.update dns_valid: true, status: 'valid'
       end
       dns_valid
@@ -115,24 +114,12 @@ module Com
     def file_verify?
       confirm_file
 
-      auth = authorization
-      auth.http.request_validation
-      if auth.reload && auth.status == 'valid'
+      authorization.http.request_validation
+      if authorization.reload && authorization.status == 'valid'
         self.update file_valid: true, status: 'valid'
       end
 
       file_valid
-    end
-
-    def save_auth(auth = authorization)
-      update(
-        record_name: auth.dns&.record_name,
-        record_content: auth.dns&.record_content,
-        file_name: auth.http&.filename,
-        file_content: auth.http&.file_content,
-        url: auth.url,
-        status: auth.status
-      )
     end
 
     def dns_host
@@ -140,12 +127,20 @@ module Com
     end
 
     def authorization
-      auth = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
+      return @authorization if defined? @authorization
+      @authorization = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
     rescue Acme::Client::Error::BadNonce
       retry
     else
-      save_auth(auth)
-      auth
+      update(
+        record_name: authorization.dns&.record_name,
+        record_content: authorization.dns&.record_content,
+        file_name: authorization.http&.filename,
+        file_content: authorization.http&.file_content,
+        url: authorization.url,
+        status: authorization.status
+      )
+      @authorization
     end
 
     def deactivate
