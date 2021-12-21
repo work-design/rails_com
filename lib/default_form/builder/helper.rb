@@ -72,7 +72,11 @@ module DefaultForm::Builder
     def radio_button(method, tag_value, options = {})
       wrap_with(method, options) do |css|
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
-        value_content = label(method, tag_value, class: nil)
+        if options[:label]
+          value_content = label(method, tag_value, class: nil)
+        else
+          value_content = ''
+        end
         wrapping(:radio, super + value_content, wrap: css[:wrap])
       end
     end
