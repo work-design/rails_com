@@ -35,8 +35,6 @@ module RailsCom::TimeHelper
         locale.t :one
       when 2
         locale.t :two
-      when 3
-        locale.t :three
       else
         locale.t :other, count: result
       end
