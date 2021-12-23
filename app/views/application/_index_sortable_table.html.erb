@@ -7,13 +7,14 @@
 <table class="table is-striped is-hoverable is-fullwidth">
   <thead>
     <tr>
-    <% if defined? cache_key %>
-      <% cache cache_key do %>
+      <% if defined? cache_key %>
+        <% cache cache_key do %>
+          <%= render 'index_thead' %>
+        <% end %>
+      <% else %>
         <%= render 'index_thead' %>
       <% end %>
-    <% else %>
-      <%= render 'index_thead' %>
-    <% end %>
+      <%= render 'index_head_actions' %>
     </tr>
   </thead>
   <tbody id="tbody" data-controller="sortable">
