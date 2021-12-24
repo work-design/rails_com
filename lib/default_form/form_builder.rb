@@ -22,12 +22,16 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     settings.deep_symbolize_keys!
 
     options[:method] = settings[:method] if !options.key?(:method) && settings.key?(:method)
-    options[:local] = true # todo rails 6.2 will remove this
     options[:data] ||= {}
-    if options[:data][:controller].present?
+    if options.dig(:data, :controller).present?
       options[:data][:controller] += ' default_valid'
     else
       options[:data][:controller] = 'default_valid'
+    end
+    if options.dig(:data, :action).present?
+      options[:data][:action] += ' default_valid#filter'
+    else
+      options[:data][:action] = 'default_valid#filter'
     end
 
     @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
