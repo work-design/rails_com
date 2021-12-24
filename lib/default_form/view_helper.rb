@@ -18,6 +18,12 @@ module DefaultForm::ViewHelper
     if options[:theme].present? && options[:theme].end_with?('search')
       options[:url] = url_for unless options.key?(:url)
       options[:scope] = '' unless options.key?(:scope)
+      options[:data] ||= {}
+      if options.dig(:data, :action).present?
+        options[:data][:action] += ' default_valid#filter'
+      else
+        options[:data][:action] = 'default_valid#filter'
+      end
     end
 
     super

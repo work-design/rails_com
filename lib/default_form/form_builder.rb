@@ -28,11 +28,6 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     else
       options[:data][:controller] = 'default_valid'
     end
-    if options.dig(:data, :action).present?
-      options[:data][:action] += ' default_valid#filter'
-    else
-      options[:data][:action] = 'default_valid#filter'
-    end
 
     @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
     @wrap_css = settings.fetch(:wrap, {}).merge options.fetch(:wrap, {})
