@@ -19,7 +19,7 @@ module DefaultForm::ViewHelper
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
-    if controllers.present? && !actions.include?('default_valid#filter')
+    if controllers.present? && !controllers.include?('default_valid')
       options[:data][:controller] += ' default_valid'
     else
       options[:data][:controller] = 'default_valid'
