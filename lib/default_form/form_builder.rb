@@ -7,7 +7,7 @@ require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   include DefaultForm::Builder::Helper
-  attr_reader :origin_css, :wrap_css, :error_css, :offset_css, :on_options, :theme, :params
+  attr_reader :origin_css, :wrap_css, :error_css, :offset_css, :on_options, :params
   delegate :content_tag, to: :@template
 
   def initialize(object_name, object, template, options)
@@ -18,16 +18,10 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     end
     set_file = Rails.root.join('config/default_form.yml').existence || RailsCom::Engine.root.join('config/default_form.yml')
     set = YAML.unsafe_load_file set_file
-    settings = set.fetch(theme, {})
+    settings = set.fetch(@theme, {})
     settings.deep_symbolize_keys!
 
     options[:method] = settings[:method] if !options.key?(:method) && settings.key?(:method)
-    options[:data] ||= {}
-    if options.dig(:data, :controller).present?
-      options[:data][:controller] += ' default_valid'
-    else
-      options[:data][:controller] = 'default_valid'
-    end
 
     @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
     @wrap_css = settings.fetch(:wrap, {}).merge options.fetch(:wrap, {})
@@ -51,10 +45,9 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def submit_default_value
-    I18n.t "helpers.submit.#{theme}", raise: true
+    I18n.t "helpers.submit.#{@theme}", raise: true
   rescue
     super
   end
 
 end
-
