@@ -101,7 +101,7 @@ module Com
     end
 
     def confirm_file
-      file_path = Rails.root.join('public', file_name)
+      file_path = Rails.root.join('public/challenge', file_name)
       return true if file_path.file? && file_path.read == file_content
 
       file_path.dirname.exist? || file_path.dirname.mkpath
