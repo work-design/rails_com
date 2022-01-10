@@ -113,8 +113,10 @@ module Com
 
     def file_verify?
       confirm_file
-
       authorization.http.request_validation
+    rescue Acme::Client::Error::BadNonce
+      retry
+    else
       if authorization.reload && authorization.status == 'valid'
         self.update file_valid: true, status: 'valid'
       end
