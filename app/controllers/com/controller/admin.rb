@@ -18,7 +18,7 @@ module Com
     def create
       model = model_new_object
 
-      if model.save
+      if model.save!
         render :create, status: :created
       else
         render :new, locals: { model: model }, status: :unprocessable_entity
@@ -29,7 +29,7 @@ module Com
       model = model_object
       model.assign_attributes(model_params)
 
-      if model.save
+      if model.save!
         render :update
       else
         render :edit, locals: { model: model }, status: :unprocessable_entity
@@ -63,7 +63,7 @@ module Com
 
     def destroy
       model = model_object
-      model.destroy
+      model.destroy!
     end
 
     private
