@@ -5,12 +5,12 @@
   <p><%= model.action_name %></p>
 </td>
 <td>
-  <p><%= model.params %></p>
+  <code class="is-wrap"><%= model.params %></code>
 </td>
 <td>
-  <p><%= model.session %></p>
+  <code class="is-wrap"><%= model.session %></code>
 </td>
 <td>
-  <p style="max-height: 100px"><%= model.exception %></p>
+  <code class="is-wrap"><%= model.exception %></code>
 </td>
-<td><time data-controller="time"><%= model.created_at.to_s(:iso8601) %></time></td>
+<td><time data-controller="time"><%= model.created_at.to_formatted_s(:iso8601) %></time></td>
