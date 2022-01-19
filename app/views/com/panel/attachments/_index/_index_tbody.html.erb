@@ -3,4 +3,4 @@
 <td><%= model.record_type %></td>
 <td><%= model.record_id %></td>
 <td><%= model.blob_id %></td>
-<td data-controller="time"><%= model.created_at.to_s(:iso8601) %></td>
+<td data-controller="time"><%= model.created_at.to_formatted_s(:iso8601) %></td>
