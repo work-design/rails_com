@@ -45,6 +45,9 @@ module DefaultForm
     config.mapping.enum = {
       input: 'select_enum'
     }
+    config.mapping.boolean = {
+      input: 'check_box'
+    }
   end
 
 end
