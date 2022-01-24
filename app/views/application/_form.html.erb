@@ -1,4 +1,3 @@
-<%= render 'error_messages', target: f.object %>
 <% f.object.class.input_attributes_by_model.slice(*permit_keys).each do |name, column| %>
   <%= render partial: "default_form/#{column[:input]}", locals: { f: f, name: name, column: column } %>
 <% end %>
