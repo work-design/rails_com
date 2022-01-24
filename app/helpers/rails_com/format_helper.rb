@@ -10,8 +10,9 @@ module RailsCom::FormatHelper
       else
         text = k.to_s + ': ' + v.to_s
       end
+      code_text = content_tag(:code, text)
 
-      content_tag(wrapper_tag, text, html_options)
+      content_tag(wrapper_tag, code_text, html_options)
     end.join("\n\n").html_safe
   end
 
