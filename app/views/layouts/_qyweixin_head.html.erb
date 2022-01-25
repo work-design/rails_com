@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <% if content_for?(:title) %>
+    <title><%= yield(:title) %></title>
+    <% else %>
+    <title><%= current_title %></title>
+    <% end %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="description" content="<%= yield(:meta_description) %>">
+    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
+    <meta name="turbo-cache-control" content="no-preview">
+    <%= stylesheet_vite_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_vite_tag 'phone', 'data-turbo-track': 'reload' %>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" referrerpolicy="origin"></script>
+    <script src="https://open.work.weixin.qq.com/wwopen/js/jwxwork-1.0.0.js" referrerpolicy="origin"></script>
+    <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
+    <% if content_for?(:wechat_js) %>
+      <%= yield(:wechat_js) %>
+    <% end %>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= csp_meta_tag %>
+  </head>
+  <body data-weui-theme="light">
+    <%= yield %>
+    <%= render 'actionsheet' %>
+  </body>
+</html>
