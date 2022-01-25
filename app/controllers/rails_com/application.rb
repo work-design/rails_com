@@ -27,6 +27,10 @@ module RailsCom::Application
       variant << :wechat
     end
 
+    if request.user_agent =~ /wxwork/
+      variant << :work_wechat
+    end
+
     request.variant = variant
     logger.debug "\e[35m  Variant: #{request.variant}  \e[0m"
   end
