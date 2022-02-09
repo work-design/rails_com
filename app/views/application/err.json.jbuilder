@@ -1,2 +1,2 @@
-json.message exception.message
+json.message message
 json.err_type exception.class.name
