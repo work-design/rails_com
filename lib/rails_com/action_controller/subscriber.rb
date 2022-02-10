@@ -9,7 +9,7 @@ module RailsCom::ActionController
       session_key = Rails.configuration.session_options[:key]
       cookies = Hash(raw_headers['rack.request.cookie_hash']).except(session_key)
 
-      debug "  Headers: #{real_headers.map(&->(k,v){ "\e[33m#{k}:\e[0m #{v}" }).join(', ')}"
+      debug "  Headers: { #{real_headers.map(&->(k,v){ "\e[33m#{k}:\e[0m #{v}" }).join(', ')} }"
       debug "  Sessions: #{raw_headers['rack.session'].to_h}" unless raw_headers['rack.session'].blank?
       debug "  Cookies: #{cookies}" unless cookies.blank?
       debug "  Ancestors: #{event.payload[:request].controller_class.ancestors.yield_self { |i| i.slice(0..(i.index(ActionController::Base) || i.index(ActionController::API))) }}"
