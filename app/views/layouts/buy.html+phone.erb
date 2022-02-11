@@ -1,0 +1,9 @@
+<%= render layout: 'layouts/application_head' do %>
+  <%= render 'nav_bar' %>
+  <main class="columns">
+    <div class="column">
+      <%= yield %>
+    </div>
+  </main>
+  <%= render 'footer' %>
+<% end %>
