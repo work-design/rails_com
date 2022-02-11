@@ -29,9 +29,7 @@ module Com
       before_update do
         puts "#{self.class} before_update new_record: #{new_record?} destroyed: #{destroyed?}"
       end
-      around_update do
-        puts "#{self.class} around_update new_record: #{new_record?} destroyed: #{destroyed?}"
-      end
+      around_update :debug_around_update
       after_update do
         puts "#{self.class} after_update new_record: #{new_record?} destroyed: #{destroyed?}"
       end
@@ -63,6 +61,12 @@ module Com
       puts "#{self.class} around_create before yield new_record: #{new_record?} destroyed: #{destroyed?}"
       yield
       puts "#{self.class} around_create after yield new_record: #{new_record?} destroyed: #{destroyed?}"
+    end
+
+    def debug_around_update
+      puts "#{self.class} around_update before yield new_record: #{new_record?} destroyed: #{destroyed?}"
+      yield
+      puts "#{self.class} around_update after yield new_record: #{new_record?} destroyed: #{destroyed?}"
     end
 
     def debug_around_destroy
