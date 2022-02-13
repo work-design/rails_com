@@ -15,9 +15,6 @@
     <%= javascript_vite_tag 'phone', 'data-turbo-track': 'reload' %>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
-    <% if content_for?(:wechat_js) %>
-      <%= yield(:wechat_js) %>
-    <% end %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
