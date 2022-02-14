@@ -12,8 +12,13 @@
     <meta name="turbo-cache-control" content="no-preview">
     <%= stylesheet_vite_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_vite_tag 'phone', 'data-turbo-track': 'reload' %>
+    <% if request.variant.any?(:work_wechat) %>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
+    <script src="https://open.work.weixin.qq.com/wwopen/js/jwxwork-1.0.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
+    <% else %>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
+    <% end %>
+    <%= javascript_vite_tag 'phone', 'data-turbo-track': 'reload' %>
     <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
