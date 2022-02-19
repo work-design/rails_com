@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# should include manually
 module RailsCom::VideoResponse
   extend ActiveSupport::Concern
 
@@ -26,8 +27,4 @@ module RailsCom::VideoResponse
     end
   end
 
-end
-
-ActiveSupport.on_load :action_controller do
-  ActiveStorage::DiskController.include RailsCom::VideoResponse
 end
