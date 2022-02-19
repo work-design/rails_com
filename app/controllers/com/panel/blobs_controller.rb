@@ -41,6 +41,10 @@ module Com
       @blob = ActiveStorage::Blob.find(params[:id])
     end
 
+    def blob_params
+      params.fetch(:blob, {}).permit(*blob_permit_params)
+    end
+
     def blob_permit_params
       [
         :key,
