@@ -21,7 +21,7 @@ module RailsCom::TimeHelper
   end
 
   def extra_distance_date(from = Date.today, to, **options)
-    result = (to - from).to_i
+    result = (to.to_date - from.to_date).to_i
 
     options = {
       scope: :'date.distance_in_words'
