@@ -76,24 +76,25 @@ module Com
       end
     end
 
-    def dns_verify?
+    def dns_verify
       unless dns_resolv.include?(record_content)
         ensure_dns
       end
-
       authorization.dns.request_validation
-      if authorization.reload && authorization.status == 'valid'
-        self.update dns_valid: true, status: 'valid'
-      end
-      dns_valid
+      authorization.reload && self.update(status: authorization.status)
+    rescue Acme::Client::Error::BadNonce
+      retry
+    else
+      authorization.reload && self.update(status: authorization.status)
     end
 
     def auto_verify
       if is_file?
-        file_verify?
+        file_verify
       else
-        dns_verify?
+        dns_verify
       end
+      status_valid?
     end
 
     def is_file?
@@ -111,17 +112,14 @@ module Com
       file_path.read == file_content
     end
 
-    def file_verify?
+    def file_verify
       confirm_file
       authorization.http.request_validation
+      authorization.reload && self.update(status: authorization.status)
     rescue Acme::Client::Error::BadNonce
       retry
-    ensure
-      if authorization.reload && authorization.status == 'valid'
-        self.update file_valid: true, status: 'valid'
-      end
-
-      file_valid
+    else
+      authorization.reload && self.update(status: authorization.status)
     end
 
     def dns_host

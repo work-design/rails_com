@@ -77,11 +77,14 @@ module Com
       case order.status
       when 'invalid'
         order(true)
+        get_cert
       when 'pending'
-        acme_identifiers.map(&:authorization)
+        acme_identifiers.each(&:authorization)
         acme_identifiers.map(&:auto_verify).all?(true) && order.reload
+        get_cert
       when 'ready'
         finalize
+        get_cert
       when 'valid'
         cert # order.certificate_url.present?
       end
