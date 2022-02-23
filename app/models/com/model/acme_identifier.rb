@@ -12,8 +12,6 @@ module Com
       attribute :domain, :string
       attribute :wildcard, :boolean
       attribute :url, :string
-      attribute :dns_valid, :boolean, default: false
-      attribute :file_valid, :boolean, default: false
 
       belongs_to :acme_order
 
@@ -24,17 +22,7 @@ module Com
         deactivated: 'deactivated'
       }, _prefix: true
 
-      before_save :renew_dns_valid, if: -> { record_content_changed? }
-      before_save :renew_file_valid, if: -> { file_content_changed? }
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
-    end
-
-    def renew_dns_valid
-      self.dns_valid = false
-    end
-
-    def renew_file_valid
-      self.file_valid = false
     end
 
     def reset
