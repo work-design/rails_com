@@ -116,7 +116,7 @@ module Com
       authorization.http.request_validation
     rescue Acme::Client::Error::BadNonce
       retry
-    else
+    ensure
       if authorization.reload && authorization.status == 'valid'
         self.update file_valid: true, status: 'valid'
       end
