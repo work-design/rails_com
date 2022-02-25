@@ -1,6 +1,7 @@
 <td><%= model.id %></td>
 <td><%= model.record_class %></td>
 <td><%= model.name %></td>
+<td><%= model.macro %></td>
 <td>
   <%= model.file_blob.key if model.file_blob %>
   <%= render 'com/attachments/list', target: model.file %>

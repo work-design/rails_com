@@ -1,7 +1,7 @@
 <% if defined?(current_user) && current_user %>
   <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
     <div class="navbar-link">
-      <%= image_tag current_user.avatar if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar if current_user.avatar.present? %>
       <span><%= current_user.name %></span>
     </div>
     <div class="navbar-dropdown is-right">

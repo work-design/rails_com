@@ -128,6 +128,7 @@ Rails.application.routes.draw do
       resources :blob_defaults do
         collection do
           get :add
+          post :sync
         end
       end
       resources :acme_accounts do
