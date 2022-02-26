@@ -6,6 +6,10 @@ zh:
     home:
       index:
         title: 后台
+  board:
+    home:
+      index:
+        title: 账号
   com:
     panel:
       title: 系统配置
