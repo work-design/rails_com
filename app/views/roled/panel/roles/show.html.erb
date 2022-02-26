@@ -1,0 +1,12 @@
+<table class="table is-hoverable is-fullwidth" data-controller="check">
+  <thead>
+    <tr>
+      <th>
+        <%= link_to 'Govern (Code)', { controller: 'roles' } %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'show_business', collection: @meta_businesses, as: :meta_business %>
+  </tbody>
+</table>
