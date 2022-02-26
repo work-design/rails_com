@@ -17,7 +17,6 @@
     </div>
     <div class="navbar-end">
       <%= render partial: 'locales' %>
-      <%= render partial: 'buy_navbar' if defined? RailsFactory %>
       <%= render partial: 'notice_navbar' if defined? RailsNotice %>
       <%= render partial: 'org_navbar' if defined?(current_user) && current_user && defined?(RailsOrg) %>
       <%= render partial: 'auth_navbar' %>
