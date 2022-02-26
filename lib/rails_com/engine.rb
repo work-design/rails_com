@@ -3,6 +3,15 @@
 module RailsCom
   class Engine < ::Rails::Engine #:nodoc:
 
+    config.autoload_paths += Dir[
+      "#{config.root}/app/models/role",
+      "#{config.root}/app/models/who_role"
+    ]
+    config.eager_load_paths += Dir[
+      "#{config.root}/app/models/role",
+      "#{config.root}/app/models/who_role"
+    ]
+
     config.generators do |g|
       g.stylesheets false
       g.helper false
