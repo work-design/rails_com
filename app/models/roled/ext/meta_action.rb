@@ -11,7 +11,7 @@ module Roled
 
     def prune_from_role
       roles.each do |role|
-        role.action_off(role_list)
+        role.action_off(**role_list)
         role.save
       end
     end
