@@ -169,6 +169,13 @@ module Roled
       businesses = Com::MetaBusiness.where(identifier: role_hash.keys)
       businesses.each do |business|
         r = role_hash.dig(business.identifier).diff_remove(business.role_hash)
+        r.each do |namespace_identifier, controllers_hash|
+          controllers_hash.each do |controller_path, actions|
+            actions.each do |action_name, action_id|
+              action_off(business_identifier: business.identifier, namespace_identifier: namespace_identifier, controller_path: controller_path, action_name: action_name)
+            end
+          end
+        end
         c.merge! business.identifier => r
       end
 
