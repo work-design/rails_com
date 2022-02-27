@@ -163,6 +163,17 @@ module Roled
       end
     end
 
+    def prune
+      c = []
+      businesses = MetaBusiness.where(identifier: role_hash.keys)
+      businesses.each do |business|
+        r = role_hash.dig(business.identifier).diff_remove(business.role_hash)
+        c << r.leaves
+      end
+
+      c
+    end
+
     def sync
       moved, add = role_rule_hash.diff_changes role_hash
       remove_role_rule(moved)
