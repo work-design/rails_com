@@ -178,6 +178,7 @@ module Roled
         end
         c.merge! business.identifier => r
       end
+      self.save
 
       c
     end
