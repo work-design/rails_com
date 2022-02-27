@@ -1,8 +1,4 @@
-# RailsRole
-
-[![测试](https://github.com/work-design/rails_role/actions/workflows/test.yml/badge.svg)](https://github.com/work-design/rails_role/actions/workflows/test.yml)
-[![Docker构建](https://github.com/work-design/rails_role/actions/workflows/cd.yml/badge.svg)](https://github.com/work-design/rails_role/actions/workflows/cd.yml)
-[![Gem](https://github.com/work-design/rails_role/actions/workflows/gempush.yml/badge.svg)](https://github.com/work-design/rails_role/actions/workflows/gempush.yml)
+# Role
 
 RailsRole 是一个基于Controller/Action的Rails权限控制系统，开箱即用，全程UI配置。
  
@@ -33,6 +29,3 @@ before_action do |t|
   require_role params.permit!
 end
 ```
- 
-## 许可证
-遵循 [MIT](https://opensource.org/licenses/MIT) 协议

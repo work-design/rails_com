@@ -55,7 +55,6 @@ end
 1.直接覆盖即可
 
 ```ruby
-
 f.text_filed class: 'xxx'
 ```
 
