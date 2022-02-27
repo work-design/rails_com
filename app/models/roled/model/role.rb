@@ -168,7 +168,7 @@ module Roled
       businesses = Com::MetaBusiness.where(identifier: role_hash.keys)
       businesses.each do |business|
         r = role_hash.dig(business.identifier).diff_remove(business.role_hash)
-        c << r.leaves
+        c += r.leaves
       end
 
       c
