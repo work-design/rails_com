@@ -46,7 +46,7 @@ module Roled
 
     def business_off
       @meta_business = MetaBusiness.find_by identifier: params[:business_identifier]
-      @role.business_off(@meta_business)
+      @role.business_off(business_identifier: @meta_business.identifier)
       @role.save
 
       render :namespaces
@@ -64,7 +64,7 @@ module Roled
 
     def namespace_off
       @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier]
-      @role.namespace_off(@meta_namespace, params[:business_identifier])
+      @role.namespace_off(namespace_identifier: @meta_namespace.identifier, business_identifier: params[:business_identifier])
       @role.save
 
       @meta_controllers = MetaController.where(params.permit(:business_identifier, :namespace_identifier))
@@ -83,7 +83,7 @@ module Roled
 
     def controller_off
       @meta_controller = MetaController.find params[:meta_controller_id]
-      @role.controller_off(@meta_controller)
+      @role.controller_off(**@meta_controller.role_list)
       @role.save
 
       render :actions_toggle
@@ -99,7 +99,7 @@ module Roled
 
     def action_off
       @meta_action = MetaAction.find params[:meta_action_id]
-      @role.action_off(@meta_action)
+      @role.action_off(**@meta_action.role_list)
       @role.save
 
       render :action

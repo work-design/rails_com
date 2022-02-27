@@ -43,6 +43,15 @@ module Com
       }
     end
 
+    def role_list
+      {
+        business_identifier: business_identifier.to_s,
+        namespace_identifier: namespace_identifier.to_s,
+        controller_path: controller_path,
+        action_name: action_name
+      }
+    end
+
     def role_hash
       id
     end

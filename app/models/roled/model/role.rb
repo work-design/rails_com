@@ -52,8 +52,8 @@ module Roled
       role_hash.deep_merge! meta_business.role_path
     end
 
-    def business_off(meta_business)
-      role_hash.delete meta_business.identifier.to_s
+    def business_off(business_identifier:)
+      role_hash.delete business_identifier.to_s
 
       role_hash
     end
@@ -72,10 +72,10 @@ module Roled
       role_hash.deep_merge! meta_namespace.role_path(business_identifier)
     end
 
-    def namespace_off(meta_namespace, business_identifier)
+    def namespace_off(business_identifier:, namespace_identifier:)
       namespaces_hash = role_hash.fetch(business_identifier)
       return if namespaces_hash.blank?
-      namespaces_hash.delete(meta_namespace.identifier)
+      namespaces_hash.delete(namespace_identifier)
 
       if namespaces_hash.blank?
         role_hash.delete(business_identifier)
@@ -101,18 +101,18 @@ module Roled
       role_hash.deep_merge! meta_controller.role_path
     end
 
-    def controller_off(meta_controller)
-      namespaces_hash = role_hash.fetch(meta_controller.business_identifier)
+    def controller_off(business_identifier:, namespace_identifier:, controller_path:)
+      namespaces_hash = role_hash.fetch(business_identifier)
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(meta_controller.namespace_identifier)
+      controllers_hash = namespaces_hash.fetch(namespace_identifier)
       return if controllers_hash.blank?
-      controllers_hash.delete(meta_controller.controller_path)
+      controllers_hash.delete(controller_path)
 
       if controllers_hash.blank?
-        namespaces_hash.delete(meta_controller.namespace_identifier)
+        namespaces_hash.delete(namespace_identifier)
       end
       if namespaces_hash.blank?
-        role_hash.delete(meta_controller.business_identifier)
+        role_hash.delete(business_identifier)
       end
 
       role_hash
@@ -131,23 +131,23 @@ module Roled
       role_hash.deep_merge!(meta_action.role_path)
     end
 
-    def action_off(meta_action)
-      namespaces_hash = role_hash.fetch(meta_action.business_identifier)
+    def action_off(business_identifier:, namespace_identifier:, controller_path:, action_name:)
+      namespaces_hash = role_hash.fetch(business_identifier)
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(meta_action.namespace_identifier)
+      controllers_hash = namespaces_hash.fetch(namespace_identifier)
       return if controllers_hash.blank?
-      actions_hash = controllers_hash.fetch(meta_action.controller_path)
+      actions_hash = controllers_hash.fetch(controller_path)
       return if actions_hash.blank?
 
-      actions_hash.delete(meta_action.action_name)
+      actions_hash.delete(action_name)
       if actions_hash.blank?
-        controllers_hash.delete(meta_action.controller_path)
+        controllers_hash.delete(controller_path)
       end
       if controllers_hash.blank?
-        namespaces_hash.delete(meta_action.namespace_identifier)
+        namespaces_hash.delete(namespace_identifier)
       end
       if namespaces_hash.blank?
-        role_hash.delete(meta_action.business_identifier)
+        role_hash.delete(business_identifier)
       end
 
       role_hash
