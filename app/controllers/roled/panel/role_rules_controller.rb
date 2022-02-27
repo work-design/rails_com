@@ -12,7 +12,6 @@ module Roled
     end
 
     def create
-
       @role = @role.role_rules.build(role_rule_params)
 
       unless @role_rule.save
@@ -20,22 +19,7 @@ module Roled
       end
     end
 
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @role_rule.assign_attributes(role_rule_params)
-
-      unless @role_rule.save
-        render :edit, locals: { model: @role_rule }, status: :unprocessable_entity
-      end
-    end
-
     def disable
-
     end
 
     def destroy
