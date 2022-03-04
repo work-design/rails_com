@@ -20,7 +20,17 @@ module RailsCom::ActionView
 
       # 当前 template 名称
       context.instance_variable_set(:@_rendered_template, options[:template])
-      super
+
+      begin
+        super
+      rescue ActionView::MissingTemplate
+        if @lookup_context.formats.include?(:html)
+          raise
+        else
+          @lookup_context.send :_set_detail, :formats, [:html]
+          retry
+        end
+      end
     end
 
   end
