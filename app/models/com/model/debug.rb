@@ -93,7 +93,7 @@ module Com
     end
 
     def shared_puts
-      puts "\e[34m  changes: #{changes}  \e[0m"
+      puts "\e[34m  changed_changes: #{changes}  \e[0m"
       puts "\e[35m  saved_changes: #{saved_changes}  \e[0m"
       puts "\e[36m  previous_changes: #{previous_changes}  \e[0m"
       puts "\e[31m  #{'- ~ ' * 40}-  \e[0m"
