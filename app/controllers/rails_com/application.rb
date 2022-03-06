@@ -23,8 +23,12 @@ module RailsCom::Application
       variant << :phone
     end
 
-    if request.user_agent =~ /MicroMessenger/
+    if request.user_agent =~ /MicroMessenger/  # 包含 mini program
       variant << :wechat
+    end
+
+    if request.user_agent =~ /miniProgram/
+      variant << :mini_program
     end
 
     if request.user_agent =~ /wxwork/
