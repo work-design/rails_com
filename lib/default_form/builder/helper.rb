@@ -96,6 +96,7 @@ module DefaultForm::Builder
           html_options[:class] = css.dig(:origin, :select)
         end unless html_options.key?(:class)
         options[:include_blank] = I18n.t('helpers.select.prompt') if options[:include_blank] == true
+        css[:all][:normal] = css.dig(:all, :select) if css.dig(:all, :select)
 
         wrapping(:select, super, wrap: css[:wrap])
       end

@@ -55,6 +55,7 @@ weui:
   wrap:
     label: weui-cell__hd
     input: weui-cell__bd
+    select: weui-cell__bd
   all:
     normal: weui-cell weui-cell_active
     error: weui-cell
