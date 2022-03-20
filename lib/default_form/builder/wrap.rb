@@ -24,7 +24,7 @@ module DefaultForm::Builder
       elsif required
         final_css = all[:required]
       else
-        final_css = all[method.to_sym] || all[:normal]
+        final_css = all[:normal]
       end
 
       if final_css

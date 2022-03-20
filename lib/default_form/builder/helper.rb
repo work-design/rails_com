@@ -38,9 +38,9 @@ module DefaultForm::Builder
     end
 
     def submit(value = nil, options = {})
-      wrap_all_with(nil, options) do |css|
+      wrap_all_with(nil, **options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
-        css[:all] = css.dig(:all, :submit)
+        css[:all][:normal] = css.dig(:all, :submit) if css.dig(:all, :submit)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
         offset(css.dig(:offset, :submit)) + submit_content
@@ -48,7 +48,7 @@ module DefaultForm::Builder
     end
 
     def check_box(method, options = {}, checked_value = '1', unchecked_value = '0')
-      wrap_all_with(method, options) do |css|
+      wrap_all_with(method, **options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
         r = options.delete(:label)
@@ -64,13 +64,13 @@ module DefaultForm::Builder
     end
 
     def collection_check_boxes(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         wrapping(:checkboxes, super, wrap: css[:wrap])
       end
     end
 
     def radio_button(method, tag_value, options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         if options[:label]
           value_content = label(method, tag_value, class: nil)
@@ -82,13 +82,13 @@ module DefaultForm::Builder
     end
 
     def collection_radio_buttons(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         wrapping(:radios, super, wrap: css[:wrap])
       end
     end
 
     def select(method, choices = nil, options = {}, html_options = {}, &block)
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         options[:selected] ||= default_value(method)
         if html_options[:multiple]
           html_options[:class] = css.dig(:origin, :multi_select)
@@ -102,7 +102,7 @@ module DefaultForm::Builder
     end
 
     def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         html_options[:class] = if html_options[:multiple]
           css.dig(:origin, :multi_select)
         else
@@ -115,7 +115,7 @@ module DefaultForm::Builder
     end
 
     def time_zone_select(method, priority_zones = nil, options = {}, html_options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         html_options[:class] = if html_options[:multiple]
           css.dig(:origin, :multi_select)
         else
@@ -127,7 +127,7 @@ module DefaultForm::Builder
     end
 
     def time_select(method, options = {}, html_options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         html_options[:class] = css.dig(:origin, :select) unless html_options.key?(:class)
         wrapping(:select, super, wrap: css[:wrap])
       end
@@ -139,7 +139,7 @@ module DefaultForm::Builder
     end
 
     def date_field(method, options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         options[:class] = css.dig(:origin, :input) unless options.key?(:class)
         if method.end_with?('(date)')
           real_method = method.to_s.sub('(date)', '')
@@ -153,7 +153,7 @@ module DefaultForm::Builder
     end
 
     def number_field(method, options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         options[:class] = css.dig(:origin, :input) unless options.key?(:class)
         options[:step] = default_step(method) unless options.key?(:step)
         wrapping(:input, super, wrap: css[:wrap])
@@ -161,15 +161,15 @@ module DefaultForm::Builder
     end
 
     def text_area(method, options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, **options) do |css|
         options[:class] = css.dig(:origin, :textarea) unless options.key?(:class)
         wrapping(:input, super, wrap: css[:wrap])
       end
     end
 
     # block 应返回 input with wrapper 的内容
-    def wrap_with(method, options = {})
-      wrap_all_with(method, options) do |css|
+    def wrap_with(method, **options)
+      wrap_all_with(method, **options) do |css|
         default_options(method, options)
         if options[:label]
           label_content = label method, options.delete(:label), options.slice(:origin, :wrap)
@@ -184,7 +184,7 @@ module DefaultForm::Builder
     end
 
     # block 应返回  label_content + input_content 的内容
-    def wrap_all_with(method, options)
+    def wrap_all_with(method, **options)
       css = {}
       css[:origin] = origin_css.merge options.delete(:origin) || {}
       css[:wrap] = wrap_css.merge options.delete(:wrap) || {}
@@ -199,7 +199,7 @@ module DefaultForm::Builder
     INPUT_FIELDS.each do |selector|
       class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
         def #{selector}(method, options = {})
-          wrap_with(method, options) do |css|
+          wrap_with(method, **options) do |css|
             unless options.key?(:class)
               if object_has_errors?(method)
                 options[:class] = css.dig(:error, :input)
