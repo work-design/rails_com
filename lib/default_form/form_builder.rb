@@ -7,7 +7,7 @@ require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   include DefaultForm::Builder::Helper
-  attr_reader :origin_css, :wrap_css, :error_css, :offset_css, :on_options, :params
+  attr_reader :origin_css, :wrap_css, :all_css, :error_css, :offset_css, :on_options, :params
   delegate :content_tag, to: :@template
 
   def initialize(object_name, object, template, options)
@@ -25,6 +25,7 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
 
     @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
     @wrap_css = settings.fetch(:wrap, {}).merge options.fetch(:wrap, {})
+    @all_css = settings.fetch(:all, {}).merge options.fetch(:all, {})
     @error_css = settings.fetch(:error, {}).merge options.fetch(:error, {})
     @offset_css = settings.fetch(:offset, {}).merge options.fetch(:offset, {})
     @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label

@@ -21,16 +21,17 @@ default:
     submit: field-label
     checkboxes: field-label
   wrap:
-    all: field is-horizontal
-    all_required: field is-horizontal
-    all_error: field is-horizontal
-    all_submit: field is-horizontal
     label: field-label is-normal
     input: field-body > field > control
     select: field-body > field is-narrow > control > select is-fullwidth
     checkbox: field-body > field > control > checkbox
     checkboxes: field-body > field is-narrow > control
     submit: field-body control
+  all:
+    normal: field is-horizontal
+    required: field is-horizontal
+    error: field is-horizontal
+    submit: field is-horizontal
   error:
     input: input is-danger
 search:
@@ -52,12 +53,14 @@ weui:
     muilti_select: weui-select
     submit: weui-btn weui-btn_primary
   wrap:
-    all: weui-cell weui-cell_active
-    all_error: weui-cell
-    all_required: weui-cell
     label: weui-cell__hd
     input: weui-cell__bd
     submit: weui-form__opr-area
+  all:
+    normal: weui-cell weui-cell_active
+    error: weui-cell
+    required: weui-cell
+    select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
 weui_search:
   <<: *searches
   origin:
@@ -68,7 +71,8 @@ weui_search:
     muilti_select: weui-select
     submit: weui-btn weui-btn_primary
   wrap:
-    all: weui-cell
-    all_error: inline field error
     input: weui-cell__bd
     submit: weui-btn-area
+  all:
+    normal: weui-cell
+    error: weui-cell

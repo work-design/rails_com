@@ -40,7 +40,7 @@ module DefaultForm::Builder
     def submit(value = nil, options = {})
       wrap_all_with(nil, options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
-        css[:wrap][:all] = css.dig(:wrap, :all_submit)
+        css[:all] = css.dig(:all, :submit)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
         offset(css.dig(:offset, :submit)) + submit_content
@@ -188,11 +188,12 @@ module DefaultForm::Builder
       css = {}
       css[:origin] = origin_css.merge options.delete(:origin) || {}
       css[:wrap] = wrap_css.merge options.delete(:wrap) || {}
+      css[:all] = all_css.merge options.delete(:all) || {}
       css[:error] = error_css.merge options.delete(:error) || {}
       css[:offset] = offset_css.merge options.delete(:offset) || {}
       inner_content = yield css
 
-      wrapping_all inner_content, method, wrap: css[:wrap], required: options[:required]
+      wrapping_all inner_content, method, all: css[:all], required: options[:required]
     end
 
     INPUT_FIELDS.each do |selector|

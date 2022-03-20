@@ -18,13 +18,13 @@ module DefaultForm::Builder
       inner
     end
 
-    def wrapping_all(inner, method = nil, wrap: {}, required: false)
+    def wrapping_all(inner, method = nil, all: {}, required: false)
       if method && object_has_errors?(method)
-        final_css = wrap[:all_error]
+        final_css = all[:error]
       elsif required
-        final_css = wrap[:all_required]
+        final_css = all[:required]
       else
-        final_css = wrap[:all]
+        final_css = all[method.to_sym] || all[:normal]
       end
 
       if final_css
