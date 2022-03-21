@@ -15,7 +15,7 @@ module RailsCom::Application
 
   def current_title
     if defined?(current_corp_user) && current_corp_user
-      current_corp_user.suite.name
+      current_corp_user.suite&.name
     elsif defined?(current_organ) && current_organ
       current_organ.name
     else
