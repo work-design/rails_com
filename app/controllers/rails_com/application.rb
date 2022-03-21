@@ -14,7 +14,13 @@ module RailsCom::Application
   end
 
   def current_title
-    t('.title', default: :site_name)
+    if defined?(current_corp_user) && current_corp_user
+      current_corp_user.suite.name
+    elsif defined?(current_organ) && current_organ
+      current_organ.name
+    else
+      t('.title', default: :site_name)
+    end
   end
 
   def set_variant
