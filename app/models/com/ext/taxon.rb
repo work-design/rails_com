@@ -8,7 +8,7 @@ module Com
       if model.table_exists? && model.column_names.include?('position')
         model.has_closure_tree order: 'position'
       else
-        model.has_closure_tree
+        model.has_closure_tree order: 'id'
       end
       model.include Com::Ext::TaxonPrepend
 
