@@ -1,0 +1,25 @@
+<td>
+  <p>
+    <%= link_to({ controller: 'jobs', action: 'show', id: model.serialized_params['job_id'] }) do %>
+      <code><%= model.active_job_id %></code>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to({ controller: 'jobs', action: 'show', id: model.active_job_id, anchor: dom_id(model) }) do %>
+      <code><%= model.id %></code>
+    <% end %>
+  </p>
+</td>
+<td>
+  <p><%= model.serialized_params['job_class'] %></p>
+  <p><%= model.queue_name %></p>
+  <p><%= exact_distance_time(model.scheduled_at || model.created_at) %></p>
+</td>
+<td class="text-break"><%= truncate(model.error, length: 1_000) %></td>
+<td>
+  <%= tag.button "Preview", type: "button", class: "btn btn-sm btn-outline-primary", role: "button",
+                 data: { bs_toggle: "collapse", bs_target: "##{dom_id(model, 'params')}" },
+                 aria: { expanded: false, controls: dom_id(model, "params") }
+  %>
+  <%= tag.pre JSON.pretty_generate(model.serialized_params), id: dom_id(model, "params"), class: "collapse job-params" %>
+</td>

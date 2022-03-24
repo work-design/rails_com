@@ -1,0 +1,17 @@
+<th>
+  <p>ActiveJob ID</p>
+  <p>Execution ID</p>
+</th>
+<th>
+  <p>Job Class</p>
+  <p>Queue</p>
+  <p>Scheduled At</p>
+</th>
+<th>Error</th>
+<th>
+  ActiveJob Params&nbsp;
+  <%= tag.button "Toggle", type: "button", class: "btn btn-sm btn-outline-primary", role: "button",
+                 data: { bs_toggle: "collapse", bs_target: ".job-params" },
+                 aria: { expanded: false, controls: @executions.map { |execution| "##{dom_id(execution, "params")}" }.join(" ") }
+  %>
+</th>
