@@ -1,24 +1,25 @@
 Rails.application.routes.draw do
 
   namespace :job do
-    root to: 'executions#index'
-    resources :executions, only: [:destroy]
+    namespace :panel, defaults: { namespace: 'panel' } do
+      root to: 'executions#index'
+      resources :executions, only: [:show, :destroy]
+      resources :processes, only: [:index]
 
-    resources :jobs, only: [:index, :show] do
-      member do
-        put :discard
-        put :reschedule
-        put :retry
+      resources :jobs, only: [:index, :show] do
+        member do
+          put :discard
+          put :reschedule
+          put :retry
+        end
+      end
+
+      resources :cron_entries, only: [:index, :show] do
+        member do
+          post :enqueue
+        end
       end
     end
-
-    resources :cron_entries, only: [:index, :show] do
-      member do
-        post :enqueue
-      end
-    end
-
-    resources :processes, only: [:index]
   end
 
   scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do

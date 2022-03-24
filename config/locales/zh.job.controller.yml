@@ -1,0 +1,10 @@
+zh:
+  job:
+    panel:
+      title: 后台任务
+      processes:
+        index:
+          title: 进程
+      executions:
+        index:
+          title: 任务

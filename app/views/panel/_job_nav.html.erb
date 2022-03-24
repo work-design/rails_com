@@ -1,0 +1,11 @@
+<div class="<%= active_helper(modules: 'job/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu">
+  <%= content_tag :div, class: 'menu-list' do %>
+    <%= link_to t('job.panel.processes.index.title'), { controller: 'job/panel/processes' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
+    <%= link_to t('job.panel.executions.index.title'), { controller: 'job/panel/executions' }, class: active_helper(controllers: 'executions', active: 'is-active') -%>
+  <% end %>
+  <a class="menu-label" data-action="menu#toggle">
+    <i class="fa-solid fa-send-backward fa-fw"></i>
+    <span><%= t('job.panel.title') %></span>
+    <i class="fa-solid dropdown"></i>
+  </a>
+</div>
