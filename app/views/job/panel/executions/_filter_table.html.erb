@@ -1,0 +1,14 @@
+<table class="table as-search">
+  <tr>
+    <th>分类</th>
+    <td>
+      <%= link_to t('.all'), filter_params(except: [:job_class]), class: active_params(job_class: '', active: 'button is-info mb-2', item: 'button is-light mb-2') %>
+      <% @job_classes.each do |job_class, count| %>
+        <%= link_to filter_params(job_class: job_class), class: active_params(job_class: job_class, active: 'button is-info mb-2', item: 'button is-light mb-2') do %>
+          <span><%= job_class %></span>
+          <span class="has-text-grey">(<%= count %>)</span>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>

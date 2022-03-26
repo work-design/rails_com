@@ -13,6 +13,6 @@
 <td>
   <p><%= model.serialized_params['job_class'] %></p>
   <p><%= model.queue_name %></p>
-  <p><%= exact_distance_time(model.scheduled_at || model.created_at) %></p>
+  <p><%= exact_distance_time(model.scheduled_at || model.created_at, Time.current) %></p>
 </td>
 <td class="text-break"><%= truncate(model.error, length: 1_000) %></td>

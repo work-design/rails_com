@@ -2,10 +2,11 @@
 module Job::Panel
   class ExecutionsController < BaseController
     before_action :set_execution, only: [:show]
+    before_action :set_job_classes, only: [:index]
 
     def index
       q_params = {}
-      q_params.merge! params.permit!
+      q_params.merge! 'serialized_params/job_class' => params[:job_class] if params[:job_class].present?
 
       @executions = GoodJob::Execution.default_where(q_params).page(params[:page])
     end
@@ -23,5 +24,10 @@ module Job::Panel
     def set_execution
       @execution = GoodJob::Execution.find params[:id]
     end
+
+    def set_job_classes
+      @job_classes = GoodJob::Execution.group("serialized_params->>'job_class'").count
+    end
+
   end
 end
