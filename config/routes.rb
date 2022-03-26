@@ -214,6 +214,9 @@ Rails.application.routes.draw do
           end
         end
       end
+      scope path: ':who_type/:who_id' do
+        resource :whos, only: [:show, :edit, :update]
+      end
     end
 
     namespace :admin, defaults: { namespace: 'admin' } do
