@@ -20,6 +20,11 @@ module Com
       model.hierarchy_class.attribute :updated_at, :datetime, null: true
       model.hierarchy_class.index [:ancestor_id, :descendant_id, :generations], unique: true, name: "#{model.name.underscore}_anc_desc_idx"
 
+      hierarchy_model = ['Model', model.hierarchy_class.name.split('::')[-1]].join('::')
+      if model.module_parent.const_defined? hierarchy_model
+        model.hierarchy_class.include model.module_parent.const_get(hierarchy_model)
+      end
+
       def model.max_depth
         self.hierarchy_class.maximum(:generations).to_i + 1
       end
