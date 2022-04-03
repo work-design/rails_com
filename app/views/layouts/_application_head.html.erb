@@ -10,10 +10,8 @@
     <meta name="keywords" content="<%= yield(:meta_keywords) %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-cache-control" content="no-preview">
-    <%= javascript_vite_tag 'application' %>
-    <%= stylesheet_vite_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= css_load media: 'all', 'data-turbo-track': 'reload' %>
-    <%= js_load 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
