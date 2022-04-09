@@ -128,13 +128,4 @@ module RailsCom::Application
     self.request.format.json?
   end
 
-  # todo
-  def x_prefixes
-    if defined?(current_organ) && current_organ&.code.present?
-      ["#{current_organ.code}/views/#{controller_path}", controller_path]
-    else
-      super
-    end
-  end
-
 end
