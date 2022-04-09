@@ -14,13 +14,17 @@ module RailsCom::Application
   end
 
   def current_title
+    text = t('.title', default: :site_name)
+
     if defined?(current_corp_user) && current_corp_user
-      current_corp_user.suite&.name
+      name = current_corp_user.suite&.name
     elsif defined?(current_organ) && current_organ
-      current_organ.name
+      name = current_organ.name
     else
-      t('.title', default: :site_name)
+      name = t(:site_name)
     end
+
+    [text, name].join(' - ')
   end
 
   def set_variant
@@ -122,6 +126,15 @@ module RailsCom::Application
 
   def json_format?
     self.request.format.json?
+  end
+
+  # todo
+  def x_prefixes
+    if defined?(current_organ) && current_organ&.code.present?
+      ["#{current_organ.code}/views/#{controller_path}", controller_path]
+    else
+      super
+    end
   end
 
 end
