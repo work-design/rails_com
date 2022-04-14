@@ -1,6 +1,6 @@
 <% if target.errors.any? %>
-  <div class="notification is-danger">
-    <button class="delete"></button>
+  <div class="notification is-danger" data-controller="notice">
+    <button class="delete" data-action="notice#close"></button>
     <div class="header"><%= target.errors.count %> <% if target.errors.count == 1 %> error <% else %> errors <% end %>: </div>
     <ul class="list">
     <% target.errors.full_messages.each do |msg| %>

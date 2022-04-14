@@ -13,10 +13,10 @@
     <%= yield :reload %>
     <%= stylesheet_link_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <% if request.variant.any?(:work_wechat) %>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
-    <script src="https://open.work.weixin.qq.com/wwopen/js/jwxwork-1.0.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" referrerpolicy="origin" data-turbo-track="reload" defer="defer"></script>
+    <script src="https://open.work.weixin.qq.com/wwopen/js/jwxwork-1.0.0.js" referrerpolicy="origin" data-turbo-track="reload" defer="defer"></script>
     <% else %>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js" referrerpolicy="origin" data-turbo-track="reload"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js" referrerpolicy="origin" data-turbo-track="reload" defer="defer"></script>
     <% end %>
     <%= javascript_include_tag 'phone', 'data-turbo-track': 'reload', defer: true %>
     <%= csrf_meta_tags %>
