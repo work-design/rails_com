@@ -2,6 +2,12 @@ zh:
   application:
     modal:
       title: 编辑/新建
+    show:
+      title: 详情
+    new:
+      title: 添加
+    edit:
+      title: 编辑
   panel:
     home:
       index:
