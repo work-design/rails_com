@@ -11,10 +11,8 @@ module RailsCom::TimeHelper
     I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
       str = ''
       result.each do |k, v|
-        if v > 0
-          str += v.to_s
-          str += locale.t(k)
-        end
+        str += v.to_s.rjust(2, '0')
+        str += locale.t(k)
       end
       str
     end

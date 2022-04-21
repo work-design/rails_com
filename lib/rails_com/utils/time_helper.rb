@@ -3,21 +3,19 @@
 module TimeHelper
   extend self
 
-  def exact_distance_time(from_time = 0, to_time)
-    if to_time.is_a?(Numeric)
-      from_time = Time.at(from_time)
-      to_time = Time.at(to_time)
+  def exact_distance_time(from_time = Time.current, to_time)
+    from_time = from_time.to_datetime
+    to_time = to_time.to_datetime
+    if from_time > to_time
+      max_time, min_time = from_time, to_time
     else
-      from_time = from_time.to_datetime
-      to_time = to_time.to_datetime
+      max_time, min_time = to_time, from_time
     end
 
-    return {} if from_time > to_time
-
-    years = to_time.year - from_time.year
-    months = to_time.month - from_time.month
-    days = to_time.mday - from_time.mday
-    day_seconds = to_time.seconds_since_midnight.to_i - from_time.seconds_since_midnight.to_i
+    years = max_time.year - min_time.year
+    months = max_time.month - min_time.month
+    days = max_time.mday - min_time.mday
+    day_seconds = max_time.seconds_since_midnight.to_i - min_time.seconds_since_midnight.to_i
 
     if day_seconds < 0
       days -= 1
@@ -26,7 +24,7 @@ module TimeHelper
 
     if days < 0
       months -= 1
-      days = to_time.prev_month.end_of_month.mday + days
+      days = max_time.prev_month.end_of_month.mday + days
     end
 
     if months < 0
