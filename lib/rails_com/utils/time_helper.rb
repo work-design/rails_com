@@ -38,13 +38,27 @@ module TimeHelper
     { year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds }
   end
 
-  def step(now: Time.current, step: 15)
+  def step(now: Time.current, step: 15, skip: false)
     min = now.to_fs(:minute).to_i
     hour = now.to_fs(:hour).to_i
     r = (min..60).select(&->(i){ i % step == 0 })
-    r1 = ["#{hour}:#{min}"] + r[0..-2].map(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour}:#{i.to_s.rjust(2, '0')}" })
-    r2 = r.map(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour}:#{i.to_s.rjust(2, '0')}" })
+    r.shift if skip
+    if min % step == 0
+      r1 = r[0..-2]
+      r2 = r[1..-1]
+    elsif r.present?
+      r1 = r[0..-2].prepend(min)
+      r2 = r
+    else
+      return []
+    end
+
+    r1.map!(&->(i){ "#{hour.to_s.rjust(2, '0')}:#{i.to_s.rjust(2, '0')}" })
+    r2.map!(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour.to_s.rjust(2, '0')}:#{i.to_s.rjust(2, '0')}" })
+
     r1.zip(r2)
+
+    [r1, r2]
   end
 
   def interval(start_at, finish_at, interval_start: '12:30', since: 1.hour)
