@@ -42,7 +42,7 @@ module TimeHelper
     min = now.to_fs(:minute).to_i
     hour = now.to_fs(:hour).to_i
     r = (min..60).select(&->(i){ i % step == 0 })
-    r.shift if skip
+    r.shift if skip && min % step != 0
     if min % step == 0
       r1 = r[0..-2]
       r2 = r[1..-1]
