@@ -38,7 +38,10 @@ module TimeHelper
     { year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds }
   end
 
-  def step(now: Time.current, step: 15, skip: false)
+  def step(now: Time.current, after: 0, step: 15, skip: false)
+    if after != 0
+      now = now.change(hour: now.hour + after)
+    end
     min = now.to_fs(:minute).to_i
     hour = now.to_fs(:hour).to_i
     r = (min..60).select(&->(i){ i % step == 0 })
