@@ -57,8 +57,6 @@ module TimeHelper
     r2.map!(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour.to_s.rjust(2, '0')}:#{i.to_s.rjust(2, '0')}" })
 
     r1.zip(r2)
-
-    [r1, r2]
   end
 
   def interval(start_at, finish_at, interval_start: '12:30', since: 1.hour)
