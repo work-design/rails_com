@@ -38,6 +38,15 @@ module TimeHelper
     { year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds }
   end
 
+  def step(now: Time.current, step: 15)
+    min = now.to_fs(:minute).to_i
+    hour = now.to_fs(:hour).to_i
+    r = (min..60).select(&->(i){ i % step == 0 })
+    r1 = ["#{hour}:#{min}"] + r[0..-2].map(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour}:#{i.to_s.rjust(2, '0')}" })
+    r2 = r.map(&->(i){ i == 60 ? "#{(hour + 1).to_s.rjust(2, '0')}:00" : "#{hour}:#{i.to_s.rjust(2, '0')}" })
+    r1.zip(r2)
+  end
+
   def interval(start_at, finish_at, interval_start: '12:30', since: 1.hour)
     return 0 if start_at.blank? || finish_at.blank? || start_at >= finish_at
     raise 'Must be same day!' if start_at.to_date != finish_at.to_date
