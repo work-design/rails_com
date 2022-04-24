@@ -40,7 +40,7 @@ module TimeHelper
 
   def step(now: Time.current, after: 0, step: 15, skip: false)
     if after != 0
-      now = now.change(hour: now.hour + after)
+      now = after.hours.since.change(min: 0)
     end
     min = now.to_fs(:minute).to_i
     hour = now.to_fs(:hour).to_i
