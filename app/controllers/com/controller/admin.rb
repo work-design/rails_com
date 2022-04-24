@@ -61,6 +61,21 @@ module Com
       model.move_lower
     end
 
+    def reorder
+      model = model_object
+      sort_array = params[:sort_array].select { |i| i.integer? }
+
+      if params[:new_index] > params[:old_index]
+        prev_one = model.class.find(sort_array[params[:new_index].to_i - 1])
+        model.insert_at prev_one.position
+      else
+        next_ones = model.class.find(sort_array[(params[:new_index].to_i + 1)..params[:old_index].to_i])
+        next_ones.each do |next_one|
+          next_one.insert_at model.position
+        end
+      end
+    end
+
     def destroy
       model = model_object
       model.destroy
