@@ -33,7 +33,6 @@ require 'rails_com/utils/jobber'
 require 'active_storage/service/disc_service'
 
 # outside
-require 'jbuilder'
 require 'default_where'
 require 'rails_extend'
 require 'kaminari'
