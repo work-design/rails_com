@@ -31,6 +31,7 @@ zh:
     parent_ancestors: 上级
     start_at: 开始时间
     finish_at: 截止时间
+    code: 编码
     created_at: 创建时间
     updated_at: 更新时间
   errors:
