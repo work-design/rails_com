@@ -7,7 +7,11 @@ module Com
     end
 
     def index
-      instance_variable_set "@#{controller_name.pluralize}", model_klass.order(id: :asc).page(params[:page])
+      if model_klass.column_names.include?('organ_id')
+        instance_variable_set "@#{controller_name.pluralize}", model_klass.where(default_params).order(id: :asc).page(params[:page]).per(params[:per])
+      else
+        instance_variable_set "@#{controller_name.pluralize}", model_klass.order(id: :asc).page(params[:page]).per(params[:per])
+      end
     end
 
     def new
