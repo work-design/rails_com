@@ -1,5 +1,5 @@
 module Com
-  module Controller::Admin
+  module Controller::Panel
     extend ActiveSupport::Concern
 
     included do
