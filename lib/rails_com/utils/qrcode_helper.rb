@@ -7,6 +7,7 @@ module QrcodeHelper
     resize_exactly_to: false,
     fill: 'white',
     color: 'black',
+    color_mode: ChunkyPNG::COLOR_INDEXED,
     size: 300,
     border_modules: 1,  # 二维码图片padding
     module_px_size: 6,
