@@ -5,7 +5,9 @@ module Job
     included do
       attribute :job_id, :string
 
-      belongs_to :job, class_name: 'GoodJob::ActiveJobJob', foreign_key: :job_id, primary_key: :active_job_id, optional: true
+      has_one :job, class_name: 'GoodJob::ActiveJobJob', primary_key: :job_id, foreign_key: :active_job_id
+      has_one :execution, ->{ order(created_at: :asc) }, class_name: 'GoodJob::Execution', primary_key: :job_id, foreign_key: :active_job_id
+      has_many :executions, class_name: 'GoodJob::Execution', primary_key: :job_id, foreign_key: :active_job_id
     end
 
   end
