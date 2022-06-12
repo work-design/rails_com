@@ -1,0 +1,7 @@
+zh:
+  activerecord:
+    attributes:
+      good_job/active_job_job:
+        active_job_id: 任务ID
+        scheduled_at: 任务执行时间
+        status: 状态
