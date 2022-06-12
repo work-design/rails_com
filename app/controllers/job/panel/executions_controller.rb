@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Job::Panel
   class ExecutionsController < BaseController
-    before_action :set_execution, only: [:show]
+    before_action :set_execution, only: [:show, :perform]
     before_action :set_job_classes, only: [:index]
 
     def index
@@ -12,6 +12,10 @@ module Job::Panel
     end
 
     def show
+    end
+
+    def perform
+      @execution.perform
     end
 
     def destroy

@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
-  namespace :job do
+  namespace :job, defaults: { business: 'job' } do
     namespace :panel, defaults: { namespace: 'panel' } do
       root to: 'executions#index'
-      resources :executions, only: [:show, :destroy]
+      resources :executions, only: [:show, :destroy] do
+        member do
+          patch :perform
+        end
+      end
       resources :processes, only: [:index]
 
       resources :jobs, only: [:index, :show] do

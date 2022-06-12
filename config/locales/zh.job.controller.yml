@@ -8,3 +8,4 @@ zh:
       executions:
         index:
           title: 任务
+          perform: 运行
