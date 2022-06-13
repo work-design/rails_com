@@ -36,7 +36,7 @@ module Job::Panel
     end
 
     def set_execution
-      @execution = GoodJob::Execution.find params[:id]
+      @execution = GoodJob::Execution.find_by active_job_id: params[:id]
     end
 
     def set_job_classes
