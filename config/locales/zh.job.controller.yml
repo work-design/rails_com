@@ -8,8 +8,9 @@ zh:
       executions:
         index:
           title: 任务（已完成）
-          perform: 运行
         scheduled:
           title: 任务（计划中）
         running:
           title: 任务（运行中）
+        perform:
+          title: 运行
