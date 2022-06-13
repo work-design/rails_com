@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   namespace :job, defaults: { business: 'job' } do
     namespace :panel, defaults: { namespace: 'panel' } do
       root to: 'executions#index'
-      resources :executions, only: [:show, :destroy] do
+      resources :executions, only: [:index, :show, :destroy] do
+        collection do
+          get :scheduled
+          get :running
+        end
         member do
           patch :perform
         end

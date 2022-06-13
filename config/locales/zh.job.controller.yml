@@ -7,5 +7,9 @@ zh:
           title: 进程
       executions:
         index:
-          title: 任务
+          title: 任务（已完成）
           perform: 运行
+        scheduled:
+          title: 任务（计划中）
+        running:
+          title: 任务（运行中）

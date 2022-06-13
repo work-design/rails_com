@@ -1,0 +1,13 @@
+<div class="tabs">
+  <ul>
+    <li class="<%= active_helper(action: 'index', active: 'is-active') %>">
+      <%= link_to t('job.panel.executions.index.title'), { action: 'index' } %>
+    </li>
+    <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
+      <%= link_to t('job.panel.executions.scheduled.title'), { action: 'scheduled' } %>
+    </li>
+    <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
+      <%= link_to t('job.panel.executions.running.title'), { action: 'running' } %>
+    </li>
+  </ul>
+</div>

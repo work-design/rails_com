@@ -2,13 +2,18 @@
 module Job::Panel
   class ExecutionsController < BaseController
     before_action :set_execution, only: [:show, :perform]
-    before_action :set_job_classes, only: [:index]
+    before_action :set_job_classes, only: [:index, :scheduled, :running]
 
     def index
-      q_params = {}
-      q_params.merge! 'serialized_params/job_class' => params[:job_class] if params[:job_class].present?
+      @executions = GoodJob::ActiveJobJob.finished.default_where(q_params).order(finished_at: :desc).page(params[:page])
+    end
 
-      @executions = GoodJob::Execution.default_where(q_params).page(params[:page])
+    def scheduled
+      @executions = GoodJob::ActiveJobJob.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+    end
+
+    def running
+      @executions = GoodJob::ActiveJobJob.running.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
     end
 
     def show
@@ -25,6 +30,11 @@ module Job::Panel
     end
 
     private
+    def q_params
+      q = {}
+      q.merge! 'serialized_params/job_class' => params[:job_class] if params[:job_class].present?
+    end
+
     def set_execution
       @execution = GoodJob::Execution.find params[:id]
     end
