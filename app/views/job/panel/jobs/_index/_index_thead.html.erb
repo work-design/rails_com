@@ -1,7 +1,8 @@
-<th>ActiveJob ID</th>
 <th>
-  <p>Job Class</p>
-  <p>Queue</p>
-  <p><%= GoodJob::ActiveJobJob.human_attribute_name(:finished_at) %></p>
+  <p><%= GoodJob::ActiveJobJob.human_attribute_name(:active_job_id) %></p>
+  <p><%= GoodJob::ActiveJobJob.human_attribute_name(:job_class) %></p>
+  <p><%= GoodJob::ActiveJobJob.human_attribute_name(:queue_name) %></p>
+  <p class="has-text-success"><%= GoodJob::ActiveJobJob.human_attribute_name(:finished_at) %></p>
 </th>
-<th>Arguments</th>
+<th><%= GoodJob::ActiveJobJob.human_attribute_name(:executions) %></th>
+<th><%= GoodJob::ActiveJobJob.human_attribute_name(:arguments) %></th>
