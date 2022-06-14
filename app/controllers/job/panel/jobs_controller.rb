@@ -2,7 +2,7 @@
 module Job::Panel
   class JobsController < BaseController
     before_action :set_execution, only: [:show, :perform]
-    before_action :set_job_classes, only: [:index, :scheduled, :running]
+    before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
 
     def index
       @jobs = GoodJob::ActiveJobJob.finished.default_where(q_params).order(finished_at: :desc).page(params[:page])
@@ -14,6 +14,10 @@ module Job::Panel
 
     def running
       @jobs = GoodJob::ActiveJobJob.running.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+    end
+
+    def discarded
+      @jobs = GoodJob::ActiveJobJob.discarded.default_where(q_params).page(params[:page])
     end
 
     def show

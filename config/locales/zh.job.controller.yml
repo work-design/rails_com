@@ -5,12 +5,14 @@ zh:
       processes:
         index:
           title: 进程
-      executions:
+      jobs:
         index:
-          title: 任务（已完成）
+          title: 已完成
         scheduled:
-          title: 任务（计划中）
+          title: 计划中
         running:
-          title: 任务（运行中）
+          title: 运行中
+        discarded:
+          title: 已取消
         perform:
           title: 运行

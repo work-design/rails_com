@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         collection do
           get :scheduled
           get :running
+          get :discarded
         end
         member do
           put :discard
