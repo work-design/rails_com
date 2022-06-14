@@ -2,26 +2,25 @@ Rails.application.routes.draw do
 
   namespace :job, defaults: { business: 'job' } do
     namespace :panel, defaults: { namespace: 'panel' } do
-      root to: 'executions#index'
+      root to: 'jobs#index'
       resources :processes, only: [:index]
       resources :executions, only: [:index, :show, :destroy] do
+        member do
+          patch :perform
+        end
+      end
+      resources :jobs, only: [:index, :show, :destroy] do
         collection do
           get :scheduled
           get :running
         end
         member do
-          patch :perform
-        end
-      end
-
-      resources :jobs, only: [:index, :show] do
-        member do
           put :discard
           put :reschedule
           put :retry
+          patch :perform
         end
       end
-
       resources :cron_entries, only: [:index, :show] do
         member do
           post :enqueue

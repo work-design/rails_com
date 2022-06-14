@@ -1,0 +1,17 @@
+<td>
+  <p>
+    <%= link_to({ controller: 'jobs', action: 'show', id: model.active_job_id }) do %>
+      <%= model.id %>
+    <% end %>
+  </p>
+</td>
+<td>
+  <p><%= model.serialized_params['job_class'] %></p>
+  <p><%= model.queue_name %></p>
+  <p><time data-controller="time" data-format="yyyy-MM-dd HH:mm:ss"><%= model.finished_at.to_fs(:iso8601) %></time></p>
+</td>
+<td>
+<% model.serialized_params['arguments'].each do |arg| %>
+  <%= simple_format(arg) %>
+<% end %>
+</td>
