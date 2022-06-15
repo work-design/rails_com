@@ -1,7 +1,7 @@
 <tr id="tr_<%= model.id %>" data-controller="show" data-action="mouseenter->show#show mouseleave->show#hide">
   <%= yield %>
   <td>
-    <span data-show-target="item" style="visibility: hidden">
+    <div data-show-target="item" style="visibility: hidden">
       <%= link_to t('roled.panel.roles.show.title'), { action: 'show', id: model.id }, class: 'button is-small is-rounded is-light' %>
       <%= link_to({ action: 'edit', id: model.id }, data: { turbo_frame: 'modal' }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-light fa-pencil"></i>
@@ -9,6 +9,6 @@
       <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy') }, class: 'button is-small is-rounded is-light', form: { data: { turbo_confirm: t('.confirm') } }) do %>
         <i class="fa-light fa-trash"></i>
       <% end %>
-    </span>
+    </div>
   </td>
 </tr>
