@@ -119,7 +119,7 @@ module Com
         send "#{model_name}_params"
       else
         model = model_object || model_klass.new
-        p = params.fetch(model_name, {}).permit(*permit_keys)
+        p = params.fetch(model_name, {}).permit(*permit_keys, **permit_hash)
         p.merge! default_form_params if model.respond_to?(:organ_id)
         p
       end
@@ -132,6 +132,10 @@ module Com
       else
         model_klass.com_column_names
       end
+    end
+
+    def permit_hash
+      model_klass.com_column_hash
     end
 
   end
