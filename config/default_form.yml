@@ -42,6 +42,9 @@ search:
     submit: button is-primary
   wrap:
     input: field is-narrow
+inline:
+  origin:
+    input: input
 weui:
   <<: *defaults
   origin:

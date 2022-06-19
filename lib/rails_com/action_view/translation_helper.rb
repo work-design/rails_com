@@ -9,10 +9,15 @@ module RailsCom::ActionView
     end
 
     def default_keys(key)
-      [
-        "#{controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym,
-        "controller#{key}".to_sym
-      ]
+      keys = ["#{controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym]
+      super_class = controller.class.superclass
+
+      while super_class.name.demodulize == controller.class.name.demodulize && super_class.action_methods.include?(action_name)
+        keys << "#{super_class.controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym
+        super_class = super_class.superclass
+      end
+
+      keys << "controller#{key}".to_sym
     end
 
   end
