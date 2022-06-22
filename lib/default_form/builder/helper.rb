@@ -40,7 +40,7 @@ module DefaultForm::Builder
     def submit(value = nil, options = {})
       wrap_all_with(nil, options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
-        css[:all][:normal] = css.dig(:all, :submit) if css.dig(:all, :submit)
+        css[:all][:normal] = css.dig(:all, :submit)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
         offset(css.dig(:offset, :submit)) + submit_content
@@ -96,7 +96,7 @@ module DefaultForm::Builder
           html_options[:class] = css.dig(:origin, :select)
         end unless html_options.key?(:class)
         options[:include_blank] = I18n.t('helpers.select.prompt') if options[:include_blank] == true
-        css[:all][:normal] = css.dig(:all, :select) if css.dig(:all, :select)
+        css[:all][:normal] = css.dig(:all, :select)
 
         wrapping(:select, super, wrap: css[:wrap])
       end

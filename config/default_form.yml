@@ -32,6 +32,7 @@ default:
     required: field is-horizontal
     error: field is-horizontal
     submit: field is-horizontal
+    select: field is-horizontal
   error:
     input: input is-danger
 search:
