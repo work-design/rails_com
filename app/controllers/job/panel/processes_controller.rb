@@ -3,11 +3,7 @@ module Job::Panel
   class ProcessesController < BaseController
 
     def index
-      if GoodJob::Process.migrated?
-        @processes = GoodJob::Process.active.order(created_at: :desc)
-      else
-        @processes = GoodJob::Process.none
-      end
+      @processes = GoodJob::Process.active.order(created_at: :desc)
     end
 
   end
