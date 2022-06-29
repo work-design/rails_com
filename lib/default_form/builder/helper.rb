@@ -197,12 +197,9 @@ module DefaultForm::Builder
     # block 应返回  label_content + input_content 的内容
     def wrap_all_with(method, options)
       css = {}
-      css[:origin] = origin_css.merge options.delete(:origin) || {}
-      css[:wrap] = wrap_css.merge options.delete(:wrap) || {}
-      css[:all] = all_css.merge options.delete(:all) || {}
-      css[:error] = error_css.merge options.delete(:error) || {}
-      css[:before] = offset_css.merge options.delete(:before) || {}
-      css[:after] = after_css.merge options.delete(:after) || {}
+      @css.each do |key, _|
+        css[key].merge! options.delete(:origin) || {}
+      end
       inner_content = yield css
 
       wrapping_all inner_content, method, all: css[:all], required: options[:required]

@@ -6,8 +6,9 @@ require 'default_form/builder/helper'
 require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
+  KEYS = [:origin, :wrap, :all, :error, :before_wrap, :after_wrap, :before, :after]
   include DefaultForm::Builder::Helper
-  attr_reader :origin_css, :wrap_css, :all_css, :error_css, :before_wrap_css, :after_css, :on_options, :params
+  attr_reader :css, :on_options, :params
   delegate :content_tag, to: :@template
 
   def initialize(object_name, object, template, options)
@@ -23,12 +24,11 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
 
     options[:method] = settings[:method] if !options.key?(:method) && settings.key?(:method)
 
-    @origin_css = settings.fetch(:origin, {}).merge options.fetch(:origin, {})
-    @wrap_css = settings.fetch(:wrap, {}).merge options.fetch(:wrap, {})
-    @all_css = settings.fetch(:all, {}).merge options.fetch(:all, {})
-    @error_css = settings.fetch(:error, {}).merge options.fetch(:error, {})
-    @before_wrap_css = settings.fetch(:before_wrap, {}).merge options.fetch(:before_wrap, {})
-    @after_css = settings.fetch(:after, {}).merge options.fetch(:after, {})
+    @css = {}
+    KEYS.each do |key|
+      @css[key] = settings.fetch(key, {}).merge options.fetch(key, {})
+    end
+
     @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label
     @on_options.merge! options.slice(:placeholder, :label, :autocomplete, :autofilter)
     @params = template.params
