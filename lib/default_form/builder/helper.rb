@@ -70,6 +70,7 @@ module DefaultForm::Builder
     end
 
     def radio_button(method, tag_value, options = {})
+      options[:tag] = 'label'
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
@@ -198,7 +199,7 @@ module DefaultForm::Builder
       end
       inner_content = yield css
 
-      wrapping_all inner_content, method, all: css[:all], required: options[:required]
+      wrapping_all inner_content, method, all: css[:all], **options
     end
 
     INPUT_FIELDS.each do |selector|

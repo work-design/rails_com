@@ -20,7 +20,7 @@ module DefaultForm::Builder
           if index == 0
             inner = content_tag(tag, inner, class: css)
           else
-            inner = content_tag('div', inner, class: css)
+            inner = content_tag(tag, inner, class: css)
           end
         end
       end
@@ -28,7 +28,7 @@ module DefaultForm::Builder
       inner
     end
 
-    def wrapping_all(inner, method = nil, all: {}, required: false)
+    def wrapping_all(inner, method = nil, all: {}, tag: 'div', required: false, **options)
       if method && object_has_errors?(method)
         final_css = all[:error]
       elsif required
@@ -42,7 +42,7 @@ module DefaultForm::Builder
           help_text = default_help(method)
           inner += help_tag(help_text) if help_text
         end
-        content_tag(:div, inner, class: final_css)
+        content_tag(tag, inner, class: final_css)
       else
         inner
       end
@@ -59,7 +59,7 @@ module DefaultForm::Builder
 
     def before_origin(type, css)
       _css = css.dig(:before, type)
-      if _css&.match? /<>/
+      if _css&.match? /[<>]/
         _css.html_safe
       elsif _css.present?
         content_tag(:div, '', class: _css)
@@ -70,7 +70,7 @@ module DefaultForm::Builder
 
     def after_origin(type, css, text: '')
       _css = css.dig(:after, type)
-      if _css&.match?(/<>/)
+      if _css&.match?(/[<>]/)
         _css.html_safe
       elsif _css.present?
         content_tag(:div, text, class: _css)
