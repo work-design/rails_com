@@ -64,13 +64,14 @@ weui:
     input: weui-cell__bd
     select: weui-cell__bd
     checkbox: weui-cell__hd
-    radio: weui-cell weui-cell_active weui-cell_radio
+    radio: weui-cell__ft
   all:
     normal: weui-cell weui-cell_active
     error: weui-cell
     required: weui-cell
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
     checkbox: weui-cell weui-cell_active weui-cell_checkbox
+    radio: weui-cell weui-cell_active weui-cell_radio
     submit: weui-form__opr-area
   after:
     checkbox: <i class="weui-icon-checked"></i>

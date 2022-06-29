@@ -74,19 +74,15 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
-        r = options.delete(:label)
-        if r.is_a?(String)
-          label_text = label(method, r, class: nil)
-        else
-          label_text = ''
-        end
-        if css.dig(:after, :radio)
-          content = label_text + super + css.dig(:after, :radio).html_safe
-        else
-          content = label_text + super
-        end
 
-        before_wrap(:radio, css) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
+        #r = options.delete(:label)
+        # if r.is_a?(String)
+        #   label_text = label(method, r, class: nil)
+        # else
+        #   label_text = ''
+        # end
+        content = before_origin(:radio, css) + super + after_origin(:radio, css)
+        before_wrap(:radio, css, text: label_content(options.delete(:label))) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
       end
     end
 
