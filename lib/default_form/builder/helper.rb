@@ -30,8 +30,8 @@ module DefaultForm::Builder
     end
 
     def label(method, text = nil, options = {}, &block)
-      origin = (options.delete(:origin) || {}).with_defaults!(origin_css)
-      wrap = (options.delete(:wrap) || {}).with_defaults!(wrap_css)
+      origin = (options.delete(:origin) || {}).with_defaults!(@css[:origin])
+      wrap = (options.delete(:wrap) || {}).with_defaults!(@css[:wrap])
       options[:class] = origin[:label] unless options.key?(:class)
 
       wrapping(:label, super, wrap: wrap)
@@ -197,8 +197,8 @@ module DefaultForm::Builder
     # block 应返回  label_content + input_content 的内容
     def wrap_all_with(method, options)
       css = {}
-      @css.each do |key, _|
-        css[key].merge! options.delete(:origin) || {}
+      @css.each do |key, value|
+        css[key] = value.merge options.delete(key) || {}
       end
       inner_content = yield css
 

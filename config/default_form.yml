@@ -38,8 +38,8 @@ default:
     input: input is-danger
 search:
   <<: *searches
+  form: field is-horizontal
   origin:
-    form: field is-horizontal
     input: input
     submit: button is-primary
   wrap:
@@ -49,8 +49,8 @@ inline:
     input: input
 weui:
   <<: *defaults
+  form: weui-form
   origin:
-    form: weui-form
     label: weui-label
     input: weui-input
     textarea: weui-textarea
@@ -77,8 +77,8 @@ weui:
     radio: <i class="weui-icon-checked"></i>
 weui_search:
   <<: *searches
+  form: weui-cells weui-cells_form
   origin:
-    form: weui-cells weui-cells_form
     label: weui-label
     input: weui-input
     select: weui-select

@@ -8,7 +8,7 @@ require 'default_form/config'
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   KEYS = [:origin, :wrap, :all, :error, :before_wrap, :after_wrap, :before, :after]
   include DefaultForm::Builder::Helper
-  attr_reader :css, :on_options, :params
+  attr_reader :on_options, :params
   delegate :content_tag, to: :@template
 
   def initialize(object_name, object, template, options)
@@ -23,12 +23,10 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     settings.deep_symbolize_keys!
 
     options[:method] = settings[:method] if !options.key?(:method) && settings.key?(:method)
-
     @css = {}
     KEYS.each do |key|
       @css[key] = settings.fetch(key, {}).merge options.fetch(key, {})
     end
-
     @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label
     @on_options.merge! options.slice(:placeholder, :label, :autocomplete, :autofilter)
     @params = template.params
@@ -39,9 +37,9 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     end
 
     if options[:class].to_s.start_with?('new_', 'edit_')
-      options[:class] = origin_css[:form]
+      options[:class] = @css[:form]
     end
-    options[:class] = origin_css[:form] unless options.key?(:class)
+    options[:class] = @css[:form] unless options.key?(:class)
 
     super
   end

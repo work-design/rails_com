@@ -3,8 +3,8 @@
 module DefaultForm::Builder
   module Wrap
 
-    def label_content(options)
-      if options.is_a?(String)
+    def label_content(r)
+      if r.is_a?(String)
         content_tag(:span, r)
       elsif r.is_a?(Hash)
         content_tag(:span, r.delete(:text), **r)
@@ -59,7 +59,7 @@ module DefaultForm::Builder
 
     def before_origin(type, css)
       _css = css.dig(:before, type)
-      if _css.match? /<>/
+      if _css&.match? /<>/
         _css.html_safe
       elsif _css.present?
         content_tag(:div, '', class: _css)
@@ -70,7 +70,7 @@ module DefaultForm::Builder
 
     def after_origin(type, css, text: '')
       _css = css.dig(:after, type)
-      if _css.match? /<>/
+      if _css&.match?(/<>/)
         _css.html_safe
       elsif _css.present?
         content_tag(:div, text, class: _css)
