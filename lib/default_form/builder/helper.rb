@@ -51,13 +51,22 @@ module DefaultForm::Builder
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
+        css[:all][:normal] = css.dig(:all, :checkbox)
         r = options.delete(:label)
-        if r.present?
+        if r.is_a?(String)
           label_text = content_tag(:span, r)
+        elsif r.is_a?(Hash)
+          label_text = content_tag(:span, r.delete(:text), r)
         else
           label_text = ''
         end
-        checkbox_content = wrapping(:checkbox, super + label_text, wrap: css[:wrap], tag: 'label')
+        Rails.logger.debug css
+        if css.dig(:after, :checkbox)
+          content = super + css.dig(:after, :checkbox).html_safe + label_text
+        else
+          content = super + label_text
+        end
+        checkbox_content = wrapping(:checkbox, content, wrap: css[:wrap], tag: 'label')
 
         offset(css.dig(:offset, :submit)) + checkbox_content
       end
@@ -193,6 +202,7 @@ module DefaultForm::Builder
       css[:all] = all_css.merge options.delete(:all) || {}
       css[:error] = error_css.merge options.delete(:error) || {}
       css[:offset] = offset_css.merge options.delete(:offset) || {}
+      css[:after] = after_css.merge options.delete(:after) || {}
       inner_content = yield css
 
       wrapping_all inner_content, method, all: css[:all], required: options[:required]

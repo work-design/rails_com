@@ -33,6 +33,7 @@ default:
     error: field is-horizontal
     submit: field is-horizontal
     select: field is-horizontal
+    checkbox: field is-horizontal
   error:
     input: input is-danger
 search:
@@ -56,16 +57,21 @@ weui:
     select: weui-select
     muilti_select: weui-select
     submit: weui-btn weui-btn_primary
+    checkbox: weui-check
   wrap:
     label: weui-cell__hd
     input: weui-cell__bd
     select: weui-cell__bd
+    checkbox: weui-cell weui-cell_active weui-cell_checkbox
   all:
     normal: weui-cell weui-cell_active
     error: weui-cell
     required: weui-cell
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
+    checkbox:
     submit: weui-form__opr-area
+  after:
+    checkbox: <i class="weui-icon-checked"></i>
 weui_search:
   <<: *searches
   origin:
