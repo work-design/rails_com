@@ -84,12 +84,17 @@ module DefaultForm::Builder
         css[:all][:normal] = css.dig(:all, :radio)
         r = options.delete(:label)
         if r.is_a?(String)
-          value_content = label(method, tag_value, class: nil)
+          label_text = label(method, r, class: nil)
         else
-          value_content = ''
+          label_text = ''
+        end
+        if css.dig(:after, :radio)
+          content = super + css.dig(:after, :radio).html_safe + label_text
+        else
+          content = super + label_text
         end
 
-        wrapping(:radio, super + value_content, wrap: css[:wrap])
+        wrapping(:radio, content, wrap: css[:wrap])
       end
     end
 
