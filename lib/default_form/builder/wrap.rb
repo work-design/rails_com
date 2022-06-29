@@ -3,13 +3,17 @@
 module DefaultForm::Builder
   module Wrap
 
-    def label_content(r)
+    def label_content(r, method = nil, **options)
       if r.is_a?(String)
-        content_tag(:span, r)
+        if method
+          label method, r, options.slice(:origin, :wrap)
+        else
+          content_tag(:span, r)
+        end
       elsif r.is_a?(Hash)
         content_tag(:span, r.delete(:text), **r)
       else
-        ''
+        ''.html_safe
       end
     end
 

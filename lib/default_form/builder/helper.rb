@@ -75,13 +75,7 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
-
-        #r = options.delete(:label)
-        # if r.is_a?(String)
-        #   label_text = label(method, r, class: nil)
-        # else
-        #   label_text = ''
-        # end
+        
         content = before_origin(:radio, css) + super + after_origin(:radio, css)
         before_wrap(:radio, css, text: label_content(options.delete(:label))) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
       end
@@ -179,15 +173,10 @@ module DefaultForm::Builder
     def wrap_with(method, options)
       wrap_all_with(method, options) do |css|
         default_options(method, options)
-        if options[:label]
-          label_content = label method, options.delete(:label), options.slice(:origin, :wrap)
-        else
-          options.delete(:label)
-          label_content = ''.html_safe
-        end
+        _label = label_content options.delete(:label), method, **options
         input_content = yield css
 
-        label_content + before_wrap(:input, css) + input_content + after_wrap(:input, css)
+        _label + before_wrap(:input, css) + input_content + after_wrap(:input, css)
       end
     end
 
