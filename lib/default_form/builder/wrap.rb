@@ -32,7 +32,7 @@ module DefaultForm::Builder
       inner
     end
 
-    def wrapping_all(inner, method = nil, all: {}, tag: 'div', required: false, **options)
+    def wrapping_all(inner, method = nil, all: {}, tag: 'div', required: false, **)
       if method && object_has_errors?(method)
         final_css = all[:error]
       elsif required
@@ -52,41 +52,41 @@ module DefaultForm::Builder
       end
     end
 
-    def before_wrap(type, css, text: '')
+    def before_wrap(type, css, tag: 'div', text: '')
       _css = css.dig(:before_wrap, type)
       if _css.present?
-        content_tag(:div, text, class: _css)
+        content_tag(tag, text, class: _css)
       else
         text.html_safe
       end
     end
 
-    def before_origin(type, css)
+    def before_origin(type, css, tag: 'div', text: '')
       _css = css.dig(:before, type)
       if _css&.match? /[<>]/
         _css.html_safe
       elsif _css.present?
-        content_tag(:div, '', class: _css)
-      else
-        ''.html_safe
-      end
-    end
-
-    def after_origin(type, css, text: '')
-      _css = css.dig(:after, type)
-      if _css&.match?(/[<>]/)
-        _css.html_safe
-      elsif _css.present?
-        content_tag(:div, text, class: _css)
+        content_tag(tag, text, class: _css)
       else
         text.html_safe
       end
     end
 
-    def after_wrap(type, css, text: '')
+    def after_origin(type, css, tag: 'div', text: '')
+      _css = css.dig(:after, type)
+      if _css&.match?(/[<>]/)
+        _css.html_safe
+      elsif _css.present?
+        content_tag(tag, text, class: _css)
+      else
+        text.html_safe
+      end
+    end
+
+    def after_wrap(type, css, tag: 'div', text: '')
       _css = css.dig(:after_wrap, type)
       if _css.present?
-        content_tag(:div, text, class: _css)
+        content_tag(tag, text, class: _css)
       else
         text.html_safe
       end

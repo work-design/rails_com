@@ -70,12 +70,11 @@ module DefaultForm::Builder
     end
 
     def radio_button(method, tag_value, options = {})
-      options[:tag] = 'label'
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
-        
+
         content = before_origin(:radio, css) + super + after_origin(:radio, css)
         before_wrap(:radio, css, text: label_content(options.delete(:label))) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
       end
