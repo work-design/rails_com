@@ -81,13 +81,14 @@ module DefaultForm::Builder
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
-        css[:all][:normal] = css.dig(:all, :checkbox)
+        css[:all][:normal] = css.dig(:all, :radio)
         r = options.delete(:label)
         if r.is_a?(String)
           value_content = label(method, tag_value, class: nil)
         else
           value_content = ''
         end
+
         wrapping(:radio, super + value_content, wrap: css[:wrap])
       end
     end
