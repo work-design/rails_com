@@ -68,7 +68,7 @@ weui:
     error: weui-cell
     required: weui-cell
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
-    checkbox:
+    checkbox: weui-cells_checkbox
     submit: weui-form__opr-area
   after:
     checkbox: <i class="weui-icon-checked"></i>
