@@ -43,7 +43,11 @@ module DefaultForm::Builder
         css[:all][:normal] = css.dig(:all, :submit)
 
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
-        offset(css.dig(:offset, :submit)) + submit_content
+        if css.dig(:before_wrap, :submit)
+          content_tag :div, '', class: css.dig(:before_wrap, :submit) + submit_content
+        else
+          submit_content
+        end
       end
     end
 
@@ -52,22 +56,10 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :checkbox)
-        r = options.delete(:label)
-        if r.is_a?(String)
-          label_text = content_tag(:span, r)
-        elsif r.is_a?(Hash)
-          label_text = content_tag(:span, r.delete(:text), r)
-        else
-          label_text = ''
-        end
-        if css.dig(:after, :checkbox)
-          content = super + css.dig(:after, :checkbox).html_safe + label_text
-        else
-          content = super + label_text
-        end
-        checkbox_content = wrapping(:checkbox, content, wrap: css[:wrap], tag: 'label')
 
-        offset(css.dig(:offset, :submit)) + checkbox_content
+        content = before(:checkbox, css) + super + after(:checkbox, css)
+        checkbox_content = wrapping(:checkbox, content, wrap: css[:wrap], tag: 'label')
+        before_wrap(:checkbox, css) + checkbox_content + after_wrap(:checkbox, css, text: label_content(options.delete(:label)))
       end
     end
 
@@ -89,12 +81,12 @@ module DefaultForm::Builder
           label_text = ''
         end
         if css.dig(:after, :radio)
-          content = super + css.dig(:after, :radio).html_safe + label_text
+          content = label_text + super + css.dig(:after, :radio).html_safe
         else
-          content = super + label_text
+          content = label_text + super
         end
 
-        wrapping(:radio, content, wrap: css[:wrap])
+        before_wrap(:radio, css) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
       end
     end
 
@@ -198,7 +190,7 @@ module DefaultForm::Builder
         end
         input_content = yield css
 
-        label_content + input_content
+        label_content + before_wrap(:input, css) + input_content + after_wrap(:input, css)
       end
     end
 
@@ -209,7 +201,7 @@ module DefaultForm::Builder
       css[:wrap] = wrap_css.merge options.delete(:wrap) || {}
       css[:all] = all_css.merge options.delete(:all) || {}
       css[:error] = error_css.merge options.delete(:error) || {}
-      css[:offset] = offset_css.merge options.delete(:offset) || {}
+      css[:before] = offset_css.merge options.delete(:before) || {}
       css[:after] = after_css.merge options.delete(:after) || {}
       inner_content = yield css
 

@@ -9,7 +9,6 @@ default:
   <<: *defaults
   origin:
     label: label
-    offset: field-label
     input: input
     textarea: field textarea
     submit: button is-primary
@@ -17,9 +16,10 @@ default:
     inline_checkbox_checked: checkbox
     inline_radio: radio
     inline_radio_checked: radio
-  offset:
+  before_wrap:
     submit: field-label
     checkboxes: field-label
+    checkbox: field-label
   wrap:
     label: field-label is-normal
     input: field-body > field > control
@@ -63,14 +63,14 @@ weui:
     label: weui-cell__hd
     input: weui-cell__bd
     select: weui-cell__bd
-    checkbox: weui-cell weui-cell_active weui-cell_checkbox
+    checkbox: weui-cell__hd
     radio: weui-cell weui-cell_active weui-cell_radio
   all:
     normal: weui-cell weui-cell_active
     error: weui-cell
     required: weui-cell
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
-    checkbox: weui-cells_checkbox
+    checkbox: weui-cell weui-cell_active weui-cell_checkbox
     submit: weui-form__opr-area
   after:
     checkbox: <i class="weui-icon-checked"></i>

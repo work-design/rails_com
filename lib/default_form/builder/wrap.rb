@@ -3,6 +3,16 @@
 module DefaultForm::Builder
   module Wrap
 
+    def label_content(options)
+      if options.is_a?(String)
+        content_tag(:span, r)
+      elsif r.is_a?(Hash)
+        content_tag(:span, r.delete(:text), **r)
+      else
+        ''
+      end
+    end
+
     def wrapping(type, inner, tag: 'div', wrap: {})
       if wrap[type].present?
         css_ary = wrap[type].split(' > ')
@@ -38,11 +48,43 @@ module DefaultForm::Builder
       end
     end
 
-    def offset(css)
-      if css.present?
-        content_tag(:div, '', class: css)
+    def before_wrap(type, css, text: '')
+      _css = css.dig(:before_wrap, type)
+      if _css.present?
+        content_tag(:div, text, class: _css)
+      else
+        text.html_safe
+      end
+    end
+
+    def before(type, css)
+      _css = css.dig(:before, type)
+      if _css.match? /<>/
+        _css.html_safe
+      elsif _css.present?
+        content_tag(:div, '', class: _css)
       else
         ''.html_safe
+      end
+    end
+
+    def after(type, css, text: '')
+      _css = css.dig(:after, type)
+      if _css.match? /<>/
+        _css.html_safe
+      elsif _css.present?
+        content_tag(:div, text, class: _css)
+      else
+        text.html_safe
+      end
+    end
+
+    def after_wrap(type, css, text: '')
+      _css = css.dig(:after_wrap, type)
+      if _css.present?
+        content_tag(:div, text, class: _css)
+      else
+        text.html_safe
       end
     end
 
