@@ -57,7 +57,7 @@ module DefaultForm::Builder
       end
     end
 
-    def before(type, css)
+    def before_origin(type, css)
       _css = css.dig(:before, type)
       if _css.match? /<>/
         _css.html_safe
@@ -68,7 +68,7 @@ module DefaultForm::Builder
       end
     end
 
-    def after(type, css, text: '')
+    def after_origin(type, css, text: '')
       _css = css.dig(:after, type)
       if _css.match? /<>/
         _css.html_safe

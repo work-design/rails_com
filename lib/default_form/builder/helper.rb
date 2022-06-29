@@ -57,7 +57,7 @@ module DefaultForm::Builder
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :checkbox)
 
-        content = before(:checkbox, css) + super + after(:checkbox, css)
+        content = before_origin(:checkbox, css) + super + after_origin(:checkbox, css)
         checkbox_content = wrapping(:checkbox, content, wrap: css[:wrap], tag: 'label')
         before_wrap(:checkbox, css) + checkbox_content + after_wrap(:checkbox, css, text: label_content(options.delete(:label)))
       end
