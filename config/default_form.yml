@@ -58,6 +58,7 @@ weui:
     muilti_select: weui-select
     submit: weui-btn weui-btn_primary
     checkbox: weui-check
+    radio: weui-check
   wrap:
     label: weui-cell__hd
     input: weui-cell__bd
@@ -72,6 +73,7 @@ weui:
     submit: weui-form__opr-area
   after:
     checkbox: <i class="weui-icon-checked"></i>
+    radio: <i class="weui-icon-checked"></i>
 weui_search:
   <<: *searches
   origin:

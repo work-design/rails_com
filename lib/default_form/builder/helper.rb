@@ -60,7 +60,6 @@ module DefaultForm::Builder
         else
           label_text = ''
         end
-        Rails.logger.debug css
         if css.dig(:after, :checkbox)
           content = super + css.dig(:after, :checkbox).html_safe + label_text
         else
@@ -79,9 +78,12 @@ module DefaultForm::Builder
     end
 
     def radio_button(method, tag_value, options = {})
-      wrap_with(method, options) do |css|
+      wrap_all_with(method, options) do |css|
+        default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
-        if options[:label]
+        css[:all][:normal] = css.dig(:all, :checkbox)
+        r = options.delete(:label)
+        if r.is_a?(String)
           value_content = label(method, tag_value, class: nil)
         else
           value_content = ''
