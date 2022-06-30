@@ -185,9 +185,15 @@ module DefaultForm::Builder
     def wrap_with(method, options)
       wrap_all_with(method, options) do |css|
         default_options(method, options)
+        if options[:label]
+          label_content = label method, options.delete(:label), options.slice(:origin, :wrap)
+        else
+          options.delete(:label)
+          label_content = ''.html_safe
+        end
         input_content = yield css
 
-        label(method, options.delete(:label), options.slice(:origin, :wrap)) + before_wrap(:input, css) + input_content + after_wrap(:input, css)
+        label_content + before_wrap(:input, css) + input_content + after_wrap(:input, css)
       end
     end
 
