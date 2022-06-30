@@ -85,10 +85,10 @@ module DefaultForm::Builder
         wrap_content = wrapping(:radio, content, wrap: css[:wrap])
         label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
 
-        if options[:label_position] == 'after'
-          before_wrap(:radio, css) + wrap_content + label_content
-        else
+        if options[:label_position] == 'before'
           label_content + wrap_content + after_wrap(:radio, css)
+        else
+          before_wrap(:radio, css) + wrap_content + label_content
         end
       end
     end
