@@ -6,7 +6,8 @@ require 'default_form/builder/helper'
 require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
-  KEYS = [:origin, :wrap, :all, :error, :before_wrap, :after_wrap, :before, :after]
+  CSS_KEYS = [:origin, :wrap, :all, :error, :before_wrap, :after_wrap, :before, :after]
+  ON_KEYS = [:label, :placeholder, :autocomplete, :autofilter]
   include DefaultForm::Builder::Helper
   attr_reader :on_options, :params
   delegate :content_tag, to: :@template
@@ -24,11 +25,11 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
 
     options[:method] = settings[:method] if !options.key?(:method) && settings.key?(:method)
     @css = {}
-    KEYS.each do |key|
+    CSS_KEYS.each do |key|
       @css[key] = settings.fetch(key, {}).merge options.fetch(key, {})
     end
-    @on_options = settings.extract! :autocomplete, :autofilter, :placeholder, :label
-    @on_options.merge! options.slice(:placeholder, :label, :autocomplete, :autofilter)
+    @on_options = settings.extract! *ON_KEYS
+    @on_options.merge! options.slice(*ON_KEYS)
     @params = template.params
 
     _values = Hash(params.permit(object_name => {})[object_name])

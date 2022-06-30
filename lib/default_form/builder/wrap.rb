@@ -3,20 +3,6 @@
 module DefaultForm::Builder
   module Wrap
 
-    def label_content(r, method = nil, **options)
-      if r.is_a?(String)
-        if method
-          label method, r, options.slice(:origin, :wrap)
-        else
-          content_tag(:span, r)
-        end
-      elsif r.is_a?(Hash)
-        content_tag(:span, r.delete(:text), **r)
-      else
-        ''.html_safe
-      end
-    end
-
     def wrapping(type, inner, tag: 'div', wrap: {})
       if wrap[type].present?
         css_ary = wrap[type].split(' > ')

@@ -52,14 +52,20 @@ module DefaultForm::Builder
     end
 
     def check_box(method, options = {}, checked_value = '1', unchecked_value = '0')
+      options[:tag] ||= 'label'
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :checkbox)
-
         content = before_origin(:checkbox, css) + super + after_origin(:checkbox, css)
-        checkbox_content = wrapping(:checkbox, content, wrap: css[:wrap], tag: 'label')
-        before_wrap(:checkbox, css) + checkbox_content + after_wrap(:checkbox, css, text: label_content(options.delete(:label)))
+        wrap_content = wrapping(:checkbox, content, wrap: css[:wrap])
+        label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+
+        if options[:label_position] == 'after'
+          before_wrap(:checkbox, css) + wrap_content + label_content
+        else
+          label_content + wrap_content + after_wrap(:checkbox, css)
+        end
       end
     end
 
@@ -70,13 +76,20 @@ module DefaultForm::Builder
     end
 
     def radio_button(method, tag_value, options = {})
+      options[:tag] ||= 'label'
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
-
         content = before_origin(:radio, css) + super + after_origin(:radio, css)
-        before_wrap(:radio, css, text: label_content(options.delete(:label))) + wrapping(:radio, content, wrap: css[:wrap]) + after_wrap(:checkbox, css)
+        wrap_content = wrapping(:radio, content, wrap: css[:wrap])
+        label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+
+        if options[:label_position] == 'after'
+          before_wrap(:radio, css) + wrap_content + label_content
+        else
+          label_content + wrap_content + after_wrap(:radio, css)
+        end
       end
     end
 
@@ -172,10 +185,9 @@ module DefaultForm::Builder
     def wrap_with(method, options)
       wrap_all_with(method, options) do |css|
         default_options(method, options)
-        _label = label_content options.delete(:label), method, **options
         input_content = yield css
 
-        _label + before_wrap(:input, css) + input_content + after_wrap(:input, css)
+        label(method, options.delete(:label), options.slice(:origin, :wrap)) + before_wrap(:input, css) + input_content + after_wrap(:input, css)
       end
     end
 
