@@ -41,10 +41,10 @@ module DefaultForm::Builder
       wrap_all_with(nil, options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :submit)
-
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
+
         if css.dig(:before_wrap, :submit)
-          content_tag :div, '', class: css.dig(:before_wrap, :submit) + submit_content
+          content_tag(:div, '', class: css.dig(:before_wrap, :submit)) + submit_content
         else
           submit_content
         end
