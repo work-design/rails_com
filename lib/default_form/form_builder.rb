@@ -28,7 +28,7 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     CSS_KEYS.each do |key|
       @css[key] = settings.fetch(key, {}).merge options.fetch(key, {})
     end
-    form_css = settings.fetch(:form, nil)
+    form_css = settings.fetch(:form, nil) || options.fetch(:form, nil)
     @on_options = settings.extract! *ON_KEYS
     @on_options.merge! options.slice(*ON_KEYS)
     @params = template.params
