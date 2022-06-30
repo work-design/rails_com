@@ -28,6 +28,7 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     CSS_KEYS.each do |key|
       @css[key] = settings.fetch(key, {}).merge options.fetch(key, {})
     end
+    form_css = settings.fetch(:form, {}).merge options.fetch(:form, {})
     @on_options = settings.extract! *ON_KEYS
     @on_options.merge! options.slice(*ON_KEYS)
     @params = template.params
@@ -38,9 +39,9 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     end
 
     if options[:class].to_s.start_with?('new_', 'edit_')
-      options[:class] = @css[:form]
+      options[:class] = form_css
     end
-    options[:class] = @css[:form] unless options.key?(:class)
+    options[:class] = form_css unless options.key?(:class)
 
     super
   end
