@@ -13,7 +13,7 @@ module RailsCom::ActionController
       debug "  Sessions: { #{raw_headers['rack.session'].to_h.map(&->(k,v){ "\e[33m#{k}:\e[0m '#{v}'" }).join(', ')} }" unless raw_headers['rack.session'].blank?
       debug "  Cookies: #{cookies}" unless cookies.blank?
       debug "  Ancestors: #{event.payload[:request].controller_class.ancestors.yield_self { |i| i.slice(0..(i.index(ActionController::Base) || i.index(ActionController::API))) }}"
-      debug "  Prefixes:  #{event.payload[:request].controller_instance.send(:_prefixes)}"
+      debug "  Prefixes: #{event.payload[:request].controller_instance.send(:_prefixes)}"
     end
 
     def process_action(event)
