@@ -59,7 +59,11 @@ module DefaultForm::Builder
         css[:all][:normal] = css.dig(:all, :checkbox)
         content = before_origin(:checkbox, css) + super + after_origin(:checkbox, css)
         wrap_content = wrapping(:checkbox, content, wrap: css[:wrap])
-        label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+        if options[:label]
+          label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+        else
+          label_content = ''
+        end
 
         if options[:label_position] == 'before'
           label_content + wrap_content + after_wrap(:checkbox, css)
@@ -83,7 +87,11 @@ module DefaultForm::Builder
         css[:all][:normal] = css.dig(:all, :radio)
         content = before_origin(:radio, css) + super + after_origin(:radio, css)
         wrap_content = wrapping(:radio, content, wrap: css[:wrap])
-        label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+        if options[:label]
+          label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
+        else
+          label_content = ''
+        end
 
         if options[:label_position] == 'before'
           label_content + wrap_content + after_wrap(:radio, css)
