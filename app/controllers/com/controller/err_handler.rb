@@ -9,11 +9,11 @@ module Com
     end
 
     def record_not_save(exception)
-      render 'err', locals: { target: exception.record, exception: exception, message: exception.message }, status: :unprocessable_entity
+      render 'err', layout: 'raw', locals: { target: exception.record, exception: exception, message: exception.message }, status: :unprocessable_entity
     end
 
     def record_not_found(exception)
-      render 'err', locals: { exception: exception, message: exception.message }, status: :not_found
+      render 'err', layout: 'raw', locals: { exception: exception, message: exception.message }, status: :not_found
     end
 
     def disposable_auth_fail(exception)
