@@ -204,7 +204,6 @@ Rails.application.routes.draw do
           post :overview
           post :namespaces
           post :controllers
-          post :actions
           patch :business_on
           patch :business_off
           patch :namespace_on
