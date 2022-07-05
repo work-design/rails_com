@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 84a81b574ccc39cdcf52c547fe41b8fd3e24784f
+  revision: 2dda5510b159c09209dcdd0e89ad0c752455a6c6
   specs:
     rails_extend (1.0.1)
       rails (>= 5.0)
@@ -179,8 +179,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     pg (1.4.1)
     propshaft (0.6.4)
