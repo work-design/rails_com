@@ -1,5 +1,10 @@
-<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu">
-  <%= content_tag :div, class: 'menu-list' do %>
+<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu empty">
+  <a class="menu-label" data-action="menu#toggle">
+    <i class="fa-solid fa-cogs fa-fw"></i>
+    <span><%= t('com.panel.title') %></span>
+    <i class="fa-solid dropdown"></i>
+  </a>
+  <div class="menu-list" data-empty-target="content">
     <%= link_to t('com.panel.blob_defaults.index.title'), { controller: 'com/panel/blob_defaults' }, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
     <%= link_to t('com.panel.blobs.index.title'), { controller: 'com/panel/blobs' }, class: active_helper(controllers: 'blobs', active: 'is-active') %>
     <%= link_to t('com.panel.attachments.index.title'), { controller: 'com/panel/attachments' }, class: active_helper(controllers: 'attachments', active: 'is-active') %>
@@ -9,11 +14,6 @@
     <%= link_to t('com.panel.meta_businesses.index.title'), { controller: 'com/panel/meta_businesses' }, class: active_helper(controllers: ['meta_businesses', 'meta_namespaces'], active: 'is-active') %>
     <%= link_to t('com.panel.meta_models.index.title'), { controller: 'com/panel/meta_models' }, class: active_helper(controllers: 'meta_models', active: 'is-active') %>
     <%= link_to t('com.panel.errs.index.title'), { controller: 'com/panel/errs' }, class: active_helper(controllers: 'errs', active: 'is-active') %>
-    <%= link_to t('com.panel.csps.index.title'), { controller: 'com/panel/csps' }, class: active_helper(controllers: 'csps', active: 'is-active') -%>
-  <% end %>
-  <a class="menu-label" data-action="menu#toggle">
-    <i class="fa-solid fa-cogs fa-fw"></i>
-    <span><%= t('com.panel.title') %></span>
-    <i class="fa-solid dropdown"></i>
-  </a>
+    <%= link_to t('com.panel.csps.index.title'), { controller: 'com/panel/csps' }, class: active_helper(controllers: 'csps', active: 'is-active') %>
+  </div>
 </div>

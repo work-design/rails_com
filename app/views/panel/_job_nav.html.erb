@@ -4,7 +4,7 @@
     <span><%= t('job.panel.title') %></span>
     <i class="fa-solid dropdown"></i>
   </a>
-  <div class="menu-list">
+  <div class="menu-list" data-empty-target="content">
     <%= link_to t('job.panel.processes.index.title'), { controller: 'job/panel/processes' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
     <%= link_to t('job.panel.jobs.index.title'), { controller: 'job/panel/jobs' }, class: active_helper(controllers: 'jobs', active: 'is-active') %>
   </div>
