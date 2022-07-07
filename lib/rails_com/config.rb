@@ -17,17 +17,8 @@ module RailsCom #:nodoc:
     config.github_hmac_key = 'must_change_this'
     config.default_error_message = '服务端发生错误'
     config.acme_url = 'https://acme-v02.api.letsencrypt.org/directory'  # 用于 SSL 证书自动签发服务
-  end
-
-end
-
-module RailsRole
-  include ActiveSupport::Configurable
-
-  configure do |config|
     config.default_admin_accounts = []
     config.debug = false
     config.default_return_path = '/board'
   end
-
 end

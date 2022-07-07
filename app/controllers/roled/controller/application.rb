@@ -17,7 +17,7 @@ module Roled
         return
       elsif current_organ.nil?
         return
-      elsif request.path == RailsRole.config.default_return_path
+      elsif request.path == RailsCom.config.default_return_path
         return
       end
 
@@ -51,7 +51,7 @@ module Roled
       elsif request.format.json?
         raise ActionController::ForbiddenError
       else
-        redirect_to RailsRole.config.default_return_path, alert: message
+        redirect_to RailsCom.config.default_return_path, alert: message
       end
     end
 

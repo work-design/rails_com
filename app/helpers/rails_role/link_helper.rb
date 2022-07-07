@@ -69,7 +69,7 @@ module RailsRole::LinkHelper
     end
 
     result = organ_permitted && user_permitted
-    if RailsRole.config.debug || !result
+    if RailsCom.config.debug || !result
       logger.debug "\e[35m  Link To Options: #{_options}  \e[0m"
       logger.debug "\e[35m  Link To Meta Params: #{meta_params}  \e[0m"
       logger.debug "\e[35m  Link To Extra Params: #{extra_params}  \e[0m"

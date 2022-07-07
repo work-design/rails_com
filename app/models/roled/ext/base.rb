@@ -14,9 +14,9 @@ module Roled
     end
 
     def admin?
-      if respond_to?(:account_identities) && (RailsRole.config.default_admin_accounts & account_identities).length > 0
+      if respond_to?(:account_identities) && (RailsCom.config.default_admin_accounts & account_identities).length > 0
         true
-      elsif respond_to?(:identity) && RailsRole.config.default_admin_accounts.include?(identity)
+      elsif respond_to?(:identity) && RailsCom.config.default_admin_accounts.include?(identity)
         true
       elsif method(:admin?).super_method
         super
@@ -34,7 +34,7 @@ module Roled
 
     def has_role?(**options)
       if respond_to?(:admin?) && admin?
-        logger.debug "\e[35m  #{class_name}_#{id} is admin!  \e[0m" if RailsRole.config.debug
+        logger.debug "\e[35m  #{class_name}_#{id} is admin!  \e[0m" if RailsCom.config.debug
         return true
       end
 
@@ -44,7 +44,7 @@ module Roled
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
       return false if opts.blank?
       r = role_hash.dig(*opts)
-      logger.debug "\e[35m  #{class_name}_#{id} has role: #{opts}, #{r}  \e[0m" if RailsRole.config.debug
+      logger.debug "\e[35m  #{class_name}_#{id} has role: #{opts}, #{r}  \e[0m" if RailsCom.config.debug
       r
     end
 
