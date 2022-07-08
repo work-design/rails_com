@@ -9,8 +9,6 @@ one:
   domain: MyString
   wildcard: false
   url: MyString
-  dns_valid: false
-  file_valid: false
 two:
   acme_order: one
   identifier: MyString
@@ -22,5 +20,3 @@ two:
   domain: MyString
   wildcard: false
   url: MyString
-  dns_valid: false
-  file_valid: false
