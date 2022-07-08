@@ -29,19 +29,19 @@ module RailsCom::Application
 
   def set_variant
     variant = []
-    if request.user_agent.match? /iPad|iPhone|iPod|Android/
+    if request.user_agent&.match? /iPad|iPhone|iPod|Android/
       variant << :phone
     end
 
-    if request.user_agent.match? /MicroMessenger|MacWechat/  # 包含 mini program
+    if request.user_agent&.match? /MicroMessenger|MacWechat/  # 包含 mini program
       variant += [:wechat, :phone]
     end
 
-    if request.user_agent.match? /miniProgram/
+    if request.user_agent&.match? /miniProgram/
       variant << :mini_program
     end
 
-    if request.user_agent.match? /wxwork/
+    if request.user_agent&.match? /wxwork/
       variant << :work_wechat
     end
 

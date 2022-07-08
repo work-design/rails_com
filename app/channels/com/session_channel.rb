@@ -2,7 +2,7 @@ module Com
   class SessionChannel < ApplicationCable::Channel
 
     def subscribed
-      if verified_receiver.is_a?(Auth::AuthorizedToken)
+      if defined?(Auth::AuthorizedToken) && verified_receiver.is_a?(Auth::AuthorizedToken)
         stream_from "com:session:#{verified_receiver.identity}"
       else
         stream_from "com:session:#{verified_receiver}"
