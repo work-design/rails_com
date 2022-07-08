@@ -14,8 +14,8 @@ class ActiveSupport::TestCase
   #parallelize(workers: :number_of_processors)
 
   def before_all
-    Roled::Busyness.sync
-    Roled::NameSpace.sync
-    Roled::Govern.sync
+    Com::MetaBusiness.sync
+    Com::MetaNamespace.sync
+    Com::MetaController.sync
   end
 end

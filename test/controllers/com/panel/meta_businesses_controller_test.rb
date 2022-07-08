@@ -4,6 +4,7 @@ module Com
 
     setup do
       @meta_business = MetaBusiness.first
+      @meta_namespace = MetaNamespace.first
     end
 
     test 'index ok' do

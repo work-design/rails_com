@@ -3,7 +3,7 @@ module Com
   class Panel::InboundEmailsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
-      @inbound_email = ActionMailbox::InboundEmail.create_and_extract_message_id! file_fixture('welcome.eml').read, status: :processing
+      @inbound_email = ActionMailbox::InboundEmail.create_and_extract_message_id! file_fixture('welcome.eml').read
     end
 
     test 'index ok' do
