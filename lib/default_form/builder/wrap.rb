@@ -54,7 +54,7 @@ module DefaultForm::Builder
       elsif _css.present?
         content_tag(tag, text, class: _css)
       else
-        text.html_safe
+        text&.html_safe
       end
     end
 
@@ -65,7 +65,7 @@ module DefaultForm::Builder
       elsif _css.present?
         content_tag(tag, text, class: _css)
       else
-        text.html_safe
+        text&.html_safe
       end
     end
 
