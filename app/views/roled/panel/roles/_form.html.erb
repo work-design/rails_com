@@ -1,4 +1,4 @@
 <%= f.text_field :name %>
 <%= f.text_area :description %>
 <%= f.select :type, options_for_select(Roled::Role.options_i18n(:type), @role.type) %>
-<%= f.check_box :visible %>
+<%= f.check_box :visible, tag: 'div', after: { checkbox: 'x' } %>

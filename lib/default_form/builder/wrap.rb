@@ -47,9 +47,9 @@ module DefaultForm::Builder
       end
     end
 
-    def before_origin(type, css, tag: 'div', text: '')
+    def before_origin(type, css, tag: 'span', text: '')
       _css = css.dig(:before, type)
-      if _css&.match? /[<>]/
+      if _css.is_a?(String) && _css.match?(/[<>]/)
         _css.html_safe
       elsif _css.present?
         content_tag(tag, text, class: _css)
@@ -58,9 +58,9 @@ module DefaultForm::Builder
       end
     end
 
-    def after_origin(type, css, tag: 'div', text: '')
+    def after_origin(type, css, tag: 'span', text: '')
       _css = css.dig(:after, type)
-      if _css&.match?(/[<>]/)
+      if _css.is_a?(String) && _css.match?(/[<>]/)
         _css.html_safe
       elsif _css.present?
         content_tag(tag, text, class: _css)
