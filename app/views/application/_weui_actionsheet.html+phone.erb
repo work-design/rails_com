@@ -2,7 +2,7 @@
   <div data-weui-actionsheet-target="mask" data-action="click->weui-actionsheet#close" class="weui-mask" style="opacity: 0; display: none"></div>
   <div class="weui-actionsheet" data-weui-actionsheet-target="sheet">
     <div class="weui-actionsheet__menu" id="actionsheet_menu">
-      <%= render 'actions' if defined? model %>
+      <%= yield %>
     </div>
     <div class="weui-actionsheet__action">
       <div class="weui-actionsheet__cell" data-action="click->weui-actionsheet#close">取消</div>
