@@ -1,7 +1,10 @@
-<%= turbo_frame_tagged 'modal' do %>
-<% if defined? model %>
-  <%= render partial: 'show', locals: { model: model } %>
-<% else %>
-  <%= render partial: 'show' %>
-<% end %>
-<% end %>
+<table class="table is-fullwidth is-hoverable is-borderless is-striped as-show">
+  <thead>
+    <tr>
+      <%= render 'show_head' %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render 'show_table' %>
+  </tbody>
+</table>
