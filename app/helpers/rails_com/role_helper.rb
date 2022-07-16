@@ -1,6 +1,27 @@
 # frozen_string_literal: true
 
-module RailsRole::LinkHelper
+module RailsCom::RoleHelper
+
+  def button_to(name = nil, options = nil, html_options = nil, &block)
+    if block_given?
+      _options = name
+      _html_options = options || {}
+    else
+      _options = options
+      _html_options = html_options || {}
+    end
+
+    text = _html_options.delete(:text)
+    if role_permit?(_options, _html_options)
+      super
+    elsif text
+      if block_given?
+        content_tag(:div, _html_options.slice(:class), &block)
+      else
+        ERB::Util.html_escape(name)
+      end
+    end
+  end
 
   def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
