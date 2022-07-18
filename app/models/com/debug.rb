@@ -6,7 +6,9 @@ module Com
       confirmed: 'confirmed'
     }, _default: 'init'
 
-    belongs_to :info
+    has_many :debug_manies, inverse_of: :debug
+    accepts_nested_attributes_for :debug_manies
+
     include Model::Debug
   end
 end
