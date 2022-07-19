@@ -34,7 +34,15 @@ module RailsCom::RoleHelper
 
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
-      super
+      begin
+        super
+      rescue ActionController::UrlGenerationError => e
+        if block_given?
+          content_tag(:div, _html_options.slice(:class), &block)
+        else
+          ERB::Util.html_escape(name)
+        end
+      end
     elsif text
       if block_given?
         content_tag(:div, _html_options.slice(:class), &block)
