@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <% if content_for?(:title) %>
-    <title><%= yield(:title) %></title>
+    <% if request.variant.any?(:mini_program) %>
+    <title></title>
     <% else %>
     <title><%= current_title %></title>
     <% end %>
