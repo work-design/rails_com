@@ -20,13 +20,17 @@ module RailsCom::Application
   end
 
   def current_organ_name
-    if defined?(current_corp_user) && current_corp_user
-      current_corp_user.suite&.name
-    elsif defined?(current_organ) && current_organ
-      current_organ.name
-    else
-      t(:site_name)
+    r = t(:site_name)
+
+    if defined?(current_organ) && current_organ
+      r = current_organ.name || r
     end
+
+    if defined?(current_corp_user) && current_corp_user
+      r = current_corp_user.suite&.name || r
+    end
+
+    r
   end
 
   def set_variant
