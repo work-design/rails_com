@@ -10,21 +10,23 @@ module RailsCom::Application
 
   included do
     before_action :set_locale, :set_timezone, :set_variant
-    helper_method :current_title, :default_params
+    helper_method :current_title, :current_organ_name, :default_params
   end
 
   def current_title
     text = t('.title', default: :site_name)
 
-    if defined?(current_corp_user) && current_corp_user
-      name = current_corp_user.suite&.name
-    elsif defined?(current_organ) && current_organ
-      name = current_organ.name
-    else
-      name = t(:site_name)
-    end
+    [text, current_organ_name].join(' - ')
+  end
 
-    [text, name].join(' - ')
+  def current_organ_name
+    if defined?(current_corp_user) && current_corp_user
+      current_corp_user.suite&.name
+    elsif defined?(current_organ) && current_organ
+      current_organ.name
+    else
+      t(:site_name)
+    end
   end
 
   def set_variant

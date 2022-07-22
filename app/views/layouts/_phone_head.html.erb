@@ -2,7 +2,7 @@
 <html lang="<%= I18n.locale %>">
   <head>
     <% if request.variant.any?(:mini_program) %>
-    <title></title>
+    <title><%= current_organ_name %></title>
     <% else %>
     <title><%= current_title %></title>
     <% end %>
