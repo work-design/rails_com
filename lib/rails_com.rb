@@ -43,6 +43,6 @@ require 'turbo-rails'
 module RailsCom
   mattr_accessor :default_routes_scope, default: {
     path: '(/:org_id)',
-    constraints: { chain_chain_id: /org_\d+/ }
+    constraints: { org_id: /org_\d+/ }
   }
 end
