@@ -32,6 +32,10 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
+    if _options.is_a? Hash
+      _options.merge! chain_chain_id: params[:chain_chain_id]
+    end
+
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       begin
