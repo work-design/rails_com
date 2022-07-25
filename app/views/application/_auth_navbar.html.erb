@@ -7,7 +7,7 @@
     <div class="navbar-dropdown is-right">
       <%= link_to '个人中心', { controller: '/my/home' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
       <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
-      <%= link_to({ controller: '/panel/home', host: SETTING.host, disposable_token: current_account.once_token }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
+      <%= link_to({ controller: '/panel/home', host: SETTING.host, disposable_token: current_account.once_token }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item'), target: '_blank') do %>
         <span><%= t('panel.home.index.title') %></span>
       <% end if current_user.admin? %>
       <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item' %>
