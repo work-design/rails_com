@@ -12,7 +12,7 @@ module RailsCom::RoleHelper
     end
 
     if _options.is_a? Hash
-      _options.merge! org_id: params[:org_id]
+      _options.merge! org_id: params[:org_id] unless _options.key?(:org_id)
     end
 
     text = _html_options.delete(:text)
@@ -37,7 +37,7 @@ module RailsCom::RoleHelper
     end
 
     if _options.is_a? Hash
-      _options.merge! org_id: params[:org_id]
+      _options.merge! org_id: params[:org_id] unless _options.key?(:org_id)
     end
 
     text = _html_options.delete(:text)
