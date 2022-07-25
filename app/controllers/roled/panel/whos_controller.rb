@@ -4,7 +4,7 @@ module Roled
 
     def edit
       type = "Roled::#{params[:who_type].split('::')[-1]}Role"
-      @roles = Role.visible.default_where(type: type)
+      @roles = Role.default_where(type: type)
     end
 
     private
