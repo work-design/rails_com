@@ -12,6 +12,10 @@ zh:
     home:
       index:
         title: 后台
+  admin:
+    home:
+      index:
+        title: 后台
   board:
     home:
       index:
