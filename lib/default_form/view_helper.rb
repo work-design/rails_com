@@ -21,6 +21,10 @@ module DefaultForm::ViewHelper
       options[:data][:controller] = 'default_valid'
     end
 
+    if options[:url].is_a? Hash
+      options[:url].merge! org_id: params[:org_id] unless options[:url].key?(:org_id)
+    end
+
     if options[:theme].present? && options[:theme].end_with?('search')
       options[:url] = url_for unless options.key?(:url)
       options[:scope] = '' unless options.key?(:scope)
