@@ -5,6 +5,10 @@ module RegexpUtil
     /(?<=#{prefix}).*?(?=#{suffix})/
   end
 
+  def least_between(prefix, suffix)
+    /(?<=#{prefix}).+?(?=#{suffix})/
+  end
+
   def more_between(prefix, suffix)
     /(?<=#{prefix}).*(?=#{suffix})/
   end
