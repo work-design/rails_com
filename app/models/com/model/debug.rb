@@ -3,6 +3,8 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      has_one_attached :file
+
       after_initialize do
         puts "  #{self.class} after_initialize \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
         shared_puts
@@ -96,6 +98,7 @@ module Com
       puts "\e[35m  changed_changes: #{changes}  \e[0m"
       puts "\e[35m  saved_changes: #{saved_changes}  \e[0m"
       puts "\e[35m  previous_changes: #{previous_changes}  \e[0m"
+      puts "\e[35m  attachment_changes: #{attachment_changes}  \e[0m"
       puts "\e[31m  #{'- ~ ' * 40}-  \e[0m"
     end
 
