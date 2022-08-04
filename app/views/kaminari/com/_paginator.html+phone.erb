@@ -1,5 +1,5 @@
 <%= paginator.render do %>
-  <nav class="<%= @options[:class] || 'box pagination is-centered' %>">
+  <nav class="<%= @options[:class] || 'box is-radiusless pagination is-centered' %>">
     <%= prev_page_tag unless current_page.first? %>
     <ul class="pagination-list">
     <% each_page do |page| %>
