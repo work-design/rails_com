@@ -31,6 +31,10 @@ module Com
       send_data buffer, filename: 'cert_file.png', disposition: 'inline', type: 'image/png'
     end
 
+    def actions
+
+    end
+
     def test_raise
       raise 'error from test raise'
     end
