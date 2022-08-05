@@ -71,6 +71,7 @@ Rails.application.routes.draw do
         get :qrcode
         get :test_raise
         get :cancel
+        post :actions
         match :deploy, via: [:get, :post]
         get 'assets/*path' => :asset, constraints: ->(req) { [:jpeg, :png, :webp].include? req.format.symbol }
       end

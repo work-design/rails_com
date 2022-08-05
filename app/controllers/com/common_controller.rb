@@ -32,7 +32,10 @@ module Com
     end
 
     def actions
-
+      if params[:model].present? && params[:id].present?
+        model = params[:model].safe_constantize.find params[:id]
+        render 'actions', locals: { model: model }
+      end
     end
 
     def test_raise
