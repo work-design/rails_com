@@ -1,0 +1,6 @@
+<% if session[:return_to] %>
+  <div data-controller="visit" data-visit-url-value="<%= session[:return_to] %>"></div>
+  <% session.delete(:return_to) %>
+<% else %>
+  <div data-controller="visit"></div>
+<% end %>
