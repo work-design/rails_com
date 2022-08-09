@@ -1,6 +1,8 @@
 <% if session[:return_to] %>
   <div data-controller="visit" data-visit-url-value="<%= session[:return_to] %>"></div>
   <% session.delete(:return_to) %>
+<% elsif defined?(url) %>
+  <div data-controller="visit" data-visit-url-value="<%= url %>"></div>
 <% else %>
   <div data-controller="visit"></div>
 <% end %>
