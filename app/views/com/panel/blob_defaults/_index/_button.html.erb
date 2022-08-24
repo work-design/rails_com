@@ -1,10 +1,10 @@
 <div class="buttons are-small mb-1">
   <%= button_to({ action: 'sync' }, method: :post, data: { disable_with: 'Syncing' }, class: 'button is-success') do %>
-    <i class="fa-light fa-sync-alt"></i>
+    <i class="fa-regular fa-sync-alt"></i>
     <span class="pl-1"><%= t('.sync') %></span>
   <% end %>
   <%= link_to({ action: 'new' }, data: { turbo_frame: 'modal' }, class: 'button is-link') do %>
-    <i class="fa-light fa-plus"></i>
+    <i class="fa-regular fa-plus"></i>
     <span class="pl-1"><%= t('.new') %></span>
   <% end %>
 </div>
