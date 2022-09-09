@@ -112,7 +112,7 @@ module Com
     end
 
     def authorization
-      return @authorization if defined? @authorization
+      return @authorization if defined?(@authorization) && url.present?
       @authorization = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
     rescue Acme::Client::Error::BadNonce
       retry
@@ -130,6 +130,8 @@ module Com
 
     def deactivate
       acme_order.acme_account.client.deactivate_authorization(url: url)
+    rescue Acme::Client::Error::BadNonce
+      retry
     end
 
   end
