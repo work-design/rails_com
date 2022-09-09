@@ -53,7 +53,7 @@ module Com
     def ensure_dns
       r = dns_client.add_acme_record record_content
       if r['RecordId']
-        dns_client.check_record(record_content)
+        dns_client.acme_records(record_content)
       end
     end
 

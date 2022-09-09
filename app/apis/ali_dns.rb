@@ -34,18 +34,28 @@ class AliDns
     client.request(**body)
   end
 
-  def check_record(value)
+  def acme_records(value)
     result = records.dig('DomainRecords', 'Record')
     if result
-      result.find { |i| i['Type'] == 'TXT' && i['Value'] == value }
+      rs = result.select { |i| i['RR'] == rr }
+      rs.each do |r|
+        delete(r['RecordId']) if r['Value'] != value
+      end
+      rs.present?
     end
   end
 
-  def acme_records
-    result = records.dig('DomainRecords', 'Record')
-    if result
-      result.select { |i| i['RR'] == rr }
-    end
+  def delete(id)
+    body = { action: 'DeleteDomainRecord' }
+    body.merge! params: {
+      RecordId: id
+    }
+    body.merge! opts: {
+      method: 'DELETE',
+      timeout: 15000
+    }
+
+    client.request(**body)
   end
 
   def add_acme_record(value)
