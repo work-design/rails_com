@@ -116,7 +116,7 @@ module Com
       @authorization = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
     rescue Acme::Client::Error::BadNonce
       retry
-    else
+    ensure
       update(
         record_name: authorization.dns&.record_name,
         record_content: authorization.dns&.record_content,
