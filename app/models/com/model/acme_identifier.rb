@@ -3,6 +3,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      attribute :type, :string
       attribute :identifier, :string
       attribute :file_name, :string
       attribute :file_content, :string
@@ -40,94 +41,34 @@ module Com
       if identifier.start_with?('*.')
         self.wildcard = true
         self.domain = identifier.delete_prefix('*.')
+        self.type = 'Com::AcmeDns'
       else
         self.domain = identifier
+        self.type = 'Com::AcmeHttp'
       end
     end
 
-    def dns_client
-      acme_order.acme_account.dns(domain)
-    end
-
-    # todo use aliyun temply
-    def ensure_dns
-      dns_client.ensure_acme record_content
-    end
-
-    def dns_resolv
-      Resolv::DNS.open do |dns|
-        records = dns.getresources dns_host, Resolv::DNS::Resource::IN::TXT
-        records.map!(&:data)
-      end
-    end
-
-    def dns_verify
-      unless dns_resolv.include?(record_content)
-        ensure_dns
-      end
-      authorization.dns.request_validation
-      authorization.reload && self.update(status: authorization.status)
-    rescue Acme::Client::Error::BadNonce
-      retry
-    else
-      authorization.reload && self.update(status: authorization.status)
-    end
-
-    def auto_verify
-      if is_file?
-        file_verify
-      else
-        dns_verify
-      end
-      status_valid?
-    end
-
-    def is_file?
-      file_name.present? && file_content.present?
-    end
-
-    def confirm_file
-      file_path = Rails.root.join('public/challenge', file_name)
-      return true if file_path.file? && file_path.read == file_content
-
-      file_path.dirname.exist? || file_path.dirname.mkpath
-      File.open(file_path, 'w') do |f|
-        f.write file_content
-      end
-      file_path.read == file_content
-    end
-
-    def file_verify
-      confirm_file
-      authorization.http.request_validation
-      authorization.reload && self.update(status: authorization.status)
-    rescue Acme::Client::Error::BadNonce
-      retry
-    else
-      authorization.reload && self.update(status: authorization.status)
-    end
-
-    def dns_host
-      "#{record_name}.#{domain}"
-    end
-
-    def authorization(times = 3)
+    def authorization
       return @authorization if defined?(@authorization) && url.present?
-      return if times <= 0
       @authorization = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
     rescue Acme::Client::Error::BadNonce
-      times -= 1
       retry
-    ensure
-      update(
-        record_name: authorization.dns&.record_name,
-        record_content: authorization.dns&.record_content,
-        file_name: authorization.http&.filename,
-        file_content: authorization.http&.file_content,
-        url: authorization.url,
-        status: authorization.status
+    end
+
+    def set_auth!(auth)
+      set_auth(auth)
+      save
+    end
+
+    def set_auth(auth)
+      self.assign_attributes(
+        record_name: auth.dns.record_name,
+        record_content: auth.dns.record_content,
+        file_name: auth.http&.filename,
+        file_content: auth.http&.file_content,
+        url: auth.url,
+        status: auth.status
       )
-      @authorization
     end
 
     def deactivate

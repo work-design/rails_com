@@ -17,6 +17,9 @@ module Com
       }, _prefix: true
 
       belongs_to :acme_account
+
+      has_one :acme_dns
+      has_one :acme_http
       has_many :acme_identifiers, dependent: :delete_all
       accepts_nested_attributes_for :acme_identifiers
 
@@ -65,11 +68,8 @@ module Com
     else
       self.orderid = r.to_h[:url].split('/')[-1]
       self.assign_attributes r.to_h.slice(:status, :url)
-      self.acme_identifiers.each(&:reset)
-      self.class.transaction do
-        self.acme_identifiers.each(&:save!)
-        self.save!
-      end
+      self.set_authorizations
+      self.save!
       r
     end
 
@@ -79,7 +79,7 @@ module Com
         order(true)
         get_cert
       when 'pending'
-        acme_identifiers.each(&:authorization)
+        set_authorizations
         acme_identifiers.map(&:auto_verify).all?(true) && order.reload
         get_cert
       when 'ready'
@@ -90,6 +90,20 @@ module Com
       end
     rescue
       retry unless (tries -= 1).zero?
+    end
+
+    def set_authorizations
+      r = order.authorizations.map do |auth|
+        if auth.http
+          acme_http&.set_auth(auth)
+        else
+          acme_dns&.set_auth(auth)
+        end
+      end
+
+      self.class.transaction do
+        r.each(&:save!)
+      end
     end
 
     def identifiers
