@@ -44,7 +44,7 @@ class AliDns
   def acme_records
     result = records.dig('DomainRecords', 'Record')
     if result
-      result.find { |i| i['RR'] == rr }
+      result.select { |i| i['RR'] == rr }
     end
   end
 
