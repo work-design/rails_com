@@ -111,10 +111,12 @@ module Com
       "#{record_name}.#{domain}"
     end
 
-    def authorization
+    def authorization(times = 3)
       return @authorization if defined?(@authorization) && url.present?
+      return if times <= 0
       @authorization = acme_order.order.authorizations.find { |i| domain == i.domain && wildcard.present? == i.wildcard.present? }
     rescue Acme::Client::Error::BadNonce
+      times -= 1
       retry
     ensure
       update(
