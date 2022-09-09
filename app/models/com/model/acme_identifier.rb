@@ -46,14 +46,14 @@ module Com
     end
 
     def dns_client
-      acme_order.acme_account.dns
+      acme_order.acme_account.dns(domain)
     end
 
     # todo use aliyun temply
     def ensure_dns
-      r = dns_client.add_acme_record domain, record_content
+      r = dns_client.add_acme_record record_content
       if r['RecordId']
-        dns_client.check_record(domain, record_content)
+        dns_client.check_record(record_content)
       end
     end
 

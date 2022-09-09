@@ -4,23 +4,28 @@ rescue LoadError
 end
 
 class AliDns
-  attr_reader :client
+  attr_reader :client, :domain, :root_domain, :subdomains
 
-  def initialize(key, secret)
+  def initialize(key, secret, domain)
     @client = RPCClient.new(
       endpoint: 'https://alidns.cn-hangzhou.aliyuncs.com',
       api_version: '2015-01-09',
       access_key_id: key,
       access_key_secret: secret
     )
+
+    domain_arr = domain.split('.')
+    @domain = domain
+    @root_domain = domain_arr[-2..-1].join('.')
+    @subdomains = domain_arr[0...-2]
   end
 
-  def records(domain)
+  def records
     body = {
       action: 'DescribeDomainRecords'
     }
     body.merge! params: {
-      DomainName: domain
+      DomainName: root_domain
     }
     body.merge! opts: {
       method: 'POST',
@@ -30,17 +35,15 @@ class AliDns
     client.request(**body)
   end
 
-  def check_record(domain, value)
-    result = records(domain).dig('DomainRecords', 'Record')
+  def check_record(value)
+    result = records.dig('DomainRecords', 'Record')
     if result
       result.find { |i| i['Type'] == 'TXT' && i['Value'] == value }
     end
   end
 
-  def add_acme_record(domain, value)
-    domain_arr = domain.split('.')
-    root_domain = domain_arr[-2..-1].join('.')
-    rr = ['_acme-challenge', *domain_arr[0...-2]].join('.')
+  def add_acme_record(value)
+    rr = ['_acme-challenge', *subdomains].join('.')
 
     body = {
       action: 'AddDomainRecord'
