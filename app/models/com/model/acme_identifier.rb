@@ -51,10 +51,7 @@ module Com
 
     # todo use aliyun temply
     def ensure_dns
-      r = dns_client.add_acme_record record_content
-      if r['RecordId']
-        dns_client.acme_records(record_content)
-      end
+      dns_client.ensure_acme record_content
     end
 
     def dns_resolv
