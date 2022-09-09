@@ -55,7 +55,7 @@ class AliDns
       RecordId: id
     }
     body.merge! opts: {
-      method: 'DELETE',
+      method: 'POST',
       timeout: 15000
     }
 
