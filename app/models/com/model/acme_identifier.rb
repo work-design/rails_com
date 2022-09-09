@@ -69,6 +69,7 @@ module Com
         url: auth.url,
         status: auth.status
       )
+      self
     end
 
     def deactivate
