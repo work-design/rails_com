@@ -1,1 +1,1 @@
-<%= turbo_stream.append 'body', partial: 'visit' %>
+<%= turbo_stream.update 'modal', partial: 'new_form', locals: { model: model } %>
