@@ -22,7 +22,7 @@ module RailsCom::AttachedOne
 
   def copy(from, from_name)
     from_attachment = from.send "#{from_name}_attachment"
-    record.send "create_#{name}_attachment", blob_id: from_attachment.blob_id
+    record.send "create_#{name}_attachment", blob_id: from_attachment.blob_id if from_attachment
   end
 
 end
