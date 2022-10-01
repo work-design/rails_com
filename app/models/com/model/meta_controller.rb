@@ -119,6 +119,9 @@ module Com
             meta_controller.destroy
           end
         end
+        MetaController.where.not(business_identifier: RailsExtend::Routes.actions.keys).each do |meta_controller|
+          meta_controller.destroy
+        end
       end
 
     end
