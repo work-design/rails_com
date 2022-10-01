@@ -38,7 +38,7 @@ module Roled
       logger.debug "\e[35m  Role: #{opts} is #{r} \e[0m"
       r
     rescue => e
-      logger.debug "\e[35m business: #{businiess}, namespace: #{namespace}, controller: #{controller}, action: #{action}, params: #{params} \e[0m"
+      logger.debug "\e[35m business: #{business}, namespace: #{namespace}, controller: #{controller}, action: #{action}, params: #{params} \e[0m"
     ensure
       0
     end
