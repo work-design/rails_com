@@ -2,21 +2,10 @@ module Roled
   class Panel::RoleRulesController < Panel::BaseController
     before_action :set_role
     before_action :set_role_rule, only: [:show, :edit, :update]
+    before_action :set_new_role_rule, only: [:new, :create]
 
     def index
       @role_rules = @role.role_rules.page(params[:page])
-    end
-
-    def new
-      @role_rule = @role.role_rules.build
-    end
-
-    def create
-      @role = @role.role_rules.build(role_rule_params)
-
-      unless @role_rule.save
-        render :new, locals: { model: @role_rule }, status: :unprocessable_entity
-      end
     end
 
     def disable
@@ -41,6 +30,10 @@ module Roled
 
     def set_role_rule
       @role_rule = @role.role_rules.find params[:id]
+    end
+
+    def set_new_role_rule
+      @role_rule = @role.role_rules.build(role_rule_params)
     end
 
     def role_rule_params
