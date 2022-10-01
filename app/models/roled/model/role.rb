@@ -37,6 +37,10 @@ module Roled
       r = role_hash.dig(*opts)
       logger.debug "\e[35m  Role: #{opts} is #{r} \e[0m"
       r
+    rescue => e
+      logger.debug "\e[35m business: #{businiess}, namespace: #{namespace}, controller: #{controller}, action: #{action}, params: #{params} \e[0m"
+    ensure
+      0
     end
 
     def set_default
