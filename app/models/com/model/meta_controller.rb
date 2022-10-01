@@ -114,6 +114,10 @@ module Com
               meta_controller.destroy
             end
           end
+          present_namespaces = MetaController.where(business_identifier: business).pluck(:namespace_identifier)
+          MetaController.where(business_identifier: business, namespace_identifier: (present_namespaces - namespaces.keys)).each do |meta_controller|
+            meta_controller.destroy
+          end
         end
       end
 
