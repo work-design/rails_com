@@ -11,7 +11,7 @@ module Com
 
     included do
       before_action :set_locale, :set_timezone, :set_variant
-      helper_method :current_title, :current_organ_name, :default_params
+      helper_method :current_title, :current_organ_name, :default_params, :urlsafe_encode64, :urlsafe_decode64
     end
 
     def urlsafe_encode64
@@ -23,11 +23,11 @@ module Com
         request.path_parameters.except(:business, :namespace, :controller, :action).to_query
       ]
       state.map! { |i| Base64.urlsafe_encode64(i, padding: false) }
-      state.join('!')
+      state.join('~')
     end
 
     def urlsafe_decode64(str = params[:state])
-      state_hash = str.split('!')
+      state_hash = str.split('~')
       state_hash.map! { |i| Base64.urlsafe_decode64(i) }
 
       {
