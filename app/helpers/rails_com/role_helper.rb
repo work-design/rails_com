@@ -40,7 +40,7 @@ module RailsCom::RoleHelper
     elsif state == 'return' && params[:state]
       _options.merge! urlsafe_decode64
     elsif params[:state]
-      _options.merge! state: params[:state] if _options.respond_to?(Hash)
+      _options.merge! state: params[:state] if _options.respond_to?(:merge!)
     end
     if role_permit?(_options, _html_options)
       begin
