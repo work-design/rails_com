@@ -2,7 +2,7 @@
 
 module RailsCom::RoleHelper
 
-  def button_to(name = nil, options = nil, html_options = nil, &block)
+  def button_to(name = {}, options = {}, html_options = nil, &block)
     if block_given?
       _options = name
       _html_options = options || {}
@@ -11,6 +11,7 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
+    _options.merge! state: params[:state]
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       super
@@ -23,7 +24,7 @@ module RailsCom::RoleHelper
     end
   end
 
-  def link_to(name = nil, options = nil, html_options = nil, &block)
+  def link_to(name = {}, options = {}, html_options = nil, &block)
     if block_given?
       _options = name
       _html_options = options || {}
@@ -32,6 +33,7 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
+    _options.merge! state: params[:state]
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       begin
