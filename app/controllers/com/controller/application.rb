@@ -26,7 +26,7 @@ module Com
       state.join('~')
     end
 
-    def urlsafe_decode64(str = params[:state])
+    def urlsafe_decode64(str = params[:return_state])
       state_hash = str.split('~')
       state_hash.map! { |i| Base64.urlsafe_decode64(i) }
 

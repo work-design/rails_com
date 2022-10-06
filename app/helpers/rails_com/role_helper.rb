@@ -36,11 +36,11 @@ module RailsCom::RoleHelper
     text = _html_options.delete(:text)
     state = _html_options.delete(:state)
     if state == 'enter' && _options[:state].blank?
-      _options.merge! state: urlsafe_encode64
-    elsif state == 'return' && params[:state]
+      _options.merge! return_state: urlsafe_encode64
+    elsif state == 'return' && params[:return_state]
       _options.merge! urlsafe_decode64
-    elsif params[:state]
-      _options.merge! state: params[:state] if _options.respond_to?(:merge!)
+    elsif params[:return_state]
+      _options.merge! return_state: params[:return_state] if _options.respond_to?(:merge!)
     end
     if role_permit?(_options, _html_options)
       begin
