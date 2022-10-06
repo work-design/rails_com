@@ -17,7 +17,7 @@ module RailsCom::RoleHelper
       super
     elsif text
       if block_given?
-        content_tag(:div, _html_options.slice(:class), &block)
+        content_tag(:div, _html_options.slice(:class, :data), &block)
       else
         ERB::Util.html_escape(name)
       end
@@ -47,14 +47,14 @@ module RailsCom::RoleHelper
         super
       rescue ActionController::UrlGenerationError => e
         if block_given?
-          content_tag(:div, _html_options.slice(:class), &block)
+          content_tag(:div, _html_options.slice(:class, :data), &block)
         else
           ERB::Util.html_escape(name)
         end
       end
     elsif text
       if block_given?
-        content_tag(:div, _html_options.slice(:class), &block)
+        content_tag(:div, _html_options.slice(:class, :data), &block)
       else
         ERB::Util.html_escape(name)
       end
