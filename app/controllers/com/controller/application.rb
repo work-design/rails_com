@@ -68,7 +68,8 @@ module Com
         variant += [:wechat, :phone]
       end
 
-      if request.user_agent&.match? /miniProgram/
+      # 安卓：MiniProgramEnv/android
+      if request.user_agent&.match? /miniProgram|MiniProgramEnv/
         variant << :mini_program
       end
 
