@@ -2,6 +2,10 @@ module Roled
   class Admin::WhoRolesController < Admin::BaseController
     before_action :set_who, only: [:show, :edit, :update]
 
+    def show
+      @roles = current_organ.roles
+    end
+
     def edit
       type = "Roled::#{params[:who_type].split('::')[-1]}Role"
       @roles = Role.visible.default_where(type: type)
