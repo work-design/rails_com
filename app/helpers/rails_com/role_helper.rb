@@ -11,7 +11,7 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
-    _options.merge! state: params[:state]
+    _options.merge! return_state: params[:return_state] if _options.respond_to?(:merge!)
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       super
