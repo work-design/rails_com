@@ -1,12 +1,1 @@
-<% @meta_controllers.each do |meta_controller| %>
-<tr id="tr_<%= meta_controller.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
-  <td>
-    <span style="width: 2.86em; display: inline-block"></span>
-    <%= link_to({ controller: 'meta_actions', meta_controller_id: meta_controller.id }) do %>
-      <span><%= meta_controller.name %></span>
-      <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
-    <% end %>
-    <%= render partial: 'index_meta_actions', locals: { meta_controller: meta_controller } %>
-  </td>
-</tr>
-<% end %>
+<%= render partial: 'meta_controller', collection: @meta_controllers, as: :meta_controller %>
