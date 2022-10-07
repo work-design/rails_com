@@ -1,4 +1,5 @@
-<p>
+<div>
+  <span style="width: 2.86em; display: inline-block"></span>
 <% meta_controller.meta_actions.each do |meta_action| %>
   <% if @role.has_role?(business: meta_action.business_identifier, namespace: meta_action.namespace_identifier, controller: meta_action.controller_path, action: meta_action.action_name) %>
     <%= button_to({ action: 'action_off' }, params: { meta_action_id: meta_action.id }, method: :patch) do %>
@@ -14,4 +15,4 @@
     <% end %>
   <% end %>
 <% end %>
-</p>
+</div>
