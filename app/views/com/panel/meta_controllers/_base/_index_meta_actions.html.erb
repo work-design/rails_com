@@ -1,10 +1,18 @@
 <div>
+  <span style="width: 2.86em; display: inline-block"></span>
 <% meta_controller.meta_actions.each do |meta_action| %>
-  <span><%= meta_action.name %></span>
-  <span class="has-text-grey"><%= meta_action.action_name %></span>
-  <%= form_with theme: nil, model: meta_action, url: { controller: 'meta_actions', action: 'update', meta_controller_id: meta_controller.id, id: meta_action.id }, data: { controller: 'input' } do |f| %>
-    <%= f.check_box :landmark, data: { input_target: 'checkbox' }, id: nil, class: 'switch is-rounded' %>
-    <label data-action="click->input#check"></label>
+  <% if meta_action.landmark %>
+    <%= button_to({ controller: 'meta_actions', action: 'update', meta_controller_id: meta_controller.id, id: meta_action.id }, params: { 'meta_action[landmark]': 0 }, method: :patch) do %>
+      <i class="fa-regular fa-lg fa-check-square"></i>
+      <span><%= meta_action.name %></span>
+      <span class="has-text-grey"><%= meta_action.action_name %></span>
+    <% end %>
+  <% else %>
+    <%= button_to({ controller: 'meta_actions', action: 'update', meta_controller_id: meta_controller.id, id: meta_action.id }, params: { 'meta_action[landmark]': 1 }, method: :patch) do %>
+      <i class="fa-regular fa-lg fa-square"></i>
+      <span><%= meta_action.name %></span>
+      <span class="has-text-grey"><%= meta_action.action_name %></span>
+    <% end %>
   <% end %>
 <% end %>
 </div>
