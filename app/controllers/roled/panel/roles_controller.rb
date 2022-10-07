@@ -24,7 +24,7 @@ module Roled
 
     def controllers
       @meta_namespace = Com::MetaNamespace.find_by identifier: params[:namespace_identifier]
-      @meta_controllers = Com::MetaController.where(params.permit(:business_identifier, :namespace_identifier))
+      @meta_controllers = Com::MetaController.includes(:meta_actions).where(params.permit(:business_identifier, :namespace_identifier))
     end
 
     def actions
