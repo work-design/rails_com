@@ -27,5 +27,6 @@
         <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
       <% end %>
     <% end %>
+    <%= render partial: 'actions', locals: { meta_controller: meta_controller } %>
   </td>
 </tr>
