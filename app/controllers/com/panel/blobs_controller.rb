@@ -9,15 +9,11 @@ module Com
       @blobs = ActiveStorage::Blob.default_where(q_params).order(id: :desc).page(params[:page])
     end
 
-    def show
-    end
-
     def unattached
       q_params = {}
       q_params.merge! params.permit(:id, :key, :filename, :content_type)
 
       @blobs = ActiveStorage::Blob.unattached.default_where(q_params).order(id: :desc).page(params[:page])
-      render :index
     end
 
     def new
