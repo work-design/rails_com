@@ -1,5 +1,5 @@
-<% if session[:return_to] %>
-  <div data-controller="visit" data-visit-url-value="<%= session.delete(:return_to) %>"></div>
+<% if params[:return_url] %>
+  <div data-controller="visit" data-visit-url-value="<%= Base64.urlsafe_decode64(params[:return_url]) %>"></div>
 <% elsif defined?(url) %>
   <div data-controller="visit" data-visit-url-value="<%= url %>"></div>
 <% else %>
