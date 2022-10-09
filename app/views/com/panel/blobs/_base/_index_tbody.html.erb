@@ -1,7 +1,7 @@
 <td><%= model.id %></td>
 <td><%= model.key %></td>
 <td>
-  <p><%= image_tag model.variant(resize_to_limit: [100, 100]) if model.image? %></p>
+  <p><%= image_tag model, class: 'image is-64x64' if model.image? %></p>
   <% if model.url.present? %>
     <p><%= link_to model.filename, model.url %></p>
   <% else %>
