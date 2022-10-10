@@ -20,6 +20,7 @@ module Com
       retry
     ensure
       authorization.reload && self.update(status: authorization.status)
+      #auto_verify if authorization.status == 'pending'
     end
 
   end

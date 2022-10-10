@@ -5,24 +5,24 @@
   <div class="weui-panel__bd">
     <div class="columns is-4-mobile is-flex is-vcentered is-centered m-0" data-empty-target="content">
       <%= link_to({ controller: 'profiled/my/addresses' }, class: 'column has-block-centered') do %>
-        <div class="has-text-grey-dark">
+        <div class="has-text-primary">
           <i class="fa-solid fa-fw fa-xl fa-location-dot"></i>
         </div>
-        <div class="has-text-dark"><%= t('profiled.my.addresses.index.title') %></div>
+        <div class="has-text-grey-dark"><%= t('profiled.my.addresses.index.title') %></div>
       <% end %>
       <%= link_to({ controller: 'wechat/my/users', action: 'invite_qrcode' }, class: 'column has-block-centered') do %>
-        <div class="has-text-grey-dark">
-          <i class="fa-solid fa-fw fa-xl fa-qrcode has-text-grey-darker fa-weui-badge">
+        <div class="has-text-primary">
+          <i class="fa-solid fa-fw fa-xl fa-qrcode fa-weui-badge">
             <span class="weui-badge" style="top: -1.8em; right: -4em">邀请有礼</span>
           </i>
         </div>
-        <div class="has-text-dark">邀请好友</div>
+        <div class="has-text-grey-dark">邀请好友</div>
       <% end %>
       <%= link_to({ controller: 'auth/my/home' }, class: 'column has-block-centered') do %>
-        <div class="has-text-grey-dark">
+        <div class="has-text-primary">
           <i class="fa-solid fa-fw fa-xl fa-ellipsis"></i>
         </div>
-        <div class="has-text-dark"><%= t('auth.my.home.index.title') %></div>
+        <div class="has-text-grey-dark"><%= t('auth.my.home.index.title') %></div>
       <% end %>
     </div>
   </div>
