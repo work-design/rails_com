@@ -66,8 +66,11 @@ module Com
     else
       self.orderid = r.to_h[:url].split('/')[-1]
       self.assign_attributes r.to_h.slice(:status, :url)
-      self.set_authorizations
-      self.save!
+      auths = self.set_authorizations
+      self.class.transaction do
+        auths.each(&:save!)
+        self.save!
+      end
       r
     end
 
@@ -77,7 +80,7 @@ module Com
         order(true)
         get_cert
       when 'pending'
-        set_authorizations
+        set_authorizations!
         acme_identifiers.map(&:auto_verify).all?(true) && order.reload
         get_cert
       when 'ready'
@@ -91,14 +94,18 @@ module Com
     end
 
     def set_authorizations
-      r = order.authorizations.map do |auth|
+      order.authorizations.map do |auth|
         ident = acme_identifiers.find(&->(i){ i.identifier == auth.domain })
         ident.set_auth(auth)
         ident
       end
+    end
+
+    def set_authorizations!
+      auths = set_authorizations
 
       self.class.transaction do
-        r.each(&:save!)
+        auths.each(&:save!)
       end
     end
 
