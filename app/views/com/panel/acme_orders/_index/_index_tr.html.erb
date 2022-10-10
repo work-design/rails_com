@@ -6,13 +6,13 @@
         <i class="fa-solid fa-circle-info"></i>
       <% end %>
       <%= button_to({ action: 'order', id: model.id }, method: :patch, aria: { label: t('.order') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-regular fa-shopping-cart"></i>
+        <i class="fa-solid fa-shopping-cart"></i>
       <% end %>
       <%= button_to({ action: 'verify', id: model.id }, method: :patch, aria: { label: t('.verify') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-regular fa-check"></i>
+        <i class="fa-solid fa-check"></i>
       <% end %>
       <%= button_to({ action: 'cert', id: model.id }, method: :patch, aria: { label: t('.cert') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-regular fa-certificate"></i>
+        <i class="fa-solid fa-certificate"></i>
       <% end %>
       <%= link_to({ action: 'edit', id: model.id }, data: { turbo_frame: 'modal' }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-pencil"></i>
