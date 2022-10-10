@@ -18,8 +18,6 @@ module Com
 
       belongs_to :acme_account
 
-      has_one :acme_dns
-      has_one :acme_http
       has_many :acme_identifiers, dependent: :delete_all
       accepts_nested_attributes_for :acme_identifiers
 
@@ -94,11 +92,9 @@ module Com
 
     def set_authorizations
       r = order.authorizations.map do |auth|
-        if auth.http
-          acme_http&.set_auth(auth)
-        else
-          acme_dns&.set_auth(auth)
-        end
+        ident = acme_identifiers.find(&->(i){ i.identifier == auth.domain })
+        ident.set_auth(auth)
+        ident
       end
 
       self.class.transaction do
