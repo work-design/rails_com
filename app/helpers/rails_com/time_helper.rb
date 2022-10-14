@@ -3,28 +3,26 @@ module RailsCom::TimeHelper
 
   def exact_distance_time(from_time = Time.current, to_time, **options)
     result = TimeHelper.exact_distance_time(from_time, to_time)
-
+    drop_zero = result.drop_while(&->(i){ i[1] <= 0 })
     options = {
-      scope: :'datetime.prompts'
+      scope: 'datetime.prompts'
     }.merge!(options)
+    str = ''
 
     I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
-      str = ''
-      result.each do |k, v|
-        if v > 0
-          str += v.to_s.rjust(2, '0')
-          str += locale.t(k)
-        end
+      drop_zero.each do |k, v|
+        str += [v.to_s, locale.t(k)].join
       end
-      str
     end
+
+    str
   end
 
   def extra_distance_date(from = Date.today, to, **options)
     result = (to.to_date - from.to_date).to_i
 
     options = {
-      scope: :'date.distance_in_words'
+      scope: 'date.distance_in_words'
     }.merge!(options)
 
     I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
