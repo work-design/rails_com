@@ -1,5 +1,5 @@
 <% flash.each do |type, msg| %>
-<div class="notification is-radiusless is-danger" data-controller="notice" style="margin-bottom: -1.5rem">
+<div class="notification is-radiusless is-danger" data-controller="notice" data-turbo-cache="false" style="margin-bottom: -1.5rem">
   <button class="delete" data-action="notice#close"></button>
   <%= msg %>
 </div>
