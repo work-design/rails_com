@@ -42,7 +42,7 @@ require 'turbo-rails'
 
 module RailsCom
   mattr_accessor :default_routes_scope, default: {
-    path: '(/:org_id)(/:our_id)',
-    constraints: { org_id: /org_\d+/, our_id: /our_\d+/ }
+    path: '(/:org_id)',
+    constraints: { org_id: /org_\d+/ }
   }
 end
