@@ -1,4 +1,3 @@
-<%= turbo_stream.replace "tr_#{@meta_action.identifier}", partial: 'show_action', locals: { meta_action: @meta_action } %>
 <%= turbo_stream.replace "tr_#{@meta_action.meta_controller.identifier}", partial: 'show_controller', locals: { meta_controller: @meta_action.meta_controller, expand: true } %>
 <%=
   turbo_stream.replace(
