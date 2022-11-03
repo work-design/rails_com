@@ -1,5 +1,5 @@
 <tr id="tr_<%= meta_controller.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
-  <td class="has-background-danger-light" style="padding-left: 2.86em">
+  <td class="has-background-danger-light" style="padding-left: 3.5em">
     <% case @role.controller_role(meta_controller) when 1 %>
       <%= button_to({ action: 'controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="fa-regular fa-check-square fa-lg"></i>
