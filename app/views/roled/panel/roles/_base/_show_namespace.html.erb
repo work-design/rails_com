@@ -1,6 +1,5 @@
 <tr id="<%= meta_namespace.tr_id(business_identifier) %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
-  <td>
-    <span style="width: 1.43em; display: inline-block"></span>
+  <td style="padding-left: 1.43em">
     <%= button_to({ action: 'controllers' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier }) do %>
       <% if defined?(expand) && expand %>
         <i class="fa-solid fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
@@ -25,4 +24,5 @@
       <% end %>
     <% end %>
   </td>
+  <td></td>
 </tr>
