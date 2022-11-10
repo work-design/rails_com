@@ -41,7 +41,7 @@ module Com
         r = current_organ.name || r
       end
 
-      if defined?(current_corp_user) && current_corp_user
+      if request.variant.include?(:work_wechat) && defined?(current_corp_user) && current_corp_user
         r = current_corp_user.suite&.name || r
       end
 
