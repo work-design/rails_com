@@ -29,6 +29,7 @@ require 'rails_com/utils/uid_helper'
 require 'rails_com/utils/hex_helper'
 require 'rails_com/utils/jobber'
 require 'rails_com/utils/regexp_util'
+require 'rails_com/utils/state_util'
 
 # active storage
 require 'active_storage/service/disc_service'

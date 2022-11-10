@@ -15,27 +15,17 @@ module Com
     end
 
     def urlsafe_encode64
-      state = [
-        request.host,
-        controller_path,
-        action_name,
-        request.method.downcase,
-        request.path_parameters.except(:business, :namespace, :controller, :action).to_query
-      ]
-      state.map! { |i| Base64.urlsafe_encode64(i, padding: false) }
-      state.join('~')
+      StateUtil.urlsafe_encode64(
+        host: request.host,
+        controller: controller_path,
+        action: action_name,
+        method: request.method.downcase,
+        params: request.path_parameters.except(:business, :namespace, :controller, :action).to_query
+      )
     end
 
     def urlsafe_decode64(str = params[:return_state])
-      state_hash = str.split('~')
-      state_hash.map! { |i| Base64.urlsafe_decode64(i) }
-
-      {
-        host: state_hash[0],
-        controller: state_hash[1],
-        action: state_hash[2],
-        **state_hash[4].to_s.split('&').map(&->(i){ i.split('=') }).to_h
-      }
+      StateUtil.urlsafe_decode64(str)
     end
 
     def current_title
