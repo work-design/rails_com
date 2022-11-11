@@ -11,7 +11,12 @@ module DefaultForm::ViewHelper
 
   # theme: :default
   def form_with(**options, &block)
+    options[:url] ||= {}
     options[:data] ||= {}
+
+    if params[:return_state]
+      options[:url].merge! return_state: params[:return_state]
+    end
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
