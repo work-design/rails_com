@@ -1,5 +1,5 @@
-<% if params[:return_url] %>
-  <div data-controller="visit" data-visit-url-value="<%= Base64.urlsafe_decode64(params[:return_url]) %>"></div>
+<% if params[:return_state] %>
+  <div data-controller="visit" data-visit-url-value="<%= url_for(StateUtil.urlsafe_decode64(params[:return_state])) %>"></div>
 <% elsif defined?(url) %>
   <div data-controller="visit" data-visit-url-value="<%= url %>"></div>
 <% else %>
