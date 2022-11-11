@@ -25,7 +25,11 @@ module Com
     end
 
     def urlsafe_decode64(str = params[:return_state])
-      StateUtil.urlsafe_decode64(str)
+      if str.present?
+        StateUtil.urlsafe_decode64(str)
+      else
+        {}
+      end
     end
 
     def current_title
