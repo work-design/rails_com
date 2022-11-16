@@ -1,6 +1,7 @@
 en:
   site_name: Rails Application
   en: English
+  powered_by: Powered By
   controller:
     show: Show
     edit: Edit
