@@ -17,7 +17,7 @@ module Com
     def urlsafe_encode64
       StateUtil.urlsafe_encode64(
         host: request.host,
-        controller: controller_path,
+        controller: "/#{controller_path}",
         action: action_name,
         method: request.method.downcase,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).to_query
