@@ -2,9 +2,9 @@
 <html lang="<%= I18n.locale %>">
   <head>
     <% if content_for?(:title) %>
-      <title><%= yield(:title) %></title>
-    <% else %>
-      <title><%= current_title if defined? current_title %></title>
+    <title><%= yield(:title) %></title>
+    <% elsif defined? current_title %>
+    <title><%= current_title %></title>
     <% end %>
     <meta name="description" content="<%= yield(:meta_description) %>">
     <meta name="keywords" content="<%= yield(:meta_keywords) %>">
