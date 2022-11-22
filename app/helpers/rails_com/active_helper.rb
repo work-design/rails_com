@@ -25,9 +25,17 @@ module RailsCom::ActiveHelper
   #   active_helper 'work/employee': ['index', 'show']
   # params:
   #   active_helper controller: 'users', action: 'show', id: 371
-  def active_helper(paths: [], controllers: [], modules: [], active: nil, item: nil, **options)
-    check_parameters = options.delete(:check_parameters)
-
+  def active_helper(
+    paths: [],
+    controllers: [],
+    modules: [],
+    active: nil,
+    item: nil,
+    controller: controller_path,
+    action: action_name,
+    check_parameters: false,
+    **options
+  )
     if paths.present?
       Array(paths).each do |path|
         return active if current_page?(path, check_parameters: check_parameters)
@@ -51,7 +59,12 @@ module RailsCom::ActiveHelper
       return active if (Array(modules) & _this_modules).size > 0
     end
 
-    return active if options.present? && current_page?(options, check_parameters: check_parameters)
+    return active if options.present? && current_page?(
+      controller: controller,
+      action: action,
+      check_parameters: check_parameters,
+      **request.query_parameters.merge(options)
+    )
     return active if options.find { |key, value| [controller_name, controller_path].include?(key.to_s) && Array(value).include?(action_name) }
 
     item
