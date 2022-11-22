@@ -33,7 +33,7 @@ module RailsCom::ActiveHelper
     item: nil,
     controller: controller_path,
     action: action_name,
-    check_parameters: false,
+    check_parameters: true,
     **options
   )
     if paths.present?
