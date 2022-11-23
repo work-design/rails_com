@@ -1,8 +1,8 @@
 module StateUtil
   extend self
 
-  def urlsafe_encode64(host:, controller:, action: 'index', method: 'get', params: nil)
-    state = [host, controller, action, method, params].compact_blank
+  def urlsafe_encode64(host:, controller:, action: 'index', method: 'get', params: {})
+    state = [host, controller, action, method, params.to_query].compact_blank
     state.map! { |i| Base64.urlsafe_encode64(i, padding: false) }
     state.join('~')
   end

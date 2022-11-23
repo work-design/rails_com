@@ -20,7 +20,7 @@ module Com
         controller: "/#{controller_path}",
         action: action_name,
         method: request.method.downcase,
-        params: request.query_string
+        params: request.path_parameters.except(:business, :namespace, :controller, :action).merge! request.query_parameters
       )
     end
 
