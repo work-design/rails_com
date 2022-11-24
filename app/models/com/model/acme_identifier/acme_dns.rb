@@ -11,10 +11,14 @@ module Com
     end
 
     # todo use aliyun temply
-    def ensure_config
+    def ensure_config(tries = 3)
       dns_resolv = Resolv::DNS.open { |dns| dns.getresources(dns_host, Resolv::DNS::Resource::IN::TXT).map!(&:data) }
-      return true if dns_resolv.include?(record_content)
-      dns_client.ensure_acme record_content
+      if dns_resolv.include?(record_content)
+        true
+      else
+        dns_client.ensure_acme record_content
+        ensure_config(tries) unless (tries -= 1).zero?
+      end
     end
 
     def auto_verify
