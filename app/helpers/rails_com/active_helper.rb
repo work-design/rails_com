@@ -59,8 +59,13 @@ module RailsCom::ActiveHelper
       return active if (Array(modules) & _this_modules).size > 0
     end
 
-    return active if options.present? && current_page?(controller: controller, action: action, check_parameters: check_parameters, **request.query_parameters.merge(options))
-    return active if options.find { |key, value| [controller_name, controller_path].include?(key.to_s) && Array(value).include?(action_name) }
+    if options.present?
+      return active if current_page?(controller: controller, action: action, check_parameters: check_parameters, **request.query_parameters.merge(options))
+    end
+
+    if options.find { |key, value| [controller_name, controller_path].include?(key.to_s.delete_prefix('/')) && Array(value).include?(action_name) }
+      return active
+    end
 
     item
   end
