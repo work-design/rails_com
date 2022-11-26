@@ -34,6 +34,7 @@ module RailsCom::ActiveHelper
     controller: controller_path,
     action: action_name,
     check_parameters: true,
+    check_sessions: true,
     **options
   )
     if paths.present?
@@ -67,6 +68,12 @@ module RailsCom::ActiveHelper
       return active
     end
 
+    if check_sessions
+      options.each do |k, v|
+        return active if !params.key?(k) && session[k].to_s == v.to_s
+      end
+    end
+
     item
   end
 
@@ -75,10 +82,6 @@ module RailsCom::ActiveHelper
   def active_params(active: nil, item: nil, **options)
     options.compact.each do |k, v|
       if params[k].to_s == v.to_s
-        return active
-      end
-
-      if !params.key?(k) && session[k].to_s == v.to_s
         return active
       end
     end
