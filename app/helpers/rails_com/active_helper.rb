@@ -60,8 +60,9 @@ module RailsCom::ActiveHelper
       return active if (Array(modules) & _this_modules).size > 0
     end
 
+    present_params = request.query_parameters.merge request.path_parameters
     if options.present?
-      return active if current_page?(controller: controller, action: action, check_parameters: check_parameters, **request.query_parameters.merge(options))
+      return active if current_page?(controller: controller, action: action, check_parameters: check_parameters, **present_params.merge(options))
     end
 
     if options.find { |key, value| [controller_name, controller_path].include?(key.to_s.delete_prefix('/')) && Array(value).include?(action_name) }
@@ -70,7 +71,7 @@ module RailsCom::ActiveHelper
 
     if check_sessions
       options.each do |k, v|
-        return active if !params.key?(k) && session[k].to_s == v.to_s
+        return active if !present_params.key?(k) && session[k].to_s == v.to_s
       end
     end
 
