@@ -78,18 +78,6 @@ module RailsCom::ActiveHelper
     item
   end
 
-  # return value by params
-  #   active_params state: 'xxx', organ_id: 1
-  def active_params(active: nil, item: nil, **options)
-    options.compact.each do |k, v|
-      if params[k].to_s == v.to_s
-        return active
-      end
-    end
-
-    item
-  end
-
   def filter_params(options = {})
     only = Array(options.delete(:only)).map(&:to_s)
     except = Array(options.delete(:except)).map(&:to_s)
