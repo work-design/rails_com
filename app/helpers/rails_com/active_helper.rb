@@ -69,7 +69,7 @@ module RailsCom::ActiveHelper
       end
     end
 
-    present_params = request.query_parameters.merge request.path_parameters
+    present_params = request.query_parameters.merge request.path_parameters.except(:business, :namespace, :controller, :action)
     return active if current_page?(controller: controller, action: action, check_parameters: check_parameters, **present_params.merge(options))
 
     if options.find { |key, value| [controller_name, controller_path].include?(key.to_s.delete_prefix('/')) && Array(value).include?(action_name) }
