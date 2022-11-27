@@ -14,7 +14,7 @@ module DefaultForm::ViewHelper
     options[:url] ||= {}
     options[:data] ||= {}
 
-    if params[:return_state] && options[:state]
+    if params[:return_state] && options[:state] == 'return'
       options[:url].merge! return_state: params[:return_state]
     end
 
