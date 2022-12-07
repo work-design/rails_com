@@ -32,8 +32,7 @@ module JiaBo
       r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('sendMsg', form: params)
 
       if r.status == 200
-        r
-        #JSON.parse(r.to_s)
+        JSON.parse(r.to_s)
       else
         r
       end
