@@ -22,20 +22,16 @@ class BaseTspl
       "SIZE #{@width} mm, #{@height} mm",
       "GAP 2 mm, 0 mm",
       "REFERENCE 0,0",
-      "SHIFT 0",
-      "DENSITY 8",
-      "DIRECTION 0",
-      "SET HEAD ON",
       "CLS"
     ]
   end
 
   def qrcode(data, x: 20, y: 125, ecc: 'L', cell_width: 6)
-    @qrcodes << "QRCODE #{x},#{y},#{ecc},#{cell_width},A,0,#{data}"
+    @qrcodes << "QRCODE #{x},#{y},#{ecc},#{cell_width},A,0,\"#{data}\""
   end
 
   def text(data, x:, y:, font: 'TSS24.BF2', x_scale: 1, y_scale: 1)
-    @texts << "TEXT #{x},#{y},#{font},0,#{x_scale},#{y_scale},#{data}"
+    @texts << "TEXT #{x},#{y},\"#{font}\",0,#{x_scale},#{y_scale},\"#{data}\""
   end
 
 end

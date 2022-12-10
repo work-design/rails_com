@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 67ddd2fb0ae629bafdf15b0eff7fcf093a7a9f1c
+  revision: 731b1e80be757f98e6d5d3b572e1a0481d563a24
   specs:
     rails_design (0.0.1)
       rails
