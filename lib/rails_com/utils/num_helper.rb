@@ -18,7 +18,7 @@ module NumHelper
     left_str = to_parts(left, unit: UNIT, del: DEL)
 
     if right
-      right_str = to_parts(right, del: SUB_DEL)
+      right_str = to_parts(right, unit: [], del: SUB_DEL)
       left_str + right_str
     else
       left_str.chomp('零') + '整'
@@ -36,12 +36,8 @@ module NumHelper
           xx << st unless xx.end_with?('零')
         end
       end
-      if xx.chomp!('零')
-        xx << (unit[index].to_s) << '零'
-      else
-        xx << (unit[index].to_s)
-      end
-      xx
+
+      xx << (unit[index].to_s)
     end
 
     han_arr.reverse.join
