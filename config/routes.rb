@@ -190,11 +190,6 @@ Rails.application.routes.draw do
               patch :test
             end
           end
-          resources :templates do
-            collection do
-              post :sync
-            end
-          end
         end
       end
     end
