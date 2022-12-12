@@ -7,8 +7,14 @@ module NumHelper
   extend self
 
   def to_rmb(num)
-    left, right = num.to_fs(:rounded, precision: 2, strip_insignificant_zeros: true, separator: '.', delimiter: ',', delimiter_pattern: DELIMITER_REGEX).split('.')
-
+    left, right = num.to_fs(
+      :rounded,
+      precision: 2,
+      strip_insignificant_zeros: true,
+      separator: '.',
+      delimiter: ',',
+      delimiter_pattern: DELIMITER_REGEX
+    ).split('.')
     left_str = to_parts(left, unit: UNIT, del: DEL)
 
     if right
@@ -20,7 +26,7 @@ module NumHelper
   end
 
   def to_parts(num_str, unit: [], del: [])
-    han_arr = num_str.split(',').reverse.map.with_index do |str, index|
+    han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
       str = str.each_char.map { |i| NUM[i.to_i] }
       xx = ''
       str.zip(del[0..str.size - 1].reverse) do |st, de|
