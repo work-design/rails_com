@@ -29,12 +29,13 @@ module NumHelper
     #raise '数字位数不匹配' if del.size < num_str.size
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
       del = del[0..str.size - 1].reverse
-      str = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{del[position]}" }
+      str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{del[position]}" }
 
-      Rails.logger.debug "str: #{str}"
+      Rails.logger.debug "str: #{str_arr}"
 
-      str_arr.join.gsub /(零[拾佰仟])+/, '零'
-      # xx << (unit[index].to_s)
+      xx = str_arr.join.gsub /(零[拾佰仟]|零)+/, '零'
+      xx.chomp!('零')
+      xx << (unit[index].to_s)
     end
 
     han_arr.reverse.join
