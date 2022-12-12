@@ -21,11 +21,11 @@ module NumHelper
       right_str = to_parts(right, del: SUB_DEL)
       left_str + right_str
     else
-      left_str + '整'
+      left_str.chomp('零') + '整'
     end
   end
 
-  def to_parts(num_str, unit: [], del: [])
+  def to_parts(num_str, unit: UNIT, del: DEL)
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
       str = str.each_char.map { |i| NUM[i.to_i] }
       xx = ''
