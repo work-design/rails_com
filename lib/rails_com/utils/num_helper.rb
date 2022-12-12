@@ -1,6 +1,6 @@
 module NumHelper
   NUM = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'].freeze
-  DEL = ['', '拾', '佰', '仟'].freeze
+  DEL = [nil, '拾', '佰', '仟'].freeze
   SUB_DEL = ['分', '角'].freeze
   UNIT = ['元', '万', '亿', '兆', '京'].freeze
   DELIMITER_REGEX = /(\d)(?=(\d\d\d\d)+(?!\d))/.freeze
@@ -26,18 +26,15 @@ module NumHelper
   end
 
   def to_parts(num_str, unit: UNIT, del: DEL)
+    #raise '数字位数不匹配' if del.size < num_str.size
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
-      str = str.each_char.map { |i| NUM[i.to_i] }
-      xx = ''
-      str.zip(del[0..str.size - 1].reverse) do |st, de|
-        if st != '零' && de
-          xx << st + de
-        else
-          xx << st unless xx.end_with?('零')
-        end
-      end
+      del = del[0..str.size - 1].reverse
+      str = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{del[position]}" }
 
-      xx << (unit[index].to_s)
+      Rails.logger.debug "str: #{str}"
+
+      str_arr.join.gsub /(零[拾佰仟])+/, '零'
+      # xx << (unit[index].to_s)
     end
 
     han_arr.reverse.join
