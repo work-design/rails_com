@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module NumHelper
   NUM = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'].freeze
   DEL = ['', '拾', '佰', '仟'].freeze
@@ -9,7 +7,7 @@ module NumHelper
   extend self
 
   def to_rmb(num)
-    left, right = num.to_s(:rounded, precision: 2, strip_insignificant_zeros: true, separator: '.', delimiter: ',', delimiter_pattern: DELIMITER_REGEX).split('.')
+    left, right = num.to_fs(:rounded, precision: 2, strip_insignificant_zeros: true, separator: '.', delimiter: ',', delimiter_pattern: DELIMITER_REGEX).split('.')
 
     left_str = to_parts(left, unit: UNIT, del: DEL)
 
