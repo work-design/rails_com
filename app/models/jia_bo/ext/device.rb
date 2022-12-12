@@ -4,11 +4,11 @@ module JiaBo
     extend ActiveSupport::Concern
 
     included do
-      has_one :device, class_name: 'JiaBo::Device', foreign_key: :organ_id, primary_key: :organ_id
+      has_one :device, -> { default }, class_name: 'JiaBo::Device'
     end
 
     def print
-      r = device.print(
+      r = organ.device.print(
         data: to_tspl
       )
       r
