@@ -28,12 +28,12 @@ module NumHelper
   def to_parts(num_str, unit: UNIT, del: DEL)
     #raise '数字位数不匹配' if del.size < num_str.size
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
-      del = del[0..str.size - 1].reverse
-      str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{del[position]}" }
+      _del = del[0..str.size - 1].reverse
+      str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{_del[position]}" }
 
       Rails.logger.debug "str: #{str_arr}"
 
-      xx = str_arr.join.gsub /(零[拾佰仟]|零)+/, '零'
+      xx = str_arr.join.gsub /(零[拾佰仟分角]|零)+/, '零'
       xx.chomp!('零')
       xx << (unit[index].to_s)
     end
