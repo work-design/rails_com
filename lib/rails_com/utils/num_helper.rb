@@ -26,7 +26,7 @@ module NumHelper
 
       Rails.logger.debug "str: #{str_arr}"
 
-      xx = str_arr.join.gsub /(零[拾佰仟分角万亿兆京]|零)+/, '零'
+      xx = str_arr.join.gsub /(零[拾佰仟分角]|零)+/, '零'
       xx.chomp!('零')
       xx << (unit[index].to_s) if xx.present?
       xx
