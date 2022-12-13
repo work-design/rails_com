@@ -19,8 +19,8 @@ module NumHelper
   end
 
   def to_parts(num_str, unit: UNIT, del: DEL)
-    #raise '数字位数不匹配' if del.size < num_str.size
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
+      raise '数字位数不匹配' if del.size < str.size
       _del = del[0..str.size - 1].reverse
       _unit = unit[index].to_s
       str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{_del[position]}" }
