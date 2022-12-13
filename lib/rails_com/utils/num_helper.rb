@@ -24,9 +24,12 @@ module NumHelper
       _del = del[0..str.size - 1].reverse
       str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{_del[position]}" }
 
-      xx = str_arr.join.gsub /(零[拾佰仟分角]|零)+/, '零'
+      Rails.logger.debug "str: #{str_arr}"
+
+      xx = str_arr.join.gsub /(零[拾佰仟分角万亿兆京]|零)+/, '零'
       xx.chomp!('零')
-      xx << (unit[index].to_s)
+      xx << (unit[index].to_s) if xx.present?
+      xx
     end
 
     han_arr.reverse.join
