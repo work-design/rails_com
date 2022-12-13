@@ -7,14 +7,7 @@ module NumHelper
   extend self
 
   def to_rmb(num)
-    left, right = num.to_fs(
-      :rounded,
-      precision: 2,
-      strip_insignificant_zeros: true,
-      separator: '.',
-      delimiter: ',',
-      delimiter_pattern: DELIMITER_REGEX
-    ).split('.')
+    left, right = num.to_fs(:rounded, precision: 2, strip_insignificant_zeros: true, separator: '.', delimiter: ',', delimiter_pattern: DELIMITER_REGEX).split('.')
     left_str = to_parts(left, unit: UNIT, del: DEL)
 
     if right
@@ -30,8 +23,6 @@ module NumHelper
     han_arr = num_str.to_s.split(',').reverse.map.with_index do |str, index|
       _del = del[0..str.size - 1].reverse
       str_arr = str.each_char.map.with_index { |i, position| "#{NUM[i.to_i]}#{_del[position]}" }
-
-      Rails.logger.debug "str: #{str_arr}"
 
       xx = str_arr.join.gsub /(零[拾佰仟分角]|零)+/, '零'
       xx.chomp!('零')
