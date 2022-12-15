@@ -10,6 +10,7 @@ module JiaBo
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       belongs_to :app, counter_cache: true
+      has_many :device_organs
     end
 
     def print(msg_no: nil, data: nil, reprint: 0, multi: 0)
