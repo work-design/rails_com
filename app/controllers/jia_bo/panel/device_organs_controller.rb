@@ -1,5 +1,5 @@
 module JiaBo
-  class Panel::DevicesController < Panel::BaseController
+  class Panel::DeviceOrgansController < Panel::BaseController
     before_action :set_app
     before_action :set_device, only: [:show, :edit, :update, :destroy, :test]
     before_action :set_new_device, only: [:new, :create]
@@ -26,10 +26,10 @@ module JiaBo
     end
 
     def device_params
-      params.fetch(:device, {}).permit(
+      params.fetch(:device_organ, {}).permit(
         :device_id,
-        :dev_name,
-        :grp_id
+        :organ_id,
+        :default
       )
     end
 

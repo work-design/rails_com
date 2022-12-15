@@ -6,13 +6,10 @@ module JiaBo
       attribute :device_id, :string
       attribute :dev_name, :string
       attribute :grp_id, :string
-      attribute :default, :boolean, default: false
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       belongs_to :app, counter_cache: true
-
-      after_update :set_default, if: -> { default? && saved_change_to_default? }
     end
 
     def print(msg_no: nil, data: nil, reprint: 0, multi: 0)
@@ -36,10 +33,6 @@ module JiaBo
       else
         r
       end
-    end
-
-    def set_default
-      self.class.where.not(id: self.id).where(organ_id: self.organ_id).update_all(default: false)
     end
 
   end

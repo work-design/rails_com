@@ -189,6 +189,7 @@ Rails.application.routes.draw do
             member do
               patch :test
             end
+            resources :device_organs
           end
         end
       end
