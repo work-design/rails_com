@@ -6,7 +6,7 @@ module JiaBo
       attribute :default, :boolean, default: false
 
       belongs_to :device
-      belongs_to :organ, class: 'Org::Organ'
+      belongs_to :organ, class_name: 'Org::Organ'
 
       after_update :set_default, if: -> { default? && saved_change_to_default? }
     end

@@ -87,6 +87,6 @@ zh:
         index:
           title: 设备列表
           test: 打印测试
-      templates:
+      device_organs:
         index:
-          title: 模板列表
+          title: 支持组织
