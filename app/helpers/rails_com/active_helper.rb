@@ -32,7 +32,7 @@ module RailsCom::ActiveHelper
     active: nil,
     item: nil,
     controller: controller_path,
-    action: action_name,
+    action: 'index',
     check_parameters: true,
     check_sessions: true,
     **options
