@@ -17,7 +17,9 @@ class BaseTspl
   end
 
   def render
-    (size + @qrcodes + @texts + footer).join("\n")
+    r = (size + @qrcodes + @texts + footer).join("\n")
+    puts r
+    r
   end
 
   def footer
@@ -38,7 +40,7 @@ class BaseTspl
   end
 
   # TSS16, 字体为：16x16
-  def text(data, font: 'TSS24.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @lines * line_height, line_add: true)
+  def text(data, font: 'TSS24.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @lines * line_height * scale, line_add: true)
     @texts << "TEXT #{x},#{y},\"#{font}\",0,#{scale},#{scale},\"#{data}\""
     @lines += 1 if line_add
   end
