@@ -23,23 +23,6 @@ module JiaBo
       p.merge! securityCode: Digest::MD5.hexdigest(joined_str)
     end
 
-    def list_templates
-      params = common_params do |p|
-        [p[:memberCode], p[:reqTime], api_key].join
-      end
-
-      r = HTTPX.with(debug: STDERR, debug_level: 2).post(
-        base_url + '/listTemplate',
-        form: params
-      )
-
-      if r.status == 200
-        JSON.parse(r.to_s)
-      else
-        r
-      end
-    end
-
     def sync_templates
       r = list_templates.dig('data')
       r.each do |list|

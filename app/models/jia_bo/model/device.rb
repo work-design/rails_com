@@ -36,5 +36,20 @@ module JiaBo
       end
     end
 
+    def get_status
+      params = app.common_params do |p|
+        [p[:memberCode], p[:reqTime], app.api_key].join
+      end
+      params.merge! deviceID: device_id
+
+      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('getStatus', form: params)
+
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
+    end
+
   end
 end
