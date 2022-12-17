@@ -70,7 +70,7 @@ module DefaultForm::Builder
         elsif options[:label_position] == 'after'
           before_wrap(:checkbox, css) + wrap_content + label_content
         else
-          before_wrap(:checkbox, css) +  wrap_content
+          before_wrap(:checkbox, css) + wrap_content
         end
       end
     end
