@@ -12,7 +12,7 @@ class BaseTspl
     @width = width
     @height = height
     @texts = []
-    @lines = 0
+    @text_height = 0
     @qrcodes = []
   end
 
@@ -40,9 +40,9 @@ class BaseTspl
   end
 
   # TSS16, 字体为：16x16
-  def text(data, font: 'TSS24.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @lines * line_height * scale, line_add: true)
+  def text(data, font: 'TSS24.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @text_height, line_add: true)
     @texts << "TEXT #{x},#{y},\"#{font}\",0,#{scale},#{scale},\"#{data}\""
-    @lines += 1 if line_add
+    @text_height += (line_height * scale).to_i if line_add
   end
 
 end
