@@ -14,13 +14,13 @@ class BaseTspl
   end
 
   def footer
-    ["PRINT 1,1"]
+    ["PRINT 1"]
   end
 
   def size
     [
-      "SIZE #{@width} mm, #{@height} mm",
-      "GAP 2 mm, 0 mm",
+      "SIZE #{@width} mm,#{@height} mm",
+      "GAP 2 mm,0 mm",
       "REFERENCE 0,0",
       "CLS"
     ]
