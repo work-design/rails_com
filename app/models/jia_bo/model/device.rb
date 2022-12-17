@@ -51,5 +51,36 @@ module JiaBo
       end
     end
 
+    # 取值范围 0-100，建议(0,25,50,75, 85,100)。
+    def send_volume(level = 25)
+      params = app.common_params do |p|
+        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
+      end
+      params.merge! deviceID: device_id, volume: level
+
+      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('sendVolume', form: params)
+
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
+    end
+
+    def cancel_print
+      params = app.common_params do |p|
+        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
+      end
+      params.merge! deviceID: device_id, all: 1
+
+      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('cancelPrint', form: params)
+
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
+    end
+
   end
 end
