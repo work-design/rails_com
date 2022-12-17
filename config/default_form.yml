@@ -70,7 +70,7 @@ weui:
     error: weui-cell
     required: weui-cell
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
-    checkbox: weui-cell weui-cell_active weui-cell_checkbox
+    checkbox: weui-cell weui-cell_active weui-cell_switch
     radio: weui-cell weui-cell_active weui-cell_radio
     submit: weui-form__opr-area
   after:
