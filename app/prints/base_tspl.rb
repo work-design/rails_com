@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 class BaseTspl
+  FONTS = {
+    'TSS16.BF2' => 16,
+    'TSS20.BF2' => 20,
+    'TSS24.BF2' => 24,
+    'TSS32.BF2' => 32
+  }
 
   def initialize(width: 60, height: 40)
     @width = width
     @height = height
     @texts = []
+    @lines = 0
     @qrcodes = []
   end
 
@@ -30,8 +37,10 @@ class BaseTspl
     @qrcodes << "QRCODE #{x},#{y},#{ecc},#{cell_width},A,0,\"#{data}\""
   end
 
-  def text(data, x:, y:, font: 'TSS24.BF2', x_scale: 1, y_scale: 1)
-    @texts << "TEXT #{x},#{y},\"#{font}\",0,#{x_scale},#{y_scale},\"#{data}\""
+  # TSS16, 字体为：16x16
+  def text(data, font: 'TSS16.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @lines * line_height, line_add: true)
+    @texts << "TEXT #{x},#{y},\"#{font}\",0,#{scale},#{scale},\"#{data}\""
+    @lines += 1 if line_add
   end
 
 end
