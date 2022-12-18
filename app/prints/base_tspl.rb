@@ -12,12 +12,13 @@ class BaseTspl
     @width = width
     @height = height
     @texts = []
+    @bars = []
     @text_height = 0
     @qrcodes = []
   end
 
   def render
-    r = (size + @qrcodes + @texts + footer).join("\n")
+    r = (size + @bars + @qrcodes + @texts + footer).join("\n")
     puts r
     r
   end
@@ -33,6 +34,10 @@ class BaseTspl
       "REFERENCE 0,0",
       "CLS"
     ]
+  end
+
+  def bar(x: 0, y: 0, width: 500, height: 1)
+    @bars << "BAR #{x},#{y},#{width},#{height}"
   end
 
   def qrcode(data, x: 20, y: 125, ecc: 'L', cell_width: 6)
