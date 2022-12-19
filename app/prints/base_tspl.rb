@@ -50,4 +50,9 @@ class BaseTspl
     @text_height += (line_height * scale).to_i if line_add
   end
 
+  def middle_text(data, x:, line_add: false, **options)
+    y = @height * 8 / 2
+    text(data, x: x, y: y, line_add: line_add, **options)
+  end
+
 end
