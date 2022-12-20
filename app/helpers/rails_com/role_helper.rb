@@ -65,6 +65,7 @@ module RailsCom::RoleHelper
       return true
     elsif _options.is_a? Hash
       path_params = _options.slice(:controller, :action)
+      path_params[:controller].delete_prefix!('/')
     else
       path_params = {}
     end
