@@ -4,6 +4,10 @@ module JiaBo
     before_action :set_device_organ, only: [:show, :edit, :update, :destroy, :actions]
     before_action :set_new_device_organ, only: [:new, :create]
 
+    def index
+      @device_organs = @device.device_organs.page(params[:page])
+    end
+
     private
     def set_app
       @app = App.find params[:app_id]
