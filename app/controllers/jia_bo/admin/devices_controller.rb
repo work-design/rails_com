@@ -1,8 +1,12 @@
 module JiaBo
   class Admin::DevicesController < Admin::BaseController
-    before_action :set_app
+    before_action :set_app, only: [:scan]
     before_action :set_device, only: [:show, :edit, :update, :destroy, :test]
     before_action :set_new_device, only: [:new, :create]
+
+    def index
+      @apps = JiaBo::App.page(params[:page])
+    end
 
     def scan
       @device = @app.devices.find_or_initialize_by(device_id: params[:result])
@@ -17,10 +21,6 @@ module JiaBo
     private
     def set_device
       @device = @app.devices.find params[:id]
-    end
-
-    def set_new_device
-      @device = @app.devices.build device_params
     end
 
     def set_app

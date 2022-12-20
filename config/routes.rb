@@ -194,11 +194,9 @@ Rails.application.routes.draw do
         end
       end
       namespace :admin, defaults: { namespace: 'admin' } do
-        resources :apps, only: [:index] do
-          resources :devices do
-            collection do
-              post :scan
-            end
+        resources :devices do
+          collection do
+            post :scan
           end
         end
       end

@@ -90,3 +90,7 @@ zh:
       device_organs:
         index:
           title: 支持组织
+    admin:
+      devices:
+        index:
+          title: 设置打印机
