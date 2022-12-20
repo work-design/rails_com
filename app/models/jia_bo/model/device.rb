@@ -7,10 +7,10 @@ module JiaBo
       attribute :dev_name, :string
       attribute :grp_id, :string
 
-      belongs_to :organ, class_name: 'Org::Organ', optional: true
-
       belongs_to :app, counter_cache: true
       has_many :device_organs
+
+      after_create_commit :add_to_jia_bo
     end
 
     def print(msg_no: nil, data: nil, reprint: 0, multi: 0)
@@ -74,6 +74,21 @@ module JiaBo
       params.merge! deviceID: device_id, all: 1
 
       r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('cancelPrint', form: params)
+
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
+    end
+
+    def add_to_jia_bo
+      params = app.common_params do |p|
+        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
+      end
+      params.merge! deviceID: device_id, devName: id
+
+      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('adddev', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)

@@ -3,11 +3,11 @@ module JiaBo
     extend ActiveSupport::Concern
 
     included do
+      attribute :name, :string
       attribute :member_code, :string
       attribute :api_key, :string
       attribute :devices_count, :integer, default: 0
       attribute :templates_count, :integer, default: 0
-      attribute :base_url, :string, default: 'https://api.poscom.cn/apisc'
 
       has_many :devices, dependent: :destroy_async
       has_many :templates, dependent: :destroy_async
@@ -40,11 +40,7 @@ module JiaBo
       params = common_params do |p|
         [p[:memberCode], p[:reqTime], api_key].join
       end
-
-      r = HTTPX.with(debug: STDERR, debug_level: 2).post(
-        base_url + '/listDevice',
-        form: params
-      )
+      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('listDevice', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
