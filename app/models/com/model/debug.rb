@@ -95,6 +95,7 @@ module Com
     end
 
     def shared_puts
+      puts "\e[35m  object_id: #{object_id}  \e[0m"
       puts "\e[35m  changed_changes: #{changes}  \e[0m"
       puts "\e[35m  saved_changes: #{saved_changes}  \e[0m"
       puts "\e[35m  previous_changes: #{previous_changes}  \e[0m"
