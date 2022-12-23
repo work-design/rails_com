@@ -6,7 +6,7 @@ module JiaBo
 
     def index
       @devices = current_organ.devices
-      @apps = JiaBo::App.where.not(id: @devices.pluck(:app_id))
+      @apps = JiaBo::App.all
     end
 
     def scan
