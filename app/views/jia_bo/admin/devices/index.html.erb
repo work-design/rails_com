@@ -4,5 +4,3 @@
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @devices, as: :model %>
   <%= render partial: 'app_tbody', layout: 'app_tr', collection: @apps, as: :model %>
 <% end %>
-
-<%= paginate @apps %>
