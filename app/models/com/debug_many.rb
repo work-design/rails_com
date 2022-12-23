@@ -7,10 +7,10 @@ module Com
     include Model::Debug
 
     before_validation do
-      debug.name += '1'
+      debug.name = debug.name.to_s + '1'
     end
     after_validation do
-      debug.name += '1'
+      debug.name = debug.name.to_s + '1'
     end
   end
 end
