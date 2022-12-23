@@ -1,11 +1,11 @@
 module JiaBo
-  class Admin::DevicesController < Admin::BaseController
+  class Admin::DeviceOrgansController < Admin::BaseController
     before_action :set_app, only: [:scan]
-    before_action :set_device, only: [:show, :edit, :update, :destroy, :actions, :test]
-    before_action :set_new_device, only: [:new, :create]
+    before_action :set_device_organ, only: [:show, :edit, :update, :destroy, :actions, :test]
+    before_action :set_new_device_organ, only: [:new, :create]
 
     def index
-      @devices = current_organ.devices
+      @device_organs = current_organ.device_organs
       @apps = JiaBo::App.all
     end
 
@@ -16,12 +16,12 @@ module JiaBo
     end
 
     def test
-      @device.test
+      @device_organ.device.test
     end
 
     private
-    def set_device
-      @device = Device.find params[:id]
+    def set_device_organ
+      @device_organ = DeviceOrgan.find params[:id]
     end
 
     def set_app
@@ -29,10 +29,8 @@ module JiaBo
     end
 
     def device_params
-      params.fetch(:device, {}).permit(
-        :device_id,
-        :dev_name,
-        :grp_id
+      params.fetch(:device_organ, {}).permit(
+        :default
       )
     end
 

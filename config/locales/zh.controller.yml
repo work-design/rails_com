@@ -91,6 +91,6 @@ zh:
         index:
           title: 支持组织
     admin:
-      devices:
+      device_organs:
         index:
           title: 设置打印机
