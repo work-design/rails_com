@@ -2,15 +2,9 @@
   <div class="weui-media-box__bd">
     <%= yield %>
   </div>
-  <div class="weui-media-box__ft pr-4">
-    <div
-      data-controller="scan"
-      data-action="click->scan#report"
-      class="button is-small is-radius"
-      data-report-url="<%= url_for(action: 'scan', app_id: params[:id]) %>"
-    >
-      <i class="fa-solid fa-plus"></i>
-      <span class="has-text-success pl-1">添加打印机</span>
-    </div>
+  <div class="weui-media-box__ft">
+    <%= button_to({ action: 'actions', id: model.id }, class: 'button is-borderless') do %>
+      <i class="fa-solid fa-lg fa-ellipsis-h"></i>
+    <% end %>
   </div>
 </div>

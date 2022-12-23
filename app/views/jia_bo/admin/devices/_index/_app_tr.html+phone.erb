@@ -1,0 +1,16 @@
+<div class="weui-media-box weui-media-box_appmsg">
+  <div class="weui-media-box__bd">
+    <%= yield %>
+  </div>
+  <div class="weui-media-box__ft pr-4">
+    <div
+      data-controller="scan"
+      data-action="click->scan#report"
+      class="button is-small is-radius"
+      data-report-url="<%= url_for(action: 'scan', app_id: params[:id]) %>"
+    >
+      <i class="fa-solid fa-plus"></i>
+      <span class="has-text-success pl-1">添加打印机</span>
+    </div>
+  </div>
+</div>

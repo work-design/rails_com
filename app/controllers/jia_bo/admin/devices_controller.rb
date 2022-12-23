@@ -1,11 +1,12 @@
 module JiaBo
   class Admin::DevicesController < Admin::BaseController
     before_action :set_app, only: [:scan]
-    before_action :set_device, only: [:show, :edit, :update, :destroy, :test]
+    before_action :set_device, only: [:show, :edit, :update, :destroy, :actions, :test]
     before_action :set_new_device, only: [:new, :create]
 
     def index
-      @apps = JiaBo::App.page(params[:page])
+      @devices = current_organ.devices
+      @apps = JiaBo::App.where.not(id: @devices.pluck(:app_id))
     end
 
     def scan
