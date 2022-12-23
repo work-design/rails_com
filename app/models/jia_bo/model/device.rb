@@ -8,7 +8,7 @@ module JiaBo
       attribute :grp_id, :string
 
       belongs_to :app, counter_cache: true
-      has_many :device_organs
+      has_many :device_organs, dependent: :delete_all
 
       after_create_commit :add_to_jia_bo
     end
