@@ -21,7 +21,7 @@ module JiaBo
 
     private
     def set_device
-      @device = @app.devices.find params[:id]
+      @device = Device.find params[:id]
     end
 
     def set_app
