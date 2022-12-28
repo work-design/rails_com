@@ -6,7 +6,11 @@ zh:
       title: 详情
     new:
       title: 添加
+    new_form:
+      title: 新增
     edit:
+      title: 编辑
+    edit_form:
       title: 编辑
   panel:
     home:

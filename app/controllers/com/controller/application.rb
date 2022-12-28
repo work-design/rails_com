@@ -26,7 +26,9 @@ module Com
 
     def urlsafe_decode64(str = params[:return_state])
       if str.present?
-        StateUtil.urlsafe_decode64(str)
+        r = StateUtil.urlsafe_decode64(str)
+        logger.debug "\e[35m  State hash: #{r}  \e[0m"
+        r
       else
         {}
       end
