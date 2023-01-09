@@ -13,7 +13,7 @@ module RailsCom::Connection
   def find_verified_receiver
     if session && session['auth_token']
       Rails.logger.silence do
-        defined?(Auth::AuthorizedToken) && Auth::AuthorizedToken.find_by(token: session['auth_token'])
+        defined?(Auth::AuthorizedToken) && Auth::AuthorizedToken.find_by(id: session['auth_token'])
       end
     else
       session['session_id']
