@@ -27,7 +27,7 @@ module Com
     def user_info
       token = session.dig('auth_token') || headers.dig('AUTH_TOKEN')
       return {} unless defined? Auth::AuthorizedToken
-      at = Auth::AuthorizedToken.find_by token: token
+      at = Auth::AuthorizedToken.find_by id: token
       if at&.user
         at.user.as_json(only: [:id, :name], methods: [:account_identities])
       elsif at&.account
