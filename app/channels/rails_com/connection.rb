@@ -11,13 +11,15 @@ module RailsCom::Connection
 
   protected
   def find_verified_receiver
-    if session && session['auth_token']
+    return unless session
+    if session['auth_token'] && defined?(Auth::AuthorizedToken)
       Rails.logger.silence do
-        defined?(Auth::AuthorizedToken) && Auth::AuthorizedToken.find_by(id: session['auth_token'])
+        r = Auth::AuthorizedToken.find_by(id: session['auth_token'])
+        return r if r
       end
-    else
-      session['session_id']
     end
+
+    session['session_id']
   rescue
     logger.error 'An unauthorized connection attempt was rejected'
     nil
