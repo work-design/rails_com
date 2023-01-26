@@ -15,7 +15,7 @@ module RailsCom::Connection
     if session['auth_token'] && defined?(Auth::AuthorizedToken)
       Rails.logger.silence do
         r = Auth::AuthorizedToken.find_by(id: session['auth_token'])
-        return r if r&.identity
+        return r if r&.user
       end
     end
 
