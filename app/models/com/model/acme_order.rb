@@ -95,11 +95,8 @@ module Com
 
     def set_authorizations
       order.authorizations.map do |auth|
-        if auth.http
-          ident = acme_identifiers.find(&->(i){ i.type == 'Com::AcmeHttp' })
-        else
-          ident = acme_identifiers.find(&->(i){ i.type == 'Com::AcmeDns' })
-        end
+        ident = acme_identifiers.find(&->(i){ i.domain == auth.domain && i.wildcard == auth.wildcard })
+        next unless ident
         ident.set_auth(auth)
         ident
       end
