@@ -20,10 +20,10 @@ module DefaultForm::ViewHelper
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
-    if controllers.present? && !controllers.include?('default_valid')
-      options[:data][:controller] += ' default_valid'
+    if controllers.present? && !controllers.include?('default-valid')
+      options[:data][:controller] += ' default-valid'
     else
-      options[:data][:controller] = 'default_valid'
+      options[:data][:controller] = 'default-valid'
     end
 
     if options[:theme].present? && options[:theme].end_with?('search')
@@ -32,10 +32,10 @@ module DefaultForm::ViewHelper
 
       # add default action
       actions = options.dig(:data, :action).to_s.split(' ')
-      if actions.present? && !actions.include?('default_valid#filter')
-        options[:data][:action] += ' default_valid#filter'
+      if actions.present? && !actions.include?('default-valid#filter')
+        options[:data][:action] += ' default-valid#filter'
       else
-        options[:data][:action] = 'default_valid#filter'
+        options[:data][:action] = 'default-valid#filter'
       end
     end
 
