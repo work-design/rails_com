@@ -15,7 +15,7 @@ module StateUtil
       host: state_hash[0],
       controller: state_hash[1],
       action: state_hash[2],
-      **state_hash[4].to_s.split('&').map(&->(i){ i.split('=') }).to_h
+      **state_hash[4].to_s.split('&').map(&->(i){ i.split('=') }).to_h.symbolize_keys!
     }
   end
 
