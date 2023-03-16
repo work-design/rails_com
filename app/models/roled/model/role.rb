@@ -3,12 +3,13 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
+      attribute :type, :string
       attribute :name, :string
+      attribute :tip, :string
       attribute :description, :string
       attribute :visible, :boolean, default: false
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
-      attribute :type, :string
 
       has_many :who_roles, dependent: :destroy_async
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role

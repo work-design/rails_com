@@ -1,4 +1,7 @@
-<td><%= model.name %></td>
+<td>
+  <p><%= model.name %></p>
+  <p class="has-text-grey"><%= model.tip %></p>
+</td>
 <td><%= model.description %></td>
 <td>
   <%= link_to model.type_i18n, { controller: 'roled/panel/who_roles', role_id: model.id }, class: 'button' %>

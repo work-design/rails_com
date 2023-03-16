@@ -109,6 +109,7 @@ module Roled
     def role_params
       params.fetch(:role, {}).permit(
         :name,
+        :tip,
         :code,
         :description,
         :visible,
