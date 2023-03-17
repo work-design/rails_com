@@ -21,7 +21,7 @@ module Roled
         return
       end
 
-      role_access_denied
+      raise DeniedError, I18n.t(:access_denied, scope: :rails_role)
     end
 
     def require_role
@@ -35,25 +35,12 @@ module Roled
         return
       end
 
-      role_access_denied
+      raise DeniedError, I18n.t(:access_denied, scope: :rails_role)
     end
 
     def rails_role_user
       logger.debug "\e[35m  Role User: User  \e[0m"
       defined?(current_user) && current_user
-    end
-
-    private
-    def role_access_denied
-      message = I18n.t(:access_denied, scope: :rails_role)
-
-      if request.xhr?
-        render 'errors.js.erb', status: 403
-      elsif request.format.json?
-        raise ActionController::ForbiddenError
-      else
-        redirect_to RailsCom.config.default_return_path, alert: message
-      end
     end
 
   end
