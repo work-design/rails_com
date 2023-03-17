@@ -39,6 +39,7 @@ module Roled
     end
 
     def rails_role_user
+      logger.debug "\e[35m  Role User: User  \e[0m"
       defined?(current_user) && current_user
     end
 
