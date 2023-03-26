@@ -10,6 +10,7 @@ module Com
       attribute :action_name, :string
       attribute :request_method, :string
       attribute :params, :json, default: {}
+      attribute :body, :json, default: {}
       attribute :cookie, :json, default: {}
       attribute :session, :json, default: {}
     end

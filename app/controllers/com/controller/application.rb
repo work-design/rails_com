@@ -20,7 +20,8 @@ module Com
         controller_path: "/#{controller_path}",
         action_name: action_name,
         request_method: request.method.downcase,
-        params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters)
+        params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
+        body: params.except(:authenticity_token, :business, :namespace)
       )
       state.id
     end
