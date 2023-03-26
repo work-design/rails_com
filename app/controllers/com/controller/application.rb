@@ -15,18 +15,19 @@ module Com
     end
 
     def urlsafe_encode64
-      StateUtil.urlsafe_encode64(
+      state = State.create(
         host: request.host,
-        controller: "/#{controller_path}",
-        action: action_name,
-        method: request.method.downcase,
+        controller_path: "/#{controller_path}",
+        action_name: action_name,
+        request_method: request.method.downcase,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters)
       )
+      state.id
     end
 
     def urlsafe_decode64(str = params[:return_state])
       if str.present?
-        r = StateUtil.urlsafe_decode64(str)
+        r = State.find(str)&.detail
         logger.debug "\e[35m  State hash: #{r}  \e[0m"
         r
       else
