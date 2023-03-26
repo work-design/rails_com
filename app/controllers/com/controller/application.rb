@@ -21,7 +21,7 @@ module Com
         action_name: action_name,
         request_method: request.method.downcase,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
-        body: params.except(:authenticity_token, :business, :namespace)
+        body: params.except(:authenticity_token, :business, :namespace, :controller, :action).compact_blank
       )
       state.id
     end
