@@ -242,5 +242,8 @@ end
 
 Rails.application.routes.append do
   match '*all', controller: 'com/common', action: 'cors_preflight_check', via: [:options]
+end
+
+Rails.application.routes.append do
   match '*path' => 'com/log#not_found', via: :all
 end if RailsCom.config.intercept_not_found
