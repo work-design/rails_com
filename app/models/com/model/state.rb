@@ -9,6 +9,7 @@ module Com
       attribute :controller_path, :string
       attribute :action_name, :string
       attribute :request_method, :string
+      attribute :referer, :string
       attribute :params, :json, default: {}
       attribute :body, :json, default: {}
       attribute :cookie, :json, default: {}

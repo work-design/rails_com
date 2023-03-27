@@ -20,6 +20,7 @@ module Com
         controller_path: "/#{controller_path}",
         action_name: action_name,
         request_method: request.method.downcase,
+        referer: request.referer,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
         body: params.except(:business, :namespace, :controller, :action).compact_blank
       )
@@ -29,7 +30,7 @@ module Com
     def urlsafe_decode64(str = params[:return_state])
       state = State.find(str)
       if state
-        state.destroy
+        #state.destroy
         logger.debug "\e[35m  State hash: #{state.detail}  \e[0m"
         state.detail
       else
