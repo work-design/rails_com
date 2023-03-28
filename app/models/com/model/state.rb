@@ -21,7 +21,7 @@ module Com
         host: host,
         controller: controller_path,
         action: action_name,
-        params: params.except('auth_token')
+        **params.except('auth_token')
       }
     end
 
