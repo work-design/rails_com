@@ -116,9 +116,9 @@ module RailsCom::RoleHelper
   def deal_with_state(_options, _html_options)
     state = _html_options.delete(:state)
     if state == 'enter' && _options[:state].blank?
-      _options.merge! return_state: urlsafe_encode64
+      _options.merge! return_state: StateUtil.encode(request)
     elsif state == 'return' && params[:return_state]
-      _options.merge! urlsafe_decode64
+      _options.merge! StateUtil.decode(params[:return_state])
     elsif params[:return_state]
       _options.merge! return_state: params[:return_state] if _options.respond_to?(:merge!)
     end

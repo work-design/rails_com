@@ -11,7 +11,7 @@ module Com
 
     included do
       before_action :set_locale, :set_timezone, :set_variant
-      helper_method :current_title, :current_organ_name, :default_params, :urlsafe_encode64, :urlsafe_decode64
+      helper_method :current_title, :current_organ_name, :default_params
     end
 
     def urlsafe_encode64
@@ -27,17 +27,6 @@ module Com
         user_id: current_user&.id
       )
       state.id
-    end
-
-    def urlsafe_decode64(str = params[:return_state])
-      state = State.find(str)
-      if state
-        #state.destroy
-        logger.debug "\e[35m  State hash: #{state.detail}  \e[0m"
-        state.detail
-      else
-        {}
-      end
     end
 
     def current_title
