@@ -20,15 +20,12 @@ module Com
     end
 
     def detail
-      r = {
+      {
         host: host,
         controller: controller_path,
         action: action_name,
         **params.except('auth_token')
       }
-      r.merge! user_id: user_id if user_id.present?
-      r.merge! organ_id: organ_id if organ_id.present?
-      r
     end
 
   end
