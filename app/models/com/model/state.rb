@@ -17,6 +17,8 @@ module Com
 
       belongs_to :user, class_name: 'Auth::User', optional: true
       belongs_to :organ, class_name: 'Org::Organ', optional: true
+
+      after_find :destroy_after_used
     end
 
     def detail
@@ -26,6 +28,10 @@ module Com
         action: action_name,
         **params.except('auth_token')
       }
+    end
+
+    def destroy_after_used
+      DestroyJob.perform_later(self)
     end
 
   end
