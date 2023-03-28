@@ -31,7 +31,7 @@ module Com
     end
 
     def destroy_after_used
-      DestroyJob.perform_later(self)
+      StateDestroyJob.perform_later(self.id)
     end
 
   end
