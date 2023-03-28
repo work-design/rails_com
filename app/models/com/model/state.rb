@@ -14,15 +14,21 @@ module Com
       attribute :body, :json, default: {}
       attribute :cookie, :json, default: {}
       attribute :session, :json, default: {}
+
+      belongs_to :user, class_name: 'Auth::User', optional: true
+      belongs_to :organ, class_name: 'Org::Organ', optional: true
     end
 
     def detail
-      {
+      r = {
         host: host,
         controller: controller_path,
         action: action_name,
         **params.except('auth_token')
       }
+      r.merge! user_id: user_id if user_id.present?
+      r.merge! organ_id: organ_id if organ_id.present?
+      r
     end
 
   end

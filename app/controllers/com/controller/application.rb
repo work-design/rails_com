@@ -22,7 +22,9 @@ module Com
         request_method: request.request_method,
         referer: request.referer,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
-        body: params.except(:business, :namespace, :controller, :action).compact_blank
+        body: params.except(:business, :namespace, :controller, :action).compact_blank,
+        organ_id: current_organ&.id,
+        user_id: current_user&.id
       )
       state.id
     end
