@@ -19,7 +19,7 @@ module Com
         host: request.host,
         controller_path: "/#{controller_path}",
         action_name: action_name,
-        request_method: request.method.downcase,
+        request_method: request.request_method,
         referer: request.referer,
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
         body: params.except(:business, :namespace, :controller, :action).compact_blank
