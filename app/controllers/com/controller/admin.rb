@@ -32,7 +32,7 @@ module Com
     def update
       model = model_object
       model.assign_attributes(model_params)
-
+      binding.b
       if model.save
         render :update
       else

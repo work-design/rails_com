@@ -14,7 +14,7 @@ module Com
     end
 
     def record_not_found(exception)
-      render 'err', layout: 'raw', locals: { exception: exception, message: exception.message }, status: :not_found
+      render 'err_not_found', layout: 'raw', locals: { exception: exception, message: exception.message }, status: :not_found
     end
 
     def disposable_auth_fail(exception)
