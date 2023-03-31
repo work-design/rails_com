@@ -31,8 +31,6 @@ module RailsCom::ActiveHelper
     modules: [],
     active: nil,
     item: nil,
-    controller: controller_path,
-    action: 'index',
     check_parameters: true,
     check_sessions: true,
     **options
@@ -70,7 +68,7 @@ module RailsCom::ActiveHelper
     end
 
     present_params = request.query_parameters.merge request.path_parameters.except(:business, :namespace, :controller, :action)
-    return active if current_page?(controller: controller, action: action, check_parameters: check_parameters, **present_params.merge(options))
+    return active if current_page?(check_parameters: check_parameters, **present_params.merge(options))
 
     if options.find { |key, value| [controller_name, controller_path].include?(key.to_s.delete_prefix('/')) && Array(value).include?(action_name) }
       return active
