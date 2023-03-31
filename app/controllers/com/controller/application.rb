@@ -14,7 +14,7 @@ module Com
       helper_method :current_title, :current_organ_name, :default_params
     end
 
-    def urlsafe_encode64
+    def urlsafe_encode64(destroyable: true)
       state = State.create(
         host: request.host,
         controller_path: "/#{controller_path}",
@@ -24,7 +24,8 @@ module Com
         params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
         body: params.except(:business, :namespace, :controller, :action).compact_blank,
         organ_id: current_organ&.id,
-        user_id: current_user&.id
+        user_id: current_user&.id,
+        destroyable: destroyable
       )
       state.id
     end
