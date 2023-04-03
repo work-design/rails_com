@@ -1,1 +1,7 @@
-<%= turbo_stream.append 'body', partial: 'visit', locals: defined?(url) ? { url: url } : { url: url_for(action: 'show', **params.permit(:return_state)) } %>
+<% if defined?(url) %>
+  <%= turbo_stream.append 'body', partial: 'visit', locals: { url: url } %>
+<% elsif params[:redirect_state].present? %>
+  <%= turbo_stream.append 'body', partial: 'visit', locals: { url: url_for(**StateUtil.decode(params[:redirect_state])) } %>
+<% else %>
+  <%= turbo_stream.append 'body', partial: 'visit', locals: { url: url_for(action: 'show', **params.permit(:return_state)) } %>
+<% end %>

@@ -14,7 +14,11 @@ module DefaultForm::ViewHelper
     options[:url] ||= {}
     options[:data] ||= {}
 
-    if params[:return_state] && options[:state] == 'return'
+    if options[:state] == 'enter'
+      options[:url].merge! return_state: StateUtil.encode(request)
+    elsif options[:state] == 'redirect'
+      options[:url].merge! redirect_state: StateUtil.encode(request)
+    elsif params[:return_state] && options[:state] == 'return'
       options[:url].merge! return_state: params[:return_state]
     end
 
