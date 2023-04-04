@@ -117,7 +117,7 @@ module RailsCom::RoleHelper
     state = _html_options.delete(:state)
     if state == 'enter' && _options[:state].blank?
       _options.merge! return_state: StateUtil.encode(request)
-    elsif state == 'redirect' 
+    elsif state == 'redirect'
       _options.merge! redirect_state: StateUtil.encode(request)
     elsif state == 'return' && params[:return_state]
       _options.merge! StateUtil.decode(params[:return_state])
