@@ -11,7 +11,7 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
-    deal_with_state(_options, _html_options)
+    deal_with_state(_html_options.delete(:state), _options)
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       super
@@ -33,7 +33,7 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
     end
 
-    deal_with_state(_options, _html_options)
+    deal_with_state(_html_options.delete(:state), _options)
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       begin
@@ -113,21 +113,6 @@ module RailsCom::RoleHelper
     result
   end
 
-  def deal_with_state(_options, _html_options)
-    state = _html_options.delete(:state)
-    if state == 'enter' && _options[:state].blank?
-      _options.merge! return_state: StateUtil.encode(request)
-    elsif state == 'redirect_return'
-      _options.merge! redirect_state: StateUtil.encode(request)
-    elsif state == 'redirect' && params[:return_state].present?
-      _options.merge! redirect_state: params[:return_state]
-    elsif state == 'redirect'
-      _options.merge! redirect_state: StateUtil.encode(request)
-    elsif state == 'return' && params[:return_state]
-      _options.merge! StateUtil.decode(params[:return_state])
-    elsif params[:return_state]
-      _options.merge! return_state: params[:return_state] if _options.respond_to?(:merge!)
-    end
-  end
+
 
 end

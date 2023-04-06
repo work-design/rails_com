@@ -13,18 +13,7 @@ module DefaultForm::ViewHelper
   def form_with(**options, &block)
     options[:url] ||= {}
     options[:data] ||= {}
-
-    if options[:state] == 'enter'
-      options[:url].merge! return_state: StateUtil.encode(request)
-    elsif options[:state] == 'redirect_return'
-      options[:url].merge! redirect_state: StateUtil.encode(request)
-    elsif options[:state] == 'redirect' && params[:return_state].present?
-      options[:url].merge! redirect_state: params[:return_state]
-    elsif options[:state] == 'redirect'
-      options[:url].merge! redirect_state: StateUtil.encode(request)
-    elsif params[:return_state] && options[:state] == 'return'
-      options[:url].merge! return_state: params[:return_state]
-    end
+    deal_with_state(options[:state], options)
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
@@ -57,8 +46,37 @@ module DefaultForm::ViewHelper
     form_with(**options, &block)
   end
 
+  def deal_with_state(state, options)
+    if state == 'enter' && options[:state].blank?
+      options.merge! return_state: StateUtil.encode(request)
+    elsif state == 'redirect_return'
+      options.merge! redirect_state: StateUtil.encode(request)
+    elsif state == 'redirect' && params[:return_state].present?
+      options.merge! redirect_state: params[:return_state]
+    elsif state == 'redirect'
+      options.merge! redirect_state: StateUtil.encode(request)
+    elsif state == 'return' && params[:return_state]
+      options.merge! StateUtil.decode(params[:return_state])
+    elsif params[:return_state]
+      options.merge! return_state: params[:return_state] if options.respond_to?(:merge!)
+    end
+
+
+    if options[:state] == 'enter'
+      options[:url].merge! return_state: StateUtil.encode(request)
+    elsif options[:state] == 'redirect_return'
+      options[:url].merge! redirect_state: StateUtil.encode(request)
+    elsif options[:state] == 'redirect' && params[:return_state].present?
+      options[:url].merge! redirect_state: params[:return_state]
+    elsif options[:state] == 'redirect'
+      options[:url].merge! redirect_state: StateUtil.encode(request)
+    elsif params[:return_state] && options[:state] == 'return'
+      options[:url].merge! return_state: params[:return_state]
+    end
+  end
+
 end
 
 ActiveSupport.on_load :action_view do
- include DefaultForm::ViewHelper
+  include DefaultForm::ViewHelper
 end
