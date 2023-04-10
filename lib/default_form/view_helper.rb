@@ -57,6 +57,8 @@ module DefaultForm::ViewHelper
       url_options.merge! redirect_state: StateUtil.encode(request)
     elsif state == 'return' && params[:return_state]
       url_options.merge! StateUtil.decode(params[:return_state])
+    elsif state == 'clear'
+      return
     elsif params[:return_state]
       url_options.merge! return_state: params[:return_state] if options.respond_to?(:merge!)
     end
