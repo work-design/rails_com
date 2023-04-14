@@ -35,7 +35,7 @@ module TimeHelper
     hours, minute_seconds = day_seconds.to_i.divmod(3600)
     minutes, seconds = minute_seconds.divmod(60)
 
-    { year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds }
+    { year: years, month: months, day: days, hour: hours, minute: minutes.to_s.rjust(2, '0'), second: seconds.to_s.rjust(2, '0') }
   end
 
   def step(now: Time.current, after: 0, step: 15, skip: false)

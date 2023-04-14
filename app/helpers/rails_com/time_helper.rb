@@ -11,7 +11,7 @@ module RailsCom::TimeHelper
 
     I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
       drop_zero.each do |k, v|
-        str += [v.to_s.rjust(2, '0'), locale.t(k)].join
+        str += [v.to_s, locale.t(k)].join
       end
     end
 
