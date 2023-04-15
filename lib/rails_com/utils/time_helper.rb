@@ -33,7 +33,7 @@ module TimeHelper
 
   def exact_distance_pure_time(from_time = Time.current, to_time)
     result = exact_distance_time(from_time, to_time)
-    drop_zero = result.drop_while(&->(i){ i[1] <= 0 })
+    drop_zero = result.drop_while(&->(i){ i[1] <= 0 }).to_h
     drop_zero[:minute] = drop_zero[:minute].to_s.rjust(2, '0') if drop_zero.key? :minute
     drop_zero[:second] = drop_zero[:second].to_s.rjust(2, '0') if drop_zero.key? :second
     drop_zero
