@@ -4,14 +4,7 @@ module TimeHelper
   extend self
 
   def exact_distance_time(from_time = Time.current, to_time)
-    from_time = from_time.to_datetime
-    to_time = to_time.to_datetime
-    if from_time > to_time
-      max_time, min_time = from_time, to_time
-    else
-      max_time, min_time = to_time, from_time
-    end
-
+    min_time, max_time = [from_time.to_datetime, to_time.to_datetime].sort!
     years = max_time.year - min_time.year
     months = max_time.month - min_time.month
     days = max_time.mday - min_time.mday
@@ -35,7 +28,15 @@ module TimeHelper
     hours, minute_seconds = day_seconds.to_i.divmod(3600)
     minutes, seconds = minute_seconds.divmod(60)
 
-    { year: years, month: months, day: days, hour: hours, minute: minutes.to_s.rjust(2, '0'), second: seconds.to_s.rjust(2, '0') }
+    { year: years, month: months, day: days, hour: hours, minute: minutes, second: seconds }
+  end
+
+  def exact_distance_pure_time(from_time = Time.current, to_time)
+    result = exact_distance_time(from_time, to_time)
+    drop_zero = result.drop_while(&->(i){ i[1] <= 0 })
+    drop_zero[:minute] = drop_zero[:minute].to_s.rjust(2, '0') if drop_zero.key? :minute
+    drop_zero[:second] = drop_zero[:second].to_s.rjust(2, '0') if drop_zero.key? :second
+    drop_zero
   end
 
   def step(now: Time.current, after: 0, step: 15, skip: false)

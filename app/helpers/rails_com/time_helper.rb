@@ -2,15 +2,14 @@
 module RailsCom::TimeHelper
 
   def exact_distance_time(from_time = Time.current, to_time, **options)
-    result = TimeHelper.exact_distance_time(from_time, to_time)
-    drop_zero = result.drop_while(&->(i){ i[1] <= 0 })
+    result = TimeHelper.exact_distance_pure_time(from_time, to_time)
     options = {
       scope: 'datetime.prompts'
     }.merge!(options)
     str = ''
 
     I18n.with_options locale: options[:locale], scope: options[:scope] do |locale|
-      drop_zero.each do |k, v|
+      result.each do |k, v|
         str += [v.to_s, locale.t(k)].join
       end
     end
