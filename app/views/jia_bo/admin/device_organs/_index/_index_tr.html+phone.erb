@@ -6,7 +6,7 @@
     <% if model.default %>
       <i class="fa-solid fa-check has-text-success"></i>
     <% end %>
-    <%= button_to({ action: 'actions', id: model.id }, class: 'button is-borderless') do %>
+    <%= button_to({ action: 'actions', id: model.id }, state: 'enter', class: 'button is-borderless') do %>
       <i class="fa-solid fa-lg fa-ellipsis-h"></i>
     <% end %>
   </div>

@@ -2,7 +2,7 @@
   <i class="fa-solid fa-trash"></i>
   <span><%= t('.destroy') %></span>
 <% end %>
-<%= button_to({ action: 'update' }, method: :patch, params: { 'device_organ[default]': true }, class: 'has-text-info', form: { data: { turbo_confirm: t('.confirm') }, class: 'weui-actionsheet__cell weui-actionsheet__cell_warn' }) do %>
+<%= button_to({ action: 'update' }, method: :patch, params: { 'device_organ[default]': true }, state: 'redirect', class: 'has-text-info', form: { data: { turbo_confirm: t('.confirm') }, class: 'weui-actionsheet__cell weui-actionsheet__cell_warn' }) do %>
   <i class="fa-solid fa-check-double"></i>
   <span>设为默认</span>
 <% end %>
