@@ -61,6 +61,8 @@ module Com
       end
 
       # 安卓：MiniProgramEnv/android
+      # 企业微信：miniprogram
+      # ios: miniProgram
       if request.user_agent&.match?(/miniProgram|miniprogram|MiniProgramEnv/) || request.referer&.match?(/servicewechat.com/)
         variant << :mini_program
       end
