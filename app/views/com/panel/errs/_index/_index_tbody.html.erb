@@ -5,10 +5,10 @@
   <p><%= model.action_name %></p>
 </td>
 <td>
-  <code class="is-wrap"><%= simple_format model.params %></code>
+  <code class="is-wrap"><%= simple_format model.params.limit(3) %></code>
 </td>
 <td>
-  <code class="is-wrap"><%= simple_format model.session %></code>
+  <code class="is-wrap"><%= simple_format model.session.limit(3) %></code>
 </td>
 <td>
   <code class="is-wrap"><%= model.exception %></code>
