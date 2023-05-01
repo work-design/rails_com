@@ -245,5 +245,5 @@ Rails.application.routes.append do
 end
 
 Rails.application.routes.append do
-  match '*path' => 'com/log#not_found', via: :all
+  match '*path' => 'com/log#not_found', via: [:get, :post]
 end if RailsCom.config.intercept_not_found
