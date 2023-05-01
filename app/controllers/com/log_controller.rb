@@ -3,6 +3,7 @@ module Com
     skip_before_action :verify_authenticity_token if defined? verify_authenticity_token
 
     def not_found
+      logger.debug "\e[35m  format: #{request.format}, path: #{request.path_parameters}  \e[0m"
       params.permit!
       RailsCom.config.not_found_logger.info "#{params[:path]}.#{params[:format]}"
 
