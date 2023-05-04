@@ -1,0 +1,8 @@
+<%= link_to({ controller: '/home' }, class: 'weui-tabbar__item') do %>
+  <i class="fa-solid fa-home weui-tabbar__icon"></i>
+  <div class="weui-tabbar__label"><%= t('home.index.title') %></div>
+<% end %>
+<%= link_to({ controller: '/my/home' }, class: 'weui-tabbar__item') do %>
+  <i class="fa-solid fa-user weui-tabbar__icon"></i>
+  <div class="weui-tabbar__label"><%= t('my.home.index.title') %></div>
+<% end %>

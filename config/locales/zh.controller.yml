@@ -12,6 +12,13 @@ zh:
       title: 编辑
     edit_form:
       title: 编辑
+  home:
+    index:
+      title: 首页
+  my:
+    home:
+      index:
+        title: 个人中心
   panel:
     home:
       index:
