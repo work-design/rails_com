@@ -14,17 +14,28 @@ module Com
       helper_method :current_title, :current_organ_name, :default_params
     end
 
-    def urlsafe_encode64(destroyable: true)
+    def urlsafe_encode64(
+      host: request.host,
+      _controller_path: "/#{controller_path}",
+      _action_name: action_name,
+      request_method: request.request_method,
+      referer: request.referer,
+      _params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
+      body: params.except(:business, :namespace, :controller, :action).compact_blank,
+      organ_id: current_organ&.id,
+      user_id: current_user&.id,
+      destroyable: true
+    )
       state = State.create(
-        host: request.host,
-        controller_path: "/#{controller_path}",
-        action_name: action_name,
-        request_method: request.request_method,
-        referer: request.referer,
-        params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
-        body: params.except(:business, :namespace, :controller, :action).compact_blank,
-        organ_id: current_organ&.id,
-        user_id: current_user&.id,
+        host: host,
+        controller_path: _controller_path,
+        action_name: _action_name,
+        request_method: request_method,
+        referer: referer,
+        params: _params,
+        body: body,
+        organ_id: organ_id,
+        user_id: user_id,
         destroyable: destroyable
       )
       state.id
