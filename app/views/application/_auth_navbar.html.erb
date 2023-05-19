@@ -13,8 +13,13 @@
       <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item' %>
     </div>
   </div>
-<% elsif defined?(RailsWechat) %>
+<% elsif defined?(RailsWechat) && current_wechat_app %>
   <%= link_to({ controller: '/wechat/wechat', action: 'login' }, class: 'navbar-item') do %>
+    <i class="fa-solid fa-user"></i>
+    <span class="pl-1">登录/注册</span>
+  <% end %>
+<% else %>
+  <%= link_to({ controller: '/auth/sign', action: 'sign' }, class: 'navbar-item') do %>
     <i class="fa-solid fa-user"></i>
     <span class="pl-1">登录/注册</span>
   <% end %>
