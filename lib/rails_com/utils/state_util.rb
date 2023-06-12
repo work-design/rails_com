@@ -20,7 +20,7 @@ module StateUtil
       host: state_hash[0],
       controller: state_hash[1],
       action: state_hash[2],
-      **state_hash[3].to_s.split('&').map(&->(i){ i.split('=') }).to_h.symbolize_keys!
+      **Rack::Utils.parse_nested_query(state_hash[3].to_s).symbolize_keys!
     }
   end
 
