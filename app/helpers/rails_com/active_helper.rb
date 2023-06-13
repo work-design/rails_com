@@ -25,28 +25,19 @@ module RailsCom::ActiveHelper
   #   active_helper 'work/employee': ['index', 'show']
   # params:
   #   active_helper controller: 'users', action: 'show', id: 371
-  def active_helper(
-    paths: [],
-    controllers: [],
-    modules: [],
-    active: nil,
-    item: nil,
-    check_parameters: true,
-    check_sessions: true,
-    **options
-  )
+  def active_helper_bool(paths: [], controllers: [], modules: [], check_parameters: true, check_sessions: true, **options)
     if paths.present?
       Array(paths).each do |path|
-        return active if current_page?(path, check_parameters: check_parameters)
+        return true if current_page?(path, check_parameters: check_parameters)
       end
-      return item
+      return false
     end
 
     if controllers.present?
       if (Array(controllers) & [controller_name, controller_path]).size > 0
-        return active
+        return true
       else
-        return item
+        return false
       end
     end
 
@@ -61,30 +52,34 @@ module RailsCom::ActiveHelper
         this_modules.shift
       end
       if (Array(modules) & _this_modules).size > 0
-        return active
+        return true
       else
-        return item
+        return false
       end
     end
 
     present_params = request.query_parameters.merge request.path_parameters.except(:business, :namespace, :controller, :action)
-    return active if current_page?(check_parameters: check_parameters, **present_params.merge(options))
+    return true if current_page?(check_parameters: check_parameters, **present_params.merge(options))
 
     if options.find { |key, value| [controller_name, controller_path].include?(key.to_s.delete_prefix('/')) && Array(value).include?(action_name) }
-      return active
+      return true
     end
 
     if check_sessions
       options.each do |k, v|
-        return active if !present_params.key?(k) && session.key?(k) && session[k].to_s == v.to_s
+        return true if !present_params.key?(k) && session.key?(k) && session[k].to_s == v.to_s
       end
     end
 
-    item
+    false
   end
 
-  def active_helper_bool
-
+  def active_helper(paths: [], controllers: [], modules: [], active: nil, item: nil, check_parameters: true, check_sessions: true, **options)
+    if active_helper_bool(paths: paths, controllers: controllers, modules: modules, check_parameters: check_parameters, check_sessions: check_sessions, **options)
+      active
+    else
+      item
+    end
   end
 
   def filter_params(options = {})
