@@ -76,11 +76,15 @@ module RailsCom::ActiveHelper
 
     if check_sessions
       options.each do |k, v|
-        return active if !present_params.key?(k) && session[k].to_s == v.to_s
+        return active if !present_params.key?(k) && session.key?(k) && session[k].to_s == v.to_s
       end
     end
 
     item
+  end
+
+  def active_helper_bool
+
   end
 
   def filter_params(options = {})
