@@ -47,6 +47,7 @@ module DefaultForm::ViewHelper
   end
 
   def deal_with_state(state, options, url_options)
+    return unless url_options.is_a?(Hash)
     if state == 'enter' && options[:state].blank?
       url_options.merge! return_state: StateUtil.encode(request)
     elsif state == 'redirect_return'
