@@ -1,6 +1,6 @@
 <%= paginator.render do %>
   <% @window_options[:window] = 1 %>
-  <nav class="<%= @options[:class] || 'box is-radiusless pagination is-centered' %>">
+  <nav class="<%= @options[:class] || 'box pagination is-centered mx-3' %>">
     <%= prev_page_tag unless current_page.first? %>
     <ul class="pagination-list">
     <% each_page do |page| %>
