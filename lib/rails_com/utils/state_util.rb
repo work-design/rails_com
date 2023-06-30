@@ -14,14 +14,18 @@ module StateUtil
 
   def decode(str)
     state_hash = str.split('~')
-    state_hash.map! { |i| Base64.urlsafe_decode64(i) }
+    begin
+      state_hash.map! { |i| Base64.urlsafe_decode64(i) }
 
-    {
-      host: state_hash[0],
-      controller: state_hash[1],
-      action: state_hash[2],
-      **Rack::Utils.parse_nested_query(state_hash[3].to_s).symbolize_keys!
-    }
+      {
+        host: state_hash[0],
+        controller: state_hash[1],
+        action: state_hash[2],
+        **Rack::Utils.parse_nested_query(state_hash[3].to_s).symbolize_keys!
+      }
+    rescue => e
+      {}
+    end
   end
 
 end
