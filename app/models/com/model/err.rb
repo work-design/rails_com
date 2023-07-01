@@ -15,9 +15,19 @@ module Com
       attribute :session, :json, default: {}
       attribute :ip, :string
 
+      belongs_to :err_summary, ->(o){ where(o.filter_hash) }, foreign_key: :controller_name, primary_key: :controller_name, counter_cache: true, optional: true
+
       default_scope -> { order(id: :desc) }
 
       after_create_commit :send_message
+      after_create :sync_to_summary
+    end
+
+    def filter_hash
+      {
+        action_name: o.action_name,
+        exception_object: o.exception_object
+      }
     end
 
     def send_message
@@ -61,6 +71,10 @@ module Com
       record(payload)
       save
       self
+    end
+
+    def sync_to_summary
+      err_summary || create_err_summary
     end
 
     class_methods do
