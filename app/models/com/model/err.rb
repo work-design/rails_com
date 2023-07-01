@@ -25,8 +25,8 @@ module Com
 
     def filter_hash
       {
-        action_name: o.action_name,
-        exception_object: o.exception_object
+        action_name: action_name,
+        exception_object: exception_object
       }
     end
 
