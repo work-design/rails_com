@@ -2,8 +2,8 @@
   <ul>
     <li><%= link_to t('com.panel.err_summaries.index.title'), { controller: 'err_summaries' } %></li>
     <li>
-      <p><%= model.controller_name %></p>
-      <p><%= model.action_name %></p>
+      <p><%= @err_summary.controller_name %></p>
+      <p><%= @err_summary.action_name %></p>
     </li>
     <li class="is-active"><%= t('.title') %></li>
   </ul>
