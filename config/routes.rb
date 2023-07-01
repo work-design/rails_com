@@ -91,7 +91,9 @@ Rails.application.routes.draw do
     namespace :com, defaults: { business: 'com' } do
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'
-        resources :errs, only: [:index, :show, :destroy]
+        resources :err_summaries, only: [:index, :show, :destroy] do
+          resources :errs, only: [:index, :show, :destroy]
+        end
         resources :csps, only: [:index, :show, :destroy]
         resources :meta_namespaces do
           collection do
