@@ -1,7 +1,10 @@
 <div class="breadcrumb has-succeeds-separator">
   <ul>
     <li><%= link_to t('com.panel.err_summaries.index.title'), { controller: 'err_summaries' } %></li>
-    <li><%= link_to t('com.panel.errs.index.title'), { action: 'index' } %></li>
+    <li>
+      <p><%= model.controller_name %></p>
+      <p><%= model.action_name %></p>
+    </li>
     <li class="is-active"><%= t('.title') %></li>
   </ul>
 </div>
