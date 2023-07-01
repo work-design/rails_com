@@ -12,7 +12,7 @@ module Com
 
     private
     def set_err_summary
-      @err_summary = ErrSummary.find params[:err_summary]
+      @err_summary = ErrSummary.find params[:err_summary_id]
     end
 
     def set_err
