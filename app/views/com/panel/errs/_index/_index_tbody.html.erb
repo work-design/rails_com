@@ -1,16 +1,8 @@
 <td><%= link_to model.id, { action: 'show', id: model.id }, text: true %></td>
 <td>
   <p><%= model.path %></p>
-  <p><%= model.controller_name %></p>
-  <p><%= model.action_name %></p>
-</td>
-<td>
-  <code class="is-wrap"><%= simple_format model.params.limit(3) %></code>
-</td>
-<td>
-  <code class="is-wrap"><%= simple_format model.session.limit(3) %></code>
-</td>
-<td>
-  <code class="is-wrap"><%= model.exception %></code>
+  <p class="is-wrap"><%= simple_format model.params.limit(3) %></p>
+  <p class="is-wrap"><%= simple_format model.session.limit(3) %></p>
+  <p class="is-wrap"><%= model.exception %></p>
 </td>
 <td><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></td>
