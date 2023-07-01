@@ -1,9 +1,9 @@
 <div class="breadcrumb has-succeeds-separator">
   <ul>
     <li><%= link_to t('com.panel.err_summaries.index.title'), { controller: 'err_summaries' } %></li>
-    <li>
-      <p><%= @err_summary.controller_name %></p>
-      <p><%= @err_summary.action_name %></p>
+    <li class="is-flex-direction-column">
+      <p class="px-3"><%= @err_summary.controller_name %></p>
+      <p class="px-3"><%= @err_summary.action_name %></p>
     </li>
     <li class="is-active"><%= t('.title') %></li>
   </ul>
