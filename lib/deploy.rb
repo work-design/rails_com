@@ -67,7 +67,7 @@ module Deploy
   def exec_cmds(env = 'production', added_cmds: [])
     start_at = Time.now
     logger.debug "Deploy at #{start_at}"
-    cmds = []
+    cmds = ['whoami']
     cmds << 'git pull' #  --recurse-submodules
     cmds << 'bundle install'
     cmds << "RAILS_ENV=#{env} bundle exec rake db:migrate"
