@@ -57,7 +57,7 @@ module Com
         result = Deploy.exec_cmds Rails.env.to_s
       else
         result = ''
-        logger.debug "==========> Deploy failed"
+        logger.debug "\e[35m  Deploy failed  \e[0m"
       end
 
       render plain: result
