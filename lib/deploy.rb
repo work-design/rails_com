@@ -64,7 +64,7 @@ module Deploy
     end
   end
 
-  def exec_cmds(env, added_cmds: [], **options)
+  def exec_cmds(env = 'production', added_cmds: [])
     start_at = Time.now
     logger.debug "Deploy at #{start_at}"
     cmds = []
