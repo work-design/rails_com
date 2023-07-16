@@ -1,4 +1,22 @@
-<%= link_to({ controller: '/home' }, class: 'weui-tabbar__item') do %>
-  <i class="fa-solid fa-home weui-tabbar__icon"></i>
+<%= link_to({ controller: '/home' }, class: active_helper(controller: '/home', item: 'weui-tabbar__item', active: 'weui-tabbar__item weui-bar__item_on')) do %>
+  <i class="fa-solid fa-house weui-tabbar__icon"></i>
   <div class="weui-tabbar__label"><%= t('home.index.title') %></div>
+<% end %>
+<%= link_to({ controller: '/factory/productions' }, class: active_helper(controller: '/factory/productions', action: 'index', product_taxon_id: nil, item: 'weui-tabbar__item', active: 'weui-tabbar__item weui-bar__item_on')) do %>
+  <i class="fa-solid fa-store weui-tabbar__icon"></i>
+  <div class="weui-tabbar__label">商城</div>
+<% end if defined?(RailsFactory) %>
+<% Factory::ProductTaxon.default_where(default_params).nav.each do |taxon| %>
+  <%= link_to({ controller: '/factory/productions', action: 'nav', product_taxon_id: taxon.id }, class: active_helper(controller: '/factory/productions', action: 'nav', product_taxon_id: taxon.id, item: 'weui-tabbar__item', active: 'weui-tabbar__item weui-bar__item_on')) do %>
+    <% if active_helper_bool(controller: '/factory/productions', action: 'nav', product_taxon_id: taxon.id) %>
+      <%= image_tag taxon.logo_color, class: 'weui-tabbar__icon' if taxon.logo_color.attached? %>
+    <% else %>
+      <%= image_tag taxon.logo, class: 'weui-tabbar__icon' if taxon.logo.attached? %>
+    <% end %>
+    <div class="weui-tabbar__label"><%= taxon.name %></div>
+  <% end %>
+<% end if defined?(RailsFactory) %>
+<%= link_to({ controller: '/my/home', action: 'index', **params.permit(:global_member_id) }, class: active_helper(controllers: 'my/home', item: 'weui-tabbar__item', active: 'weui-tabbar__item weui-bar__item_on')) do %>
+  <i class="fa-solid fa-user weui-tabbar__icon"></i>
+  <div class="weui-tabbar__label"><%= t('my.home.index.title') %></div>
 <% end %>
