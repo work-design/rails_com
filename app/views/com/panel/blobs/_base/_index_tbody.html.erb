@@ -10,13 +10,13 @@
   <% else %>
     <p><%= model.filename %></p>
   <% end %>
-  <p><%= model.content_type %></p>
+  <p>
+    <span><%= model.content_type %></span>
+    <span class="tag"><%= number_to_human_size(model.byte_size) %></span>
+  </p>
+  <p><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
 </td>
 <td><%= simple_format(model.metadata) %></td>
-<td>
-  <p><%= number_to_human_size(model.byte_size) %></p>
-  <p><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
-</td>
 <td>
   <% model.attachments.each do |attachment| %>
     <%= link_to "#{attachment.record_type}_#{attachment.record_id}", { controller: 'com/panel/attachments', id: attachment.id } %>
