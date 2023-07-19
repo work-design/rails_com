@@ -1,20 +1,22 @@
-<td><%= model.id %></td>
-<td><%= model.key %></td>
+<td><%= image_tag model, class: 'image is-64x64' if model.image? %></td>
 <td>
-  <p><%= image_tag model, class: 'image is-64x64' if model.image? %></p>
+  <p><%= model.id %></p>
+  <p><%= model.key %></p>
+  <p><span class="tag"><%= model.service_name %></span></p>
+</td>
+<td>
   <% if model.url.present? %>
     <p><%= link_to model.filename, model.url %></p>
   <% else %>
     <p><%= model.filename %></p>
   <% end %>
+  <p><%= model.content_type %></p>
 </td>
-<td><%= model.content_type %></td>
 <td><%= simple_format(model.metadata) %></td>
 <td>
   <p><%= number_to_human_size(model.byte_size) %></p>
   <p><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
 </td>
-<td><%= model.service_name %></td>
 <td>
   <% model.attachments.each do |attachment| %>
     <%= link_to "#{attachment.record_type}_#{attachment.record_id}", { controller: 'com/panel/attachments', id: attachment.id } %>
