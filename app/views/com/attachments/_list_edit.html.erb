@@ -7,8 +7,8 @@
     <%= render partial: 'com/attachments/file_upload', locals: { target: target, f: f } %>
   <% else %>
     <p id="attachment_<%= target.id %>">
-      <%= link_to target.filename, rails_ext_blob_path(target) %>
-      <%= link_to 'x', admin_attachment_path(target.id), method: :delete, data: { turbo_confirm: t('.confirm') } %>
+      <%= link_to target.filename, { controller: 'com/panel/blobs', action: 'show', id: target.id } %>
+      <%= link_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: target.id }, method: :delete, data: { turbo_confirm: t('.confirm') } %>
     </p>
   <% end %>
 <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
@@ -20,7 +20,7 @@
       <%= render partial: 'com/attachments/video_item', locals: { video: file, f: f } %>
     <% else %>
       <p id="attachment_<%= file.id %>">
-        <%= link_to file.filename, rails_ext_blob_path(file) %>
+        <%= link_to file.filename, { controller: 'com/panel/blobs', action: 'show', id: file.id } %>
         <%= button_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: file.id }, method: :delete, data: { turbo_confirm: t('.confirm') } %>
       </p>
     <% end %>
