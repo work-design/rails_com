@@ -10,5 +10,5 @@
 </tr>
 <tr>
   <td><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></td>
-  <td><%= @inbound_email.body.to_s %></td>
+  <td><%= @inbound_email.mail.body.to_s %></td>
 </tr>
