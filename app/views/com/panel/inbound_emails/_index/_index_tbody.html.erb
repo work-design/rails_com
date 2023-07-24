@@ -1,7 +1,7 @@
 <td><%= model.status_i18n %></td>
 <td>
-  <p><%= simple_format model.mail.from %></p>
   <p><%= simple_format model.mail.to %></p>
+  <p class="has-text-grey"><%= simple_format model.mail.from %></p>
 </td>
 <td>
   <p><%= link_to model.mail.subject, { action: 'show', id: model.id } %></p>
