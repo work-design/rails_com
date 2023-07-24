@@ -1,5 +1,6 @@
-<th><%= ActionMailbox::InboundEmail.human_attribute_name(:id) %></th>
 <th><%= ActionMailbox::InboundEmail.human_attribute_name(:status) %></th>
-<th><%= ActionMailbox::InboundEmail.human_attribute_name(:from) %></th>
-<th><%= ActionMailbox::InboundEmail.human_attribute_name(:to) %></th>
+<th>
+  <p><%= ActionMailbox::InboundEmail.human_attribute_name(:from) %></p>
+  <p><%= ActionMailbox::InboundEmail.human_attribute_name(:to) %></p>
+</th>
 <th><%= ActionMailbox::InboundEmail.human_attribute_name(:subject) %></th>

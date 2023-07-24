@@ -22,7 +22,7 @@ module Com
     end
 
     def role_denied(exception)
-      render 'role_denied', status: 403
+      render 'role_denied', layout: 'raw', status: 403
     end
 
   end

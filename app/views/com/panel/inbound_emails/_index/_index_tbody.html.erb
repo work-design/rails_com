@@ -1,5 +1,8 @@
-<td><%= model.id %></td>
 <td><%= model.status_i18n %></td>
-<td><%= simple_format model.mail.from %></td>
-<td><%= simple_format model.mail.to %></td>
-<td><%= link_to model.mail.subject, { action: 'show', id: model.id } %></td>
+<td>
+  <p><%= simple_format model.mail.from %></p>
+  <p><%= simple_format model.mail.to %></p>
+</td>
+<td>
+  <p><%= link_to model.mail.subject, { action: 'show', id: model.id } %></p>
+</td>
