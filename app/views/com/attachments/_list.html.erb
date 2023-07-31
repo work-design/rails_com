@@ -11,7 +11,7 @@
 <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
   <% target.each do |file| %>
     <% if file.content_type.to_s.start_with?('image') %>
-      <figure class="image is-48x48">
+      <figure class="image">
         <%= image_tag file, style: 'max-width: 100%' %>
       </figure>
     <% elsif file.content_type.to_s.start_with?('video') %>
