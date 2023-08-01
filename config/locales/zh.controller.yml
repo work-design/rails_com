@@ -28,6 +28,9 @@ zh:
       index:
         title: 账号
   com:
+    common:
+      state_return:
+        title: 返回登录前页面
     panel:
       title: 系统配置
       acme_accounts:
