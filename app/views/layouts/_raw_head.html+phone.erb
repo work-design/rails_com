@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" style="height: 100%">
   <head>
     <title><%= t('.title') %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -17,7 +17,7 @@
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
   </head>
-  <body>
+  <body style="height: 100%; margin: 0">
     <%= yield %>
   </body>
 </html>
