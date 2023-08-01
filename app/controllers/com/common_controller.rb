@@ -28,7 +28,7 @@ module Com
       state = Com::State.find_by(id: params[:state])
       if state
         state.update user_id: current_authorized_token&.user_id, destroyable: true
-        render 'state_visit', layout: 'raw', locals: { state: state, auth_token: current_authorized_token&.id }
+        render layout: 'raw', locals: { state: state, auth_token: current_authorized_token&.id }
       else
         render 'visit'
       end
