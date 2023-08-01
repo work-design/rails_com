@@ -24,6 +24,16 @@ module Com
       render json: { locale: I18n.locale, values: r }
     end
 
+    def state_return
+      state = Com::State.find_by(id: params[:state])
+      if state
+        state.update user_id: current_authorized_token&.user_id, destroyable: true
+        render 'state_visit', layout: 'raw', locals: { state: state, auth_token: current_authorized_token&.id }
+      else
+        render 'visit'
+      end
+    end
+
     def qrcode
       options = qrcode_params.to_h.symbolize_keys
       buffer = QrcodeHelper.code_png(params[:url], **options)

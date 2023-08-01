@@ -73,6 +73,7 @@ Rails.application.routes.draw do
         get :cancel
         post :actions
         match :deploy, via: [:get, :post]
+        get :state_return
         get 'assets/*path' => :asset, constraints: ->(req) { [:jpeg, :png, :webp].include? req.format.symbol }
       end
       controller :log do
