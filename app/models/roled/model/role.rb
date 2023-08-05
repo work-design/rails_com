@@ -107,9 +107,9 @@ module Roled
     end
 
     def controller_off(business_identifier:, namespace_identifier:, controller_path:)
-      namespaces_hash = role_hash.fetch(business_identifier)
+      namespaces_hash = role_hash.fetch(business_identifier, {})
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(namespace_identifier)
+      controllers_hash = namespaces_hash.fetch(namespace_identifier, {})
       return if controllers_hash.blank?
       controllers_hash.delete(controller_path)
 
@@ -137,11 +137,11 @@ module Roled
     end
 
     def action_off(business_identifier:, namespace_identifier:, controller_path:, action_name:)
-      namespaces_hash = role_hash.fetch(business_identifier)
+      namespaces_hash = role_hash.fetch(business_identifier, {})
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(namespace_identifier)
+      controllers_hash = namespaces_hash.fetch(namespace_identifier, {})
       return if controllers_hash.blank?
-      actions_hash = controllers_hash.fetch(controller_path)
+      actions_hash = controllers_hash.fetch(controller_path, {})
       return if actions_hash.blank?
 
       actions_hash.delete(action_name)
