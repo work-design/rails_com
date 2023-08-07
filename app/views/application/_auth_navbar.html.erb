@@ -13,6 +13,17 @@
       <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item' %>
     </div>
   </div>
+<% elsif defined?(current_member) && current_member %>
+  <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
+    <div class="navbar-link">
+      <%= image_tag current_member.avatar if current_member.avatar.present? %>
+      <span><%= current_member.name %></span>
+    </div>
+    <div class="navbar-dropdown is-right">
+      <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
+      <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item' %>
+    </div>
+  </div>
 <% elsif defined?(RailsWechat) && current_wechat_app %>
   <%= link_to({ controller: '/wechat/wechat', action: 'login' }, class: 'navbar-item') do %>
     <i class="fa-solid fa-user"></i>
