@@ -117,5 +117,17 @@ module JiaBo
       end
     end
 
+    def test_print
+      ts = BaseTspl.new
+      ts.bar(height: 20)
+      ts.qrcode('xx', x: 20, y: 30, cell_width: 5)
+      ts.text('ddd', x: 320, scale: 2)
+      ts.middle_text('订单详情', x: 320)
+
+      print(
+        data: ts.render
+      )
+    end
+
   end
 end

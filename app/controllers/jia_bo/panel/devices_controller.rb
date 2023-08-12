@@ -9,7 +9,7 @@ module JiaBo
     end
 
     def test
-      @device.test
+      @device.test_print
     end
 
     private
