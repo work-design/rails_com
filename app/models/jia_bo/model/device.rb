@@ -15,7 +15,7 @@ module JiaBo
       after_create_commit :add_to_jia_bo
     end
 
-    def print(msg_no: nil, data: nil, reprint: 0, multi: 0, **options)
+    def print(msg_no: nil, data: nil, reprint: 0, multi: 0)
       params = app.common_params do |p|
         [p[:memberCode], device_id, msg_no, p[:reqTime], app.api_key].join
       end
@@ -25,8 +25,7 @@ module JiaBo
         charset: 1,
         msgDetail: data,
         reprint: reprint,
-        multi: multi,
-        **options
+        multi: multi
       )
       params.merge! msgNo: msg_no if msg_no.present?
 
