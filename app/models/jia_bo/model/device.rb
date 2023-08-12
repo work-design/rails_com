@@ -1,11 +1,13 @@
 module JiaBo
   module Model::Device
     extend ActiveSupport::Concern
+    BASE = 'https://api.poscom.cn/apisc/'
 
     included do
       attribute :device_id, :string
       attribute :dev_name, :string
       attribute :grp_id, :string
+      attribute :approved, :boolean
 
       belongs_to :app, counter_cache: true
       has_many :device_organs, dependent: :delete_all
@@ -27,7 +29,7 @@ module JiaBo
       )
       params.merge! msgNo: msg_no if msg_no.present?
 
-      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('sendMsg', form: params)
+      r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('sendMsg', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
@@ -42,7 +44,7 @@ module JiaBo
       end
       params.merge! deviceID: device_id
 
-      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('getStatus', form: params)
+      r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('getStatus', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
@@ -58,7 +60,7 @@ module JiaBo
       end
       params.merge! deviceID: device_id, volume: level
 
-      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('sendVolume', form: params)
+      r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('sendVolume', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
@@ -73,7 +75,7 @@ module JiaBo
       end
       params.merge! deviceID: device_id, all: 1
 
-      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('cancelPrint', form: params)
+      r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('cancelPrint', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
@@ -83,17 +85,25 @@ module JiaBo
     end
 
     def add_to_jia_bo
-      params = app.common_params do |p|
-        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
-      end
+      params = common_params
       params.merge! deviceID: device_id, devName: id
 
-      r = HTTPX.with(origin: 'https://api.poscom.cn/apisc/', debug: STDERR, debug_level: 2).post('adddev', form: params)
+      r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('adddev', form: params)
 
       if r.status == 200
         JSON.parse(r.to_s)
       else
         r
+      end
+    end
+
+    def remove_from_jia_bo
+      r = HTTPX.with(origin: BASE).post('deldev', form: params)
+    end
+
+    def common_params
+      app.common_params do |p|
+        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
       end
     end
 
