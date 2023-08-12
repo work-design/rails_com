@@ -7,7 +7,7 @@ module JiaBo
       attribute :device_id, :string
       attribute :dev_name, :string
       attribute :grp_id, :string
-      attribute :approved, :boolean
+      attribute :dev_id, :string
 
       belongs_to :app, counter_cache: true
       has_many :device_organs, dependent: :delete_all
@@ -87,7 +87,8 @@ module JiaBo
       r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('adddev', form: params)
 
       if r.status == 200
-        JSON.parse(r.to_s)
+        result = JSON.parse(r.to_s)
+        self.update dev_id: result['devID']
       else
         r
       end
@@ -102,6 +103,10 @@ module JiaBo
       else
         r
       end
+    end
+
+    def approved
+      dev_id.present?
     end
 
     def common_params
