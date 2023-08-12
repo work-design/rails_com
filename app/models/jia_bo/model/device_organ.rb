@@ -3,7 +3,7 @@ module JiaBo
     extend ActiveSupport::Concern
 
     included do
-      attribute :default, :boolean, default: false
+      attribute :default, :boolean, default: true
 
       belongs_to :device
       belongs_to :organ, class_name: 'Org::Organ'
