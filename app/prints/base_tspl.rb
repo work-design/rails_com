@@ -7,13 +7,15 @@ class BaseTspl
     'TSS24.BF2' => 24,
     'TSS32.BF2' => 32
   }
+  DOT = 8
 
-  def initialize(width: 60, height: 40)
+  def initialize(width: 56, height: 40)
     @width = width
+    @dot_width = @width * DOT
     @height = height
     @texts = []
     @bars = []
-    @text_height = 0
+    @text_height = nil
     @qrcodes = []
   end
 
@@ -36,18 +38,31 @@ class BaseTspl
     ]
   end
 
-  def bar(x: 0, y: 0, width: 500, height: 1)
+  def bar(x: 0, y: @text_height, width: @dot_width, height: 1, line_add: true)
     @bars << "BAR #{x},#{y},#{width},#{height}"
+    if @text_height.nil? && line_add
+      @text_height = y + height + 5
+    elsif line_add
+      @text_height += (height + 5)
+    end
   end
 
   def qrcode(data, x: 20, y: 125, ecc: 'L', cell_width: 6)
     @qrcodes << "QRCODE #{x},#{y},#{ecc},#{cell_width},A,0,\"#{data}\""
   end
 
+  def right_qrcode(data, y:, ecc: 'L', cell_width: 6)
+    @qrcodes << "QRCODE #{@dot_width - (cell_width * 30)},#{y},#{ecc},#{cell_width},A,0,\"#{data}\""
+  end
+
   # TSS16, 字体为：16x16
   def text(data, font: 'TSS24.BF2', line_height: FONTS[font] * 1.5, scale: 1, x:, y: @text_height, line_add: true)
     @texts << "TEXT #{x},#{y},\"#{font}\",0,#{scale},#{scale},\"#{data}\""
-    @text_height += (line_height * scale).to_i if line_add
+    if @text_height.nil? && line_add
+      @text_height = y + (line_height * scale).to_i
+    elsif line_add
+      @text_height += (line_height * scale).to_i
+    end
   end
 
   def middle_text(data, x:, line_add: false, **options)
