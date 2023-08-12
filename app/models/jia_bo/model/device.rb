@@ -32,7 +32,9 @@ module JiaBo
       r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('sendMsg', form: params)
 
       if r.status == 200
-        JSON.parse(r.to_s)
+        result = JSON.parse(r.to_s)
+        logger.debug "\e[35m  #{result}  \e[0m"
+        result
       else
         logger.debug "\e[35m  #{r}  \e[0m"
       end
