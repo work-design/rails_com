@@ -2,6 +2,6 @@
 <p>
   <span class="has-text-grey"><%= model.device.app.name %></span>
   <% unless model.device.approved? %>
-    <span class="tag">无效的打印机</span>
+    <span class="tag is-danger">无效的打印机</span>
   <% end %>
 </p>
