@@ -55,9 +55,7 @@ module JiaBo
 
     # 取值范围 0-100，建议(0,25,50,75, 85,100)。
     def send_volume(level = 25)
-      params = app.common_params do |p|
-        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
-      end
+      params = common_params
       params.merge! deviceID: device_id, volume: level
 
       r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('sendVolume', form: params)
@@ -70,9 +68,7 @@ module JiaBo
     end
 
     def cancel_print
-      params = app.common_params do |p|
-        [p[:memberCode], p[:reqTime], app.api_key, device_id].join
-      end
+      params = common_params
       params.merge! deviceID: device_id, all: 1
 
       r = HTTPX.with(origin: BASE, debug: STDERR, debug_level: 2).post('cancelPrint', form: params)
@@ -98,7 +94,14 @@ module JiaBo
     end
 
     def remove_from_jia_bo
+      params = common_params
+      params.merge! deviceID: device_id
       r = HTTPX.with(origin: BASE).post('deldev', form: params)
+      if r.status == 200
+        JSON.parse(r.to_s)
+      else
+        r
+      end
     end
 
     def common_params
