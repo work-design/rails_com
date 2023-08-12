@@ -47,21 +47,31 @@ module DefaultForm::ViewHelper
   end
 
   def deal_with_state(state, options, url_options)
-    return unless url_options.is_a?(Hash)
-    if state == 'enter' && options[:state].blank?
-      url_options.merge! return_state: StateUtil.encode(request)
+    r = {}
+    if state == 'enter' && ((options.is_a?(Hash) && options[:state].blank?) || options.exclude?('state='))
+      r = { return_state: StateUtil.encode(request) }
     elsif state == 'redirect_return'
-      url_options.merge! redirect_state: StateUtil.encode(request)
+      r = { redirect_state: StateUtil.encode(request) }
     elsif state == 'redirect' && params[:return_state].present?
-      url_options.merge! redirect_state: params[:return_state]
+      r = { redirect_state: params[:return_state] }
     elsif state == 'redirect'
-      url_options.merge! redirect_state: StateUtil.encode(request)
+      r = { redirect_state: StateUtil.encode(request) }
     elsif state == 'return' && params[:return_state]
-      url_options.merge! StateUtil.decode(params[:return_state])
+      r = StateUtil.decode(params[:return_state])
     elsif state == 'clear'
       return
     elsif params[:return_state]
-      url_options.merge! return_state: params[:return_state] if options.respond_to?(:merge!)
+      r = { return_state: params[:return_state] } if options.respond_to?(:merge!)
+    end
+
+    if url_options.is_a?(Hash)
+      url_options.merge! r
+    elsif url_options.is_a?(String)
+      url = URI.parse(url_options)
+      url.query = r.to_query
+      url.to_s
+    else
+      url_options
     end
   end
 

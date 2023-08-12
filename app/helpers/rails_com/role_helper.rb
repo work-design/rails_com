@@ -6,12 +6,13 @@ module RailsCom::RoleHelper
     if block_given?
       _options = name
       _html_options = options || {}
+      name = deal_with_state(_html_options.delete(:state), _options, _options)
     else
       _options = options
       _html_options = html_options || {}
+      options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
 
-    deal_with_state(_html_options.delete(:state), _options, _options)
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       super
@@ -28,12 +29,13 @@ module RailsCom::RoleHelper
     if block_given?
       _options = name
       _html_options = options || {}
+      name = deal_with_state(_html_options.delete(:state), _options, _options)
     else
       _options = options
       _html_options = html_options || {}
+      options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
 
-    deal_with_state(_html_options.delete(:state), _options, _options)
     text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
       begin
