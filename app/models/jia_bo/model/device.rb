@@ -34,7 +34,7 @@ module JiaBo
       if r.status == 200
         JSON.parse(r.to_s)
       else
-        r
+        logger.debug "\e[35m  #{r}  \e[0m"
       end
     end
 
