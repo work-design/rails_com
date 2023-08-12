@@ -5,7 +5,7 @@ module JiaBo
     before_action :set_new_device_organ, only: [:new, :create]
 
     def index
-      @device_organs = current_organ.device_organs
+      @device_organs = current_organ.device_organs.includes(:device)
       @apps = JiaBo::App.all
     end
 

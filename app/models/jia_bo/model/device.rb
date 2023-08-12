@@ -105,7 +105,7 @@ module JiaBo
       end
     end
 
-    def approved
+    def approved?
       dev_id.present?
     end
 
