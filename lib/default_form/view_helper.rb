@@ -68,7 +68,7 @@ module DefaultForm::ViewHelper
       url_options.merge! r
     elsif url_options.is_a?(String)
       url = URI.parse(url_options)
-      url.query = r.to_query
+      url.query = [url.query, r.to_query].join('&') if r.present?
       url.to_s
     else
       url_options
