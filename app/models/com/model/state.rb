@@ -35,6 +35,7 @@ module Com
     def url
       if request_method == 'GET'
         Rails.application.routes.url_for(
+          host: host,
           controller: controller_path,
           action: action_name,
           **params
