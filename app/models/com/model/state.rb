@@ -20,6 +20,7 @@ module Com
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       after_find :destroy_after_used, if: -> { destroyable? }
+      after_save :destroy_after_used, if: -> { destroyable? && saved_change_to_destroyable? }
     end
 
     def detail
