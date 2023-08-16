@@ -38,7 +38,7 @@ module Com
           host: host,
           controller: controller_path,
           action: action_name,
-          **params
+          **params.compact_blank
         )
       elsif referer.present?
         referer
