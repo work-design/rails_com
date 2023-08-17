@@ -34,7 +34,7 @@ module Com
 
     def url
       if request_method == 'GET' && default_path == '/board'
-        organ.redirect_url
+        organ.redirect_url(host: host)
       elsif request_method == 'GET'
         Rails.application.routes.url_for(
           host: host,
