@@ -33,7 +33,9 @@ module Com
     end
 
     def url
-      if request_method == 'GET'
+      if request_method == 'GET' && default_path == '/board'
+        organ.redirect_url
+      elsif request_method == 'GET'
         Rails.application.routes.url_for(
           host: host,
           controller: controller_path,
@@ -45,6 +47,10 @@ module Com
       else
         organ.redirect_url
       end
+    end
+
+    def default_path
+      Rails.application.routes.url_for(controller: controller_path, action: action_name, only_path: true)
     end
 
     def destroy_after_used
