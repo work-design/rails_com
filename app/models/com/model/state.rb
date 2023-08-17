@@ -32,9 +32,9 @@ module Com
       }
     end
 
-    def url
+    def url(**options)
       if request_method == 'GET' && default_path == '/board'
-        organ.redirect_url(host: host)
+        organ.redirect_url(host: host, **options)
       elsif request_method == 'GET'
         Rails.application.routes.url_for(
           host: host,
