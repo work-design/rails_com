@@ -15,6 +15,7 @@ module Com
       attribute :cookie, :json, default: {}
       attribute :session, :json, default: {}
       attribute :destroyable, :boolean, default: true
+      attribute :auth_token, :string
 
       belongs_to :user, class_name: 'Auth::User', optional: true
       belongs_to :organ, class_name: 'Org::Organ', optional: true
@@ -24,12 +25,14 @@ module Com
     end
 
     def detail
-      {
+      r = {
         host: host,
         controller: controller_path,
         action: action_name,
         **params.except('auth_token')
       }
+      r.merge! auth_token: auth_token if auth_token.present?
+      r
     end
 
     def url(**options)
