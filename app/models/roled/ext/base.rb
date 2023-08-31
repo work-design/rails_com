@@ -33,7 +33,7 @@ module Roled
     end
 
     def has_role?(**options)
-      if respond_to?(:admin?) && admin?
+      if admin?
         logger.debug "\e[35m  #{class_name}_#{id} is admin!  \e[0m" if RailsCom.config.debug
         return true
       end
@@ -52,7 +52,7 @@ module Roled
     end
 
     def any_role?(*any_roles, **roles_hash)
-      if respond_to?(:admin?) && admin?
+      if admin?
         return true
       end
 
