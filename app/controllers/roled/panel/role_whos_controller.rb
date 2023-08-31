@@ -1,6 +1,6 @@
 module Roled
-  class Panel::WhoRolesController < Panel::BaseController
-    before_action :set_who
+  class Panel::RoleWhosController < Panel::BaseController
+    before_action :set_role
     before_action :set_who_role, only: [:destroy]
 
     def index
@@ -8,10 +8,6 @@ module Roled
       q_params.merge! params.permit(:who_type)
 
       @who_roles = @role.who_roles.default_where(q_params).page(params[:page])
-    end
-
-    def show
-      @roles = current_organ.roles
     end
 
     def new
@@ -35,8 +31,8 @@ module Roled
     end
 
     private
-    def set_who
-      @who = params[:who_type].safe_constantize.find params[:who_id]
+    def set_role
+      @role = Role.find params[:role_id]
     end
 
     def set_who_role

@@ -221,7 +221,7 @@ Rails.application.routes.draw do
             patch :action_on
             patch :action_off
           end
-          resources :who_roles, only: [:index, :new, :create, :destroy]
+          resources :role_whos, only: [:index, :new, :create, :destroy]
           resources :role_rules, except: [:destroy] do
             collection do
               post :disable
@@ -230,7 +230,7 @@ Rails.application.routes.draw do
           end
         end
         scope path: ':who_type/:who_id' do
-          resource :whos, only: [:show, :edit, :update]
+          resource :who_roles, only: [:index, :show, :edit, :update]
         end
       end
 
