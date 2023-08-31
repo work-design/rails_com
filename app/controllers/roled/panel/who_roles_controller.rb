@@ -1,53 +1,27 @@
 module Roled
   class Panel::WhoRolesController < Panel::BaseController
     before_action :set_who
-    before_action :set_who_role, only: [:destroy]
-
-    def index
-      q_params = {}
-      q_params.merge! params.permit(:who_type)
-
-      @who_roles = @role.who_roles.default_where(q_params).page(params[:page])
-    end
 
     def show
-      @roles = current_organ.roles
-    end
-
-    def new
-      @who_role = @role.who_roles.build
-    end
-
-    def create
-      @who_role = @role.who_roles.build(who_role_params)
-
-      unless @who_role.save
-        render :new, locals: { model: @who_role }, status: :unprocessable_entity
-      end
+      type = "Roled::#{params[:who_type].split('::')[-1]}Role"
+      @roles = Role.visible.default_where(type: type)
     end
 
     def update
-      #@who_role.assign_attributes
-    end
+      @who_role = @who.who_roles.find_by(role_id: params[:role_id])
 
-    def destroy
-      @who_role.destroy
+      if params['checked'] == 'false' && @who_role
+        @who_role.destroy
+      elsif params['checked'] == 'true' && @who_role.blank?
+        @who_role = @who.who_roles.create(role_id: params[:role_id])
+      end
+
+      head :ok
     end
 
     private
     def set_who
       @who = params[:who_type].safe_constantize.find params[:who_id]
-    end
-
-    def set_who_role
-      @who_role = WhoRole.find(params[:id])
-    end
-
-    def who_role_params
-      params.fetch(:who_role, {}).permit(
-        :who_id,
-        :created_at
-      )
     end
 
   end
