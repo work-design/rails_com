@@ -27,6 +27,10 @@ module RailsCom::ActionMailbox
       super.encode('utf-8', replace: '')
     end
 
+    def parsed_body
+
+    end
+
   end
 end
 

@@ -69,12 +69,15 @@ module Com
 
     def debug_around_save
       puts "  #{self.class} around_save before yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
+      shared_puts
       yield
       puts "  #{self.class} around_save after yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
+      shared_puts
     end
 
     def debug_around_create
       puts "  #{self.class} around_create before yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
+      shared_puts
       yield
       puts "  #{self.class} around_create after yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
       shared_puts
@@ -82,6 +85,7 @@ module Com
 
     def debug_around_update
       puts "  #{self.class} around_update before yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
+      shared_puts
       yield
       puts "  #{self.class} around_update after yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
       shared_puts
@@ -89,6 +93,7 @@ module Com
 
     def debug_around_destroy
       puts "  #{self.class} around_destroy before yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
+      shared_puts
       yield
       puts "  #{self.class} around_destroy after yield \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
       shared_puts
