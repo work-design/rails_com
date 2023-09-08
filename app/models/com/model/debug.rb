@@ -101,10 +101,10 @@ module Com
 
     def shared_puts
       puts "\e[35m  object_id: #{object_id}  \e[0m"
-      puts "\e[35m  changed_changes: #{changes}  \e[0m" if changes.present?
-      puts "\e[35m  saved_changes: #{saved_changes}  \e[0m" if saved_changes.present?
-      puts "\e[35m  previous_changes: #{previous_changes}  \e[0m" if previous_changes.present?
-      puts "\e[35m  attachment_changes: #{attachment_changes}  \e[0m" if attachment_changes.present?
+      puts "\e[35m  changes: #{changes}  \e[0m" if changes.present?
+      puts "\e[35m  saved: #{saved_changes}  \e[0m" if saved_changes.present?
+      puts "\e[35m  previous: #{previous_changes}  \e[0m" if previous_changes.present?
+      puts "\e[35m  attachment: #{attachment_changes}  \e[0m" if attachment_changes.present?
       puts "\e[31m  #{'- ~ ' * 40}-  \e[0m"
     end
 
