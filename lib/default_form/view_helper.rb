@@ -26,6 +26,7 @@ module DefaultForm::ViewHelper
     if options[:theme].present? && options[:theme].end_with?('search')
       options[:url] = url_for unless options.key?(:url)
       options[:scope] = '' unless options.key?(:scope)
+      options[:skip_default_ids] = true unless options.key?(:skip_default_ids)
 
       # add default action
       actions = options.dig(:data, :action).to_s.split(' ')
