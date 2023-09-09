@@ -40,6 +40,8 @@ module DefaultForm::Builder
     def submit(value = nil, options = {})
       wrap_all_with(nil, options) do |css|
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
+        options[:data] ||= {}
+        options[:data][:disable_with] = 'Searching'
         css[:all][:normal] = css.dig(:all, :submit)
         submit_content = wrapping(:submit, super, wrap: css[:wrap])
 
