@@ -60,7 +60,7 @@ module DefaultForm::ViewHelper
     elsif state == 'return' && params[:return_state]
       r = StateUtil.decode(params[:return_state])
     elsif state == 'clear'
-      return
+
     elsif params[:return_state]
       r = { return_state: params[:return_state] } if options.respond_to?(:merge!)
     end
