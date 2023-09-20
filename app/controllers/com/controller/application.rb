@@ -11,7 +11,7 @@ module Com
 
     included do
       before_action :set_locale, :set_timezone, :set_variant
-      helper_method :current_title, :current_organ_name, :default_params
+      helper_method :current_title, :current_organ_name, :default_params, :turbo_frame_request_id
     end
 
     def urlsafe_encode64(

@@ -1,0 +1,13 @@
+<table class="table is-fullwidth is-hoverable as-show">
+  <tbody>
+    <%= render 'show_table' %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+      <th>
+        <%= link_to t('.edit'), { action: 'edit' }, class: 'button is-small is-link' %>
+      </th>
+    </tr>
+  </tfoot>
+</table>
