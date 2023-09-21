@@ -66,7 +66,7 @@ module DefaultForm::Builder
 
       valid_key = options.keys.map(&:to_sym) & VALIDATIONS
       if valid_key.present?
-        action_str = 'default-valid#clear blur->default-valid#check invalid->default-valid#notice'
+        action_str = 'form#clear blur->form#check invalid->form#notice'
         options[:data] ||= {}
         if options[:data][:action].present?
           options[:data][:action] += " #{action_str}"
