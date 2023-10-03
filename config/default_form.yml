@@ -47,6 +47,17 @@ search:
 inline:
   origin:
     input: input
+line:
+  <<: *defaults
+  origin:
+    label: label has-text-grey
+    input: input
+    textarea: textarea
+    submit: button is-primary
+  wrap:
+    input: control
+  all:
+    normal: field
 weui:
   <<: *defaults
   form: weui-form

@@ -67,6 +67,10 @@ module Com
         variant << :phone
       end
 
+      if request.user_agent&.match? /iPad/
+        variant << :pad
+      end
+
       if request.user_agent&.match? /MicroMessenger|MacWechat|WeChat/  # 包含 mini program
         variant += [:wechat, :phone]
       end
