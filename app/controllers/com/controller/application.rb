@@ -63,7 +63,7 @@ module Com
 
     def set_variant
       variant = []
-      if request.user_agent&.match? /iPad|iPhone|iPod|Android/
+      if request.user_agent&.match? /iPhone|iPod|Android/
         variant << :phone
       end
 
