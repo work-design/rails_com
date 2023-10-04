@@ -1,10 +1,10 @@
 <%= render layout: 'layouts/application_head' do %>
   <%= render 'nav_bar' %>
   <div id="alert"></div>
-  <main class="columns is-fluid is-centered">
-    <div class="column container is-full">
+  <main class="columns is-multiline container">
+    <div class="column is-full">
       <%= render 'breadcrumb' %>
-      <%= yield %>
     </div>
+    <%= yield %>
   </main>
 <% end %>
