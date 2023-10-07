@@ -9,15 +9,22 @@ module RailsCom::ActionView
     end
 
     def default_keys(key)
-      keys = ["#{controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym]
+      if key.to_s.start_with?('..')
+        _action_name, _key = key.delete_prefix('..').split('.')
+        _key = ".#{_key}"
+      else
+        _action_name = action_name
+        _key = key
+      end
+      keys = ["#{controller_path.tr('/', '.')}.#{_action_name}#{_key}".to_sym]
 
       super_class = controller.class.superclass
-      while RailsExtend::Routes.find_actions(super_class.controller_path).include?(action_name)
-        keys << "#{super_class.controller_path.split('/').join('.')}.#{action_name}#{key}".to_sym
+      while RailsExtend::Routes.find_actions(super_class.controller_path).include?(_action_name)
+        keys << "#{super_class.controller_path.tr('/', '.')}.#{_action_name}#{_key}".to_sym
         super_class = super_class.superclass
       end
 
-      keys << "controller#{key}".to_sym
+      keys << "controller#{_key}".to_sym
     end
 
   end
