@@ -20,6 +20,8 @@ module Com
       belongs_to :user, class_name: 'Auth::User', optional: true
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
+      has_one :organ_domain, -> (o){ where(organ_id: o.organ_id) }, class_name: 'Org::OrganDomain', primary_key: :host, foreign_key: :host
+
       after_find :destroy_after_used, if: -> { destroyable? }
       after_save :destroy_after_used, if: -> { destroyable? && saved_change_to_destroyable? }
     end
@@ -37,7 +39,7 @@ module Com
 
     def url(**options)
       if request_method == 'GET' && default_path == '/board'
-        organ.redirect_url(host: host, **options)
+        organ_domain.redirect_url(**options)
       elsif request_method == 'GET'
         Rails.application.routes.url_for(
           host: host,
@@ -49,7 +51,7 @@ module Com
       elsif referer.present?
         referer
       else
-        organ.redirect_url
+        organ_domain.redirect_url(**options)
       end
     end
 
