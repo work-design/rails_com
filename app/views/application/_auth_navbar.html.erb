@@ -7,6 +7,9 @@
     <div class="navbar-dropdown is-right">
       <%= link_to '个人中心', { controller: '/my/home' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
       <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
+      <%= link_to({ controller: '/me/home' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
+        <span><%= t('me.home.index.title') %></span>
+      <% end if defined? current_member %>
       <%= link_to({ controller: '/admin/home' }, class: active_helper(controllers: ['admin/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
         <span><%= t('admin.home.index.title') %></span>
       <% end if defined? current_member %>
