@@ -5,26 +5,30 @@ module RailsCom::ActionView
 
     def t(key, **options)
       options[:default] ||= default_keys(key)
+      Rails.logger.debug(options[:default])
       super
     end
 
     def default_keys(key)
-      if key.to_s.start_with?('..')
-        _action_name, _key = key.delete_prefix('..').split('.')
-        _key = ".#{_key}"
-      else
-        _action_name = action_name
-        _key = key
-      end
-      keys = ["#{controller_path.tr('/', '.')}.#{_action_name}#{_key}".to_sym]
+      suffixes = key.to_s.delete_prefix('.').split('.')
+      _key = suffixes.pop
+      _action_name = suffixes.pop || action_name
+      keys = []
+      keys << controller_path if key.start_with?('.')
 
       super_class = controller.class.superclass
       while RailsExtend::Routes.find_actions(super_class.controller_path).include?(_action_name)
-        keys << "#{super_class.controller_path.tr('/', '.')}.#{_action_name}#{_key}".to_sym
+        keys << super_class.controller_path
         super_class = super_class.superclass
       end
 
-      keys << "controller#{_key}".to_sym
+      keys.map! do |con|
+        r = con.split('/')
+        r.pop(suffixes.size)
+        r.concat(suffixes).append(_action_name, _key).join('.').to_sym
+      end
+
+      keys << "controller.#{_action_name}.#{_key}".to_sym
     end
 
   end

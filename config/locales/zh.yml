@@ -4,21 +4,23 @@ zh:
   powered_by: 技术支持
   copyright: Work Design
   controller:
-    show: 详情
-    edit: 编辑
-    destroy: 删除
-    new: 添加
-    search: 搜索
-    export: 导出
-    sync: 加载默认配置
-    all: 所有
-    log: 操作日志
-    approve: 接受
-    reject: 拒绝
-    clear: 重置
-    confirm: 确认操作
-    back: 返回
-    save: 保存
+    index:
+      title: 列表页
+      show: 详情
+      edit: 编辑
+      destroy: 删除
+      new: 添加
+      search: 搜索
+      export: 导出
+      sync: 加载默认配置
+      all: 所有
+      log: 操作日志
+      approve: 接受
+      reject: 拒绝
+      clear: 重置
+      confirm: 确认操作
+      back: 返回
+      save: 保存
   attributes:
     id: ID
     name: 名称
