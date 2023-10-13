@@ -5,7 +5,6 @@ module RailsCom::ActionView
 
     def t(key, **options)
       options[:default] ||= default_keys(key)
-      Rails.logger.debug(options[:default])
       super
     end
 
