@@ -6,7 +6,7 @@ module Com
       q_params = {}
       q_params.merge! params.permit('controller_name', 'action_name', 'exception_object')
 
-      @err_summaries = ErrSummary.default_where(q_params).order(id: :desc).page(params[:page]).per(params[:per])
+      @err_summaries = ErrSummary.default_where(q_params).order(updated_at: :desc).page(params[:page]).per(params[:per])
     end
 
     private
