@@ -6,6 +6,6 @@
 <td><%= model.exception_object %></td>
 <td><%= model.errs_count %></td>
 <td>
-  <p><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
   <p class="has-text-success"><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></p>
+  <p class="has-text-grey"><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
 </td>
