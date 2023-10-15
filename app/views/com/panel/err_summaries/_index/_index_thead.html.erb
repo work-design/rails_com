@@ -4,7 +4,11 @@
   <p><%= Com::Err.human_attribute_name(:action_name) %></p>
 </th>
 <th><%= Com::Err.human_attribute_name(:exception_object) %></th>
-<th><%= Com::Err.human_attribute_name(:errs_count) %></th>
+<th>
+  <%= link_to filter_params('errs_count-desc': 1) do %>
+    <span><%= Com::Err.human_attribute_name(:errs_count) %></span>
+  <% end %>
+</th>
 <th>
   <p class="has-text-success"><%= Com::Err.human_attribute_name(:updated_at) %></p>
   <p class="has-text-grey"><%= Com::Err.human_attribute_name(:created_at) %></p>
