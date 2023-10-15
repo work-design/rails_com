@@ -1,12 +1,16 @@
 module Com
   class Panel::ErrSummariesController < Panel::BaseController
-    before_action :set_err_summary, only: [:show, :destroy]
+    before_action :set_err_summary, only: [:show, :destroy, :clean]
 
     def index
       q_params = {}
       q_params.merge! params.permit('controller_name', 'action_name', 'exception_object')
 
       @err_summaries = ErrSummary.default_where(q_params).order(updated_at: :desc).page(params[:page]).per(params[:per])
+    end
+
+    def clean
+      @err_summary.clean
     end
 
     private

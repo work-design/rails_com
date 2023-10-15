@@ -13,5 +13,12 @@ module Com
       has_many :errs, ->(o){ where(action_name: o.action_name, exception_object: o.exception_object) }, primary_key: :controller_name, foreign_key: :controller_name
     end
 
+    def clean
+      self.class.transaction do
+        self.errs.delete_all
+        self.destroy
+      end
+    end
+
   end
 end
