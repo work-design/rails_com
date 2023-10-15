@@ -20,5 +20,13 @@ module Com
       end
     end
 
+    class_methods do
+      def reset_all_errs_count
+        self.find_each do |i|
+          self.reset_counters i.id, :errs
+        end
+      end
+    end
+
   end
 end
