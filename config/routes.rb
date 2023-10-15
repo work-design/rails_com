@@ -102,6 +102,7 @@ Rails.application.routes.draw do
             end
           end
         end
+        resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
         resources :meta_namespaces do
           collection do
