@@ -11,7 +11,7 @@ module Com
     end
 
     def clean_other
-      @err.clear_other
+      @err.clean_other
     end
 
     private
@@ -20,7 +20,7 @@ module Com
     end
 
     def set_err
-      @err = Err.find(params[:id])
+      @err = @err_summary.errs.find(params[:id])
     end
 
   end

@@ -19,8 +19,8 @@ module Com
 
       default_scope -> { order(id: :desc) }
 
+      before_create :sync_to_summary
       after_create_commit :send_message
-      after_create :sync_to_summary
     end
 
     def filter_hash
