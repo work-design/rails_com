@@ -64,6 +64,8 @@ zh:
       errs:
         index:
           title: 错误日志
+        clean_other:
+          title: 删除其他错误
       csps:
         index:
           title: 内容安全

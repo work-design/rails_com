@@ -13,6 +13,5 @@ module Com
       has_many :errs, ->(o){ where(action_name: o.action_name, exception_object: o.exception_object) }, primary_key: :controller_name, foreign_key: :controller_name
     end
 
-
   end
 end

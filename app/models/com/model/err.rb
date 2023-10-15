@@ -77,6 +77,10 @@ module Com
       err_summary || create_err_summary
     end
 
+    def clean_other
+      err_summary.errs.where.not(id: id).delete_all
+    end
+
     class_methods do
       def record_to_log(controller, exp)
         return if Rails.env.development? && RailsCom.config.disable_debug

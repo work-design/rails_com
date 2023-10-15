@@ -21,6 +21,14 @@ zh:
       confirm: 确认操作
       back: 返回
       save: 保存
+    show:
+      title: 详情
+    edit:
+      title: 编辑
+    new:
+      title: 添加
+    destroy:
+      title: 删除
   attributes:
     id: ID
     name: 名称

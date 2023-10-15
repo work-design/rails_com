@@ -1,13 +1,17 @@
 module Com
   class Panel::ErrsController < Panel::BaseController
     before_action :set_err_summary
-    before_action :set_err, only: [:show, :destroy]
+    before_action :set_err, only: [:show, :destroy, :clean_other]
 
     def index
       q_params = {}
       q_params.merge! params.permit('controller_name', 'action_name', 'path-like', 'exception_object')
 
       @errs = @err_summary.errs.default_where(q_params).page(params[:page]).per(params[:per])
+    end
+
+    def clean_other
+      @err.clear_other
     end
 
     private
