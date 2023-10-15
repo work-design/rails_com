@@ -15,7 +15,7 @@ module Com
 
     def clean
       self.class.transaction do
-        self.errs.delete_all
+        self.errs.delete_all(:delete_all)
         self.destroy
       end
     end
