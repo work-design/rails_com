@@ -6,12 +6,14 @@ module RailsCom
     config.autoload_paths += Dir[
       "#{config.root}/app/models/role",
       "#{config.root}/app/models/who_role",
-      "#{config.root}/app/models/acme_identifier"
+      "#{config.root}/app/models/acme_identifier",
+      "#{config.root}/app/models/err_bot"
     ]
     config.eager_load_paths += Dir[
       "#{config.root}/app/models/role",
       "#{config.root}/app/models/who_role",
-      "#{config.root}/app/models/acme_identifier"
+      "#{config.root}/app/models/acme_identifier",
+      "#{config.root}/app/models/err_bot"
     ]
 
     config.generators do |g|

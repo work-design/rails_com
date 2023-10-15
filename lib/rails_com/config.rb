@@ -11,8 +11,6 @@ module RailsCom #:nodoc:
       'ActiveRecord::RecordNotFound'
     ]
     config.disable_debug = true
-    config.notify_bot = 'WorkWechatBot'
-    config.notify_key = ''
     config.not_found_logger = ActiveSupport::Logger.new('log/not_found.log')
     config.github_hmac_key = 'must_change_this'
     config.default_error_message = '服务端发生错误'
