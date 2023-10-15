@@ -15,8 +15,9 @@ Rails 通用基础库，对 Rails 的各个组件进行了扩展。
   * 签发 ssl 证书后需重启 nginx
 * 记录Rails应用报错日志到数据库中，包含出错时的各种详尽信息
   * 支持机器人发送通知
-    * 企业微信机器人：`WorkWechatBot`
-    * 飞书机器人：`FeishuBot`
+    * 企业微信机器人
+    * 飞书机器人
+    * [Slack](https://api.slack.com/messaging/webhooks)
 * 日志功能扩展：
   * 在开发环境中（Loglevel 为 debug），打印 request headers 信息；
   * 注重性能：使用订阅通知机制实现，而非 `rescue_from` 或者 `Rack middleware`;
