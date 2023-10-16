@@ -32,9 +32,11 @@ module RailsCom::RoleHelper
     else
       _options = options
       _html_options = html_options || {}
+      if _html_options[:state] == 'return' && params[:return_state]
+        r = StateUtil.decode(params[:return_state])
+        name = t("#{r[:controller].delete_prefix('/').tr('/', '.')}.#{r[:action]}.title")
+      end
       options = deal_with_state(_html_options.delete(:state), _options, _options)
-      r = StateUtil.decode(params[:return_state])
-      name = t("#{r[:controller].delete_prefix('/').tr('/', '.')}.#{r[:action]}.title")
     end
 
     return super if role_permit?(_options, _html_options)
