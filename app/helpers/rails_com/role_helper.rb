@@ -35,9 +35,7 @@ module RailsCom::RoleHelper
       options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
 
-    if role_permit?(_options, _html_options)
-      return super
-    end
+    return super if role_permit?(_options, _html_options)
 
     if _html_options.delete(:text)
       if block_given?
