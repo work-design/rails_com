@@ -13,10 +13,9 @@ module RailsCom::RoleHelper
       options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
 
-    text = _html_options.delete(:text)
-    if role_permit?(_options, _html_options)
-      super
-    elsif text
+    return super if role_permit?(_options, _html_options)
+
+    if _html_options.delete(:text)
       if block_given?
         content_tag(:div, _html_options.slice(:class, :data), &block)
       else
@@ -36,18 +35,11 @@ module RailsCom::RoleHelper
       options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
 
-    text = _html_options.delete(:text)
     if role_permit?(_options, _html_options)
-      begin
-        super
-      rescue ActionController::UrlGenerationError => e
-        if block_given?
-          content_tag(:div, _html_options.slice(:class, :data), &block)
-        else
-          ERB::Util.html_escape(name)
-        end
-      end
-    elsif text
+      return super
+    end
+
+    if _html_options.delete(:text)
       if block_given?
         content_tag(:div, _html_options.slice(:class, :data), &block)
       else
