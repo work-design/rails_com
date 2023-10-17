@@ -20,13 +20,14 @@ zh:
       clear: 重置
       confirm: 确认操作
       back: 返回
-      save: 保存
     show:
       title: 详情
     edit:
       title: 编辑
+      save: 保存
     new:
       title: 添加
+      save: 保存
     destroy:
       title: 删除
   attributes:
