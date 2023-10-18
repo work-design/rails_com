@@ -238,7 +238,7 @@ Rails.application.routes.draw do
           end
         end
         scope path: ':who_type/:who_id' do
-          resource :who_roles, only: [:index, :show, :edit, :update]
+          resource :whos, only: [:index, :show, :edit, :update]
         end
       end
 
