@@ -1,6 +1,13 @@
 module Roled
   class Panel::WhoRolesController < Panel::BaseController
-    before_action :set_who
+    before_action :set_role
+
+    def index
+      q_params = {}
+      q_params.merge! params.permit(:who_type)
+
+      @who_roles = @role.who_roles.default_where(q_params).page(params[:page])
+    end
 
     def show
       type = "Roled::#{params[:who_type].split('::')[-1]}Role"
@@ -20,8 +27,8 @@ module Roled
     end
 
     private
-    def set_who
-      @who = params[:who_type].safe_constantize.find params[:who_id]
+    def set_role
+      @role = Role.find params[:role_id]
     end
 
   end

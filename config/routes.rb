@@ -230,7 +230,7 @@ Rails.application.routes.draw do
             patch :action_on
             patch :action_off
           end
-          resources :role_whos, only: [:index, :new, :create, :destroy]
+          resources :who_roles, only: [:index, :new, :create, :destroy]
           resources :role_rules, except: [:destroy] do
             collection do
               post :disable

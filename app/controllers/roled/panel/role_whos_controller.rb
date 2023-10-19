@@ -3,12 +3,7 @@ module Roled
     before_action :set_role
     before_action :set_who_role, only: [:destroy]
 
-    def index
-      q_params = {}
-      q_params.merge! params.permit(:who_type)
 
-      @who_roles = @role.who_roles.default_where(q_params).page(params[:page])
-    end
 
     def new
       @who_role = @role.who_roles.build
