@@ -104,6 +104,7 @@ Rails.application.routes.draw do
         end
         resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
+        resources :states
         resources :meta_namespaces do
           collection do
             post :sync

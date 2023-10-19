@@ -96,6 +96,9 @@ zh:
           title: 属性列表
           sync: 同步
           test: 测试
+      states:
+        index:
+          title: 状态
   jia_bo:
     panel:
       title: 佳博打印机

@@ -1,0 +1,10 @@
+<td><%= model.id %></td>
+<td>
+  <p><%= model.controller_path %></p>
+  <p><%= model.action_name %></p>
+</td>
+<td><%= model.destroyable %></td>
+<td>
+  <p><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
+  <p><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></p>
+</td>
