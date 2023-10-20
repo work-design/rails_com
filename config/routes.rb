@@ -44,6 +44,13 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :admin, defaults: { namespace: 'admin' } do
+      root 'home#index' unless has_named_route? 'admin_root'
+      controller :home do
+        get :index
+      end
+    end
+
     scope :rails, module: 'com', as: :rails_ext, defaults: { business: 'com' } do
       resources :videos, only: [:show] do
         member do
