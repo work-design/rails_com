@@ -2,7 +2,7 @@
   <%= yield %>
   <td>
     <div data-show-target="item" style="visibility: hidden">
-      <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, aria: { label: t('.show') }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, aria: { label: t('.show.title') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-circle-info has-text-info"></i>
       <% end %>
       <%= button_to({ action: 'order', id: model.id }, method: :patch, aria: { label: t('.order') }, class: 'button is-small is-rounded is-light') do %>
@@ -14,10 +14,10 @@
       <%= button_to({ action: 'cert', id: model.id }, method: :patch, aria: { label: t('.cert') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-certificate"></i>
       <% end %>
-      <%= link_to({ action: 'edit', id: model.id }, data: { turbo_frame: 'modal' }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ action: 'edit', id: model.id }, data: { turbo_frame: 'modal' }, aria: { label: t('.edit.title') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-pencil has-text-link"></i>
       <% end %>
-      <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
+      <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-trash has-text-danger"></i>
       <% end %>
     </div>
