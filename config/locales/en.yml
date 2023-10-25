@@ -8,6 +8,8 @@ en:
       title: List
     show:
       title: Show
+    new:
+      title: New
     edit:
       title: Edit
     destroy:
