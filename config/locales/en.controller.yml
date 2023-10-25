@@ -6,10 +6,11 @@ en:
     title: Panel
     home:
       index:
-        title: 后台
+        title: Panel
   com:
     title: Settings
     panel:
+      title: Common Settings
       acme_accounts:
         index:
           title: SSL
