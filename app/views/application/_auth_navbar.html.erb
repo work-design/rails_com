@@ -9,10 +9,10 @@
       <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
       <%= link_to({ controller: '/me/home' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
         <span><%= t('me.home.index.title') %></span>
-      <% end if defined? current_member %>
+      <% end if defined?(current_member) && current_member %>
       <%= link_to({ controller: '/admin/home', host: current_organ.admin_host }, class: active_helper(controllers: ['admin/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
         <span><%= t('admin.home.index.title') %></span>
-      <% end if defined? current_member %>
+      <% end if defined?(current_member) && current_member %>
       <%= link_to({ controller: '/panel/home' }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
         <span><%= t('panel.home.index.title') %></span>
       <% end if current_user.admin? %>
