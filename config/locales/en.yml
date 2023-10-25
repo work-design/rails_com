@@ -4,9 +4,14 @@ en:
   powered_by: Powered By
   copyright: Work Design
   controller:
-    show: Show
-    edit: Edit
-    destroy: Delete
+    index:
+      title: List
+    show:
+      title: Show
+    edit:
+      title: Edit
+    destroy:
+      title: Delete
     search: Search
   views:
     pagination:
