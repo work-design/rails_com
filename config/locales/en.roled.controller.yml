@@ -12,19 +12,17 @@ en:
       title: Roles Admin
       roles:
         index:
-          title: 角色列表
+          title: Roles
         show:
-          title: 配置
+          title: Config
         overview:
-          title: 概览
+          title: Overview
         create:
           role_created: 角色已创建
         update:
           role_updated: 角色已更新
         change:
           role_updated: 角色已更新
-        destroy:
-          role_deleted: 角色已删除
         rule_form:
           new_govern_placeholder: 新章节名称
           create_govern: 创建新章节
@@ -36,10 +34,7 @@ en:
           new_rule_placeholder: 新规则名称
           create_rule: 创建新规则
         new:
-          create: 创建新角色
-          name: 角色名称 (字符串)
-          title: 角色标题 (文本)
-          description: 角色描述 (文本)
+          title: Add Role
         role:
           role_name: 角色名称
           title:     角色标题
