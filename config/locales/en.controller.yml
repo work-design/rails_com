@@ -48,6 +48,9 @@ en:
       meta_businesses:
         index:
           title: Businesses
+      meta_controllers:
+        index:
+          title: Controllers
   job:
     panel:
       title: Job Admin
