@@ -3,6 +3,7 @@
   <%= render 'com_nav' %>
   <%= render 'role_nav' %>
   <%= render 'auth_nav' if defined? RailsAuth %>
+  <%= render 'org_nav' if defined? RailsOrg %>
   <%= render 'data_nav' if defined? RailsData %>
   <%= render 'factory_nav' if defined? RailsFactory %>
   <%= render 'wechat_nav' if defined? RailsWechat %>

@@ -45,3 +45,6 @@ en:
       inbound_emails:
         index:
           title: Emails
+  job:
+    panel:
+      title: Job Admin
