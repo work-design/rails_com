@@ -45,6 +45,9 @@ en:
       inbound_emails:
         index:
           title: Emails
+      meta_businesses:
+        index:
+          title: Businesses
   job:
     panel:
       title: Job Admin
