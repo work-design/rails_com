@@ -4,6 +4,7 @@ zh:
   powered_by: 技术支持
   copyright: Work Design
   controller:
+    confirm: 确认操作
     index:
       title: 列表页
       show: 详情
@@ -18,7 +19,6 @@ zh:
       approve: 接受
       reject: 拒绝
       clear: 重置
-      confirm: 确认操作
       back: 返回
     show:
       title: 详情

@@ -4,8 +4,10 @@ en:
   powered_by: Powered By
   copyright: Work Design
   controller:
+    confirm: Confirm
     index:
       title: List
+      confirm: Confirm
     show:
       title: Show
     new:
