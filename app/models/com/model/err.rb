@@ -20,7 +20,7 @@ module Com
       default_scope -> { order(id: :desc) }
 
       before_create :sync_to_summary
-      after_create_commit :send_message
+      after_create_commit :send_message_later
     end
 
     def filter_hash
@@ -36,6 +36,10 @@ module Com
       end
     end
 
+    def send_message_later
+      ErrJob.perform_later(self)
+    end
+
     def user_info
       token = session.dig('auth_token') || headers.dig('AUTH_TOKEN')
       return {} unless defined? Auth::AuthorizedToken
@@ -47,10 +51,6 @@ module Com
       else
         {}
       end
-    end
-
-    def process_job
-      ErrJob.perform_later(self)
     end
 
     def record(payload)
