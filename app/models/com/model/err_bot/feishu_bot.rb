@@ -13,9 +13,5 @@ module Com
       }
     end
 
-    def add_column(title, content)
-      @content << "*#{title}：*#{content}\n"
-    end
-
   end
 end
