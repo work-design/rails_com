@@ -21,5 +21,12 @@ module Com
       @content << "```#{content}```\n"
     end
 
+    def link_more(name, url)
+      text = "\n<#{url}|#{name}>"
+      truncate_length = 4096 - text.bytesize
+
+      @content = @content.truncate_bytes(truncate_length) + text
+    end
+
   end
 end
