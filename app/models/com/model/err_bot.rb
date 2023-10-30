@@ -3,25 +3,25 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      attr_reader :content
+
       attribute :hook_url
+
+      after_initialize :init_ivar
     end
 
-    attr_reader :content
-
-    def initialize(log_record)
-      @log_record = log_record
+    def init_ivar
       @content = ''
-      set_content
     end
 
-    def set_content
-      @log_record.as_json(only: [:path, :controller_name, :action_name, :params, :session, :headers, :ip]).each do |k, v|
-        add_column @log_record.class.human_attribute_name(k), v unless v.blank?
+    def set_content(err)
+      err.as_json(only: [:path, :controller_name, :action_name, :params, :session, :headers, :ip]).each do |k, v|
+        add_column err.class.human_attribute_name(k), v unless v.blank?
       end
-      add_column '用户信息', @log_record.user_info.inspect
-      add_paragraph(@log_record.exception)
-      add_paragraph(@log_record.exception_backtrace[0])
-      link_more('详细点击', Rails.application.routes.url_for(controller: 'com/panel/errs', action: 'show', id: @log_record.id))
+      add_column '用户信息', err.user_info.inspect
+      add_paragraph(err.exception)
+      add_paragraph(err.exception_backtrace[0])
+      link_more('详细点击', Rails.application.routes.url_for(controller: 'com/panel/errs', action: 'show', id: err.id))
     end
 
     def add_paragraph(content)

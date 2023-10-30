@@ -31,7 +31,9 @@ module Com
     end
 
     def send_message
-      RailsCom.config.notify_bot.constantize.new(self).send_message
+      ErrBot.limit(3).each do |bot|
+        bot.send_message(self)
+      end
     end
 
     def user_info

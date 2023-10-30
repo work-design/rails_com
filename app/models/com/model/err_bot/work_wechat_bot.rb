@@ -1,7 +1,8 @@
 module Com
   module Model::ErrBot::WorkWechatBot
 
-    def send_message
+    def send_message(err)
+      set_content(err)
       HTTPX.post(hook_url, json: body)
     end
 
