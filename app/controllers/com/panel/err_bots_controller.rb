@@ -13,5 +13,12 @@ module Com
       @err_bot = ErrBot.find(params[:id])
     end
 
+    def err_bot_params
+      params.fetch(:err_bot, {}).permit(
+        :type,
+        :hook_url
+      )
+    end
+
   end
 end

@@ -5,7 +5,8 @@ module Com
     included do
       attr_reader :content
 
-      attribute :hook_url
+      attribute :type, :string
+      attribute :hook_url, :string
 
       after_initialize :init_ivar
     end
