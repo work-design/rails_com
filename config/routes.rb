@@ -1,34 +1,8 @@
 Rails.application.routes.draw do
   scope RailsCom.default_routes_scope do
-    namespace :job, defaults: { business: 'job' } do
-      namespace :panel, defaults: { namespace: 'panel' } do
-        root to: 'jobs#index'
-        resources :processes, only: [:index]
-        resources :executions, only: [:index, :show, :destroy] do
-          member do
-            patch :perform
-          end
-        end
-        resources :jobs, only: [:index, :show, :destroy] do
-          collection do
-            get :scheduled
-            get :running
-            get :discarded
-          end
-          member do
-            put :discard
-            put :reschedule
-            put :retry
-            patch :perform
-          end
-        end
-        resources :cron_entries, only: [:index, :show] do
-          member do
-            post :enqueue
-          end
-        end
-      end
-    end
+    draw :job
+    draw :jia_bo
+    draw :roled
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
       resources :direct_uploads, only: [:create]
@@ -194,65 +168,6 @@ Rails.application.routes.draw do
             resources :acme_identifiers, only: [:index, :new, :create]
             resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
           end
-        end
-      end
-    end
-
-    namespace :jia_bo, defaults: { business: 'jia_bo' } do
-      namespace :panel, defaults: { namespace: 'panel' } do
-        resources :apps do
-          resources :devices do
-            collection do
-              post :sync
-            end
-            member do
-              patch :test
-            end
-            resources :device_organs
-          end
-        end
-      end
-      namespace :admin, defaults: { namespace: 'admin' } do
-        resources :device_organs do
-          collection do
-            post :scan
-          end
-        end
-      end
-    end
-
-    namespace :roled, defaults: { business: 'roled' } do
-      namespace :panel, defaults: { namespace: 'panel' } do
-        resources :roles do
-          member do
-            post :overview
-            post :namespaces
-            post :controllers
-            patch :business_on
-            patch :business_off
-            patch :namespace_on
-            patch :namespace_off
-            patch :controller_on
-            patch :controller_off
-            patch :action_on
-            patch :action_off
-          end
-          resources :who_roles, only: [:index, :new, :create, :destroy]
-          resources :role_rules, except: [:destroy] do
-            collection do
-              post :disable
-              delete '' => :destroy
-            end
-          end
-        end
-        scope path: ':who_type/:who_id' do
-          resource :whos, only: [:index, :show, :edit, :update]
-        end
-      end
-
-      namespace :admin, defaults: { namespace: 'admin' } do
-        scope path: ':who_type/:who_id' do
-          resource :who_roles, only: [:show, :edit, :update]
         end
       end
     end
