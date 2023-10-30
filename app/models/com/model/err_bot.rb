@@ -22,7 +22,15 @@ module Com
       add_column '用户信息', err.user_info.inspect
       add_paragraph(err.exception)
       add_paragraph(err.exception_backtrace[0])
-      link_more('详细点击', Rails.application.routes.url_for(controller: 'com/panel/errs', action: 'show', id: err.id))
+      link_more(
+        '详细点击',
+        Rails.application.routes.url_for(
+          controller: 'com/panel/errs',
+          action: 'show',
+          err_summary_id: err.err_summary.id,
+          id: err.id
+        )
+      )
     end
 
     def add_paragraph(content)
