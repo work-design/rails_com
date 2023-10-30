@@ -14,7 +14,7 @@ module Com
     end
 
     def add_column(title, content)
-      @content << "*#{title}：*#{content}\n"
+      @content << "*#{title}：* #{content}\n"
     end
 
     def add_paragraph(content)
