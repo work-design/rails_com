@@ -38,9 +38,9 @@ module Com
     end
 
     def url(**options)
-      if request_method == 'GET' && default_path == '/board'
+      if get? && default_path == '/board'
         organ_domain.redirect_url(**options)
-      elsif request_method == 'GET'
+      elsif get?
         Rails.application.routes.url_for(
           host: host,
           controller: controller_path,
@@ -61,6 +61,10 @@ module Com
 
     def destroy_after_used
       StateDestroyJob.perform_later(self.id)
+    end
+
+    def get?
+      request_method == 'GET'
     end
 
   end
