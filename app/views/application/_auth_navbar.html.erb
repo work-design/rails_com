@@ -1,45 +1,7 @@
-<% if defined?(current_user) && current_user %>
-  <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
-    <div class="navbar-link">
-      <%= image_tag current_user.avatar if current_user.avatar.present? %>
-      <span><%= current_user.name %></span>
-    </div>
-    <div class="navbar-dropdown is-right">
-      <%= link_to({ controller: '/my/home' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-        <span><%= t('my.home.index.title') %></span>
-      <% end %>
-      <%= link_to({ controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-        <span><%= t('board.home.index.title') %></span>
-      <% end %>
-      <%= link_to({ controller: '/me/home' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-        <span><%= t('me.home.index.title') %></span>
-      <% end if defined?(current_member) && current_member %>
-      <%= link_to({ controller: '/admin/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, class: active_helper(controllers: ['admin/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-        <span><%= t('admin.home.index.title') %></span>
-      <% end if defined?(current_member) && current_member %>
-      <%= link_to({ controller: '/panel/home' }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-        <span><%= t('panel.home.index.title') %></span>
-      <% end if current_user.admin? %>
-      <%= link_to({ controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
-        <span><%= t('auth.sign.logout.title') %></span>
-      <% end %>
-    </div>
-  </div>
-<% elsif defined?(current_member) && current_member %>
-  <div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
-    <div class="navbar-link">
-      <%= image_tag current_member.avatar if current_member.avatar.present? %>
-      <span><%= current_member.name %></span>
-    </div>
-    <div class="navbar-dropdown is-right">
-      <%= link_to '设置', { controller: '/board/home' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item') %>
-      <%= link_to '退出', { controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item' %>
-    </div>
-  </div>
-<% elsif defined?(RailsWechat) && current_wechat_app %>
+<% if defined?(RailsWechat) && current_wechat_app %>
   <%= link_to({ controller: '/wechat/wechat', action: 'login' }, class: 'navbar-item') do %>
     <i class="fa-solid fa-user"></i>
-    <span class="pl-1">登录/注册</span>
+    <span class="pl-1"><%= t('wechat.wechat.login.title') %></span>
   <% end %>
 <% else %>
   <%= link_to({ controller: '/auth/sign', action: 'sign' }, class: 'navbar-item') do %>
