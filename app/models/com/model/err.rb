@@ -37,6 +37,7 @@ module Com
     end
 
     def send_message_later
+      return if err_summary.errs_count > 1
       ErrJob.perform_later(self)
     end
 
