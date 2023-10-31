@@ -5,7 +5,7 @@ en:
   my:
     home:
       index:
-        title: Profiles
+        title: Profile
   board:
     title: User Settings
     home:
@@ -16,10 +16,10 @@ en:
       index:
         title: Admin
   panel:
-    title: Panel
+    title: Platform
     home:
       index:
-        title: Panel
+        title: Platform
   com:
     title: Settings
     panel:
