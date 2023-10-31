@@ -1,9 +1,9 @@
 <% flash.each do |type, msg| %>
-<div class="notification is-radiusless is-danger" data-controller="notice" data-turbo-cache="false">
-  <button class="delete" data-action="notice#close"></button>
-  <%= msg %>
-</div>
-<div class="ui bottom attached warning progress" data-percent="0">
-  <div class="bar"></div>
+<div data-controller="notice" data-turbo-cache="false">
+  <div class="notification is-radiusless is-danger mb-0">
+    <button class="delete" data-action="notice#close"></button>
+    <div><%= msg %></div>
+  </div>
+  <progress class="progress is-small is-danger is-radiusless"></progress>
 </div>
 <% end %>
