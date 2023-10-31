@@ -1,12 +1,8 @@
-<div class="breadcrumb has-succeeds-separator">
-  <ul>
-    <li><%= link_to t('com.panel.err_summaries.index.title'), { controller: 'err_summaries' } %></li>
-    <li>
-      <div class="is-flex-direction-column px-3">
-        <p><%= @err_summary.controller_name %></p>
-        <p><%= @err_summary.action_name %></p>
-      </div>
-    </li>
-    <li class="is-active"><%= t('.title') %></li>
-  </ul>
-</div>
+<li><%= link_to t('com.panel.err_summaries.index.title'), { controller: 'err_summaries' } %></li>
+<li>
+  <div class="is-flex-direction-column px-3">
+    <p><%= @err_summary.controller_name %></p>
+    <p><%= @err_summary.action_name %></p>
+  </div>
+</li>
+<li class="is-active"><%= t('.title') %></li>
