@@ -14,7 +14,7 @@ en:
   admin:
     home:
       index:
-        title: Admin
+        title: Dashboard
   panel:
     title: Platform
     home:
