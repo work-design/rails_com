@@ -52,6 +52,9 @@ en:
       errs:
         index:
           title: System Errors
+      err_summaries:
+        index:
+          title: Errors
       csps:
         index:
           title: Content Secure
@@ -64,6 +67,12 @@ en:
       meta_controllers:
         index:
           title: Controllers
+      meta_models:
+        index:
+          title: Models
+      states:
+        index:
+          title: States
   job:
     panel:
       title: Job Admin
