@@ -2,6 +2,19 @@ en:
   application:
     modal:
       title: 编辑/新建
+  my:
+    home:
+      index:
+        title: Profiles
+  board:
+    title: User Settings
+    home:
+      index:
+        title: User Settings
+  admin:
+    home:
+      index:
+        title: Admin
   panel:
     title: Panel
     home:
