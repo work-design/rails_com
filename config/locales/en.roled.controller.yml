@@ -9,7 +9,7 @@ en:
         edit:
           title: 权限设置
     panel:
-      title: Roles Admin
+      title: Roles
       roles:
         index:
           title: Roles
