@@ -22,7 +22,8 @@ module Com
     end
 
     def role_denied(exception)
-      render 'role_denied', layout: 'raw', status: 403
+      flash[:error] = exception.message
+      render 'role_denied', layout: 'raw', locals: { exception: exception, message: exception.message }, status: 403
     end
 
   end
