@@ -60,7 +60,7 @@ module Com
       self.action_name = payload[:action]
       self.exception = payload[:exception].join("\r\n")[0..self.class.columns_limit['exception']]
       self.exception_object = payload[:exception_object].class.to_s
-      self.exception_backtrace = payload[:exception_object].backtrace.map(&->(i){ i.delete_prefix(Gem.path) })
+      self.exception_backtrace = payload[:exception_object].backtrace.map(&->(i){ i.delete_prefix(Gem.path[0].to_s) })
       self.params = self.class.filter_params(payload[:params])
 
       raw_headers = payload.fetch(:headers, {})
