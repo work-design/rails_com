@@ -6,7 +6,6 @@ module Com
       rescue_from ActiveRecord::RecordInvalid, with: :record_not_save
       rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
       rescue_from Com::DisposableTokenError, with: :disposable_auth_fail
-      rescue_from Roled::DeniedError, with: :role_denied
     end
 
     def record_not_save(exception)
@@ -19,11 +18,6 @@ module Com
 
     def disposable_auth_fail(exception)
       render 'disposable_auth_fail', layout: 'raw'
-    end
-
-    def role_denied(exception)
-      flash[:error] = exception.message
-      render 'role_denied', layout: 'raw', locals: { exception: exception, message: exception.message }, status: 403
     end
 
   end
