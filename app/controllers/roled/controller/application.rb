@@ -21,7 +21,7 @@ module Roled
         return
       end
 
-      raise DeniedError, I18n.t(:access_denied, scope: :rails_role)
+      role_denied
     end
 
     def require_role
@@ -35,7 +35,7 @@ module Roled
         return
       end
 
-      raise DeniedError, I18n.t(:access_denied, scope: :rails_role)
+      role_denied
     end
 
     def rails_role_user
@@ -46,8 +46,8 @@ module Roled
     end
 
     def role_denied
-      flash.now[:error] = I18n.t(:access_denied, scope: :rails_role)
-      render 'role_denied', layout: 'raw', status: 403
+      flash[:error] = I18n.t(:access_denied, scope: :rails_role)
+      redirect_to controller: '/home'
     end
 
   end
