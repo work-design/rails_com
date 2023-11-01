@@ -45,5 +45,10 @@ module Roled
       @rails_role_user
     end
 
+    def role_denied
+      flash.now[:error] = I18n.t(:access_denied, scope: :rails_role)
+      render 'role_denied', layout: 'raw', status: 403
+    end
+
   end
 end
