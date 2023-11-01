@@ -87,13 +87,15 @@ module RailsCom::RoleHelper
     end
     extra_params = path_params.except(:controller, :action, :business, :namespace)
     meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
+    filtered = meta_params[:controller].to_controller.whether_filter_role(meta_params[:action])
 
-    if defined?(current_organ) && current_organ
+    if filtered && defined?(current_organ) && current_organ
       organ_permitted = current_organ.has_role?(params: extra_params, **meta_params)
     else
       organ_permitted = true
     end
-    if controller.whether_filter(:require_role) && defined?(rails_role_user) && rails_role_user
+
+    if filtered && defined?(rails_role_user) && rails_role_user
       user_permitted = rails_role_user.has_role?(params: extra_params, **meta_params)
     else
       user_permitted = true
