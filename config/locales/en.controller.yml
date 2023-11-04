@@ -1,7 +1,7 @@
 en:
   application:
     modal:
-      title: 编辑/新建
+      title: Edit
   my:
     home:
       index:
@@ -35,20 +35,22 @@ en:
           cert: 办法证书
       acme_identifiers:
         index:
-          title: SSL 订单详情
+          title: SSL Details
       blob_defaults:
         index:
           title: Default Blobs
         new:
-          title: 新建图片
+          title: Add Default Blob
       blobs:
         index:
-          title: Blobs
+          title: All Blobs
         unattached:
-          title: 游离文件
+          title: Unattached Blobs
       attachments:
         index:
-          title: Attachments
+          title: All Attachments
+        garbled:
+          title: Garbled Attachments
       errs:
         index:
           title: System Errors
