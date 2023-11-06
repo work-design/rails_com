@@ -4,10 +4,10 @@ en:
       roled/role:
         type:
           Roled::UserRole: User
-          Roled::OrganRole: 组织
-          Roled::JobTitleRole: 职称
+          Roled::OrganRole: Organization
+          Roled::JobTitleRole: Job Title
           Roled::MemberRole: Member
       roled/role_rule:
         status:
-          available: 可用
-          unavailable: 不可用
+          available: Available
+          unavailable: Unavailable
