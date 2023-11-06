@@ -31,6 +31,7 @@ namespace :roled, defaults: { business: 'roled' } do
 
   namespace :admin, defaults: { namespace: 'admin' } do
     scope path: ':who_type/:who_id' do
+      resource :whos, only: [:show, :edit, :update]
       resource :who_roles, only: [:show, :edit, :update]
     end
   end
