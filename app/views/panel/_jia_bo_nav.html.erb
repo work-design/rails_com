@@ -2,7 +2,7 @@
   <a class="menu-label" data-action="menu#toggle">
     <i class="fa-solid fa-fw fa-print"></i>
     <span><%= t('jia_bo.panel.title') %></span>
-    <i class="fa-solid dropdown"></i>
+    <i class="fa-solid fa-fw dropdown"></i>
   </a>
   <div class="menu-list" data-empty-target="content">
     <%= link_to t('jia_bo.panel.apps.index.title'), { controller: 'jia_bo/panel/apps' }, class: active_helper(controllers: ['apps' , 'templates', 'devices'], active: 'is-active') %>

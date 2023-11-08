@@ -2,7 +2,7 @@
   <a class="menu-label" data-action="menu#toggle">
     <i class="fa-solid fa-fw fa-clone"></i>
     <span><%= t('job.panel.title') %></span>
-    <i class="fa-solid dropdown"></i>
+    <i class="fa-solid fa-fw dropdown"></i>
   </a>
   <div class="menu-list" data-empty-target="content">
     <%= link_to t('job.panel.processes.index.title'), { controller: 'job/panel/processes' }, class: active_helper(controllers: 'processes', active: 'is-active') %>

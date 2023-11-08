@@ -2,7 +2,7 @@
   <a class="menu-label" data-action="menu#toggle">
     <i class="fa-solid fa-cogs fa-fw"></i>
     <span><%= t('com.panel.title') %></span>
-    <i class="fa-solid dropdown"></i>
+    <i class="fa-solid fa-fw dropdown"></i>
   </a>
   <div class="menu-list" data-empty-target="content">
     <%= link_to t('com.panel.blob_defaults.index.title'), { controller: 'com/panel/blob_defaults' }, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
