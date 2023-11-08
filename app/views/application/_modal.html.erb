@@ -1,11 +1,11 @@
-<div id="modal_wrapper" class="modal" data-controller="modal">
+<div data-controller="modal" id="modal" class="modal">
   <div class="has-background-white has-animate-color" data-modal-target="background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title" id="modal_title"><%= t('.title') %></p>
+      <p class="modal-card-title"><%= t('.title') %></p>
       <button class="delete" data-action="modal#close"></button>
     </header>
-    <div class="modal-card-body" id="modal">
+    <div class="modal-card-body">
       <%= yield %>
     </div>
   </div>
