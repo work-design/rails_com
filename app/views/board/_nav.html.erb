@@ -1,4 +1,9 @@
 <aside class="menu" style="height: 100%">
+  <div class="menu">
+    <div class="menu-list">
+      <%= link_to t('my.home.index.title'), { controller: '/my/home' }, class: active_helper(controllers: 'home', active: 'is-active') %>
+    </div>
+  </div>
   <%= render 'my/trade_nav' if defined? RailsTrade %>
   <%= render 'my/profile_nav' if defined? RailsProfile %>
   <%= render 'auth_nav' %>

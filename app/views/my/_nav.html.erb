@@ -2,8 +2,8 @@
   <div class="menu-list">
     <%= link_to t('my.home.index.title'), { controller: '/my/home' }, class: active_helper(controllers: 'home', active: 'is-active') %>
   </div>
-  <%= render 'trade_nav' if defined? RailsTrade %>
-  <%= render 'profile_nav' if defined? RailsProfile %>
 </div>
+<%= render 'trade_nav' if defined? RailsTrade %>
+<%= render 'profile_nav' if defined? RailsProfile %>
 <%= render 'board/auth_nav' %>
 <%= render 'board/org_nav' %>
