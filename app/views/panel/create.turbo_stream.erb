@@ -1,1 +1,1 @@
-<%= turbo_stream.append 'tbody', partial: 'visit', locals: defined?(url) ? { url: url } : {} %>
+<%= turbo_stream.append 'tbody', partial: 'index_tbody', layout: 'index_tr', locals: { model: model } %>
