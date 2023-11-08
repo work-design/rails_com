@@ -5,6 +5,8 @@
       <p class="modal-card-title" id="modal_title"><%= t('.title') %></p>
       <button class="delete" data-action="modal#close"></button>
     </header>
-    <turbo-frame class="modal-card-body" id="modal"><%= render action if defined? action %></turbo-frame>
+    <div class="modal-card-body" id="modal">
+      <%= yield %>
+    </div>
   </div>
 </div>
