@@ -1,4 +1,4 @@
-<% if url_for(action: 'index') == request.referer %>
+<% if url_for(action: 'index', only_path: false) == request.referer %>
   <%= turbo_stream.replace "tr_#{params[:id]}", partial: 'index_tbody', layout: 'index_tr', locals: { model: defined?(model) ? model : instance_variable_get("@#{model_name}") } %>
   <%= turbo_stream.remove 'modal' %>
 <% else %>
