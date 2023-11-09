@@ -1,7 +1,5 @@
 zh:
   application:
-    modal:
-      title: 编辑/新建
     show:
       title: 详情
     new:
