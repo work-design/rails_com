@@ -10,7 +10,10 @@ module DefaultForm::Builder
     ].freeze
 
     def default_label(method)
-      if object.is_a?(ActiveRecord::Base)
+      if self.options[:parent_builder].present?
+        _method = object_name.delete_prefix("#{self.options[:parent_builder].object_name}[").delete_suffix('_attributes]')
+        self.options[:parent_builder].object.class.human_attribute_name("#{_method}.#{method}")
+      elsif object.is_a?(ActiveRecord::Base)
         object.class.human_attribute_name(method)
       end
     end
