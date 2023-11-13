@@ -10,6 +10,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      layout -> { 'frame/body' if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
       helper_method :current_title, :current_organ_name, :default_params, :turbo_frame_request_id
     end
@@ -175,6 +176,10 @@ module Com
 
     def json_format?
       self.request.format.json?
+    end
+
+    def turbo_frame_body?
+      request.headers['Turbo-Frame'] == 'body'
     end
 
   end
