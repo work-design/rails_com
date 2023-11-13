@@ -3,10 +3,12 @@
     <div class="column is-narrow p-0">
       <%= render 'nav' %>
     </div>
-    <turbo-frame id="body" class="column pt-0">
+    <div class="column pt-0">
       <%= render 'nav_bar' %>
       <%= render 'alert' %>
-      <%= yield %>
-    </turbo-frame>
+      <turbo-frame id="body" data-turbo-action="advance">
+        <%= yield %>
+      </turbo-frame>
+    </div>
   </main>
 <% end %>
