@@ -1,5 +1,5 @@
 defaults: &defaults
-  autocomplete: true
+  autocomplete: off
   label: true
 searches: &searches
   method: get
