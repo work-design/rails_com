@@ -1,4 +1,4 @@
-<% if ['new', 'edit'].include? params[:action] %>
+<% if ['new', 'edit'].include?(params[:action]) %>
   <li><%= link_to t('.index.title'), { action: 'index' } %></li>
 <% end %>
 <li class="is-active"><%= t('.title') %></li>
