@@ -1,5 +1,13 @@
-<%= form_with model: @who, scope: :who, url: { action: 'update' } do |f| %>
-  <%= render 'error_messages', target: @who %>
-  <%= f.collection_check_boxes :role_ids, @roles, :id, :name %>
-  <%= f.submit %>
+<%= form_with model: @who, scope: :who, url: { action: 'update' }, class: 'modal-card' do |f| %>
+  <header class="modal-card-head">
+    <p class="modal-card-title"><%= t('.title') %></p>
+    <button class="delete" data-action="modal#close"></button>
+  </header>
+  <div class="modal-card-body">
+    <%= render 'error_messages', target: @who %>
+    <%= f.collection_check_boxes :role_ids, @roles, :id, :name %>
+  </div>
+  <div class="modal-card-foot is-block">
+    <%= f.submit %>
+  </div>
 <% end %>
