@@ -1,6 +1,8 @@
-<% if referer_controller == controller_path %>
+<% if referer_controller == controller_path && referer_meta[:action] == 'index' %>
   <%= turbo_stream.replace "tr_#{params[:id]}", partial: 'index_tbody', layout: 'index_tr', locals: { model: defined?(model) ? model : instance_variable_get("@#{model_name}") } %>
   <%= turbo_stream.remove 'modal' %>
+<% elsif referer_controller == controller_path && referer_meta[:action] == 'edit' %>
+  <%= turbo_stream.replace "box", partial: 'show', locals: { model: defined?(model) ? model : instance_variable_get("@#{model_name}") } %>
 <% else %>
   <%= turbo_stream.append 'body', partial: 'visit', locals: { url: url_for(action: 'index') } %>
 <% end %>
