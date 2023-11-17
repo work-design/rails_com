@@ -92,12 +92,9 @@ module Com
     end
 
     def set_timezone
-      if session[:zone]
-        Time.zone = session[:zone]
-      elsif request.headers['HTTP_UTC_OFFSET'].present?
-        zone = -(request.headers['HTTP_UTC_OFFSET'].to_i / 60)
-        Time.zone = zone
-        session[:zone] = zone
+      if request.headers['HTTP_TIMEZONE'].present?
+        Time.zone = request.headers['HTTP_TIMEZONE']
+        session[:zone] = Time.zone.name
       end
 
       if defined?(current_user) && current_user&.timezone.blank?
