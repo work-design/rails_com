@@ -95,7 +95,7 @@ module Com
       if defined?(current_user) && current_user&.timezone.blank? && request.headers['HTTP_TIMEZONE'].present?
         current_user&.update timezone: request.headers['HTTP_TIMEZONE']
       end
-      Time.zone = current_user.timezone
+      Time.zone = current_user&.timezone || request.headers['HTTP_TIMEZONE']
       logger.debug "\e[35m  Zone: #{Time.zone}  \e[0m" if RailsCom.config.debug
     end
 
