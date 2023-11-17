@@ -92,14 +92,10 @@ module Com
     end
 
     def set_timezone
-      if request.headers['HTTP_TIMEZONE'].present?
-        Time.zone = request.headers['HTTP_TIMEZONE']
-        session[:zone] = Time.zone.name
+      if defined?(current_user) && current_user&.timezone.blank? && request.headers['HTTP_TIMEZONE'].present?
+        current_user&.update timezone: request.headers['HTTP_TIMEZONE']
       end
-
-      if defined?(current_user) && current_user&.timezone.blank?
-        current_user&.update timezone: Time.zone.name
-      end
+      Time.zone = current_user.timezone
       logger.debug "\e[35m  Zone: #{Time.zone}  \e[0m" if RailsCom.config.debug
     end
 
