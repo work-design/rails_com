@@ -3,11 +3,11 @@
     <p class="modal-card-title"><%= t('.title') %></p>
     <button type="button" data-action="modal#close" class="delete"></button>
   </header>
-  <div class="modal-card-body">
+  <section class="modal-card-body">
     <%= render 'error_messages', target: f.object if f.object.errors.present? %>
     <%= render partial: 'form', locals: { f: f } %>
-  </div>
-  <div class="modal-card-foot is-block">
+  </section>
+  <footer class="modal-card-foot is-block">
     <%= f.submit %>
-  </div>
+  </footer>
 <% end %>
