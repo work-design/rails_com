@@ -1,6 +1,8 @@
-<div class="buttons are-small mb-0">
-  <%= button_to({ action: 'new', **request.query_parameters.except(:id) }, data: { turbo_scroll: true }, class: 'button is-link') do %>
-    <i class="fa-solid fa-plus"></i>
-    <span class="pl-1"><%= t('.new.title') %></span>
-  <% end %>
-</div>
+<nav class="level mb-2">
+  <div class="level-left">
+    <%= render 'button_actions' %>
+  </div>
+  <div class="level-right">
+    <%= render 'filter_dropdown' %>
+  </div>
+</nav>
