@@ -1,7 +1,7 @@
 module Com
   class Panel::MetaModelsController < Panel::BaseController
     before_action :set_new_meta_model, only: [:new, :create]
-    before_action :set_meta_model, only: [:show, :edit, :update, :destroy]
+    before_action :set_meta_model, only: [:show, :edit, :update, :destroy, :actions, :reflections]
     before_action :set_business_identifiers, only: [:index]
 
     def index

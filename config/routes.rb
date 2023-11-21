@@ -127,6 +127,9 @@ Rails.application.routes.draw do
           collection do
             post :sync
           end
+          member do
+            get :reflections
+          end
           resources :meta_columns do
             member do
               patch :sync
