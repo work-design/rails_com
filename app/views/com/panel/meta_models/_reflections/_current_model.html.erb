@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @meta_model.record_class.column_names.each do |key| %>
+  <% @meta_model.record_class.reflections_with_primary_keys.each do |key| %>
     <tr>
       <td id="<%= key %>"><%= key %></td>
     </tr>

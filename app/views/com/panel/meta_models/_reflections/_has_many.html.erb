@@ -7,7 +7,7 @@
       </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody data-controller="draw-line" data-action="click->draw-line#link">
   <% Array(col.foreign_key).each_with_index do |key, index| %>
     <tr>
       <td data-id="<%= Array(col.active_record_primary_key)[index] %>"><%= key %></td>
