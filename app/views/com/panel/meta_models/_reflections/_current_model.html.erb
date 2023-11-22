@@ -2,12 +2,12 @@
   <thead>
     <tr>
       <th colspan="2" class="has-text-centered">
-        <p><%= col.name %></p>
+        <p><%= @meta_model.record_name %></p>
       </th>
     </tr>
   </thead>
   <tbody>
-  <% Array(col.foreign_key).each do |key| %>
+  <% @meta_model.record_class.column_names.each do |key| %>
     <tr>
       <td><%= key %></td>
     </tr>

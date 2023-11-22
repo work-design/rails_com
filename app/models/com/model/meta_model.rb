@@ -16,7 +16,8 @@ module Com
     end
 
     def record_class
-      record_name.constantize
+      return @record_class if defined? @record_class
+      @record_class = record_name.constantize
     end
 
     def sync_business_identifier
