@@ -3,7 +3,7 @@
   <% @meta_model.record_class.reflections_with_collection.each do |col| %>
   <tr>
     <td><%= col.name %></td>
-    <td><%= col.association_primary_key %></td>
+    <td><%= col.active_record_primary_key %></td>
     <td><%= col.foreign_key %></td>
   </tr>
   <% end %>
