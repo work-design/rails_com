@@ -8,9 +8,9 @@
     </tr>
   </thead>
   <tbody>
-  <% Array(col.foreign_key).each do |key| %>
+  <% Array(col.foreign_key).each_with_index do |key, index| %>
     <tr>
-      <td><%= key %></td>
+      <td data-id="<%= Array(col.active_record_primary_key)[index] %>"><%= key %></td>
     </tr>
   <% end %>
   </tbody>

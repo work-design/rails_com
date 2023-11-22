@@ -10,7 +10,7 @@
   <tbody>
   <% @meta_model.record_class.column_names.each do |key| %>
     <tr>
-      <td><%= key %></td>
+      <td id="<%= key %>"><%= key %></td>
     </tr>
   <% end %>
   </tbody>
