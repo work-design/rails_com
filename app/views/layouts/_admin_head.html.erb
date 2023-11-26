@@ -7,6 +7,7 @@
       <title><%= current_title %></title>
     <% end %>
     <meta name="turbo-cache-control" content="no-preview">
+    <meta name="view-transition" content="same-origin">
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= csrf_meta_tags %>
