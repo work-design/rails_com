@@ -10,11 +10,11 @@
     <button data-action="switch#toggle" data-id="filter_form" class="button">
       <span class="icon is-small"><i class="fa-solid fa-search"></i></span>
     </button>
-    <%= form_with theme: nil, scope: :filter, url: { controller: 'com/admin/filters', action: 'detect' }, class: 'button_to' do |f| %>
+    <%= form_with theme: nil, scope: :filter, url: { controller: 'com/admin/filters', action: 'detect', filter_id: params[:filter_id] }, class: 'button_to' do |f| %>
       <%= f.hidden_field :controller_path, value: controller_path %>
       <%= f.hidden_field :action_name, value: action_name %>
       <%= f.fields :filter_columns_attributes do |ef| %>
-        <% request.query_parameters.each_with_index do |col, index| %>
+        <% request.query_parameters.except(:filter_id).each_with_index do |col, index| %>
           <%= ef.hidden_field :column, value: col[0], index: index %>
           <%= ef.hidden_field :value, value: col[1], index: index %>
         <% end %>
