@@ -3,7 +3,7 @@
     <%= render 'button_actions' %>
     <%= render 'filter_form' %>
     <% current_filters.each do |filter| %>
-      <span class="tag"><%= link_to filter.name, { **filter.filter_hash } %></span>
+      <span class="tag"><%= link_to filter.name, { filter_id: filter.id, **filter.filter_hash } %></span>
     <% end %>
   </div>
   <div class="level-right">
