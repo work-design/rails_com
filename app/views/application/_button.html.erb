@@ -2,6 +2,9 @@
   <div class="level-left">
     <%= render 'button_actions' %>
     <%= render 'filter_form' %>
+    <% current_filters.each do |filter| %>
+      <span class="tag"><%= link_to filter.name, { **filter.filter_hash } %></span>
+    <% end %>
   </div>
   <div class="level-right">
     <button data-action="switch#toggle" data-id="filter_form" class="button">

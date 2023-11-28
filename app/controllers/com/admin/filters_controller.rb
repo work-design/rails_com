@@ -12,12 +12,13 @@ module Com
     end
 
     def filter_params
-      params.fetch(:filter, {}).permit(
+      _p = params.fetch(:filter, {}).permit(
         :name,
         :controller_path,
         :action_name,
         filter_columns_attributes: [:column, :value]
       )
+      _p.merge! default_form_params
     end
 
   end

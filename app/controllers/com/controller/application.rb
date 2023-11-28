@@ -12,7 +12,7 @@ module Com
     included do
       layout -> { 'frame/body' if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
-      helper_method :current_title, :current_organ_name, :default_params, :turbo_frame_request_id
+      helper_method :current_title, :current_organ_name, :current_filters, :default_params, :turbo_frame_request_id
     end
 
     def urlsafe_encode64(
@@ -173,6 +173,10 @@ module Com
 
     def turbo_frame_body?
       request.headers['Turbo-Frame'] == 'body'
+    end
+
+    def current_filters
+      Filter.includes(:filter_columns).default_where(default_params).where(controller_path: controller_path, action_name: action_name).limit(5)
     end
 
   end
