@@ -1,3 +1,4 @@
-class Com::Admin::FiltersController < Com::Admin::BaseController
-
+module Com
+  class Admin::FiltersController < Admin::BaseController
+  end
 end
