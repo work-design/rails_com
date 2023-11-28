@@ -23,7 +23,7 @@ module Com
       model = model_new_object
 
       if model.save
-        render :create, status: :created
+        render :create, locals: { model: model }, status: :created
       else
         render :new, locals: { model: model }, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ module Com
       model.assign_attributes(model_params)
 
       if model.save
-        render :update
+        render :update, locals: { model: model }
       else
         render :edit, locals: { model: model }, status: :unprocessable_entity
       end

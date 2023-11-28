@@ -22,5 +22,9 @@ module Com
       r
     end
 
+    def detect_change(request)
+      request.query_parameters.except(:filter_id) != filter_hash
+    end
+
   end
 end
