@@ -15,7 +15,7 @@ module Com
         :name,
         :controller_path,
         :action_name,
-        filter_columns_attributes: [:id, :column, :value]
+        filter_columns_attributes: [:id, :column, :value, :_destroy]
       )
       _p.merge! default_form_params
     end

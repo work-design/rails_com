@@ -176,7 +176,8 @@ module Com
     end
 
     def current_filters
-      Filter.includes(:filter_columns).default_where(default_params).where(controller_path: controller_path, action_name: action_name).limit(5)
+      return @current_filters if defined? @current_filters
+      @current_filters = Filter.includes(:filter_columns).default_where(default_params).where(controller_path: controller_path, action_name: action_name).limit(5)
     end
 
   end

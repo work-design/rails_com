@@ -11,9 +11,9 @@
       <span class="icon is-small"><i class="fa-solid fa-search"></i></span>
     </button>
     <% if filter = current_filters.find(&->(i){ i.id.to_s == params[:filter_id] }) %>
-      <%= render partial: 'filter_update', locals: { filter: filter } %>
+      <%= render partial: 'filter_form_update', locals: { filter: filter } %>
     <% else %>
-      <%= render 'filter_create' %>
+      <%= render 'filter_form_create' %>
     <% end %>
     <%= render 'filter_dropdown' %>
     <%= render 'filter_per' %>
