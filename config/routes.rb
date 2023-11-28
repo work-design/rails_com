@@ -72,7 +72,11 @@ Rails.application.routes.draw do
 
     namespace :com, defaults: { business: 'com' } do
       namespace :admin, defaults: { namespace: 'admin' } do
-        resources :filters
+        resources :filters do
+          collection do
+            post :detect
+          end
+        end
       end
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'

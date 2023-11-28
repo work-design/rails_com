@@ -10,6 +10,7 @@ module Com
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       has_many :filter_columns, dependent: :delete_all
+      accepts_nested_attributes_for :filter_columns
     end
 
   end
