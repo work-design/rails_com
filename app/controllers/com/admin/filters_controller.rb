@@ -3,7 +3,6 @@ module Com
     before_action :set_new_filter, only: [:new, :create, :detect]
 
     def detect
-
     end
 
     private
@@ -16,7 +15,7 @@ module Com
         :name,
         :controller_path,
         :action_name,
-        filter_columns_attributes: [:column, :value]
+        filter_columns_attributes: [:id, :column, :value]
       )
       _p.merge! default_form_params
     end
