@@ -2,9 +2,9 @@
   <div class="level-left">
     <%= render 'button_actions' %>
     <%= render 'filter_form' %>
-    <% current_filters.each do |filter| %>
-      <span class="tag"><%= link_to filter.name, { filter_id: filter.id, **filter.filter_hash } %></span>
-    <% end %>
+    <div class="buttons">
+      <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
+    </div>
   </div>
   <div class="level-right">
     <button data-action="switch#toggle" data-id="filter_form" class="button">
