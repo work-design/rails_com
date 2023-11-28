@@ -7,6 +7,9 @@
     <button data-action="switch#toggle" data-id="filter_form" class="button">
       <span class="icon is-small"><i class="fa-solid fa-search"></i></span>
     </button>
+    <%= button_to({ controller: 'com/admin/filters', action: 'create' }, class: 'button') do %>
+      <i class="fa-solid fa-floppy-disk"></i>
+    <% end %>
     <%= render 'filter_dropdown' %>
     <%= render 'filter_per' %>
   </div>

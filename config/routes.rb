@@ -71,6 +71,9 @@ Rails.application.routes.draw do
     end
 
     namespace :com, defaults: { business: 'com' } do
+      namespace :admin, defaults: { namespace: 'admin' } do
+        resources :filters
+      end
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'
         resources :err_summaries, only: [:index, :show, :destroy] do
