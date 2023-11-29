@@ -1,21 +1,6 @@
-<nav data-controller="switch" class="level mb-2 box is-narrow">
-  <div class="level-left">
-    <%= render 'button_actions' %>
-    <%= render 'filter_form' %>
-    <div class="buttons are-small">
-      <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
-    </div>
-  </div>
-  <div class="level-right">
-    <button data-action="switch#toggle" data-id="filter_form" class="button">
-      <span class="icon is-small"><i class="fa-solid fa-search"></i></span>
-    </button>
-    <% if filter = current_filters.find(&->(i){ i.id.to_s == params[:filter_id] }) %>
-      <%= render partial: 'filter_form_update', locals: { filter: filter } %>
-    <% else %>
-      <%= render 'filter_form_create' %>
-    <% end %>
-    <%= render 'filter_dropdown' %>
-    <%= render 'filter_per' %>
-  </div>
-</nav>
+<div data-switch-target="src" class="buttons are-small mb-0">
+  <%= button_to({ action: 'new', **request.query_parameters.except(:id) }, data: { turbo_scroll: true }, class: 'button is-link') do %>
+    <i class="fa-solid fa-plus"></i>
+    <span class="pl-1"><%= t('.new.title') %></span>
+  <% end %>
+</div>
