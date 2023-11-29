@@ -16,7 +16,7 @@
   </div>
 </div>
 <div>
-  <span><%= instance_variable_get("@#{controller_name.pluralize}").total_count %></span>
+  <span><%= instance_variable_get("@#{pluralize_model_name}").total_pages %></span>
   <span>/</span>
-  <span><%= instance_variable_get("@#{controller_name.pluralize}").total_count %></span>
+  <span><%= instance_variable_get("@#{pluralize_model_name}").total_count %></span>
 </div>
