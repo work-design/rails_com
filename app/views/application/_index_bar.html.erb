@@ -1,6 +1,5 @@
 <nav data-controller="switch" class="level mb-2 box is-narrow">
   <div class="level-left">
-    <%= render 'button' %>
     <%= render 'filter_form' %>
     <div class="buttons are-small">
       <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
@@ -16,6 +15,5 @@
       <%= render 'filter_form_create' %>
     <% end %>
     <%= render 'filter_dropdown' %>
-    <%= render 'filter_per' %>
   </div>
 </nav>

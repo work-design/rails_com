@@ -15,3 +15,8 @@
     </div>
   </div>
 </div>
+<div>
+  <span><%= instance_variable_get("@#{controller_name.pluralize}").total_count %></span>
+  <span>/</span>
+  <span><%= instance_variable_get("@#{controller_name.pluralize}").total_count %></span>
+</div>

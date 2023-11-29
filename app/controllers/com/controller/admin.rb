@@ -3,14 +3,14 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      helper_method :permit_keys, :model_klass, :model_name
+      helper_method :permit_keys, :model_klass, :model_name, :pluralize_model_name
     end
 
     def index
       if model_klass.column_names.include?('organ_id')
-        instance_variable_set "@#{controller_name.pluralize}", model_klass.where(default_params).order(id: :asc).page(params[:page]).per(params[:per])
+        instance_variable_set "@#{pluralize_model_name}", model_klass.where(default_params).order(id: :asc).page(params[:page]).per(params[:per])
       else
-        instance_variable_set "@#{controller_name.pluralize}", model_klass.order(id: :asc).page(params[:page]).per(params[:per])
+        instance_variable_set "@#{pluralize_model_name}", model_klass.order(id: :asc).page(params[:page]).per(params[:per])
       end
     end
 
