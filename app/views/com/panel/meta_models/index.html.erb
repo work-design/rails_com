@@ -1,5 +1,5 @@
-<%= render 'filter_form' %>
 <%= render 'index_bar' %>
+<%= render 'index_actions' %>
 
 <%= render layout: 'index_table' do %>
   <% @meta_models.group_by(&:business_identifier).each do |business_identifier, meta_models| %>
