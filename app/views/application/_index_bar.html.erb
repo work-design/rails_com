@@ -2,7 +2,7 @@
   <div class="level-left">
     <%= render 'filter_form' %>
     <% if current_filters.present? %>
-    <div class="buttons are-small">
+    <div data-switch-target="src" class="buttons are-small">
       <%= link_to t('.all'), {}, class: 'button is-light' %>
       <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
     </div>
