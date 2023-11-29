@@ -1,7 +1,7 @@
 module Com
   module Controller::Panel
     extend ActiveSupport::Concern
-    include Curd
+    include Controller::Curd
 
     def index
       instance_variable_set "@#{pluralize_model_name}", model_klass.order(id: :asc).page(params[:page])
