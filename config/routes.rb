@@ -85,6 +85,9 @@ Rails.application.routes.draw do
             delete :clean
           end
           resources :errs, only: [:index, :show, :destroy] do
+            collection do
+              delete :batch_destroy
+            end
             member do
               delete :clean_other
             end

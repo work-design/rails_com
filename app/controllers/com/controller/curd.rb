@@ -29,6 +29,10 @@ module Com
       end
     end
 
+    def batch_destroy
+      model_klass.where(id: params[:ids].split(',')).each(&:destroy)
+    end
+
     def update
       model = model_object
       model.assign_attributes(model_params)

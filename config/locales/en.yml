@@ -16,6 +16,8 @@ en:
       title: Edit
     destroy:
       title: Delete
+    batch_destroy:
+      title: Batch Destroy
     search: Search
   views:
     pagination:
