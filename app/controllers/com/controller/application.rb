@@ -10,7 +10,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      layout -> { 'frame/body' if turbo_frame_body? }
+      layout -> { "turbo/#{proper_layout}" if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
       helper_method :current_title, :current_organ_name, :current_filters, :default_params, :turbo_frame_request_id
     end
