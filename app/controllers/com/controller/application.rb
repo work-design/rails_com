@@ -172,7 +172,7 @@ module Com
     end
 
     def turbo_frame_body?
-      request.headers['Turbo-Frame'] == 'body'
+      request.format.symbol == :html && request.headers['Turbo-Frame'] == 'body'
     end
 
     def current_filters
