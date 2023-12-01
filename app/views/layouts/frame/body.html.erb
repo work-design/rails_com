@@ -1,10 +1,7 @@
-<html>
-  <head></head>
-  <body>
-    <turbo-frame id="body">
-      <%= render 'nav_bar' %>
-      <%= render 'alert' %>
-      <%= yield %>
-    </turbo-frame>
-  </body>
-</html>
+<%= render layout: 'layouts/admin_head' do %>
+  <turbo-frame id="body">
+    <%= render 'nav_bar' %>
+    <%= render 'alert' %>
+    <%= yield %>
+  </turbo-frame>
+<% end %>

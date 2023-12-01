@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <% if request.variant.include?(:mini_program) %>
-    <title><%= current_organ_name %></title>
-    <% else %>
-    <title><%= t('.title', default: current_organ_name) %></title>
-    <% end %>
+    <%= render 'head_title' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="description" content="<%= yield(:meta_description) %>">
-    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
     <meta name="turbo-cache-control" content="no-preview">
     <%= yield :reload %>
     <%= stylesheet_link_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>

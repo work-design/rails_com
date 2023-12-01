@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <% if content_for?(:title) %>
-    <title><%= yield(:title) %></title>
-    <% elsif defined? current_title %>
-    <title><%= current_title %></title>
-    <% end %>
-    <meta name="description" content="<%= yield(:meta_description) %>">
-    <meta name="keywords" content="<%= yield(:meta_keywords) %>">
+    <%= render 'head_title' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="turbo-cache-control" content="no-preview">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
