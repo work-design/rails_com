@@ -1,6 +1,7 @@
 <nav data-controller="switch" class="level mb-2 box is-narrow">
   <div class="level-left">
     <%= render 'filter_form' %>
+    <%= render 'filter_default' %>
     <% if current_filters.present? %>
     <div data-switch-target="src" class="buttons are-small">
       <%= link_to t('.all'), {}, class: 'button is-light' %>
