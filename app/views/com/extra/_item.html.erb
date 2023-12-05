@@ -1,5 +1,5 @@
 <% model.form_parameters.each_with_index do |parameter, index| %>
-  <%= f.fields :parameters, model: parameter, index: index, wrap: { all: false, input: 'field > control', select: 'field is-narrow > control > select is-fullwidth', label: false, placeholder: true } do |pf| %>
+  <%= f.fields :parameters, model: parameter, index: index, label: nil, placeholder: true, wrap: { all: false, input: 'field > control', select: 'field is-narrow > control > select is-fullwidth' } do |pf| %>
     <div class="field is-horizontal" data-controller="field" data-field-index-value="<%= index %>">
       <%= f.label :form_parameters, '参数' %>
       <div class="field-body">
