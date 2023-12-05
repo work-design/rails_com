@@ -17,6 +17,10 @@ module DefaultForm
       input: 'date_field',
       output: 'to_date'
     }
+    config.mapping.datetime = {
+      input: 'datetime_field',
+      output: 'to_datetime'
+    }
     config.mapping.integer = {
       input: 'number_field',
       options: { step: 1 },
@@ -40,13 +44,16 @@ module DefaultForm
       output: 'to_s'
     }
     config.mapping.taxon = {
-      input: 'outer_select'
+      input: 'outer_select',
+      output: 'to_s'
     }
     config.mapping.enum = {
-      input: 'select_enum'
+      input: 'select_enum',
+      output: 'to_s'
     }
     config.mapping.boolean = {
-      input: 'check_box'
+      input: 'check_box',
+      output: 'to_s'
     }
   end
 
