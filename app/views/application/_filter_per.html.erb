@@ -16,7 +16,9 @@
   </div>
 </div>
 <div>
+  <% if instance_variable_get("@#{pluralize_model_name}").respond_to?(:total_pages) %>
   <span><%= instance_variable_get("@#{pluralize_model_name}").total_pages %></span>
   <span>/</span>
   <span><%= instance_variable_get("@#{pluralize_model_name}").total_count %></span>
+  <% end %>
 </div>
