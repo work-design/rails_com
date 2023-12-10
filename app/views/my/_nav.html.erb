@@ -3,5 +3,6 @@
     <%= link_to t('my.home.index.title'), { controller: '/my/home' }, class: active_helper(controllers: 'home', active: 'is-active') %>
   </div>
 </div>
+<%= render 'auth_nav' if defined? RailsAuth %>
 <%= render 'trade_nav' if defined? RailsTrade %>
 <%= render 'profile_nav' if defined? RailsProfile %>
