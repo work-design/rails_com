@@ -4,6 +4,6 @@
       <%= link_to t('board.home.index.title'), { controller: '/board/home' }, class: active_helper(controllers: 'home', active: 'is-active') %>
     </div>
   </div>
+  <%= render 'notice_nav' %>
   <%= render 'auth_nav' %>
-  <%= render 'org_nav' %>
 </aside>

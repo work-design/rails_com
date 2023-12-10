@@ -1,11 +1,14 @@
-<% if defined?(RailsWechat) && current_wechat_app %>
-  <%= link_to({ controller: '/wechat/wechat', action: 'login' }, class: 'navbar-item') do %>
-    <i class="fa-solid fa-user"></i>
-    <span class="pl-1"><%= t('wechat.wechat.login.title') %></span>
-  <% end %>
-<% else %>
-  <%= link_to({ controller: '/auth/sign', action: 'sign' }, class: 'navbar-item') do %>
-    <i class="fa-solid fa-user"></i>
-    <span class="pl-1"><%= t('auth.sign.sign.title') %></span>
-  <% end %>
-<% end %>
+<div class="navbar-item has-dropdown is-hoverable is-hidden-touch">
+  <div class="navbar-link">
+    <%= image_tag current_user.avatar if current_user.avatar.present? %>
+    <span><%= current_user.name %></span>
+  </div>
+  <div class="navbar-dropdown is-right">
+    <%= link_to({ controller: '/my/home' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
+      <span><%= t('my.home.index.title') %></span>
+    <% end %>
+    <%= link_to({ controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
+      <span><%= t('auth.sign.logout.title') %></span>
+    <% end %>
+  </div>
+</div>
