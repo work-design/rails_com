@@ -4,8 +4,8 @@
     <span><%= current_user.name %></span>
   </div>
   <div class="navbar-dropdown is-right">
-    <%= link_to({ controller: '/my/home' }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['my/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span><%= t('my.home.index.title') %></span>
+    <%= link_to({ controller: '/board/home' }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
+      <span><%= t('board.home.index.title') %></span>
     <% end %>
     <%= link_to({ controller: '/panel/home' }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
       <span><%= t('panel.home.index.title') %></span>
