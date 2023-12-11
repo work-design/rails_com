@@ -41,6 +41,9 @@ require 'rails_extend'
 require 'kaminari'
 require 'acts_as_list'
 require 'turbo-rails'
+require 'money-rails'
+
+require 'rails_com/money/formatter'
 
 module RailsCom
   mattr_accessor :default_routes_scope, default: {
