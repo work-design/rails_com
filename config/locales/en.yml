@@ -9,9 +9,9 @@ en:
       title: List
       confirm: Confirm
     show:
-      title: Show
+      title: General
     new:
-      title: New
+      title: Add
     edit:
       title: Edit
     destroy:
