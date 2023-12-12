@@ -77,6 +77,12 @@ Rails.application.routes.draw do
             post :detect
           end
         end
+        resources :blob_defaults do
+          collection do
+            match :add, via: [:get, :post]
+            post :sync
+          end
+        end
       end
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'
@@ -165,7 +171,7 @@ Rails.application.routes.draw do
         end
         resources :blob_defaults do
           collection do
-            get :add
+            match :add, via: [:get, :post]
             post :sync
           end
         end
