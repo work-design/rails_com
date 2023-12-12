@@ -1,12 +1,10 @@
 Gem::Specification.new do |s|
   s.name = 'rails_com'
   s.version = '1.3.0'
-  s.authors = ['qinmingyuan']
+  s.authors = ['Mingyuan Qin']
   s.email = ['mingyuan0715@foxmail.com']
-  s.homepage = 'https://github.com/work-design/rails_com'
   s.summary = 'Rails Engine with common utils'
   s.description = 'Common utils for Rails Application'
-  s.license = 'MIT'
 
   s.files = Dir[
     '{app,config,db,lib}/**/*',
