@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'turbo-rails'
   s.add_dependency 'money-rails', '~> 1.15'
   s.add_dependency 'net-http'
+  s.add_dependency 'net-smtp'
+  s.add_dependency 'bigdecimal'
 
   s.add_development_dependency 'listen'
 end

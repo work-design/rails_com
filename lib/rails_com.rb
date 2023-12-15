@@ -42,6 +42,7 @@ require 'kaminari'
 require 'acts_as_list'
 require 'turbo-rails'
 require 'money-rails'
+require 'bigdecimal'
 
 require 'rails_com/money/formatter'
 
