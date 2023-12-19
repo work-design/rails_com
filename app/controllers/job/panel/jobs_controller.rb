@@ -5,7 +5,7 @@ module Job
     before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
 
     def index
-      @jobs = SolidQueue::Job.default_where(q_params).order(finished_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.default_where(q_params).order(id: :desc).page(params[:page])
     end
 
     def scheduled
