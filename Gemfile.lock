@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 56fdfeaf3cf989cc6e36c667bd7e284ec52c8acb
+  revision: f60645c7fc8d2edeb6b4ec134167a2ca526c89e4
   specs:
     rails_design (0.0.1)
       rails
@@ -20,7 +20,6 @@ PATH
       acts_as_list (>= 1.0)
       closure_tree (>= 7.3)
       default_where (~> 2.2)
-      good_job
       http-form_data (~> 2.3)
       httpx
       kaminari
