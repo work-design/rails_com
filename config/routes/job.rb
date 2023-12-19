@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-namespace :job, defaults: { business: 'job' } do
+namespace :solid_queue, defaults: { business: 'solid_queue' } do
   namespace :panel, defaults: { namespace: 'panel' } do
-    root to: 'jobs#index'
+    root 'home#index'
     resources :processes, only: [:index]
     resources :executions, only: [:index, :show, :destroy] do
       member do

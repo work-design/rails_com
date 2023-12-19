@@ -1,7 +1,7 @@
 zh:
   activerecord:
     attributes:
-      good_job/job:
+      solid_queue/job:
         active_job_id: 任务ID
         scheduled_at: 任务执行时间
         finished_at: 完成时间

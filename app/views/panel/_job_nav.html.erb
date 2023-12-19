@@ -1,11 +1,11 @@
-<div class="<%= active_helper(modules: 'job/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu empty">
+<div class="<%= active_helper(modules: 'solid_queue/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu empty">
   <a class="menu-label" data-action="menu#toggle">
     <i class="fa-solid fa-fw fa-clone"></i>
-    <span><%= t('job.panel.title') %></span>
+    <span><%= t('solid_queue.panel.title') %></span>
     <i class="fa-solid fa-fw dropdown"></i>
   </a>
   <div class="menu-list" data-empty-target="content">
-    <%= link_to t('job.panel.processes.index.title'), { controller: 'job/panel/processes' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
-    <%= link_to t('job.panel.jobs.index.title'), { controller: 'job/panel/jobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'jobs', active: 'is-active') %>
+    <%= link_to t('solid_queue.panel.processes.index.title'), { controller: 'solid_queue/panel/processes' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
+    <%= link_to t('solid_queue.panel.jobs.index.title'), { controller: 'solid_queue/panel/jobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'jobs', active: 'is-active') %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-module Job::Panel
-  class CronEntriesController < BaseController
+module SolidQueue
+  class Panel::CronEntriesController < Panel::BaseController
 
     def index
       @cron_entries = GoodJob::CronEntry.all
