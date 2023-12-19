@@ -1,8 +1,8 @@
 <th>
-  <p><%= GoodJob::Job.human_attribute_name(:active_job_id) %></p>
-  <p><%= GoodJob::Job.human_attribute_name(:job_class) %></p>
-  <p><%= GoodJob::Job.human_attribute_name(:queue_name) %></p>
-  <p class="has-text-success"><%= GoodJob::Job.human_attribute_name(:finished_at) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:active_job_id) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:job_class) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:queue_name) %></p>
+  <p class="has-text-success"><%= SolidQueue::Job.human_attribute_name(:finished_at) %></p>
 </th>
-<th><%= GoodJob::Job.human_attribute_name(:executions) %></th>
-<th><%= GoodJob::Job.human_attribute_name(:arguments) %></th>
+<th><%= SolidQueue::Job.human_attribute_name(:executions) %></th>
+<th><%= SolidQueue::Job.human_attribute_name(:arguments) %></th>

@@ -5,7 +5,7 @@ module Job
     before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
 
     def index
-      @jobs = GoodJob::Job.finished.default_where(q_params).order(finished_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.default_where(q_params).order(finished_at: :desc).page(params[:page])
     end
 
     def scheduled
@@ -44,7 +44,7 @@ module Job
     end
 
     def set_job_classes
-      @job_classes = GoodJob::Execution.group("serialized_params->>'job_class'").count
+      #@job_classes = GoodJob::Execution.group("serialized_params->>'job_class'").count
     end
 
   end
