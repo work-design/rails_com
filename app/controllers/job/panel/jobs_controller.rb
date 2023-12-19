@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Job
   class Panel::JobsController < Panel::BaseController
-    before_action :set_execution, only: [:show, :perform]
+    before_action :set_job, only: [:show, :perform]
     before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
 
     def index
@@ -39,8 +39,8 @@ module Job
       q.merge! 'serialized_params/job_class' => params[:job_class] if params[:job_class].present?
     end
 
-    def set_execution
-      @execution = GoodJob::Execution.find_by active_job_id: params[:id]
+    def set_job
+      @job = SolidQueue::Job.find params[:id]
     end
 
     def set_job_classes
