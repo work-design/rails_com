@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-module SolidQueue
+module Job
   class Panel::ProcessesController < Panel::BaseController
 
     def index
-      @processes = Process.order(created_at: :desc)
+      @processes = SolidQueue::Process.order(created_at: :desc)
     end
 
   end

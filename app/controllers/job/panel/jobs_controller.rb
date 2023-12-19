@@ -1,19 +1,23 @@
 # frozen_string_literal: true
-module SolidQueue
-  class Panel::ExecutionsController < Panel::BaseController
+module Job
+  class Panel::JobsController < Panel::BaseController
     before_action :set_execution, only: [:show, :perform]
-    before_action :set_job_classes, only: [:index, :scheduled, :running]
+    before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
 
     def index
-      @executions = GoodJob::ActiveJobJob.finished.default_where(q_params).order(finished_at: :desc).page(params[:page])
+      @jobs = GoodJob::Job.finished.default_where(q_params).order(finished_at: :desc).page(params[:page])
     end
 
     def scheduled
-      @executions = GoodJob::ActiveJobJob.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = GoodJob::Job.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
     end
 
     def running
-      @executions = GoodJob::ActiveJobJob.running.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = GoodJob::Job.running.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+    end
+
+    def discarded
+      @jobs = GoodJob::Job.discarded.default_where(q_params).page(params[:page])
     end
 
     def show

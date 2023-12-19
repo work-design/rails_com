@@ -5,7 +5,7 @@
     <i class="fa-solid fa-fw dropdown"></i>
   </a>
   <div class="menu-list" data-empty-target="content">
-    <%= link_to t('solid_queue.panel.processes.index.title'), { controller: 'solid_queue/panel/processes' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
-    <%= link_to t('solid_queue.panel.jobs.index.title'), { controller: 'solid_queue/panel/jobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'jobs', active: 'is-active') %>
+    <%= link_to t('solid_queue.panel.processes.index.title'), { controller: 'job/panel/processes' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'processes', active: 'is-active') %>
+    <%= link_to t('solid_queue.panel.jobs.index.title'), { controller: 'job/panel/jobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'jobs', active: 'is-active') %>
   </div>
 </div>
