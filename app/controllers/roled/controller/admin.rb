@@ -8,7 +8,7 @@ module Roled
       else
         @rails_role_user = current_user
       end
-      logger.debug "\e[35m  Role User: #{@rails_role_user.class_name}/#{@rails_role_user.id}  \e[0m"
+      logger.debug "\e[35m  Role User: #{@rails_role_user.base_class_name}/#{@rails_role_user.id}  \e[0m"
       @rails_role_user
     end
 
