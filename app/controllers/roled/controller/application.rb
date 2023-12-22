@@ -46,8 +46,8 @@ module Roled
     end
 
     def role_denied
-      flash[:error] = I18n.t(:access_denied, scope: :rails_role)
-      redirect_to controller: '/home'
+      flash.now[:error] = I18n.t(:access_denied, scope: :rails_role)
+      render 'role_denied'
     end
 
   end
