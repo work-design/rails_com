@@ -17,6 +17,10 @@ zh:
     home:
       index:
         title: 个人中心
+  agent:
+    home:
+      index:
+        title: 收银台
   panel:
     home:
       index:
