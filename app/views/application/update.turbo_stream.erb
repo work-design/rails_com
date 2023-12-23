@@ -4,5 +4,5 @@
 <% elsif referer_controller == controller_path && referer_meta[:action] == 'edit' %>
   <%= turbo_stream.replace "box", partial: 'show', locals: { model: defined?(model) ? model : instance_variable_get("@#{model_name}") } %>
 <% else %>
-  <%= turbo_stream.append 'body', partial: 'visit', locals: { url: url_for(action: 'index') } %>
+  <%= turbo_stream.append 'body', partial: 'visit' %>
 <% end %>
