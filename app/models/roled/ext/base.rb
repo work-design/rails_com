@@ -13,16 +13,6 @@ module Roled
       Role.visible.where(type: type)
     end
 
-    def admin?
-      if respond_to?(:account_identities) && (RailsCom.config.default_admin_accounts & account_identities).length > 0
-        true
-      elsif respond_to?(:identity) && RailsCom.config.default_admin_accounts.include?(identity)
-        true
-      elsif method(:admin?).super_method
-        super
-      end
-    end
-
     def role_hash
       result = default_role_hash
       roles.each do |role|
