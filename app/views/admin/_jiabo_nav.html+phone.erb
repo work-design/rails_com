@@ -10,14 +10,14 @@
           data-mini-program-url-value="/pages/print/config/index"
           data-mini-program-data-value="<%= { url: url_for(only_path: false) }.to_json %>"
           data-action="click->mini-program#link"
-          class="column has-block-centered"
+          class="column has-column-centered"
         >
           <div class="has-text-dark">
             <span><%= '设置打印机' %></span>
           </div>
         </div>
       <% end %>
-      <%= link_to({ controller: 'jia_bo/admin/device_organs' }, class: 'column has-block-centered') do %>
+      <%= link_to({ controller: 'jia_bo/admin/device_organs' }, class: 'column has-column-centered') do %>
         <div class="has-text-primary">
           <i class="fa-solid fa-fw fa-xl fa-print"></i>
         </div>
