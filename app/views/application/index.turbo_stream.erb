@@ -1,0 +1,1 @@
+<%= turbo_stream.replace 'modal', partial: 'index', layout: 'modal', locals: { model: defined?(model) ? model : instance_variable_get("@#{model_name}") } %>
