@@ -13,6 +13,7 @@ module Com
     end
 
     def record_not_found(exception)
+      logger.debug "\e[35m  #{exception.message}  \e[0m"
       render 'err_not_found', layout: 'raw', locals: { exception: exception, message: exception.message }, status: :not_found
     end
 
