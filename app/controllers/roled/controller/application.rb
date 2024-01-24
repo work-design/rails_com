@@ -46,7 +46,6 @@ module Roled
     end
 
     def role_denied
-      flash.now[:error] = I18n.t(:access_denied, scope: :rails_role)
       render 'role_denied'
     end
 

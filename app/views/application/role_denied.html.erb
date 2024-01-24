@@ -1,5 +1,1 @@
-<% if rails_role_user.is_a?(Org::Member) %>
-  <div data-controller="visit" data-visit-url-value="<%= url_for(controller: '/admin/home') %>"></div>
-<% else %>
-  <div data-controller="visit" data-visit-url-value="<%= url_for(controller: '/my/home') %>"></div>
-<% end %>
+<span><%= flash.now[:error] %></span>
