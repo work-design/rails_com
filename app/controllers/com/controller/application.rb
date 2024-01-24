@@ -88,7 +88,7 @@ module Com
       end
 
       request.variant = variant.uniq
-      logger.debug "\e[35m  Variant: #{request.variant}  \e[0m"
+      logger.debug "\e[35m  Variant: #{request.variant}  \e[0m" if RailsCom.config.debug
     end
 
     def set_timezone
