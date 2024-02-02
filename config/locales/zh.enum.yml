@@ -9,3 +9,8 @@ zh:
           add: 新增
           edit: 编辑
           remove: 移除
+      com/err_bot:
+        type:
+          Com::FeishuBot: 飞书
+          Com::SlackBot: Slack
+          Com::WorkWechatBot: 企业微信
