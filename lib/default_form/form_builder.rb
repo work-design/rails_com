@@ -33,11 +33,6 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     @on_options.merge! options.slice(*ON_KEYS)
     @params = template.params
 
-    _values = Hash(params.permit(object_name => {})[object_name])
-    if object.is_a?(ActiveRecord::Base)
-      object.assign_attributes _values.slice(*object.attribute_names)
-    end
-
     options[:class] = form_css if options[:class].to_s.start_with?('new_', 'edit_')
     options[:class] = form_css unless options.key?(:class)
 
