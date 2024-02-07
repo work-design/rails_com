@@ -8,4 +8,11 @@ module Debug
     'debug_'
   end
 
+  def self.clear!
+    Many.delete_all
+    Much.delete_all
+    One.delete_all
+    Through.delete_all
+  end
+
 end
