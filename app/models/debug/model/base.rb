@@ -1,10 +1,8 @@
-module Com
-  module Model::Debug
+module Debug
+  module Model::Base
     extend ActiveSupport::Concern
 
     included do
-      has_one_attached :file
-
       after_initialize do
         puts "  #{self.class} after_initialize \e[32mnew_record: #{new_record?}\e[0m \e[33mdestroyed: #{destroyed?}\e[0m"
         shared_puts
