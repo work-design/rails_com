@@ -15,13 +15,13 @@ module Com
     end
 
     def delete_default_cache
-      r = Rails.cache.delete('blob_default/default')
-      logger.debug "Cache key blob_default/default delete: #{r}"
+      r = Rails.cache.delete('blob_default')
+      logger.debug "Cache key blob_default delete: #{r}"
     end
 
     class_methods do
       def defaults
-        Rails.cache.fetch('blob_default/default') do
+        Rails.cache.fetch('blob_default') do
           BlobDefault.includes(:file_attachment).map do |i|
             ["#{i.record_class}_#{i.name}", i.file_attachment&.blob_id]
           end.compact.to_h
@@ -29,7 +29,7 @@ module Com
       end
 
       def cache_clear
-        Rails.cache.delete('blob_default/default')
+        Rails.cache.delete('blob_default')
       end
 
       # todo clean logic
