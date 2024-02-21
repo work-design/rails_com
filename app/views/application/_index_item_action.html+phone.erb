@@ -2,7 +2,7 @@
   <div class="media-left is-flex-grow-1">
     <%= yield %>
   </div>
-  <div class="media-right">
+  <div class="media-right as-x">
     <%= button_to({ action: 'actions', id: model.id }, state: 'enter', class: 'button is-borderless') do %>
       <i class="fa-solid fa-lg fa-ellipsis-h has-text-grey"></i>
     <% end %>
