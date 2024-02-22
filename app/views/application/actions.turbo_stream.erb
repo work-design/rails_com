@@ -1,7 +1,5 @@
-<%= turbo_stream.update 'actionsheet_menu' do %>
 <% if defined? model %>
-  <%= render partial: 'actions', locals: { model: model } %>
+  <%= turbo_stream.append 'body', partial: 'actions', layout: 'weui_actionsheet', locals: { model: model } %>
 <% else %>
-  <%= render partial: 'actions', locals: { model: instance_variable_get("@#{model_name}") } %>
-<% end %>
+  <%= turbo_stream.append 'body', partial: 'actions', layout: 'weui_actionsheet', locals: { model: instance_variable_get("@#{model_name}") } %>
 <% end %>
