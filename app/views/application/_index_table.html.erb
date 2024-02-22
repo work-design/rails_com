@@ -1,6 +1,9 @@
 <table class="table is-striped is-boxed is-fullwidth">
   <thead>
     <tr>
+      <% if params[:debug_mode] %>
+        <th></th>
+      <% end %>
       <%= render 'index_thead' %>
       <%= render 'index_thead_actions' %>
     </tr>
