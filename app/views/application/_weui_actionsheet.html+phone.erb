@@ -1,11 +1,11 @@
 <div data-controller="weui-actionsheet" id="actionsheet">
-  <div data-weui-actionsheet-target="mask" data-action="click->weui-actionsheet#close" class="weui-mask" style="opacity: 0;"></div>
-  <div class="weui-actionsheet" data-weui-actionsheet-target="sheet">
+  <div data-weui-actionsheet-target="mask" data-action="click->weui-actionsheet#remove" class="weui-mask"></div>
+  <div class="weui-actionsheet weui-actionsheet_toggle" data-weui-actionsheet-target="sheet">
     <div class="weui-actionsheet__menu">
       <%= yield %>
     </div>
     <div class="weui-actionsheet__action">
-      <div class="weui-actionsheet__cell has-text-grey" data-action="click->weui-actionsheet#close">取消</div>
+      <div class="weui-actionsheet__cell has-text-grey" data-action="click->weui-actionsheet#remove">取消</div>
     </div>
   </div>
 </div>
