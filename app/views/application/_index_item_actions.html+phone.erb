@@ -1,5 +1,5 @@
 <div id="tr_<%= model.id %>" class="media">
-  <%= link_to({ action: 'show', id: model.id }, class: 'media-left is-flex-grow-1') do %>
+  <%= link_to({ action: 'show', id: model.id }, class: 'media-content') do %>
     <%= yield %>
   <% end %>
   <div class="media-right as-x">
