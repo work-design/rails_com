@@ -1,5 +1,5 @@
 <tr>
-  <td class="has-text-right"><%= Org::Member.human_attribute_name(:role_ids) %></td>
+  <td><%= Org::Member.human_attribute_name(:role_ids) %></td>
   <td>
     <% @member.available_roles.each do |role| %>
       <%= form_with theme: nil, url: { action: 'update', who_type: 'Org::Member', who_id: @member.id }, method: 'patch', data: { controller: 'input' }, class: 'is-inline' do |f| %>
