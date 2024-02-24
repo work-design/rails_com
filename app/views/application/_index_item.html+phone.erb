@@ -1,3 +1,6 @@
-<% model_klass.com_column_names.each do |column| %>
-  <span><%= model.public_send(column) %></span>
+<p>
+<% model.attributes.slice('name', 'title').each do |_, value| %>
+  <span><%= value %></span>
 <% end %>
+</p>
+<p><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
