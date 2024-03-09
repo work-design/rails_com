@@ -5,19 +5,6 @@ en:
   copyright: Work Design
   controller:
     confirm: Confirm
-    index:
-      title: List
-      confirm: Confirm
-    show:
-      title: General
-    new:
-      title: Add
-    edit:
-      title: Edit
-    destroy:
-      title: Delete
-    batch_destroy:
-      title: Batch Destroy
     search: Search
   views:
     pagination:

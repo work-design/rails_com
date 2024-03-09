@@ -5,9 +5,9 @@ zh:
   copyright: Work Design
   controller:
     confirm: 确认操作
+    search: 搜索
     index:
       title: 列表页
-      search: 搜索
       export: 导出
       sync: 加载默认配置
       all: 所有

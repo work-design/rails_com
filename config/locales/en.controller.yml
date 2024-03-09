@@ -1,4 +1,17 @@
 en:
+  application:
+    index:
+      title: List
+    show:
+      title: General
+    new:
+      title: Add
+    edit:
+      title: Edit
+    destroy:
+      title: Delete
+    batch_destroy:
+      title: Batch Destroy
   my:
     home:
       index:
