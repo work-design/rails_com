@@ -24,7 +24,7 @@ module Roled
 
     def has_role?(**options)
       if admin?
-        logger.debug "\e[35m  #{class_name}_#{id} is admin!  \e[0m" if RailsCom.config.debug
+        logger.debug "\e[35m  #{base_class_name}_#{id} is admin!  \e[0m" if RailsCom.config.debug
         return true
       end
 
@@ -33,11 +33,11 @@ module Roled
 
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
       if opts.blank?
-        logger.debug "\e[35m  #{class_name}_#{id} not has role: #{opts}, #{r}  \e[0m" if RailsCom.config.debug
+        logger.debug "\e[35m  #{base_class_name}_#{id} not has role: #{opts}, #{r}  \e[0m" if RailsCom.config.debug
         return false
       end
       r = role_hash.dig(*opts)
-      logger.debug "\e[35m  #{class_name}_#{id} has role: #{opts}, #{r}  \e[0m" if RailsCom.config.debug
+      logger.debug "\e[35m  #{base_class_name}_#{id} has role: #{opts}, #{r}  \e[0m" if RailsCom.config.debug
       r
     end
 

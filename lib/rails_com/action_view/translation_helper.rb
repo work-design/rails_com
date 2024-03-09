@@ -27,7 +27,10 @@ module RailsCom::ActionView
         r.concat(suffixes).append(_action_name, _key).join('.').to_sym
       end
 
+      keys << "controller.#{_action_name}.#{_key}".to_sym
       keys << "controller.#{_key}".to_sym
+      Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug
+      keys
     end
 
   end
