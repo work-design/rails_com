@@ -4,12 +4,16 @@ zh:
       title: 详情
     new:
       title: 添加
+      save: 保存
     new_form:
       title: 新增
     edit:
       title: 编辑
+      save: 保存
     edit_form:
       title: 编辑
+    destroy:
+      title: 删除
   home:
     index:
       title: 首页
