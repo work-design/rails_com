@@ -1,21 +1,10 @@
 zh:
-  site_name: 网站
   zh: 中文
+  site_name: 网站
   powered_by: 技术支持
   copyright: Work Design
-  controller:
-    confirm: 确认操作
-    search: 搜索
-    index:
-      title: 列表页
-      export: 导出
-      sync: 加载默认配置
-      all: 所有
-      log: 操作日志
-      approve: 接受
-      reject: 拒绝
-      clear: 重置
-      back: 返回
+  confirm: 确认操作
+  search: 搜索
   attributes:
     id: ID
     name: 名称

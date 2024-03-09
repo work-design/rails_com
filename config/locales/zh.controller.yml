@@ -1,5 +1,15 @@
 zh:
-  application:
+  controller:
+    index:
+      title: 列表页
+      export: 导出
+      sync: 加载默认配置
+      all: 所有
+      log: 操作日志
+      approve: 接受
+      reject: 拒绝
+      clear: 重置
+      back: 返回
     show:
       title: 详情
     new:
@@ -14,6 +24,7 @@ zh:
       title: 编辑
     destroy:
       title: 删除
+      confirm: 确认删除
   home:
     index:
       title: 首页

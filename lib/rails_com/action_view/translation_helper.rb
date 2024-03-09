@@ -28,8 +28,7 @@ module RailsCom::ActionView
       end
 
       keys << "controller.#{_action_name}.#{_key}".to_sym
-      keys << "controller.#{_key}".to_sym
-      Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug
+      #Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug
       keys
     end
 
