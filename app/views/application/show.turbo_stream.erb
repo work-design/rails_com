@@ -1,1 +1,1 @@
-<%= turbo_stream.append 'body', partial: 'show', layout: 'modal' %>
+<%= turbo_stream.append 'body', partial: 'show', layout: 'modal', locals: { model: model } %>
