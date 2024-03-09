@@ -27,7 +27,7 @@ module RailsCom::ActionView
         r.concat(suffixes).append(_action_name, _key).join('.').to_sym
       end
 
-      keys << "controller.#{_action_name}.#{_key}".to_sym
+      keys << "controller.#{_key}".to_sym
     end
 
   end
