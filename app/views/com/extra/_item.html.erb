@@ -5,7 +5,7 @@
       <div class="field-body">
         <%= pf.text_field :column, value: parameter.key, autocomplete: 'off' %>
         <%= pf.select :value, options_for_select(DefaultForm.config.mapping.keys, parameter.value) %>
-        <div class="field is-flex">
+        <div class="field flex">
           <i class="fa-solid fa-plus" style="cursor: pointer" data-action="click->field#add"></i>
           <i class="fa-solid fa-minus" style="cursor: pointer" data-action="click->field#remove"></i>
         </div>

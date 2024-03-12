@@ -3,7 +3,7 @@
     <span>其他</span>
   </div>
   <div class="weui-panel__bd">
-    <div class="columns is-4-mobile is-flex is-vcentered is-centered m-0 is-shadow" data-empty-target="content">
+    <div class="columns is-4-mobile flex is-vcentered is-centered m-0 is-shadow" data-empty-target="content">
       <% if request.variant.any?(:mini_program) %>
         <div
           data-controller="mini-program"
@@ -21,7 +21,7 @@
         <div class="has-text-primary">
           <i class="fa-solid fa-fw fa-xl fa-print"></i>
         </div>
-        <span class="has-text-grey is-size-7 mt-1"><%= t('jia_bo.admin.device_organs.index.title') %></span>
+        <span class="has-text-grey size-7 mt-1"><%= t('jia_bo.admin.device_organs.index.title') %></span>
       <% end %>
     </div>
   </div>
