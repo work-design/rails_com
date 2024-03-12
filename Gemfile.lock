@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: dc93233084d980c945a6c254fb57f6c4ef48fa2f
+  revision: c86e9c522bd9fa9ee8052c74c2cf8cb4e4b35e36
   specs:
     rails_design (0.0.1)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 063f67134799ad388a89ef254f6bb212ec420a68
+  revision: b6ff73f8752f248ce031cbea6c5ea738af4d74ab
   specs:
     rails_extend (1.0.1)
       rails (>= 5.0)

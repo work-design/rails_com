@@ -1,4 +1,4 @@
-<%= form_with theme: 'search', model: model_klass.new, url: { action: params[:action] }, data: { switch_target: 'src' }, class: 'field is-hidden' do |f| %>
+<%= form_with theme: 'search', model: model_klass.new, url: { action: params[:action] }, data: { switch_target: 'src' }, class: 'field display-none' do |f| %>
   <div class="field-body">
     <%= f.text_field :name, autocomplete: 'off' %>
     <div class="field is-narrow">
