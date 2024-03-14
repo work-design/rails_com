@@ -1,6 +1,7 @@
 module Com
   module Controller::Curd
     extend ActiveSupport::Concern
+    include Controller::Actions
 
     included do
       helper_method :permit_keys, :model_klass, :model_name, :pluralize_model_name
@@ -52,11 +53,6 @@ module Com
     def edit
       model = model_object
       render :edit, locals: { model: model }
-    end
-
-    def actions
-      model = model_object
-      render :actions, locals: { model: model }
     end
 
     def move_higher
@@ -112,10 +108,6 @@ module Com
 
     def pluralize_model_name
       controller_name.pluralize
-    end
-
-    def model_name
-      controller_name.singularize
     end
 
     def model_params

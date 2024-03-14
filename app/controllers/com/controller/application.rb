@@ -8,7 +8,7 @@ module Com
       'en-US' => 'en'
     }.freeze
     extend ActiveSupport::Concern
-    include Controller::Curd
+    include Controller::Actions
 
     included do
       layout -> { "frame/#{proper_layout}" if turbo_frame_body? }
