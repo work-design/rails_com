@@ -7,7 +7,6 @@ gem 'puma'
 gem 'pg'
 gem 'image_processing'
 gem 'propshaft'
-gem 'good_job'
 
 gem 'rails_design', github: 'work-design/rails_design'
 gem 'rails_extend', github: 'work-design/rails_extend'
