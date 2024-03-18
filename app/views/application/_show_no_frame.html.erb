@@ -1,13 +1,15 @@
-<table class="table is-fullwidth is-borderless is-striped as-show">
-  <tbody>
-    <%= render 'show_table' %>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th></th>
-      <th>
-        <%= link_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
-      </th>
-    </tr>
-  </tfoot>
-</table>
+<div class="box is-padding-less">
+  <table class="table is-fullwidth is-borderless is-striped as-show">
+    <tbody>
+      <%= render 'show_table' %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>
+          <%= link_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -62,24 +62,23 @@ weui:
   <<: *defaults
   form: weui-form
   origin:
-    label: weui-label
-    input: weui-input
-    textarea: weui-textarea
+    label: label color-grey
+    input: input
+    textarea: textarea
     select: weui-select
     muilti_select: weui-select
     submit: weui-btn weui-btn_primary
     checkbox: weui-check
     radio: weui-check
   wrap:
-    label: weui-cell__hd
-    input: weui-cell__bd
-    select: weui-cell__bd
+    input: control
+    select: control > select
     checkbox: weui-cell__hd
     radio: weui-cell__ft
   all:
-    normal: weui-cell weui-cell_active
-    error: weui-cell
-    required: weui-cell
+    normal: field
+    error: field
+    required: field
     select: weui-cell weui-cell_active weui-cell_select weui-cell_select-after
     checkbox: weui-cell weui-cell_active weui-cell_switch
     radio: weui-cell weui-cell_active weui-cell_radio
