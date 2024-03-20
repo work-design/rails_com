@@ -60,12 +60,12 @@ line:
     normal: field
 weui:
   <<: *defaults
-  form: weui-form
+  form: flex flex-direction-column is-fullheight
   origin:
     label: label color-grey
     input: input
     textarea: textarea
-    submit: weui-btn weui-btn_primary
+    submit: button is-medium is-success
     checkbox: weui-check
     radio: weui-check
   wrap:
@@ -80,7 +80,6 @@ weui:
     select: field
     checkbox: weui-cell weui-cell_active weui-cell_switch
     radio: weui-cell weui-cell_active weui-cell_radio
-    submit: weui-form__opr-area
   after:
     checkbox: <i class="weui-icon-checked"></i>
     radio: <i class="weui-icon-checked"></i>

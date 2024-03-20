@@ -1,5 +1,5 @@
 <%= render 'top_bar' %>
 
-<div class="weui-form-wrap" id="form_wrapper">
+<div class="box flex-grow-1 mx-3 mb-3" id="form_wrapper">
   <%= render partial: 'new_form', locals: { model: instance_variable_get("@#{model_name}") } %>
 </div>
