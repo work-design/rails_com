@@ -15,6 +15,10 @@ module Com
       end
     end
 
+    def debug
+      index
+    end
+
     def new
       model = model_new_object
       render :new, locals: { model: model }
