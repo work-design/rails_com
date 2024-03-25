@@ -1,29 +1,27 @@
-<div data-controller="empty" class="weui-panel is-box is-borderless">
-  <div class="weui-panel__hd">
+<div data-controller="empty" class="box is-padding-less mx-3">
+  <div class="box-body">
     <span class="has-border-left-primary">设置</span>
   </div>
-  <div class="weui-panel__bd">
-    <div class="columns is-4-mobile flex is-vcentered is-centered m-0" data-empty-target="content">
-      <%= link_to({ controller: 'profiled/my/addresses' }, class: 'column has-column-centered') do %>
-        <div class="has-text-primary">
-          <i class="fa-solid fa-fw fa-xl fa-location-dot"></i>
-        </div>
-        <div class="has-text-grey size-7 mt-1"><%= t('profiled.my.addresses.index.title') %></div>
-      <% end %>
-      <%= link_to({ controller: 'wechat/my/users', action: 'invite_qrcode' }, class: 'column has-column-centered') do %>
-        <div class="has-text-primary">
-          <i class="fa-solid fa-fw fa-xl fa-qrcode fa-weui-badge">
-            <span class="weui-badge" style="top: -1.8em; right: -4em">邀请有礼</span>
-          </i>
-        </div>
-        <div class="has-text-grey size-7 mt-1">邀请好友</div>
-      <% end %>
-      <%= link_to({ controller: 'auth/my/home' }, class: 'column has-column-centered') do %>
-        <div class="has-text-primary">
-          <i class="fa-solid fa-fw fa-xl fa-ellipsis"></i>
-        </div>
-        <div class="has-text-grey size-7 mt-1"><%= t('auth.my.home.index.title') %></div>
-      <% end %>
-    </div>
+  <div class="box-body columns is-4-mobile flex is-vcentered is-centered m-0" data-empty-target="content">
+    <%= link_to({ controller: 'profiled/my/addresses' }, class: 'column has-column-centered') do %>
+      <div class="has-text-primary">
+        <i class="fa-solid fa-fw fa-xl fa-location-dot"></i>
+      </div>
+      <div class="has-text-grey size-7 mt-1"><%= t('profiled.my.addresses.index.title') %></div>
+    <% end %>
+    <%= link_to({ controller: 'wechat/my/users', action: 'invite_qrcode' }, class: 'column has-column-centered') do %>
+      <div class="has-text-primary">
+        <i class="fa-solid fa-fw fa-xl fa-qrcode fa-weui-badge">
+          <span class="weui-badge" style="top: -1.8em; right: -4em">邀请有礼</span>
+        </i>
+      </div>
+      <div class="has-text-grey size-7 mt-1">邀请好友</div>
+    <% end %>
+    <%= link_to({ controller: 'auth/my/home' }, class: 'column has-column-centered') do %>
+      <div class="has-text-primary">
+        <i class="fa-solid fa-fw fa-xl fa-ellipsis"></i>
+      </div>
+      <div class="has-text-grey size-7 mt-1"><%= t('auth.my.home.index.title') %></div>
+    <% end %>
   </div>
 </div>
