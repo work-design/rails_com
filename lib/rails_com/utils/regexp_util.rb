@@ -17,21 +17,21 @@ module RegexpUtil
     between(prefix, suffix, quantifier: '*', greedy: true)
   end
 
-  def rails_log()
-    {
+  def rails_log
+    xx(
       method: ['Started ', ' '],
-      path: [' "', '" ']
-    }
+      path: [' "', '" '],
+      ip: [' for ', ' '],
+      time: [' at ', '$']
+    )
   end
 
   def xx(**options)
-    options.map do |key, value|
+    r = options.map do |key, value|
       "#{value[0]}(?<#{key}>[^#{value[1]}]*)"
     end
 
-
-
-    /^ #{} $/
+    /^#{r.join}$/
   end
 
   def china_mobile?(tel)
