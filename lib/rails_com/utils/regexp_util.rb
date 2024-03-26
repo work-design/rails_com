@@ -22,16 +22,36 @@ module RegexpUtil
       method: ['Started ', ' '],
       path: [' "', '" '],
       ip: [' for ', ' '],
-      time: [' at ', '$']
+      date: [' at ', ' '],
+      time: [' ', ' '],
+      timezone: [' ', '$']
     )
   end
 
   def xx(**options)
-    r = options.map do |key, value|
-      "#{value[0]}(?<#{key}>[^#{value[1]}]*)"
+    r = options.inject([]) do |memo, (key, value)|
+      last = memo.pop.to_s
+      x = find_common_part(last, value[0])
+      memo << [last.delete_suffix(x), x, value[0].delete_prefix(x)].join
+      memo << "(?<#{key}>[^#{value[1]}]*)"
+      memo << value[1]
+    end
+    Rails.logger.debug(r)
+
+    /^#{r.join}/
+  end
+
+  def find_common_part(str1, str2)
+    common_length = [str1.length, str2.length].min
+
+    (0..common_length).reverse_each do |i|
+      if str1[-i, i] == str2[0, i]
+        return str2[0, i]
+      end
     end
 
-    /^#{r.join}$/
+    # 如果没有找到相同的部分，返回空字符串
+    ''
   end
 
   def china_mobile?(tel)
