@@ -50,7 +50,6 @@ module RegexpUtil
       end
     end
 
-    # 如果没有找到相同的部分，返回空字符串
     ''
   end
 
