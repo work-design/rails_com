@@ -12,10 +12,11 @@ module RailsCom::RoleHelper
       _html_options = html_options || {}
       options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
+    text = _html_options.delete(:text)
 
     return super if role_permit?(_options, _html_options)
 
-    if _html_options.delete(:text)
+    if text
       if block_given?
         content_tag(:div, _html_options.slice(:class, :data), &block)
       else
@@ -38,10 +39,11 @@ module RailsCom::RoleHelper
       end
       options = deal_with_state(_html_options.delete(:state), _options, _options)
     end
+    text = _html_options.delete(:text)
 
     return super if role_permit?(_options, _html_options)
 
-    if _html_options.delete(:text)
+    if text
       if block_given?
         content_tag(:div, _html_options.slice(:class, :data), &block)
       else
