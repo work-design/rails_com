@@ -9,16 +9,16 @@
   </thead>
   <tbody>
     <tr>
-      <th>ID</th>
+      <td>ID</td>
       <td><%= model.id %></td>
     </tr>
     <%= render 'show_table' %>
     <tr>
-      <th>添加时间</th>
+      <td>添加时间</td>
       <td><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></td>
     </tr>
     <tr>
-      <th>更新时间</th>
+      <td>更新时间</td>
       <td><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></td>
     </tr>
   </tbody>
