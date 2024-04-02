@@ -2,8 +2,10 @@
   <%= render 'nav_bar' %>
   <%= render 'alert' %>
   <main class="container">
-    <div class="p-3">
-      <%= render 'breadcrumb' %>
+    <div class="breadcrumb has-succeeds-separator has-background-light my-3">
+      <ul>
+        <%= render 'breadcrumb' %>
+      </ul>
     </div>
     <div class="columns">
       <%= yield %>
