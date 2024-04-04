@@ -37,6 +37,7 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     if @theme.end_with?('search')
       _values = Hash(params.permit(object_name => {})[object_name])
       if object.is_a?(ActiveRecord::Base)
+        object.reset_attributes
         object.assign_attributes _values.slice(*object.attribute_names)
       end
     end
