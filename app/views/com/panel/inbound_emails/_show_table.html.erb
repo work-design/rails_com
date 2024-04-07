@@ -1,14 +1,14 @@
-<tr>
-  <td><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></td>
-  <td>
+<div>
+  <dt><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></dt>
+  <dd>
     <% @inbound_email.docx.each do |doc| %>
       <div class="content">
         <%= doc.to_html.html_safe %>
       </div>
     <% end %>
-  </td>
-</tr>
-<tr>
-  <td><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></td>
-  <td><%= @inbound_email.mail.body.to_s %></td>
-</tr>
+  </dd>
+</div>
+<div>
+  <dt><%= ActionMailbox::InboundEmail.human_attribute_name(:docx) %></dt>
+  <dd><%= @inbound_email.mail.body.to_s %></dd>
+</div>

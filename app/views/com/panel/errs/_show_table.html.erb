@@ -1,44 +1,44 @@
-<tr>
-  <td><%= Com::Err.human_attribute_name(:created_at) %></td>
-  <td><time data-controller="time"><%= @err.created_at.to_fs(:iso8601) %></time></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:exception_object) %></td>
-  <td><%= @err.exception_object %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:path) %></td>
-  <td><%= @err.path %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:controller_name) %></td>
-  <td><%= @err.controller_name %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:action_name) %></td>
-  <td><%= @err.action_name %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:params) %></td>
-  <td><%= simple_format @err.params %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:cookie) %></td>
-  <td><%= simple_format @err.cookie %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:session) %></td>
-  <td><%= simple_format @err.session %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:headers) %></td>
-  <td><%= simple_format @err.headers %></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:exception) %></td>
-  <td><pre><%= @err.exception %></pre></td>
-</tr>
-<tr>
-  <td><%= Com::Err.human_attribute_name(:exception_backtrace) %></td>
-  <td><pre style="overflow-x: auto"><%= @err.exception_backtrace.join("\n") %></pre></td>
-</tr>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:created_at) %></dt>
+  <dd><time data-controller="time"><%= @err.created_at.to_fs(:iso8601) %></time></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:exception_object) %></dt>
+  <dd><%= @err.exception_object %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:path) %></dt>
+  <dd><%= @err.path %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:controller_name) %></dt>
+  <dd><%= @err.controller_name %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:action_name) %></dt>
+  <dd><%= @err.action_name %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:params) %></dt>
+  <dd><%= simple_format @err.params %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:cookie) %></dt>
+  <dd><%= simple_format @err.cookie %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:session) %></dt>
+  <dd><%= simple_format @err.session %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:headers) %></dt>
+  <dd><%= simple_format @err.headers %></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:exception) %></dt>
+  <dd><pre><%= @err.exception %></pre></dd>
+</div>
+<div>
+  <dt><%= Com::Err.human_attribute_name(:exception_backtrace) %></dt>
+  <dd><pre style="overflow-x: auto"><%= @err.exception_backtrace.join("\n") %></pre></dd>
+</div>

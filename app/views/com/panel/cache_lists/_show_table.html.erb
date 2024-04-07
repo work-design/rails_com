@@ -1,8 +1,8 @@
-<tr>
-  <td><%= Com::CacheList.human_attribute_name(:path) %></td>
-  <td><%= @cache_list.path %></td>
-</tr>
-<tr>
-  <td><%= Com::CacheList.human_attribute_name(:etag) %></td>
-  <td><%= @cache_list.etag %></td>
-</tr>
+<div>
+  <dt><%= Com::CacheList.human_attribute_name(:path) %></dt>
+  <dd><%= @cache_list.path %></dd>
+</div>
+<div>
+  <dt><%= Com::CacheList.human_attribute_name(:etag) %></dt>
+  <dd><%= @cache_list.etag %></dd>
+</div>
