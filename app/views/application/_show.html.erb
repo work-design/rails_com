@@ -1,25 +1,20 @@
-<table class="table is-fullwidth is-striped as-show">
-  <thead>
-    <tr>
-      <th></th>
-      <th>
-        <%= button_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>ID</td>
-      <td><%= model.id %></td>
-    </tr>
+<div class="box is-fullwidth">
+  <div>
+    <%= button_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
+  </div>
+  <dl class="as-show">
+    <div>
+      <dt>ID</dt>
+      <dd><%= model.id %></dd>
+    </div>
     <%= render 'show_table' %>
-    <tr>
-      <td>添加时间</td>
-      <td><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></td>
-    </tr>
-    <tr>
-      <td>更新时间</td>
-      <td><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></td>
-    </tr>
-  </tbody>
-</table>
+    <div>
+      <dt>添加时间</dt>
+      <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
+    </div>
+    <div>
+      <dt>更新时间</dt>
+      <dd><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></dd>
+    </div>
+  </dl>
+</div>
