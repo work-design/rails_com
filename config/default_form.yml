@@ -65,7 +65,7 @@ weui:
     label: label color-grey
     input: input
     textarea: textarea
-    submit: button is-medium is-success my-6
+    submit: button is-medium is-success is-fullwidth
     checkbox: weui-check
     radio: weui-check
   wrap:
