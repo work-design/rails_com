@@ -1,19 +1,10 @@
-<div class="box">
-  <table class="table is-fullwidth is-borderless is-striped as-show">
-    <thead>
-      <tr>
-        <th></th>
-        <th>
-          <%= link_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th></th>
-        <td><%= model.id %></td>
-      </tr>
-      <%= render 'show_table' %>
-    </tbody>
-  </table>
-</div>
+<dl class="as-show is-box">
+  <div>
+    <%= link_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
+  </div>
+  <div>
+    <dt></dt>
+    <dd><%= model.id %></dd>
+  </div>
+  <%= render 'show_table' %>
+</dl>
