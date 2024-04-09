@@ -3,10 +3,12 @@
   <div class="modal-card has-animate-slide-up">
     <header class="modal-card-head">
       <p class="modal-card-title"><%= t('.title') %></p>
-      <button type="button" data-action="modal#close" class="delete"></button>
     </header>
-    <div class="modal-card-body p-0">
+    <div class="modal-card-body">
       <%= yield %>
     </div>
+    <footer class="modal-card-foot">
+      <div class="button is-fullwidth has-text-grey" data-action="click->modal#close">取消</div>
+    </footer>
   </div>
 </div>
