@@ -5,6 +5,7 @@
     <%= render 'head_analysis' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="turbo-cache-control" content="no-preview">
+    <meta name="turbo-prefetch" content="<%= !Rails.env.local? %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
     <%= csrf_meta_tags %>
