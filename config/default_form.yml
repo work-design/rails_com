@@ -1,15 +1,19 @@
 defaults: &defaults
   autocomplete: off
   label: true
+  origin:
+    input: input
+    submit: button is-primary
 searches: &searches
   method: get
   placeholder: true
   autofilter: true
+phone: &phone
+  <<: *defaults
 default:
   <<: *defaults
   origin:
     label: label
-    input: input
     textarea: field textarea
     submit: button is-primary
     inline_checkbox: checkbox
@@ -36,17 +40,6 @@ default:
     checkbox: field is-horizontal
   error:
     input: input is-danger
-search:
-  <<: *searches
-  form: field is-horizontal
-  origin:
-    input: input
-    submit: button is-primary
-  wrap:
-    input: field is-narrow
-inline:
-  origin:
-    input: input
 line:
   <<: *defaults
   origin:
@@ -83,6 +76,22 @@ weui:
   after:
     checkbox: <i class="weui-icon-checked"></i>
     radio: <i class="weui-icon-checked"></i>
+modal:
+  <<: *phone
+  form: modal-card has-animate-slide-up
+  origin:
+    submit: button is-fullwidth is-primary
+search:
+  <<: *searches
+  form: field is-horizontal
+  origin:
+    input: input
+    submit: button is-primary
+  wrap:
+    input: field is-narrow
+inline:
+  origin:
+    input: input
 weui_search:
   <<: *searches
   form: weui-cells weui-cells_form

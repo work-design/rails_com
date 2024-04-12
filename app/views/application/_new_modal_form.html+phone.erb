@@ -1,0 +1,8 @@
+<%= form_with theme: 'modal', model: model, scope: model_name, url: { action: 'create' }, state: 'redirect' do |f| %>
+  <div class="modal-card-body">
+    <%= render partial: 'form', locals: { f: f } %>
+  </div>
+  <footer class="modal-card-foot">
+    <%= f.submit %>
+  </footer>
+<% end %>
