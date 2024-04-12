@@ -1,9 +1,10 @@
 defaults: &defaults
   autocomplete: off
   label: true
-  origin:
-    input: input
-    submit: button is-primary
+origin: &default_inputs
+  label: label color-grey
+  input: input
+  submit: button is-primary
 searches: &searches
   method: get
   placeholder: true
@@ -80,6 +81,7 @@ modal:
   <<: *phone
   form: modal-card has-animate-slide-up
   origin:
+    <<: *default_inputs
     submit: button is-fullwidth is-primary
 search:
   <<: *searches
