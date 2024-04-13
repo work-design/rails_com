@@ -1,9 +1,10 @@
 defaults: &defaults
   autocomplete: off
   label: true
-origin: &default_inputs
+origin: &default_origins
   label: label color-grey
   input: input
+  textarea: textarea
   submit: button is-primary
 searches: &searches
   method: get
@@ -11,9 +12,17 @@ searches: &searches
   autofilter: true
 phone: &phone
   <<: *defaults
+phone_all: &phone_all
+  normal: field
+  error: field
+  required: field
+  select: field
+  checkbox: weui-cell weui-cell_active weui-cell_switch
+  radio: weui-cell weui-cell_active weui-cell_radio
 default:
   <<: *defaults
   origin:
+    <<: *default_origins
     label: label
     textarea: field textarea
     submit: button is-primary
@@ -68,12 +77,7 @@ weui:
     checkbox: weui-cell__hd
     radio: weui-cell__ft
   all:
-    normal: field
-    error: field
-    required: field
-    select: field
-    checkbox: weui-cell weui-cell_active weui-cell_switch
-    radio: weui-cell weui-cell_active weui-cell_radio
+    <<: *phone_all
   after:
     checkbox: <i class="weui-icon-checked"></i>
     radio: <i class="weui-icon-checked"></i>
@@ -81,8 +85,10 @@ modal:
   <<: *phone
   form: modal-card has-animate-slide-up
   origin:
-    <<: *default_inputs
+    <<: *default_origins
     submit: button is-fullwidth is-primary
+  all:
+    <<: *phone_all
 search:
   <<: *searches
   form: field is-horizontal
