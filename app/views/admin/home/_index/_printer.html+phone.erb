@@ -10,19 +10,23 @@
           data-mini-program-url-value="/pages/print/config/index"
           data-mini-program-data-value="<%= { url: url_for(only_path: false) }.to_json %>"
           data-action="click->mini-program#link"
-          class="weui-cell weui-cell_access"
+          class="media"
         >
-          <div class="weui-cell__bd">
+          <div class="media-content">
             <span><%= '设置打印机' %></span>
           </div>
-          <div class="weui-cell__ft"></div>
+          <div class="media-right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
         </div>
-        <%= link_to({ controller: 'auth/my/home' }, class: 'weui-cell weui-cell_access') do %>
-          <div class="weui-cell__bd">
+        <%= link_to({ controller: 'auth/my/home' }, class: 'media') do %>
+          <div class="media-content">
             <i class="fa-solid fa-fw fa-xl fa-ellipsis"></i>
             <span class="has-text-dark"><%= t('auth.my.home.index.title') %></span>
           </div>
-          <div class="weui-cell__ft"></div>
+          <div class="media-right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
         <% end %>
       </div>
     </div>
