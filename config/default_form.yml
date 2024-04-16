@@ -12,6 +12,9 @@ searches: &searches
   autofilter: true
 phone: &phone
   <<: *defaults
+phone_wrap: &phone_wrap
+  input: control
+  select: control > select
 phone_all: &phone_all
   normal: field
   error: field
@@ -87,6 +90,8 @@ modal:
   origin:
     <<: *default_origins
     submit: button is-fullwidth is-primary
+  wrap:
+    <<: *phone_wrap
   all:
     <<: *phone_all
 search:
