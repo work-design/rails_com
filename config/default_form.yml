@@ -75,8 +75,7 @@ weui:
     checkbox: weui-check
     radio: weui-check
   wrap:
-    input: control
-    select: control > select
+    <<: *phone_wrap
     checkbox: weui-cell__hd
     radio: weui-cell__ft
   all:
