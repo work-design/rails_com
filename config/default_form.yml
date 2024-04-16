@@ -14,7 +14,7 @@ phone: &phone
   <<: *defaults
 phone_wrap: &phone_wrap
   input: control
-  select: control > select
+  select: control > select is-fullwidth
 phone_all: &phone_all
   normal: field
   error: field
