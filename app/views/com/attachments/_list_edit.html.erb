@@ -8,7 +8,7 @@
   <% else %>
     <p id="attachment_<%= target.id %>">
       <%= link_to target.filename, { controller: 'com/panel/blobs', action: 'show', id: target.id } %>
-      <%= link_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: target.id }, method: :delete, data: { turbo_confirm: t('.confirm') } %>
+      <%= button_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: target.id }, method: :delete, data: { turbo_confirm: t('.destroy.confirm') } %>
     </p>
   <% end %>
 <% elsif target.is_a?(ActiveStorage::Attached::Many) %>
@@ -21,7 +21,7 @@
     <% else %>
       <p id="attachment_<%= file.id %>">
         <%= link_to file.filename, { controller: 'com/panel/blobs', action: 'show', id: file.id } %>
-        <%= button_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: file.id }, method: :delete, data: { turbo_confirm: t('.confirm') } %>
+        <%= button_to 'x', { controller: 'com/panel/attachments', action: 'destroy', id: file.id }, method: :delete, data: { turbo_confirm: t('.destroy.confirm') } %>
       </p>
     <% end %>
   <% end %>
