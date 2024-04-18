@@ -30,8 +30,8 @@ module DefaultForm::Builder
     end
 
     def label(method, text = nil, options = {}, &block)
-      origin = (options.delete(:origin) || {}).with_defaults!(@css[:origin])
-      wrap = (options.delete(:wrap) || {}).with_defaults!(@css[:wrap])
+      origin = (options.delete(:origin) || {})
+      wrap = (options.delete(:wrap) || {})
       options[:class] = origin[:label] unless options.key?(:class)
 
       wrapping(:label, super, wrap: wrap)
@@ -201,7 +201,7 @@ module DefaultForm::Builder
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         if options[:label]
-          label_content = label method, options.delete(:label), options.slice(:origin, :wrap)
+          label_content = label method, options.delete(:label), css.slice(:origin, :wrap)
         else
           options.delete(:label)
           label_content = ''.html_safe
