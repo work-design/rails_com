@@ -12,12 +12,13 @@ zh:
       title: 权限管理
       roles:
         index:
-          title: 角色列表
+          title: 角色
         show:
           title: 配置
         overview:
           title: 概览
         create:
+          title: 创建新角色
           role_created: 角色已创建
         update:
           role_updated: 角色已更新
@@ -36,10 +37,7 @@ zh:
           new_rule_placeholder: 新规则名称
           create_rule: 创建新规则
         new:
-          create: 创建新角色
-          name: 角色名称 (字符串)
-          title: 角色标题 (文本)
-          description: 角色描述 (文本)
+          title: 新增角色
         role:
           role_name: 角色名称
           title:     角色标题
