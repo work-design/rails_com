@@ -6,6 +6,10 @@ origin: &default_origins
   input: input
   textarea: textarea
   submit: button is-primary
+  inline_checkbox: checkbox
+  inline_checkbox_checked: checkbox
+  inline_radio: radio
+  inline_radio_checked: radio
 searches: &searches
   method: get
   placeholder: true
@@ -29,10 +33,6 @@ default:
     label: label
     textarea: field textarea
     submit: button is-primary
-    inline_checkbox: checkbox
-    inline_checkbox_checked: checkbox
-    inline_radio: radio
-    inline_radio_checked: radio
   before_wrap:
     submit: field-label
     checkboxes: field-label
