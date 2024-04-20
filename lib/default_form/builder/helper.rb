@@ -30,8 +30,8 @@ module DefaultForm::Builder
     end
 
     def label(method, text = nil, options = {}, &block)
-      origin = (options.delete(:origin) || {})
-      wrap = (options.delete(:wrap) || {})
+      origin = (options.delete(:origin) || {}).with_defaults!(@css[:origin])
+      wrap = (options.delete(:wrap) || {}).with_defaults!(@css[:wrap])
       options[:class] = origin[:label] unless options.key?(:class)
 
       wrapping(:label, super, wrap: wrap)
