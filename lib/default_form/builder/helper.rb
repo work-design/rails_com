@@ -79,6 +79,7 @@ module DefaultForm::Builder
 
     def collection_check_boxes(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
       wrap_with(method, options) do |css|
+        options[:origin] = css[:origin]
         wrapping(:checkboxes, super, wrap: css[:wrap])
       end
     end
@@ -109,6 +110,7 @@ module DefaultForm::Builder
 
     def collection_radio_buttons(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
       wrap_with(method, options) do |css|
+        options[:origin] = css[:origin]
         wrapping(:radios, super, wrap: css[:wrap])
       end
     end
