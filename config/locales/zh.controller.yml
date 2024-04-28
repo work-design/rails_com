@@ -126,7 +126,9 @@ zh:
       devices:
         index:
           title: 设备列表
-          test: 打印测试
+        test:
+          title: 打印测试
+          confirm: 确认打印
       device_organs:
         index:
           title: 支持组织
