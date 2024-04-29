@@ -49,7 +49,9 @@ module Com
           **options
         )
       elsif referer.present?
-        referer
+        uri = URI(referer)
+        uri.query = URI.encode_www_form(URI.decode_www_form(uri.query.to_s).to_h.merge(**options))
+        uri.to_s
       else
         organ_domain.redirect_url(**options)
       end
