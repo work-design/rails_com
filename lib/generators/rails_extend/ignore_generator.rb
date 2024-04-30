@@ -14,7 +14,7 @@ module RailsCom
         limit = args[0].to_i
         @ignore_models = Models.ignore_models.select(&->(k, v){ k <= limit })
 
-        template 'initializer.rb', 'config/initializers/rails_extend.rb'
+        template 'initializer.rb', 'config/initializers/rails_com.rb'
       end
 
       def show_readme
