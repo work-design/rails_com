@@ -87,7 +87,7 @@ module Com
       end
 
       def sync
-        RailsExtend::Routes.actions.each do |business, namespaces|
+        RailsCom::Routes.actions.each do |business, namespaces|
           namespaces.each do |namespace, controllers|
             controllers.each do |controller, actions|
               meta_controller = MetaController.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
@@ -119,7 +119,7 @@ module Com
             meta_controller.destroy
           end
         end
-        MetaController.where.not(business_identifier: RailsExtend::Routes.actions.keys).each do |meta_controller|
+        MetaController.where.not(business_identifier: RailsCom::Routes.actions.keys).each do |meta_controller|
           meta_controller.destroy
         end
       end

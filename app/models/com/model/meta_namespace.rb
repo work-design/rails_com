@@ -44,7 +44,7 @@ module Com
 
       def sync
         existing = self.select(:identifier).distinct.pluck(:identifier)
-        namespace_keys = RailsExtend::Routes.namespaces.keys
+        namespace_keys = RailsCom::Routes.namespaces.keys
         (namespace_keys - existing).each do |namespace|
           n = self.find_or_initialize_by(identifier: namespace)
           n.save

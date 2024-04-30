@@ -1,4 +1,4 @@
-module RailsExtend::ActionDispatch
+module RailsCom::ActionDispatch
   module Mapper
 
     def set_member_mappings_for_resource
@@ -17,4 +17,4 @@ module RailsExtend::ActionDispatch
 end
 
 
-ActionDispatch::Routing::Mapper.prepend RailsExtend::ActionDispatch::Mapper
+ActionDispatch::Routing::Mapper.prepend RailsCom::ActionDispatch::Mapper

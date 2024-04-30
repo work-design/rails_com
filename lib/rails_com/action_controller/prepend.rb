@@ -1,4 +1,4 @@
-module RailsExtend::ActionController
+module RailsCom::ActionController
   module Prepend
 
     private
@@ -10,7 +10,7 @@ module RailsExtend::ActionController
 
       super_class = self.class.superclass
       # 同名 controller, 向上级追溯
-      while RailsExtend::Routes.find_actions(super_class.controller_path).include?(params['action'])
+      while RailsCom::Routes.find_actions(super_class.controller_path).include?(params['action'])
         pres.append "#{super_class.controller_path}/_#{params['action']}"
         names.append "#{super_class.controller_path}"
         super_class = super_class.superclass
@@ -39,7 +39,7 @@ module RailsExtend::ActionController
       pres.insert(layout_index, self.class._layout) if layout_index && self.class._layout.is_a?(String)
 
       if defined?(current_organ) && current_organ&.code.present?
-        RailsExtend.config.override_prefixes.each do |pre|
+        RailsCom.config.override_prefixes.each do |pre|
           index = pres.index(pre)
           pres.insert(index, "#{current_organ.code}/views/#{pre}") if index
         end
@@ -53,5 +53,5 @@ module RailsExtend::ActionController
 end
 
 ActiveSupport.on_load :action_controller_base do
-  prepend RailsExtend::ActionController::Prepend
+  prepend RailsCom::ActionController::Prepend
 end

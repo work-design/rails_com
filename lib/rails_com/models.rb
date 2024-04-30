@@ -1,4 +1,4 @@
-module RailsExtend::Models
+module RailsCom::Models
   extend self
 
   def models_hash(root = ActiveRecord::Base)
@@ -35,7 +35,7 @@ module RailsExtend::Models
     @tables ||= {}
 
     records_hash[root].each_key do |node|
-      next if RailsExtend.config.ignore_models.include?(node.to_s)
+      next if RailsCom.config.ignore_models.include?(node.to_s)
 
       unless node.abstract_class?
         @tables[node.table_name] ||= {}

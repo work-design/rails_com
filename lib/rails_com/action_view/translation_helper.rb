@@ -16,7 +16,7 @@ module RailsCom::ActionView
       keys << controller_path if key.start_with?('.')
 
       super_class = controller.class.superclass
-      while RailsExtend::Routes.find_actions(super_class.controller_path).include?(_action_name)
+      while RailsCom::Routes.find_actions(super_class.controller_path).include?(_action_name)
         keys << super_class.controller_path
         super_class = super_class.superclass
       end

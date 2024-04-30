@@ -2,7 +2,7 @@
 # bin/rails g rails_com:migrations
 require 'rails/generators/active_record/migration'
 
-class RailsExtend::MigrationsGenerator < Rails::Generators::Base
+class RailsCom::MigrationsGenerator < Rails::Generators::Base
   include ActiveRecord::Generators::Migration
   source_root File.expand_path('templates', __dir__)
   attr_reader :tables
@@ -10,7 +10,7 @@ class RailsExtend::MigrationsGenerator < Rails::Generators::Base
   def create_migration_file
     file_name = "smart_migration_#{file_index}"
 
-    RailsExtend::Models.db_tables_hash.each do |mig_paths, tables|
+    RailsCom::Models.db_tables_hash.each do |mig_paths, tables|
       next if tables.blank?
       @tables = tables
       path = Array(mig_paths)[0]

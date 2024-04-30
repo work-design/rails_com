@@ -74,9 +74,9 @@ module RailsCom::RoleHelper
     path_params[:action] ||= 'index'
     dup_params = path_params.dup
     Rails.application.routes.send :generate, nil, dup_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders', 这里会直接改变 dup_params 的值
-    possible_result = RailsExtend::Routes.controllers.dig(dup_params[:controller], dup_params[:action])
+    possible_result = RailsCom::Routes.controllers.dig(dup_params[:controller], dup_params[:action])
     if possible_result.blank?
-      possible_result = RailsExtend::Routes.controllers.dig(path_params[:controller], path_params[:action])
+      possible_result = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
     else
       path_params[:controller] = dup_params[:controller]
     end

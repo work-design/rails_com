@@ -34,7 +34,7 @@ module Com
 
       # todo clean logic
       def sync
-        RailsExtend::Models.attachments.each do |model, attaches|
+        RailsCom::Models.attachments.each do |model, attaches|
           attaches.each do |name, macro|
             bd = self.find_or_initialize_by(record_class: model, name: name)
             bd.macro = macro

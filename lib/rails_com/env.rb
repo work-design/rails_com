@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::Env
+module RailsCom::Env
   extend self
 
   def environments

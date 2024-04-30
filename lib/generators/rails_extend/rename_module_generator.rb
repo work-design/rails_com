@@ -2,13 +2,13 @@
 # bin/rails g rails_com:rename_module new old
 require 'rails/generators/active_record/migration'
 
-class RailsExtend::RenameModuleGenerator < Rails::Generators::Base
+class RailsCom::RenameModuleGenerator < Rails::Generators::Base
   include ActiveRecord::Generators::Migration
   source_root File.expand_path('templates', __dir__)
   attr_reader :tables
 
   def create_migration_file
-    @tables = RailsExtend::Models.migrate_modules_hash.invert
+    @tables = RailsCom::Models.migrate_modules_hash.invert
     file_name = "smart_rename_module_#{file_index}"
 
     migration_template 'rename_module.rb', File.join(db_migrate_path, "#{file_name}.rb")

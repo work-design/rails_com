@@ -1,4 +1,4 @@
-module RailsExtend
+module RailsCom
   class Yaml
     attr_reader :content
     # uses config/viter_template.yml in rails_ui engine as default,

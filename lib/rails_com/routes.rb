@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::Routes
+module RailsCom::Routes
   extend self
 
   def find_actions(controller_path)

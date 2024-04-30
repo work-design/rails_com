@@ -1,4 +1,4 @@
-module RailsExtend
+module RailsCom
   module DateAndTime
 
     # 用于 change 方法
