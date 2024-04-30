@@ -25,6 +25,10 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :me, defaults: { namespace: 'me' } do
+      root 'home#index' unless has_named_route? 'me_root'
+    end
+
     scope :rails, module: 'com', as: :rails_ext, defaults: { business: 'com' } do
       resources :videos, only: [:show] do
         member do
