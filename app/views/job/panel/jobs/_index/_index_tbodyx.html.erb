@@ -6,7 +6,7 @@
   </p>
   <p><%= model.serialized_params['job_class'] %></p>
   <p><%= model.queue_name %></p>
-  <p class="has-text-success"><time data-controller="time" data-format="human"><%= model.finished_at.to_fs(:iso8601) %></time></p>
+  <p class="color-success"><time data-controller="time" data-format="human"><%= model.finished_at.to_fs(:iso8601) %></time></p>
 </td>
 <td><%= model.serialized_params['executions'] %></td>
 <td>

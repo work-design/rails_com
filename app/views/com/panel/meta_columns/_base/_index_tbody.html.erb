@@ -1,20 +1,20 @@
 <td><%= model.column_name %></td>
 <td>
   <p><%= model.column_type %></p>
-  <p class="has-text-grey"><%= model.sql_type %></p>
+  <p class="color-grey"><%= model.sql_type %></p>
 </td>
 <td><%= model.column_limit %></td>
 <td>
 <% if model.defined_db %>
-  <i class="fa-solid fa-check has-text-success"></i>
+  <i class="fa-solid fa-check color-success"></i>
 <% else %>
-  <i class="fa-solid fa-times has-text-danger"></i>
+  <i class="fa-solid fa-times color-danger"></i>
 <% end %>
 </td>
 <td>
 <% if model.defined_model %>
-  <i class="fa-solid fa-check has-text-success"></i>
+  <i class="fa-solid fa-check color-success"></i>
 <% else %>
-  <i class="fa-solid fa-times has-text-danger"></i>
+  <i class="fa-solid fa-times color-danger"></i>
 <% end %>
 </td>
