@@ -19,3 +19,4 @@ class ActiveSupport::TestCase
     Com::MetaController.sync
   end
 end
+
