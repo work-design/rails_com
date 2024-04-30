@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveModel
+module RailsCom::ActiveModel
   module TypeValue
     attr_reader :options
 
@@ -23,4 +23,4 @@ module RailsExtend::ActiveModel
   end
 end
 
-ActiveModel::Type::Value.prepend RailsExtend::ActiveModel::TypeValue
+ActiveModel::Type::Value.prepend RailsCom::ActiveModel::TypeValue

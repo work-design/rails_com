@@ -1,4 +1,4 @@
-module RailsExtend::ActiveRecord
+module RailsCom::ActiveRecord
   module Include
     extend ActiveSupport::Concern
 
@@ -58,5 +58,5 @@ module RailsExtend::ActiveRecord
 end
 
 ActiveSupport.on_load :active_record do
-  include RailsExtend::ActiveRecord::Include
+  include RailsCom::ActiveRecord::Include
 end

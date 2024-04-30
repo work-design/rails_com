@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require 'rails_extend/active_model/boolean'
-require 'rails_extend/active_model/type_value'
+require 'rails_com/active_model/boolean'
+require 'rails_com/active_model/type_value'

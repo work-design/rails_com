@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 # Ruby core extension
-require 'rails_extend/core/hash'
-require 'rails_extend/core/nil_class'
-require 'rails_extend/core/array'
-require 'rails_extend/core/date'
-require 'rails_extend/core/date_time'
-require 'rails_extend/core/numeric'
-require 'rails_extend/core/string'
-require 'rails_extend/core/time'
-require 'rails_extend/core/time_format'
-require 'rails_extend/core/time_with_zone'
-require 'rails_extend/core/module'
+require 'rails_com/core/hash'
+require 'rails_com/core/nil_class'
+require 'rails_com/core/array'
+require 'rails_com/core/date'
+require 'rails_com/core/date_time'
+require 'rails_com/core/numeric'
+require 'rails_com/core/string'
+require 'rails_com/core/time'
+require 'rails_com/core/time_format'
+require 'rails_com/core/time_with_zone'
+require 'rails_com/core/module'
 
 # Ruby Strand Library extensions
-require 'rails_extend/core/pathname'
-#require 'rails_extend/core/pp'
+require 'rails_com/core/pathname'
+#require 'rails_com/core/pp'
 
 # Rails
-require 'rails_extend/core/duration'
+require 'rails_com/core/duration'

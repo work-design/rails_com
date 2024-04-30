@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # should include manually
-module RailsExtend::VideoResponse
+module RailsCom::VideoResponse
   extend ActiveSupport::Concern
 
   included do

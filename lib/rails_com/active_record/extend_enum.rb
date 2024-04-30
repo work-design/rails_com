@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveRecord
+module RailsCom::ActiveRecord
   module ExtendEnum
 
     def options_i18n(attribute)
@@ -23,7 +23,7 @@ module RailsExtend::ActiveRecord
 
     def help_i18n(attribute)
       return nil if attribute.blank?
-      help_key = RailsExtend.config.help_key.call(self, attribute)
+      help_key = RailsCom.config.help_key.call(self, attribute)
       ::I18n.t help_key, default: nil
     end
 
@@ -52,7 +52,7 @@ module RailsExtend::ActiveRecord
     end
 
     def enum_key(attribute)
-      RailsExtend.config.enum_key.call(self, attribute)
+      RailsCom.config.enum_key.call(self, attribute)
     end
 
     def self.extended(mod)
@@ -73,5 +73,5 @@ module RailsExtend::ActiveRecord
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsExtend::ActiveRecord::ExtendEnum
+  extend RailsCom::ActiveRecord::ExtendEnum
 end

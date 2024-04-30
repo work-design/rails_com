@@ -1,9 +1,9 @@
-module RailsExtend
+module RailsCom
   class QuietLogs
 
     def initialize(app)
       @app = app
-      @assets_regex = %r(\A/{0,2}(#{RailsExtend.config.quiet_logs.join('|')}))
+      @assets_regex = %r(\A/{0,2}(#{RailsCom.config.quiet_logs.join('|')}))
     end
 
     def call(env)

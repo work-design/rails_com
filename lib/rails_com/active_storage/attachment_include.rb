@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveStorage
+module RailsCom::ActiveStorage
   module AttachmentInclude
     extend ActiveSupport::Concern
 
@@ -49,5 +49,5 @@ module RailsExtend::ActiveStorage
 end
 
 ActiveSupport.on_load(:active_storage_attachment) do
-  include RailsExtend::ActiveStorage::AttachmentInclude
+  include RailsCom::ActiveStorage::AttachmentInclude
 end

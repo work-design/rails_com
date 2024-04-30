@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveStorage
+module RailsCom::ActiveStorage
   module BlobPrepend
 
     def self.prepended(klass)
@@ -32,5 +32,5 @@ module RailsExtend::ActiveStorage
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
-  prepend RailsExtend::ActiveStorage::BlobPrepend
+  prepend RailsCom::ActiveStorage::BlobPrepend
 end

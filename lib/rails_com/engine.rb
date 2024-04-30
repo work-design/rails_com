@@ -24,6 +24,8 @@ module RailsCom
       g.templates.unshift File.expand_path('lib/templates', root)
     end
 
+    config.action_view.field_error_proc = ->(html_tag, instance){ html_tag }
+
     initializer 'rails_com.add_generator_templates'do |app|
       app.config.paths['lib/templates'].unshift File.expand_path('lib/templates', root)
       # todo check if really works
@@ -35,7 +37,11 @@ module RailsCom
       end
     end
 
-    config.action_view.field_error_proc = ->(html_tag, instance){ html_tag }
+    initializer 'rails_com.quiet_logs' do |app|
+      if RailsCom.config.quiet_logs.present?
+        app.middleware.insert_before ::Rails::Rack::Logger, ::RailsCom::QuietLogs
+      end
+    end
 
     initializer 'rails_com.default_initializer' do |app|
       app.config.content_security_policy_nonce_generator = -> request {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveRecord
+module RailsCom::ActiveRecord
   module I18n
     extend ActiveSupport::Concern
 

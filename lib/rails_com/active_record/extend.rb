@@ -1,4 +1,4 @@
-module RailsExtend::ActiveRecord
+module RailsCom::ActiveRecord
   module Extend
 
     def human_name
@@ -28,7 +28,7 @@ module RailsExtend::ActiveRecord
       cols = columns.reject(&->(i){ attributes_by_default.include?(i.name) }).map { |col| "#{col.name}:#{col.type}" }
 
       generator = TestUnit::Generators::ModelGenerator.new(args + cols, destination_root: Rails.root, fixture: true)
-      generator.instance_variable_set :@source_paths, Array(RailsExtend::Engine.root.join('lib/templates', 'test_unit/model'))
+      generator.instance_variable_set :@source_paths, Array(RailsCom::Engine.root.join('lib/templates', 'test_unit/model'))
       generator.invoke_all
     end
 
@@ -224,5 +224,5 @@ module RailsExtend::ActiveRecord
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsExtend::ActiveRecord::Extend
+  extend RailsCom::ActiveRecord::Extend
 end

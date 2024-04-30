@@ -1,4 +1,4 @@
-module RailsExtend::ActiveStorage
+module RailsCom::ActiveStorage
   module AttachmentPrepend
 
     def identify_blob
@@ -11,5 +11,5 @@ module RailsExtend::ActiveStorage
 end
 
 ActiveSupport.on_load(:active_storage_attachment) do
-  prepend RailsExtend::ActiveStorage::AttachmentPrepend
+  prepend RailsCom::ActiveStorage::AttachmentPrepend
 end

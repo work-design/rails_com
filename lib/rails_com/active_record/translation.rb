@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveRecord
+module RailsCom::ActiveRecord
   module Translation
 
     # name
@@ -37,5 +37,5 @@ module RailsExtend::ActiveRecord
 end
 
 ActiveSupport.on_load :active_record do
-  extend RailsExtend::ActiveRecord::Translation
+  extend RailsCom::ActiveRecord::Translation
 end

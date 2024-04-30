@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveModel
+module RailsCom::ActiveModel
   module Boolean
     EXTEND_FALSE_VALUES = [
       'n', :n,
@@ -22,4 +22,4 @@ module RailsExtend::ActiveModel
   end
 end
 
-ActiveModel::Type::Boolean.prepend RailsExtend::ActiveModel::Boolean
+ActiveModel::Type::Boolean.prepend RailsCom::ActiveModel::Boolean

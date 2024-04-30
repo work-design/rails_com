@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RailsExtend::ActiveStorage
+module RailsCom::ActiveStorage
   module Variant
     extend ActiveSupport::Concern
 
@@ -12,5 +12,5 @@ module RailsExtend::ActiveStorage
 end
 
 ActiveSupport.on_load(:active_storage_blob) do
-  ActiveStorage::VariantRecord.include RailsExtend::ActiveStorage::Variant
+  ActiveStorage::VariantRecord.include RailsCom::ActiveStorage::Variant
 end

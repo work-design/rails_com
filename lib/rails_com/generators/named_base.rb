@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails/generators'
-module RailsExtend::Generators
+module RailsCom::Generators
   module NamedBase
 
     def class_name
@@ -19,4 +19,4 @@ module RailsExtend::Generators
   end
 end
 
-Rails::Generators::NamedBase.prepend RailsExtend::Generators::NamedBase
+Rails::Generators::NamedBase.prepend RailsCom::Generators::NamedBase
