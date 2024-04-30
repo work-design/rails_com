@@ -4,10 +4,23 @@ require 'rails_com/config'
 require 'rails_com/engine'
 
 require 'rails_com/action_controller'
-require 'rails_com/action_view'
-require 'rails_com/action_text'
+require 'rails_com/action_dispatch'
 require 'rails_com/action_mailbox'
+require 'rails_com/action_text'
+require 'rails_com/action_view'
+require 'rails_com/active_model'
+require 'rails_com/active_record'
 require 'rails_com/active_storage'
+
+require 'rails_com/core'
+require 'rails_com/env'
+require 'rails_com/exports'
+require 'rails_com/generators'
+require 'rails_com/models'
+require 'rails_com/quiet_logs'
+require 'rails_com/routes'
+require 'rails_com/type'  # 支持的 attribute type 扩展
+require 'rails_com/utils'
 
 # Rails extension
 require 'generators/scaffold_generator'
@@ -21,23 +34,11 @@ require 'default_form/override/action_view/helpers/tags/collection_radio_buttons
 require 'default_form/controller_helper'
 require 'default_form/view_helper'
 
-# Utils
-require 'rails_com/utils/time_helper'
-require 'rails_com/utils/num_helper'
-require 'rails_com/utils/qrcode_helper'
-require 'rails_com/utils/uid_helper'
-require 'rails_com/utils/hex_helper'
-require 'rails_com/utils/jobber'
-require 'rails_com/utils/regexp_util'
-require 'rails_com/utils/setting'
-require 'rails_com/utils/state_util'
-
 # active storage
 require 'active_storage/service/disc_service'
 
 # outside
 require 'default_where'
-require 'rails_extend'
 require 'kaminari'
 require 'acts_as_list'
 require 'turbo-rails'
