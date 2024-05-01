@@ -24,6 +24,10 @@ all: &default_alls
   submit: field is-horizontal
   select: field is-horizontal
   checkbox: field is-horizontal
+before_wrap: &default_before_wraps
+  submit: field-label
+  checkboxes: field-label
+  checkbox: field-label
 searches: &searches
   method: get
   placeholder: true
@@ -48,9 +52,7 @@ default:
     textarea: field textarea
     submit: button is-primary
   before_wrap:
-    submit: field-label
-    checkboxes: field-label
-    checkbox: field-label
+    <<: *default_before_wraps
   wrap:
     <<: *default_wraps
   all:
@@ -59,9 +61,11 @@ default:
     input: input is-danger
 modal:
   <<: *defaults
-  form: card-modal
+  form: modal-card
   origin:
     <<: *default_origins
+  before_wrap:
+    <<: *default_before_wraps
   wrap:
     <<: *default_wraps
   all:
