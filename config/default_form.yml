@@ -10,6 +10,20 @@ origin: &default_origins
   inline_checkbox_checked: checkbox
   inline_radio: radio
   inline_radio_checked: radio
+wrap: &default_wraps
+  label: field-label is-normal
+  input: field-body > field > control
+  select: field-body > field is-narrow > control > select is-fullwidth
+  checkbox: field-body > field > control > checkbox
+  checkboxes: field-body > field is-narrow > control
+  submit: field-body control
+all: &default_alls
+  normal: field is-horizontal
+  required: field is-horizontal
+  error: field is-horizontal
+  submit: field is-horizontal
+  select: field is-horizontal
+  checkbox: field is-horizontal
 searches: &searches
   method: get
   placeholder: true
@@ -38,21 +52,20 @@ default:
     checkboxes: field-label
     checkbox: field-label
   wrap:
-    label: field-label is-normal
-    input: field-body > field > control
-    select: field-body > field is-narrow > control > select is-fullwidth
-    checkbox: field-body > field > control > checkbox
-    checkboxes: field-body > field is-narrow > control
-    submit: field-body control
+    <<: *default_wraps
   all:
-    normal: field is-horizontal
-    required: field is-horizontal
-    error: field is-horizontal
-    submit: field is-horizontal
-    select: field is-horizontal
-    checkbox: field is-horizontal
+    <<: *default_alls
   error:
     input: input is-danger
+modal:
+  <<: *defaults
+  form: card-modal
+  origin:
+    <<: *default_origins
+  wrap:
+    <<: *default_wraps
+  all:
+    <<: *default_alls
 line:
   <<: *defaults
   origin:
@@ -83,7 +96,7 @@ weui:
   after:
     checkbox: <i class="weui-icon-checked"></i>
     radio: <i class="weui-icon-checked"></i>
-modal:
+phone_modal:
   <<: *phone
   form: modal-card has-animate-slide-up
   origin:
