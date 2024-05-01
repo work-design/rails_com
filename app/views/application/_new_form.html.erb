@@ -1,9 +1,5 @@
-<%= form_with model: model, scope: model_name, url: { action: 'create' }, class: 'modal-card' do |f| %>
-  <section class="modal-card-body">
-    <%= render 'error_messages', target: f.object if f.object.errors.present? %>
-    <%= render partial: 'form', locals: { f: f } %>
-  </section>
-  <footer class="modal-card-foot is-block">
-    <%= f.submit %>
-  </footer>
+<%= form_with model: model, scope: model_name, url: { action: 'create' } do |f| %>
+  <%= render 'error_messages', target: f.object if f.object.errors.present? %>
+  <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
 <% end %>
