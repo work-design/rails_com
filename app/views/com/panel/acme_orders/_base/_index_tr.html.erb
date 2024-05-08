@@ -2,23 +2,32 @@
   <%= yield %>
   <td>
     <div data-show-target="item" class="visibility-hidden">
-      <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, aria: { label: t('.show.title') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-solid fa-circle-info color-info"></i>
-      <% end %>
-      <%= button_to({ action: 'order', id: model.id }, method: :patch, aria: { label: t('.order') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-solid fa-shopping-cart color-success"></i>
-      <% end %>
-      <%= button_to({ action: 'verify', id: model.id }, method: :patch, aria: { label: t('.verify') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-solid fa-check has-text-warning-dark"></i>
-      <% end %>
-      <%= button_to({ action: 'cert', id: model.id }, method: :patch, aria: { label: t('.cert') }, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-solid fa-certificate"></i>
+      <%= button_to({ action: 'show', id: model.id }, aria: { label: t('.show.title') }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-pencil color-link"></i>
       <% end %>
       <%= button_to({ action: 'edit', id: model.id }, aria: { label: t('.edit.title') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-pencil color-link"></i>
       <% end %>
       <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.destroy.confirm') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-trash color-danger"></i>
+      <% end %>
+    </div>
+    <div data-show-target="item" class="visibility-hidden">
+      <%= link_to({ controller: 'acme_identifiers', acme_order_id: model.id }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-circle-info color-info"></i>
+        <span class="ml-1"><%= t('.acme_identifiers.index.title') %></span>
+      <% end %>
+      <%= button_to({ action: 'order', id: model.id }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-shopping-cart color-success"></i>
+        <span class="ml-1"><%= t('.order.title') %></span>
+      <% end %>
+      <%= button_to({ action: 'verify', id: model.id }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-check has-text-warning-dark"></i>
+        <span class="ml-1"><%= t('.verify.title') %></span>
+      <% end %>
+      <%= button_to({ action: 'cert', id: model.id }, method: :patch, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-certificate"></i>
+        <span class="ml-1"><%= t('.cert.title') %></span>
       <% end %>
     </div>
   </td>
