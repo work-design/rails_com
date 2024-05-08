@@ -11,7 +11,11 @@
       <div class="navbar-end">
         <%= render partial: 'locales' %>
         <%= render partial: 'notice_navbar' if defined? RailsNotice %>
-        <%= render partial: 'auth_navbar' %>
+        <% if current_member %>
+          <%= render partial: 'admin/auth_navbar' %>
+        <% else %>
+          <%= render partial: 'auth_navbar' %>
+        <% end %>
       </div>
     </div>
   </nav>
