@@ -56,9 +56,12 @@ zh:
       acme_orders:
         index:
           title: SSL 订单
-          order: 生成订单
-          verify: DNS验证
-          cert: 颁发证书
+        order:
+          title: 生成订单
+        verify:
+          title: DNS验证
+        cert:
+          title: 颁发证书
       acme_identifiers:
         index:
           title: SSL 订单详情
