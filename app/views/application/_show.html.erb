@@ -1,20 +1,15 @@
-<div class="box is-fullwidth">
+<dl class="as-show">
   <div>
-    <%= link_to t('.edit.title'), { action: 'edit' }, class: 'button is-small is-link' %>
+    <dt>ID</dt>
+    <dd><%= model.id %></dd>
   </div>
-  <dl class="as-show">
-    <div>
-      <dt>ID</dt>
-      <dd><%= model.id %></dd>
-    </div>
-    <%= render 'show_table' %>
-    <div>
-      <dt>添加时间</dt>
-      <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
-    </div>
-    <div>
-      <dt>更新时间</dt>
-      <dd><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></dd>
-    </div>
-  </dl>
-</div>
+  <%= render 'show_table' %>
+  <div>
+    <dt>添加时间</dt>
+    <dd><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></dd>
+  </div>
+  <div>
+    <dt>更新时间</dt>
+    <dd><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></dd>
+  </div>
+</dl>
