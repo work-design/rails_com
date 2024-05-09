@@ -63,7 +63,7 @@ modal:
   form: modal-card
   origin:
     <<: *default_origins
-    submit: button is-primary align-self-center
+    submit: button is-medium is-primary
   before_wrap:
     <<: *default_before_wraps
   wrap:
