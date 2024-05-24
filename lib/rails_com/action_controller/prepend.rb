@@ -5,15 +5,19 @@ module RailsCom::ActionController
     def _prefixes
       # 支持在 views/:controller 目录下以 _:action 开头的子目录进一步分组，会优先查找该目录下文件
       # 支持在 views/:controller 目录下以 _base 开头的通用分组子目录
-      pres = ["#{controller_path}/_#{params['action']}"]
+      pres = ["#{controller_path}/_#{params[:action]}"]
       names = ["#{controller_path}"]
+      namespaces = [params[:namespace]]
 
       super_class = self.class.superclass
+      super_actions = RailsCom::Routes.controllers[super_class.controller_path]
       # 同名 controller, 向上级追溯
-      while RailsCom::Routes.find_actions(super_class.controller_path).include?(params['action'])
-        pres.append "#{super_class.controller_path}/_#{params['action']}"
+      while super_actions&.key?(params[:action])
+        pres.append "#{super_class.controller_path}/_#{params[:action]}"
         names.append "#{super_class.controller_path}"
+        namespaces.append super_actions.dig(params[:action], :namespace)
         super_class = super_class.superclass
+        super_actions = RailsCom::Routes.controllers[super_class.controller_path]
       end
 
       pres.concat names.map(&->(i){ "#{i}/_base" })
@@ -33,6 +37,10 @@ module RailsCom::ActionController
       end
       r_index = pres.index(r[-1])
       pres.insert(r_index, *r[0..-2]) if r_index
+
+      # namespaces
+      namespace_index = pres.index('base') || pres.index('application')
+      pres.insert(namespace_index, *namespaces.compact_blank) if namespace_index
 
       # layout
       layout_index = pres.index(&->(i){ i.exclude?('/') })
