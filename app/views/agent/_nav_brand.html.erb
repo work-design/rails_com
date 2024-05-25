@@ -3,7 +3,7 @@
     <%= image_tag current_organ.logo, class: 'image' %>
   <% end %>
 <% else %>
-  <%= link_to({ controller: 'me/home' }, class: 'navbar-item') do %>
+  <%= link_to({ controller: '/me/home' }, class: 'navbar-item') do %>
     <%= image_tag 'logo.png', class: 'image' %>
   <% end %>
 <% end %>
