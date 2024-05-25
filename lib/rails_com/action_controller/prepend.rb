@@ -40,11 +40,14 @@ module RailsCom::ActionController
 
       # namespaces
       namespace_index = pres.index('base') || pres.index('application')
-      pres.insert(namespace_index, *namespaces.compact_blank) if namespace_index
+      binding.b
+      pres.insert(namespace_index, *namespaces.uniq.compact_blank) if namespace_index
 
       # layout
       layout_index = pres.index(&->(i){ i.exclude?('/') })
-      pres.insert(layout_index, self.class._layout) if layout_index && self.class._layout.is_a?(String)
+      if layout_index && self.class._layout.is_a?(String)
+        pres.insert(layout_index, self.class._layout)
+      end
 
       if defined?(current_organ) && current_organ&.code.present?
         RailsCom.config.override_prefixes.each do |pre|
