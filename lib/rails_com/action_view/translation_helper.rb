@@ -24,9 +24,12 @@ module RailsCom::ActionView
           _controller_path = controller_path
           _controller = controller.class
         end
+        binding.b
+
         if _controller
           keys << _controller_path
           super_class = _controller.superclass
+
           while RailsCom::Routes.controllers[super_class.controller_path]&.key?(_action_name)
             keys << super_class.controller_path
             super_class = super_class.superclass
@@ -34,7 +37,6 @@ module RailsCom::ActionView
           end
         end
       end
-
       keys.map! do |con|
         r = con.split('/')
         r.pop(suffixes.size)

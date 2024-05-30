@@ -87,14 +87,9 @@ class Array
   # [1, 2, 3]
   # => ['1', '1/2', '1/2/3']
   def ancestors(sep = '/')
-    return [] if empty?
-    r = [self[0].to_s]
-
-    self[1..].each do |i|
-      r << [r[-1], i].join(sep)
+    map.with_index do |i, index|
+      self[0..-size + index].join(sep)
     end
-
-    r
   end
 
   # [1, 2, 3]
