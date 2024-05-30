@@ -12,15 +12,27 @@ module RailsCom::ActionView
       suffixes = key.to_s.delete_prefix('.').split('.')
       _key = suffixes.pop
       _action_name = suffixes.pop || action_name
+      _controller_name = suffixes.pop
       keys = []
-      keys << controller_path if key.start_with?('.')
-
-      super_class = controller.class.superclass
-      while RailsCom::Routes.find_actions(super_class.controller_path).include?(_action_name)
-        keys << super_class.controller_path
-        super_class = super_class.superclass
+      if key.start_with?('.')
+        if _controller_name
+          _paths = controller_path.split('/')
+          _paths[-1] = _controller_name
+          _controller_path = _paths.join('/')
+          _controller = _controller_path.to_controller
+          keys << _controller_path
+        else
+          _controller = controller
+          keys << controller_path
+        end
+        super_class = _controller.class.superclass
+        while RailsCom::Routes.controllers.dig(super_class.controller_path, _action_name)
+          keys << super_class.controller_path
+          super_class = super_class.superclass
+        end
       end
 
+      binding.b
       keys.map! do |con|
         r = con.split('/')
         r.pop(suffixes.size)
@@ -28,7 +40,7 @@ module RailsCom::ActionView
       end
 
       keys << "controller.#{_action_name}.#{_key}".to_sym
-      #Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug
+      Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug || true
       keys
     end
 
