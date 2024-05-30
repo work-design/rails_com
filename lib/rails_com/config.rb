@@ -13,6 +13,7 @@ module RailsCom #:nodoc:
     config.acme_url = 'https://acme-v02.api.letsencrypt.org/directory'  # 用于 SSL 证书自动签发服务
     config.default_admin_accounts = []
     config.debug = false
+    config.debug_i18n = false
     config.default_return_path = '/board'
     config.enum_key = ->(o, attribute){ "#{o.i18n_scope}.enum.#{o.base_class.model_name.i18n_key}.#{attribute}" }
     config.help_key = ->(o, attribute){ "#{o.i18n_scope}.help.#{o.base_class.model_name.i18n_key}.#{attribute}" }

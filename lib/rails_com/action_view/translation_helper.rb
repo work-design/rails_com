@@ -20,19 +20,21 @@ module RailsCom::ActionView
           _paths[-1] = _controller_name
           _controller_path = _paths.join('/')
           _controller = _controller_path.to_controller
-          keys << _controller_path
         else
-          _controller = controller
-          keys << controller_path
+          _controller_path = controller_path
+          _controller = controller.class
         end
-        super_class = _controller.class.superclass
-        while RailsCom::Routes.controllers.dig(super_class.controller_path, _action_name)
-          keys << super_class.controller_path
-          super_class = super_class.superclass
+        if _controller
+          keys << _controller_path
+          super_class = _controller.superclass
+          while RailsCom::Routes.controllers[super_class.controller_path]&.key?(_action_name)
+            keys << super_class.controller_path
+            super_class = super_class.superclass
+            break if super_class == ActionController::Base
+          end
         end
       end
 
-      binding.b
       keys.map! do |con|
         r = con.split('/')
         r.pop(suffixes.size)
@@ -40,7 +42,7 @@ module RailsCom::ActionView
       end
 
       keys << "controller.#{_action_name}.#{_key}".to_sym
-      Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug || true
+      Rails.logger.debug "\e[35m  I18n: #{keys}  \e[0m" if RailsCom.config.debug_i18n
       keys
     end
 
