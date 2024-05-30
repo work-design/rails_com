@@ -20,11 +20,18 @@ module RailsCom::ActionView
           _paths[-1] = _controller_name
           _controller_path = _paths.join('/')
           _controller = _controller_path.to_controller
+
+          until _controller do
+            _paths.pop
+            break if _paths.blank?
+            _paths[-1] = _controller_name
+            _controller_path = _paths.join('/')
+            _controller = _controller_path.to_controller
+          end
         else
           _controller_path = controller_path
           _controller = controller.class
         end
-        binding.b
 
         if _controller
           keys << _controller_path
