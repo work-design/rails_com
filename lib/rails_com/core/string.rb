@@ -28,8 +28,8 @@ class String
     end
   end
 
-  # '12345'
-  # '1', '12', '123', '1234'
+  # '123'
+  # => '1', '12', '123'
   def chars_step
     chars.ancestors('')
   end
