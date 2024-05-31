@@ -21,6 +21,8 @@ all: &default_alls
   error: field is-horizontal
   select: field is-horizontal
   checkbox: field is-horizontal
+error: &default_errors
+  input: input is-danger
 before_wrap: &default_before_wraps
   checkboxes: field-label
   checkbox: field-label
@@ -57,7 +59,7 @@ default:
     <<: *default_alls
     submit: field is-horizontal
   error:
-    input: input is-danger
+    <<: *default_errors
 modal:
   <<: *defaults
   form: modal-card
@@ -70,6 +72,8 @@ modal:
     <<: *default_wraps
   all:
     <<: *default_alls
+  error:
+    <<: *default_errors
 line:
   <<: *defaults
   origin:
