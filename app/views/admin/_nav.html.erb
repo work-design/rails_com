@@ -1,10 +1,10 @@
 <aside class="menu-wrap is-dark">
   <%= render 'admin/brand_nav' %>
-  <%= render 'admin/factory_simple_nav' %>
-  <%= render 'in/trade_nav' %>
-  <%= render 'admin/trade_simple_nav' %>
-  <%= render 'admin/crm_simple_nav' %>
-  <%= render 'admin/ship_simple_nav' %>
-  <%= render 'admin/wechat_simple_nav' %>
-  <%= render 'admin/org_simple_nav' %>
+  <%= render 'admin/factory_simple_nav' if defined? RailsFactory %>
+  <%= render 'in/trade_nav' if defined? RailsTrade %>
+  <%= render 'admin/trade_simple_nav' if defined? RailsTrade %>
+  <%= render 'admin/crm_simple_nav' if defined? RailsCrm %>
+  <%= render 'admin/ship_simple_nav' if defined? RailsShip %>
+  <%= render 'admin/wechat_simple_nav' if defined? RailsWechat %>
+  <%= render 'admin/org_simple_nav' if defined? RailsOrg %>
 </aside>
