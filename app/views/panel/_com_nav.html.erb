@@ -1,20 +1,19 @@
-<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu empty">
-  <a class="menu-label" data-action="menu#toggle">
-    <i class="fa-solid fa-cogs fa-fw"></i>
-    <span><%= t('com.panel.title') %></span>
-    <i class="fa-solid fa-fw dropdown"></i>
-  </a>
+<div class="menu ex-accordion is-active">
+  <div class="menu-label">
+    <div>
+      <i class="fa-solid fa-cogs fa-fw"></i>
+      <span><%= t('com.panel.title') %></span>
+    </div>
+    <%= link_to({ controller: 'com/panel/home' }, aria: { label: '设置' }) do %>
+      <i class="fa-solid fa-cog"></i>
+    <% end %>
+  </div>
   <div class="menu-list" data-empty-target="content">
-    <%= link_to t('com.panel.blob_defaults.index.title'), { controller: 'com/panel/blob_defaults' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
-    <%= link_to t('com.panel.blobs.index.title'), { controller: 'com/panel/blobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'blobs', active: 'is-active') %>
-    <%= link_to t('com.panel.attachments.index.title'), { controller: 'com/panel/attachments' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'attachments', active: 'is-active') %>
     <%= link_to t('com.panel.inbound_emails.index.title'), { controller: 'com/panel/inbound_emails' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'inbound_emails', active: 'is-active') %>
     <%= link_to t('com.panel.acme_accounts.index.title'), { controller: 'com/panel/acme_accounts' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'acme_accounts', active: 'is-active') %>
     <%= link_to t('com.panel.meta_controllers.index.title'), { controller: 'com/panel/meta_controllers' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_controllers', active: 'is-active') %>
-    <%= link_to t('com.panel.meta_businesses.index.title'), { controller: 'com/panel/meta_businesses' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['meta_businesses', 'meta_namespaces'], active: 'is-active') %>
     <%= link_to t('com.panel.meta_models.index.title'), { controller: 'com/panel/meta_models' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_models', active: 'is-active') %>
     <%= link_to t('com.panel.err_summaries.index.title'), { controller: 'com/panel/err_summaries' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['err_summaries', 'errs'], active: 'is-active') %>
     <%= link_to t('com.panel.csps.index.title'), { controller: 'com/panel/csps' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'csps', active: 'is-active') %>
-    <%= link_to t('com.panel.states.index.title'), { controller: 'com/panel/states' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'states', active: 'is-active') %>
   </div>
 </div>
