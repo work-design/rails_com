@@ -13,7 +13,7 @@ end
 class BigDecimal
 
   def inspect
-    to_formatted_s(:delimited)
+    to_fs(:delimited)
   end
 
   def to_human
