@@ -1,9 +1,18 @@
-<%= form_with model: @filter, url: { action: 'create' }, id: 'detect_form' do |f| %>
-  <%= f.hidden_field :controller_path %>
-  <%= f.hidden_field :action_name %>
-  <%= f.text_field :name %>
-  <%= f.fields :filter_columns do |ef| %>
-    <%= ef.hidden_field :column %>
-    <%= ef.hidden_field :value %>
-  <% end %>
+<%= form_with theme: 'modal', model: @filter, url: { action: 'create' }, id: 'detect_form' do |f| %>
+  <header class="modal-card-head">
+    <p class="modal-card-title"><%= t('com.admin.filters.detect.title') %></p>
+    <button type="button" data-action="modal#close" class="delete"></button>
+  </header>
+  <section class="modal-card-body">
+    <%= f.hidden_field :controller_path %>
+    <%= f.hidden_field :action_name %>
+    <%= f.text_field :name %>
+    <%= f.fields :filter_columns do |ef| %>
+      <%= ef.hidden_field :column %>
+      <%= ef.hidden_field :value %>
+    <% end %>
+  </section>
+  <footer class="modal-card-foot">
+    <%= f.submit %>
+  </footer>
 <% end %>

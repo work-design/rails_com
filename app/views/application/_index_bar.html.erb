@@ -9,9 +9,8 @@
         <%= link_to t('.all'), {}, class: 'button is-light' %>
         <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
       </div>
-    <% else %>
-      <%= render 'filter_default' %>
     <% end %>
+    <%= render 'filter_default' %>
   </div>
   <div class="level-right">
     <% if filter = current_filters.find(&->(i){ i.id.to_s == params[:filter_id] }) %>
