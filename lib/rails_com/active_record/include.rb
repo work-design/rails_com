@@ -39,6 +39,9 @@ module RailsCom::ActiveRecord
               if value.is_a?(Array) && value.size > 3
                 value = value[0..3]
                 value[3] = '...'
+              elsif value.is_a?(Hash) && value.size > 3
+                value = value.limit(3)
+                value.merge! 'more' => '...'
               end
               value = inspection_filter.filter_param(attr_name, value) unless value.nil?
               pp.pp value
