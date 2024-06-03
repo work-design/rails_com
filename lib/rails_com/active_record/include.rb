@@ -36,6 +36,10 @@ module RailsCom::ActiveRecord
               pp.text ':'
               pp.breakable
               value = _read_attribute(attr_name)
+              if value.is_a?(Array) && value.size > 3
+                value = value[0..3]
+                value[3] = '...'
+              end
               value = inspection_filter.filter_param(attr_name, value) unless value.nil?
               pp.pp value
             end
