@@ -13,7 +13,9 @@
     <% end %>
   <% end %>
   <button type="submit" class="button">
-    <i class="fa-solid fa-floppy-disk"></i>
+    <span class="icon is-small">
+      <i class="fa-solid fa-floppy-disk"></i>
+    </span>
     <% if filter.detect_change(request) %>
       <span class="pl-1">Update</span>
     <% end %>
