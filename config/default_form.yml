@@ -30,6 +30,7 @@ searches: &searches
   method: get
   placeholder: true
   autofilter: true
+  autocomplete: off
 phone: &phone
   <<: *defaults
 phone_wrap: &phone_wrap
