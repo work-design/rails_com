@@ -5,7 +5,7 @@ module Com
     included do
       attribute :action_name, :string
 
-      enum operation: {
+      enum :operation, {
         list: 'list',
         read: 'read',
         add: 'add',

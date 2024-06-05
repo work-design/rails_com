@@ -5,7 +5,7 @@ module Debug::Model
     included do
       attribute :name, :string
 
-      enum state: {
+      enum :state, {
         init: 'init',
         confirmed: 'confirmed'
       }, _default: 'init'

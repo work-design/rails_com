@@ -8,7 +8,7 @@ module Com
       attribute :value, :string
       attribute :version, :string
 
-      enum platform: {
+      enum :platform, {
         ios: 'ios',
         android: 'android'
       }

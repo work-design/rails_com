@@ -16,7 +16,7 @@ module Com
 
       belongs_to :acme_order
 
-      enum status: {
+      enum :status, {
         pending: 'pending',
         valid: 'valid',
         invalid: 'invalid',

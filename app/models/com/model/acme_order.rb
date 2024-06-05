@@ -9,7 +9,7 @@ module Com
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
 
-      enum status: {
+      enum :status, {
         pending: 'pending',
         ready: 'ready',
         valid: 'valid',

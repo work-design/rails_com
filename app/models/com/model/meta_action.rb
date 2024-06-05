@@ -18,7 +18,7 @@ module Com
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier
       belongs_to :meta_controller, foreign_key: :controller_path, primary_key: :controller_path
 
-      enum operation: {
+      enum :operation, {
         list: 'list',
         read: 'read',
         add: 'add',
