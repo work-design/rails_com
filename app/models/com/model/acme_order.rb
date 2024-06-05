@@ -14,7 +14,7 @@ module Com
         ready: 'ready',
         valid: 'valid',
         invalid: 'invalid'
-      }, _prefix: true
+      }, prefix: true
 
       belongs_to :acme_account
 

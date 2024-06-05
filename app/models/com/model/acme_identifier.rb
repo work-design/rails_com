@@ -21,7 +21,7 @@ module Com
         valid: 'valid',
         invalid: 'invalid',
         deactivated: 'deactivated'
-      }, _prefix: true
+      }, prefix: true
 
       before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
     end

@@ -11,7 +11,7 @@ module Com
         add: 'add',
         edit: 'edit',
         remove: 'remove'
-      }, _default: 'read'
+      }, default: 'read'
     end
 
   end

@@ -24,7 +24,7 @@ module Com
         add: 'add',
         edit: 'edit',
         remove: 'remove'
-      }, _default: 'read'
+      }, default: 'read'
 
       default_scope -> { order(position: :asc, id: :asc) }
 

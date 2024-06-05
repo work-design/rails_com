@@ -8,7 +8,7 @@ module Debug::Model
       enum :state, {
         init: 'init',
         confirmed: 'confirmed'
-      }, _default: 'init'
+      }, default: 'init'
 
       has_many :manies, inverse_of: :one
       accepts_nested_attributes_for :manies
