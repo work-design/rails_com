@@ -56,7 +56,23 @@ module RailsCom::ActiveRecord
     end
 
     def pending_attributes
-      send(:pending_attribute_modifications).group_by(&:name)
+      r = {}
+
+      send(:pending_attribute_modifications).each do |attr|
+        if attr.instance_of? ActiveModel::AttributeRegistration::ClassMethods::PendingDefault
+          r[attr.name] ||= {}
+          r[attr.name][:default] = attr
+        elsif attr.instance_of? ActiveModel::AttributeRegistration::ClassMethods::PendingType
+          r[attr.name] ||= {}
+          r[attr.name][:type] = attr
+        elsif attr.instance_of? ActiveModel::AttributeRegistration::ClassMethods::PendingDecorator
+          name = attr.names[0]
+          r[name] ||= {}
+          r[name][:type] = ActiveModel::Type::String.new
+        end
+      end
+
+      r
     end
 
     def attributes_by_model
@@ -64,15 +80,7 @@ module RailsCom::ActiveRecord
 
       pending_attributes.each do |name, column|
         r = {}
-        r.merge! original_type: column[0].type
-
-        if r[:original_type].respond_to? :call
-          begin
-            r.merge! original_type: r[:original_type].call(ActiveModel::Type::String.new)
-          rescue => e
-            r.merge! original_type: ActiveModel::Type::String.new
-          end
-        end
+        r.merge! original_type: column[:type].type
 
         if r[:original_type].respond_to?(:type)
           r.merge! raw_type: r[:original_type].type
@@ -89,8 +97,8 @@ module RailsCom::ActiveRecord
           r.merge! r[:original_type].options
         end
 
-        if column[1].instance_of?(ActiveModel::AttributeRegistration::ClassMethods::PendingDefault) # Rails 7, column[1] 为默认值
-          r.merge! default: column[1].default
+        if column[:default]
+          r.merge! default: column[:default].default
         end
 
         cols.merge! name => r
