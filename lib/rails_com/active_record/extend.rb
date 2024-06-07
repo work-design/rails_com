@@ -55,12 +55,16 @@ module RailsCom::ActiveRecord
       end
     end
 
+    def pending_attributes
+      send(:pending_attribute_modifications).group_by(&:name)
+    end
+
     def attributes_by_model
       cols = {}
 
-      attributes_to_define_after_schema_loads.each do |name, column|
+      pending_attributes.each do |name, column|
         r = {}
-        r.merge! original_type: column[0]
+        r.merge! original_type: column[0].type
 
         if r[:original_type].respond_to? :call
           begin
@@ -85,8 +89,8 @@ module RailsCom::ActiveRecord
           r.merge! r[:original_type].options
         end
 
-        unless column[1].instance_of?(Object) # Rails 7, column[1] 为默认值
-          r.merge! default: column[1]
+        if column[1].instance_of?(ActiveModel::AttributeRegistration::ClassMethods::PendingDefault) # Rails 7, column[1] 为默认值
+          r.merge! default: column[1].default
         end
 
         cols.merge! name => r
@@ -190,7 +194,7 @@ module RailsCom::ActiveRecord
       results = {}
       refs = reflections_with_belongs_to
       refs.reject! { |reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
-      refs.reject! { |reflection| attributes_to_define_after_schema_loads.key?(reflection.foreign_key) }
+      refs.reject! { |reflection| pending_attributes.key?(reflection.foreign_key) }
       refs.each do |ref|
         r = { name: ref.name }
         r.merge! polymorphic: true if ref.polymorphic?
