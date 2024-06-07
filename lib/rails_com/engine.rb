@@ -55,6 +55,12 @@ module RailsCom
       #ActiveStorage::Attached::One.prepend RailsCom::AttachedOne
     end
 
+    initializer 'rails_com.add_json_paths' do
+      ActiveSupport.on_load(:action_controller_base) do
+        append_view_path RailsCom::Engine.root.join('app/jsons')
+      end
+    end
+
     config.to_prepare do
       overrides = RailsCom::Engine.root.join('app/overrides')
       Rails.autoloaders.main.ignore(overrides)

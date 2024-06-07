@@ -1,2 +1,2 @@
 json.results JSON.parse(yield)
-json.partial! 'pagination', items: @models if defined? @models
+json.partial! 'pagination', items: instance_variable_get("@#{controller_name.pluralize}") if defined? instance_variable_get("@#{controller_name.pluralize}")
