@@ -21,8 +21,8 @@ module CommonApi
     with_options = { origin: origin }
     with_options.merge! debug: STDERR, debug_level: 2 if debug
 
-    with_access_token(params: params, headers: headers) do |with_token_params|
-      response = @client.with_headers(headers).with(with_options).get(path, params: with_token_params)
+    with_access_token(params: params, headers: headers) do
+      response = @client.with_headers(headers).with(with_options).get(path, params: params)
       debug ? response : parse_response(response)
     end
   end
@@ -31,9 +31,9 @@ module CommonApi
     with_options = { origin: origin }
     with_options.merge! debug: STDERR, debug_level: 2 if debug
 
-    with_access_token(params: params, headers: headers) do |with_token_params|
-      with_token_params.merge! debug: 1 if debug
-      response = @client.with_headers(headers).with(with_options).post(path, params: with_token_params, json: payload)
+    with_access_token(params: params, headers: headers) do
+      params.merge! debug: 1 if debug
+      response = @client.with_headers(headers).with(with_options).post(path, params: params, json: payload)
       debug ? response : parse_response(response)
     end
   end
@@ -42,11 +42,11 @@ module CommonApi
     with_options = { origin: origin }
     with_options.merge! debug: STDERR, debug_level: 2 if debug
 
-    with_access_token(params: params, headers: headers) do |with_token_params|
+    with_access_token(params: params, headers: headers) do
       form_file = file.is_a?(HTTP::FormData::File) ? file : HTTP::FormData::File.new(file, content_type: options[:content_type])
       response = @client.plugin(:multipart).with_headers(headers).with(with_options).post(
         path,
-        params: with_token_params,
+        params: params,
         form: { media: form_file }
       )
 
@@ -57,7 +57,8 @@ module CommonApi
   protected
   def with_access_token(tries: 2, params: {}, headers: {})
     @app.refresh_access_token unless @app.access_token_valid?
-    yield params.merge!(access_token: @app.access_token)
+    params.merge!(access_token: @app.access_token)
+    yield
   rescue AccessTokenExpiredError
     @app.refresh_access_token
     retry unless (tries -= 1).zero?
