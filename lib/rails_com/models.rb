@@ -117,7 +117,7 @@ module RailsCom::Models
   end
 
   def ignore_models
-    models.group_by(&->(i){ i.attributes_to_define_after_schema_loads.size }).transform_values!(&->(i) { i.map(&:to_s) })
+    models.group_by(&->(i){ i.pending_attributes.size }).transform_values!(&->(i) { i.map(&:to_s) })
   end
 
   def attachments
