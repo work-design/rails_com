@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'httpx'
+require 'http/form_data'
 
 module CommonApi
   attr_reader :app, :client
