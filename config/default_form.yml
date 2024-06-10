@@ -86,6 +86,8 @@ line:
     input: control
   all:
     normal: field
+  error:
+    <<: *default_errors
 weui:
   <<: *defaults
   form: flex flex-direction-column is-fullheight
