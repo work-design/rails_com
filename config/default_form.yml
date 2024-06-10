@@ -1,5 +1,5 @@
 defaults: &defaults
-  autocomplete: off
+  autocomplete: 'off' # 这里 off 必须字符串，否则会解析为 false
   label: true
 origin: &default_origins
   label: label color-grey
@@ -30,7 +30,7 @@ searches: &searches
   method: get
   placeholder: true
   autofilter: true
-  autocomplete: off
+  autocomplete: 'off'
 phone: &phone
   <<: *defaults
 phone_wrap: &phone_wrap

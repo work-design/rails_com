@@ -60,6 +60,10 @@ module DefaultForm::Builder
         options[:value] = default_value(method)
       end
 
+      if on[:autocomplete]
+        options[:autocomplete] = on[:autocomplete]
+      end
+
       if on[:placeholder] && !options.key?(:placeholder)
         options[:placeholder] = default_label(method)
       end
