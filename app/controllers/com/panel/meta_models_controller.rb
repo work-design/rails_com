@@ -15,6 +15,14 @@ module Com
       MetaModel.sync
     end
 
+    def options
+      @meta_models = MetaModel.where(business_identifier: params.dig(params[:dom_scope], :meta_business))
+    end
+
+    def columns
+      @meta_columns = MetaColumn.where(record_name: params.dig(params[:dom_scope], :record_name))
+    end
+
     private
     def set_meta_model
       @meta_model = MetaModel.find(params[:id])

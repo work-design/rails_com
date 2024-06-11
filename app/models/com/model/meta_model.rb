@@ -24,6 +24,10 @@ module Com
       self.business_identifier = record_name.split('::')[-2].to_s.downcase
     end
 
+    def display_name
+      name.presence || record_name
+    end
+
     class_methods do
 
       def sync

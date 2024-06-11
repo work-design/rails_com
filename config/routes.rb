@@ -146,6 +146,8 @@ Rails.application.routes.draw do
         resources :meta_models do
           collection do
             post :sync
+            post :options
+            post :columns
           end
           member do
             get :reflections
