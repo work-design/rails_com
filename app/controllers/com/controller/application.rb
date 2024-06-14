@@ -16,6 +16,10 @@ module Com
       helper_method :current_title, :current_organ_name, :current_filters, :default_params, :turbo_frame_request_id
     end
 
+    def raw_params
+      params.except(:business, :namespace, :controller, :action)
+    end
+
     def urlsafe_encode64(
       host: request.host,
       _controller_path: "/#{controller_path}",
@@ -23,7 +27,7 @@ module Com
       request_method: request.request_method,
       referer: request.referer,
       _params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
-      body: params.except(:business, :namespace, :controller, :action).compact_blank,
+      body: raw_params.compact_blank,
       organ_id: current_organ&.id,
       user_id: current_user&.id,
       destroyable: true
