@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 98c00ad6b55d6976ae302f8518d6e51d0a753c9f
+  revision: a10a94d75c20af3adc977f25feffb75f12280d6b
   specs:
     rails_design (0.0.1)
       rails
@@ -19,6 +19,7 @@ PATH
       money-rails (~> 1.15)
       mutex_m
       net-http
+      net-pop
       ostruct
       rails (~> 7.0)
       turbo-rails
