@@ -6,7 +6,10 @@ module Com
 
     # change_column_null :active_storage_blobs, :checksum, true
     def create
-      super
+      blob = ActiveStorage::Blob.new metadata: {}, **blob_args
+      blob.save(validate: false)
+
+      render json: direct_upload_json(blob).merge!(download_url: blob.url)
     end
 
   end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
       resources :direct_uploads, only: [:create]
-      resources :disk, only: [:update]
+      resources :disk, param: :encoded_token, only: [:update]
     end
 
     controller :home do
