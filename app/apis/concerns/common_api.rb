@@ -65,7 +65,10 @@ module CommonApi
   end
 
   def parse_response(response)
-    raise "Request get fail, response status #{response.status}" if response.status != 200
+    if response.respond_to?(:status)
+      raise "Request get fail, response status #{response.status}" if response.status != 200
+    else
+    end
     content_type = response.content_type.mime_type
 
     if content_type =~ /image|audio|video/
