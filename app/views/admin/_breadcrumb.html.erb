@@ -1,4 +1,7 @@
+<li><%= link_to t('.home.index.title'), { controller: 'home' } %></li>
 <% if ['new', 'edit', 'show'].include?(params[:action]) %>
   <li><%= link_to t('.index.title'), { action: 'index' } %></li>
 <% end %>
+<% unless controller_name == 'home' %>
 <li class="is-active"><%= t('.title') %></li>
+<% end %>
