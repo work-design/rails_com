@@ -65,24 +65,24 @@ module CommonApi
   end
 
   def parse_response(response)
-    if response.respond_to?(:status)
-      raise "Request get fail, response status #{response.status}" if response.status != 200
-    else
-    end
-    content_type = response.content_type.mime_type
+    if response.respond_to?(:status) && response.status >= 200 && response.status < 300
+      content_type = response.content_type.mime_type
 
-    if content_type =~ /image|audio|video/
-      data = Tempfile.new('tmp')
-      data.binmode
-      data.write(response.body.to_s)
-      data.rewind
-      data
-    elsif content_type =~ /html|xml/
-      Hash.from_xml(response.body.to_s)
-    elsif content_type =~ /json/
-      response.json
+      if content_type =~ /image|audio|video/
+        data = Tempfile.new('tmp')
+        data.binmode
+        data.write(response.body.to_s)
+        data.rewind
+        data
+      elsif content_type =~ /html|xml/
+        Hash.from_xml(response.body.to_s)
+      elsif content_type =~ /json/
+        response.json
+      else
+        JSON.parse(response.body.to_s)
+      end
     else
-      JSON.parse(response.body.to_s)
+      raise "Request get fail, response status #{response}"
     end
   end
 
