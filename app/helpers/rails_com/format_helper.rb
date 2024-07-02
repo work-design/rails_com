@@ -28,10 +28,10 @@ module RailsCom::FormatHelper
   end
 
   def simple_format(text, html_options = {}, options = {})
-    if text.is_a?(Hash)
-      return simple_format_hash(text, html_options, options)
-      #elsif text.is_a?(String)
-      #return ex_simple_format(text, html_options, options)
+    if text.is_a?(Hash) || text.is_a?(Array)
+      return text.to_yaml.split("\n").map do |i|
+        content_tag(:p, i.gsub(' ', '\1<span class="pl-1"></span>').html_safe, html_options)
+      end.join("\n").html_safe
     end
 
     if text.is_a?(Array)
