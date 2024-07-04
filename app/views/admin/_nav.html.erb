@@ -1,4 +1,4 @@
-<aside class="menu-wrap is-dark">
+<aside class="menu-wrap is-dark" style="--admin-menu: <%= current_organ.theme_settings['admin_menu'] %>">
   <%= render 'admin/brand_nav' %>
   <%= render 'admin/factory_simple_nav' if defined? RailsFactory %>
   <%= render 'in/trade_nav' if defined? RailsTrade %>

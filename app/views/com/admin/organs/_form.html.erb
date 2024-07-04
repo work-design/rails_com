@@ -1,0 +1,4 @@
+<%= f.fields :theme_settings, model: OpenStruct.new(f.object.theme_settings) do |pf| %>
+  <%= pf.color_field :admin_menu %>
+  <%= pf.color_field :panel_menu %>
+<% end %>
