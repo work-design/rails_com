@@ -10,4 +10,9 @@
   <%= render 'admin/finance_nav' if defined? RailsFinance %>
   <%= render 'admin/sync_nav' if defined? RailsSync %>
   <%= render 'admin/qingflow_nav' if defined? RailsQingflow %>
+  <%= render 'auth_nav' %>
+  <%= render 'notice_nav' %>
+  <%= render 'bench_nav' if defined? RailsBench %>
+  <%= render 'detail_nav' if defined? RailsDetail %>
 </aside>
+
