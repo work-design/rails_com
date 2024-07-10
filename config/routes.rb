@@ -92,6 +92,7 @@ Rails.application.routes.draw do
       end
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'
+        resource :organ
         resources :err_summaries, only: [:index, :show, :destroy] do
           member do
             delete :clean
