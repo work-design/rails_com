@@ -18,10 +18,6 @@ module DefaultForm::Builder
       inner
     end
 
-    def wrapping_label(inner, tag: 'div', wrap: {})
-
-    end
-
     def wrapping_all(inner, method = nil, all: {}, tag: 'div', required: false, **)
       if method && object_has_errors?(method)
         final_css = all[:error]
@@ -43,32 +39,12 @@ module DefaultForm::Builder
     end
 
     def offset(css, tag: 'div', text: '')
-      if css.present?
+      if css.is_a?(String) && css.match?(/[<>]/)
+        css.html_safe
+      elsif css.present?
         content_tag(tag, text, class: css)
       else
         text.html_safe
-      end
-    end
-
-    def before_origin(type, css, tag: 'span', text: '')
-      _css = css.dig(:before, type)
-      if _css.is_a?(String) && _css.match?(/[<>]/)
-        _css.html_safe
-      elsif _css.present?
-        content_tag(tag, text, class: _css)
-      else
-        text&.html_safe
-      end
-    end
-
-    def after_origin(type, css, tag: 'span', text: '')
-      _css = css.dig(:after, type)
-      if _css.is_a?(String) && _css.match?(/[<>]/)
-        _css.html_safe
-      elsif _css.present?
-        content_tag(tag, text, class: _css)
-      else
-        text&.html_safe
       end
     end
 
