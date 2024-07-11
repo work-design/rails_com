@@ -31,10 +31,10 @@ module DefaultForm::Builder
 
     def label(method, text = nil, options = {}, &block)
       origin = (options.delete(:origin) || {}).with_defaults!(@css[:origin])
-      wrap = (options.delete(:wrap_label) || {}).with_defaults!(@css[:wrap_label])
       options[:class] = origin[:label] unless options.key?(:class)
+      wrap = options.delete(:wrap_label)
 
-      wrapping_label(super, wrap: wrap)
+      wrapping(super, wrap: wrap)
     end
 
     def submit(value = nil, options = {})
@@ -43,7 +43,7 @@ module DefaultForm::Builder
         options[:data] ||= {}
         options[:data][:disable_with] = 'Searching'
         css[:all][:normal] = css.dig(:all, :submit)
-        submit_content = wrapping(:submit, super, wrap: css[:wrap])
+        submit_content = wrapping(super, wrap: css.dig(:wrap, :submit))
 
         offset(css.dig(:before_wrap, :submit)) + submit_content
       end
@@ -54,6 +54,7 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :checkbox) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :checkbox)
+        options[:label_position] ||= 'after'
 
         label_content = ''
         if options[:label] && options[:label_position] == 'after'
@@ -67,7 +68,7 @@ module DefaultForm::Builder
           content = super
         end
 
-        wrap_content = wrapping(:checkbox, content, wrap: css[:wrap])
+        wrap_content = wrapping(content, wrap: css.dig(:wrap, :checkbox))
         if options[:label_position] == 'before_wrap'
           label_content + wrap_content + offset(css.dig(:after_wrap, :checkbox))
         else
@@ -79,7 +80,7 @@ module DefaultForm::Builder
     def collection_check_boxes(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
       wrap_with(method, options, :check) do |css|
         options[:origin] = css[:origin]
-        wrapping(:checkboxes, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :checkboxes))
       end
     end
 
@@ -88,6 +89,7 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
+        options[:label_position] ||= 'after'
 
         label_content = ''
         if options[:label] && options[:label_position] == 'after'
@@ -101,7 +103,7 @@ module DefaultForm::Builder
           content = super
         end
 
-        wrap_content = wrapping(:radio, content, wrap: css[:wrap])
+        wrap_content = wrapping(content, wrap: css.dig(:wrap, :radio))
         if options[:label_position] == 'before_wrap'
           label_content + wrap_content + offset(css.dig(:after_wrap, :radio))
         else
@@ -113,7 +115,7 @@ module DefaultForm::Builder
     def collection_radio_buttons(method, collection, value_method, text_method, options = {}, html_options = {}, &block)
       wrap_with(method, options, :radio) do |css|
         options[:origin] = css[:origin]
-        wrapping(:radios, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :radios))
       end
     end
 
@@ -128,7 +130,7 @@ module DefaultForm::Builder
         options[:include_blank] = I18n.t('helpers.select.prompt') if options[:include_blank] == true
         css[:all][:normal] = css.dig(:all, :select)
 
-        wrapping(:select, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :select))
       end
     end
 
@@ -142,7 +144,7 @@ module DefaultForm::Builder
         options[:include_blank] = I18n.t('helpers.select.prompt') if options[:include_blank] == true
         css[:all][:normal] = css.dig(:all, :select)
 
-        wrapping(:select, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :select))
       end
     end
 
@@ -154,14 +156,14 @@ module DefaultForm::Builder
           css.dig(:origin, :select)
         end unless html_options.key?(:class)
 
-        wrapping(:select, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :select))
       end
     end
 
     def time_select(method, options = {}, html_options = {})
       wrap_with(method, options, :select) do |css|
         html_options[:class] = css.dig(:origin, :select) unless html_options.key?(:class)
-        wrapping(:select, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :select))
       end
     end
 
@@ -180,7 +182,7 @@ module DefaultForm::Builder
           options[:value] = object.read_attribute(real_method)&.to_date
         end
 
-        wrapping(:input, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :input))
       end
     end
 
@@ -188,14 +190,14 @@ module DefaultForm::Builder
       wrap_with(method, options, :normal) do |css|
         options[:class] = css.dig(:origin, :input) unless options.key?(:class)
         options[:step] = default_step(method) unless options.key?(:step)
-        wrapping(:input, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :input))
       end
     end
 
     def text_area(method, options = {})
       wrap_with(method, options, :normal) do |css|
         options[:class] = css.dig(:origin, :textarea) unless options.key?(:class)
-        wrapping(:input, super, wrap: css[:wrap])
+        wrapping(super, wrap: css.dig(:wrap, :input))
       end
     end
 
@@ -205,7 +207,7 @@ module DefaultForm::Builder
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         if options[:label]
-          label_content = label method, options.delete(:label), css.dig(:wrap_label, type)
+          label_content = label method, options.delete(:label), wrap_label: css.dig(:wrap_label, type)
         else
           options.delete(:label)
           label_content = ''.html_safe
@@ -238,7 +240,7 @@ module DefaultForm::Builder
                 options[:class] = css.dig(:origin, :input) 
               end
             end
-            wrapping(:input, super, wrap: css[:wrap])
+            wrapping(super, wrap: css.dig(:wrap, :input))
           end
         end
       RUBY_EVAL

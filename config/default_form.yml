@@ -15,8 +15,8 @@ wrap: &default_wraps
   checkbox: field-body > field > control > checkbox
   radios: field-body > field > control > checkbox
   checkboxes: field-body > field is-narrow > control
-wrap_label:
-  input: field-label is-normal
+wrap_label: &default_wrap_labels
+  normal: field-label is-normal
   select: field-label is-normal
   checkbox: field-label is-normal
   checkboxes: field-label
@@ -61,6 +61,8 @@ default:
   wrap:
     <<: *default_wraps
     submit: field-body control
+  wrap_label:
+    <<: *default_wrap_labels
   all:
     <<: *default_alls
     submit: field is-horizontal
@@ -76,6 +78,8 @@ modal:
     <<: *default_before_wraps
   wrap:
     <<: *default_wraps
+  wrap_label:
+    <<: *default_wrap_labels
   all:
     <<: *default_alls
   error:
