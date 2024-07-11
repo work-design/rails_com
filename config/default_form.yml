@@ -10,13 +10,15 @@ origin: &default_origins
   inline_radio: radio
   inline_radio_checked: radio
 wrap: &default_wraps
-  label: field-label is-normal
   input: field-body > field > control
   select: field-body > field is-narrow > control > select is-fullwidth
   checkbox: field-body > field > control > checkbox
+  radios: field-body > field > control > checkbox
   checkboxes: field-body > field is-narrow > control
 wrap_label:
   input: field-label is-normal
+  select: field-label is-normal
+  checkbox: field-label is-normal
   checkboxes: field-label
 all: &default_alls
   normal: field is-horizontal
@@ -81,7 +83,7 @@ modal:
 line:
   <<: *defaults
   origin:
-    label: label has-text-grey
+    label: label color-grey
     input: input
     textarea: textarea
     submit: button is-primary

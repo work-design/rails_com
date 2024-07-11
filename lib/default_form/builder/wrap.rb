@@ -42,10 +42,9 @@ module DefaultForm::Builder
       end
     end
 
-    def before_wrap(type, css, tag: 'div', text: '')
-      _css = css.dig(:before_wrap, type)
-      if _css.present?
-        content_tag(tag, text, class: _css)
+    def offset(css, tag: 'div', text: '')
+      if css.present?
+        content_tag(tag, text, class: css)
       else
         text.html_safe
       end
@@ -70,15 +69,6 @@ module DefaultForm::Builder
         content_tag(tag, text, class: _css)
       else
         text&.html_safe
-      end
-    end
-
-    def after_wrap(type, css, tag: 'div', text: '')
-      _css = css.dig(:after_wrap, type)
-      if _css.present?
-        content_tag(tag, text, class: _css)
-      else
-        text.html_safe
       end
     end
 
