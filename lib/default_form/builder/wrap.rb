@@ -38,11 +38,13 @@ module DefaultForm::Builder
       end
     end
 
-    def offset(css, tag: 'div', text: '')
+    def offset(css = nil, tag: 'div', text: '')
       if css.is_a?(String) && css.match?(/[<>]/)
         css.html_safe
       elsif css.present?
         content_tag(tag, text, class: css)
+      elsif tag.present?
+        content_tag(tag, text)
       else
         text.html_safe
       end
