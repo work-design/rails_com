@@ -45,7 +45,7 @@ module DefaultForm::Builder
         css[:all][:normal] = css.dig(:all, :submit)
         submit_content = wrapping(super, wrap: css.dig(:wrap, :submit))
 
-        offset(css.dig(:before_wrap, :submit), tag: 'div') + submit_content
+        offset(css.dig(:before_wrap, :submit)) + submit_content
       end
     end
 
@@ -70,9 +70,9 @@ module DefaultForm::Builder
 
         wrap_content = wrapping(content, wrap: css.dig(:wrap, :checkbox))
         if options[:label_position] == 'before_wrap'
-          label_content + wrap_content + offset(css.dig(:after_wrap, :checkbox), tag: 'div')
+          label_content + wrap_content + offset(css.dig(:after_wrap, :checkbox))
         else
-          offset(css.dig(:before_wrap, :checkbox), tag: 'div') + wrap_content + offset(css.dig(:after_wrap, :checkbox), tag: 'div')
+          offset(css.dig(:before_wrap, :checkbox)) + wrap_content + offset(css.dig(:after_wrap, :checkbox))
         end
       end
     end
@@ -105,9 +105,9 @@ module DefaultForm::Builder
 
         wrap_content = wrapping(content, wrap: css.dig(:wrap, :radio))
         if options[:label_position] == 'before_wrap'
-          label_content + wrap_content + offset(css.dig(:after_wrap, :radio), tag: 'div')
+          label_content + wrap_content + offset(css.dig(:after_wrap, :radio))
         else
-          offset(css.dig(:before_wrap, :radio), tag: 'div') + wrap_content +  offset(css.dig(:after_wrap, :radio), tag: 'div')
+          offset(css.dig(:before_wrap, :radio)) + wrap_content +  offset(css.dig(:after_wrap, :radio))
         end
       end
     end
