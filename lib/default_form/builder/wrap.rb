@@ -18,6 +18,10 @@ module DefaultForm::Builder
       inner
     end
 
+    def wrapping_label(inner, tag: 'div', wrap: {})
+
+    end
+
     def wrapping_all(inner, method = nil, all: {}, tag: 'div', required: false, **)
       if method && object_has_errors?(method)
         final_css = all[:error]

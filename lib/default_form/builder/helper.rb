@@ -31,10 +31,10 @@ module DefaultForm::Builder
 
     def label(method, text = nil, options = {}, &block)
       origin = (options.delete(:origin) || {}).with_defaults!(@css[:origin])
-      wrap = (options.delete(:wrap) || {}).with_defaults!(@css[:wrap])
+      wrap = (options.delete(:wrap_label) || {}).with_defaults!(@css[:wrap_label])
       options[:class] = origin[:label] unless options.key?(:class)
 
-      wrapping(:label, super, wrap: wrap)
+      wrapping_label(super, wrap: wrap)
     end
 
     def submit(value = nil, options = {})
@@ -198,12 +198,12 @@ module DefaultForm::Builder
     end
 
     # block 应返回 input with wrapper 的内容
-    # 注意：此处不要用结构参数 **options, 因为解构的 options object_id 会变。
+    # 注意：此处不要用解构参数 **options, 因为解构的 options object_id 会变。
     def wrap_with(method, options)
       wrap_all_with(method, options) do |css|
         default_options(method, options)
         if options[:label]
-          label_content = label method, options.delete(:label), css.slice(:origin, :wrap)
+          label_content = label method, options.delete(:label), css.slice(:origin, :wrap, :wrap_label)
         else
           options.delete(:label)
           label_content = ''.html_safe
