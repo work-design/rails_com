@@ -6,7 +6,7 @@ require 'default_form/builder/helper'
 require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
-  CSS_KEYS = [:origin, :wrap, :all, :error, :before_wrap, :after_wrap, :before, :after]
+  CSS_KEYS = [:origin, :wrap, :wrap_label, :all, :error, :before_wrap, :after_wrap, :before, :after]
   ON_KEYS = [:label, :placeholder, :autocomplete, :autofilter]
   include DefaultForm::Builder::Helper
   attr_reader :on_options, :params
