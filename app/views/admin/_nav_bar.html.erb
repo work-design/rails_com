@@ -2,7 +2,7 @@
   <div class="breadcrumb has-succeeds-separator has-background-light">
     <ul>
       <% if current_page?(controller: 'home') %>
-        <li><strong class="px-3"><%= t('.home.index.title') %></strong></li>
+        <li><strong class="is-active"><%= t('.home.index.title') %></strong></li>
       <% else %>
         <li><%= link_to t('.home.index.title'), { controller: 'home' } %></li>
       <% end %>

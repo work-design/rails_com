@@ -1,5 +1,3 @@
-<%= link_to t('com.panel.blob_defaults.index.title'), { controller: 'com/panel/blob_defaults' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'blob_defaults', active: 'is-active') %>
-<%= link_to t('com.panel.blobs.index.title'), { controller: 'com/panel/blobs' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'blobs', active: 'is-active') %>
-<%= link_to t('com.panel.attachments.index.title'), { controller: 'com/panel/attachments' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'attachments', active: 'is-active') %>
-<%= link_to t('com.panel.meta_businesses.index.title'), { controller: 'com/panel/meta_businesses' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['meta_businesses', 'meta_namespaces'], active: 'is-active') %>
-<%= link_to t('com.panel.states.index.title'), { controller: 'com/panel/states' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'states', active: 'is-active') %>
+<div class="section">
+  <%= render 'index_column' %>
+</div>
