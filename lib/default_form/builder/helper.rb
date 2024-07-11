@@ -88,20 +88,24 @@ module DefaultForm::Builder
         default_options(method, options)
         options[:class] = css.dig(:origin, :radio) unless options.key?(:class)
         css[:all][:normal] = css.dig(:all, :radio)
-        content = before_origin(:radio, css) + super + after_origin(:radio, css)
-        wrap_content = wrapping(:radio, content, wrap: css[:wrap])
-        if options[:label]
+
+        label_content = ''
+        if options[:label] && options[:label_position] == 'after'
+          content = super + content_tag(:span, options.delete(:label))
+        elsif options[:label] && options[:label_position] == 'before'
+          content = content_tag(:span, options.delete(:label)) + super
+        elsif options[:label]
+          content = super
           label_content = content_tag(:span, options.delete(:label), class: css.dig(:origin, :label))
         else
-          label_content = ''
+          content = super
         end
 
-        if options[:label_position] == 'before'
+        wrap_content = wrapping(:radio, content, wrap: css[:wrap])
+        if options[:label_position] == 'before_wrap'
           label_content + wrap_content + offset(css.dig(:after_wrap, :radio))
-        elsif options[:label_position] == 'after'
-          offset(css.dig(:before_wrap, :radio)) + wrap_content + label_content
         else
-          offset(css.dig(:before_wrap, :radio)) + wrap_content
+          offset(css.dig(:before_wrap, :radio)) + wrap_content +  offset(css.dig(:after_wrap, :radio))
         end
       end
     end
@@ -129,7 +133,7 @@ module DefaultForm::Builder
     end
 
     def collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
-      wrap_with(method, options, x: 'select') do |css|
+      wrap_with(method, options, :select) do |css|
         if html_options[:multiple]
           html_options[:class] = css.dig(:origin, :multi_select)
         else
@@ -143,7 +147,7 @@ module DefaultForm::Builder
     end
 
     def time_zone_select(method, priority_zones = nil, options = {}, html_options = {})
-      wrap_with(method, options, :input) do |css|
+      wrap_with(method, options, :normal) do |css|
         html_options[:class] = if html_options[:multiple]
           css.dig(:origin, :multi_select)
         else
@@ -155,7 +159,7 @@ module DefaultForm::Builder
     end
 
     def time_select(method, options = {}, html_options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, options, :select) do |css|
         html_options[:class] = css.dig(:origin, :select) unless html_options.key?(:class)
         wrapping(:select, super, wrap: css[:wrap])
       end
@@ -167,7 +171,7 @@ module DefaultForm::Builder
     end
 
     def date_field(method, options = {})
-      wrap_with(method, options) do |css|
+      wrap_with(method, options, :normal) do |css|
         options[:class] = css.dig(:origin, :input) unless options.key?(:class)
         if method.end_with?('(date)')
           real_method = method.to_s.sub('(date)', '')
