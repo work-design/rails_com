@@ -226,7 +226,7 @@ module DefaultForm::Builder
       end
       inner_content = yield css
 
-      wrapping_all inner_content, method, all: css[:all], tag: tag
+      wrapping_all inner_content, method, all: css[:all], tag: tag, required: options[:required]
     end
 
     INPUT_FIELDS.each do |selector|
