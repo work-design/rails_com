@@ -7,16 +7,8 @@ module ActiveStorage
     def url_sync(url)
       filename = File.basename URI(url).path
 
-      Tempfile.open do |file|
-        file.binmode
-        res = HTTPX.get(url)
-        res.body.each do |fragment|
-          file.write fragment
-        end if res.error.nil?
-
-        file.rewind
-        self.attach io: file, filename: filename
-      end
+      file = UrlUtil.file_from_url(url)
+      self.attach io: file, filename: filename
     end
 
     class One
