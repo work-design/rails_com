@@ -4,11 +4,19 @@ require 'httpx'
 module ActiveStorage
   class Attached
 
-    def url_sync(url)
+    def url_sync(url, **options)
       filename = File.basename URI(url).path
-
       file = UrlUtil.file_from_url(url)
-      self.attach io: file, filename: filename
+
+      if options.present?
+        variation = ActiveStorage::Variation.new(options)
+        output = variation.send(:transformer).send(:process, file, format: :jpg)
+        self.attach io: output, filename: filename
+        output
+      else
+        self.attach io: file, filename: filename
+        file
+      end
     end
 
     class One
