@@ -16,5 +16,13 @@
       <span><%= t('.states.index.title') %></span>
     <% end %>
   </div>
+  <div class="grid">
+    <%= link_to({ controller: 'com/panel/err_bots' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.err_bots.index.title') %></span>
+    <% end %>
+    <%= link_to({ controller: 'com/panel/err_summaries' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.err_summaries.index.title') %></span>
+    <% end %>
+  </div>
 </div>
 
