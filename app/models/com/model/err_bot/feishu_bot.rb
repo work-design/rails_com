@@ -3,13 +3,16 @@ module Com
 
     def send_message(err)
       set_content(err)
-      HTTPX.post(hook_url, json: body)
+      res = HTTPX.post(hook_url, json: body)
+      res.json
     end
 
     def body
       {
-        title: '收到错误通知',
-        text: content
+        msg_type: 'text',
+        content: {
+          text: content
+        }
       }
     end
 
