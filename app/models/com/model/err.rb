@@ -31,7 +31,7 @@ module Com
     end
 
     def send_message
-      ErrBot.limit(3).each do |bot|
+      ErrBot.limit(3).map do |bot|
         bot.send_message(self)
       end
     end
