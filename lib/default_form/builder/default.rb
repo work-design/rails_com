@@ -72,16 +72,22 @@ module DefaultForm::Builder
         options[:label] = default_label(method)
       end
 
+      options[:data] ||= {}
       valid_key = options.keys.map(&:to_sym) & VALIDATIONS
+      action_arr = []
       if valid_key.present?
-        action_str = 'form#clear blur->form#check invalid->form#notice'
-        options[:data] ||= {}
-        if options[:data][:action].present?
-          options[:data][:action] += " #{action_str}"
-        else
-          options[:data][:action] = action_str
-        end unless options[:data].key?(:valid)
+        action_arr = ['form#clear', 'blur->form#check', 'invalid->form#notice']
       end
+      if options[:autofocus]
+        action_arr << 'focus->form#focusEnd'
+      end
+      action_str = action_arr.join(' ')
+
+      if options[:data][:action].present?
+        options[:data][:action] += " #{action_str}"
+      else
+        options[:data][:action] = action_str
+      end unless options[:data].key?(:valid)
     end
 
     def default_without_method(options = {})
