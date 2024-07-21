@@ -78,6 +78,7 @@ modal:
     <<: *default_before_wraps
   wrap:
     <<: *default_wraps
+    submit: modal-card-foot
   wrap_label:
     <<: *default_wrap_labels
   all:

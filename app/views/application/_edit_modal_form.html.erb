@@ -7,7 +7,5 @@
     <%= render 'error_messages', target: f.object if f.object.errors.present? %>
     <%= render partial: 'form', locals: { f: f } %>
   </section>
-  <footer class="modal-card-foot">
-    <%= f.submit %>
-  </footer>
+  <%= f.submit %>
 <% end %>
