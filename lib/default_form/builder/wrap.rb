@@ -7,10 +7,17 @@ module DefaultForm::Builder
       if wrap.present?
         css_ary = wrap.split(' > ')
         css_ary.reverse_each.with_index do |css, index|
-          if index == 0
-            inner = content_tag(tag, inner, class: css)
+          if css.include?('.')
+            _tag, _css = css.split('.')
           else
-            inner = content_tag(tag, inner, class: css)
+            _tag = tag
+            _css = css
+          end
+
+          if index == 0
+            inner = content_tag(_tag, inner, class: _css)
+          else
+            inner = content_tag(_tag, inner, class: _css)
           end
         end
       end
