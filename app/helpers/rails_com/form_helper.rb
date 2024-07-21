@@ -18,4 +18,10 @@ module RailsCom::FormHelper
     super
   end
 
+  def svg_tag(name, **options)
+    content_tag :svg, options do
+      content_tag :use, nil, 'xlink:href' => "#{asset_path 'icons/icon.svg'}##{name}"
+    end
+  end
+
 end
