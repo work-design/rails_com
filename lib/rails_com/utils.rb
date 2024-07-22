@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Utils
+require 'rails_com/utils/compress_util'
 require 'rails_com/utils/time_helper'
 require 'rails_com/utils/num_helper'
 require 'rails_com/utils/qrcode_helper'
