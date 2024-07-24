@@ -61,12 +61,12 @@ module Com
 
     def move_higher
       model = model_object
-      model.move_higher
+      model.update position: { before: model.prior_position }
     end
 
     def move_lower
       model = model_object
-      model.move_lower
+      model.update position: { after: model.subsequent_position }
     end
 
     def reorder
