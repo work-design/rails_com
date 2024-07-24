@@ -26,7 +26,7 @@ module Com
 
       validates :controller_path, uniqueness: { scope: [:business_identifier, :namespace_identifier] }
 
-      acts_as_list scope: [:namespace_identifier, :business_identifier]
+      positioned on: [:namespace_identifier, :business_identifier]
     end
 
     def identifier

@@ -28,7 +28,7 @@ module Com
 
       default_scope -> { order(position: :asc, id: :asc) }
 
-      acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_path]
+      positioned on: [:business_identifier, :namespace_identifier, :controller_path]
 
       before_validation :sync_from_controller, if: -> { meta_controller && (controller_path_changed? || meta_controller.new_record?) }
     end

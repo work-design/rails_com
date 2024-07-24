@@ -71,16 +71,12 @@ module Com
 
     def reorder
       model = model_object
-      sort_array = params[:sort_array].select { |i| i.integer? }
 
       if params[:new_index] > params[:old_index]
-        prev_one = model.class.find(sort_array[params[:new_index].to_i - 1])
-        model.insert_at prev_one.position || 1
+        prev_one = model.class.find(params[:prior_id])
+        model.update position: { after: prev_one }
       else
-        next_ones = model.class.find(sort_array[(params[:new_index].to_i + 1)..params[:old_index].to_i])
-        next_ones.each do |next_one|
-          next_one.insert_at model.position || 1
-        end
+        model.update position: params[:new_index]
       end
     end
 
