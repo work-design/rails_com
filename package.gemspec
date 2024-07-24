@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'default_where', '~> 2.2'
   s.add_dependency 'kaminari'
   s.add_dependency 'closure_tree', '>= 7.3'
-  s.add_dependency 'acts_as_list', '>= 1.0'
+  s.add_dependency 'positioning'
   s.add_dependency 'acme-client'
   s.add_dependency 'turbo-rails'
   s.add_dependency 'money-rails', '~> 1.15'
