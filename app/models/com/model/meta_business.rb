@@ -14,7 +14,7 @@ module Com
 
       validates :identifier, uniqueness: true
 
-      acts_as_list
+      positioned
     end
 
     def name
