@@ -72,11 +72,10 @@ module Com
     def reorder
       model = model_object
 
-      if params[:new_index] > params[:old_index]
-        prev_one = model.class.find(params[:prior_id])
-        model.update position: { after: prev_one }
-      else
-        model.update position: params[:new_index]
+      if params[:new_index] > params[:old_index] # 向下移动
+        model.update position: { after: params[:prior_id] }
+      else # 向上移动
+        model.update position: { before: params[:subsequent_id] }
       end
     end
 
