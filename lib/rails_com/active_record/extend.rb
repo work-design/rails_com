@@ -9,6 +9,16 @@ module RailsCom::ActiveRecord
       connection.reset_pk_sequence!(table_name)
     end
 
+    def reset_positions!
+      positioning_columns.each do |_, columns|
+        select(*columns).distinct.as_json(only: columns).each do |filter|
+          where(filter).find_each.with_index do |item, index|
+            item.update_columns position: index + 1
+          end
+        end
+      end
+    end
+
     def subclasses_tree(tree = {}, node = self)
       tree[node] ||= {}
 
