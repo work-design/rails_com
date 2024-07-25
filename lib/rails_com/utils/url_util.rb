@@ -6,12 +6,15 @@ module UrlUtil
     file = Tempfile.new
     file.binmode
 
-    res = HTTPX.plugin(:follow_redirects).get(url)
-    res.body.each do |fragment|
-      file.write fragment
-    end if res.error.nil?
-
-    file.rewind
-    file
+    begin
+      res = HTTPX.plugin(:follow_redirects).get(url)
+      res.body.each do |fragment|
+        file.write fragment
+      end if res.error.nil?
+    rescue => e
+    ensure
+      file.rewind
+      file
+    end
   end
 end
