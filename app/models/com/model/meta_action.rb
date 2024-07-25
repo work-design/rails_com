@@ -26,8 +26,6 @@ module Com
         remove: 'remove'
       }, default: 'read'
 
-      default_scope -> { order(position: :asc, id: :asc) }
-
       positioned on: [:business_identifier, :namespace_identifier, :controller_path]
 
       before_validation :sync_from_controller, if: -> { meta_controller && (controller_path_changed? || meta_controller.new_record?) }

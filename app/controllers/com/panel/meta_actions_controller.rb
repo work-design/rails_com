@@ -4,7 +4,7 @@ module Com
     before_action :set_meta_action, only: [:show, :roles, :edit, :update, :move_higher, :move_lower, :destroy]
 
     def index
-      @meta_actions = @meta_controller.meta_actions
+      @meta_actions = @meta_controller.meta_actions.order(position: :asc, id: :asc)
     end
 
     def new
