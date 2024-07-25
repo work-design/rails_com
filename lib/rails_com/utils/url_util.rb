@@ -12,9 +12,8 @@ module UrlUtil
         file.write fragment
       end if res.error.nil?
     rescue => e
-    ensure
-      file.rewind
-      file
     end
+    file.rewind
+    file
   end
 end
