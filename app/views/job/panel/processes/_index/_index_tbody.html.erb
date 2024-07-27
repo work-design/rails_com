@@ -4,6 +4,6 @@
 </td>
 <td>
   <p><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
-  <p class="color-grey" data-controller="count-up" data-count-up-time-value="<%= model.created_at.to_fs(:iso8601) %>"><%= exact_distance_time(model.created_at) %></p>
+  <p class="text-grey" data-controller="count-up" data-count-up-time-value="<%= model.created_at.to_fs(:iso8601) %>"><%= exact_distance_time(model.created_at) %></p>
 </td>
 <td><%= simple_format(model.metadata) %></td>

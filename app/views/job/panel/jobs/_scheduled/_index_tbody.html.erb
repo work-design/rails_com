@@ -6,7 +6,7 @@
   </p>
   <p><%= model.serialized_params['job_class'] %></p>
   <p><%= model.queue_name %></p>
-  <p class="color-info">
+  <p class="text-info">
     <time data-controller="time" data-format="human"><%= model.scheduled_at.to_fs(:iso8601) %></time>
     <span data-controller="time-count" data-time-count-time-value="<%= model.scheduled_at.to_fs(:iso8601) %>" class="tag"><%= exact_distance_time(model.scheduled_at, Time.current) %></span>
   </p>

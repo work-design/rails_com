@@ -3,7 +3,7 @@
     <%= f.file_field target.name, multiple: target.is_a?(ActiveStorage::Attached::Many), direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
     <span class="file-cta">
       <span class="file-icon">
-        <i class="fa-solid fa-upload color-grey-dark"></i>
+        <i class="fa-solid fa-upload text-grey-dark"></i>
       </span>
     </span>
     <span class="file-name" data-picture-target="filename"></span>
@@ -12,7 +12,7 @@
 <div class="field is-narrow" data-picture-target="preview" style="display: none">
   <div class="image">
     <button class="button as-corner" data-action="picture#removePreview">
-      <i class="fa-solid fa-trash color-danger"></i>
+      <i class="fa-solid fa-trash text-danger"></i>
     </button>
     <%= image_tag 'avatar.png', data: { picture_target: 'src' }, class: 'image is-96x96' %>
   </div>

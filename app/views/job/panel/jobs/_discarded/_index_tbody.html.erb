@@ -6,7 +6,7 @@
   </p>
   <p><%= model.serialized_params['job_class'] %></p>
   <p><%= model.queue_name %></p>
-  <p class="color-grey"><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
+  <p class="text-grey"><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
 </td>
 <td>
 <% model.serialized_params['arguments'].each do |arg| %>

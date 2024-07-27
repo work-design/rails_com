@@ -4,23 +4,23 @@
   </div>
   <div class="columns is-4-mobile flex is-vcentered is-centered m-0" data-empty-target="content">
     <%= link_to({ controller: 'profiled/my/addresses' }, class: 'column has-column-centered') do %>
-      <div class="has-text-primary">
+      <div class="text-primary">
         <i class="fa-solid fa-fw fa-xl fa-location-dot"></i>
       </div>
-      <div class="color-grey size-7 mt-1"><%= t('profiled.my.addresses.index.title') %></div>
+      <div class="text-grey size-7 mt-1"><%= t('profiled.my.addresses.index.title') %></div>
     <% end %>
     <%= link_to({ controller: 'wechat/my/users', action: 'invite_qrcode' }, class: 'column has-column-centered') do %>
-      <div class="has-text-primary fa-weui-badge">
+      <div class="text-primary fa-weui-badge">
         <i class="fa-solid fa-fw fa-xl fa-qrcode"></i>
         <span class="weui-badge">邀请有礼</span>
       </div>
-      <div class="color-grey size-7 mt-1">邀请好友</div>
+      <div class="text-grey size-7 mt-1">邀请好友</div>
     <% end %>
     <%= link_to({ controller: 'auth/my/home' }, class: 'column has-column-centered') do %>
-      <div class="has-text-primary">
+      <div class="text-primary">
         <i class="fa-solid fa-fw fa-xl fa-ellipsis"></i>
       </div>
-      <div class="color-grey size-7 mt-1"><%= t('auth.my.home.index.title') %></div>
+      <div class="text-grey size-7 mt-1"><%= t('auth.my.home.index.title') %></div>
     <% end %>
   </div>
 </div>
