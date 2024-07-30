@@ -27,14 +27,6 @@ module DefaultForm::ViewHelper
       options[:url] = url_for unless options.key?(:url)
       options[:scope] = '' unless options.key?(:scope)
       options[:skip_default_ids] = true unless options.key?(:skip_default_ids)
-
-      # add default action
-      actions = options.dig(:data, :action).to_s.split(' ')
-      if actions.present? && !actions.include?('form#filter')
-        options[:data][:action] += ' form#filter'
-      else
-        options[:data][:action] = 'form#filter'
-      end
     end
 
     super
