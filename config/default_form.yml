@@ -2,7 +2,7 @@ defaults: &defaults
   autocomplete: 'off' # 这里 off 必须字符串，否则会解析为 false
   label: true
 origin: &default_origins
-  label: label color-grey
+  label: label text-grey
   input: input
   textarea: textarea
   inline_checkbox: checkbox
@@ -88,7 +88,7 @@ modal:
 line:
   <<: *defaults
   origin:
-    label: label color-grey
+    label: label text-grey
     input: input
     textarea: textarea
     submit: button is-primary
@@ -102,7 +102,7 @@ weui:
   <<: *defaults
   form: flex flex-direction-column is-fullheight
   origin:
-    label: label color-grey
+    label: label text-grey
     input: input
     textarea: textarea
     submit: button is-medium is-success is-fullwidth

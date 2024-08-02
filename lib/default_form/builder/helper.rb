@@ -42,7 +42,14 @@ module DefaultForm::Builder
         options[:class] = css.dig(:origin, :submit) unless options.key?(:class)
         options[:data] ||= {}
         options[:data][:disable_with] = 'Searching'
-        options[:name] = nil if self.options[:method] == 'get'
+        if self.options[:method] == 'get'
+          options[:name] = nil
+          if options[:data][:action].present?
+            options[:data][:action] += "form#filter"
+          else
+            options[:data][:action] = 'form#filter'
+          end
+        end
         css[:all][:normal] = css.dig(:all, :submit)
         submit_content = wrapping(super, wrap: css.dig(:wrap, :submit))
 
