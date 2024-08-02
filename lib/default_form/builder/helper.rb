@@ -45,7 +45,7 @@ module DefaultForm::Builder
         if self.options[:method] == 'get'
           options[:name] = nil
           if options[:data][:action].present?
-            options[:data][:action] += "form#filter"
+            options[:data][:action] += ' form#filter'
           else
             options[:data][:action] = 'form#filter'
           end
