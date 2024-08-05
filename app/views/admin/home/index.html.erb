@@ -1,5 +1,6 @@
 <div class="columns">
   <div class="column">
+    <%= render 'org_admin' if defined? RailsOrg %>
     <%= render 'factory_admin' if defined?(RailsFactory) %>
     <%= render 'trade_admin' if defined?(RailsTrade) %>
     <%= render 'wechat_admin' if defined?(RailsWechat) %>
