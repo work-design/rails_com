@@ -83,9 +83,9 @@ module DefaultForm::Builder
       end
       action_str = action_arr.join(' ')
 
-      if options[:data][:action].present?
+      if options[:data][:action].present? && action_arr.present?
         options[:data][:action] += " #{action_str}"
-      else
+      elsif action_str.present?
         options[:data][:action] = action_str
       end unless options[:data].key?(:valid)
     end
