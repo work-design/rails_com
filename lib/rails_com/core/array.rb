@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'csv'
 class Array
 
   #   arr = [1, 2, 3]
@@ -65,10 +65,14 @@ class Array
   #     [3, 4]
   #   ]
   #   data.to_csv_file
-  def to_csv_file(file = 'export.csv')
+  def to_2d_csv_file(file = 'export.csv')
     CSV.open(file, 'w') do |csv|
       self.each { |ar| csv << ar }
     end
+  end
+
+  def to_1d_csv_file(path = 'export.csv')
+    File.write(path, join("\n"))
   end
 
   # 比较两个数组忽略排序的情况下是否相等
