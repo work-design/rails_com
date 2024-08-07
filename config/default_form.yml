@@ -135,8 +135,12 @@ search:
   wrap:
     input: field is-narrow
 inline:
+  <<: *defaults
+  label: false
+  form: field is-grouped
   origin:
     input: input
+    submit: button is-primary
 weui_search:
   <<: *searches
   form: weui-cells weui-cells_form
