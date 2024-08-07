@@ -34,6 +34,7 @@ module DefaultForm::Builder
       if object_name.present?
         params.dig(object_name, method)
       else
+        # search 应返回默认 params 中对应的 value
         params[method]
       end
     end
@@ -53,10 +54,9 @@ module DefaultForm::Builder
     end
 
     def default_options(method = nil, options = {})
-      # search 应返回默认 params 中对应的 value
-      on = options.slice(:label, :placeholder, :autocomplete, :autofilter)
+      on = options.slice(:label, :placeholder, :autocomplete)
       on.reverse_merge! on_options
-      if on[:autofilter] && !(options.key?(:value) || on[:autocomplete])
+      unless options.key?(:value) || on[:autocomplete] != 'off'
         options[:value] = default_value(method)
       end
 

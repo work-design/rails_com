@@ -7,7 +7,7 @@ require 'default_form/config'
 
 class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
   CSS_KEYS = [:origin, :wrap, :wrap_label, :all, :error, :before_wrap, :after_wrap, :before, :after]
-  ON_KEYS = [:label, :placeholder, :autocomplete, :autofilter]
+  ON_KEYS = [:label, :placeholder, :autocomplete]
   include DefaultForm::Builder::Helper
   attr_reader :on_options, :params
   delegate :content_tag, to: :@template
@@ -32,15 +32,6 @@ class DefaultForm::FormBuilder < ActionView::Helpers::FormBuilder
     @on_options = settings.extract! *ON_KEYS
     @on_options.merge! options.slice(*ON_KEYS)
     @params = template.params
-
-    # todo 非常危险的实现
-    if @theme.end_with?('search')
-      _values = Hash(params.permit(object_name => {})[object_name])
-      if object.is_a?(ActiveRecord::Base)
-        object.reset_attributes
-        object.assign_attributes _values.slice(*object.attribute_names)
-      end
-    end
 
     options[:class] = form_css if options[:class].to_s.start_with?('new_', 'edit_')
     options[:class] = form_css unless options.key?(:class)

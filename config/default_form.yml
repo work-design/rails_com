@@ -34,7 +34,6 @@ before_wrap: &default_before_wraps
 searches: &searches
   method: get
   placeholder: true
-  autofilter: true
   autocomplete: 'off'
 phone: &phone
   <<: *defaults
