@@ -10,7 +10,7 @@ module CompressUtil
     path.each_child do |entry|
       if entry.file?
         output = variation.send(:transformer).send(:process, entry, format: :jpg)
-        FileUtils.copy_file(output, copy_dir(entry.basename))
+        FileUtils.copy_file(output, copy_dir.join(entry.basename))
       end
     end
   end
