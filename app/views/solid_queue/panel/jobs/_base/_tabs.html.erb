@@ -1,16 +1,16 @@
 <div class="tabs">
   <ul>
     <li class="<%= active_helper(action: 'index', active: 'is-active') %>">
-      <%= link_to t('job.panel.jobs.index.title'), { action: 'index' } %>
+      <%= link_to t('.index.title'), { action: 'index' } %>
     </li>
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
-      <%= link_to t('job.panel.jobs.scheduled.title'), { action: 'scheduled' } %>
+      <%= link_to t('.scheduled.title'), { action: 'scheduled' } %>
     </li>
     <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
-      <%= link_to t('job.panel.jobs.running.title'), { action: 'running' } %>
+      <%= link_to t('.running.title'), { action: 'running' } %>
     </li>
     <li class="<%= active_helper(action: 'discarded', active: 'is-active') %>">
-      <%= link_to t('job.panel.jobs.discarded.title'), { action: 'discarded' } %>
+      <%= link_to t('.discarded.title'), { action: 'discarded' } %>
     </li>
   </ul>
 </div>

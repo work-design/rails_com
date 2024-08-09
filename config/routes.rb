@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope RailsCom.default_routes_scope do
-    draw :job
+    draw :solid_queue
     draw :jia_bo
     draw :roled
 

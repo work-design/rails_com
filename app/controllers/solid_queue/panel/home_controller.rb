@@ -1,4 +1,4 @@
-module Job
+module SolidQueue
   class Panel::HomeController < Panel::BaseController
 
     def index
