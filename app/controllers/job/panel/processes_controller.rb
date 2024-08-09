@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module SolidQueue
+module Job
   class Panel::ProcessesController < Panel::BaseController
 
     def index

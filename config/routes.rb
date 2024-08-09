@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope RailsCom.default_routes_scope do
-    draw :solid_queue
+    draw :job
     draw :jia_bo
     draw :roled
 
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
 
     namespace :panel, defaults: { namespace: 'panel' } do
+      root 'home#index'
       controller :home do
         get :index
       end
