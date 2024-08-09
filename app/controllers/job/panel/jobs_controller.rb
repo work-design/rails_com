@@ -9,15 +9,15 @@ module Job
     end
 
     def scheduled
-      @jobs = GoodJob::Job.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
     end
 
     def running
-      @jobs = GoodJob::Job.running.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.finished.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
     end
 
     def discarded
-      @jobs = GoodJob::Job.discarded.default_where(q_params).page(params[:page])
+      @jobs = SolidQueue::Job.clearable.default_where(q_params).page(params[:page])
     end
 
     def show
@@ -44,7 +44,7 @@ module Job
     end
 
     def set_job_classes
-      #@job_classes = GoodJob::Execution.group("serialized_params->>'job_class'").count
+      @job_classes = SolidQueue::Job.select(:class_name).distinct.pluck(:class_name)
     end
 
   end

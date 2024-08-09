@@ -4,13 +4,13 @@
       <%= model.id %>
     <% end %>
   </p>
-  <p><%= model.serialized_params['job_class'] %></p>
+  <p><%= model.arguments['job_class'] %></p>
   <p><%= model.queue_name %></p>
   <p class="text-success"><time data-controller="time" data-format="human"><%= model.finished_at.to_fs(:iso8601) %></time></p>
 </td>
-<td><%= model.serialized_params['executions'] %></td>
+<td><%= model.arguments['executions'] %></td>
 <td>
-<% model.serialized_params['arguments'].each do |arg| %>
+<% model.arguments['arguments'].each do |arg| %>
   <%= simple_format(arg) %>
 <% end %>
 </td>
