@@ -49,7 +49,7 @@ module Job
 
     def q_params
       q = { queue_name: params[:queue_id] }
-      q.merge! 'serialized_params/job_class' => params[:job_class] if params[:job_class].present?
+      q.merge! class_name: params[:job_class] if params[:job_class].present?
       q
     end
 
