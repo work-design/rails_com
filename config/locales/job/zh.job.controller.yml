@@ -5,6 +5,9 @@ zh:
       home:
         index:
           title: 后台任务
+      queues:
+        index:
+          title: 队列
       processes:
         index:
           title: 进程

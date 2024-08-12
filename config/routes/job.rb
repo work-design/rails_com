@@ -9,17 +9,19 @@ namespace :job, defaults: { business: 'job' } do
         patch :perform
       end
     end
-    resources :jobs, only: [:index, :show, :destroy] do
-      collection do
-        get :scheduled
-        get :running
-        get :discarded
-      end
-      member do
-        put :discard
-        put :reschedule
-        put :retry
-        patch :perform
+    resources :queues, only: [:index] do
+      resources :jobs, only: [:index, :show, :destroy] do
+        collection do
+          get :scheduled
+          get :running
+          get :discarded
+        end
+        member do
+          put :discard
+          put :reschedule
+          put :retry
+          patch :perform
+        end
       end
     end
     resources :cron_entries, only: [:index, :show] do

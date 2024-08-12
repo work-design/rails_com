@@ -1,0 +1,7 @@
+<td>
+  <%= link_to({ controller: 'jobs', queue_id: model.name }) do %>
+    <span><%= model.name %></span>
+  <% end %>
+</td>
+<td><%= model.active? %></td>
+<td><%= model.size %></td>
