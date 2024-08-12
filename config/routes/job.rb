@@ -10,6 +10,10 @@ namespace :job, defaults: { business: 'job' } do
       end
     end
     resources :queues, only: [:index] do
+      member do
+        post :pause
+        post :resume
+      end
       resources :jobs, only: [:index, :show, :destroy] do
         collection do
           get :scheduled

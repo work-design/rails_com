@@ -1,3 +1,10 @@
-<tr id="tr_<%= model.id %>">
+<tr>
   <%= yield %>
+  <td>
+    <% if model.active? %>
+      <%= button_to "Pause", { action: 'pause', id: model.name }, class: 'button is-success' %>
+    <% else %>
+      <%= button_to "Resume", { action: 'resume', id: model.name }, class: 'button is-warning' %>
+    <% end %>
+  </td>
 </tr>

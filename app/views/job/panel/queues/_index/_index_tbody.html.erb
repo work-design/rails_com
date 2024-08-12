@@ -3,5 +3,9 @@
     <span><%= model.name %></span>
   <% end %>
 </td>
-<td><%= model.active? %></td>
+<td>
+  <% if model.paused? %>
+    <span class="tag is-warning">Paused</span>
+  <% end %>
+</td>
 <td><%= model.size %></td>
