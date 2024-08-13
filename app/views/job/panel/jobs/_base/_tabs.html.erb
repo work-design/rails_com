@@ -1,13 +1,22 @@
 <div class="tabs is-centered">
   <ul>
     <li class="<%= active_helper(action: 'index', active: 'is-active') %>">
-      <%= link_to t('.index.title'), { action: 'index' } %>
+      <%= link_to({ action: 'index' }) do %>
+        <span><%= t('.index.title') %></span>
+        <span class="tag"><%= SolidQueue::Job.finished.count %></span>
+      <% end %>
     </li>
     <li class="<%= active_helper(action: 'failed', active: 'is-active') %>">
-      <%= link_to t('.failed.title'), { action: 'failed' } %>
+      <%= link_to({ action: 'failed' }) do %>
+        <span><%= t('.failed.title') %></span>
+        <span class="tag"><%= SolidQueue::Job.failed.count %></span>
+      <% end %>
     </li>
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
-      <%= link_to t('.scheduled.title'), { action: 'scheduled' } %>
+      <%= link_to({ action: 'scheduled' }) do %>
+        <span><%= t('.scheduled.title') %></span>
+        <span><%= SolidQueue::Job.scheduled.count %></span>
+      <% end %>
     </li>
     <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
       <%= link_to t('.running.title'), { action: 'running' } %>
