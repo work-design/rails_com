@@ -3,26 +3,34 @@ module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
     before_action :set_job, only: [:show, :perform]
-    before_action :set_class_names, only: [:index, :failed, :scheduled, :running, :discarded]
 
     def index
-      @jobs = SolidQueue::Job.finished.default_where(q_params).order(id: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.finished.default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(id: :desc)
     end
 
     def failed
-      @jobs = SolidQueue::Job.failed.default_where(q_params).order(id: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.failed.default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(id: :desc)
     end
 
     def scheduled
-      @jobs = SolidQueue::Job.scheduled.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.scheduled.default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(scheduled_at: :desc)
     end
 
     def running
-      @jobs = SolidQueue::Job.where.associated(:claimed_execution).default_where(q_params).order(id: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.where.associated(:claimed_execution).default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(id: :desc)
     end
 
     def discarded
       @jobs = SolidQueue::Job.clearable.default_where(q_params).page(params[:page])
+      set_class_names
     end
 
     def show
@@ -51,7 +59,7 @@ module Job
     end
 
     def set_class_names
-      @class_names = SolidQueue::Job.select(:class_name).group(:class_name).count
+      @class_names = @jobs.select(:class_name).group(:class_name).count
     end
 
     def q_params
