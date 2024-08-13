@@ -1,13 +1,18 @@
 <td>
-  <% if model.supervisor_id %>
-    <span style="width: 2rem"></span>
-  <% end %>
-  <p><%= model.kind %></p>
-  <p><%= model.pid %></p>
+  <div class="<%= model.supervisor_id ? 'pl-4' : '' %>">
+    <p><%= model.kind %></p>
+    <p><%= model.pid %></p>
+  </div>
 </td>
 <td><%= model.hostname %></td>
 <td>
-  <p><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
-  <p data-controller="count-up" data-count-up-time-value="<%= model.created_at.to_fs(:iso8601) %>" class="text-grey"><%= exact_distance_time(model.created_at) %></p>
+  <p>
+    <time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time>
+    <span data-controller="count-up" data-count-up-time-value="<%= model.created_at.to_fs(:iso8601) %>" class="tag text-grey"><%= exact_distance_time(model.created_at) %></span>
+  </p>
+  <p>
+    <time data-controller="time" data-format="human"><%= model.last_heartbeat_at.to_fs(:iso8601) %></time>
+    <span data-controller="count-up" data-count-up-time-value="<%= model.last_heartbeat_at.to_fs(:iso8601) %>" class="tag text-grey"><%= exact_distance_time(model.last_heartbeat_at) %></span>
+  </p>
 </td>
 <td><pre><%= model.metadata.to_format_yaml %></pre></td>
