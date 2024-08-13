@@ -1,4 +1,7 @@
 <td>
+  <% if model.supervisor_id %>
+    <span style="width: 2rem"></span>
+  <% end %>
   <p><%= model.kind %></p>
   <p><%= model.pid %></p>
 </td>
