@@ -15,14 +15,20 @@
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
       <%= link_to({ action: 'scheduled' }) do %>
         <span><%= t('.scheduled.title') %></span>
-        <span><%= SolidQueue::Job.scheduled.count %></span>
+        <span class="tag"><%= SolidQueue::Job.scheduled.count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
-      <%= link_to t('.running.title'), { action: 'running' } %>
+      <%= link_to({ action: 'running' }) do %>
+        <span><%= t('.running.title') %></span>
+        <span class="tag"><%= SolidQueue::Job.where.associated(:claimed_execution).count %></span>
+      <% end %>
     </li>
     <li class="<%= active_helper(action: 'discarded', active: 'is-active') %>">
-      <%= link_to t('.discarded.title'), { action: 'discarded' } %>
+      <%= link_to({ action: 'discarded' }) do %>
+        <span><%= t('.discarded.title') %></span>
+        <span class="tag"><%= SolidQueue::Job.clearable.count %></span>
+      <% end %>
     </li>
   </ul>
 </div>

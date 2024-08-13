@@ -38,6 +38,7 @@ require 'default_form/view_helper'
 require 'active_storage/service/disc_service'
 
 # outside
+require 'solid_queue'
 require 'default_where'
 require 'kaminari'
 require 'positioning'

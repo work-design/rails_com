@@ -18,7 +18,7 @@ module Job
     end
 
     def running
-      @jobs = SolidQueue::Job.finished.default_where(q_params).order(scheduled_at: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.where.associated(:claimed_execution).default_where(q_params).order(id: :desc).page(params[:page])
     end
 
     def discarded
