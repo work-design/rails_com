@@ -1,7 +1,7 @@
 <th>
   <p><%= SolidQueue::Job.human_attribute_name(:active_job_id) %></p>
   <p><%= SolidQueue::Job.human_attribute_name(:job_class) %></p>
-  <p class="text-success"><%= SolidQueue::Job.human_attribute_name(:finished_at) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:created_at) %></p>
   <p><%= SolidQueue::Job.human_attribute_name(:arguments) %></p>
 </th>
 <th><%= SolidQueue::FailedExecution.human_attribute_name(:error) %></th>
