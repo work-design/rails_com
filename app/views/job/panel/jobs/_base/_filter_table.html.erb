@@ -1,14 +1,21 @@
-<table class="table as-search">
-  <tr>
-    <th>分类</th>
-    <td>
-      <%= link_to t('.all'), filter_params(except: [:job_class]), class: active_helper(job_class: '', active: 'button is-info mb-2', item: 'button is-light mb-2') %>
+<div class="dropdown is-hoverable">
+  <div class="dropdown-trigger">
+    <button class="button">
+      <span>分类</span>
+      <span class="icon is-small">
+        <i class="fa-solid fa-angle-down"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu">
+    <div class="dropdown-content">
+      <%= link_to t('.all'), filter_params(except: [:job_class]), class: active_helper(job_class: '', active: 'dropdown-item is-active', item: 'dropdown-item') %>
       <% @job_classes.each do |job_class, count| %>
-        <%= link_to filter_params(job_class: job_class), class: active_helper(job_class: job_class, active: 'button is-info mb-2', item: 'button is-light mb-2') do %>
+        <%= link_to filter_params(job_class: job_class), class: active_helper(job_class: job_class, active: 'dropdown-item is-active', item: 'dropdown-item') do %>
           <span><%= job_class %></span>
           <span class="text-grey">(<%= count %>)</span>
         <% end %>
       <% end %>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
