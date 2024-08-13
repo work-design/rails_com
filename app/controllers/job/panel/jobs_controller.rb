@@ -40,7 +40,10 @@ module Job
 
     private
     def set_queue
-      @queue = ActiveJob.queues[params[:queue_id]]
+      queues_hash = SolidQueue::Queue.all.each_with_object({}) do |queue, h|
+        h.merge! queue.name => queue
+      end
+      @queue = queues_hash[params[:queue_id]]
     end
 
     def set_job
