@@ -3,6 +3,9 @@
     <li class="<%= active_helper(action: 'index', active: 'is-active') %>">
       <%= link_to t('.index.title'), { action: 'index' } %>
     </li>
+    <li class="<%= active_helper(action: 'failed', active: 'is-active') %>">
+      <%= link_to t('.failed.title'), { action: 'failed' } %>
+    </li>
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
       <%= link_to t('.scheduled.title'), { action: 'scheduled' } %>
     </li>

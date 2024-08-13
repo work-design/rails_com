@@ -3,10 +3,14 @@ module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
     before_action :set_job, only: [:show, :perform]
-    before_action :set_job_classes, only: [:index, :scheduled, :running, :discarded]
+    before_action :set_class_names, only: [:index, :failed, :scheduled, :running, :discarded]
 
     def index
-      @jobs = SolidQueue::Job.default_where(q_params).order(id: :desc).page(params[:page])
+      @jobs = SolidQueue::Job.finished.default_where(q_params).order(id: :desc).page(params[:page])
+    end
+
+    def failed
+      @jobs = SolidQueue::Job.failed.default_where(q_params).order(id: :desc).page(params[:page])
     end
 
     def scheduled
@@ -43,13 +47,13 @@ module Job
       @job = SolidQueue::Job.find params[:id]
     end
 
-    def set_job_classes
-      @job_classes = SolidQueue::Job.select(:class_name).distinct.pluck(:class_name)
+    def set_class_names
+      @class_names = SolidQueue::Job.select(:class_name).distinct.pluck(:class_name)
     end
 
     def q_params
       q = { queue_name: params[:queue_id] }
-      q.merge! class_name: params[:job_class] if params[:job_class].present?
+      q.merge! params.permit(:class_name)
       q
     end
 

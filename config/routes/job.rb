@@ -16,6 +16,7 @@ namespace :job, defaults: { business: 'job' } do
       end
       resources :jobs, only: [:index, :show, :destroy] do
         collection do
+          get :failed
           get :scheduled
           get :running
           get :discarded
