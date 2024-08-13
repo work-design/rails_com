@@ -1,8 +1,8 @@
-<tr>
-  <td class="right aligned"><%= SolidQueue::Job.human_attribute_name(:id) %></td>
-  <td><%= @job.id %></td>
-</tr>
-<tr>
-  <td class="right aligned"><%= SolidQueue::Job.human_attribute_name(:arguments) %></td>
-  <td><%= simple_format @job.arguments %></td>
-</tr>
+<div>
+  <dt><%= SolidQueue::Job.human_attribute_name(:id) %></dt>
+  <dd><%= @job.id %></dd>
+</div>
+<div>
+  <dt><%= SolidQueue::Job.human_attribute_name(:arguments) %></dt>
+  <dd><pre class="text-left"><%= @job.arguments.to_format_yaml %></pre></dd>
+</div>
