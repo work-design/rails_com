@@ -51,7 +51,7 @@ module Job
     end
 
     def set_class_names
-      @class_names = SolidQueue::Job.select(:class_name).distinct.pluck(:class_name)
+      @class_names = SolidQueue::Job.select(:class_name).group(:class_name).count
     end
 
     def q_params
