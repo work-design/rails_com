@@ -20,6 +20,7 @@ namespace :job, defaults: { business: 'job' } do
           get :scheduled
           get :blocked
           get :running
+          get :ready
           get :clearable
           delete :clear_all
         end

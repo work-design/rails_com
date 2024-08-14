@@ -34,6 +34,12 @@ module Job
       @jobs = @jobs.order(id: :desc)
     end
 
+    def ready
+      @jobs = SolidQueue::Job.where.associated(:ready_execution).default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(id: :desc)
+    end
+
     def clearable
       @jobs = SolidQueue::Job.clearable.default_where(q_params).page(params[:page])
       set_class_names

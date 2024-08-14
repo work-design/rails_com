@@ -22,6 +22,8 @@ zh:
           title: Blocked
         running:
           title: 运行中
+        ready:
+          title: 待执行
         clearable:
           title: 可清理的
         clear_all:
