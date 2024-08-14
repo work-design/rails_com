@@ -37,9 +37,6 @@ module Job
       SolidQueue::Job.clear_finished_in_batches(class_name: params[:class_name])
     end
 
-    def show
-    end
-
     def perform
       @job.perform
     end
