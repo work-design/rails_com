@@ -18,6 +18,7 @@ namespace :job, defaults: { business: 'job' } do
         collection do
           get :failed
           get :scheduled
+          get :blocked
           get :running
           get :clearable
           delete :clear_all

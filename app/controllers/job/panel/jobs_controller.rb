@@ -22,6 +22,12 @@ module Job
       @jobs = @jobs.order(scheduled_at: :desc)
     end
 
+    def blocked
+      @jobs = SolidQueue::Job.where.associated(:blocked_execution).default_where(q_params).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(id: :desc)
+    end
+
     def running
       @jobs = SolidQueue::Job.where.associated(:claimed_execution).default_where(q_params).page(params[:page])
       set_class_names

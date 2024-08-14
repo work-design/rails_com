@@ -18,6 +18,12 @@
         <span class="tag"><%= SolidQueue::Job.scheduled.count %></span>
       <% end %>
     </li>
+    <li class="<%= active_helper(action: 'blocked', active: 'is-active') %>">
+      <%= link_to({ action: 'blocked' }) do %>
+        <span><%= t('.blocked.title') %></span>
+        <span class="tag"><%= SolidQueue::Job.where.associated(:blocked_execution).count %></span>
+      <% end %>
+    </li>
     <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
       <%= link_to({ action: 'running' }) do %>
         <span><%= t('.running.title') %></span>

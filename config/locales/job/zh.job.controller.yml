@@ -18,6 +18,8 @@ zh:
           title: 已失败
         scheduled:
           title: 计划中
+        blocked:
+          title: Blocked
         running:
           title: 运行中
         clearable:
