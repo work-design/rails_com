@@ -3,11 +3,11 @@
     <span class="size-7 has-border-left-primary">设置</span>
   </div>
   <div class="columns is-4-mobile flex is-vcentered is-centered m-0" data-empty-target="content">
-    <%= link_to({ controller: 'profiled/my/addresses' }, class: 'column has-column-centered') do %>
+    <%= link_to({ controller: 'ship/my/addresses' }, class: 'column has-column-centered') do %>
       <div class="text-primary">
         <i class="fa-solid fa-fw fa-xl fa-location-dot"></i>
       </div>
-      <div class="text-grey size-7 mt-1"><%= t('profiled.my.addresses.index.title') %></div>
+      <div class="text-grey size-7 mt-1"><%= t('ship.my.addresses.index.title') %></div>
     <% end %>
     <%= link_to({ controller: 'wechat/my/users', action: 'invite_qrcode' }, class: 'column has-column-centered') do %>
       <div class="text-primary fa-weui-badge">

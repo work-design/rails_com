@@ -2,7 +2,7 @@
 module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
-    before_action :set_job, only: [:show, :perform]
+    before_action :set_job, only: [:show, :perform, :destroy]
 
     def index
       @jobs = SolidQueue::Job.finished.default_where(q_params).page(params[:page])
@@ -37,13 +37,11 @@ module Job
     end
 
     def perform
-      @execution.perform
+      @job.perform
     end
 
     def destroy
-      deleted_count = GoodJob::Execution.where(id: params[:id]).delete_all
-      message = deleted_count.positive? ? { notice: "Job execution deleted" } : { alert: "Job execution not deleted" }
-      redirect_back fallback_location: root_path, **message
+      @job.destroy
     end
 
     private
