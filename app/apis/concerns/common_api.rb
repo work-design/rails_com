@@ -13,6 +13,9 @@ module CommonApi
       },
       headers: {
         'Accept' => 'application/json'
+      },
+      timeout: {
+        read_timeout: 120
       }
     )
   end
