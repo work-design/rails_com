@@ -20,8 +20,11 @@ zh:
           title: 计划中
         running:
           title: 运行中
-        discarded:
-          title: 已取消
+        clearable:
+          title: 可清理的
+        clear_all:
+          title: 清理全部
+          confirm: 确认
         perform:
           title: 运行
           confirm: 确认

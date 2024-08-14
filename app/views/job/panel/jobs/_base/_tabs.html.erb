@@ -24,9 +24,9 @@
         <span class="tag"><%= SolidQueue::Job.where.associated(:claimed_execution).count %></span>
       <% end %>
     </li>
-    <li class="<%= active_helper(action: 'discarded', active: 'is-active') %>">
-      <%= link_to({ action: 'discarded' }) do %>
-        <span><%= t('.discarded.title') %></span>
+    <li class="<%= active_helper(action: 'clearable', active: 'is-active') %>">
+      <%= link_to({ action: 'clearable' }) do %>
+        <span><%= t('.clearable.title') %></span>
         <span class="tag"><%= SolidQueue::Job.clearable.count %></span>
       <% end %>
     </li>

@@ -19,7 +19,8 @@ namespace :job, defaults: { business: 'job' } do
           get :failed
           get :scheduled
           get :running
-          get :discarded
+          get :clearable
+          delete :clear_all
         end
         member do
           put :discard

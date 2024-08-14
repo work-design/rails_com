@@ -28,9 +28,13 @@ module Job
       @jobs = @jobs.order(id: :desc)
     end
 
-    def discarded
+    def clearable
       @jobs = SolidQueue::Job.clearable.default_where(q_params).page(params[:page])
       set_class_names
+    end
+
+    def clear_all
+      SolidQueue::Job.clear_finished_in_batches(class_name: params[:class_name])
     end
 
     def show
