@@ -2,7 +2,7 @@
 module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
-    before_action :set_job, only: [:show, :perform, :destroy]
+    before_action :set_job, only: [:show, :retry, :destroy]
 
     def index
       @jobs = SolidQueue::Job.finished.default_where(q_params).page(params[:page])
@@ -49,8 +49,13 @@ module Job
       SolidQueue::Job.clear_finished_in_batches(class_name: params[:class_name])
     end
 
-    def perform
-      @job.dispatch
+    def retry
+      @job.failed_execution.retry
+    end
+
+    def retry_all
+      jobs = SolidQueue::Job.failed.default_where(q_params)
+      SolidQueue::FailedExecution.retry_all(jobs)
     end
 
     def destroy

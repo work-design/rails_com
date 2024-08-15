@@ -22,11 +22,12 @@ namespace :job, defaults: { business: 'job' } do
           get :ready
           get :clearable
           delete :clear_all
+          post :retry_all
         end
         member do
           put :discard
           put :reschedule
-          put :retry
+          post :retry
           patch :perform
         end
       end

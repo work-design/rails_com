@@ -29,6 +29,9 @@ zh:
         clear_all:
           title: 清理全部
           confirm: 确认
-        perform:
-          title: 运行
+        retry:
+          title: 重试
+          confirm: 确认
+        retry_all:
+          title: 重试所有
           confirm: 确认
