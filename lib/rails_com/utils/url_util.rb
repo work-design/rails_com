@@ -6,11 +6,12 @@ module UrlUtil
     file_path = Rails.root.join('tmp/files', filename)
     file_path.dirname.exist? || file_path.dirname.mkpath
     file = File.new(file_path, 'w')
+    file.binmode
 
     begin
       res = HTTPX.plugin(:follow_redirects).get(url)
       res.body.each do |fragment|
-        file.binwrite fragment
+        file.write fragment
       end if res.error.nil?
     rescue => e
     end
