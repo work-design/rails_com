@@ -1,0 +1,11 @@
+<td>
+  <%= link_to({ controller: 'jobs', queue_id: model.name }) do %>
+    <span><%= model.name %></span>
+  <% end %>
+</td>
+<td>
+  <% if model.paused? %>
+    <span class="tag is-warning">Paused</span>
+  <% end %>
+</td>
+<td><%= model.size %></td>

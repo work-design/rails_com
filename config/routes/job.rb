@@ -3,7 +3,6 @@
 namespace :job, defaults: { business: 'job' } do
   namespace :panel, defaults: { namespace: 'panel' } do
     root 'home#index'
-    resources :processes, only: [:index]
     resources :executions, only: [:index, :show, :destroy] do
       member do
         patch :perform

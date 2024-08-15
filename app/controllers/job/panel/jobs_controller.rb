@@ -50,7 +50,7 @@ module Job
     end
 
     def perform
-      @job.perform
+      @job.dispatch
     end
 
     def destroy
