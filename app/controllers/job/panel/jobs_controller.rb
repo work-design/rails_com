@@ -50,7 +50,7 @@ module Job
     end
 
     def retry
-      @job.failed_execution.retry
+      @job.retry
     end
 
     def retry_all
