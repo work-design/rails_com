@@ -2,7 +2,7 @@ zh:
   number:
     human:
       format:
-        delimiter: ""
+        delimiter: ''
         precision: 0
         significant: false
         strip_insignificant_zeros: false
@@ -28,14 +28,14 @@ zh:
           mili: Thousandth
           centi: 分
           deci: 角
-          unit: ""
+          unit: ''
           ten:
             one: 拾
             other: 拾
           hundred: 佰
           thousand: 仟
           million: 佰万
-          billion: Billion
+          billion: 十亿
           trillion: Trillion
           quadrillion: Quadrillion
   support:
