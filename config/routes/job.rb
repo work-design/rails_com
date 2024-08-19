@@ -22,6 +22,7 @@ namespace :job, defaults: { business: 'job' } do
           get :ready
           get :clearable
           delete :clear_all
+          delete :batch_destroy
           post :retry_all
         end
         member do
