@@ -58,6 +58,10 @@ module Job
       SolidQueue::FailedExecution.retry_all(jobs)
     end
 
+    def batch_destroy
+      SolidQueue::Job.where(id: params[:ids].split(',')).each(&:destroy)
+    end
+
     def destroy
       @job.destroy
     end

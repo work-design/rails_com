@@ -29,6 +29,9 @@ zh:
         clear_all:
           title: 清理全部
           confirm: 确认
+        batch_destroy:
+          title: 删除选中
+          confirm: 确认
         retry:
           title: 重试
           confirm: 确认
