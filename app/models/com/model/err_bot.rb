@@ -6,6 +6,7 @@ module Com
       attr_reader :content
 
       attribute :type, :string
+      attribute :controller_name, :string
       attribute :hook_url, :string
 
       after_initialize :init_ivar
