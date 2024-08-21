@@ -8,7 +8,7 @@ module Com
       attribute :controller_name, :string, index: true
 
       belongs_to :err_bot
-      belongs_to :err, foreign_key: :controller_name, primary_key: :controller_name
+      belongs_to :err, foreign_key: :controller_name, primary_key: :controller_name, optional: true
     end
   end
 end
