@@ -45,7 +45,7 @@ module Com
     end
 
     def send_message_later
-      if bots.present?
+      if err_bots.present?
         ErrJob.perform_later(self)
       elsif err_summary.errs_count == 1
         ErrFirstJob.perform_later(self)
