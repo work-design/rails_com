@@ -6,8 +6,11 @@ module Com
       attr_reader :content
 
       attribute :type, :string
-      attribute :controller_name, :string
       attribute :hook_url, :string
+
+      has_many :err_notices
+
+      accepts_nested_attributes_for :err_notices, allow_destroy: true
 
       after_initialize :init_ivar
     end

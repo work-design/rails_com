@@ -1,11 +1,15 @@
 module Com
   class Panel::ErrBotsController < Panel::BaseController
-    before_action :set_err_bot, only: [:show, :destroy]
+    before_action :set_err_bot, only: [:show, :edit, :update, :destroy, :actions]
 
     def index
       q_params = {}
 
       @err_bots = ErrBot.page(params[:page])
+    end
+
+    def edit
+      @err_bot.err_notices.build if @err_bot.err_notices.blank?
     end
 
     private
@@ -16,7 +20,8 @@ module Com
     def err_bot_params
       params.fetch(:err_bot, {}).permit(
         :type,
-        :hook_url
+        :hook_url,
+        err_notices_attributes: {}
       )
     end
 

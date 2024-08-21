@@ -1,3 +1,7 @@
 <td><%= model.type_i18n %></td>
-<td><%= model.controller_name %></td>
+<td>
+<% model.err_notices.each do |err_notice| %>
+  <p><%= err_notice.controller_name %></p>
+<% end %>
+</td>
 <td><%= model.hook_url %></td>

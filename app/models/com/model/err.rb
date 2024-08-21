@@ -16,7 +16,8 @@ module Com
       attribute :ip, :string
 
       belongs_to :err_summary, ->(o){ where(o.filter_hash) }, foreign_key: :controller_name, primary_key: :controller_name, counter_cache: true, touch: true, optional: true
-      has_many :bots, primary_key: :controller_name, foreign_key: :controller_name
+      has_many :err_notices, primary_key: :controller_name, foreign_key: :controller_name
+      has_many :err_bots, through: :err_notices
 
       default_scope -> { order(id: :desc) }
 
