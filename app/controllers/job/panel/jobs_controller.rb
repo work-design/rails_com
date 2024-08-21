@@ -2,46 +2,47 @@
 module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
+    before_action :set_common_jobs
     before_action :set_job, only: [:show, :retry, :destroy]
 
     def index
-      @jobs = SolidQueue::Job.finished.default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.finished.page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def failed
-      @jobs = SolidQueue::Job.failed.default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.failed.page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def scheduled
-      @jobs = SolidQueue::Job.scheduled.default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.scheduled.page(params[:page])
       set_class_names
       @jobs = @jobs.order(scheduled_at: :desc)
     end
 
     def blocked
-      @jobs = SolidQueue::Job.where.associated(:blocked_execution).default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.where.associated(:blocked_execution).page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def running
-      @jobs = SolidQueue::Job.where.associated(:claimed_execution).default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.where.associated(:claimed_execution).page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def ready
-      @jobs = SolidQueue::Job.where.associated(:ready_execution).default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.where.associated(:ready_execution).page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def clearable
-      @jobs = SolidQueue::Job.clearable.default_where(q_params).page(params[:page])
+      @jobs = @common_jobs.clearable.page(params[:page])
       set_class_names
     end
 
@@ -72,6 +73,10 @@ module Job
         h.merge! queue.name => queue
       end
       @queue = queues_hash[params[:queue_id]]
+    end
+
+    def set_common_jobs
+      @common_jobs = SolidQueue::Job.default_where(q_params)
     end
 
     def set_job

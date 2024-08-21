@@ -3,43 +3,43 @@
     <li class="<%= active_helper(action: 'index', active: 'is-active') %>">
       <%= link_to({ action: 'index' }) do %>
         <span><%= t('.index.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.finished.count %></span>
+        <span class="tag"><%= @common_jobs.finished.count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'failed', active: 'is-active') %>">
       <%= link_to({ action: 'failed' }) do %>
         <span><%= t('.failed.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.failed.count %></span>
+        <span class="tag"><%= @common_jobs.failed.count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
       <%= link_to({ action: 'scheduled' }) do %>
         <span><%= t('.scheduled.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.scheduled.count %></span>
+        <span class="tag"><%= @common_jobs.scheduled.count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'blocked', active: 'is-active') %>">
       <%= link_to({ action: 'blocked' }) do %>
         <span><%= t('.blocked.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.where.associated(:blocked_execution).count %></span>
+        <span class="tag"><%= @common_jobs.where.associated(:blocked_execution).count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'running', active: 'is-active') %>">
       <%= link_to({ action: 'running' }) do %>
         <span><%= t('.running.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.where.associated(:claimed_execution).count %></span>
+        <span class="tag"><%= @common_jobs.where.associated(:claimed_execution).count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'ready', active: 'is-active') %>">
       <%= link_to({ action: 'ready' }) do %>
         <span><%= t('.ready.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.where.associated(:ready_execution).count %></span>
+        <span class="tag"><%= @common_jobs.where.associated(:ready_execution).count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'clearable', active: 'is-active') %>">
       <%= link_to({ action: 'clearable' }) do %>
         <span><%= t('.clearable.title') %></span>
-        <span class="tag"><%= SolidQueue::Job.clearable.count %></span>
+        <span class="tag"><%= @common_jobs.clearable.count %></span>
       <% end %>
     </li>
   </ul>
