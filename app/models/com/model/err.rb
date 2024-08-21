@@ -37,9 +37,18 @@ module Com
       end
     end
 
+    def send_first_message
+      ErrBot.where(controller_name: nil).map do |bot|
+        bot.send_message(self)
+      end
+    end
+
     def send_message_later
-      return if err_summary.errs_count > 1
-      ErrJob.perform_later(self)
+      if bots.present?
+        ErrJob.perform_later(self)
+      elsif err_summary.errs_count == 1
+        ErrFirstJob.perform_later(self)
+      end
     end
 
     def user_info
