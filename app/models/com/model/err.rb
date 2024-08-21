@@ -33,7 +33,7 @@ module Com
     end
 
     def send_message
-      bots.map do |bot|
+      err_bots.map do |bot|
         bot.send_message(self)
       end
     end
