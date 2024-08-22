@@ -10,7 +10,7 @@ module RailsCom::ActionDispatch
         post :show if parent_resource.actions.include?(:show) && parent_resource.actions.include?(:index)
         if parent_resource.actions.include?(:edit)
           post :edit
-          post :edit_inline
+          post :inline
         end
       end
       super

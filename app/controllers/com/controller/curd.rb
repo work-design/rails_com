@@ -59,6 +59,11 @@ module Com
       render :edit, locals: { model: model }
     end
 
+    def inline
+      model = model_object
+      render :inline, locals: { model: model }
+    end
+
     def move_higher
       model = model_object
       model.update position: { before: model.prior_position }
