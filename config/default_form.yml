@@ -139,8 +139,8 @@ inline:
   label: false
   form: field is-grouped
   origin:
-    input: input
-    submit: button is-primary
+    input: input is-small
+    submit: button is-small is-primary
 weui_search:
   <<: *searches
   form: weui-cells weui-cells_form
