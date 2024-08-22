@@ -39,7 +39,7 @@ module Com
     end
 
     def send_first_message
-      ErrBot.where(controller_name: nil).map do |bot|
+      ErrBot.first_time.map do |bot|
         bot.send_message(self)
       end
     end

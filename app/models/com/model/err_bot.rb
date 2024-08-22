@@ -7,10 +7,13 @@ module Com
 
       attribute :type, :string
       attribute :hook_url, :string
+      attribute :first_time, :boolean
 
       has_many :err_notices
 
       accepts_nested_attributes_for :err_notices, allow_destroy: true
+
+      scope :first_time, -> { where(first_time: true) }
 
       after_initialize :init_ivar
     end

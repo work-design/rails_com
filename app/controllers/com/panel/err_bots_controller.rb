@@ -21,6 +21,7 @@ module Com
       params.fetch(:err_bot, {}).permit(
         :type,
         :hook_url,
+        :first_time,
         err_notices_attributes: {}
       )
     end
