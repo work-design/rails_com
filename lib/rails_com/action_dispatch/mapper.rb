@@ -8,7 +8,10 @@ module RailsCom::ActionDispatch
       member do
         post :actions
         post :show if parent_resource.actions.include?(:show) && parent_resource.actions.include?(:index)
-        post :edit if parent_resource.actions.include?(:edit)
+        if parent_resource.actions.include?(:edit)
+          post :edit
+          post :edit_inline
+        end
       end
       super
     end
