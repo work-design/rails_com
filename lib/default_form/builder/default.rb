@@ -27,7 +27,7 @@ module DefaultForm::Builder
 
     def default_value(method)
       if object.is_a?(ActiveRecord::Base)
-        r = object.respond_to?(method) && object.send(method)
+        r = object.attributes[method.to_s] # 仅支持 attribute, 是否考虑 activestorage
         return r if r
       end
 
