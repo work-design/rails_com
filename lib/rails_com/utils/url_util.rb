@@ -18,4 +18,12 @@ module UrlUtil
     file.rewind
     file_path
   end
+
+  def init_file(filename = SecureRandom.alphanumeric)
+    file_path = Rails.root.join('tmp/files', filename)
+    file_path.dirname.exist? || file_path.dirname.mkpath
+    file = File.new(file_path, 'w')
+    file.binmode
+    file
+  end
 end
