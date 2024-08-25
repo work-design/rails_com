@@ -8,8 +8,12 @@
     </div>
     <div class="navbar-end">
       <%= render partial: 'locales' %>
-      <%= render partial: 'notice_navbar' if defined? RailsNotice %>
-      <%= render partial: 'auth_navbar' %>
+      <% if defined?(current_member) && current_member %>
+        <%= render partial: 'notice_navbar' if defined? RailsNotice %>
+        <%= render partial: 'auth_navbar' %>
+      <% else %>
+        <%= render partial: 'login_navbar' %>
+      <% end %>
     </div>
   </div>
 </nav>
