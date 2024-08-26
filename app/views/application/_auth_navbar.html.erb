@@ -1,6 +1,10 @@
 <div class="navbar-item has-dropdown is-hoverable display-none-touch">
-  <div class="navbar-link">
-    <%= image_tag current_user.avatar if current_user.avatar.present? %>
+  <div class="navbar-link is-arrowless">
+    <% if current_user.avatar.present? %>
+      <%= image_tag current_user.avatar %>
+    <% else %>
+      <i class="fa-solid fa-user"></i>
+    <% end %>
     <span><%= current_user.name %></span>
   </div>
   <div class="navbar-dropdown is-right">
