@@ -145,6 +145,8 @@ module Com
     end
 
     def cert
+      r = order.certificate(force_chain: 'DST Root CA X3')
+    rescue Acme::Client::Error::ForcedChainNotFound
       r = order.certificate
     rescue Acme::Client::Error::BadNonce
       retry
