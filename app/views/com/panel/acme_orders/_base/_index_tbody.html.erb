@@ -1,4 +1,8 @@
-<td><%= simple_format model.identifiers %></td>
+<td>
+<% model.acme_identifiers.each do |ai| %>
+  <p><%= ai.identifier %></p>
+<% end %>
+</td>
 <td><%= model.url %></td>
 <td>
   <% if model.private_pem_blob %>
@@ -8,4 +12,7 @@
     <p><%= link_to model.cert_key_blob.filename, model.cert_key_blob.url %></p>
   <% end %>
 </td>
-<td><time data-controller="time"><%= model.issued_at&.to_fs(:iso8601) %></time></td>
+<td>
+  <p><%= model.status %></p>
+  <p><time data-controller="time"><%= model.issued_at&.to_fs(:iso8601) %></time></p>
+</td>

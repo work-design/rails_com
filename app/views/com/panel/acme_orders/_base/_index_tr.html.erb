@@ -21,10 +21,6 @@
         <i class="fa-solid fa-shopping-cart text-success"></i>
         <span class="ml-1"><%= t('.order.title') %></span>
       <% end %>
-      <%= button_to({ action: 'verify', id: model.id }, method: :patch, class: 'button is-small is-rounded is-light') do %>
-        <i class="fa-solid fa-check text-warning-dark"></i>
-        <span class="ml-1"><%= t('.verify.title') %></span>
-      <% end %>
       <%= button_to({ action: 'cert', id: model.id }, method: :patch, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-certificate"></i>
         <span class="ml-1"><%= t('.cert.title') %></span>

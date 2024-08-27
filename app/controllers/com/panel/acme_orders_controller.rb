@@ -20,19 +20,11 @@ module Com
 
     def order
       r = @acme_order.order(true)
-
-      render 'update'
-    end
-
-    def verify
-      r = @acme_order.all_verify?
-
       render 'update'
     end
 
     def cert
-      r = @acme_order.finalize
-      @acme_order.cert
+      @acme_order.get_cert
 
       render 'update'
     end
