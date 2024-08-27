@@ -22,21 +22,20 @@ module RailsCom #:nodoc:
       'ActiveRecord::RecordNotFound'
     ]
     config.ignore_models = [
-      'GoodJob::BaseExecution',
-      'GoodJob::BatchRecord',
-      'GoodJob::DiscreteExecution',
-      'GoodJob::Execution',
-      'GoodJob::Job',
-      'GoodJob::Process',
-      'GoodJob::Setting'
+      'SolidQueue::Semaphore',
+      'SolidQueue::Process',
+      'SolidQueue::Pause',
+      'SolidQueue::Job',
+      'SolidQueue::ScheduledExecution',
+      'SolidQueue::ReadyExecution',
+      'SolidQueue::BlockedExecution',
+      'SolidQueue::RecurringExecution',
+      'SolidQueue::RecurringTask',
+      'SolidCache::Entry'
     ]
     config.override_prefixes = [
       'application'
     ]
-    config.quiet_logs = [
-      '/rails/active_storage',
-      '/images',
-      '/@fs'
-    ]
+    config.quiet_logs = []
   end
 end
