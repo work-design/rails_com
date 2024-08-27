@@ -145,20 +145,24 @@ module Com
     end
 
     def cert
-      r = order.certificate(force_chain: 'DST Root CA X3')
-    rescue Acme::Client::Error::ForcedChainNotFound
-      r = order.certificate
-    rescue Acme::Client::Error::BadNonce
-      retry
-    else
-      file = Tempfile.new
-      file.binmode
-      file.write r
-      file.rewind
-      self.issued_at = Time.current
-      self.status = order.status
-      self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
-      self.save
+      begin
+        r = order.certificate(force_chain: 'DST Root CA X3')
+      rescue Acme::Client::Error::ForcedChainNotFound
+        r = order.certificate
+      rescue Acme::Client::Error::BadNonce
+        retry
+      end
+
+      if r
+        file = Tempfile.new
+        file.binmode
+        file.write r
+        file.rewind
+        self.issued_at = Time.current
+        self.status = order.status
+        self.cert_key.attach io: file, filename: "#{identifiers_string}.pem"
+        self.save
+      end
       r
     end
 
