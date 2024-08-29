@@ -1,5 +1,7 @@
 <%= render layout: 'layouts/phone_head' do %>
   <main id="weui-tab__panel">
+    <%= render 'top_bar' %>
+    <%= render 'alert' %>
     <%= yield %>
   </main>
   <%= render 'tab_bar_footer' %>
