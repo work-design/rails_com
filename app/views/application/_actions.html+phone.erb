@@ -1,12 +1,12 @@
 <%= button_to({ action: 'destroy' }, method: :delete, form: { data: { turbo_confirm: t('.destroy.confirm') }, class: 'cell' }, class: 'has-column-centered text-danger') do %>
   <i class="fa-solid fa-trash"></i>
   <span><%= t('.destroy.title') %></span>
-<% end %>
+<% end if RailsCom::Routes.controllers[referer_controller].key?('destroy') %>
 <%= button_to({ action: 'edit' }, class: 'cell has-column-centered') do %>
   <i class="fa-solid fa-pencil"></i>
   <span><%= t('.edit.title') %></span>
-<% end %>
+<% end if RailsCom::Routes.controllers[referer_controller].key?('edit') %>
 <%= link_to({ action: 'show' }, class: 'cell has-column-centered') do %>
   <i class="fa-solid fa-circle-info"></i>
   <span><%= t('.show.title') %></span>
-<% end %>
+<% end unless referer_meta[:action] == 'show' %>
