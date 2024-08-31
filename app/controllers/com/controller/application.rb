@@ -20,13 +20,13 @@ module Com
       params.except(:business, :namespace, :controller, :action)
     end
 
-    def urlsafe_encode64(
+    def state_enter(
       host: request.host,
-      _controller_path: "/#{controller_path}",
-      _action_name: action_name,
+      state_controller: "/#{controller_path}",
+      state_action: action_name,
       request_method: request.request_method,
       referer: request.referer,
-      _params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
+      state_params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
       body: raw_params.compact_blank,
       organ_id: current_organ&.id,
       user_id: current_user&.id,
@@ -34,11 +34,11 @@ module Com
     )
       state = State.create(
         host: host,
-        controller_path: _controller_path,
-        action_name: _action_name,
+        controller_path: state_controller,
+        action_name: state_action,
         request_method: request_method,
         referer: referer,
-        params: _params,
+        params: state_params,
         body: body,
         organ_id: organ_id,
         user_id: user_id,
