@@ -1,9 +1,15 @@
-<% if params[:action] != 'index' || (params[:action] == 'index' && params[:return_state].present?) %>
+<% if params[:action] != 'index' %>
 <div data-controller="mini-program" data-mini-program-pt-class="pt-0" class="box as-bar">
   <%= link_to({ action: 'index' }, class: 'px-4') do %>
     <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
   <% end %>
   <div class="weui-title"><%= t('.title', default: '') %></div>
-  <i class="px-5"></i>
+  <% if params[:action] == 'show' %>
+    <%= button_to({ action: 'actions' }, class: 'px-4') do %>
+      <i class="fa-solid fa-lg fa-fw-1 fa-ellipsis-h"></i>
+    <% end %>
+  <% else %>
+    <i class="px-5"></i>
+  <% end %>
 </div>
 <% end %>
