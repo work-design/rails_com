@@ -13,7 +13,7 @@ module DefaultForm::ViewHelper
   def form_with(**options, &block)
     options[:url] ||= {}
     options[:data] ||= {}
-    deal_with_state(options[:state], options, options[:url])
+    role_permit?(options[:url], options[:method])
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
@@ -37,33 +37,6 @@ module DefaultForm::ViewHelper
     options[:model] = ActiveSupport::InheritableOptions.new(_values.symbolize_keys) unless options.key?(:model)
 
     form_with(**options, &block)
-  end
-
-  def deal_with_state(state, options, url_options)
-    r = {}
-    if state == 'enter' && ((options.is_a?(Hash) && options[:state].blank?) || (options.is_a?(String) && options.exclude?('state=')))
-      r = { return_state: StateUtil.encode(request) }
-    elsif state == 'redirect_return'
-      r = { redirect_state: StateUtil.encode(request) }
-    elsif state == 'redirect' && params[:return_state].present?
-      r = { redirect_state: params[:return_state] }
-    elsif state == 'redirect'
-      r = { redirect_state: StateUtil.encode(request) }
-    elsif state == 'return' && params[:return_state]
-      return StateUtil.decode(params[:return_state])
-    elsif params[:return_state]
-      r = { return_state: params[:return_state] } if options.respond_to?(:merge!)
-    end
-
-    if url_options.is_a?(Hash)
-      url_options.merge! r
-    elsif url_options.is_a?(String)
-      url = URI.parse(url_options)
-      url.query = [url.query, r.to_query].join('&') if r.present?
-      url.to_s
-    else
-      url_options
-    end
   end
 
 end

@@ -2,60 +2,10 @@
 
 module RailsCom::RoleHelper
 
-  def button_to(name = {}, options = {}, html_options = nil, &block)
-    if block_given?
-      _options = name
-      _html_options = options || {}
-      name = deal_with_state(_html_options.delete(:state), _options, _options)
-    else
-      _options = options
-      _html_options = html_options || {}
-      options = deal_with_state(_html_options.delete(:state), _options, _options)
-    end
-    text = _html_options.delete(:text)
-
-    return super if role_permit?(_options, _html_options)
-
-    if text
-      if block_given?
-        content_tag(:div, _html_options.slice(:class, :data), &block)
-      else
-        ERB::Util.html_escape(name)
-      end
-    end
-  end
-
-  def link_to(name = {}, options = {}, html_options = nil, &block)
-    if block_given?
-      _options = name
-      _html_options = options || {}
-      name = deal_with_state(_html_options.delete(:state), _options, _options)
-    else
-      _options = options
-      _html_options = html_options || {}
-      if _html_options[:state] == 'return' && params[:return_state]
-        r = StateUtil.decode(params[:return_state])
-        name = t("#{r[:controller].delete_prefix('/').tr('/', '.')}.#{r[:action]}.title")
-      end
-      options = deal_with_state(_html_options.delete(:state), _options, _options)
-    end
-    text = _html_options.delete(:text)
-
-    return super if role_permit?(_options, _html_options)
-
-    if text
-      if block_given?
-        content_tag(:div, _html_options.slice(:class, :data), &block)
-      else
-        ERB::Util.html_escape(name)
-      end
-    end
-  end
-
-  def role_permit?(_options, _html_options)
+  def role_permit?(_options, method)
     if _options.is_a? String
       begin
-        path_params = Rails.application.routes.recognize_path _options, { method: _html_options.fetch(:method, nil) }
+        path_params = Rails.application.routes.recognize_path _options, { method: method }
       rescue ActionController::RoutingError
         return true
       end
@@ -63,8 +13,8 @@ module RailsCom::RoleHelper
       return true
     elsif _options.is_a? Hash
       path_params = {
-        controller: _options[:controller].dup,
-        action: _options[:action].dup
+        controller: _options[:controller],
+        action: _options[:action]
       }
       path_params[:controller]&.delete_prefix!('/')
     else
@@ -87,6 +37,7 @@ module RailsCom::RoleHelper
       path_params[:business] = params[:business].to_s
       path_params[:namespace] = params[:namespace].to_s
     end
+
     extra_params = path_params.except(:controller, :action, :business, :namespace)
     meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
     filtered = meta_params[:controller].to_controller&.whether_filter_role(meta_params[:action])
