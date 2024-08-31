@@ -13,7 +13,7 @@ module RailsCom::RoleHelper
       return true
     elsif _options.is_a? Hash
       path_params = {
-        controller: _options[:controller],
+        controller: _options[:controller].dup,
         action: _options[:action]
       }
       path_params[:controller]&.delete_prefix!('/')
@@ -37,7 +37,6 @@ module RailsCom::RoleHelper
       path_params[:business] = params[:business].to_s
       path_params[:namespace] = params[:namespace].to_s
     end
-
     extra_params = path_params.except(:controller, :action, :business, :namespace)
     meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
     filtered = meta_params[:controller].to_controller&.whether_filter_role(meta_params[:action])
