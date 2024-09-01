@@ -2,12 +2,17 @@
   <%= yield %>
   <td>
     <div data-show-target="item" class="visibility-hidden">
-      <%= link_to t('roled.panel.roles.show.title'), { action: 'show', id: model.id }, class: 'button is-small is-rounded is-light' %>
       <%= button_to({ action: 'edit', id: model.id }, aria: { label: t('.edit.title') }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-pencil text-link"></i>
       <% end %>
       <%= button_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy.title') }, class: 'button is-small is-rounded is-light', form: { data: { turbo_confirm: t('.destroy.confirm') } }) do %>
         <i class="fa-solid fa-trash text-danger"></i>
+      <% end %>
+    </div>
+    <div data-show-target="item" class="visibility-hidden">
+      <%= link_to({ action: 'show', id: model.id }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-cogs"></i>
+        <span class="ml-1"><%= t('roled.panel.roles.show.title') %></span>
       <% end %>
     </div>
   </td>
