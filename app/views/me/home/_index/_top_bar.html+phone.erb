@@ -1,6 +1,16 @@
 <div data-controller="mini-program" data-mini-program-pt-class="pt-0" class="box as-bar">
-  <%= link_to({ controller: '/me/home', **current_organ.parent.url_options(request) }, class: 'px-4') do %>
-    <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
+  <% if current_organ.parent %>
+    <%= link_to({ controller: '/me/home', **current_organ.parent.url_options(request) }, class: 'px-4') do %>
+      <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
+    <% end %>
+  <% elsif current_organ.provider %>
+    <%= link_to({ controller: '/board/home', **current_organ.provider.url_options(request) }, class: 'px-4') do %>
+      <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
+    <% end %>
+  <% else %>
+    <%= link_to({ controller: '/board/home', host: SETTING.host }, class: 'px-4') do %>
+      <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
+    <% end %>
   <% end %>
   <span class="weui-title"><%= t('.title') %></span>
   <i class="px-5"></i>
