@@ -124,6 +124,7 @@ phone_modal:
     submit: button is-fullwidth is-primary
   wrap:
     <<: *phone_wrap
+    submit: footer.modal-card-foot
   all:
     <<: *phone_all
 search:

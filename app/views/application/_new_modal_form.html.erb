@@ -1,8 +1,5 @@
 <%= form_with theme: 'modal', model: model, scope: model_name, url: { action: 'create' } do |f| %>
-  <header class="modal-card-head">
-    <p class="modal-card-title"><%= t('.new.title') %></p>
-    <button type="button" data-action="modal#close" class="delete"></button>
-  </header>
+  <%= render 'modal_header' %>
   <section class="modal-card-body">
     <%= render 'error_messages', target: f.object if f.object.errors.present? %>
     <%= render partial: 'form', locals: { f: f } %>
