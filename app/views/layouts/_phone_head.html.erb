@@ -7,7 +7,7 @@
     <meta name="turbo-refresh-method" content="morph">
     <meta name="turbo-refresh-scroll" content="preserve">
     <%= yield :reload %>
-    <%= stylesheet_link_tag 'phone', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'phone', media: 'all', 'data-turbo-track': 'reload', as: 'style' %>
     <%= javascript_include_tag 'phone', 'data-turbo-track': 'reload', defer: true %>
     <% if request.variant.include?(:work_wechat) %>
       <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" referrerpolicy="origin" defer="defer" data-turbo-track="reload" id="weixin_script"></script>
