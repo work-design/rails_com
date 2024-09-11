@@ -15,7 +15,7 @@
     <li class="<%= active_helper(action: 'scheduled', active: 'is-active') %>">
       <%= link_to({ action: 'scheduled' }) do %>
         <span><%= t('.scheduled.title') %></span>
-        <span class="tag"><%= @common_jobs.scheduled.count %></span>
+        <span class="tag"><%= @common_jobs.scheduled.todo.count %></span>
       <% end %>
     </li>
     <li class="<%= active_helper(action: 'blocked', active: 'is-active') %>">

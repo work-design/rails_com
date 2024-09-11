@@ -18,7 +18,7 @@ module Job
     end
 
     def scheduled
-      @jobs = @common_jobs.scheduled.page(params[:page])
+      @jobs = @common_jobs.scheduled.todo.page(params[:page])
       set_class_names
       @jobs = @jobs.order(scheduled_at: :desc)
     end
