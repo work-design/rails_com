@@ -3,6 +3,7 @@ module Job
   class Panel::JobsController < Panel::BaseController
     before_action :set_queue
     before_action :set_common_jobs
+    before_action :set_count
     before_action :set_job, only: [:show, :retry, :destroy]
 
     def index
@@ -17,8 +18,14 @@ module Job
       @jobs = @jobs.order(id: :desc)
     end
 
-    def scheduled
-      @jobs = @common_jobs.scheduled.todo.page(params[:page])
+    def todo
+      @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).page(params[:page])
+      set_class_names
+      @jobs = @jobs.order(scheduled_at: :desc)
+    end
+
+    def lost
+      @jobs = @common_jobs.scheduled.default_where('scheduled_at-lt': Time.current).page(params[:page])
       set_class_names
       @jobs = @jobs.order(scheduled_at: :desc)
     end
@@ -77,6 +84,19 @@ module Job
 
     def set_common_jobs
       @common_jobs = SolidQueue::Job.default_where(q_params)
+    end
+
+    def set_count
+      @count = {
+        index: @common_jobs.finished.count,
+        failed: @common_jobs.failed.count,
+        todo: @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).count,
+        lost: @common_jobs.scheduled.default_where('scheduled_at-lt': Time.current).count,
+        blocked: @common_jobs.where.associated(:blocked_execution).count,
+        running: @common_jobs.where.associated(:claimed_execution).count,
+        ready: @common_jobs.where.associated(:ready_execution).count,
+        clearable: @common_jobs.clearable.count
+      }
     end
 
     def set_job
