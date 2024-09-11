@@ -16,8 +16,10 @@ zh:
           title: 已完成
         failed:
           title: 已失败
-        scheduled:
+        todo:
           title: 计划中
+        lost:
+          title: 不再执行
         blocked:
           title: Blocked
         running:
