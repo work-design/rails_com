@@ -15,8 +15,13 @@ module RailsCom::SolidQueue
         action: :replace,
         target: 'job_done',
         partial: "#{class_name.underscore}/job_done",
-        locals: { model: self }
+        locals: { job: self }
       )
+    end
+
+    def default_target
+      return @default_target if defined? @default_target
+      @default_target = GlobalID::Locator.locate arguments['arguments'][0]['_aj_globalid']
     end
 
   end
