@@ -6,8 +6,6 @@ module RailsCom::SolidQueue
       scope :todo, -> { default_where('scheduled_at-gte': Time.current) }
       scope :lost, -> { default_where('scheduled_at-lt': Time.current) }
 
-      has_many :jobbeds, class_name: 'Qingflow::Application', primary_key: :active_job_id, foreign_key: :job_id
-
       after_save_commit :job_done, if: -> { saved_change_to_finished_at? }
     end
 
@@ -15,8 +13,8 @@ module RailsCom::SolidQueue
       broadcast_action_to(
         self,
         action: :replace,
-        target: 'sync_all',
-        partial: 'job/job_done',
+        target: 'job_done',
+        partial: "#{class_name.underscore}/job_done",
         locals: { model: self }
       )
     end
