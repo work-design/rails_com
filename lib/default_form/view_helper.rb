@@ -13,7 +13,7 @@ module DefaultForm::ViewHelper
   def form_with(**options, &block)
     options[:url] ||= {}
     options[:data] ||= {}
-    role_permit?(options[:url], options[:method])
+    role_permit_options?(options[:url], options[:method])
 
     # add default controller
     controllers = options.dig(:data, :controller).to_s.split(' ')
