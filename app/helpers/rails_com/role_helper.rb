@@ -2,7 +2,7 @@
 
 module RailsCom::RoleHelper
 
-  def role_permit?(_options, method)
+  def role_permit_options?(_options, method)
     if _options.is_a? String
       begin
         path_params = Rails.application.routes.recognize_path _options, { method: method }
@@ -37,9 +37,22 @@ module RailsCom::RoleHelper
       path_params[:business] = params[:business].to_s
       path_params[:namespace] = params[:namespace].to_s
     end
-    extra_params = path_params.except(:controller, :action, :business, :namespace)
+
+    result = role_permit?(**path_params)
+    if Rails.configuration.x.role_debug || !result
+      logger.debug "\e[35m  Options: #{_options}  \e[0m"
+    end
+    result
+  end
+
+  def role_permit?(**path_params)
     meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
-    filtered = meta_params[:controller].to_controller&.whether_filter_role(meta_params[:action])
+    extra_params = path_params.except(:controller, :action, :business, :namespace)
+    if meta_params[:controller]
+      filtered = meta_params[:controller].to_controller&.whether_filter_role(meta_params[:action])
+    else
+      filtered = true
+    end
 
     if filtered && defined?(current_organ) && current_organ
       organ_permitted = current_organ.has_role?(params: extra_params, **meta_params)
@@ -55,7 +68,7 @@ module RailsCom::RoleHelper
 
     result = organ_permitted && user_permitted
     if Rails.configuration.x.role_debug || !result
-      logger.debug "\e[35m  Options: #{_options}, Meta Params: #{meta_params}, Extra Params: #{extra_params}  \e[0m"
+      logger.debug "\e[35m  Meta Params: #{meta_params}, Extra Params: #{extra_params}  \e[0m"
       logger.debug "\e[35m  #{current_organ&.base_class_name}_#{current_organ&.id}: #{organ_permitted.inspect}  \e[0m" if defined?(current_organ)
       logger.debug "\e[35m  #{rails_role_user&.base_class_name}_#{rails_role_user&.id}: #{user_permitted.inspect}  \e[0m"
     end

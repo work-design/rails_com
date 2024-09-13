@@ -10,7 +10,7 @@ module RailsCom::LinkToHelper
     end
     text = _html_options.delete(:text)
 
-    return super if role_permit?(_options, _html_options.fetch(:method, nil))
+    return super if role_permit_options?(_options, _html_options.fetch(:method, nil))
 
     if text
       if block_given?
@@ -32,7 +32,7 @@ module RailsCom::LinkToHelper
 
     text = _html_options.delete(:text)
 
-    return super if role_permit?(_options, _html_options.fetch(:method, nil))
+    return super if role_permit_options?(_options, _html_options.fetch(:method, nil))
 
     if text
       if block_given?
