@@ -1,0 +1,10 @@
+<div class="menu">
+  <div class="menu-list">
+    <%= link_to t('me.home.index.title'), { controller: '/me/home' }, class: active_helper(controllers: 'me/home', active: 'is-active') %>
+  </div>
+  <%= render 'me/notice_nav' if defined? RailsNotice %>
+  <%= render 'me/org_nav' if defined? RailsOrg %>
+  <%= render 'me/bench_nav' if defined? RailsBench %>
+  <%= render 'me/attend_nav' if defined? RailsAttend %>
+  <%= render 'me/finance_nav' if defined? RailsFinance %>
+</div>
