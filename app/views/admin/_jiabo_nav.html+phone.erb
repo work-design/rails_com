@@ -6,7 +6,7 @@
     <% if request.variant.any?(:mini_program) %>
       <div
         data-controller="mini-program"
-        data-mini-program-url-value="plugin://bluetooth/print"
+        data-mini-program-url-value="/pages/print/index"
         data-mini-program-data-value="<%= { url: url_for(only_path: false) }.to_json %>"
         data-action="click->mini-program#link"
         class="column has-column-centered"
