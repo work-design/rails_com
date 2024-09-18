@@ -2,6 +2,7 @@
 
 namespace :jia_bo, defaults: { business: 'jia_bo' } do
   namespace :panel, defaults: { namespace: 'panel' } do
+    root 'home#index'
     resources :apps do
       resources :devices do
         collection do
