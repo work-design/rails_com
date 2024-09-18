@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   scope RailsCom.default_routes_scope do
     draw :job
-    draw :jia_bo
     draw :roled
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
