@@ -15,6 +15,7 @@ namespace :jia_bo, defaults: { business: 'jia_bo' } do
     end
   end
   namespace :admin, defaults: { namespace: 'admin' } do
+    root 'home#index'
     resources :device_organs do
       collection do
         post :scan
