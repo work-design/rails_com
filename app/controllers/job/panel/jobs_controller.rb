@@ -13,7 +13,7 @@ module Job
     end
 
     def failed
-      @jobs = @common_jobs.failed.page(params[:page])
+      @jobs = @common_jobs.failed.includes(:ready_execution, :claimed_execution).page(params[:page])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end

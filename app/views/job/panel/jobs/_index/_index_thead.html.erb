@@ -1,5 +1,8 @@
 <th>
-  <p><%= SolidQueue::Job.human_attribute_name(:active_job_id) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:id) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:status) %></p>
+</th>
+<th>
   <p><%= SolidQueue::Job.human_attribute_name(:job_class) %></p>
   <p class="text-success"><%= SolidQueue::Job.human_attribute_name(:finished_at) %></p>
 </th>

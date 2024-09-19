@@ -1,3 +1,4 @@
+require 'ostruct'
 class RailsCom::Setting < OpenStruct
 
   def initialize(hash = {})
