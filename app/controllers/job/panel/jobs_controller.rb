@@ -24,12 +24,6 @@ module Job
       @jobs = @jobs.order(scheduled_at: :desc)
     end
 
-    def lost
-      @jobs = @common_jobs.scheduled.default_where('scheduled_at-lt': Time.current).page(params[:page])
-      set_class_names
-      @jobs = @jobs.order(scheduled_at: :desc)
-    end
-
     def blocked
       @jobs = @common_jobs.where.associated(:blocked_execution).page(params[:page])
       set_class_names
@@ -91,7 +85,6 @@ module Job
         index: @common_jobs.finished.count,
         failed: @common_jobs.failed.count,
         todo: @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).count,
-        lost: @common_jobs.scheduled.default_where('scheduled_at-lt': Time.current).count,
         blocked: @common_jobs.where.associated(:blocked_execution).count,
         running: @common_jobs.where.associated(:claimed_execution).count,
         ready: @common_jobs.where.associated(:ready_execution).count,

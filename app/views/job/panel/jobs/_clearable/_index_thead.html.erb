@@ -1,7 +1,12 @@
+<th id="xxd" data-controller="check" data-check-container-value="tbody" data-check-check-commit-outlet="form">
+  <%= check_box_tag 'xxd', 'xx', false, data: { check_target: 'all', action: 'check#toggleAll' }, id: nil %>
+</th>
 <th>
-  <p><%= SolidQueue::Job.human_attribute_name(:active_job_id) %></p>
-  <p><%= SolidQueue::Job.human_attribute_name(:job_class) %></p>
-  <p><%= SolidQueue::Job.human_attribute_name(:queue_name) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:id) %></p>
+  <p><%= SolidQueue::Job.human_attribute_name(:status) %></p>
+</th>
+<th>
+  <p><%= SolidQueue::Job.human_attribute_name(:class_name) %></p>
   <p class="text-grey"><%= SolidQueue::Job.human_attribute_name(:created_at) %></p>
 </th>
-<th>Arguments</th>
+<th><%= SolidQueue::Job.human_attribute_name(:arguments) %></th>

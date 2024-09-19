@@ -10,9 +10,16 @@
 <td>
   <p><%= model.class_name %></p>
   <p class="text-grey"><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
-  <p class="text-info">
+  <p>
     <time data-controller="time" data-format="human"><%= model.scheduled_at.to_fs(:iso8601) %></time>
-    <span data-controller="time-count" data-time-count-time-value="<%= model.scheduled_at.to_fs(:iso8601) %>" class="tag"><%= exact_distance_time(model.scheduled_at, Time.current) %></span>
+  </p>
+  <p>
+    <span class="text-grey">已超时：</span>
+    <span
+      data-controller="time-count"
+      data-time-count-time-value="<%= model.scheduled_at.to_fs(:iso8601) %>"
+      class="text-danger"
+    ><%= exact_distance_time(model.scheduled_at, Time.current) %></span>
   </p>
 </td>
 <td>
