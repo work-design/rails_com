@@ -3,7 +3,8 @@ class BaseCpcl
 
   # width 单位为 mm
   # 1 英寸 25.4 mm
-  # 假设分辨率为 200 * 英寸，则每毫米为 8点
+  # 每毫米为 8点
+  # 分辨率为 203.2 dpi
   def initialize(width: 72, height: 40)
     @width = width * 8 # 将毫米换算为 pt
     @height = height * 8 # 打印标签的最大高度点数
