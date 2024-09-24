@@ -38,7 +38,7 @@ class BaseCpcl
     @lines += 1 if line_add
   end
 
-  def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
+  def text_box(font: 55, size: 0, x: 0, y: 36, line_add: true, **data)
     width = data.keys.map(&->(i){ i.size }).max
     data.each do |title, content|
       title_with_pad = title.rjust(width, "  ")
