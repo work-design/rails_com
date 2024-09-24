@@ -10,7 +10,7 @@ class BaseCpcl
     @height = height * 8 # 打印标签的最大高度点数
     @qty = 1 # 打印标签数量
     @texts = []
-    @lines = 0
+    @lines = 1
     @qrcodes = []
   end
 
@@ -38,8 +38,17 @@ class BaseCpcl
     @lines += 1 if line_add
   end
 
+  def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
+    width = data.keys.map(&->(i){ i.size }).max
+    data.each do |title, content|
+      title_with_pad = title.rjust(width, "  ")
+      @texts << "T #{font} #{size} #{x} #{@lines * y} \x2#{title_with_pad} #{content}"
+      @lines += 1 if line_add
+    end
+  end
+
   def right_qrcode(data, y: 0, u: 6)
-    x = @width - (u * 4.5 * 8)
+    x = @width - (u * 4.5 * 8) - 16
     @qrcodes << ["B QR #{x} #{y} M 2 U #{u}", "MA,#{data}", "ENDQR"].join("\n")
   end
 
