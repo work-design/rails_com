@@ -49,9 +49,7 @@ module Com
       @content << "#{paragraph}\n"
     end
 
-    def add_column(title, content)
-      @content << "**#{title}：**#{content}\n"
-    end
+
 
     def link_more(name, url)
       text = "\n[#{name}](#{url})"
