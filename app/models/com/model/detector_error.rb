@@ -19,7 +19,7 @@ module Com
     end
 
     def send_notice
-      detector_bots.each do |bot|
+      detector_bots.map do |bot|
         bot.send_message(self)
       end
     end
