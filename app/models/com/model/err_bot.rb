@@ -3,8 +3,6 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attr_reader :content
-
       attribute :type, :string
       attribute :hook_url, :string
       attribute :first_time, :boolean
@@ -14,12 +12,6 @@ module Com
       accepts_nested_attributes_for :err_notices, allow_destroy: true
 
       scope :first_time, -> { where(first_time: true) }
-
-      after_initialize :init_ivar
-    end
-
-    def init_ivar
-      @content = ''
     end
 
     def set_content(err)
@@ -40,23 +32,6 @@ module Com
       )
     end
 
-    def add_paragraph(content)
-      @content << "#{content}\n"
-    end
-
-    def add_section(header, paragraph, level: 3)
-      @content << "#{'#' * level} #{header}\n"
-      @content << "#{paragraph}\n"
-    end
-
-
-
-    def link_more(name, url)
-      text = "\n[#{name}](#{url})"
-      truncate_length = 4096 - text.bytesize
-
-      @content = @content.truncate_bytes(truncate_length) + text
-    end
   end
 end
 

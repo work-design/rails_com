@@ -10,13 +10,18 @@ module Com
 
       belongs_to :detector
       has_many :detector_bots, primary_key: :detector_id, foreign_key: :detector_id
-      has_many :err_bots, through: :detector_bots
 
-      after_create_commit :send_notice
+      after_create_commit :send_notice_later
+    end
+
+    def send_notice_later
+      DetectorErrorJob.perform_later(self)
     end
 
     def send_notice
-
+      detector_bots.each do |bot|
+        bot.send_message(self)
+      end
     end
 
   end
