@@ -7,7 +7,10 @@ module Com
       attribute :name, :string
       attribute :url, :string
 
+      has_many :detector_bots
       has_many :detector_errors
+
+      accepts_nested_attributes_for :detector_bots
     end
 
     def detect
