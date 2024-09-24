@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 module Com
   module Model::DetectorBot::DetectorSlack
 

@@ -1,5 +1,5 @@
 module Com
-  module Model::ErrBot::DetectorWorkWechat
+  module Model::DetectorBot::DetectorWorkWechat
 
     def send_message(err)
       set_content(err)

@@ -14,3 +14,8 @@ zh:
           Com::FeishuBot: 飞书
           Com::SlackBot: Slack
           Com::WorkWechatBot: 企业微信
+      com/detector_bot:
+        type:
+          Com::DetectorFeishu: 飞书
+          Com::DetectorSlack: Slack
+          Com::DetectorWorkWechat: 企业微信
