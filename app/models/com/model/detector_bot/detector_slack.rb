@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Com
-  module Model::ErrBot::SlackBot
+  module Model::DetectorBot::DetectorSlack
 
     def send_message(err)
       set_content(err)

@@ -1,5 +1,5 @@
 module Com
-  module Model::DetectorBot::FeishuBot
+  module Model::DetectorBot::DetectorFeishu
 
     def send_message(err)
       set_content(err)
