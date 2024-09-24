@@ -1,27 +1,30 @@
 <div class="fixed-grid has-6-cols">
   <div class="grid">
-    <%= link_to({ controller: 'com/panel/blob_defaults' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'blob_defaults' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.blob_defaults.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'com/panel/blobs' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'blobs' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.blobs.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'com/panel/attachments' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'attachments' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.attachments.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'com/panel/meta_businesses' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'meta_businesses' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.meta_businesses.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'com/panel/states' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'states' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.states.index.title') %></span>
     <% end %>
   </div>
   <div class="grid">
-    <%= link_to({ controller: 'com/panel/err_bots' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'err_bots' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.err_bots.index.title') %></span>
     <% end %>
-    <%= link_to({ controller: 'com/panel/err_summaries' }, class: 'cell button is-fullwidth') do %>
+    <%= link_to({ controller: 'err_summaries' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.err_summaries.index.title') %></span>
+    <% end %>
+    <%= link_to({ controller: 'detectors' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.detectors.index.title') %></span>
     <% end %>
   </div>
 </div>
