@@ -4,7 +4,9 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :err_bot
+      attribute :type, :string
+      attribute :hook_url, :string
+
       belongs_to :detector
     end
 
