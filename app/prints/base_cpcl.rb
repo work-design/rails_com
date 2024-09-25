@@ -50,11 +50,11 @@ class BaseCpcl
     texts = []
     data.each do |title, content|
       # 内容的宽度字符(display_width)
-      content.split_by_display_width(20).each_with_index do |line, index|
+      content.to_s.split_by_display_width(20).each_with_index do |line, index|
         if index == 0
-          texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{content}"
+          texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{line}"
         else
-          texts << "T #{font} #{size} #{max_width + 12} #{@lines * y} #{content}"
+          texts << "T #{font} #{size} #{x + 12 * (max_width + 2)} #{@lines * y} #{line}"
         end
         @lines += 1 if line_add
       end
