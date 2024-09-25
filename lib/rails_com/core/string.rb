@@ -39,7 +39,8 @@ class String
   end
 
   def split_by_display_width(max_width)
-    Reline::Unicode.split_by_width(self, max_width)
+    arr, _ = Reline::Unicode.split_by_width(self, max_width)
+    arr.compact_blank!
   end
 
 end

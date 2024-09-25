@@ -49,11 +49,15 @@ class BaseCpcl
     max_width = data.keys.map(&->(i){ i.display_width }).max
     texts = []
     data.each do |title, content|
-      if content.display_width > 20 # 内容的宽度字符(display_width)
-
+      # 内容的宽度字符(display_width)
+      content.split_by_display_width(20).each_with_index do |line, index|
+        if index == 0
+          texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{content}"
+        else
+          texts << "T #{font} #{size} #{max_width + 12} #{@lines * y} #{content}"
+        end
+        @lines += 1 if line_add
       end
-      texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{content}"
-      @lines += 1 if line_add
     end
     @texts += texts
   end
