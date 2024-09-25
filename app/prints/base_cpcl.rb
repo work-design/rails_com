@@ -33,14 +33,21 @@ class BaseCpcl
     ]
   end
 
-  def bold_text(data, **options)
+  def bold_text(data, size: 0, **options)
     @texts << 'SETBOLD 2'
-    text(data, **options)
+    @texts << "SETMAG #{size} #{size}"
+    text(data, size: size, **options)
+    @texts << 'SETMAG 0 0'
     @texts << 'SETBOLD 0'
   end
 
   # font/size 查表得 字高24， y 为行高 36 乘以 行数
   def text(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+    @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
+    @lines += 1 if line_add
+  end
+
+  def text_center(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
     @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
     @lines += 1 if line_add
   end
