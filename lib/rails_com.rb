@@ -45,6 +45,7 @@ require 'positioning'
 require 'turbo-rails'
 require 'money-rails'
 require 'bigdecimal'
+require 'unicode/display_width/string_ext'
 
 require 'rails_com/money/formatter'
 

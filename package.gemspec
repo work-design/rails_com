@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'net-pop'
   s.add_dependency 'ostruct'
   s.add_dependency 'mutex_m'
+  s.add_dependency 'unicode-display_width'
 
   s.add_development_dependency 'listen'
 end
