@@ -15,7 +15,14 @@ class BaseCpcl
   end
 
   def render
-    (head + @texts + @qrcodes + ['FORM'] + ['PRINT', '']).join("\n").encode!('gb2312')
+    [
+      *head,
+      *@texts,
+      *@qrcodes,
+      'FORM',
+      'PRINT',
+      ''
+    ].join("\n").encode!('gb2312')
   end
 
   def head
@@ -38,13 +45,14 @@ class BaseCpcl
     @lines += 1 if line_add
   end
 
-  def text_box(font: 55, size: 0, x: 0, y: 36, line_add: true, **data)
+  def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
     width = data.keys.map(&->(i){ i.size }).max
+    texts = []
     data.each do |title, content|
-      title_with_pad = title.rjust(width, "  ")
-      @texts << "T #{font} #{size} #{x} #{@lines * y} \x2#{title_with_pad} #{content}"
+      texts << "T #{font} #{size} #{x + 24 * (width - title.size)} #{@lines * y} \x2#{title} #{content}"
       @lines += 1 if line_add
     end
+    @texts += texts
   end
 
   def right_qrcode(data, y: 0, u: 6)
