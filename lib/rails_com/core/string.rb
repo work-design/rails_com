@@ -34,4 +34,12 @@ class String
     chars.ancestors('')
   end
 
+  def display_width
+    Reline::Unicode.calculate_width(self)
+  end
+
+  def split_by_display_width(max_width)
+    Reline::Unicode.split_by_width(self, max_width)
+  end
+
 end

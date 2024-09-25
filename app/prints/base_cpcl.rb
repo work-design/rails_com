@@ -46,10 +46,13 @@ class BaseCpcl
   end
 
   def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
-    width = data.keys.map(&->(i){ i.size }).max
+    max_width = data.keys.map(&->(i){ i.display_width }).max
     texts = []
     data.each do |title, content|
-      texts << "T #{font} #{size} #{x + 24 * (width - title.size)} #{@lines * y} \x2#{title} #{content}"
+      if content.display_width > 20 # 内容的宽度字符(display_width)
+
+      end
+      texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{content}"
       @lines += 1 if line_add
     end
     @texts += texts
