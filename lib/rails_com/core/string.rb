@@ -35,11 +35,11 @@ class String
   end
 
   def display_width
-    Reline::Unicode.calculate_width(self)
+    ::Reline::Unicode.calculate_width(self)
   end
 
   def split_by_display_width(max_width)
-    arr, _ = Reline::Unicode.split_by_width(self, max_width)
+    arr, _ = ::Reline::Unicode.split_by_width(self, max_width)
     arr.compact_blank!
   end
 
