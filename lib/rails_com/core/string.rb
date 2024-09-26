@@ -1,3 +1,4 @@
+require 'reline'
 class String
 
   def integer?
