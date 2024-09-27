@@ -1,6 +1,6 @@
 module Com
   class FeishuBot < ErrBot
     include Model::ErrBot::FeishuBot
-    include Model::Inner::FeishuBot
+    include Inner::FeishuBot
   end
 end

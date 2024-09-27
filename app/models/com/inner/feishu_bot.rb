@@ -50,11 +50,11 @@ module Com
       @content << [
         {
           tag: 'text',
-          text: title
+          text: title.to_s
         },
         {
           tag: 'text',
-          text: content
+          text: content.to_s
         }
       ]
     end
