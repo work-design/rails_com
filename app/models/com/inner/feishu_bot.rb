@@ -1,19 +1,45 @@
 module Com
   module Inner::FeishuBot
-    extend ActiveSupport::Concern
 
-    included do
-      attr_reader :content
-
-      after_initialize :init_ivar
+    def body(title, content)
+      {
+        msg_type: 'post',
+        content: {
+          post: {
+            zh_cn: {
+              title: title,
+              content: content
+            }
+          }
+        }
+      }
     end
 
     def init_ivar
-      @content = ''
+      @content = []
+    end
+
+    def add_at
+      @content << [
+        {
+          tag: 'at',
+          user_id: 'all',
+          user_name: '弟兄们'
+        }
+      ]
     end
 
     def add_column(title, content)
-      @content << "**#{title}：**#{content}\n"
+      @content << [
+        {
+          tag: 'text',
+          text: title
+        },
+        {
+          tag: 'text',
+          text: content
+        }
+      ]
     end
 
     def add_paragraph(content)
