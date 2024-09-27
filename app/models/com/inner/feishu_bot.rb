@@ -40,8 +40,7 @@ module Com
       @content << [
         {
           tag: 'at',
-          user_id: 'all',
-          user_name: '弟兄们'
+          user_id: 'all'
         }
       ]
     end
@@ -50,7 +49,7 @@ module Com
       @content << [
         {
           tag: 'text',
-          text: title.to_s
+          text: "#{title}："
         }
       ]
       @content << [
@@ -59,6 +58,7 @@ module Com
           text: content.to_s
         }
       ]
+      @content << []
     end
 
     def add_paragraph(content)
