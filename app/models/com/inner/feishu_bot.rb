@@ -51,7 +51,9 @@ module Com
         {
           tag: 'text',
           text: title.to_s
-        },
+        }
+      ]
+      @content << [
         {
           tag: 'text',
           text: content.to_s
