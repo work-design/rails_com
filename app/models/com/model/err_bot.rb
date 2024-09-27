@@ -14,12 +14,6 @@ module Com
       scope :first_time, -> { where(first_time: true) }
     end
 
-    def send_err_message(err_hash)
-      @content = err_hash
-      res = HTTPX.post(hook_url, json: body)
-      res.json
-    end
-
     def set_content(err)
       err.as_json(only: [:path, :controller_name, :action_name, :params, :session, :headers, :ip]).each do |k, v|
         add_column err.class.human_attribute_name(k), v unless v.blank?
