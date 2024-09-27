@@ -4,17 +4,18 @@ module Com
     def send_message(err)
       add_at
       set_content(err)
-      res = HTTPX.post(hook_url, json: body)
+      _body = body('请求存在故障')
+      res = HTTPX.post(hook_url, json: _body)
       res.json
     end
 
-    def body
+    def body(title)
       {
         msg_type: 'post',
         content: {
           post: {
             zh_cn: {
-              title: '请求存在故障',
+              title: title,
               content: content
             }
           }
