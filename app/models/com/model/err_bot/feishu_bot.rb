@@ -9,9 +9,14 @@ module Com
 
     def body
       {
-        msg_type: 'text',
+        msg_type: 'post',
         content: {
-          text: content
+          post: {
+            zh_cn: {
+              title: '请求存在错误',
+              content: content
+            }
+          }
         }
       }
     end
