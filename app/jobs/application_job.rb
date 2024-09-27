@@ -5,7 +5,10 @@ class ApplicationJob < ActiveJob::Base
       bot.send_err_message(
         {
           job: job.class.name,
-          error: error
+          job_id: job.job_id,
+          queue_name: job.queue_name,
+          error: error.message,
+          arg: job.arguments.join('')
         }
       )
     end
