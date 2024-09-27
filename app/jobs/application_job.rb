@@ -1,6 +1,6 @@
 class ApplicationJob < ActiveJob::Base
 
-  retry_on StandardError do |job, error|
+  retry_on StandardError, attempts: 0 do |job, error|
     Com::ErrBot.first_time.each do |bot|
       bot.send_err_message(
         {
