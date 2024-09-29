@@ -8,7 +8,7 @@ class ApplicationJob < ActiveJob::Base
           job_id: job.job_id,
           queue_name: job.queue_name,
           error: error.message,
-          arg: job.arguments.join('')
+          arg: job.arguments['arguments'][0]
         }
       )
     end
