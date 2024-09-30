@@ -3,7 +3,7 @@ module Job
 
     def index
       @queues = SolidQueue::Queue.all
-      @processes = SolidQueue::Process.where(supervisor_id: nil).order(created_at: :desc)
+      @processes = SolidQueue::Process.includes(:supervisees).where(supervisor_id: nil).order(created_at: :desc)
     end
 
   end
