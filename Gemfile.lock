@@ -21,7 +21,7 @@ PATH
       net-pop
       ostruct
       positioning
-      rails (~> 7.0)
+      rails
       reline
       solid_cache
       solid_queue

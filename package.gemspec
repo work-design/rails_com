@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   ]
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '~> 7.0'
+  s.add_dependency 'rails'
   s.add_dependency 'solid_queue'
   s.add_dependency 'solid_cache'
   s.add_dependency 'httpx'
