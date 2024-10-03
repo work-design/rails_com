@@ -16,7 +16,29 @@ module UrlUtil
     rescue => e
     end
     file.rewind
+    file
+  end
+
+  def filepath_from_url(url, filename: SecureRandom.alphanumeric)
+    file_path = Rails.root.join('tmp/files', filename)
+    file_path.dirname.exist? || file_path.dirname.mkpath
+    xx(file_path, url)
     file_path
+  end
+
+  def xx(file_path, url)
+    file = File.new(file_path, 'w')
+    file.binmode
+
+    begin
+      res = HTTPX.plugin(:follow_redirects).get(url)
+      res.body.each do |fragment|
+        file.write fragment
+      end if res.error.nil?
+    rescue => e
+    end
+    file.rewind
+    file
   end
 
   def init_file(filename = SecureRandom.alphanumeric)
