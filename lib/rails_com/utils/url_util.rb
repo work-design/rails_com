@@ -3,15 +3,11 @@ module UrlUtil
   extend self
 
   def file_from_url(url, filename: SecureRandom.alphanumeric)
-    file_path = Rails.root.join('tmp/files', filename)
-    file_path.dirname.exist? || file_path.dirname.mkpath
     _, file = init_file(filename)
     xx(file, url)
   end
 
   def filepath_from_url(url, filename: SecureRandom.alphanumeric)
-    file_path = Rails.root.join('tmp/files', filename)
-    file_path.dirname.exist? || file_path.dirname.mkpath
     file_path, file = init_file(filename)
     xx(file, url)
     file_path
