@@ -4,28 +4,30 @@ module UrlUtil
 
   def file_from_url(url, filename: SecureRandom.alphanumeric)
     _, file = init_file(filename)
-    xx(file, url)
+    fetch_file(url, file)
   end
 
   def filepath_from_url(url, filename: SecureRandom.alphanumeric)
     file_path, file = init_file(filename)
-    xx(file, url)
+    fetch_file(url, file)
     file_path
   end
 
-  def xx(file, url)
-    begin
-      res = HTTPX.plugin(:follow_redirects).get(url)
+  private
+  def fetch_file(url, file)
+    res = HTTPX.plugin(:follow_redirects).get(url)
+    if res.error.nil?
       res.body.each do |fragment|
         file.write fragment
-      end if res.error.nil?
-    rescue => e
+      end
     end
+  rescue => e
+  ensure
     file.rewind
     file
   end
 
-  def init_file(filename = SecureRandom.alphanumeric)
+  def init_file(filename)
     file_path = Rails.root.join('tmp/files', filename)
     file_path.dirname.exist? || file_path.dirname.mkpath
     file = File.new(file_path, 'w')
