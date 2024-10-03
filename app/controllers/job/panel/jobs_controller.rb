@@ -7,43 +7,43 @@ module Job
     before_action :set_job, only: [:show, :retry, :destroy]
 
     def index
-      @jobs = @common_jobs.finished.page(params[:page])
+      @jobs = @common_jobs.finished.page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def failed
-      @jobs = @common_jobs.failed.includes(:ready_execution, :claimed_execution).page(params[:page])
+      @jobs = @common_jobs.failed.includes(:ready_execution, :claimed_execution).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def todo
-      @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).page(params[:page])
+      @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(scheduled_at: :desc)
     end
 
     def blocked
-      @jobs = @common_jobs.where.associated(:blocked_execution).page(params[:page])
+      @jobs = @common_jobs.where.associated(:blocked_execution).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def running
-      @jobs = @common_jobs.where.associated(:claimed_execution).page(params[:page])
+      @jobs = @common_jobs.where.associated(:claimed_execution).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def ready
-      @jobs = @common_jobs.where.associated(:ready_execution).page(params[:page])
+      @jobs = @common_jobs.where.associated(:ready_execution).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
 
     def clearable
-      @jobs = @common_jobs.clearable.page(params[:page])
+      @jobs = @common_jobs.clearable.page(params[:page]).per(params[:per])
       set_class_names
     end
 
