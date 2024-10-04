@@ -2,6 +2,12 @@
 module UrlUtil
   extend self
 
+  def from_url(url, filename: SecureRandom.alphanumeric)
+    _, file = init_file(filename)
+    fetch_file(url, file)
+    file
+  end
+
   def file_from_url(url, filename: SecureRandom.alphanumeric)
     _, file = init_file(filename)
     fetch_file(url, file)
