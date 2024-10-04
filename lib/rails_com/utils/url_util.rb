@@ -36,7 +36,7 @@ module UrlUtil
   def init_file(filename)
     file_path = Rails.root.join('tmp/files', filename)
     file_path.dirname.exist? || file_path.dirname.mkpath
-    file = File.new(file_path, 'w')
+    file = File.new(file_path, 'w+')
     file.binmode
     [file_path, file]
   end
