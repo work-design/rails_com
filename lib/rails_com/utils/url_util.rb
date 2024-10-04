@@ -5,11 +5,14 @@ module UrlUtil
   def file_from_url(url, filename: SecureRandom.alphanumeric)
     _, file = init_file(filename)
     fetch_file(url, file)
+    file.rewind
+    file
   end
 
   def filepath_from_url(url, filename: SecureRandom.alphanumeric)
     file_path, file = init_file(filename)
     fetch_file(url, file)
+    file.rewind
     file_path
   end
 
@@ -22,9 +25,6 @@ module UrlUtil
       end
     end
   rescue => e
-  ensure
-    file.rewind
-    file
   end
 
   def init_file(filename)
