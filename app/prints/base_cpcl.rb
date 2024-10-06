@@ -71,7 +71,11 @@ class BaseCpcl
 
   def right_qrcode(data, y: 0, u: 6)
     x = @width - (u * 4.5 * 8) - 16
-    @qrcodes << ["B QR #{x} #{y} M 2 U #{u}", "MA,#{data}", "ENDQR"].join("\n")
+    @qrcodes << [
+      "B QR #{x} #{y} M 2 U #{u}",
+      "MA,#{data}",
+      "ENDQR"
+    ].join("\n")
   end
 
   def line(x0: 0, y0: 36, x1: 40 * 8, y1: 36, width: 2, line_add: true)
