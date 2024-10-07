@@ -13,6 +13,7 @@ module Com
 
     def process_file
       pdf_path = UrlUtil.filepath_from_url url
+      return if CompressUtil.pdf_pages(pdf_path).to_i > 10
       file = CompressUtil.pdf_to_jpg(pdf_path)
       self.file.attach(io: file, filename: pdf_path.basename)
     end
