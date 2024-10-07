@@ -17,8 +17,7 @@ module CompressUtil
 
   def pdf_to_jpg(path)
     transformer = ActiveStorage::Transformers::ImageProcessingTransformer.new(loader: { n: -1, page: 0 }, resize_to_limit: [1000, 1000])
-    output = transformer.send(:process, path, format: :jpg)
-    FileUtils.copy_file(output, path.join("../#{path.basename.without_extname}.jpg"))
+    transformer.send(:process, path, format: :jpg)
   end
 
 end
