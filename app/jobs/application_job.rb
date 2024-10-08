@@ -7,8 +7,8 @@ class ApplicationJob < ActiveJob::Base
           job: job.class.name,
           job_id: job.job_id,
           queue_name: job.queue_name,
-          error: error.message
-          #arg: job.arguments.fetch('arguments', [])[0]
+          error: error.message,
+          arg: job.arguments.to_s
         }
       )
     end
