@@ -64,6 +64,10 @@ module Job
       SolidQueue::Job.where(id: params[:ids].split(',')).each(&:destroy)
     end
 
+    def batch_retry
+      SolidQueue::Job.where(id: params[:ids].split(',')).each(&:retry)
+    end
+
     def destroy
       @job.destroy
     end
