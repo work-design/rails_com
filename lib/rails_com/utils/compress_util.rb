@@ -26,6 +26,8 @@ module CompressUtil
   def pdf_pages(path)
     im = Vips::Image.new_from_file(path.to_s)
     im.get 'n-pages'
+  rescue Vips::Error => e
+    0
   end
 
 end
