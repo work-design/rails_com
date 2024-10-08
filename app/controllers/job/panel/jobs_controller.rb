@@ -7,7 +7,7 @@ module Job
     before_action :set_job, only: [:show, :retry, :destroy]
 
     def index
-      @jobs = @common_jobs.finished.page(params[:page]).per(params[:per])
+      @jobs = @common_jobs.finished.unscope(:order).order(finished_at: :desc).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(id: :desc)
     end
@@ -19,7 +19,7 @@ module Job
     end
 
     def todo
-      @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).page(params[:page]).per(params[:per])
+      @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).unscope(:order).order(scheduled_at: :desc).page(params[:page]).per(params[:per])
       set_class_names
       @jobs = @jobs.order(scheduled_at: :desc)
     end
@@ -81,7 +81,7 @@ module Job
     end
 
     def set_common_jobs
-      @common_jobs = SolidQueue::Job.default_where(q_params)
+      @common_jobs = SolidQueue::Job.default_where(q_params).order(id: :desc)
     end
 
     def set_count
