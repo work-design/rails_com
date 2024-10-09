@@ -200,6 +200,9 @@ Rails.application.routes.draw do
             resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
           end
         end
+        resources :pg_publications do
+          resources :pg_publication_tables
+        end
       end
     end
   end
