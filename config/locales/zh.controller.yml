@@ -128,10 +128,13 @@ zh:
           test: 测试
       pg_publications:
         index:
-          title: 订阅者
+          title: 发布者
       pg_publication_tables:
         index:
           title: 开通表
+      pg_subscriptions:
+        index:
+          title: 订阅者
       states:
         index:
           title: 状态
