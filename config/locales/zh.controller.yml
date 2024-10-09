@@ -126,6 +126,12 @@ zh:
           title: 属性列表
           sync: 同步
           test: 测试
+      pg_publications:
+        index:
+          title: 订阅者
+      pg_publication_tables:
+        index:
+          title: 开通表
       states:
         index:
           title: 状态
