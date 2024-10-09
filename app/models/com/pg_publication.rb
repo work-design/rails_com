@@ -1,8 +1,8 @@
 module Com
-  class PgPublication < ApplicationRecord
+  class PgPublication < PgRecord
     include Model::PgPublication
 
-    self.table_name = 'pg_publication'
+    self.table_name = 'pg_catalog.pg_publication'
     self.primary_key = 'oid'
   end
 end

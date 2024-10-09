@@ -1,7 +1,6 @@
 module Com
-  class PgPublicationTable < ApplicationRecord
+  class PgPublicationTable < PgRecord
     #include Model::PgPublication
-
-    self.table_name = 'pg_publication_tables'
+    self.table_name = 'pg_catalog.pg_publication_tables'
   end
 end
