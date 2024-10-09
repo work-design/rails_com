@@ -12,7 +12,7 @@ module Com
     end
 
     def create
-      conninfo = conninfo_params.each_with_object([]) { |(k, v), h| h << "#{k}=#{v}" }.join(' ')
+      conninfo = conninfo_params.to_h.each_with_object([]) { |(k, v), h| h << "#{k}=#{v}" }.join(' ')
       PgSubscription.connection.exec_query "CREATE SUBSCRIPTION #{pg_subscription_params[:subname]} CONNECTION '#{conninfo}' PUBLICATION #{pg_subscription_params[:pubname]}"
     end
 
