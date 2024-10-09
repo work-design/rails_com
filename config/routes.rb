@@ -201,7 +201,7 @@ Rails.application.routes.draw do
           end
         end
         resources :pg_publications do
-          resources :pg_publication_tables, only: [:index, :new]
+          resources :pg_publication_tables, only: [:index, :new, :create]
         end
       end
     end
