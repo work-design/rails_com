@@ -18,6 +18,7 @@ module Com
 
     def update
       allow_tables = @tables & pg_publication_params[:tables].compact_blank!
+      PgPublication.connection.exec_query "ALTER PUBLICATION #{@pg_publication.pubname} SET TABLE #{allow_tables.join(', ')}"
     end
 
     private
