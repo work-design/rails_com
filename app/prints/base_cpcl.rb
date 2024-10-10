@@ -69,16 +69,12 @@ class BaseCpcl
     @texts += texts
   end
 
-  def text_box_left(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
+  def text_box_left(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
     texts = []
-    data.each do |title, content|
+    data.each do |content|
       # 内容的宽度字符(display_width)
-      content.to_s.split_by_display_width(28).each_with_index do |line, index|
-        if index == 0
-          texts << "T #{font} #{size} #{x} #{@lines * y} \x2#{title} #{line}"
-        else
-          texts << "T #{font} #{size} #{x} #{@lines * y} #{line}"
-        end
+      content.to_s.split_by_display_width(28).each_with_index do |line|
+        texts << "T #{font} #{size} #{x} #{@lines * y} #{line}"
         @lines += 1 if line_add
       end
     end
