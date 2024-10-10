@@ -22,6 +22,14 @@ module UrlUtil
     file_path
   end
 
+  def init_file(filename = SecureRandom.alphanumeric)
+    file_path = Rails.root.join('tmp/files', filename)
+    file_path.dirname.exist? || file_path.dirname.mkpath
+    file = File.new(file_path, 'w+')
+    file.binmode
+    [file_path, file]
+  end
+
   private
   def fetch_file(url, file)
     res = HTTPX.plugin(:follow_redirects).get(url)
@@ -33,11 +41,4 @@ module UrlUtil
   rescue => e
   end
 
-  def init_file(filename)
-    file_path = Rails.root.join('tmp/files', filename)
-    file_path.dirname.exist? || file_path.dirname.mkpath
-    file = File.new(file_path, 'w+')
-    file.binmode
-    [file_path, file]
-  end
 end
