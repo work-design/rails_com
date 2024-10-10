@@ -69,6 +69,22 @@ class BaseCpcl
     @texts += texts
   end
 
+  def text_box_left(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
+    texts = []
+    data.each do |title, content|
+      # 内容的宽度字符(display_width)
+      content.to_s.split_by_display_width(28).each_with_index do |line, index|
+        if index == 0
+          texts << "T #{font} #{size} #{x} #{@lines * y} \x2#{title} #{line}"
+        else
+          texts << "T #{font} #{size} #{x} #{@lines * y} #{line}"
+        end
+        @lines += 1 if line_add
+      end
+    end
+    @texts += texts
+  end
+
   def right_qrcode(data, y: 0, u: 6)
     x = @width - (u * 4.5 * 8) - 16
     @qrcodes << [
