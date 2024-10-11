@@ -1,7 +1,7 @@
 module Com
   class Panel::PgSubscriptionsController < Panel::BaseController
     before_action :set_tables
-    before_action :set_pg_subscription, only: [:show, :edit, :update, :destroy]
+    before_action :set_pg_subscription, only: [:show, :edit, :update, :destroy, :refresh]
 
     def index
       @pg_subscriptions = PgSubscription.page(params[:page])
@@ -17,8 +17,11 @@ module Com
     end
 
     def update
-      allow_tables = @tables & pg_subscription_params[:tables].compact_blank!
-      PgSubscription.connection.exec_query "ALTER PUBLICATION #{@pg_subscription.pubname} SET TABLE #{allow_tables.join(', ')}"
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.pubname} SET TABLE #{allow_tables.join(', ')}"
+    end
+
+    def refresh
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.subname} REFRESH PUBLICATION"
     end
 
     private

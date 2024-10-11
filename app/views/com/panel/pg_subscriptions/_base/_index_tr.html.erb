@@ -13,7 +13,10 @@
       <% end %>
     </div>
     <div data-show-target="item" class="visibility-hidden">
-
+      <%= button_to({ action: 'refresh', id: model.id }, class: 'button is-small is-rounded is-warning') do %>
+        <i class="fa-solid fa-rotate"></i>
+        <span class="ml-1"><%= t('.refresh.title') %></span>
+      <% end %>
     </div>
   </td>
 </tr>

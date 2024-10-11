@@ -135,6 +135,8 @@ zh:
       pg_subscriptions:
         index:
           title: 订阅者
+        refresh:
+          title: 更新
       states:
         index:
           title: 状态

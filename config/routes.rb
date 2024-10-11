@@ -203,7 +203,11 @@ Rails.application.routes.draw do
         resources :pg_publications do
           resources :pg_publication_tables, only: [:index, :new, :create]
         end
-        resources :pg_subscriptions
+        resources :pg_subscriptions do
+          member do
+            post :refresh
+          end
+        end
       end
     end
   end
