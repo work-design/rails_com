@@ -16,7 +16,7 @@ module Com
     end
 
     def update
-      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.pubname} CONNECTION #{conninfo_params}"
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.subname} CONNECTION #{conninfo_params}"
     end
 
     def refresh
