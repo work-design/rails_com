@@ -24,6 +24,10 @@ module Com
       PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.subname} REFRESH PUBLICATION"
     end
 
+    def destroy
+      PgSubscription.connection.exec_query "DROP SUBSCRIPTION #{@pg_subscription.subname}"
+    end
+
     private
     def set_tables
       @tables = ApplicationRecord.connection.tables
