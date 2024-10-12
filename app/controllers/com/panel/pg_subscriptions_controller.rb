@@ -12,12 +12,11 @@ module Com
     end
 
     def create
-      conninfo = conninfo_params.to_h.each_with_object([]) { |(k, v), h| h << "#{k}=#{v}" }.join(' ')
-      PgSubscription.connection.exec_query "CREATE SUBSCRIPTION #{pg_subscription_params[:subname]} CONNECTION '#{conninfo}' PUBLICATION #{pg_subscription_params[:pubname]}"
+      PgSubscription.connection.exec_query "CREATE SUBSCRIPTION #{pg_subscription_params[:subname]} CONNECTION '#{conninfo_params}' PUBLICATION #{pg_subscription_params[:pubname]}"
     end
 
     def update
-      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.pubname} SET TABLE #{allow_tables.join(', ')}"
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.pubname} CONNECTION #{conninfo_params}"
     end
 
     def refresh
@@ -38,13 +37,14 @@ module Com
     end
 
     def conninfo_params
-      params.fetch(:pg_subscription, {}).permit(
+      _p = params.fetch(:pg_subscription, {}).permit(
         :host,
         :port,
         :dbname,
         :user,
         :password
       )
+      _p.to_h.each_with_object([]) { |(k, v), h| h << "#{k}=#{v}" }.join(' ')
     end
 
     def pg_subscription_params
