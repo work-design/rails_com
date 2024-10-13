@@ -22,13 +22,7 @@ module RailsCom::Models
   end
 
   def db_tables_hash
-    result = {}
-
-    models.group_by(&->(i) { i.connection_pool.migrations_paths }).each do |migrations_paths, record_classes|
-      result[migrations_paths] = migrate_tables_hash
-    end
-
-    result
+    migrate_tables_hash.group_by { |_, v| v[:migrations_paths] }.transform_values!(&:to_h)
   end
 
   def tables_hash(root = ActiveRecord::Base, records_hash = models_hash)
@@ -76,15 +70,19 @@ module RailsCom::Models
     tables = {}
 
     tables_hash.each do |table_name, cols|
-      db = cols[:models][0].migrate_attributes_by_db
+      model = cols[:models][0]
+      db = model.migrate_attributes_by_db
 
       r = cols.slice(:indexes, :table_exists, :table_options)
+      r[:migrations_paths] = model.connection_pool.migrations_paths
       r[:add_attributes] = cols[:model_attributes].except *db.keys
       r[:add_references] = cols[:model_references].except *db.keys
       r[:timestamps] = [:created_at, :updated_at] & r[:add_attributes].keys
       r[:remove_attributes] = db.except(*cols[:model_attributes].keys, *cols[:belongs_attributes].keys, *cols[:model_defaults])
 
-      tables[table_name.to_sym] = r unless r[:add_attributes].blank? && r[:add_references].blank? && r[:remove_attributes].blank?
+      unless r[:add_attributes].blank? && r[:add_references].blank? && r[:remove_attributes].blank?
+        tables[table_name.to_sym] = r
+      end
     end
 
     tables
