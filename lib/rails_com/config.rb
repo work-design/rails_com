@@ -31,7 +31,10 @@ module RailsCom #:nodoc:
       'SolidQueue::BlockedExecution',
       'SolidQueue::RecurringExecution',
       'SolidQueue::RecurringTask',
-      'SolidCache::Entry'
+      'SolidCache::Entry',
+      'Com::PgPublication',
+      'Com::PgPublicationTable',
+      'Com::PgSubscription'
     ]
     config.override_prefixes = [
       'application'
