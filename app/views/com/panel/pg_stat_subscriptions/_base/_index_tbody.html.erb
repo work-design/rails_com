@@ -1,11 +1,14 @@
-<td><%= model.slot_name %></td>
+<td><%= model.worker_type %></td>
 <td>
-  <p><%= model.datoid %></p>
-  <p><%= model.database %></p>
+  <p><%= model.pid %></p>
+  <p><%= model.leader_pid %></p>
 </td>
 <td>
-  <p><%= model.active %></p>
-  <p><%= model.active_pid %></p>
+  <p><%= model.received_lsn %></p>
+  <p><%= model.latest_end_lsn %></p>
 </td>
-<td><%= model.wal_status %></td>
-<td><%= model.conflicting %></td>
+<td>
+  <p><time data-controller="time"><%= model.last_msg_send_time.to_fs(:iso8601) %></time></p>
+  <p><time data-controller="time"><%= model.last_msg_receipt_time.to_fs(:iso8601) %></time></p>
+  <p><time data-controller="time"><%= model.latest_end_time.to_fs(:iso8601) %></time></p>
+</td>
