@@ -208,6 +208,7 @@ Rails.application.routes.draw do
             post :refresh
           end
         end
+        resources :pg_replication_slots
       end
     end
   end

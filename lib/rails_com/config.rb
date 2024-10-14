@@ -34,7 +34,8 @@ module RailsCom #:nodoc:
       'SolidCache::Entry',
       'Com::PgPublication',
       'Com::PgPublicationTable',
-      'Com::PgSubscription'
+      'Com::PgSubscription',
+      'Com::PgReplicationSlot'
     ]
     config.override_prefixes = [
       'application'
