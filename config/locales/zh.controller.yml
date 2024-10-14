@@ -140,6 +140,9 @@ zh:
           title: 订阅者
         refresh:
           title: 更新
+      pg_stat_subscriptions:
+        index:
+          title: 订阅状态
       states:
         index:
           title: 状态

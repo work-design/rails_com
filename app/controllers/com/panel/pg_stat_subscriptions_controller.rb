@@ -8,7 +8,7 @@ module Com
 
     private
     def set_pg_subscription
-      @pg_subscription = PgSubscripcation.find params[:pg_subscription_id]
+      @pg_subscription = PgSubscription.find params[:pg_subscription_id]
     end
 
   end
