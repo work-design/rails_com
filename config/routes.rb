@@ -207,6 +207,7 @@ Rails.application.routes.draw do
           member do
             post :refresh
           end
+          resources :pg_stat_subscriptions
         end
         resources :pg_replication_slots
       end
