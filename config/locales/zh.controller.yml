@@ -132,6 +132,9 @@ zh:
       pg_publication_tables:
         index:
           title: 开通表
+      pg_replication_slots:
+        index:
+          title: 复制槽
       pg_subscriptions:
         index:
           title: 订阅者

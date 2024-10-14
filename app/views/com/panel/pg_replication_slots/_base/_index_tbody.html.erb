@@ -1,3 +1,11 @@
-<td><%= model.schemaname %></td>
-<td><%= model.tablename %></td>
-<td><pre><%= model.attnames.to_format_yaml %></pre></td>
+<td><%= model.slot_name %></td>
+<td>
+  <p><%= model.datoid %></p>
+  <p><%= model.database %></p>
+</td>
+<td>
+  <p><%= model.active %></p>
+  <p><%= model.active_pid %></p>
+</td>
+<td><%= model.wal_status %></td>
+<td><%= model.conflicting %></td>
