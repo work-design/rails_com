@@ -81,6 +81,7 @@ class BaseCpcl
     @texts += texts
   end
 
+  # 4.5 如何计算
   def right_qrcode(data, y: 0, u: 6)
     x = @width - (u * 4.5 * 8) - 16
     @qrcodes << [
