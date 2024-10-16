@@ -83,7 +83,7 @@ class BaseCpcl
 
   #  如何计算
   def right_qrcode(data, y: 0, u: 6)
-    size = RQRCode::QRCode.new(data, level: :m, mode: :alphanumeric).qrcode.module_count
+    size = RQRCode::QRCode.new(data, level: :m).qrcode.module_count
     x = @width - (u * size) - 16
     @qrcodes << [
       "B QR #{x} #{y} M 2 U #{u}",
