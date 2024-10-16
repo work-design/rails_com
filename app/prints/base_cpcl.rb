@@ -1,5 +1,6 @@
 class BaseCpcl
   attr_accessor :lines, :texts
+  PADDING_TOP = 40
 
   # width 单位为 mm
   # 1 英寸 25.4 mm
@@ -42,17 +43,17 @@ class BaseCpcl
   end
 
   # font/size 查表得 字高24， y 为行高 36 乘以 行数
-  def text(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+  def text(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
     @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
     @lines += 1 if line_add
   end
 
-  def text_center(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+  def text_center(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
     @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
     @lines += 1 if line_add
   end
 
-  def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
+  def text_box(font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true, **data)
     max_width = data.keys.map(&->(i){ i.display_width }).max
     texts = []
     data.each do |title, content|
@@ -69,7 +70,7 @@ class BaseCpcl
     @texts += texts
   end
 
-  def text_box_left(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+  def text_box_left(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
     texts = []
     data.each do |content|
       # 内容的宽度字符(display_width)
