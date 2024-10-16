@@ -1,10 +1,16 @@
 class BaseCpcl
   attr_accessor :lines, :texts
+  DOT = 25.4 / 6
+  SIZE = {
+    1..14 => 21,
+    15..20 => 25,
+    21.. => 29
+  }
 
   # width 单位为 mm
   # 1 英寸 25.4 mm
   # 每毫米为 8点
-  # 分辨率为 203.2 dpi
+  # 分辨率为 25.4 * 8 = 203.2 dpi
   def initialize(width: 72, height: 40)
     @width = width * 8 # 将毫米换算为 pt
     @height = height * 8 # 打印标签的最大高度点数
@@ -81,9 +87,10 @@ class BaseCpcl
     @texts += texts
   end
 
-  # 4.5 如何计算
+  #  如何计算
   def right_qrcode(data, y: 0, u: 6)
-    x = @width - (u * 4.5 * 8) - 16
+    size = SIZE.find { |k, _| k.include? data.size }[-1]
+    x = @width - (u * size) - 16
     @qrcodes << [
       "B QR #{x} #{y} M 2 U #{u}",
       "MA,#{data}",
