@@ -1,5 +1,4 @@
 class BaseCpcl
-  attr_accessor :lines, :texts
   PADDING_TOP = 40
 
   # width 单位为 mm
@@ -11,7 +10,7 @@ class BaseCpcl
     @height = height * 8 # 打印标签的最大高度点数
     @qty = 1 # 打印标签数量
     @texts = []
-    @lines = 1
+    @current_y = PADDING_TOP
     @qrcodes = []
   end
 
@@ -34,49 +33,49 @@ class BaseCpcl
     ]
   end
 
-  def bold_text(data, size: 0, **options)
+  def bold_text(data, size: 1, **options)
     @texts << 'SETBOLD 2'
     @texts << "SETMAG #{size} #{size}"
-    text(data, size: size, **options)
+    text(data, size: size, y: 36 * size, **options)
     @texts << 'SETMAG 0 0'
     @texts << 'SETBOLD 0'
   end
 
   # font/size 查表得 字高24， y 为行高 36 乘以 行数
-  def text(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
-    @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
-    @lines += 1 if line_add
+  def text(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+    @texts << "T #{font} #{size} #{x} #{@current_y} #{data}"
+    @current_y += y if line_add
   end
 
-  def text_center(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
-    @texts << "T #{font} #{size} #{x} #{@lines * y} #{data}"
-    @lines += 1 if line_add
+  def text_center(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
+    @texts << "T #{font} #{size} #{x} #{@current_y} #{data}"
+    @current_y += y if line_add
   end
 
-  def text_box(font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true, **data)
+  def text_box(font: 8, size: 0, x: 0, y: 36, line_add: true, **data)
     max_width = data.keys.map(&->(i){ i.display_width }).max
     texts = []
     data.each do |title, content|
       # 内容的宽度字符(display_width)
       content.to_s.split_by_display_width(20).each_with_index do |line, index|
         if index == 0
-          texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@lines * y} \x2#{title} #{line}"
+          texts << "T #{font} #{size} #{x + 12 * (max_width - title.display_width)} #{@current_y} \x2#{title} #{line}"
         else
-          texts << "T #{font} #{size} #{x + 12 * (max_width + 2)} #{@lines * y} #{line}"
+          texts << "T #{font} #{size} #{x + 12 * (max_width + 2)} #{@current_y} #{line}"
         end
-        @lines += 1 if line_add
+        @current_y += y if line_add
       end
     end
     @texts += texts
   end
 
-  def text_box_left(data, font: 8, size: 0, x: 0, y: PADDING_TOP, line_add: true)
+  def text_box_left(data, font: 8, size: 0, x: 0, y: 36, line_add: true)
     texts = []
     data.each do |content|
       # 内容的宽度字符(display_width)
       content.to_s.split_by_display_width(28).each_with_index do |line|
-        texts << "T #{font} #{size} #{x} #{@lines * y} #{line}"
-        @lines += 1 if line_add
+        texts << "T #{font} #{size} #{x} #{@current_y} #{line}"
+        @current_y += y if line_add
       end
     end
     @texts += texts
@@ -93,9 +92,10 @@ class BaseCpcl
     ].join("\n")
   end
 
+  # todo
   def line(x0: 0, y0: 36, x1: 40 * 8, y1: 36, width: 2, line_add: true)
-    @texts << "L #{x0} #{@lines * y0} #{x1} #{@lines * y1} #{width}"
-    @lines += 1 if line_add
+    @texts << "L #{x0} #{@current_y} #{x1} #{@current_y} #{width}"
+    @current_y += y1 if line_add
   end
 
 end
