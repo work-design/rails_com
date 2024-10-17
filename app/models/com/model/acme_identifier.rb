@@ -42,6 +42,9 @@ module Com
         self.wildcard = true
         self.domain = identifier.delete_prefix('*.')
         self.type = 'Com::AcmeDns'
+      elsif acme_order.acme_identifiers.map(&:identifier).find { |i| i.start_with?('*.') }
+        self.domain = identifier
+        self.type = 'Com::AcmeDns'
       else
         self.domain = identifier
         self.type = 'Com::AcmeHttp'

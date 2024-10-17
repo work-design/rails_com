@@ -34,18 +34,20 @@ class AliDns
     client.request(**body)
   end
 
-  def ensure_acme(value)
+  def ensure_acme(values)
     result = records.dig('DomainRecords', 'Record')
     if result
       rs = result.select { |i| i['RR'] == rr }
       rs.each do |r|
-        delete(r['RecordId']) if r['Value'] != value
+        if values.include?(r['Value'])
+          values.delete(r['Value'])
+        else
+          delete(r['RecordId'])
+        end
       end
-      if rs.blank?
-        add_acme_record(value)
-      else
-        rs[0]
-      end
+    end
+    values.each do |value|
+      add_acme_record(value)
     end
   end
 

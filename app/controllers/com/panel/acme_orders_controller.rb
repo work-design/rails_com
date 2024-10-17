@@ -18,6 +18,10 @@ module Com
       @acme_order.acme_identifiers.build
     end
 
+    def create
+      binding.b
+    end
+
     def order
       r = @acme_order.order(true)
       render 'update'
