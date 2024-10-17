@@ -111,6 +111,10 @@ module Com
       end
     end
 
+    def auto_config
+
+    end
+
     def identifiers_string
       identifiers.first.delete_prefix '*.'
     end

@@ -16,7 +16,7 @@ module Com
       if dns_resolv.include?(record_content)
         true
       else
-        dns_client.ensure_acme record_content
+        dns_client.ensure_acme acme_order.acme_identifiers.pluck(:record_content)
         ensure_config(tries) unless (tries -= 1).zero?
       end
     end
