@@ -22,8 +22,6 @@ module Com
         invalid: 'invalid',
         deactivated: 'deactivated'
       }, prefix: true
-
-      before_save :compute_wildcard, if: -> { identifier_changed? && identifier.present? }
     end
 
     def reset
@@ -35,20 +33,6 @@ module Com
         url: nil,
         status: nil
       )
-    end
-
-    def compute_wildcard
-      if identifier.start_with?('*.')
-        self.wildcard = true
-        self.domain = identifier.delete_prefix('*.')
-        self.type = 'Com::AcmeDns'
-      elsif acme_order.acme_identifiers.map(&:identifier).find { |i| i.start_with?('*.') }
-        self.domain = identifier
-        self.type = 'Com::AcmeDns'
-      else
-        self.domain = identifier
-        self.type = 'Com::AcmeHttp'
-      end
     end
 
     def authorization

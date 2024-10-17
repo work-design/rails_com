@@ -97,9 +97,11 @@ module Com
         dns = auth.dns
         http = auth.http
         if dns
+          ident.type = 'Com::AcmeDns'
           ident.record_name = dns.record_name
           ident.record_content = dns.record_content
         elsif http
+          ident.type = 'Com::AcmeHttp'
           ident.file_name = http.filename
           ident.file_content = http.file_content
         end
