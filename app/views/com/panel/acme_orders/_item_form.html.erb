@@ -1,11 +1,11 @@
 <div class="field is-horizontal" data-controller="field" data-field-index-value="<%= ef.index %>">
   <% if ef.index == 0 %>
-    <%= ef.label :acme_identifiers %>
+    <%= ef.label :identifiers %>
   <% else %>
     <label class="field-label"></label>
   <% end %>
   <div class="field-body">
-    <%= ef.text_field :identifier, label: nil, placeholder: Com::AcmeIdentifier.human_attribute_name(:identifier) %>
+    <%= ef.text_field 'identifiers[]', label: nil, wrap: { all: nil, input: 'field' }, placeholder: Com::AcmeIdentifier.human_attribute_name(:identifier) %>
     <span class="field has-addons has-addons-middle">
       <i class="fa-solid fa-lg fa-plus-circle" data-action="click->field#add" style="cursor: pointer"></i>
       <i class="fa-solid fa-lg fa-minus-circle pl-2" data-action="click->field#remove" style="cursor: pointer"></i>
