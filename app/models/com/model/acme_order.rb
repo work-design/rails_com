@@ -8,6 +8,7 @@ module Com
       attribute :url, :string
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
+      attribute :identifiers, :string, array: true
 
       enum :status, {
         pending: 'pending',
@@ -66,11 +67,8 @@ module Com
     else
       self.orderid = r.to_h[:url].split('/')[-1]
       self.assign_attributes r.to_h.slice(:status, :url)
-      auths = self.set_authorizations
-      self.class.transaction do
-        auths.each(&:save!)
-        self.save!
-      end
+      self.set_authorizations!
+      self.save!
       r
     end
 
@@ -93,25 +91,22 @@ module Com
       retry unless (tries -= 1).zero?
     end
 
-    def set_authorizations
-      order.authorizations.map do |auth|
-        ident = acme_identifiers.find(&->(i){ i.domain == auth.domain && i.wildcard == auth.wildcard })
-        next unless ident
-        ident.set_auth(auth)
-        ident
-      end
-    end
-
     def set_authorizations!
-      auths = set_authorizations
-
-      self.class.transaction do
-        auths.each(&:save!)
+      order.authorizations.each do |auth|
+        ident = acme_identifiers.find_or_initialize_by(domain: auth.domain, wildcard: auth.wildcard)
+        dns = auth.dns
+        http = auth.http
+        if dns
+          ident.record_name = dns.record_name
+          ident.record_content = dns.record_content
+        elsif http
+          ident.file_name = http.filename
+          ident.file_content = http.file_content
+        end
+        ident.url = auth.url
+        ident.status = auth.status
+        ident.save
       end
-    end
-
-    def identifiers
-      acme_identifiers.pluck(:identifier).sort
     end
 
     def identifiers_string

@@ -58,22 +58,6 @@ module Com
       retry
     end
 
-    def set_auth!(auth)
-      set_auth(auth)
-      save
-    end
-
-    def set_auth(auth)
-      self.assign_attributes(
-        record_name: auth.dns&.record_name,
-        record_content: auth.dns&.record_content,
-        file_name: auth.http&.filename,
-        file_content: auth.http&.file_content,
-        url: auth.url,
-        status: auth.status
-      )
-    end
-
     def deactivate
       acme_order.acme_account.client.deactivate_authorization(url: url)
     rescue Acme::Client::Error::BadNonce
