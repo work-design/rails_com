@@ -88,7 +88,16 @@ module RailsCom::Models
     tables
   end
 
+  def unbound_tables_hash
+    #tables - models.map(&:table_name) - ['schema_migrations', 'ar_internal_metadata']
+    tables = {}
+    tables_hash.each do |table_name, cols|
+
+    end
+  end
+
   def migrate_modules_hash
+    tables = ActiveRecord::Base.connection.tables
     @modules = {}
 
     models.group_by(&:module_parent).each do |module_name, record_classes|
@@ -110,10 +119,6 @@ module RailsCom::Models
     @modules
   end
 
-  def unbound_tables
-    tables - models.map(&:table_name) - ['schema_migrations', 'ar_internal_metadata']
-  end
-
   def ignore_models
     models.group_by(&->(i){ i.pending_attributes.size }).transform_values!(&->(i) { i.map(&:to_s) })
   end
@@ -126,10 +131,6 @@ module RailsCom::Models
     end
 
     @attachments
-  end
-
-  def tables
-    ActiveRecord::Base.connection.tables
   end
 
   def model_names
