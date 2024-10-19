@@ -15,7 +15,7 @@ class RailsCom::RemoveTableGenerator < Rails::Generators::Base
   end
 
   def file_index
-    ups = ActiveRecord::Base.connection.migration_context.migrations_status.select do |status, version, name|
+    ups = ActiveRecord::Base.connection_pool.migration_context.migrations_status.select do |status, version, name|
       status == 'up' && name.start_with?('Smart remove table ')
     end
     if ups.present?
