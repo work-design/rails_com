@@ -21,7 +21,7 @@ module Job
     def todo
       @jobs = @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).page(params[:page]).per(params[:per])
       set_class_names
-      @jobs = @jobs.order(scheduled_at: :desc)
+      @jobs = @jobs.order(scheduled_at: :asc)
     end
 
     def blocked
