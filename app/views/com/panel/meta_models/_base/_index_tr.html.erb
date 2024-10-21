@@ -17,6 +17,10 @@
         <i class="fa-solid fa-sitemap text-success"></i>
         <span class="ml-1"><%= t('.reflections.title') %></span>
       <% end %>
+      <%= link_to({ action: 'indexes', id: model.id, **request.query_parameters.except(:id, :page, :per) }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-sitemap text-success"></i>
+        <span class="ml-1"><%= t('.indexes.title') %></span>
+      <% end %>
     </div>
   </td>
 </tr>

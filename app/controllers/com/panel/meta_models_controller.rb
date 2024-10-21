@@ -27,7 +27,7 @@ module Com
     end
 
     def indexes
-      @indexes = @meta_model.record_class.indexes_by_db.map(&:name)
+      @indexes = @meta_model.record_class.indexes_by_db
     end
 
     def index_update
