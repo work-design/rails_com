@@ -17,7 +17,7 @@ module Com
     end
 
     def create_all
-      PgPublication.connection.exec_query 'CREATE PUBLICATION FOR ALL TABLES'
+      PgPublication.connection.exec_query "CREATE PUBLICATION #{params[:pubname]} FOR ALL TABLES"
     end
 
     def update
