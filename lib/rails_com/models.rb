@@ -89,7 +89,7 @@ module RailsCom::Models
   end
 
   def unbound_tables_hash
-    #tables - models.map(&:table_name) - ['schema_migrations', 'ar_internal_metadata']
+    #tables - models.map(&:table_name) -
     tables = {}
     tables_hash.each do |table_name, cols|
 
@@ -131,6 +131,13 @@ module RailsCom::Models
     end
 
     @attachments
+  end
+
+  def ignore_tables
+    [
+      'schema_migrations',
+      'ar_internal_metadata'
+    ]
   end
 
   def model_names
