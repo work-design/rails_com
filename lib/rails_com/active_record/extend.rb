@@ -224,6 +224,10 @@ module RailsCom::ActiveRecord
       connection.indexes table_name
     end
 
+    def rename_index(old_name, new_name)
+      connection.rename_index(table_name, old_name, new_name)
+    end
+
     def reflections_with_belongs_to
       reflections.values.select(&->(reflection){ reflection.belongs_to? })
     end

@@ -31,7 +31,7 @@ module Com
     end
 
     def index_update
-      @meta_model.record_class.connection.rename_index('')
+      @meta_model.record_class.rename_index(params[:old_index], params[:new_index])
     end
 
     private
