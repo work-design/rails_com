@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   scope RailsCom.default_routes_scope do
     draw :job
+    draw :pg
     draw :roled
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
@@ -205,12 +206,6 @@ Rails.application.routes.draw do
             post :create_all
           end
           resources :pg_publication_tables, only: [:index, :new, :create]
-        end
-        resources :pg_subscriptions do
-          member do
-            post :refresh
-          end
-          resources :pg_stat_subscriptions
         end
         resources :pg_replication_slots
       end

@@ -1,4 +1,4 @@
-module Com
+module Pg
   class Panel::PgSubscriptionsController < Panel::BaseController
     before_action :set_tables
     before_action :set_pg_subscription, only: [:show, :edit, :update, :destroy, :refresh]

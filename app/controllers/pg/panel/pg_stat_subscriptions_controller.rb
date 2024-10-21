@@ -1,4 +1,4 @@
-module Com
+module Pg
   class Panel::PgStatSubscriptionsController < Panel::BaseController
     before_action :set_pg_subscription
 
