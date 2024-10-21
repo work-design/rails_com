@@ -16,6 +16,10 @@ module Com
       PgPublication.connection.exec_query "CREATE PUBLICATION #{pg_publication_params[:pubname]} FOR TABLE #{allow_tables.join(', ')}"
     end
 
+    def create_all
+      PgPublication.connection.exec_query 'CREATE PUBLICATION FOR ALL TABLES'
+    end
+
     def update
       allow_tables = @tables & pg_publication_params[:tables].compact_blank!
       PgPublication.connection.exec_query "ALTER PUBLICATION #{@pg_publication.pubname} SET TABLE #{allow_tables.join(', ')}"

@@ -201,6 +201,9 @@ Rails.application.routes.draw do
           end
         end
         resources :pg_publications do
+          collection do
+            post :create_all
+          end
           resources :pg_publication_tables, only: [:index, :new, :create]
         end
         resources :pg_subscriptions do
