@@ -1,7 +1,10 @@
 module Com
   class Panel::MetaModelsController < Panel::BaseController
     before_action :set_new_meta_model, only: [:new, :create]
-    before_action :set_meta_model, only: [:show, :edit, :update, :destroy, :actions, :reflections]
+    before_action :set_meta_model, only: [
+      :show, :edit, :update, :destroy, :actions,
+      :reflections, :indexes, :index_edit, :index_update
+    ]
     before_action :set_business_identifiers, only: [:index]
 
     def index
@@ -21,6 +24,14 @@ module Com
 
     def columns
       @meta_columns = MetaColumn.where(record_name: params.dig(params[:dom_scope], :record_name))
+    end
+
+    def indexes
+      @indexes = @meta_model.record_class.indexes_by_db.map(&:name)
+    end
+
+    def index_update
+      @meta_model.record_class.connection.rename_index('')
     end
 
     private

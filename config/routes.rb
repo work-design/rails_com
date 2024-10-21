@@ -158,6 +158,9 @@ Rails.application.routes.draw do
           end
           member do
             get :reflections
+            get :indexes
+            patch :index_edit
+            patch :index_update
           end
           resources :meta_columns do
             member do

@@ -220,6 +220,10 @@ module RailsCom::ActiveRecord
       end
     end
 
+    def indexes_by_db
+      connection.indexes table_name
+    end
+
     def reflections_with_belongs_to
       reflections.values.select(&->(reflection){ reflection.belongs_to? })
     end

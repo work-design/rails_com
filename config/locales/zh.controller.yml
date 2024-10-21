@@ -121,6 +121,10 @@ zh:
       meta_models:
         index:
           title: 模型（Model）
+        reflections:
+          title: 关联
+        indexes:
+          title: 索引
       meta_columns:
         index:
           title: 属性列表
