@@ -5,6 +5,7 @@ module Com
     included do
       attribute :name, :string
       attribute :record_name, :string, index: true
+      attribute :table_name, :string
       attribute :description, :string
       attribute :defined_db, :boolean, default: false
       attribute :customizable, :boolean, default: false, comment: '是否允许用户定制'
@@ -22,6 +23,7 @@ module Com
 
     def sync_business_identifier
       self.business_identifier = record_name.split('::')[-2].to_s.downcase
+      self.table_name = record_class.table_name
     end
 
     def display_name
