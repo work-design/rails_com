@@ -30,6 +30,10 @@ module Com
       @indexes = @meta_model.record_class.indexes_by_db
     end
 
+    def index_edit
+      @index = @meta_model.record_class.indexes_by_db
+    end
+
     def index_update
       @meta_model.record_class.rename_index(params[:old_index], params[:new_index])
     end

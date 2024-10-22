@@ -125,11 +125,15 @@ zh:
           title: 关联
         indexes:
           title: 索引
+        index_edit:
+          title: 修改索引
       meta_columns:
         index:
           title: 属性列表
-          sync: 同步
-          test: 测试
+        sync:
+          title: 同步
+        test:
+          title: 测试
       pg_publications:
         index:
           title: 发布者
