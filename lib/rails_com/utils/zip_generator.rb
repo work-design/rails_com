@@ -13,7 +13,7 @@ module ZipGenerator
       recursively_write(input_dir, zipfile, input_dir)
     end
 
-    zipfile
+    output_file
   end
 
   def recursively_write(disk_file_path, zipfile, input_dir)
