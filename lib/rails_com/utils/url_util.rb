@@ -2,28 +2,28 @@
 module UrlUtil
   extend self
 
-  def from_url(url, filename: SecureRandom.alphanumeric)
-    _, file = init_file(filename)
+  def from_url(url, filename: SecureRandom.alphanumeric, root: Rails.root.join('tmp/files'))
+    _, file = init_file(filename, root: root)
     fetch_file(url, file)
     file
   end
 
-  def file_from_url(url, filename: SecureRandom.alphanumeric)
-    _, file = init_file(filename)
+  def file_from_url(url, filename: SecureRandom.alphanumeric, root: Rails.root.join('tmp/files'))
+    _, file = init_file(filename, root: root)
     fetch_file(url, file)
     file.rewind
     file
   end
 
-  def filepath_from_url(url, filename: SecureRandom.alphanumeric)
-    file_path, file = init_file(filename)
+  def filepath_from_url(url, filename: SecureRandom.alphanumeric, root: Rails.root.join('tmp/files'))
+    file_path, file = init_file(filename, root: root)
     fetch_file(url, file)
     file.rewind
     file_path
   end
 
-  def init_file(filename = SecureRandom.alphanumeric)
-    file_path = Rails.root.join('tmp/files', filename)
+  def init_file(filename = SecureRandom.alphanumeric, root:)
+    file_path = root.join(filename)
     file_path.dirname.exist? || file_path.dirname.mkpath
     file = File.new(file_path, 'w+')
     file.binmode
