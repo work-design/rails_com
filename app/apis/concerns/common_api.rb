@@ -22,7 +22,7 @@ module CommonApi
 
   def get(path, params: {}, headers: {}, origin: nil, debug: nil)
     with_options = { origin: origin }
-    with_options.merge! debug: STDERR, debug_level: 3 if debug
+    with_options.merge! debug: Rails.logger.instance_values['logdev'].dev, debug_level: 2 if debug
 
     with_access_token(params: params, headers: headers) do
       response = @client.with_headers(headers).with(with_options).get(path, params: params)
@@ -32,7 +32,7 @@ module CommonApi
 
   def post(path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
     with_options = { origin: origin }
-    with_options.merge! debug: STDERR, debug_level: 2 if debug
+    with_options.merge! debug: Rails.logger.instance_values['logdev'].dev, debug_level: 2 if debug
 
     with_access_token(params: params, headers: headers) do
       params.merge! debug: 1 if debug
@@ -43,7 +43,7 @@ module CommonApi
 
   def post_file(path, file, params: {}, headers: {}, origin: nil, debug: nil, **options)
     with_options = { origin: origin }
-    with_options.merge! debug: STDERR, debug_level: 2 if debug
+    with_options.merge! debug: Rails.logger.instance_values['logdev'].dev, debug_level: 2 if debug
 
     with_access_token(params: params, headers: headers) do
       form_file = file.is_a?(HTTP::FormData::File) ? file : HTTP::FormData::File.new(file, content_type: options[:content_type])
