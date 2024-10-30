@@ -35,6 +35,7 @@ module RailsCom #:nodoc:
       'Com::PgPublication',
       'Com::PgPublicationTable',
       'Com::PgSubscription',
+      'Com::PgStatSubscription',
       'Com::PgReplicationSlot'
     ]
     config.override_prefixes = [
