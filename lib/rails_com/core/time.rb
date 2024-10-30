@@ -7,4 +7,8 @@ class Time
     at time / 1000.0, (time % 1000), :millisecond
   end
 
+  def to_ms
+    Process.clock_gettime(:CLOCK_REALTIME, :millisecond)
+  end
+
 end
