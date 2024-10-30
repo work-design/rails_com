@@ -25,7 +25,7 @@ namespace :roled, defaults: { business: 'roled' } do
       end
     end
     scope path: ':who_type/:who_id' do
-      resource :whos, only: [:index, :show, :edit, :update]
+      resource :whos, only: [:show, :edit, :update]
     end
   end
 
