@@ -5,6 +5,10 @@
     <% end %>
   </p>
   <p><span class="tag"><%= model.status %></span></p>
+  <p>
+    <span class="text-grey">耗时：</span>
+    <span class="text-info"><%= exact_distance_time(model.scheduled_at, Time.current) %></span>
+  </p>
 </td>
 <td>
   <p><%= model.class_name %></p>
