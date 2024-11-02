@@ -10,7 +10,7 @@
   <%= render 'admin/sync_nav' if defined? RailsSync %>
   <%= render 'admin/qingflow_nav' if defined? RailsQingflow %>
   <%= render 'auth_nav' %>
-  <%= render 'notice_nav' %>
+  <%= render 'notice_nav' if defined? RailsNotice %>
   <%= render 'org_simple_nav' if defined? RailsOrg %>
   <%= render 'bench_nav' if defined? RailsBench %>
   <%= render 'detail_nav' if defined? RailsDetail %>
