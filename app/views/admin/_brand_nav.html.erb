@@ -4,7 +4,7 @@
     <%= image_tag current_organ.logo.variant(resize_to_limit: [64, 64]), class: 'image' %>
   <% end %>
 <% else %>
-  <%= link_to({ controller: 'home' }, class: 'text-centered') do %>
+  <%= link_to({ controller: '/home' }, class: 'text-centered') do %>
     <i class="fa-solid fa-grip"></i>
     <span><%= t('admin.home.index.title') %></span>
   <% end %>
