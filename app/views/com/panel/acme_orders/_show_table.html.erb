@@ -1,4 +1,4 @@
 <div>
   <dt><%= Com::AcmeOrder.human_attribute_name(:identifiers) %></dt>
-  <dd><%= @acme_order.identifiers %></dd>
+  <dd><pre><%= @acme_order.identifiers.to_format_yaml %></pre></dd>
 </div>
