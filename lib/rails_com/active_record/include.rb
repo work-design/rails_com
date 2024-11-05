@@ -23,7 +23,7 @@ module RailsCom::ActiveRecord
       self.class.base_class.name
     end
 
-    def pretty_printx(pp)
+    def pretty_print(pp)
       return super if custom_inspect_method_defined?
       pp.object_address_group(self) do
         if defined?(@attributes) && @attributes
