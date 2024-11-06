@@ -1,7 +1,5 @@
-require "escpos/version"
 require "escpos/printer"
 require "escpos/helpers"
-require "escpos/report"
 
 module Escpos
 
