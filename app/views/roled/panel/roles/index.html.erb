@@ -2,5 +2,10 @@
 <%= render 'index_actions' %>
 
 <%= render layout: 'index_table' do %>
-  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @roles, as: :model %>
+<% @roles.group_by(&:type).each do |type, roles| %>
+  <tr>
+    <td rowspan="<%= roles.size + 1 %>"><%= Roled::Role.enum_i18n :type, type %></td>
+  </tr>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: roles, as: :model %>
+<% end %>
 <% end %>
