@@ -221,9 +221,4 @@ class BaseEsc
     @data.concat(PAPER_FULL_CUT)
   end
 
-  # Transforms an array of codes into a string
-  def sequence(*arr_sequence)
-    arr_sequence.flatten.pack('U*')
-  end
-
 end
