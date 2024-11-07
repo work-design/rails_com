@@ -27,26 +27,6 @@ class BaseEsc
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
-  # Encodes UTF-8 string to encoding acceptable for the printer
-  # The printer must be set to that encoding
-  # Available encodings can be listed in console using Encoding.constants
-  def encode(data, opts = {})
-    data.encode(opts.fetch(:encoding), 'UTF-8', {
-      invalid: opts.fetch(:invalid, :replace),
-      undef: opts.fetch(:undef, :replace),
-      replace: opts.fetch(:replace, '?')
-    })
-  end
-
-  # Set printer encoding
-  # example: encoding(Escpos::CP_ISO8859_2)
-  def encoding(data)
-    [
-      sequence(Escpos::CP_SET),
-      sequence(data)
-    ].join
-  end
-
   def text(data)
     @data.concat *[Escpos::TXT_NORMAL, data.encode!('gb18030').bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
   end
@@ -56,7 +36,7 @@ class BaseEsc
   end
 
   def quad_text(data)
-    @data.concat *[Escpos::TXT_4SQUARE, data.bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
+    @data.concat *[Escpos::TXT_4SQUARE, data.encode!('gb18030').bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
   end
 
   def double_width(data)
