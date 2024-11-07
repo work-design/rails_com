@@ -12,8 +12,8 @@ module Escpos
   CTL_VT                       = [ 0x0b ]                   # Vertical tab
 
   # Paper
-  PAPER_FULL_CUT               = [ 0x1d, 0x56, 0x00 ]			   # Full paper cut 
-  PAPER_PARTIAL_CUT            = [ 0x1d, 0x56, 0x01 ]			   # Partial paper cut
+  PAPER_FULL_CUT               = [ 0x1d, 0x56, 0x00 ]			   # 全切纸
+  PAPER_PARTIAL_CUT            = [ 0x1d, 0x56, 0x01 ]			   # 半切纸（中间还有部分相连）
   PAPER_CUT_A                  = [ 0x1d, 0x56, 0x41 ]			   # Paper cut A
   PAPER_CUT_B                  = [ 0x1d, 0x56, 0x42 ]			   # Paper cut B
 
