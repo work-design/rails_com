@@ -17,8 +17,8 @@ class BaseEsc
   end
 
   def render
-    @data.concat(Escpos::CTL_LF)
-    #cut!
+    @data.concat(Escpos::CTL_LF * 3)
+    cut!
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
@@ -76,10 +76,10 @@ class BaseEsc
 
   def right(data = '')
     @data << [
-      sequence(Escpos::TXT_ALIGN_RT),
-      data,
+      Escpos::TXT_ALIGN_RT,
+      data.bytes,
       sequence(Escpos::TXT_ALIGN_LT),
-    ].join
+    ]
   end
 
   def center(data = '')
