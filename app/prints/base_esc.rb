@@ -20,7 +20,7 @@ class BaseEsc
   end
 
   def render
-    to_escpos.bytes.map {|i| i.to_s(16) }.join('')
+    @data.bytes.map {|i| i.to_s(16) }.join('')
   end
 
   # Encodes UTF-8 string to encoding acceptable for the printer
