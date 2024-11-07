@@ -75,43 +75,23 @@ class BaseEsc
   end
 
   def right(data = '')
-    @data << [
-      Escpos::TXT_ALIGN_RT,
-      data.bytes,
-      sequence(Escpos::TXT_ALIGN_LT),
-    ]
+    @data.concat *[Escpos::TXT_ALIGN_RT, data.bytes, Escpos::TXT_ALIGN_LT]
   end
 
   def center(data = '')
-    @data << [
-      sequence(Escpos::TXT_ALIGN_CT),
-      data,
-      sequence(Escpos::TXT_ALIGN_LT),
-    ].join
+    @data.concat *[Escpos::TXT_ALIGN_CT, data.bytes, Escpos::TXT_ALIGN_LT]
   end
 
   def inverted(data)
-    @data << [
-      sequence(Escpos::TXT_INVERT_ON),
-      data,
-      sequence(Escpos::TXT_INVERT_OFF),
-    ].join
+    @data.concat *[Escpos::TXT_INVERT_ON, data.bytes, Escpos::TXT_INVERT_OFF]
   end
 
   def black
-    @data << [
-      sequence(Escpos::TXT_COLOR_BLACK),
-      data,
-      sequence(Escpos::TXT_COLOR_BLACK),
-    ].join
+    @data.concat *[Escpos::TXT_COLOR_BLACK, data.bytes, Escpos::TXT_COLOR_BLACK]
   end
 
   def red
-    @data.concat *[
-      Escpos::TXT_COLOR_BLACK,
-      data.bytes,
-      Escpos::TXT_COLOR_RED
-    ]
+    @data.concat *[Escpos::TXT_COLOR_BLACK, data.bytes, Escpos::TXT_COLOR_RED]
   end
 
   def barcode(data, opts = {})
