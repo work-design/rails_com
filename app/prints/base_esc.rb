@@ -70,7 +70,7 @@ class BaseEsc
   end
 
   def double_width(data)
-    [
+    @data << [
       sequence(Escpos::TXT_2WIDTH),
       data,
       sequence(Escpos::TXT_NORMAL),
@@ -78,7 +78,7 @@ class BaseEsc
   end
 
   def underline(data)
-    [
+    @data << [
       sequence(Escpos::TXT_UNDERL_ON),
       data,
       sequence(Escpos::TXT_UNDERL_OFF),
@@ -86,7 +86,7 @@ class BaseEsc
   end
 
   def underline2(data)
-    [
+    @data << [
       sequence(Escpos::TXT_UNDERL2_ON),
       data,
       sequence(Escpos::TXT_UNDERL_OFF),
@@ -94,7 +94,7 @@ class BaseEsc
   end
 
   def bold(data)
-    [
+    @data << [
       sequence(Escpos::TXT_BOLD_ON),
       data,
       sequence(Escpos::TXT_BOLD_OFF),
@@ -102,7 +102,7 @@ class BaseEsc
   end
 
   def left(data = '')
-    [
+    @data << [
       sequence(Escpos::TXT_ALIGN_LT),
       data,
       sequence(Escpos::TXT_ALIGN_LT),
@@ -110,7 +110,7 @@ class BaseEsc
   end
 
   def right(data = '')
-    [
+    @data << [
       sequence(Escpos::TXT_ALIGN_RT),
       data,
       sequence(Escpos::TXT_ALIGN_LT),
@@ -118,7 +118,7 @@ class BaseEsc
   end
 
   def center(data = '')
-    [
+    @data << [
       sequence(Escpos::TXT_ALIGN_CT),
       data,
       sequence(Escpos::TXT_ALIGN_LT),
@@ -126,7 +126,7 @@ class BaseEsc
   end
 
   def inverted(data)
-    [
+    @data << [
       sequence(Escpos::TXT_INVERT_ON),
       data,
       sequence(Escpos::TXT_INVERT_OFF),
@@ -134,7 +134,7 @@ class BaseEsc
   end
 
   def black
-    [
+    @data << [
       sequence(Escpos::TXT_COLOR_BLACK),
       data,
       sequence(Escpos::TXT_COLOR_BLACK),
@@ -142,7 +142,7 @@ class BaseEsc
   end
 
   def red
-    [
+    @data << [
       sequence(Escpos::TXT_COLOR_BLACK),
       data,
       sequence(Escpos::TXT_COLOR_RED),
@@ -168,7 +168,8 @@ class BaseEsc
     if width && (width < 2 || width > 6)
       raise ArgumentError("Width must be in range from 2 to 6.")
     end
-    [
+
+    @data << [
       sequence(text_position),
       sequence(Escpos::BARCODE_WIDTH),
       sequence([width]),
@@ -180,11 +181,11 @@ class BaseEsc
   end
 
   def partial_cut
-    sequence(Escpos::PAPER_PARTIAL_CUT)
+    @data << sequence(Escpos::PAPER_PARTIAL_CUT)
   end
 
   def cut
-    sequence(Escpos::PAPER_FULL_CUT)
+    @data << sequence(Escpos::PAPER_FULL_CUT)
   end
 
   # Transforms an array of codes into a string
