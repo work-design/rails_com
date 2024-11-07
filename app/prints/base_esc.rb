@@ -6,7 +6,11 @@ class BaseEsc
     @data.concat(Escpos::HW_INIT)
     @data.concat(Escpos::HW_PAGE)
     @data.concat([0x1d, 0x4c, 0x12, 0x00])
-    @data.concat [0x1c, 0x21, 0x00]
+    @data.concat([
+      0x1c, 0x26,
+      0x1c, 0x21, 0x00,
+      0x1b, 0x39, 0x01
+    ])
   end
 
   def partial_cut!
@@ -44,7 +48,7 @@ class BaseEsc
   end
 
   def text(data)
-    @data.concat *[Escpos::TXT_NORMAL, data.bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
+    @data.concat *[Escpos::TXT_NORMAL, data.encode!('gb18030').bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
   end
 
   def double_height(data)
