@@ -5,7 +5,7 @@ class BaseEsc
     @data = []
     @data.concat(Escpos::HW_INIT)
     @data.concat(Escpos::HW_PAGE)
-    @data.concat([0x1d, 0x4c, 0x02, 0x00])
+    @data.concat([0x1d, 0x4c, 0x12, 0x00])
   end
 
   def partial_cut!
