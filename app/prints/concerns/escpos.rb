@@ -1,5 +1,4 @@
 module Escpos
-
   # Printer hardware
   HW_INIT                      = [ 0x1b, 0x40 ]             # Clear data in buffer and reset modes
   HW_SELECT                    = [ 0x1b, 0x3d, 0x01 ]       # Printer select
@@ -102,7 +101,5 @@ module Escpos
   BARCODE_CODE39              = [ 0x1d, 0x6b, 0x04 ]         # Barcode type CODE39
   BARCODE_ITF                 = [ 0x1d, 0x6b, 0x05 ]         # Barcode type ITF
   BARCODE_NW7                 = [ 0x1d, 0x6b, 0x06 ]         # Barcode type NW7
-
-
 
 end
