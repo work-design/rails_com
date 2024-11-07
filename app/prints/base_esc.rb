@@ -19,7 +19,7 @@ class BaseEsc
   def render
     @data.concat(Escpos::CTL_LF)
     #cut!
-    @data.bytes.map {|i| i.to_s(16) }.join('')
+    @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
   # Encodes UTF-8 string to encoding acceptable for the printer
