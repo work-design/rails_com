@@ -103,10 +103,6 @@ module Escpos
   BARCODE_ITF                 = [ 0x1d, 0x6b, 0x05 ]         # Barcode type ITF
   BARCODE_NW7                 = [ 0x1d, 0x6b, 0x06 ]         # Barcode type NW7
 
-  # Transforms an array of codes into a string
-  def sequence(*arr_sequence)
-    arr_sequence.flatten.pack('U*')
-  end
-  module_function :sequence
+
 
 end

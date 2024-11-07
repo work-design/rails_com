@@ -16,112 +16,112 @@ module EscHelper
   # example: encoding(Escpos::CP_ISO8859_2)
   def encoding(data)
     [
-      Escpos.sequence(Escpos::CP_SET),
-      Escpos.sequence(data)
+      sequence(Escpos::CP_SET),
+      sequence(data)
     ].join
   end
 
   def text(data)
     [
-      Escpos.sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::TXT_NORMAL),
       data,
-      Escpos.sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::TXT_NORMAL),
     ].join
   end
 
   def double_height(data)
     [
-      Escpos.sequence(Escpos::TXT_2HEIGHT),
+      sequence(Escpos::TXT_2HEIGHT),
       data,
-      Escpos.sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::TXT_NORMAL),
     ].join
   end
 
   def quad_text(data)
     [
-      Escpos.sequence(Escpos::TXT_4SQUARE),
+      sequence(Escpos::TXT_4SQUARE),
       data,
-      Escpos.sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::TXT_NORMAL),
     ].join
   end
 
   def double_width(data)
     [
-      Escpos.sequence(Escpos::TXT_2WIDTH),
+      sequence(Escpos::TXT_2WIDTH),
       data,
-      Escpos.sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::TXT_NORMAL),
     ].join
   end
 
   def underline(data)
     [
-      Escpos.sequence(Escpos::TXT_UNDERL_ON),
+      sequence(Escpos::TXT_UNDERL_ON),
       data,
-      Escpos.sequence(Escpos::TXT_UNDERL_OFF),
+      sequence(Escpos::TXT_UNDERL_OFF),
     ].join
   end
 
   def underline2(data)
     [
-      Escpos.sequence(Escpos::TXT_UNDERL2_ON),
+      sequence(Escpos::TXT_UNDERL2_ON),
       data,
-      Escpos.sequence(Escpos::TXT_UNDERL_OFF),
+      sequence(Escpos::TXT_UNDERL_OFF),
     ].join
   end
 
   def bold(data)
     [
-      Escpos.sequence(Escpos::TXT_BOLD_ON),
+      sequence(Escpos::TXT_BOLD_ON),
       data,
-      Escpos.sequence(Escpos::TXT_BOLD_OFF),
+      sequence(Escpos::TXT_BOLD_OFF),
     ].join
   end
 
   def left(data = '')
     [
-      Escpos.sequence(Escpos::TXT_ALIGN_LT),
+      sequence(Escpos::TXT_ALIGN_LT),
       data,
-      Escpos.sequence(Escpos::TXT_ALIGN_LT),
+      sequence(Escpos::TXT_ALIGN_LT),
     ].join
   end
 
   def right(data = '')
     [
-      Escpos.sequence(Escpos::TXT_ALIGN_RT),
+      sequence(Escpos::TXT_ALIGN_RT),
       data,
-      Escpos.sequence(Escpos::TXT_ALIGN_LT),
+      sequence(Escpos::TXT_ALIGN_LT),
     ].join
   end
 
   def center(data = '')
     [
-      Escpos.sequence(Escpos::TXT_ALIGN_CT),
+      sequence(Escpos::TXT_ALIGN_CT),
       data,
-      Escpos.sequence(Escpos::TXT_ALIGN_LT),
+      sequence(Escpos::TXT_ALIGN_LT),
     ].join
   end
 
   def inverted(data)
     [
-      Escpos.sequence(Escpos::TXT_INVERT_ON),
+      sequence(Escpos::TXT_INVERT_ON),
       data,
-      Escpos.sequence(Escpos::TXT_INVERT_OFF),
+      sequence(Escpos::TXT_INVERT_OFF),
     ].join
   end
 
   def black
     [
-      Escpos.sequence(Escpos::TXT_COLOR_BLACK),
+      sequence(Escpos::TXT_COLOR_BLACK),
       data,
-      Escpos.sequence(Escpos::TXT_COLOR_BLACK),
+      sequence(Escpos::TXT_COLOR_BLACK),
     ].join
   end
 
   def red
     [
-      Escpos.sequence(Escpos::TXT_COLOR_BLACK),
+      sequence(Escpos::TXT_COLOR_BLACK),
       data,
-      Escpos.sequence(Escpos::TXT_COLOR_RED),
+      sequence(Escpos::TXT_COLOR_RED),
     ].join
   end
 
@@ -145,22 +145,27 @@ module EscHelper
       raise ArgumentError("Width must be in range from 2 to 6.")
     end
     [
-      Escpos.sequence(text_position),
-      Escpos.sequence(Escpos::BARCODE_WIDTH),
-      Escpos.sequence([width]),
-      Escpos.sequence(Escpos::BARCODE_HEIGHT),
-      Escpos.sequence([height]),
-      Escpos.sequence(opts.fetch(:format, Escpos::BARCODE_EAN13)),
+      sequence(text_position),
+      sequence(Escpos::BARCODE_WIDTH),
+      sequence([width]),
+      sequence(Escpos::BARCODE_HEIGHT),
+      sequence([height]),
+      sequence(opts.fetch(:format, Escpos::BARCODE_EAN13)),
       data
     ].join
   end
 
   def partial_cut
-    Escpos.sequence(Escpos::PAPER_PARTIAL_CUT)
+    sequence(Escpos::PAPER_PARTIAL_CUT)
   end
 
   def cut
-    Escpos.sequence(Escpos::PAPER_FULL_CUT)
+    sequence(Escpos::PAPER_FULL_CUT)
+  end
+
+  # Transforms an array of codes into a string
+  def sequence(*arr_sequence)
+    arr_sequence.flatten.pack('U*')
   end
 
 end
