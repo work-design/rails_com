@@ -2,26 +2,23 @@ class BaseEsc
   attr_reader :data
 
   def initialize
-    # ensure only supported sequences are generated
-    @data = ''.force_encoding('ASCII-8BIT')
-    @data << sequence(Escpos::HW_INIT)
-    @data << sequence(Escpos::HW_PAGE)
-  end
-
-  def write(data)
-    @data << data.force_encoding('ASCII-8BIT')
+    @data = []
+    @data.concat(Escpos::HW_INIT)
+    @data.concat(Escpos::HW_PAGE)
+    @data.concat([0x1d, 0x4c, 0x02, 0x00])
   end
 
   def partial_cut!
-    @data << sequence(Escpos::PAPER_PARTIAL_CUT)
+    @data.concat(Escpos::PAPER_PARTIAL_CUT)
   end
 
   def cut!
-    @data << sequence(Escpos::PAPER_FULL_CUT)
+    @data.concat(Escpos::PAPER_FULL_CUT)
   end
 
   def render
-    cut!
+    @data.concat(Escpos::CTL_LF)
+    #cut!
     @data.bytes.map {|i| i.to_s(16) }.join('')
   end
 
@@ -46,69 +43,35 @@ class BaseEsc
   end
 
   def text(data)
-    @data << [
-      sequence(Escpos::TXT_NORMAL),
-      data,
-      sequence(Escpos::TXT_NORMAL),
-      sequence(Escpos::CTL_LF)
-    ].join
+    @data.concat *[Escpos::TXT_NORMAL, data.bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
   end
 
   def double_height(data)
-    [
-      sequence(Escpos::TXT_2HEIGHT),
-      data,
-      sequence(Escpos::TXT_NORMAL),
-    ].join
+    @data.concat *[Escpos::TXT_2HEIGHT, data.bytes, Escpos::TXT_NORMAL]
   end
 
   def quad_text(data)
-    @data << [
-      sequence(Escpos::TXT_4SQUARE),
-      data,
-      sequence(Escpos::TXT_NORMAL),
-      sequence(Escpos::CTL_LF)
-    ].join
+    @data.concat *[Escpos::TXT_4SQUARE, data.bytes, Escpos::TXT_NORMAL, Escpos::CTL_LF]
   end
 
   def double_width(data)
-    @data << [
-      sequence(Escpos::TXT_2WIDTH),
-      data,
-      sequence(Escpos::TXT_NORMAL),
-    ].join
+    @data.concat *[Escpos::TXT_2WIDTH, data.bytes, Escpos::TXT_NORMAL]
   end
 
   def underline(data)
-    @data << [
-      sequence(Escpos::TXT_UNDERL_ON),
-      data,
-      sequence(Escpos::TXT_UNDERL_OFF),
-    ].join
+    @data.concat *[Escpos::TXT_UNDERL_ON, data.bytes, Escpos::TXT_UNDERL_OFF]
   end
 
   def underline2(data)
-    @data << [
-      sequence(Escpos::TXT_UNDERL2_ON),
-      data,
-      sequence(Escpos::TXT_UNDERL_OFF),
-    ].join
+    @data.concat *[Escpos::TXT_UNDERL2_ON, data.bytes, Escpos::TXT_UNDERL_OFF]
   end
 
   def bold(data)
-    @data << [
-      sequence(Escpos::TXT_BOLD_ON),
-      data,
-      sequence(Escpos::TXT_BOLD_OFF),
-    ].join
+    @data.concat *[Escpos::TXT_BOLD_ON, data.bytes, Escpos::TXT_BOLD_OFF]
   end
 
   def left(data = '')
-    @data << [
-      sequence(Escpos::TXT_ALIGN_LT),
-      data,
-      sequence(Escpos::TXT_ALIGN_LT),
-    ].join
+    @data.concat *[Escpos::TXT_ALIGN_LT, data.bytes, Escpos::TXT_ALIGN_LT]
   end
 
   def right(data = '')
@@ -144,11 +107,11 @@ class BaseEsc
   end
 
   def red
-    @data << [
-      sequence(Escpos::TXT_COLOR_BLACK),
-      data,
-      sequence(Escpos::TXT_COLOR_RED),
-    ].join
+    @data.concat *[
+      Escpos::TXT_COLOR_BLACK,
+      data.bytes,
+      Escpos::TXT_COLOR_RED
+    ]
   end
 
   def barcode(data, opts = {})
@@ -171,23 +134,23 @@ class BaseEsc
       raise ArgumentError("Width must be in range from 2 to 6.")
     end
 
-    @data << [
-      sequence(text_position),
-      sequence(Escpos::BARCODE_WIDTH),
-      sequence([width]),
-      sequence(Escpos::BARCODE_HEIGHT),
-      sequence([height]),
-      sequence(opts.fetch(:format, Escpos::BARCODE_EAN13)),
-      data
-    ].join
+    @data.concat *[
+      text_position,
+      Escpos::BARCODE_WIDTH,
+      [width],
+      Escpos::BARCODE_HEIGHT,
+      [height],
+      opts.fetch(:format, Escpos::BARCODE_EAN13),
+      data.bytes
+    ]
   end
 
   def partial_cut
-    @data << sequence(Escpos::PAPER_PARTIAL_CUT)
+    @data.concat(Escpos::PAPER_PARTIAL_CUT)
   end
 
   def cut
-    @data << sequence(Escpos::PAPER_FULL_CUT)
+    @data.concat(Escpos::PAPER_FULL_CUT)
   end
 
   # Transforms an array of codes into a string
