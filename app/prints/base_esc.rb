@@ -44,7 +44,7 @@ class BaseEsc
   end
 
   def text(data)
-    [
+    @data << [
       sequence(Escpos::TXT_NORMAL),
       data,
       sequence(Escpos::TXT_NORMAL),
@@ -60,7 +60,7 @@ class BaseEsc
   end
 
   def quad_text(data)
-    [
+    @data << [
       sequence(Escpos::TXT_4SQUARE),
       data,
       sequence(Escpos::TXT_NORMAL),
