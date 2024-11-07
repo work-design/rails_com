@@ -1,6 +1,3 @@
-require "escpos/printer"
-require "escpos/helpers"
-
 module Escpos
 
   # Printer hardware
