@@ -21,6 +21,10 @@ class BaseEsc
     @data << EscHelper.sequence(Escpos::PAPER_FULL_CUT)
   end
 
+  def render
+    to_escpos.bytes.map {|i| i.to_s(16) }.join('')
+  end
+
   def to_escpos
     @data
   end
