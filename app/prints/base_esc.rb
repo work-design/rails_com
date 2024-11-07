@@ -4,7 +4,7 @@ class BaseEsc
   def initialize
     # ensure only supported sequences are generated
     @data = "".force_encoding("ASCII-8BIT")
-    @data << Escpos.sequence(HW_INIT)
+    @data << EscHelper.sequence(Escpos::HW_INIT)
   end
 
   def write(data)
@@ -14,11 +14,11 @@ class BaseEsc
   alias :<< :write
 
   def partial_cut!
-    @data << Escpos.sequence(PAPER_PARTIAL_CUT)
+    @data << EscHelper.sequence(Escpos::PAPER_PARTIAL_CUT)
   end
 
   def cut!
-    @data << Escpos.sequence(PAPER_FULL_CUT)
+    @data << EscHelper.sequence(Escpos::PAPER_FULL_CUT)
   end
 
   def to_escpos
