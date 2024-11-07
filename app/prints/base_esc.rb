@@ -50,6 +50,7 @@ class BaseEsc
       sequence(Escpos::TXT_NORMAL),
       data,
       sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::CTL_LF)
     ].join
   end
 
@@ -66,6 +67,7 @@ class BaseEsc
       sequence(Escpos::TXT_4SQUARE),
       data,
       sequence(Escpos::TXT_NORMAL),
+      sequence(Escpos::CTL_LF)
     ].join
   end
 
