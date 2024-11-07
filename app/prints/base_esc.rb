@@ -5,6 +5,7 @@ class BaseEsc
     # ensure only supported sequences are generated
     @data = ''.force_encoding('ASCII-8BIT')
     @data << sequence(Escpos::HW_INIT)
+    @data << sequence(Escpos::HW_PAGE)
   end
 
   def write(data)
@@ -20,6 +21,7 @@ class BaseEsc
   end
 
   def render
+    cut!
     @data.bytes.map {|i| i.to_s(16) }.join('')
   end
 

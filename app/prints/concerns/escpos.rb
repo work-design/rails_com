@@ -3,6 +3,7 @@ module Escpos
   HW_INIT                      = [ 0x1b, 0x40 ]             # Clear data in buffer and reset modes
   HW_SELECT                    = [ 0x1b, 0x3d, 0x01 ]       # Printer select
   HW_RESET                     = [ 0x1b, 0x3f, 0x0a, 0x00 ] # Reset printer hardware
+  HW_PAGE                      = [ 0x1b, 0x4c ] # 页模式
 
   # Feed control sequences
   CTL_LF                       = [ 0x0a ]                   # Print and line feed
