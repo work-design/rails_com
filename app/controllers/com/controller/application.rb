@@ -97,11 +97,15 @@ module Com
     end
 
     def set_timezone
+      Time.zone = request.headers['HTTP_TIMEZONE']
+      logger.debug "\e[35m  Zone: #{Time.zone}  \e[0m" if RailsCom.config.debug
+    end
+
+    def set_user_timezone
       if defined?(current_user) && current_user&.timezone.blank? && request.headers['HTTP_TIMEZONE'].present?
         current_user&.update timezone: request.headers['HTTP_TIMEZONE']
       end
-      Time.zone = current_user&.timezone || request.headers['HTTP_TIMEZONE']
-      logger.debug "\e[35m  Zone: #{Time.zone}  \e[0m" if RailsCom.config.debug
+      Time.zone = current_user&.timezone
     end
 
     # Accept-Language: "en,zh-CN;q=0.9,zh;q=0.8,en-US;q=0.7,zh-TW;q=0.6"
@@ -131,11 +135,13 @@ module Com
       I18n.locale = locale
       session[:locale] = locale
 
+      logger.debug "\e[35m  Locale: #{I18n.locale}  \e[0m" if RailsCom.config.debug
+    end
+
+    def set_user_locale
       if defined?(current_user) && current_user&.locale.to_s != I18n.locale.to_s
         current_user&.update locale: I18n.locale
       end
-
-      logger.debug "\e[35m  Locale: #{I18n.locale}  \e[0m" if RailsCom.config.debug
     end
 
     def set_country
