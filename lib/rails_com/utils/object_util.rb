@@ -9,6 +9,7 @@ module ObjectUtil
 
   def memory_total
     Rails.logger.debug "\e[35m  Total Memory Usage: #{ObjectSpace.memsize_of_all.to_fs(:human_size)}  \e[0m"
+    Rails.logger.debug "\e[34m  #{ObjectSpace.count_objects_size.transform_values { |i| i.to_fs(:human_size) }}  \e[0m"
   end
 
   def present_objects(klass, ids)
