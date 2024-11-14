@@ -31,6 +31,7 @@ module Com
       body: raw_params.compact_blank,
       organ_id: current_organ&.id,
       user_id: current_user&.id,
+      parent_id: nil,
       destroyable: true
     )
       State.create(
@@ -43,6 +44,7 @@ module Com
         body: body,
         organ_id: organ_id,
         user_id: user_id,
+        parent_id: parent_id,
         destroyable: destroyable
       )
     end
@@ -172,7 +174,9 @@ module Com
     end
 
     def set_state
-      session[:state] = current_state&.id
+      if request.referer != request.url
+        session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
+      end
     end
 
     def support_cors
