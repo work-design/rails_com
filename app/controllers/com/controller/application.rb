@@ -168,8 +168,6 @@ module Com
       return @current_state if defined? @current_state
       if session[:state]
         @current_state = State.find_by(id: session[:state])
-      else
-        @current_state = state_enter(destroyable: false)
       end
     end
 
