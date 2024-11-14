@@ -172,7 +172,10 @@ module Com
     end
 
     def set_state
-      if request.referer != request.url
+      if controller_name == 'home'
+        current_state&.destroy
+        session[:state] = nil
+      elsif request.referer != request.url
         session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
       end
     end
