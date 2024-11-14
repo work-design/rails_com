@@ -14,6 +14,7 @@ module Com
       layout -> { "frame/#{proper_layout}" if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
       helper_method :current_title, :current_organ_name, :current_filters, :default_params, :turbo_frame_request_id
+      after_action :set_state
     end
 
     def raw_params
@@ -160,6 +161,10 @@ module Com
       elsif response.client_error?
         flash[:alert] = '请检查参数！'
       end
+    end
+
+    def set_state
+      session[:state] = @current_state.id
     end
 
     def support_cors
