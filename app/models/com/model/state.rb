@@ -24,6 +24,7 @@ module Com
 
       after_find :destroy_after_used, if: -> { destroyable? }
       after_save :destroy_after_used, if: -> { destroyable? && saved_change_to_destroyable? }
+      after_destroy :delete_all_ancestors, if: -> { parent_id.present? }
     end
 
     def detail
@@ -67,6 +68,10 @@ module Com
 
     def get?
       request_method == 'GET'
+    end
+
+    def delete_all_ancestors
+      ancestors.delete_all
     end
 
   end
