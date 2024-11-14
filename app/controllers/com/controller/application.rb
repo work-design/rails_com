@@ -13,7 +13,7 @@ module Com
     included do
       layout -> { "frame/#{proper_layout}" if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
-      helper_method :current_title, :current_organ_name, :current_filters, :default_params, :turbo_frame_request_id
+      helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id
       after_action :set_state
     end
 
@@ -175,7 +175,7 @@ module Com
       if controller_name == 'home'
         current_state&.destroy
         session[:state] = nil
-      elsif request.referer != request.url
+      elsif request.referer.present? && request.referer != request.url
         session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
       end
     end
