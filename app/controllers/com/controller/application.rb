@@ -167,7 +167,12 @@ module Com
     def current_state
       return @current_state if defined? @current_state
       if session[:state]
-        @current_state = State.find_by(id: session[:state])
+        state = State.find_by(id: session[:state])
+        if request.referer.blank?
+          @current_state = state.parent || state
+        else
+          @current_state = state
+        end
       end
     end
 
