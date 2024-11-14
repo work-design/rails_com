@@ -33,7 +33,7 @@ module Com
       user_id: current_user&.id,
       destroyable: true
     )
-      state = State.create(
+      State.create(
         host: host,
         controller_path: state_controller,
         action_name: state_action,
@@ -45,7 +45,6 @@ module Com
         user_id: user_id,
         destroyable: destroyable
       )
-      state.id
     end
 
     def current_title
@@ -163,8 +162,17 @@ module Com
       end
     end
 
+    def current_state
+      return @current_state if defined? @current_state
+      if session[:state]
+        @current_state = State.find_by(id: session[:state])
+      else
+        @current_state = state_enter(destroyable: false)
+      end
+    end
+
     def set_state
-      session[:state] = @current_state.id
+      session[:state] = current_state&.id
     end
 
     def support_cors
