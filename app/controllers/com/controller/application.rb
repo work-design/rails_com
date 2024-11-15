@@ -170,6 +170,8 @@ module Com
         state = State.find_by(id: session[:state])
         if request.referer.blank?
           @current_state = state.parent || state
+        elsif state.referer == request.url
+          @current_state = state.parent
         else
           @current_state = state
         end
@@ -182,6 +184,10 @@ module Com
         session[:state] = nil
       elsif request.referer.present? && request.referer != request.url
         session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
+      elsif request.referer.blank?
+        session[:state] = current_state.id
+      elsif request.url == current_state.referer
+        session[:state] = current_state.id
       end
     end
 
