@@ -185,9 +185,9 @@ module Com
       elsif request.referer.present? && request.referer != request.url
         session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
       elsif request.referer.blank?
-        session[:state] = current_state.id
+        session[:state] = current_state&.id
       elsif request.url == current_state.referer
-        session[:state] = current_state.id
+        session[:state] = current_state&.id
       end
     end
 
