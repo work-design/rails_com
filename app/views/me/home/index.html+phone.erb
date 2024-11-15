@@ -1,9 +1,15 @@
 <%= render 'profile_item' %>
-<%= render 'crm_nav' %>
-<%= render 'factory_nav' %>
-<%= render 'trade_nav' if defined? RailsTrade %>
-<%= render 'bench_nav' if defined? RailsBench %>
-<%= render 'finance_nav' if defined? RailsFinance %>
-<%= render 'space_nav' if defined? RailsSpace %>
-<%= render 'printer_nav' %>
+
+<div class="box is-padding-less mx-3">
+  <div class="columns is-4-mobile flex is-vcentered is-centered m-0 is-shadow">
+    <%= render 'crm_nav' %>
+    <%# render 'factory_nav' %>
+    <%= render 'trade_nav' if defined? RailsTrade %>
+    <%# render 'bench_nav' if defined? RailsBench %>
+    <%# render 'finance_nav' if defined? RailsFinance %>
+    <%# render 'space_nav' if defined? RailsSpace %>
+    <%# render 'printer_nav' %>
+  </div>
+</div>
+
 <%= render 'powered_by' %>
