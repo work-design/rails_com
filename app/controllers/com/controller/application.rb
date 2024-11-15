@@ -169,15 +169,17 @@ module Com
       if session[:state]
         state = State.find_by(id: session[:state])
         if request.referer.blank?
-          @current_state = state.parent || state
+          @current_state = state&.parent || state
         elsif state.referer == request.url
           @current_state = state.parent
         else
           @current_state = state
         end
-      else
+      elsif controller_name != 'home'
         @current_state = state_enter(destroyable: false)
       end
+      logger.debug "\e[35m  Current State: #{@current_state.id} #{@current_state.parent_ancestors.values.join(',')}  \e[0m" if @current_state # RailsCom.config.debug
+      @current_state
     end
 
     def set_state
