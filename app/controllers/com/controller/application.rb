@@ -175,6 +175,8 @@ module Com
         else
           @current_state = state
         end
+      else
+        @current_state = state_enter(destroyable: false)
       end
     end
 
