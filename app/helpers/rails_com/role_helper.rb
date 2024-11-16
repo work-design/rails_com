@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module RailsCom::RoleHelper
 
   def role_permit_options?(_options, method)
@@ -13,32 +11,26 @@ module RailsCom::RoleHelper
       return true
     elsif _options.is_a? Hash
       path_params = {
-        controller: _options[:controller].dup,
-        action: _options[:action]
+        controller: _options[:controller] || controller_path,
+        action: _options[:action] || 'index'
       }
-      path_params[:controller]&.delete_prefix!('/')
+      Rails.application.routes.send :generate, nil, path_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders', 这里会直接改变 dup_params 的值
     else
-      path_params = {}
-    end
-    path_params[:controller] ||= controller_path
-    path_params[:action] ||= 'index'
-    dup_params = path_params.dup
-    Rails.application.routes.send :generate, nil, dup_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders', 这里会直接改变 dup_params 的值
-    possible_result = RailsCom::Routes.controllers.dig(dup_params[:controller], dup_params[:action])
-    if possible_result.blank?
-      possible_result = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
-    else
-      path_params[:controller] = dup_params[:controller]
-    end
-    if possible_result.present?
-      path_params[:business] = possible_result[:business]
-      path_params[:namespace] = possible_result[:namespace]
-    else
-      path_params[:business] = params[:business].to_s
-      path_params[:namespace] = params[:namespace].to_s
+      path_params = {
+        controller: controller_path,
+        action: 'index'
+      }
     end
 
-    result = role_permit?(**path_params)
+    possible_result = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action]) || {}
+    result_params = {
+      business: possible_result[:business] || params[:business].to_s,
+      namespace: possible_result[:namespace] || params[:namespace].to_s,
+      controller: possible_result[:controller] || params[:controller],
+      action: possible_result[:action] || params[:action]
+    }
+
+    result = role_permit?(**result_params)
     if Rails.configuration.x.role_debug || !result
       logger.debug "\e[35m  Options: #{_options}  \e[0m"
     end
