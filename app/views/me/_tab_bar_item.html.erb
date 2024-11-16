@@ -1,4 +1,4 @@
-<% current_member.tabs.each do |tab| %>
+<% current_member.tabs.order(position: :asc).each do |tab| %>
   <%= link_to(tab.path, class: active_helper(paths: tab.path, active: 'is-active')) do %>
     <i class="fa-solid fa-<%= tab.icon %> size-5"></i>
     <span class="family-monospace size-7"><%= tab.name %></span>

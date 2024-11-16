@@ -5,7 +5,7 @@ module Roled
     before_action :set_new_tab, only: [:new, :create]
 
     def index
-      @tabs = @role.tabs.page(params[:page])
+      @tabs = @role.tabs.order(position: :asc).page(params[:page])
     end
 
     private
