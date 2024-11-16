@@ -11,8 +11,12 @@ module Com
       super
     end
 
+    def set_roled_tabs
+      @roled_tabs = current_member.tabs.order(position: :asc)
+    end
+
     def tab_item_items
-      current_member.tabs.pluck(:path)
+      @roled_tabs.pluck(:path)
     end
 
   end
