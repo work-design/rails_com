@@ -17,6 +17,7 @@ module Roled
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
       has_many :role_types, dependent: :delete_all
+      has_many :tabs, dependent: :delete_all
 
       scope :visible, -> { where(visible: true) }
 

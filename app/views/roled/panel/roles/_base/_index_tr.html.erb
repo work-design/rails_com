@@ -12,7 +12,11 @@
     <div data-show-target="item" class="visibility-hidden">
       <%= link_to({ action: 'show', id: model.id }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-cogs"></i>
-        <span class="ml-1"><%= t('roled.panel.roles.show.title') %></span>
+        <span class="ml-1"><%= t('.show.title') %></span>
+      <% end %>
+      <%= link_to({ controller: 'tabs', role_id: model.id }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fa-solid fa-house"></i>
+        <span class="ml-1"><%= t('.tabs.index.title') %></span>
       <% end %>
     </div>
   </td>

@@ -51,3 +51,6 @@ zh:
       whos:
         edit:
           title: 编辑
+      tabs:
+        index:
+          title: 菜单
