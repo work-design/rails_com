@@ -168,29 +168,31 @@ module Com
       return @current_state if defined? @current_state
       if session[:state]
         state = State.find_by(id: session[:state])
-        if request.referer.blank?
-          @current_state = state&.parent || state
-        elsif state.referer == request.url
-          @current_state = state.parent
-        else
+        if request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
           @current_state = state
+        elsif state.referer == request.url # 点回前一个页面
+          @current_state = state.parent
+        else # 常规页面：referer 存在，referer != url
+          @current_state = state_enter(destroyable: false, parent_id: state.id)
         end
       elsif controller_name != 'home'
         @current_state = state_enter(destroyable: false)
       end
-      logger.debug "\e[35m  Current State: #{@current_state.id} #{@current_state.parent_ancestors.values.join(',')}  \e[0m" if @current_state # RailsCom.config.debug
+      logger.debug "\e[35m  Current State: #{@current_state.id} #{@current_state.parent_ancestors.values.reverse.join(',')}  \e[0m" if @current_state # RailsCom.config.debug
       @current_state
     end
 
+    # 四种情况
+    # 1. 当前页面为入口
+    # 2. 常规页面：referer 存在，referer != url
+    # 3. 当前页面重复点击：referer 存在，referer == url
+    # 3. 点回前一个页面：referer 存在，
+    # 5. 当前页面刷新：referer 为空；
     def set_state
       if controller_name == 'home'
         current_state&.destroy
         session[:state] = nil
-      elsif request.referer.present? && request.referer != request.url
-        session[:state] = state_enter(destroyable: false, parent_id: session[:state]).id
-      elsif request.referer.blank?
-        session[:state] = current_state&.id
-      elsif request.url == current_state.referer
+      else
         session[:state] = current_state&.id
       end
     end
