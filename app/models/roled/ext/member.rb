@@ -13,5 +13,9 @@ module Roled
       end
     end
 
+    def xxx
+
+    end
+
   end
 end

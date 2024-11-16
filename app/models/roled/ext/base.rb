@@ -5,6 +5,7 @@ module Roled
     included do
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :who_roles
+      has_many :tabs, class_name: 'Roled::Tab', through: :who_roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
     end
 
