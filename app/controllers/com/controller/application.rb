@@ -176,10 +176,10 @@ module Com
       if tab_item_items.include?(request.path)
       elsif session[:state]
         state = State.find_by(id: session[:state])
-        if request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
-          @current_state = state
-        elsif state.referer == request.url # 点回前一个页面
+        if state && state.referer == request.url # 点回前一个页面
           @current_state = state.parent
+        elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
+          @current_state = state
         else # 常规页面：referer 存在，referer != url
           @current_state = state_enter(destroyable: false, parent_id: state.id)
         end
