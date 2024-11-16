@@ -164,6 +164,10 @@ module Com
       end
     end
 
+    def tab_item_items
+      ['/']
+    end
+
     def current_state
       return @current_state if defined? @current_state
       if session[:state]
@@ -175,7 +179,7 @@ module Com
         else # 常规页面：referer 存在，referer != url
           @current_state = state_enter(destroyable: false, parent_id: state.id)
         end
-      elsif controller_name != 'home'
+      elsif tab_item_items.exclude?(request.path)
         @current_state = state_enter(destroyable: false)
       end
       logger.debug "\e[35m  Current State: #{@current_state.id} #{@current_state.parent_ancestors.values.reverse.join(',')}  \e[0m" if @current_state # RailsCom.config.debug
@@ -189,7 +193,7 @@ module Com
     # 3. 点回前一个页面：referer 存在，
     # 5. 当前页面刷新：referer 为空；
     def set_state
-      if controller_name == 'home'
+      if tab_item_items.include?(request.path)
         current_state&.destroy
         session[:state] = nil
       else

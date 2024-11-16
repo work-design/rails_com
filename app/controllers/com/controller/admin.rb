@@ -11,5 +11,9 @@ module Com
       super
     end
 
+    def tab_item_items
+      current_member.tabs.pluck(:path)
+    end
+
   end
 end

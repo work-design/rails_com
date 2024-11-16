@@ -24,7 +24,8 @@ module Roled
     def tab_params
       params.fetch(:tab, {}).permit(
         :path,
-        :icon
+        :icon,
+        :name
       )
     end
 
