@@ -6,8 +6,11 @@ module Roled
       attribute :name, :string
       attribute :path, :string
       attribute :icon, :string
+      attribute :position, :integer
 
       belongs_to :role
+
+      positioned on: [:role_id]
     end
 
   end

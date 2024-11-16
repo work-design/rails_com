@@ -23,7 +23,13 @@ namespace :roled, defaults: { business: 'roled' } do
           delete '' => :destroy
         end
       end
-      resources :tabs
+      resources :tabs do
+        member do
+          patch :move_lower
+          patch :move_higher
+          patch :reorder
+        end
+      end
     end
     scope path: ':who_type/:who_id' do
       resource :whos, only: [:show, :edit, :update]
