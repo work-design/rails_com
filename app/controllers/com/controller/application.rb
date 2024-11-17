@@ -186,7 +186,7 @@ module Com
       else
         @current_state = state_enter(destroyable: false)
       end
-      logger.debug "\e[35m  Current State: #{@current_state.id} #{@current_state.parent_ancestors.values.reverse.join(',')}  \e[0m" if @current_state # RailsCom.config.debug
+      logger.debug "\e[35m  Current State: #{@current_state.id}, #{@current_state.parent_ancestors.values.reverse.join(', ')}  \e[0m" if @current_state # RailsCom.config.debug
       @current_state
     end
 
