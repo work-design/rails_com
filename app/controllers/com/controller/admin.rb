@@ -12,7 +12,11 @@ module Com
     end
 
     def set_roled_tabs
-      @roled_tabs = current_member.tabs.order(position: :asc).load
+      if current_member
+        @roled_tabs = current_member.tabs.order(position: :asc).load
+      else
+        @roled_tabs = Roled::Tab.none
+      end
     end
 
     def tab_item_items
