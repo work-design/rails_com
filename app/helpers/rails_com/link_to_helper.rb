@@ -34,9 +34,9 @@ module RailsCom::LinkToHelper
       _html_options['data-turbo-action'] = 'replace'
     end
 
+    text = _html_options.delete(:text)
     return super if role_permit_options?(_options, _html_options.fetch(:method, nil))
 
-    text = _html_options.delete(:text)
     if text
       if block_given?
         content_tag(:div, _html_options.slice(:class, :data), &block)
