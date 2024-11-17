@@ -183,7 +183,7 @@ module Com
         else # 常规页面：referer 存在，referer != url
           @current_state = state_enter(destroyable: false, parent_id: state.id)
         end
-      else
+      elsif request.variant.include?(:phone)
         @current_state = state_enter(destroyable: false)
       end
       logger.debug "\e[35m  Current State: #{@current_state.id}, #{@current_state.parent_ancestors.values.reverse.join(', ')}  \e[0m" if @current_state # RailsCom.config.debug
