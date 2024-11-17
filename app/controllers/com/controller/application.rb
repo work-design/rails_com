@@ -177,7 +177,7 @@ module Com
       elsif session[:state]
         state = State.find_by(id: session[:state])
         if state && state.referer == request.url # 点回前一个页面
-          @current_state = state.parent
+          @current_state = state.ancestors.where.not(request_method: 'POST').first
         elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
           @current_state = state
         else # 常规页面：referer 存在，referer != url
