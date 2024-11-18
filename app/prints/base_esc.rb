@@ -91,7 +91,7 @@ class BaseEsc
   end
 
   def text(data)
-    @data.concat *[TXT_NORMAL, data.encode!('gb18030').bytes, TXT_NORMAL, CTL_LF]
+    @data.concat *[TXT_NORMAL, data.encode('gb18030').bytes, TXT_NORMAL, CTL_LF]
   end
 
   def double_height(data)
@@ -99,7 +99,7 @@ class BaseEsc
   end
 
   def quad_text(data)
-    @data.concat *[TXT_4SQUARE, data.encode!('gb18030').bytes, TXT_NORMAL, CTL_LF]
+    @data.concat *[TXT_4SQUARE, data.encode('gb18030').bytes, TXT_NORMAL, CTL_LF]
   end
 
   def double_width(data)
@@ -127,7 +127,7 @@ class BaseEsc
   end
 
   def center(data = '')
-    @data.concat *[TXT_ALIGN_CT, data.encode!('gb18030').bytes, TXT_ALIGN_LT]
+    @data.concat *[TXT_ALIGN_CT, data.encode('gb18030').bytes, TXT_ALIGN_LT]
   end
 
   def inverted(data)
