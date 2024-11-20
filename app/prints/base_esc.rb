@@ -90,6 +90,10 @@ class BaseEsc
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
+  def render_0x
+    @data.pack('C*')
+  end
+
   def text(data)
     @data.concat *[TXT_NORMAL, data.encode('gb18030').bytes, TXT_NORMAL, CTL_LF]
   end
