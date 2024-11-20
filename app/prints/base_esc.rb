@@ -87,6 +87,9 @@ class BaseEsc
   def render
     @data.concat(CTL_LF * 3)
     cut!
+  end
+
+  def render_xx
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
