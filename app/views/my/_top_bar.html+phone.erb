@@ -1,5 +1,5 @@
 <% if ['my/home'].exclude?(params[:controller]) %>
-<div data-controller="mini-program" data-mini-program-pt-class="pt-0" class="box as-bar">
+<div class="box as-bar">
   <% if params[:action] == 'index' || referer_controller == 'my/home' %>
     <%= link_to({ controller: '/my/home' }, class: 'px-4') do %>
       <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
