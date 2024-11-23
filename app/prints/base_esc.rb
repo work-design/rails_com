@@ -105,7 +105,7 @@ class BaseEsc
     @data.concat *[TXT_2HEIGHT, data.bytes, TXT_NORMAL]
   end
 
-  def quad_text(data)
+  def big_text(data)
     @data.concat *[TXT_4SQUARE, data.encode('gb18030').bytes, TXT_NORMAL, CTL_LF]
   end
 
