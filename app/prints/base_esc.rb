@@ -89,7 +89,7 @@ class BaseEsc
     cut!
   end
 
-  def render_xx
+  def render_raw
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
