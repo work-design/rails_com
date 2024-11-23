@@ -85,7 +85,7 @@ class BaseEsc
   end
 
   def render
-    @data.concat(CTL_LF * 3)
+    @data.concat(CTL_LF * 5)
     cut!
   end
 
@@ -164,6 +164,7 @@ class BaseEsc
       bytes,
       qr_run
     ]
+    @data.concat(CTL_LF * 2)
   end
 
   def barcode(data, opts = {})
