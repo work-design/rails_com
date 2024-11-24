@@ -76,8 +76,14 @@ class Array
   end
 
   # 比较两个数组忽略排序的情况下是否相等
+  # todo 这个方法不严谨
   def compare(other)
     (self - other).empty? && (other - self).empty?
+  end
+
+  # 找出重复的元素
+  def find_repeated
+    group_by { |item| item }.select { |_, group| group.size > 1 }
   end
 
   # 查找 index, by id
