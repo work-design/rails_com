@@ -84,12 +84,16 @@ class BaseEsc
     @data.concat(PAPER_FULL_CUT)
   end
 
+  def break_line
+    @data.concat(CTL_LF)
+  end
+
   def render
-    @data.concat(CTL_LF * 3)
+    @data.concat(CTL_LF * 5)
     cut!
   end
 
-  def render_xx
+  def render_raw
     @data.map {|i| i.to_s(16).rjust(2, '0') }.join('')
   end
 
@@ -105,7 +109,7 @@ class BaseEsc
     @data.concat *[TXT_2HEIGHT, data.bytes, TXT_NORMAL]
   end
 
-  def quad_text(data)
+  def big_text(data)
     @data.concat *[TXT_4SQUARE, data.encode('gb18030').bytes, TXT_NORMAL, CTL_LF]
   end
 
@@ -164,6 +168,7 @@ class BaseEsc
       bytes,
       qr_run
     ]
+    @data.concat(CTL_LF * 2)
   end
 
   def barcode(data, opts = {})
