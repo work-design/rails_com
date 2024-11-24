@@ -84,6 +84,10 @@ class BaseEsc
     @data.concat(PAPER_FULL_CUT)
   end
 
+  def break_line
+    @data.concat(CTL_LF)
+  end
+
   def render
     @data.concat(CTL_LF * 5)
     cut!
