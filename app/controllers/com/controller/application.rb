@@ -165,6 +165,11 @@ module Com
     end
 
     def set_roled_tabs
+      if current_organ
+        @roled_tabs = current_organ.tabs.load.sort_by(&:position)
+      else
+        @roled_tabs = Roled::Tab.none
+      end
     end
 
     def tab_item_items
