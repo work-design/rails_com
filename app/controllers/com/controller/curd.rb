@@ -49,6 +49,17 @@ module Com
       end
     end
 
+    def refresh
+      model = model_object
+      model.assign_attributes(model_params)
+
+      if model.save
+        render :refresh
+      else
+        render :edit, locals: { model: model }, status: :unprocessable_entity
+      end
+    end
+
     def show
       model = model_object
       render :show, locals: { model: model }

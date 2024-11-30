@@ -7,10 +7,15 @@ module RailsCom::ActionDispatch
       end if parent_resource.actions.include?(:new)
       member do
         post :actions
-        post :show if parent_resource.actions.include?(:show) && parent_resource.actions.include?(:index)
+        if parent_resource.actions.include?(:show) && parent_resource.actions.include?(:index)
+          post :show
+        end
         if parent_resource.actions.include?(:edit)
           post :edit
           post :inline
+        end
+        if parent_resource.actions.include?(:update)
+          patch :refresh
         end
       end
       super
