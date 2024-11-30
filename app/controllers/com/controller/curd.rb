@@ -54,6 +54,7 @@ module Com
       model.assign_attributes(model_params)
 
       if model.save
+        index
         render :refresh
       else
         render :edit, locals: { model: model }, status: :unprocessable_entity
