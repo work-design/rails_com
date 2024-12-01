@@ -173,7 +173,7 @@ module Com
     end
 
     def tab_item_items
-      ['/']
+      @roled_tabs.pluck(:path)
     end
 
     def current_state
