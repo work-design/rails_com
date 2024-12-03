@@ -21,8 +21,8 @@ module Com
 
     def sign(now = Time.current.to_i)
       key = [now, secret].join("\n")
-      digest_str = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), key, '')
-      Base64.encode64 digest_str
+      digest_str = OpenSSL::HMAC.digest('sha256', key, '')
+      Base64.strict_encode64 digest_str
     end
 
     def body(title, content)
