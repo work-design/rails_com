@@ -1,3 +1,4 @@
+require 'openssl'
 module Com
   module Inner::FeishuBot
     extend ActiveSupport::Concern
@@ -18,8 +19,17 @@ module Com
       res.json
     end
 
+    def sign(now = Time.current.to_i)
+      key = [now, secret].join("\n")
+      digest_str = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), key, '')
+      Base64.encode64 digest_str
+    end
+
     def body(title, content)
+      now = Time.current.to_i
       {
+        timestamp: now,
+        sign: sign(now),
         msg_type: 'post',
         content: {
           post: {

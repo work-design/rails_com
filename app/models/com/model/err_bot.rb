@@ -6,6 +6,7 @@ module Com
       attribute :type, :string
       attribute :hook_url, :string
       attribute :first_time, :boolean
+      attribute :secret, :string
 
       has_many :err_notices
 

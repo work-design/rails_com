@@ -22,6 +22,7 @@ module Com
         :type,
         :hook_url,
         :first_time,
+        :secret,
         err_notices_attributes: {}
       )
     end
