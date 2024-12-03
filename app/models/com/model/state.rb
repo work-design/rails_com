@@ -3,7 +3,9 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :id, :uuid
+      if connection.adapter_name == 'PostgreSQL'
+        attribute :id, :uuid
+      end
       attribute :host, :string
       attribute :path, :string
       attribute :controller_path, :string
