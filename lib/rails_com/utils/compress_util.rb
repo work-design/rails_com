@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'vips'
 module CompressUtil
   extend self
 
@@ -24,6 +23,7 @@ module CompressUtil
   end
 
   def pdf_pages(path)
+    require 'vips'
     im = Vips::Image.new_from_file(path.to_s)
     im.get 'n-pages'
   rescue Vips::Error => e
