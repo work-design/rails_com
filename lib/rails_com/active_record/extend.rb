@@ -41,6 +41,13 @@ module RailsCom::ActiveRecord
       attaches.transform_values!(&->(_){ [] })
     end
 
+    def com_column_extra
+      extra = columns.select { |i| i.type == :json }
+      extra.each_with_object({}) do |i, h|
+        h.merge! i.name => {}
+      end
+    end
+
     def column_attributes
       columns.map do |column|
         r = {
