@@ -87,9 +87,7 @@ class Array
   end
 
   # 合并相邻的相同元素
-  def adjoin_repeated(excepts = [nil])
-    index = 0
-
+  def adjoin_repeated(index: 0, excepts: [nil])
     chunk_while { |i, j| i == j }.each_with_object({}) do |arr, h|
       if arr.size > 1
         if excepts.include?(arr[0])
