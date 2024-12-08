@@ -86,6 +86,27 @@ class Array
     group_by { |item| item }.select { |_, group| group.size > 1 }
   end
 
+  # 合并相邻的相同元素
+  def adjoin_repeated(excepts = [nil])
+    r = {}
+
+    chunk_while { |i, j| i == j }.each_with_index do |arr, index|
+      if arr.size > 1
+        if excepts.include?(arr[0])
+          arr.each_with_index do |arr_item, arr_index|
+            r.merge! index + arr_index => arr_item
+          end
+        else
+          r.merge! [index, index + arr.size - 1] => arr[0]
+        end
+      else
+        r.merge! index => arr[0]
+      end
+    end
+
+    r
+  end
+
   # 查找 index, by id
   def find_until(base = 0, limit)
     each_with_index do |i, index|
