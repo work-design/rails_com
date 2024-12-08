@@ -88,23 +88,23 @@ class Array
 
   # 合并相邻的相同元素
   def adjoin_repeated(excepts = [nil])
-    r = {}
+    index = 0
 
-    chunk_while { |i, j| i == j }.each_with_index do |arr, index|
+    chunk_while { |i, j| i == j }.each_with_object({}) do |arr, h|
       if arr.size > 1
         if excepts.include?(arr[0])
           arr.each_with_index do |arr_item, arr_index|
-            r.merge! index + arr_index => arr_item
+            h.merge! index + arr_index => arr_item
           end
         else
-          r.merge! [index, index + arr.size - 1] => arr[0]
+          h.merge! [index, index + arr.size - 1] => arr[0]
         end
+        index += arr.size
       else
-        r.merge! index => arr[0]
+        h.merge! index => arr[0]
+        index += 1
       end
     end
-
-    r
   end
 
   # 查找 index, by id
