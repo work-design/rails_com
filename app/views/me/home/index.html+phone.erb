@@ -1,4 +1,6 @@
-<%= render 'profile_item' %>
+<% if defined?(current_organ) %>
+  <%= render 'profile_item' %>
+<% end %>
 
 <div class="box fixed-grid has-4-cols">
   <div class="grid">
