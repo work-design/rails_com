@@ -8,11 +8,7 @@ module Com
     end
 
     def form_parameters
-      r = Hash(parameters).map { |k, v| { key: k, value: v } }
-      if r.blank?
-        r = [{ key: nil, value: nil }]
-      end
-      RailsCom::Settings.new(r)
+      parameters.each_with_object([]) { |(k, v), arr| arr << OpenStruct(key: k, value: v) }
     end
 
   end

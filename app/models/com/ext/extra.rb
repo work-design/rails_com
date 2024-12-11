@@ -8,12 +8,11 @@ module Com
     end
 
     def form_extra
-      r = {}
-      extra.each do |k, v|
-        r.merge! k => v.send(DefaultForm.config.mapping.dig(taxon.parameters[k].to_sym, :output))
+      r = extra.each_with_object({}) do |(k, v), h|
+        h.merge! k => v.send(DefaultForm.config.mapping.dig(taxon.parameters[k].to_sym, :output))
       end
 
-      RailsCom::Setting.new(r)
+      OpenStruct.new(r)
     end
 
   end
