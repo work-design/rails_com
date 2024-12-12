@@ -7,7 +7,7 @@ module Com
     end
 
     def form_parameters
-      parameters.each_with_object([]) { |(k, v), arr| arr << OpenStruct(key: k, value: v) }
+      parameters.each_with_object([]) { |(k, v), arr| arr << OpenStruct.new(key: k, value: v) }
     end
 
   end

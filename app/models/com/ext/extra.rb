@@ -1,4 +1,3 @@
-require 'rails_com/utils/setting'
 module Com
   module Ext::Extra
     extend ActiveSupport::Concern
