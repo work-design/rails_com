@@ -6,7 +6,7 @@
   </div>
   <div class="column">
     <div class="box">
-      <%= render partial: 'profile' %>
+      <%= render partial: 'profile' if defined? current_organ %>
     </div>
   </div>
 </div>
