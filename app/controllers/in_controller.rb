@@ -1,4 +1,7 @@
 class InController < AdminController
-  include Org::Controller::Me if defined? RailsOrg
+  if defined? RailsOrg
+    include Org::Controller::Me
+    include Org::Controller::In
+  end
 
 end
