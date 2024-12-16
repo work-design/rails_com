@@ -29,7 +29,7 @@ module Com
       referer: request.referer,
       state_params: request.path_parameters.except(:business, :namespace, :controller, :action).merge!(request.query_parameters),
       body: raw_params.compact_blank,
-      organ_id: current_organ&.id,
+      organ_id: (defined?(current_organ) && current_organ)&.id,
       user_id: current_user&.id,
       parent_id: nil,
       destroyable: true
