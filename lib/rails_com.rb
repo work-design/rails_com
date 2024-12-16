@@ -39,6 +39,7 @@ require 'active_storage/service/disc_service'
 
 # outside
 require 'csv'
+require 'ostruct'
 require 'solid_queue'
 require 'default_where'
 require 'kaminari'

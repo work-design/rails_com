@@ -36,6 +36,10 @@ zh:
     home:
       index:
         title: 个人中心
+  me:
+    home:
+      index:
+        title: 工作台
   agent:
     home:
       index:
