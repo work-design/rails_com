@@ -226,6 +226,10 @@ module Com
       {}
     end
 
+    def default_filter_params
+      {}
+    end
+
     def json_format?
       self.request.format.json?
     end
