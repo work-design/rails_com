@@ -15,6 +15,10 @@ module Com
       end
     end
 
+    def preview
+      index
+    end
+
     def debug
       index
     end
