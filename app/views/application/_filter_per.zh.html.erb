@@ -1,7 +1,7 @@
 <div class="dropdown is-right is-hoverable">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-      <span>25 条</span>
+      <span><%= "#{params[:per].presence || 25}" %> / 页</span>
       <span class="icon is-small">
         <i class="fas fa-angle-down" aria-hidden="true"></i>
       </span>
@@ -17,8 +17,8 @@
 </div>
 <div>
   <% if instance_variable_get("@#{pluralize_model_name}").respond_to?(:total_pages) %>
-  <span><%= instance_variable_get("@#{pluralize_model_name}").total_pages %></span>
+  <span>共<%= instance_variable_get("@#{pluralize_model_name}").total_pages %>页</span>
   <span>/</span>
-  <span><%= instance_variable_get("@#{pluralize_model_name}").total_count %></span>
+  <span>共<%= instance_variable_get("@#{pluralize_model_name}").total_count %>条</span>
   <% end %>
 </div>
