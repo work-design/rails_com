@@ -6,23 +6,16 @@ module Com
       "#{record_name}.#{domain}"
     end
 
-    def dns_client
-      acme_order.acme_account.dns(domain)
+    def rr
+      [record_name, *domain.split('.')[0...-2]].join('.')
     end
 
-    # todo use aliyun temply
-    def ensure_config(tries = 3)
+    def verify?
       dns_resolv = Resolv::DNS.open { |dns| dns.getresources(dns_host, Resolv::DNS::Resource::IN::TXT).map!(&:data) }
-      if dns_resolv.include?(record_content)
-        true
-      else
-        dns_client.ensure_acme acme_order.acme_identifiers.pluck(:record_content)
-        ensure_config(tries) unless (tries -= 1).zero?
-      end
+      dns_resolv.include?(record_content)
     end
 
     def auto_verify
-      ensure_config
       authorization.dns.request_validation
     rescue Acme::Client::Error::BadNonce
       retry

@@ -4,7 +4,7 @@ rescue LoadError
 end
 
 class AliDns
-  attr_reader :client, :root_domain, :rr
+  attr_reader :client, :domain
 
   def initialize(key, secret, domain)
     @client = RPCClient.new(
@@ -13,10 +13,7 @@ class AliDns
       access_key_id: key,
       access_key_secret: secret
     )
-
-    domain_arr = domain.split('.')
-    @root_domain = domain_arr[-2..-1].join('.')
-    @rr = ['_acme-challenge', *domain_arr[0...-2]].join('.')
+    @domain = domain
   end
 
   def records
@@ -24,7 +21,7 @@ class AliDns
       action: 'DescribeDomainRecords'
     }
     body.merge! params: {
-      DomainName: root_domain
+      DomainName: domain
     }
     body.merge! opts: {
       method: 'POST',
@@ -35,19 +32,19 @@ class AliDns
   end
 
   def ensure_acme(values)
-    result = records.dig('DomainRecords', 'Record')
-    if result
-      rs = result.select { |i| i['RR'] == rr }
-      rs.each do |r|
-        if values.include?(r['Value'])
-          values.delete(r['Value'])
-        else
-          delete(r['RecordId'])
+    results = records.dig('DomainRecords', 'Record')
+
+    values.each do |key, value|
+      results.each do |i|
+        if i['RR'] == key && i['Value'] != value
+          delete(i['RecordId'])
         end
       end
-    end
-    values.each do |value|
-      add_acme_record(value)
+
+      exist = results.find { |i| i['RR'] == key && i['Value'] == value }
+      unless exist
+        add_acme_record(key, value)
+      end
     end
   end
 
@@ -64,14 +61,14 @@ class AliDns
     client.request(**body)
   end
 
-  def add_acme_record(value)
+  def add_acme_record(key, value)
     body = {
       action: 'AddDomainRecord'
     }
     body.merge! params: {
-      DomainName: root_domain,
+      DomainName: domain,
       Type: 'TXT',
-      RR: rr,
+      RR: key,
       value: value
     }
     body.merge! opts: {
