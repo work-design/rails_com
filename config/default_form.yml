@@ -135,6 +135,7 @@ search:
     submit: button is-primary
   wrap:
     input: field is-narrow
+    select: field is-narrow > select
 inline:
   <<: *defaults
   label: false
