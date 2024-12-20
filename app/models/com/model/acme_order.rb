@@ -118,8 +118,12 @@ module Com
     def ensure_config
       dns_client = acme_account.dns(common_name)
 
-      rr = acme_identifiers.each_with_object([]) do |i, h|
-        h << [i.rr, i.record_content]
+      rr = acme_identifiers.each_with_object({}) do |i, h|
+        if h.key? i.rr
+          h[i.rr] << i.record_content
+        else
+          h.merge! i.rr => [i.record_content]
+        end
       end
       dns_client.ensure_acme rr
     end

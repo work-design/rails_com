@@ -31,19 +31,21 @@ class AliDns
     client.request(**body)
   end
 
-  def ensure_acme(values)
+  def ensure_acme(values_hash)
     results = records.dig('DomainRecords', 'Record')
 
-    values.each do |key, value|
-      results.each do |i|
-        if i['RR'] == key && i['Value'] != value
+    values_hash.each do |key, values|
+      results.select do |i|
+        if i['RR'] == key && values.exclude?(i['Value'])
           delete(i['RecordId'])
         end
       end
 
-      exist = results.find { |i| i['RR'] == key && i['Value'] == value }
-      unless exist
-        add_acme_record(key, value)
+      values.each do |value|
+        exist = results.find { |i| i['RR'] == key && i['Value'] == value }
+        unless exist
+          add_acme_record(key, value)
+        end
       end
     end
   end
