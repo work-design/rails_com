@@ -12,6 +12,7 @@ module Com
 
     def verify?
       dns_resolv = Resolv::DNS.open { |dns| dns.getresources(dns_host, Resolv::DNS::Resource::IN::TXT).map!(&:data) }
+      logger.debug "#{dns_resolv}"
       dns_resolv.include?(record_content)
     end
 
