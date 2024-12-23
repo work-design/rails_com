@@ -2,6 +2,6 @@
 
 class Object
   def to_format_yaml
-    to_yaml.delete_prefix("---\n")
+    to_yaml.gsub(/^---(\s|\n)?/, '')
   end
 end
