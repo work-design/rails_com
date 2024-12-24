@@ -111,8 +111,21 @@ module Com
       end
     end
 
-    def auto_config
+    def dns_all_verified?
+      acme_identifiers.all? { |i| i.verify? }
+    end
 
+    def ensure_config
+      dns_client = acme_account.dns(common_name)
+
+      rr = acme_identifiers.each_with_object({}) do |i, h|
+        if h.key? i.rr
+          h[i.rr] << i.record_content
+        else
+          h.merge! i.rr => [i.record_content]
+        end
+      end
+      dns_client.ensure_acme rr
     end
 
     def identifiers_string
