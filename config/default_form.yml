@@ -84,6 +84,15 @@ modal:
     <<: *default_alls
   error:
     <<: *default_errors
+modal_line:
+  <<: *defaults
+  label: false
+  form: modal-card
+  origin:
+    <<: *default_origins
+    submit: button is-medium is-primary
+  wrap:
+    submit: footer.modal-card-foot
 line:
   <<: *defaults
   origin:
