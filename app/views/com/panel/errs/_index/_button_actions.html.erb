@@ -1,6 +1,6 @@
-<%= form_with url: { action: 'batch_destroy' }, method: :delete, class: 'button_to ml-2' do |f| %>
+<%= form_with url: { action: 'batch_destroy' }, method: :delete, class: 'button_to' do |f| %>
   <%= f.hidden_field :ids, data: { form_target: 'ids' } %>
-  <%= button_tag data: { form_target: 'submit' }, aria: { label: t('.batch_destroy.title') }, disabled: true, class: 'button is-small text-danger' do %>
+  <%= button_tag data: { form_target: 'submit' }, aria: { label: t('.batch_destroy.title') }, disabled: true, class: 'button is-danger' do %>
     <i class="fa-solid fa-trash-can"></i>
   <% end %>
 <% end %>
