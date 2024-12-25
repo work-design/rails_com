@@ -14,7 +14,7 @@ module Com
       layout -> { "frame/#{proper_layout}" if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant, :set_roled_tabs
       helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id, :tab_item_items
-      after_action :set_state
+      after_action :set_state, if: -> { request.variant.any? :phone }
     end
 
     def raw_params
