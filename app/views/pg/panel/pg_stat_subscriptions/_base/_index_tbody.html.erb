@@ -1,4 +1,4 @@
-<td><%= model.worker_type %></td>
+<td><%= model.respond_to?(:worker_type) && model.worker_type %></td>
 <td>
   <p><%= model.pid %></p>
   <p><%= model.leader_pid %></p>

@@ -24,6 +24,8 @@ module Pg
     end
 
     def destroy
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.subname} DISABLE"
+      PgSubscription.connection.exec_query "ALTER SUBSCRIPTION #{@pg_subscription.subname} SET (slot_name = NONE)"
       PgSubscription.connection.exec_query "DROP SUBSCRIPTION #{@pg_subscription.subname}"
     end
 
