@@ -93,6 +93,12 @@ Rails.application.routes.draw do
       end
       namespace :panel, defaults: { namespace: 'panel' } do
         root 'home#index'
+        scope path: 'puma' do
+          controller :puma do
+            get :stats
+            get :thread_stats
+          end
+        end
         resource :organ
         resources :detectors do
           resources :detector_errors
