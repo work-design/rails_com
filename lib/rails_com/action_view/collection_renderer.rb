@@ -27,7 +27,7 @@ module RailsCom::ActionView
             collection_with_template(view, nil, layout, collection)
           end
 
-        return RenderedCollection.empty(@lookup_context.formats.first) if collection_body.empty?
+        return ActionView::AbstractRenderer::RenderedCollection.empty(@lookup_context.formats.first) if collection_body.empty?
 
         build_rendered_collection(collection_body, spacer)
       end
