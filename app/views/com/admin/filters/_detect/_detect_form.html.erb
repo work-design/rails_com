@@ -1,8 +1,5 @@
 <%= form_with theme: 'modal', model: @filter, url: { action: 'create' }, id: 'detect_form' do |f| %>
-  <header class="modal-card-head">
-    <p class="modal-card-title"><%= t('com.admin.filters.detect.title') %></p>
-    <button type="button" data-action="modal#close" class="delete"></button>
-  </header>
+  <%= render 'modal_header' %>
   <section class="modal-card-body">
     <%= f.hidden_field :controller_path %>
     <%= f.hidden_field :action_name %>
@@ -12,7 +9,5 @@
       <%= ef.hidden_field :value %>
     <% end %>
   </section>
-  <footer class="modal-card-foot">
-    <%= f.submit %>
-  </footer>
+  <%= f.submit %>
 <% end %>
