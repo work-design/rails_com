@@ -1,11 +1,10 @@
-
 module RailsCom::ActionView
   module CollectionRenderer
 
     def render_collection(collection, view, path, template, layout, block)
       identifier = template&.identifier || path
       ActiveSupport::Notifications.instrument(
-        "render_collection.action_view",
+        'render_collection.action_view',
         identifier: identifier,
         layout: layout&.virtual_path,
         count: collection.length
