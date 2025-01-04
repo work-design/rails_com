@@ -1,17 +1,1 @@
-<aside id="admin_menu" class="menu-wrap" style="<%= current_organ.admin_theme %>">
-  <%= render 'brand_nav' %>
-  <%= render 'admin/factory_simple_nav' if defined? RailsFactory %>
-  <%= render 'in/trade_nav' if defined? RailsTrade %>
-  <%= render 'trade_simple_nav' if defined? RailsTrade %>
-  <%= render 'admin/crm_nav' if defined? RailsCrm %>
-  <%= render 'admin/ship_simple_nav' if defined? RailsShip %>
-  <%= render 'admin/finance_nav' if defined? RailsFinance %>
-  <%= render 'admin/space_nav' if defined? RailsSpace %>
-  <%= render 'admin/sync_nav' if defined? RailsSync %>
-  <%= render 'admin/qingflow_nav' if defined? RailsQingflow %>
-  <%= render 'admin/auth_nav' %>
-  <%= render 'admin/notice_nav' if defined? RailsNotice %>
-  <%= render 'admin/org_simple_nav' if defined? RailsOrg %>
-  <%= render 'admin/bench_nav' if defined? RailsBench %>
-  <%= render 'admin/detail_nav' if defined? RailsDetail %>
-</aside>
+<%= render 'admin/nav' %>

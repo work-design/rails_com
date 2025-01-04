@@ -2,18 +2,17 @@
   <%= render 'brand_nav' %>
   <%= render 'admin/factory_simple_nav' if defined? RailsFactory %>
   <%= render 'in/trade_nav' if defined? RailsTrade %>
-  <%= render 'trade_simple_nav' if defined? RailsTrade %>
-  <%= render 'crm_nav' if defined? RailsCrm %>
+  <%= render 'admin/trade_simple_nav' if defined? RailsTrade %>
+  <%= render 'admin/crm_nav' if defined? RailsCrm %>
   <%= render 'admin/ship_simple_nav' if defined? RailsShip %>
   <%= render 'admin/finance_nav' if defined? RailsFinance %>
   <%= render 'admin/space_nav' if defined? RailsSpace %>
-  <%= render 'sync_nav' if defined? RailsSync %>
-  <%= render 'qingflow_nav' if defined? RailsQingflow %>
-  <%= render 'data_nav' if defined? RailsData %>
-  <%= render 'auth_nav' if defined? RailsAuth %>
-  <%= render 'notice_nav' if defined? RailsNotice %>
-  <%= render 'org_simple_nav' if defined? RailsOrg %>
-  <%= render 'bench_nav' if defined? RailsBench %>
-  <%= render 'detail_nav' if defined? RailsDetail %>
+  <%= render 'admin/sync_nav' if defined? RailsSync %>
+  <%= render 'admin/qingflow_nav' if defined? RailsQingflow %>
+  <%= render 'admin/data_nav' if defined? RailsData %>
+  <%= render 'admin/auth_nav' if defined? RailsAuth %>
+  <%= render 'admin/notice_nav' if defined? RailsNotice %>
+  <%= render 'admin/org_simple_nav' if defined? RailsOrg %>
+  <%= render 'admin/bench_nav' if defined? RailsBench %>
+  <%= render 'admin/detail_nav' if defined? RailsDetail %>
 </aside>
-
