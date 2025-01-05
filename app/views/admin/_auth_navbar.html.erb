@@ -13,8 +13,8 @@
     <%= link_to({ debug_mode: true }, class: active_helper(debug_mode: true, active: 'navbar-item is-active', item: 'navbar-item')) do %>
       <span>Debug Mode</span>
     <% end %>
-    <%= link_to({ controller: '/auth/sign', action: 'logout' }, data: { turbo_frame: '_top', turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
-      <span><%= t('auth.sign.logout.title') %></span>
+    <%= link_to({ controller: 'org/board/members', action: 'logout' }, data: { turbo_frame: '_top', turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
+      <span><%= t('org.board.members.logout.title') %></span>
     <% end %>
   </div>
 </div>
