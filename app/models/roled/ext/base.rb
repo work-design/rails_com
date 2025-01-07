@@ -17,12 +17,9 @@ module Roled
     end
 
     def role_hash
-      result = default_role_hash
-      roles.each do |role|
-        result.deep_merge! role.role_hash
+      roles.or(UserRole.where(default: true)).each_with_object({}) do |role, h|
+        h.deep_merge! role.role_hash
       end
-
-      result
     end
 
     def has_role?(**options)
