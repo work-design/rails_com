@@ -11,6 +11,8 @@ module Roled
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
 
+      belongs_to :organ, class_name: 'Org::Organ', optional: true
+
       has_many :who_roles, dependent: :destroy_async
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
       has_many :rules, through: :role_rules, dependent: :destroy_async
