@@ -27,7 +27,6 @@ module Roled
 
       #before_save :sync_who_types
       after_update :set_default, if: -> { default? && (saved_change_to_default? || saved_change_to_type?) }
-      after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
       after_save :sync, if: -> { saved_change_to_role_hash? }
     end
 
@@ -49,7 +48,6 @@ module Roled
 
     def set_default
       self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
-      delete_cache
     end
 
     def sync_who_types
@@ -236,10 +234,6 @@ module Roled
       end
 
       RoleRule.where(id: moved_ids).delete_all if moved_ids.present?
-    end
-
-    def delete_cache
-      puts 'should implement in subclass'
     end
 
   end
