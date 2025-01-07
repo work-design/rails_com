@@ -7,6 +7,12 @@ module Roled
       include Ext::Base
     end
 
+    def role_hash
+      roles.or(UserRole.where(default: true)).each_with_object({}) do |role, h|
+        h.deep_merge! role.role_hash
+      end
+    end
+
     def admin?
       if respond_to?(:account_identities) && (RailsCom.config.default_admin_accounts & account_identities).length > 0
         true

@@ -3,17 +3,11 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :role, class_name: 'Roled::Role', optional: true
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
 
-      has_many :role_rules, class_name: 'Roled::RoleRule', primary_key: :role_id, foreign_key: :role_id
-      has_many :tabs, class_name: 'Roled::Tab', primary_key: :role_id, foreign_key: :role_id
+      has_many :role_rules, class_name: 'Roled::RoleRule', through: :roles
+      has_many :tabs, class_name: 'Roled::Tab', through: :roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
-    end
-
-    def available_roles
-      type = "Roled::#{self.class.name.split('::')[-1]}Role"
-      Role.visible.where(type: type)
     end
 
     def role_hash
