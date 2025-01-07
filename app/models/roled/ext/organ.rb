@@ -8,10 +8,8 @@ module Roled
       include Ext::Base
     end
 
-    def role_hash
-      roles.or(OrganRole.where(default: true)).each_with_object({}) do |role, h|
-        h.deep_merge! role.role_hash
-      end
+    def all_roles
+      roles.or(OrganRole.where(default: true))
     end
 
   end
