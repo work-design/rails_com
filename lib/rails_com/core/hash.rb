@@ -123,13 +123,13 @@ class Hash
         if index < size
           h.merge! key => value.limit(size)
         elsif index == size
-          h.merge! 'more' => '...'
+          h.merge! '...' => '...'
         end
       else
         if index < size
           h.merge! key => value
         elsif index == size
-          h.merge! 'more' => '...'
+          h.merge! '...' => '...'
         end
       end
     end

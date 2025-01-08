@@ -41,7 +41,6 @@ module RailsCom::ActiveRecord
                 value[3] = '...'
               elsif value.is_a?(Hash)
                 value = value.limit(3)
-                value.merge! 'more' => '...'
               end
               value = inspection_filter.filter_param(attr_name, value) unless value.nil?
               pp.pp value
