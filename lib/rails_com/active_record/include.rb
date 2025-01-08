@@ -39,7 +39,7 @@ module RailsCom::ActiveRecord
               if value.is_a?(Array) && value.size > 3
                 value = value[0..3]
                 value[3] = '...'
-              elsif value.is_a?(Hash) && value.size > 3
+              elsif value.is_a?(Hash)
                 value = value.limit(3)
                 value.merge! 'more' => '...'
               end
