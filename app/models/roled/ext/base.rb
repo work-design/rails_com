@@ -27,7 +27,7 @@ module Roled
 
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
       if opts.blank?
-        logger.debug "\e[35m  #{base_class_name}_#{id} not has role: #{opts}  \e[0m" if Rails.configuration.x.role_debug
+        logger.debug "\e[35m  #{base_class_name}_#{id} not has role: #{opts}  \e[0m"
         return false
       end
       r = role_hash.dig(*opts)
