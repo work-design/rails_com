@@ -11,9 +11,10 @@ module Roled
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
 
+      belongs_to :organ, class_name: 'Org::Organ', optional: true
+
       has_many :who_roles, dependent: :destroy_async
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
-      has_many :rules, through: :role_rules, dependent: :destroy_async
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
       has_many :role_types, dependent: :delete_all
@@ -25,7 +26,6 @@ module Roled
 
       #before_save :sync_who_types
       after_update :set_default, if: -> { default? && (saved_change_to_default? || saved_change_to_type?) }
-      after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
       after_save :sync, if: -> { saved_change_to_role_hash? }
     end
 
@@ -47,7 +47,6 @@ module Roled
 
     def set_default
       self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
-      delete_cache
     end
 
     def sync_who_types
@@ -234,10 +233,6 @@ module Roled
       end
 
       RoleRule.where(id: moved_ids).delete_all if moved_ids.present?
-    end
-
-    def delete_cache
-      puts 'should implement in subclass'
     end
 
   end

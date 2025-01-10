@@ -7,6 +7,10 @@ module Roled
       include Ext::Base
     end
 
+    def all_roles
+      roles.or(UserRole.where(default: true))
+    end
+
     def admin?
       if respond_to?(:account_identities) && (RailsCom.config.default_admin_accounts & account_identities).length > 0
         true
@@ -14,12 +18,6 @@ module Roled
         true
       elsif method(:admin?).super_method
         super
-      end
-    end
-
-    def default_role_hash
-      Rails.cache.fetch('user_role_hash') do
-        UserRole.find_by(default: true)&.role_hash || {}
       end
     end
 

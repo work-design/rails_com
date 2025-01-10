@@ -6,18 +6,18 @@
       </span>
     </button>
     <%= render 'filter_form' %>
-    <% if current_filters.present? %>
-      <div data-switch-target="src" class="buttons">
+    <div data-switch-target="src" class="buttons">
+      <% if current_filters.present? %>
         <%= link_to t('.all'), {}, class: 'button is-light' %>
         <%= render partial: 'filter_form_tag', collection: current_filters, as: :filter %>
-      </div>
-    <% end %>
-    <%= render 'filter_default' %>
+      <% end %>
+      <%= render 'filter_default' %>
+    </div>
   </div>
   <div class="level-right">
     <% if filter = current_filters.find(&->(i){ i.id.to_s == params[:filter_id] }) %>
       <%= render partial: 'filter_form_update', locals: { filter: filter } %>
-    <% else %>
+    <% elsif request.query_parameters.key?('taxon_id') %>
       <%= render 'filter_form_create' %>
     <% end %>
     <%= render 'filter_dropdown' %>

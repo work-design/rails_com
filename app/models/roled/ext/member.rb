@@ -7,10 +7,8 @@ module Roled
       include Ext::Base
     end
 
-    def default_role_hash
-      Rails.cache.fetch('member_role_hash') do
-        MemberRole.find_by(default: true)&.role_hash || {}
-      end
+    def all_roles
+      roles.or(MemberRole.where(default: true))
     end
 
   end

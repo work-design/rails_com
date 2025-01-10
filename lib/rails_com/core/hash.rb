@@ -116,7 +116,25 @@ class Hash
   end
 
   def limit(size)
-    slice(*keys[0...size])
+    h = {}
+
+    each_with_index do |(key, value), index|
+      if value.is_a?(Hash)
+        if index < size
+          h.merge! key => value.limit(size)
+        elsif index == size
+          h.merge! '...' => '...'
+        end
+      else
+        if index < size
+          h.merge! key => value
+        elsif index == size
+          h.merge! '...' => '...'
+        end
+      end
+    end
+
+    h
   end
 
 end

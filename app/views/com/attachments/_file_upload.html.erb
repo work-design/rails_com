@@ -1,4 +1,4 @@
-<div class="field is-narrow file has-name is-boxed" data-picture-target="uploadDiv">
+<div class="field is-narrow file has-name as-boxed" data-picture-target="uploadDiv">
   <label class="file-label">
     <%= f.file_field target.name, multiple: target.is_a?(ActiveStorage::Attached::Many), direct_upload: true, wrap: { input: false, all: false }, label: false, data: { action: 'picture#upload' }, class: 'file-input' %>
     <span class="file-cta">
