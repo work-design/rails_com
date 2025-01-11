@@ -52,12 +52,12 @@ module CommonApi
     end
   end
 
-  def post_file(path, file, file_key: 'media', params: {}, headers: {}, origin: nil, debug: nil, **options)
+  def post_file(path, file, file_key: 'media', content_type: nil, params: {}, headers: {}, origin: nil, debug: nil, **options)
     with_options = { origin: origin }
     with_options.merge! debug: STDOUT, debug_level: 2 if debug
 
     with_access_token(params: params, headers: headers) do
-      form_file = file.is_a?(HTTP::FormData::File) ? file : HTTP::FormData::File.new(file, content_type: options[:content_type])
+      form_file = file.is_a?(HTTP::FormData::File) ? file : HTTP::FormData::File.new(file, content_type: content_type)
       response = @client.plugin(:multipart).with_headers(headers).with(with_options).post(
         path,
         params: params,
