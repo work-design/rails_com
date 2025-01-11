@@ -58,7 +58,7 @@ module CommonApi
 
     with_access_token(params: params, headers: headers) do
       form_file = file.is_a?(HTTP::FormData::File) ? file : HTTP::FormData::File.new(file, content_type: content_type)
-      response = @client.plugin(:multipart).with_headers(headers).with(with_options).post(
+      response = @client.with_headers(headers).with(with_options).post(
         path,
         params: params,
         form: {
