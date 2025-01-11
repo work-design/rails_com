@@ -52,7 +52,7 @@ module CommonApi
     end
   end
 
-  def post_file(path, file, params: {}, headers: {}, origin: nil, debug: nil, **options)
+  def post_file(path, file, file_key: 'media', params: {}, headers: {}, origin: nil, debug: nil, **options)
     with_options = { origin: origin }
     with_options.merge! debug: STDOUT, debug_level: 2 if debug
 
@@ -61,7 +61,10 @@ module CommonApi
       response = @client.plugin(:multipart).with_headers(headers).with(with_options).post(
         path,
         params: params,
-        form: { media: form_file }
+        form: {
+          file_key => form_file,
+          **options
+        }
       )
 
       debug ? response : parse_response(response)
