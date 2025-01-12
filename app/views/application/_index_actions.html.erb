@@ -6,6 +6,6 @@
     </div>
   </div>
   <div class="level-right">
-    <%= render 'filter_per' %>
+    <%= render partial: 'filter_per', locals: { models: instance_variable_get("@#{pluralize_model_name}") } %>
   </div>
 </nav>

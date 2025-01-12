@@ -15,10 +15,10 @@
     </div>
   </div>
 </div>
-<div>
-  <% if instance_variable_get("@#{pluralize_model_name}").respond_to?(:total_pages) %>
-  <span>共<%= instance_variable_get("@#{pluralize_model_name}").total_pages %>页</span>
-  <span>/</span>
-  <span>共<%= instance_variable_get("@#{pluralize_model_name}").total_count %>条</span>
-  <% end %>
-</div>
+<% if models.respond_to?(:total_pages) %>
+  <div>
+    <span>共<%= models.total_pages %>页</span>
+    <span>/</span>
+    <span>共<%= models.total_count %>条</span>
+  </div>
+<% end %>
