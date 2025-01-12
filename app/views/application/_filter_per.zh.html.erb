@@ -21,4 +21,8 @@
     <span>/</span>
     <span>共<%= models.total_count %>条</span>
   </div>
+<% else %>
+  <div>
+    <span>共<%= models.count %>条</span>
+  </div>
 <% end %>
