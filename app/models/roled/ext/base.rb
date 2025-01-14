@@ -11,7 +11,7 @@ module Roled
     end
 
     def compute_role_str!
-      p_ids = all_roles.pluck(:id).uniq
+      p_ids = all_roles.pluck(:id)
       p_ids.sort!
       str_role_ids = p_ids.join(',')
       cache = Cache.find_or_initialize_by(str_role_ids: str_role_ids)
