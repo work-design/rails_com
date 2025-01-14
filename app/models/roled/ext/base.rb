@@ -13,7 +13,7 @@ module Roled
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
     end
 
-    def compute_role_str!
+    def compute_role_cache!
       p_ids = all_roles.pluck(:id)
       p_ids.sort!
       str_role_ids = p_ids.join(',')

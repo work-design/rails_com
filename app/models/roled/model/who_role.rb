@@ -5,8 +5,7 @@ module Roled
     included do
       attribute :type, :string
 
-      belongs_to :who, polymorphic: true
-      has_one :cache, through: :who
+      belongs_to :who
 
       has_many :role_rules, primary_key: :role_id, foreign_key: :role_id
       has_many :tabs, primary_key: :role_id, foreign_key: :role_id
