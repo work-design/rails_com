@@ -5,6 +5,8 @@ module Roled
     included do
       attribute :str_role_ids, :string, index: true
       attribute :role_hash, :json, default: {}
+
+      has_many :role_caches
     end
 
   end

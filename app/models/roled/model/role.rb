@@ -13,7 +13,8 @@ module Roled
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
-      has_many :who_roles, dependent: :destroy_async
+      has_many :role_whos, dependent: :destroy_async
+      has_many :role_caches, dependent: :destroy_async
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules

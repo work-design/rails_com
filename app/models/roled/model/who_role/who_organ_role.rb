@@ -3,7 +3,6 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :who, class_name: 'Org::Organ'
       belongs_to :role, class_name: 'OrganRole'
     end
 
