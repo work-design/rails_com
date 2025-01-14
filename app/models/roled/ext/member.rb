@@ -10,7 +10,9 @@ module Roled
     end
 
     def all_roles
-      roles.or(MemberRole.where(default: true))
+      member_roles = MemberRole.where(default: true)
+
+      roles.where.not(id: member_roles.map(&:id)) + member_roles
     end
 
   end

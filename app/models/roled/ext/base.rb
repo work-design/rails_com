@@ -10,10 +10,25 @@ module Roled
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
     end
 
-    def role_hash
+    def compute_role_str!
+      p_ids = all_roles.pluck(:id).uniq
+      p_ids.sort!
+      str_role_ids = p_ids.join(',')
+      cache = Cache.find_or_initialize_by(str_role_ids: str_role_ids)
+      cache.role_hash = compute_role_hash
+      cache.save
+
+      self.update cache_id: cache.id
+    end
+
+    def compute_role_hash
       all_roles.each_with_object({}) do |role, h|
         h.deep_merge! role.role_hash
       end
+    end
+
+    def role_hash
+      cache&.role_hash || {}
     end
 
     def has_role?(**options)

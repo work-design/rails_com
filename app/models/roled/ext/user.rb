@@ -10,7 +10,9 @@ module Roled
     end
 
     def all_roles
-      roles.or(UserRole.where(default: true))
+      default_roles = UserRole.where(default: true)
+
+      roles.where.not(id: default_roles.pluck(:id)) + default_roles
     end
 
     def admin?
