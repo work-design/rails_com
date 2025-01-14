@@ -5,6 +5,7 @@ module Roled
     included do
       belongs_to :cache, class_name: 'Roled::Cache', optional: true
 
+      has_many :role_whos, class_name: 'Roled::RoleWho', as: :who
       has_many :roles, class_name: 'Roled::Role', through: :role_whos
 
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :roles
