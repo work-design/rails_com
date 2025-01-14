@@ -6,7 +6,7 @@ module Roled
       attribute :str_role_ids, :string, index: true
       attribute :role_hash, :json, default: {}
 
-      has_many :cache_roles
+      has_many :cache_roles, dependent: :delete_all
       has_many :roles, through: :cache_roles
 
       after_save :sync_role_caches, if: -> { saved_change_to_str_role_ids? }
@@ -18,8 +18,8 @@ module Roled
     end
 
     def reset_role_hash!
-      cache.role_hash = compute_role_hash
-      cache.save
+      self.role_hash = compute_role_hash
+      self.save
     end
 
     def compute_role_hash

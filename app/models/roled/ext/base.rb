@@ -8,7 +8,7 @@ module Roled
       has_many :role_whos, class_name: 'Roled::RoleWho', as: :who
       has_many :roles, class_name: 'Roled::Role', through: :role_whos
 
-      accepts_nested_attributes_for :role_whos
+      accepts_nested_attributes_for :role_whos, allow_destroy: true, reject_if: ->(attributes){ attributes.slice('role_id').blank? }
 
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :roles
       has_many :tabs, class_name: 'Roled::Tab', through: :roles
