@@ -8,9 +8,5 @@ module Roled
       include Ext::Base
     end
 
-    def all_roles
-      roles.or(OrganRole.where(default: true))
-    end
-
   end
 end

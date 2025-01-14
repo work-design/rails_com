@@ -9,5 +9,20 @@ module Roled
       has_many :role_caches
     end
 
+    def reset_role_hash!
+      cache.role_hash = compute_role_hash
+      cache.save
+    end
+
+    def all_roles
+      Role.where(id: str_role_ids.split(','))
+    end
+
+    def compute_role_hash
+      all_roles.each_with_object({}) do |role, h|
+        h.deep_merge! role.role_hash
+      end
+    end
+
   end
 end

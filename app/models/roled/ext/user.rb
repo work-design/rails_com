@@ -7,12 +7,6 @@ module Roled
       include Ext::Base
     end
 
-    def all_roles
-      default_roles = UserRole.where(default: true)
-
-      roles.where.not(id: default_roles.pluck(:id)) + default_roles
-    end
-
     def admin?
       if respond_to?(:account_identities) && (RailsCom.config.default_admin_accounts & account_identities).length > 0
         true

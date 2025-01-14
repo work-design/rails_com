@@ -17,17 +17,14 @@ module Roled
       p_ids = all_roles.pluck(:id)
       p_ids.sort!
       str_role_ids = p_ids.join(',')
-      cache = Cache.find_or_initialize_by(str_role_ids: str_role_ids)
-      cache.role_hash = compute_role_hash
-      cache.save
-
+      cache = Cache.find_or_create_by!(str_role_ids: str_role_ids)
       self.update cache_id: cache.id
     end
 
-    def compute_role_hash
-      all_roles.each_with_object({}) do |role, h|
-        h.deep_merge! role.role_hash
-      end
+    def all_roles
+      member_roles = Role.where(default: true)
+
+      roles.where.not(id: member_roles.map(&:id)) + member_roles
     end
 
     def role_hash
