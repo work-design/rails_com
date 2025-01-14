@@ -1,5 +1,5 @@
 module Roled
-  module Model::RoleCache
+  module Model::CacheRole
     extend ActiveSupport::Concern
 
     included do

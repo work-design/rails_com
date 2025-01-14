@@ -17,8 +17,8 @@ module Roled
       has_many :role_whos, dependent: :destroy_async
       has_many :who_roles
       has_many :tabs, dependent: :delete_all
-      has_many :role_caches, dependent: :destroy_async
-      has_many :caches, through: :role_caches
+      has_many :cache_roles, dependent: :destroy_async
+      has_many :caches, through: :cache_roles, source: :cache
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules

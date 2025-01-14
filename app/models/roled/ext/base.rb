@@ -8,6 +8,8 @@ module Roled
       has_many :role_whos, class_name: 'Roled::RoleWho', as: :who
       has_many :roles, class_name: 'Roled::Role', through: :role_whos
 
+      accepts_nested_attributes_for :role_whos
+
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :roles
       has_many :tabs, class_name: 'Roled::Tab', through: :roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
@@ -16,8 +18,8 @@ module Roled
     def compute_role_cache!
       p_ids = all_roles.pluck(:id)
       p_ids.sort!
-      str_role_ids = p_ids.join(',')
-      cache = Cache.find_or_create_by!(str_role_ids: str_role_ids)
+
+      cache = Cache.find_or_create_by!(str_role_ids: p_ids.join(','))
       self.update cache_id: cache.id
     end
 
