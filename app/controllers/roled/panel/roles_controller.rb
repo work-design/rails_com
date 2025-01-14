@@ -114,7 +114,7 @@ module Roled
         :description,
         :visible,
         :default,
-        :type
+        role_types: []
       )
     end
 
