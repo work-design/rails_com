@@ -14,6 +14,7 @@ module Roled
 
     def sync_role_caches
       self.role_ids = str_role_ids.split(',')
+      reset_role_hash!
     end
 
     def reset_role_hash!
