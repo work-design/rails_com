@@ -17,6 +17,8 @@ module Roled
       has_many :role_whos, dependent: :destroy_async
       has_many :who_roles
       has_many :tabs, dependent: :delete_all
+      has_many :role_caches, dependent: :destroy_async
+      has_many :caches, through: :role_caches
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
@@ -28,10 +30,6 @@ module Roled
       after_update :set_default, if: -> { default? && (saved_change_to_default? || saved_change_to_type?) }
       after_save :sync, if: -> { saved_change_to_role_hash? }
       after_save :reset_cache, if: -> { saved_change_to_role_hash? }
-    end
-
-    def caches
-      Cache.where('str_role_ids LIKE ?', "%#{id}%")
     end
 
     def reset_hash
