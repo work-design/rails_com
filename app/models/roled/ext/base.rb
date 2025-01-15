@@ -23,6 +23,10 @@ module Roled
       self.update cache_id: cache.id
     end
 
+    def visible_roles
+      Role.visible
+    end
+
     def all_roles
       member_roles = Role.where(default: true)
 

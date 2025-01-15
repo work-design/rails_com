@@ -10,13 +10,13 @@ module Roled
       attribute :visible, :boolean, default: false
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
-      attribute :role_types, :json, default: []
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       has_many :role_whos, dependent: :destroy_async
       has_many :who_roles
       has_many :tabs, dependent: :delete_all
+      has_many :role_types
       has_many :cache_roles, dependent: :destroy_async
       has_many :caches, through: :cache_roles, source: :cache
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role

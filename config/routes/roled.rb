@@ -4,6 +4,7 @@ namespace :roled, defaults: { business: 'roled' } do
   namespace :panel, defaults: { namespace: 'panel' } do
     resources :roles do
       member do
+        post :edit_types
         post :overview
         post :namespaces
         post :controllers
