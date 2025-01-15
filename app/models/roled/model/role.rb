@@ -3,7 +3,6 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      attribute :type, :string
       attribute :name, :string
       attribute :tip, :string
       attribute :description, :string
