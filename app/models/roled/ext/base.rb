@@ -29,6 +29,12 @@ module Roled
       roles.where.not(id: member_roles.map(&:id)) + member_roles
     end
 
+    def role_whos_hash
+      role_whos.each_with_object({}) do |role_who, h|
+        h.merge! role_who.role_id => role_who
+      end
+    end
+
     def role_hash
       cache&.role_hash || {}
     end
