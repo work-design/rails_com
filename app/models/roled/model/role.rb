@@ -23,6 +23,8 @@ module Roled
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
 
+      accepts_nested_attributes_for :role_types, allow_destroy: true
+
       scope :visible, -> { where(visible: true) }
 
       validates :name, presence: true
@@ -54,6 +56,12 @@ module Roled
 
     def set_default
       self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
+    end
+
+    def role_types_hash
+      role_types.each_with_object({}) do |role_type, h|
+        h.merge! role_type.who_type => role_type
+      end
     end
 
     def business_on(meta_business)

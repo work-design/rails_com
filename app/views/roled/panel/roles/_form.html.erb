@@ -2,4 +2,4 @@
 <%= f.text_field :tip %>
 <%= f.text_area :description %>
 <%= f.check_box :visible, tag: 'div', after: { checkbox: 'x' } %>
-<%= f.collection_check_boxes :role_types, Roled::RoleType.who_types, :type, :value %>
+<%= render partial: 'type_form' %>
