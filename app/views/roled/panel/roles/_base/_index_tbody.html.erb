@@ -15,3 +15,8 @@
     <label data-action="click->input#check"></label>
   <% end %>
 </td>
+<td>
+<% model.role_types.each do |role_type| %>
+  <span class="tag"><%= role_type.who_type_i18n %></span>
+<% end %>
+</td>
