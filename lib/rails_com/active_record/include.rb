@@ -19,6 +19,10 @@ module RailsCom::ActiveRecord
       instance_variable_get(:@attributes).instance_variable_get(:@attributes)
     end
 
+    def not_destroyed?
+      !destroyed?
+    end
+
     def base_class_name
       self.class.base_class.name
     end
