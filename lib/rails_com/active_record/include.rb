@@ -20,7 +20,7 @@ module RailsCom::ActiveRecord
     end
 
     def not_destroyed?
-      !destroyed?
+      !(destroyed? || marked_for_destruction?)
     end
 
     def base_class_name
