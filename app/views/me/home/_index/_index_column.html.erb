@@ -1,4 +1,10 @@
 <div class="fixed-grid has-6-cols">
   <div class="grid">
+    <%= link_to({ controller: '/admin/home' }, class: 'button is-small is-primary') do %>
+      <i class="fa-solid fa-cogs"></i>
+      <span class="ml-1"><%= t('admin.home.index.title') %></span>
+    <% end %>
+  </div>
+  <div class="grid">
   </div>
 </div>
