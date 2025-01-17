@@ -4,11 +4,8 @@
     <span><%= current_member.name %></span>
   </div>
   <div class="navbar-dropdown is-right">
-    <%= link_to({ controller: '/me/home' }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
+    <%= link_to({ controller: '/me/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
       <span><%= t('me.home.index.title') %></span>
-    <% end %>
-    <%= link_to({ controller: '/admin/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, class: active_helper(controllers: ['admin/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span><%= t('admin.home.index.title') %></span>
     <% end %>
     <%= link_to({ debug_mode: true }, class: active_helper(debug_mode: true, active: 'navbar-item is-active', item: 'navbar-item')) do %>
       <span>Debug Mode</span>

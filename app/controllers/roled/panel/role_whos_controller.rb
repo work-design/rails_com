@@ -3,24 +3,6 @@ module Roled
     before_action :set_role
     before_action :set_who_role, only: [:destroy]
 
-
-
-    def new
-      @who_role = @role.who_roles.build
-    end
-
-    def create
-      @who_role = @role.who_roles.build(who_role_params)
-
-      unless @who_role.save
-        render :new, locals: { model: @who_role }, status: :unprocessable_entity
-      end
-    end
-
-    def update
-      #@who_role.assign_attributes
-    end
-
     def destroy
       @who_role.destroy
     end

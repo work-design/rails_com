@@ -1,21 +1,20 @@
 <div class="columns">
   <div class="column">
-    <%= render 'org_admin' if defined? RailsOrg %>
-    <%= render 'factory_admin' if defined?(RailsFactory) %>
-    <%= render 'trade_admin' if defined?(RailsTrade) %>
-    <%= render 'wechat_admin' if defined?(RailsWechat) %>
-    <%= render 'crm_admin' if defined?(RailsCrm) %>
-    <%= render 'finance_admin' if defined?(RailsFinance) %>
-    <%= render 'profile_admin' if defined?(RailsProfile) %>
-    <%= render 'bench_admin' if defined?(RailsBench) %>
-    <%= render 'cms_admin' if defined?(RailsCms) %>
-    <%= render 'markdown_admin' if defined?(RailsMarkdown) %>
-    <%= render 'ship_admin' if defined?(RailsShip) %>
-    <%= render 'space_admin' if defined?(RailsSpace) %>
+    <%= render 'org_admin' if defined?(RailsOrg) && role_permit?(business: 'org', namespace: 'admin') %>
+    <%= render 'factory_admin' if defined?(RailsFactory) && role_permit?(business: 'factory', namespace: 'admin') %>
+    <%= render 'trade_admin' if defined?(RailsTrade) && role_permit?(business: 'trade', namespace: 'admin') %>
+    <%= render 'crm_admin' if defined?(RailsCrm) && role_permit?(business: 'crm', namespace: 'admin') %>
+    <%= render 'finance_admin' if defined?(RailsFinance) && role_permit?(business: 'finance', namespace: 'admin') %>
+    <%= render 'bench_admin' if defined?(RailsBench) && role_permit?(business: 'bench', namespace: 'admin') %>
+    <%= render 'cms_admin' if defined?(RailsCms) && role_permit?(business: 'cms', namespace: 'admin') %>
+    <%= render 'markdown_admin' if defined?(RailsMarkdown) && role_permit?(business: 'markdown', namespace: 'admin') %>
+    <%= render 'ship_admin' if defined?(RailsShip) && role_permit?(business: 'ship', namespace: 'admin') %>
+    <%= render 'space_admin' if defined?(RailsSpace) && role_permit?(business: 'space', namespace: 'admin') %>
+    <%= render 'wechat_admin' if defined?(RailsWechat) && role_permit?(business: 'wechat', namespace: 'admin') %>
   </div>
   <div class="column">
     <div class="box">
-      <%# render partial: 'profile' %>
+      <%= render partial: 'profile' %>
     </div>
   </div>
 </div>

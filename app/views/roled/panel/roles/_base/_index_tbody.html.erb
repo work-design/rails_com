@@ -1,5 +1,5 @@
 <td>
-  <p><%= link_to model.name, { controller: 'who_roles', role_id: model.id } %></p>
+  <p><%= link_to model.name, { controller: 'role_whos', role_id: model.id } %></p>
   <p class="text-grey"><%= model.tip %></p>
 </td>
 <td><%= model.description %></td>
@@ -14,4 +14,9 @@
     <%= f.check_box :default, data: { input_target: 'checkbox' }, id: nil, class: 'switch is-rounded' %>
     <label data-action="click->input#check"></label>
   <% end %>
+</td>
+<td>
+<% model.role_types.each do |role_type| %>
+  <span class="tag"><%= role_type.who_type_i18n %></span>
+<% end %>
 </td>

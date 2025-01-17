@@ -3,17 +3,44 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      has_many :roles, class_name: 'Roled::Role', through: :who_roles
+      belongs_to :cache, class_name: 'Roled::Cache', optional: true
+
+      has_many :role_whos, class_name: 'Roled::RoleWho', as: :who
+      has_many :roles, class_name: 'Roled::Role', through: :role_whos
+
+      accepts_nested_attributes_for :role_whos, allow_destroy: true, reject_if: ->(attributes){ attributes.slice('role_id').blank? }
 
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :roles
       has_many :tabs, class_name: 'Roled::Tab', through: :roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
     end
 
-    def role_hash
-      all_roles.each_with_object({}) do |role, h|
-        h.deep_merge! role.role_hash
+    def compute_role_cache!
+      p_ids = all_roles.pluck(:id)
+      p_ids.sort!
+
+      cache = Cache.find_or_create_by!(str_role_ids: p_ids.join(','))
+      self.update cache_id: cache.id
+    end
+
+    def visible_roles
+      Role.visible
+    end
+
+    def all_roles
+      member_roles = Role.where(default: true)
+
+      roles.where.not(id: member_roles.map(&:id)) + member_roles
+    end
+
+    def role_whos_hash
+      role_whos.each_with_object({}) do |role_who, h|
+        h.merge! role_who.role_id => role_who
       end
+    end
+
+    def role_hash
+      cache&.role_hash || {}
     end
 
     def has_role?(**options)

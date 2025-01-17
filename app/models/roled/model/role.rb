@@ -3,7 +3,6 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      attribute :type, :string
       attribute :name, :string
       attribute :tip, :string
       attribute :description, :string
@@ -13,20 +12,29 @@ module Roled
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
-      has_many :who_roles, dependent: :destroy_async
+      has_many :role_whos, dependent: :destroy_async
+      has_many :who_roles
+      has_many :tabs, dependent: :delete_all
+      has_many :role_types
+      has_many :cache_roles, dependent: :destroy_async
+      has_many :caches, through: :cache_roles, source: :cache
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
-      has_many :role_types, dependent: :delete_all
-      has_many :tabs, dependent: :delete_all
+
+      accepts_nested_attributes_for :role_types, allow_destroy: true
 
       scope :visible, -> { where(visible: true) }
 
       validates :name, presence: true
 
-      #before_save :sync_who_types
       after_update :set_default, if: -> { default? && (saved_change_to_default? || saved_change_to_type?) }
       after_save :sync, if: -> { saved_change_to_role_hash? }
+      after_save :reset_cache!, if: -> { saved_change_to_role_hash? }
+    end
+
+    def reset_cache!
+      caches.find_each { |i| i.reset_role_hash! }
     end
 
     def has_role?(business: nil, namespace: nil, controller: nil, action: nil, **params)
@@ -49,8 +57,10 @@ module Roled
       self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
     end
 
-    def sync_who_types
-      who_types.exists?(who)
+    def role_types_hash
+      role_types.each_with_object({}) do |role_type, h|
+        h.merge! role_type.who_type => role_type
+      end
     end
 
     def business_on(meta_business)

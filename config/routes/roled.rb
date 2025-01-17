@@ -4,6 +4,7 @@ namespace :roled, defaults: { business: 'roled' } do
   namespace :panel, defaults: { namespace: 'panel' } do
     resources :roles do
       member do
+        post :edit_types
         post :overview
         post :namespaces
         post :controllers
@@ -16,7 +17,7 @@ namespace :roled, defaults: { business: 'roled' } do
         patch :action_on
         patch :action_off
       end
-      resources :who_roles, only: [:index, :new, :create, :destroy]
+      resources :role_whos, only: [:index, :destroy]
       resources :role_rules, except: [:destroy] do
         collection do
           post :disable
@@ -31,15 +32,9 @@ namespace :roled, defaults: { business: 'roled' } do
         end
       end
     end
-    scope path: ':who_type/:who_id' do
-      resource :whos, only: [:show, :edit, :update]
-    end
   end
 
   namespace :admin, defaults: { namespace: 'admin' } do
-    scope path: ':who_type/:who_id' do
-      resource :whos, only: [:show, :edit, :update]
-      resource :who_roles, only: [:show, :edit, :update]
-    end
+
   end
 end

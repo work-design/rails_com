@@ -3,14 +3,11 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      has_many :who_roles, class_name: 'Roled::WhoJobTitleRole', foreign_key: :who_id, dependent: :destroy_async
       include Ext::Base
     end
 
-    def default_role_hash
-      Rails.cache.fetch('job_title_role_hash') do
-        JobTitleRole.find_by(default: true)&.role_hash || {}
-      end
+    def visible_roles
+      Role.joins(:role_types).where(role_types: { who_type: 'Org::JobTitle' }).visible
     end
 
   end
