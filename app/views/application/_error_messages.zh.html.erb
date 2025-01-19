@@ -1,8 +1,8 @@
 <% if target.errors.any? %>
-<div class="notification is-danger" data-controller="notice" data-turbo-cache="false">
+<div class="notification is-danger is-radiusless" data-controller="notice" data-turbo-cache="false">
   <button class="delete" data-action="notice#close"></button>
-  <div class="header"><%= target.errors.count %> 处错误： </div>
-  <ul class="list">
+  <div class="header"><%= target.errors.count %> 处错误：</div>
+  <ul>
   <% target.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
   <% end %>

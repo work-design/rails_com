@@ -1,10 +1,16 @@
 <div class="fixed-grid has-6-cols">
   <div class="grid">
-    <%= link_to({ controller: '/admin/home' }, class: 'button is-small is-primary') do %>
-      <i class="fa-solid fa-cogs"></i>
-      <span class="ml-1"><%= t('admin.home.index.title') %></span>
+    <% @roled_tabs.each do |tab| %>
+      <%= link_to(tab.path, class: 'cell button is-fullwidth') do %>
+        <i class="fa-solid fa-<%= tab.icon %> size-5"></i>
+        <span class="ml-1"><%= tab.name %></span>
+      <% end %>
     <% end %>
   </div>
   <div class="grid">
+    <%= link_to({ controller: '/admin/home' }, class: 'cell button is-fullwidth') do %>
+      <i class="fa-solid fa-cogs"></i>
+      <span class="ml-1"><%= t('admin.home.index.title') %></span>
+    <% end %>
   </div>
 </div>

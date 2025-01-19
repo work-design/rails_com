@@ -1,11 +1,1 @@
-<%= turbo_stream.update request.headers['turbo-frame'].presence || 'alert' do %>
-  <div class="notification is-danger is-radiusless" data-controller="notice">
-    <button class="delete" data-action="notice#close"></button>
-    <div class="header"><%= target.errors.count %> <% if target.errors.count == 1 %> error <% else %> errors <% end %>: </div>
-    <ul class="list">
-      <% target.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= turbo_stream.prepend 'modal_card_body', partial: 'error_messages', locals: { target: target } %>
