@@ -87,7 +87,7 @@ module Com
       end
 
       def sync
-        Com::MetaBusiness.all.each { |i| i.sync }
+        Com::MetaBusiness.all.each { |i| i.sync_all }
       end
 
     end

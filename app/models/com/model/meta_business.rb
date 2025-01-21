@@ -49,6 +49,16 @@ module Com
       RailsCom::Routes.actions
     end
 
+    def sync_all(now: Time.current)
+      if RailsCom::Routes.actions.key? identifier
+        sync(now: now)
+      else
+        self.update synced_at: now
+        self.prune
+        self.destroy
+      end
+    end
+
     def sync(now: Time.current)
       RailsCom::Routes.actions[identifier].each do |namespace, controllers|
         controllers.each do |controller, actions|
@@ -56,7 +66,7 @@ module Com
           meta_controller.namespace_identifier = namespace
           meta_controller.controller_name = controller.to_s.split('/')[-1]
           meta_controller.synced_at = now
-          meta_controller.save
+          meta_controller.save!
 
           actions.each do |action_name, action|
             meta_action = meta_controller.meta_actions.find { |i| i.action_name == action_name } || meta_controller.meta_actions.build(action_name: action_name)
@@ -65,11 +75,11 @@ module Com
             meta_action.verb = action[:verb]
             meta_action.required_parts = action[:required_parts]
             meta_action.synced_at = now
-            meta_action.save
+            meta_action.save!
           end
         end
       end
-      self.update synced_at: now
+      self.update! synced_at: now
       prune
     end
 
