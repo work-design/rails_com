@@ -1,13 +1,26 @@
-<div class="tags has-addons">
-  <%= link_to({ controller: 'org/admin/organs' }, class: 'tag is-link') do %>
-    <span><%= t('org.admin.organs.index.title') %></span>
-  <% end %>
-  <%= button_to(
-        { controller: 'org/admin/shortcuts', action: 'create' },
-        params: { 'shortcut[controller]': 'org/admin/organs' },
-        aria: { label: t('org.admin.shortcuts.create.title') },
-        form: { class: 'tag is-primary' }
-      ) do %>
-    <i class="fa-solid fa-star"></i>
-  <% end %>
+<div class="control">
+  <div class="tags has-addons">
+    <%= link_to({ controller: model.controller_path, action: model.action_name }, class: 'tag is-link') do %>
+      <span><%= model.name %></span>
+    <% end %>
+    <% if current_member.all_shortcuts.key?("#{model.controller_path}/#{model.action_name}") %>
+      <%= button_to(
+            { controller: 'org/admin/shortcuts', action: 'destroy', id: current_member.all_shortcuts["#{model.controller_path}/#{model.action_name}"] },
+            method: :delete,
+            aria: { label: t('org.admin.shortcuts.destroy.title') },
+            form: { class: 'tag' }
+          ) do %>
+        <i class="fa-solid fa-star text-warning"></i>
+      <% end %>
+    <% else %>
+      <%= button_to(
+            { controller: 'org/admin/shortcuts', action: 'create' },
+            params: { 'shortcut[controller]': model.controller_path, 'shortcut[action]': model.action_name },
+            aria: { label: t('org.admin.shortcuts.create.title') },
+            form: { class: 'tag' }
+          ) do %>
+        <i class="fa-solid fa-star text-grey"></i>
+      <% end %>
+    <% end %>
+  </div>
 </div>
