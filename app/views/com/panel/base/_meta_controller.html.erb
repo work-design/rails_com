@@ -6,6 +6,10 @@
     <p class="text-grey"><%= meta_controller.controller_path %></p>
   </td>
   <td>
-    <%= render partial: 'index_meta_actions', locals: { meta_controller: meta_controller } %>
+    <div class="tags">
+    <% meta_controller.meta_actions.each do |meta_action| %>
+      <span aria-label="<%= meta_action.action_name %>" class="tag"><%= meta_action.name %></span>
+    <% end %>
+    </div>
   </td>
 </tr>
