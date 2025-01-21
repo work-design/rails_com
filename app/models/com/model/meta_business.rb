@@ -52,13 +52,14 @@ module Com
     def sync(now: Time.current)
       RailsCom::Routes.actions[identifier].each do |namespace, controllers|
         controllers.each do |controller, actions|
-          meta_controller = meta_controllers.find_or_initialize_by(namespace_identifier: namespace, controller_path: controller)
+          meta_controller = meta_controllers.find { |i| i.controller_path == controller } || meta_controllers.build(controller_path: controller)
+          meta_controller.namespace_identifier = namespace
           meta_controller.controller_name = controller.to_s.split('/')[-1]
           meta_controller.synced_at = now
           meta_controller.save
 
           actions.each do |action_name, action|
-            meta_action = meta_controller.meta_actions.find_or_initialize_by(action_name: action_name)
+            meta_action = meta_controller.meta_actions.find { |i| i.action_name == action_name } || meta_controller.meta_actions.build(action_name: action_name)
             meta_action.controller_name = meta_controller.controller_name
             meta_action.path = action[:path]
             meta_action.verb = action[:verb]
@@ -69,10 +70,12 @@ module Com
         end
       end
       self.update synced_at: now
+      prune
     end
 
     def prune
-
+      meta_controllers.where.not(synced_at: synced_at).or(meta_controllers.where(synced_at: nil)).delete_all
+      meta_actions.where.not(synced_at: synced_at).or(meta_actions.where(synced_at: nil)).delete_all
     end
 
     class_methods do

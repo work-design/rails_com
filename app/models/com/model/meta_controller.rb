@@ -15,7 +15,6 @@ module Com
 
       has_many(
         :meta_actions,
-        -> { order(position: :asc) },
         foreign_key: :controller_path,
         primary_key: :controller_path,
         dependent: :destroy_async,
@@ -88,24 +87,7 @@ module Com
       end
 
       def sync
-        RailsCom::Routes.actions.each do |business, namespaces|
-        end
-      end
-
-      def prune
-        MetaController.where.not(business_identifier: RailsCom::Routes.actions.keys).each do |meta_controller|
-          meta_controller.destroy
-        end
-
-        present_namespaces = MetaController.where(business_identifier: business).pluck(:namespace_identifier)
-        MetaController.where(business_identifier: business, namespace_identifier: (present_namespaces - namespaces.keys)).each do |meta_controller|
-          meta_controller.destroy
-        end
-
-        present_controllers = MetaController.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
-        MetaController.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |meta_controller|
-          meta_controller.destroy
-        end
+        Com::MetaBusiness.all.each { |i| i.sync }
       end
 
     end
