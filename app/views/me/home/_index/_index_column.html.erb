@@ -1,9 +1,14 @@
 <div class="fixed-grid has-4-cols">
   <div class="grid">
     <% @roled_tabs.each do |tab| %>
-      <%= link_to(tab.path, class: 'cell button is-fullwidth') do %>
+      <%= link_to(tab.path, class: 'cell button is-large is-fullwidth') do %>
         <i class="fa-solid fa-<%= tab.icon %> size-5"></i>
-        <span class="ml-1"><%= tab.name %></span>
+        <span class="ml-1 size-6"><%= tab.name %></span>
+      <% end %>
+    <% end %>
+    <% current_member.shortcuts.each do |shortcut| %>
+      <%= link_to({ controller: shortcut.controller, action: shortcut.action }, class: 'cell button is-large is-fullwidth') do %>
+        <span class="size-6"><%= t("#{shortcut.controller.tr('/', '.')}.#{shortcut.action}.title") %></span>
       <% end %>
     <% end %>
   </div>

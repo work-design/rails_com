@@ -1,6 +1,15 @@
 module Com
   module Model::MetaAction
     extend ActiveSupport::Concern
+    MAPPINGS = {
+      'index' => 'list',
+      'new' => 'add',
+      'create' => 'add',
+      'show' => 'read',
+      'edit' => 'edit',
+      'update' => 'edit',
+      'destroy' => 'remove'
+    }
 
     included do
       attribute :namespace_identifier, :string, default: '', null: false, index: true
@@ -29,6 +38,11 @@ module Com
       positioned on: [:business_identifier, :namespace_identifier, :controller_path]
 
       before_validation :sync_from_controller, if: -> { meta_controller && (controller_path_changed? || meta_controller.new_record?) }
+      before_validation :sync_from_action, if: -> { action_name_changed? }
+    end
+
+    def sync_from_action
+      self.operation = MAPPINGS[action_name]
     end
 
     def role_path

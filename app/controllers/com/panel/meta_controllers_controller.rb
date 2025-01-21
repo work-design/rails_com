@@ -23,7 +23,7 @@ module Com
       q_params = {}
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @meta_controllers = MetaController.where(q_params)
+      @meta_controllers = MetaController.includes(:meta_actions).where(q_params)
     end
 
     def meta_actions
