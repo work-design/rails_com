@@ -22,7 +22,7 @@ module Com
       )
       accepts_nested_attributes_for :meta_actions, allow_destroy: true
 
-      default_scope -> { order(position: :asc, id: :asc) }
+      scope :ordered, -> { order(position: :asc, id: :asc) }
 
       validates :controller_path, uniqueness: { scope: [:business_identifier, :namespace_identifier] }
 
@@ -108,18 +108,22 @@ module Com
 
               meta_controller.save if meta_controller.meta_actions.length > 0
             end
-
-            present_controllers = MetaController.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
-            MetaController.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |meta_controller|
-              meta_controller.destroy
-            end
-          end
-          present_namespaces = MetaController.where(business_identifier: business).pluck(:namespace_identifier)
-          MetaController.where(business_identifier: business, namespace_identifier: (present_namespaces - namespaces.keys)).each do |meta_controller|
-            meta_controller.destroy
           end
         end
+      end
+
+      def prune
         MetaController.where.not(business_identifier: RailsCom::Routes.actions.keys).each do |meta_controller|
+          meta_controller.destroy
+        end
+
+        present_namespaces = MetaController.where(business_identifier: business).pluck(:namespace_identifier)
+        MetaController.where(business_identifier: business, namespace_identifier: (present_namespaces - namespaces.keys)).each do |meta_controller|
+          meta_controller.destroy
+        end
+
+        present_controllers = MetaController.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
+        MetaController.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |meta_controller|
           meta_controller.destroy
         end
       end

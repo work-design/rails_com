@@ -31,7 +31,7 @@ module Com
     end
 
     def meta_namespaces
-      MetaNamespace.where(identifier: MetaController.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
+      MetaNamespace.where(identifier: meta_controllers.select(:namespace_identifier).distinct.pluck(:namespace_identifier))
     end
 
     def role_path
@@ -42,6 +42,10 @@ module Com
 
     def role_hash
       meta_namespaces.each_with_object({}) { |i, h| h.merge! i.identifier => i.role_hash(identifier) }
+    end
+
+    def sync
+
     end
 
     class_methods do
