@@ -50,9 +50,11 @@ module Com
 
     def role_path
       {
-        business_identifier.to_s => {
-          namespace_identifier.to_s => {
-            controller_path => { action_name => role_hash }
+        business_identifier => {
+          namespace_identifier => {
+            controller_path => {
+              action_name => role_hash
+            }
           }
         }
       }
