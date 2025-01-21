@@ -22,6 +22,7 @@ module Com
       attribute :required_parts, :string, array: true
       attribute :position, :integer
       attribute :landmark, :boolean
+      attribute :synced_at, :datetime
 
       belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier

@@ -7,6 +7,7 @@ module Com
       attribute :business_identifier, :string, default: '', null: false, index: true
       attribute :controller_path, :string, null: false, index: true
       attribute :controller_name, :string, null: false
+      attribute :synced_at, :datetime
       attribute :position, :integer
 
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
@@ -88,27 +89,6 @@ module Com
 
       def sync
         RailsCom::Routes.actions.each do |business, namespaces|
-          namespaces.each do |namespace, controllers|
-            controllers.each do |controller, actions|
-              meta_controller = MetaController.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
-              meta_controller.controller_name = controller.to_s.split('/')[-1]
-
-              actions.each do |action_name, action|
-                meta_action = meta_controller.meta_actions.find_or_initialize_by(action_name: action_name)
-                meta_action.controller_name = meta_controller.controller_name
-                meta_action.path = action[:path]
-                meta_action.verb = action[:verb]
-                meta_action.required_parts = action[:required_parts]
-              end
-
-              present_meta_actions = meta_controller.meta_actions.pluck(:action_name)
-              meta_controller.meta_actions.select(&->(i){ (present_meta_actions - actions.keys).include?(i.action_name) }).each do |meta_action|
-                meta_action.mark_for_destruction
-              end
-
-              meta_controller.save if meta_controller.meta_actions.length > 0
-            end
-          end
         end
       end
 

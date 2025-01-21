@@ -6,6 +6,7 @@ module Com
       attribute :name, :string
       attribute :identifier, :string, default: '', null: false, index: true
       attribute :position, :integer
+      attribute :synced_at, :datetime
 
       has_many :meta_controllers, foreign_key: :business_identifier, primary_key: :identifier
       has_many :meta_actions, foreign_key: :business_identifier, primary_key: :identifier
@@ -44,7 +45,33 @@ module Com
       meta_namespaces.each_with_object({}) { |i, h| h.merge! i.identifier => i.role_hash(identifier) }
     end
 
-    def sync
+    def namespaces
+      RailsCom::Routes.actions
+    end
+
+    def sync(now: Time.current)
+      RailsCom::Routes.actions[identifier].each do |namespace, controllers|
+        controllers.each do |controller, actions|
+          meta_controller = meta_controllers.find_or_initialize_by(namespace_identifier: namespace, controller_path: controller)
+          meta_controller.controller_name = controller.to_s.split('/')[-1]
+          meta_controller.synced_at = now
+          meta_controller.save
+
+          actions.each do |action_name, action|
+            meta_action = meta_controller.meta_actions.find_or_initialize_by(action_name: action_name)
+            meta_action.controller_name = meta_controller.controller_name
+            meta_action.path = action[:path]
+            meta_action.verb = action[:verb]
+            meta_action.required_parts = action[:required_parts]
+            meta_action.synced_at = now
+            meta_action.save
+          end
+        end
+      end
+      self.update synced_at: now
+    end
+
+    def prune
 
     end
 
