@@ -146,23 +146,19 @@ module Roled
       role_hash.deep_merge!(meta_action.role_path)
     end
 
-    def action_off(business_identifier:, namespace_identifier:, controller_path:, action_name:)
-      namespaces_hash = role_hash.fetch(business_identifier, {})
-      return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(namespace_identifier, {})
-      return if controllers_hash.blank?
-      actions_hash = controllers_hash.fetch(controller_path, {})
+    def action_off(meta_action)
+      actions_hash = role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier, meta_action.controller_path)
       return if actions_hash.blank?
 
-      actions_hash.delete(action_name)
+      actions_hash.delete(meta_action.action_name)
       if actions_hash.blank?
-        controllers_hash.delete(controller_path)
+        role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier).delete(meta_action.controller_path)
       end
-      if controllers_hash.blank?
-        namespaces_hash.delete(namespace_identifier)
+      if role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier).blank?
+        role_hash.dig(meta_action.business_identifier).delete(meta_action.namespace_identifier)
       end
-      if namespaces_hash.blank?
-        role_hash.delete(business_identifier)
+      if role_hash.dig(meta_action.business_identifier).blank?
+        role_hash.delete(meta_action.business_identifier)
       end
 
       role_hash
@@ -186,8 +182,8 @@ module Roled
         r = role_hash.dig(business.identifier).diff_remove(business.role_hash)
         r.each do |namespace_identifier, controllers_hash|
           controllers_hash.each do |controller_path, actions|
-            actions.each do |action_name, action_id|
-              action_off(business_identifier: business.identifier, namespace_identifier: namespace_identifier, controller_path: controller_path, action_name: action_name)
+            actions.each do |action|
+              action_off(action)
             end
           end
         end
