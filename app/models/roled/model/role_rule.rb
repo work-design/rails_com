@@ -16,7 +16,7 @@ module Roled
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
       belongs_to :meta_controller, foreign_key: :controller_path, primary_key: :controller_path, optional: true
 
-      belongs_to :proxy_meta_action, ->(o){ where(controller_path: o.controller_path) }, class_name: 'MetaAction', foreign_key: :action_name, primary_key: :action_name, optional: true
+      belongs_to :proxy_meta_action, ->(o){ where(controller_path: o.controller_path) }, class_name: 'Com::MetaAction', foreign_key: :action_name, primary_key: :action_name, optional: true
     end
 
     def fix_rule_relation
