@@ -1,4 +1,4 @@
-<div class="control">
+<div id="<%= "#{model.controller_path}/#{model.action_name}" %>" class="control">
   <div class="tags has-addons">
     <%= link_to({ controller: model.controller_path, action: model.action_name }, target: '_blank', class: 'tag') do %>
       <span><%= model.name %></span>
