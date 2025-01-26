@@ -1,15 +1,13 @@
 <%= render layout: 'layouts/application_head' do %>
   <%= render 'nav_bar' %>
   <%= render 'alert' %>
-  <main class="container">
-    <div class="breadcrumb has-succeeds-separator my-3">
-      <ul>
-        <%= render 'breadcrumb' %>
-      </ul>
-    </div>
-    <div class="columns">
-      <%= yield %>
-    </div>
+  <div class="breadcrumb has-succeeds-separator container my-3">
+    <ul>
+      <%= render 'breadcrumb' %>
+    </ul>
+  </div>
+  <main class="columns container">
+    <%= yield %>
   </main>
   <%= render 'footer' %>
 <% end %>

@@ -18,7 +18,7 @@ module Roled
       has_many :role_types
       has_many :cache_roles, dependent: :destroy_async
       has_many :caches, through: :cache_roles, source: :cache
-      has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
+      has_many :role_rules, dependent: :delete_all, inverse_of: :role
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
 
@@ -146,23 +146,19 @@ module Roled
       role_hash.deep_merge!(meta_action.role_path)
     end
 
-    def action_off(business_identifier:, namespace_identifier:, controller_path:, action_name:)
-      namespaces_hash = role_hash.fetch(business_identifier, {})
-      return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(namespace_identifier, {})
-      return if controllers_hash.blank?
-      actions_hash = controllers_hash.fetch(controller_path, {})
+    def action_off(meta_action)
+      actions_hash = role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier, meta_action.controller_path)
       return if actions_hash.blank?
 
-      actions_hash.delete(action_name)
+      actions_hash.delete(meta_action.action_name)
       if actions_hash.blank?
-        controllers_hash.delete(controller_path)
+        role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier).delete(meta_action.controller_path)
       end
-      if controllers_hash.blank?
-        namespaces_hash.delete(namespace_identifier)
+      if role_hash.dig(meta_action.business_identifier, meta_action.namespace_identifier).blank?
+        role_hash.dig(meta_action.business_identifier).delete(meta_action.namespace_identifier)
       end
-      if namespaces_hash.blank?
-        role_hash.delete(business_identifier)
+      if role_hash.dig(meta_action.business_identifier).blank?
+        role_hash.delete(meta_action.business_identifier)
       end
 
       role_hash
@@ -186,8 +182,8 @@ module Roled
         r = role_hash.dig(business.identifier).diff_remove(business.role_hash)
         r.each do |namespace_identifier, controllers_hash|
           controllers_hash.each do |controller_path, actions|
-            actions.each do |action_name, action_id|
-              action_off(business_identifier: business.identifier, namespace_identifier: namespace_identifier, controller_path: controller_path, action_name: action_name)
+            actions.each do |action|
+              action_off(action)
             end
           end
         end
@@ -199,50 +195,24 @@ module Roled
     end
 
     def sync
-      moved, add = role_rule_hash.diff_changes role_hash
-      remove_role_rule(moved)
-      add_role_rule(add)
-    end
+      leaves = role_hash.leaves
+      rr_ids = role_rules.pluck(:meta_action_id)
 
-    def add_role_rule(add)
-      add_attrs = []
+      role_rules.where(meta_action_id: rr_ids - leaves).delete_all
 
-      add.each do |business, namespaces|
-        namespaces.each do |namespace, controllers|
-          controllers.each do |controller, actions|
-            actions.each do |action|
-              add_attrs << {
-                role_id: id,
-                business_identifier: business,
-                namespace_identifier: namespace,
-                controller_path: controller,
-                action_name: action[0],
-                meta_action_id: action[1],
-                created_at: Time.current,
-                updated_at: Time.current
-              }
-            end
-          end
-        end
+      adds = Com::MetaAction.where(id: leaves - rr_ids).each_with_object([]) do |meta_action, arr|
+        arr << {
+          business_identifier: meta_action.business_identifier,
+          namespace_identifier: meta_action.namespace_identifier,
+          controller_path: meta_action.controller_path,
+          action_name: meta_action.action_name,
+          meta_action_id: meta_action.id
+        }
       end
 
-      if add_attrs.present?
-        RoleRule.insert_all(add_attrs)
+      if adds.present?
+        role_rules.insert_all(adds)
       end
-    end
-
-    def remove_role_rule(moved)
-      moved_ids = []
-
-      moved.each do |business, namespaces|
-        namespaces.each do |namespace, controllers|
-          controllers.each do |controller, actions|
-            moved_ids += role_rules.select(&->(i) { i.business_identifier == business && i.namespace_identifier == namespace && i.controller_path == controller && actions.keys.include?(i.action_name)  }).map(&:id)
-          end
-        end
-      end
-
-      RoleRule.where(id: moved_ids).delete_all if moved_ids.present?
     end
 
   end

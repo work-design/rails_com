@@ -99,7 +99,7 @@ module Roled
 
     def action_off
       @meta_action = Com::MetaAction.find params[:meta_action_id]
-      @role.action_off(**@meta_action.role_list)
+      @role.action_off(@meta_action)
       @role.save
 
       render :action

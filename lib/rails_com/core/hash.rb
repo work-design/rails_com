@@ -94,7 +94,7 @@ class Hash
 
     values.each do |value|
       if value.is_a?(Hash)
-        r += value.leaves
+        r.concat value.leaves
       else
         r << value
       end
