@@ -46,7 +46,7 @@ module Roled
     end
 
     def role_denied
-      render 'role_denied'
+      render 'role_denied', layout: 'raw'
     end
 
   end
