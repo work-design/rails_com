@@ -13,7 +13,7 @@ module Com
     included do
       layout -> { "frame/#{proper_layout}" if turbo_frame_body? }
       before_action :set_locale, :set_timezone, :set_variant
-      before_action :set_roled_tabs, if: -> { request.variant.any?(:phone) }
+      before_action :set_roled_tabs, if: -> { logger.debug "--------------------#{request.variant}"; request.variant.any?(:phone) }
       helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id, :tab_item_items
       after_action :set_state, if: -> { request.variant.any? :phone }
     end
@@ -171,7 +171,7 @@ module Com
       else
         @roled_tabs = Roled::Tab.none
       end
-      logger.debug "\e[35m  SetRoleTabs: #{@roled_tabs}  \e[0m" if RailsCom.config.debug
+      logger.debug "\e[35m  Application SetRoleTabs: #{@roled_tabs}  \e[0m" if RailsCom.config.debug
     end
 
     def tab_item_items

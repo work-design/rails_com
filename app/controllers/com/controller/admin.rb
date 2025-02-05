@@ -21,6 +21,7 @@ module Com
       else
         @roled_tabs = Roled::Tab.none
       end
+      logger.debug "\e[35m  Admin SetRoleTabs: #{@roled_tabs}  \e[0m" if RailsCom.config.debug
     end
 
   end
