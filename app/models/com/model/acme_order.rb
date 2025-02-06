@@ -9,6 +9,8 @@ module Com
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
       attribute :identifiers, :string, array: true
+      attribute :sync_host, :string
+      attribute :sync_path, :string
 
       enum :status, {
         pending: 'pending',
