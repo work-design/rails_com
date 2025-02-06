@@ -20,6 +20,7 @@ module Com
       }, prefix: true
 
       belongs_to :acme_account
+      has_one :ssh_key, primary_key: :sync_host, foreign_key: :host
 
       has_many :acme_identifiers, dependent: :delete_all
       accepts_nested_attributes_for :acme_identifiers
@@ -183,7 +184,17 @@ module Com
     end
 
     def sync_cert_to_host
-      
+      return unless ssh_key
+
+      Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
+        private_pem.blob.open do |file|
+          scp.upload! file.path, sync_path
+        end
+
+        cert_key.blob.open do |file|
+          scp.upload! file.path, sync_path
+        end
+      end
     end
 
     def renew_before_expired
