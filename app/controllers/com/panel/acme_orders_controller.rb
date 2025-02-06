@@ -39,6 +39,8 @@ module Com
 
     def acme_order_params
       params.fetch(:acme_order, {}).permit(
+        :sync_host,
+        :sync_path,
         identifiers: []
       )
     end
