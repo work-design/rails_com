@@ -6,6 +6,7 @@ module Com
 
     included do
       attribute :host, :string
+      attribute :domain, :string
       attribute :private_key, :string
       attribute :public_key, :string
       attribute :fingerprint, :string
