@@ -64,6 +64,10 @@ zh:
       filters:
         detect:
           title: 保存搜索
+    my:
+      ssh_keys:
+        index:
+          title: 私有部署
     panel:
       title: 系统配置
       home:
