@@ -19,10 +19,7 @@ module Com
     end
 
     def generate_key_pair
-      ssh_key = SSHKey.generate(
-        type: 'RSA',
-        bits: 2048
-      )
+      ssh_key = SSHKey.generate
       self.private_key = ssh_key.private_key
       self.public_key = ssh_key.ssh_public_key
     end
