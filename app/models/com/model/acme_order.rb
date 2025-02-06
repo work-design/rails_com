@@ -112,6 +112,7 @@ module Com
         ident.status = auth.status
         ident.save
       end
+      ensure_config
     end
 
     def dns_all_verified?
@@ -188,11 +189,11 @@ module Com
 
       Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
         private_pem.blob.open do |file|
-          scp.upload! file.path, sync_path
+          scp.upload! file.path, "#{sync_path}/#{private_pem.blob.filename.to_s}"
         end
 
         cert_key.blob.open do |file|
-          scp.upload! file.path, sync_path
+          scp.upload! file.path, "#{sync_path}/#{cert_key.blob.filename.to_s}"
         end
       end
     end
