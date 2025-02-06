@@ -210,6 +210,7 @@ Rails.application.routes.draw do
             resources :acme_identifiers, only: [:show, :edit, :update, :destroy]
           end
         end
+        resources :ssh_keys
         resources :pg_publications do
           collection do
             post :create_all

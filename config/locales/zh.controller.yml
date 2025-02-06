@@ -172,3 +172,6 @@ zh:
       states:
         index:
           title: 状态
+      ssh_keys:
+        index:
+          title: SSH

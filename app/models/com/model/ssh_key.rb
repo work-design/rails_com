@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'sshkey'
 module Com
   module Model::SshKey
@@ -12,6 +11,8 @@ module Com
       attribute :fingerprint, :string
 
       encrypts :private_key
+
+      belongs_to :user, class_name: 'Auth::User', optional: true
 
       before_validation :generate_key_pair, on: :create
       before_save :calculate_fingerprint, if: -> { private_key_changed? }
