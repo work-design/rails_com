@@ -28,6 +28,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'money-rails', '~> 1.15'
   s.add_dependency 'net-http'
   s.add_dependency 'net-pop'
+  s.add_dependency 'net-scp'
+  s.add_dependency 'sshkey'
   s.add_dependency 'ostruct'
   s.add_dependency 'csv'
   s.add_dependency 'mutex_m'

@@ -47,6 +47,7 @@ require 'positioning'
 require 'turbo-rails'
 require 'money-rails'
 require 'bigdecimal'
+require 'net/scp'
 
 require 'rails_com/money/formatter'
 

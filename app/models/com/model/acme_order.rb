@@ -182,6 +182,10 @@ module Com
       r
     end
 
+    def sync_cert_to_host
+      
+    end
+
     def renew_before_expired
       AcmeJob.set(wait_until: issued_at + 2.months).perform_later(self)
     end
