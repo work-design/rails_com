@@ -32,5 +32,12 @@ module Com
       self.fingerprint = SSHKey.fingerprint(public_key)
     end
 
+    def deploy
+      ENV['SERVER'] = host
+      ENV['PRIVATE_KEY'] = private_key
+      cli = Kamal::Cli::Main.new
+      cli.deploy
+    end
+
   end
 end
