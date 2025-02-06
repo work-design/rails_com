@@ -188,6 +188,8 @@ module Com
       return unless ssh_key
 
       Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
+        scp.session.exec! "mkdir -p #{sync_path}"
+
         private_pem.blob.open do |file|
           scp.upload! file.path, "#{sync_path.delete_suffix('/')}/#{private_pem.blob.filename.to_s}"
         end
