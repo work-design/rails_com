@@ -11,6 +11,8 @@ module Com
       attribute :public_key, :string
       attribute :fingerprint, :string
 
+      encrypts :private_key
+
       before_validation :generate_key_pair, on: :create
       before_save :calculate_fingerprint, if: -> { private_key_changed? }
 
