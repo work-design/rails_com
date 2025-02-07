@@ -19,7 +19,7 @@ module Com
       attribute :action_name, :string
       attribute :path, :string
       attribute :verb, :string
-      attribute :required_parts, :string, array: true
+      attribute :required_parts, :json
       attribute :position, :integer
       attribute :landmark, :boolean
       attribute :synced_at, :datetime
