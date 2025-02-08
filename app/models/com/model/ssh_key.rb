@@ -39,5 +39,27 @@ module Com
       cli.deploy
     end
 
+    class_methods do
+
+      def init_project
+        cmds = [
+          'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
+          'git -C work.design submodule update --init'
+        ]
+        cmds.each { |i| exec_cmd(i) }
+      end
+
+      def exec_cmd(cmd)
+        Open3.popen2e(cmd) do |_, output, thread|
+          logger.info "\e[35m  #{cmd} (PID: #{thread.pid})  \e[0m"
+          output.each_line do |line|
+            logger.info "  #{line.chomp}"
+          end
+          puts "\n"
+        end
+      end
+
+    end
+
   end
 end
