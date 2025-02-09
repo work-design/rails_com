@@ -35,8 +35,10 @@ module Com
     def deploy
       ENV['HOST'] = host
       ENV['PRIVATE_KEY'] = private_key
-      cli = Kamal::Cli::Main.new
-      cli.deploy
+      Dir.chdir('work.design') do
+        cli = Kamal::Cli::Main.new
+        cli.deploy
+      end
     end
 
     class_methods do
