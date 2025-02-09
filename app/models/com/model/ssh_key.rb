@@ -39,9 +39,40 @@ module Com
       extra.each do |key, value|
         ENV[key] = value
       end
+
       Dir.chdir('work.design') do
         cli = Kamal::Cli::Main.new
-        cli.deploy
+        # 重定向标准输出和错误输出到一个StringIO对象
+        original_stdout = $stdout
+        original_stderr = $stderr
+        read_io, write_io = IO.pipe
+
+        $stdout = write_io
+        $stderr = write_io
+
+        # 在新线程中执行部署
+        deploy_thread = Thread.new do
+          begin
+            cli.deploy
+          ensure
+            write_io.close
+          end
+        end
+
+        # 在主线程中读取并yield输出
+        if block_given?
+          read_io.each_line do |line|
+            yield line
+          end
+        end
+
+        # 等待部署线程完成
+        deploy_thread.join
+      ensure
+        # 恢复标准输出和错误输出
+        $stdout = original_stdout
+        $stderr = original_stderr
+        read_io.close
       end
     end
 
