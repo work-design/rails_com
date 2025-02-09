@@ -9,6 +9,7 @@ module Com
       attribute :private_key, :string
       attribute :public_key, :string
       attribute :fingerprint, :string
+      attribute :extra, :json
 
       encrypts :private_key
 
@@ -35,6 +36,9 @@ module Com
     def deploy
       ENV['HOST'] = host
       ENV['PRIVATE_KEY'] = private_key
+      extra.each do |key, value|
+        ENV[key] = value
+      end
       Dir.chdir('work.design') do
         cli = Kamal::Cli::Main.new
         cli.deploy
