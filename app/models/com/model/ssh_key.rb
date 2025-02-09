@@ -33,6 +33,15 @@ module Com
       self.fingerprint = SSHKey.fingerprint(public_key)
     end
 
+    def deploy_with_info
+      deploy do |line|
+        # 处理每一行日志输出
+        Rails.logger.info line
+        # 或者通过 ActionCable 发送到前端
+        ActionCable.server.broadcast 'deploy_channel', message: line
+      end
+    end
+
     def deploy
       ENV['HOST'] = host
       ENV['PRIVATE_KEY'] = private_key
