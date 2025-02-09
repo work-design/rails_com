@@ -36,7 +36,7 @@ module Com
     def deploy_with_info
       deploy do |line|
         # 处理每一行日志输出
-        Rails.logger.info line
+        Rails.logger.info "-----------#{line}"
         # 或者通过 ActionCable 发送到前端
         #Notice::ReceiverChannel.broadcast 'deploy_channel', message: line
       end
