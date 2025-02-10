@@ -49,6 +49,7 @@ require 'turbo-rails'
 require 'money-rails'
 require 'bigdecimal'
 require 'net/scp'
+require 'sshkey'
 
 require 'rails_com/money/formatter'
 
