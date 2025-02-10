@@ -36,9 +36,19 @@ module Com
     def deploy_with_info
       deploy do |line|
         # 处理每一行日志输出
-        Rails.logger.info "-----------#{line}"
+        Rails.logger.debug "-----------#{line}"
         # 或者通过 ActionCable 发送到前端
         #Notice::ReceiverChannel.broadcast 'deploy_channel', message: line
+      end
+    end
+
+    def release
+      ENV['HOST'] = host
+      ENV['PRIVATE_KEY'] = private_key
+
+      Dir.chdir('work.design') do
+        cli = Kamal::Cli::Lock.new
+        cli.release
       end
     end
 
@@ -51,14 +61,13 @@ module Com
 
       Dir.chdir('work.design') do
         cli = Kamal::Cli::Main.new
-        # 重定向标准输出和错误输出到一个StringIO对象
         original_stdout = $stdout
         original_stderr = $stderr
         read_io, write_io = IO.pipe
 
         $stdout = write_io
         $stderr = write_io
-
+        
         # 在新线程中执行部署
         deploy_thread = Thread.new do
           begin
@@ -68,6 +77,7 @@ module Com
           end
         end
 
+        
         # 在主线程中读取并yield输出
         if block_given?
           read_io.each_line do |line|
@@ -75,10 +85,8 @@ module Com
           end
         end
 
-        # 等待部署线程完成
         deploy_thread.join
       ensure
-        # 恢复标准输出和错误输出
         $stdout = original_stdout
         $stderr = original_stderr
         read_io.close
