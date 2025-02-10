@@ -78,7 +78,11 @@ Rails.application.routes.draw do
 
     namespace :com, defaults: { business: 'com' } do
       namespace :my, defaults: { namespace: 'my' } do
-        resources :ssh_keys
+        resources :ssh_keys do
+          member do
+            match :deploy, via: [:get, :post]
+          end
+        end
       end
       namespace :admin, defaults: { namespace: 'admin' } do
         resource :organ
