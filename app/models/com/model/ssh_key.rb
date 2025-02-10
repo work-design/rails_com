@@ -71,7 +71,6 @@ module Com
         cli.deploy
 
         SSHKit.config.output = original_out
-        
       end
     end
 
