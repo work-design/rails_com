@@ -52,7 +52,7 @@ module Com
       end
     end
 
-    def deploy
+    def deploy(auth_token)
       ENV['HOST'] = host
       ENV['PRIVATE_KEY'] = private_key
       extra.each do |key, value|
@@ -61,35 +61,12 @@ module Com
 
       Dir.chdir('work.design') do
         cli = Kamal::Cli::Main.new
-        original_stdout = $stdout
-        original_stderr = $stderr
-        read_io, write_io = IO.pipe
+        original_out = SSHKit.config.out
+        SSHKit.config.out = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
 
-        $stdout = write_io
-        $stderr = write_io
-        
-        # 在新线程中执行部署
-        deploy_thread = Thread.new do
-          begin
-            cli.deploy
-          ensure
-            write_io.close
-          end
-        end
+        cli.deploy
 
-        
-        # 在主线程中读取并yield输出
-        if block_given?
-          read_io.each_line do |line|
-            yield line
-          end
-        end
-
-        deploy_thread.join
-      ensure
-        $stdout = original_stdout
-        $stderr = original_stderr
-        read_io.close
+        SSHKit.config.out = original_out
       end
     end
 
