@@ -9,11 +9,11 @@ module RailsCom::ActionController
       cookies = payload[:request].cookies.except(Rails.configuration.session_options[:key])
       ancestors = payload[:request].controller_class.ancestors.yield_self(&->(i){ i.slice(0...(i.index(ActionController::Base) || i.index(ActionController::API))) })
 
-      debug "  Headers: { #{real_headers.map(&->(k,v){ "\e[33m#{k}:\e[0m #{v}" }).join(', ')} }"
-      debug "  Sessions: { #{raw_headers['rack.session'].to_h.map(&->(k,v){ "\e[33m#{k}:\e[0m #{v}" }).join(', ')} }" unless raw_headers['rack.session'].blank?
-      debug "  Cookies: { #{cookies.map(&->(k, v){ "\e[33m#{k}:\e[0m #{v}" }).join(', ')} }" unless cookies.blank?
-      debug "  Ancestors: [ #{ancestors.map(&->(i){ i.is_a?(Class) ? "\e[33m#{i}\e[0m" : i }).join(', ')} ]"
-      debug "  Prefixes: #{event.payload[:request].controller_instance.send(:_prefixes)}"
+      debug "\e[33m  Headers:\e[0m { #{real_headers.map(&->(k,v){ "\e[37m#{k}:\e[0m \e[90m#{v}\e[0m" }).join(', ')} }"
+      debug "\e[33m  Sessions:\e[0m { #{raw_headers['rack.session'].to_h.map(&->(k,v){ "\e[37m#{k}:\e[0m \e[90m#{v}\e[0m" }).join(', ')} }" unless raw_headers['rack.session'].blank?
+      debug "\e[33m  Cookies:\e[0m { #{cookies.map(&->(k, v){ "\e[37m#{k}:\e[0m \e[90m#{v}\e[0m" }).join(', ')} }" unless cookies.blank?
+      debug "\e[33m  Ancestors:\e[0m [ #{ancestors.map(&->(i){ i.is_a?(Class) ? "\e[37m#{i}\e[0m" : "\e[90m#{i}\e[0m" }).join(', ')} ]"
+      debug "\e[33m  Prefixes:\e[0m #{event.payload[:request].controller_instance.send(:_prefixes)}"
     end
 
     def process_action(event)
