@@ -33,33 +33,37 @@ module Com
       self.fingerprint = SSHKey.fingerprint(public_key)
     end
 
-    def deploy_with_info
-      deploy do |line|
-        # 处理每一行日志输出
-        Rails.logger.debug "-----------#{line}"
-        # 或者通过 ActionCable 发送到前端
-        #Notice::ReceiverChannel.broadcast 'deploy_channel', message: line
-      end
-    end
-
-    def release
+    def deploy_with
       ENV['HOST'] = host
       ENV['PRIVATE_KEY'] = private_key
 
       Dir.chdir('work.design') do
+        yield
+      end
+    end
+
+    def release
+      deploy_with do
         cli = Kamal::Cli::Lock.new
         cli.release
       end
     end
 
-    def deploy(auth_token)
-      ENV['HOST'] = host
-      ENV['PRIVATE_KEY'] = private_key
-      extra.each do |key, value|
-        ENV[key] = value
+    def deploy
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
+        cli = Kamal::Cli::Main.new
+        cli.deploy
       end
+    end
 
-      Dir.chdir('work.design') do
+    def deploy_with_log(auth_token)
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
         cli = Kamal::Cli::Main.new
         original_out = SSHKit.config.output
         SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
@@ -67,6 +71,7 @@ module Com
         cli.deploy
 
         SSHKit.config.output = original_out
+        
       end
     end
 
