@@ -61,12 +61,12 @@ module Com
 
       Dir.chdir('work.design') do
         cli = Kamal::Cli::Main.new
-        original_out = SSHKit.config.out
-        SSHKit.config.out = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
+        original_out = SSHKit.config.output
+        SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
 
         cli.deploy
 
-        SSHKit.config.out = original_out
+        SSHKit.config.output = original_out
       end
     end
 
