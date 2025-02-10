@@ -6,8 +6,7 @@ module RailsCom::ActionController
       payload = event.payload
       raw_headers = payload.fetch(:headers, {})
       real_headers = Com::Err.request_headers(raw_headers)
-      session_key = Rails.configuration.session_options[:key]
-      cookies = Hash(raw_headers['rack.request.cookie_hash']).except(session_key)
+      cookies = Hash(raw_headers['rack.request.cookie_hash']).except(Rails.configuration.session_options[:key])
       ancestors = event.payload[:request].controller_class.ancestors.yield_self(&->(i){ i.slice(0...(i.index(ActionController::Base) || i.index(ActionController::API))) })
 
       debug "  Headers: { #{real_headers.map(&->(k,v){ "\e[33m#{k}:\e[0m '#{v}'" }).join(', ')} }"
