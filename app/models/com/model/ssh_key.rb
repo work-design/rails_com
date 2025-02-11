@@ -80,6 +80,7 @@ module Com
         cmds = [
           'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
           'git -C work.design submodule update --init',
+          'bundle install --path work.design',
           'npm install --prefix work.design'
         ]
         cmds.each { |i| exec_cmd(i) }
