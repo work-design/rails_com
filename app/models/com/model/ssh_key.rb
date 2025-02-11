@@ -64,7 +64,7 @@ module Com
         extra.each do |key, value|
           ENV[key] = value
         end
-        cli = Kamal::Cli::Main.new
+        cli = Kamal::Cli::Main.new([], ['-v'])
         original_out = SSHKit.config.output
         SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
 
@@ -79,7 +79,9 @@ module Com
       def init_project
         cmds = [
           'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
-          'git -C work.design submodule update --init'
+          'git -C work.design submodule update --init',
+          'apk add npm',
+          'npm install'
         ]
         cmds.each { |i| exec_cmd(i) }
       end
