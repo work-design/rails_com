@@ -4,6 +4,7 @@ module Com
 
     included do
       attribute :column, :string
+      attribute :value, :string
 
       belongs_to :statis, polymorphic: true
 
