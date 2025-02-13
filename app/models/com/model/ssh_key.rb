@@ -77,13 +77,17 @@ module Com
     class_methods do
 
       def init_project
-        cmds = [
+        [
           'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
-          'git -C work.design submodule update --init',
-          'bundle install --gemfile work.design/Gemfile',
-          'npm install --prefix work.design'
-        ]
-        cmds.each { |i| exec_cmd(i) }
+          'git -C work.design submodule update --init'
+        ].each { |i| exec_cmd(i) }
+
+        Dir.chdir('work.design') do
+          [
+            'bundle install',
+            'npm install'
+          ].each { |i| exec_cmd(i) }
+        end
       end
 
       def exec_cmd(cmd)
