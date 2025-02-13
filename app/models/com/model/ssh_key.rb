@@ -82,6 +82,7 @@ module Com
           'git -C work.design submodule update --init',
           'npm install --prefix work.design'
         ].each { |i| exec_cmd(i) }
+        exec_bundle
       end
 
       def exec_cmd(cmd)
