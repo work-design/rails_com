@@ -79,20 +79,24 @@ module Com
       def init_project
         [
           'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
-          'git -C work.design submodule update --init'
+          'git -C work.design submodule update --init',
+          'npm install --prefix work.design'
         ].each { |i| exec_cmd(i) }
-
-        Dir.chdir('work.design') do
-          [
-            'bundle install',
-            'npm install'
-          ].each { |i| exec_cmd(i) }
-        end
       end
 
       def exec_cmd(cmd)
         Open3.popen2e(cmd) do |_, output, thread|
           logger.info "\e[35m  #{cmd} (PID: #{thread.pid})  \e[0m"
+          output.each_line do |line|
+            logger.info "  #{line.chomp}"
+          end
+          puts "\n"
+        end
+      end
+
+      def exec_bundle
+        Open3.popen2e("bundle install --gemfile #{Rails.root}/work.design/Gemfile") do |_, output, thread|
+          logger.info "\e[35m  Bundle install (PID: #{thread.pid})  \e[0m"
           output.each_line do |line|
             logger.info "  #{line.chomp}"
           end
