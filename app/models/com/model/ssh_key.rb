@@ -79,7 +79,7 @@ module Com
       def init_project
         exec_cmd('git clone -b main --depth 1 root@yicanzhiji.com:work.design')
         Dir.chdir('work.design') do
-          ['git submodule update --init', 'bundle', 'npm install'].each { |i| exec_cms(i) }
+          ['git submodule update --init', 'bundle', 'npm install'].each { |i| exec_cmd(i) }
         end
       end
 
