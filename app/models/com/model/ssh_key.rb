@@ -49,6 +49,16 @@ module Com
       end
     end
 
+    def setup(options = '-v')
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
+        cli = Kamal::Cli::Main.new([], [options])
+        cli.setup
+      end
+    end
+
     def deploy(options = '-v')
       deploy_with do
         extra.each do |key, value|
