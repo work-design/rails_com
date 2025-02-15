@@ -87,9 +87,9 @@ module Com
     class_methods do
 
       def init_project
-        ExecUtil.cmd('git clone -b main --depth 1 root@yicanzhiji.com:work.design')
+        CmdUtil.cmd('git clone -b main --depth 1 root@yicanzhiji.com:work.design')
         Dir.chdir('work.design') do
-          ['git submodule update --init'].each { |i| ExecUtil.cmd(i) }
+          ['git submodule update --init'].each { |i| CmdUtil.cmd(i) }
         end
       end
 

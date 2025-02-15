@@ -2,7 +2,7 @@
 
 # Utils
 require 'rails_com/utils/compress_util'
-require 'rails_com/utils/exec_util'
+require 'rails_com/utils/cmd_util'
 require 'rails_com/utils/time_helper'
 require 'rails_com/utils/num_helper'
 require 'rails_com/utils/object_util'
