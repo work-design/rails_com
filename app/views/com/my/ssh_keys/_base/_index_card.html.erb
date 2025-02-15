@@ -1,0 +1,9 @@
+<div data-controller="clipboard" id="tr_<%= model.id %>" class="card is-middle">
+  <div class="card-content">
+    <p data-clipboard-target="source" class="is-wrap text-grey"><%= model.public_key %></p>
+    <p class="text-centered"><strong class="text-primary"><%= model.host %></strong></p>
+  </div>
+  <div class="card-footer">
+    <button data-action="clipboard#copyInner" class="card-footer-item">复制 SSH 公钥</button>
+  </div>
+</div>
