@@ -80,7 +80,7 @@ Rails.application.routes.draw do
       namespace :my, defaults: { namespace: 'my' } do
         resources :ssh_keys do
           member do
-            match :deploy, via: [:get, :post]
+            post :deploy
           end
         end
       end

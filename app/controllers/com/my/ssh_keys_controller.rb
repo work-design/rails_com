@@ -8,7 +8,7 @@ module Com
     end
 
     def deploy
-
+      @ssh_key.deploy_with_log(current_authorized_token.id)
     end
 
     private

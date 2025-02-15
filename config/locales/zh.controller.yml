@@ -68,6 +68,8 @@ zh:
       ssh_keys:
         index:
           title: 私有部署
+        deploy:
+          title: 部署
     panel:
       title: 系统配置
       home:
