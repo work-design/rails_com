@@ -5,6 +5,7 @@ module Com
     included do
       attribute :column, :string
       attribute :value, :string
+      attribute :extra, :json
 
       belongs_to :statis, polymorphic: true
 
