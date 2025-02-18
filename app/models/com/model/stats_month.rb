@@ -10,5 +10,9 @@ module Com
       belongs_to :stats
     end
 
+    def year_month
+      "#{year}-#{month}"
+    end
+
   end
 end
