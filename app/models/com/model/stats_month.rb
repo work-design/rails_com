@@ -11,7 +11,7 @@ module Com
     end
 
     def year_month
-      "#{year}-#{month}"
+      "#{year}-#{month.to_s.rjust(2, '0')}"
     end
 
   end
