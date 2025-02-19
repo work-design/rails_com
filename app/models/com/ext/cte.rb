@@ -18,6 +18,16 @@ module Com
         with(ctes).joins(*joins_sql)
       end
 
+      def cte_intersect(conditions, column)
+        ctes = {}
+
+        conditions.each_with_index do |condition, index|
+          ctes.merge! "cte_#{index}" => select(column).where(condition)
+        end
+
+        with_recursive(ctes)
+      end
+
       def json_filter(params, column)
         query = self
 
