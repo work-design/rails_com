@@ -18,6 +18,32 @@ module Com
         with(ctes).joins(*joins_sql)
       end
 
+      def cte_intersect(conditions, column)
+        ctes = {}
+
+        conditions.each_with_index do |condition, index|
+          ctes.merge! "cte_#{index}" => select(column).where(condition)
+        end
+
+        with_recursive(ctes)
+      end
+
+      def json_filter(params, column)
+        query = self
+
+        params.each do |k, v|
+          if v.is_a?(Array)
+            or_string = []
+            v.size.times { or_string << "#{column}->>'#{k}' = ?" }
+            query = query.where([or_string.join(' OR '), *v])
+          else
+            query = query.where("#{column}->>'#{k}' = ?", v)
+          end
+        end
+
+        query
+      end
+
     end
 
   end

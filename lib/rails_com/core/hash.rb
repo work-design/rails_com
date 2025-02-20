@@ -137,4 +137,15 @@ class Hash
     h
   end
 
+  def product_with_key
+    keys = []
+    values = []
+    each do |key, value|
+      keys << key
+      values << Array(value)
+    end
+
+    values[0].product(*values[1..-1]).map { |i| keys.zip(i) }.map { |i| i.to_h }
+  end
+
 end
