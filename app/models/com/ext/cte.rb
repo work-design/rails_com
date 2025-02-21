@@ -19,13 +19,17 @@ module Com
       end
 
       def cte_intersect(conditions, column)
-        ctes = {}
+        query = self
 
-        conditions.each_with_index do |condition, index|
-          ctes.merge! "cte_#{index}" => select(column).where(condition)
+        conditions.map do |condition|
+          query = query.select(column).where(condition)
         end
 
-        with_recursive(ctes)
+        #intersect_sql = ctes.each_with_object([]) do |(cte_name, _), h|
+        #  h << "SELECT #{column} FROM #{cte_name}"
+        #end.join(' INTERSECT ')
+
+        #with(ctes)
       end
 
       def json_filter(params, column)
