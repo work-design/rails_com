@@ -1,8 +1,6 @@
 <div data-controller="clipboard" class="box">
-  <p data-clipboard-target="source" class="is-wrap text-grey">
-    <span><%= model.public_key %></span>
-    <button data-action="clipboard#copyInner" class="tag is-warning">复制 SSH 公钥</button>
-  </p>
+  <span data-clipboard-target="source" class="is-wrap text-grey"><%= model.public_key %></span>
+  <button data-action="clipboard#copyInner" class="tag is-warning">复制 SSH 公钥</button>
 </div>
 
 <%= render 'index_actions' %>
