@@ -59,6 +59,21 @@ module Com
       end
     end
 
+    def setup_with_log(auth_token)
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
+        cli = Kamal::Cli::Main.new
+        original_out = SSHKit.config.output
+        SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
+
+        cli.setup
+
+        SSHKit.config.output = original_out
+      end
+    end
+
     def deploy(options = '-v')
       deploy_with do
         extra.each do |key, value|
@@ -74,7 +89,7 @@ module Com
         extra.each do |key, value|
           ENV[key] = value
         end
-        cli = Kamal::Cli::Main.new([], ['-v'])
+        cli = Kamal::Cli::Main.new
         original_out = SSHKit.config.output
         SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
 
