@@ -1,9 +1,14 @@
 <div id="tr_<%= model.id %>" class="card is-middle">
   <div class="card-content">
-    <p class="has-column-centered">
+    <p class="has-v-centered">
       <%= link_to({ action: 'show', id: model.id }) do %>
         <strong class="text-primary"><%= model.host %></strong>
       <% end %>
     </p>
+  </div>
+  <div class="card-footer">
+    <%= link_to({ action: 'show', id: model }, class: 'card-footer-item') do %>
+      <span><%= t('.show.title') %></span>
+    <% end %>
   </div>
 </div>

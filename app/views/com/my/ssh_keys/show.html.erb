@@ -1,6 +1,46 @@
-<div data-controller="clipboard" class="box">
-  <span data-clipboard-target="source" class="is-wrap text-grey"><%= model.public_key %></span>
-  <button data-action="clipboard#copyInner" class="tag is-warning">复制 SSH 公钥</button>
+<div class="events">
+  <!-- The first `1989` event -->
+  <div class="event life">
+    <!-- The circle is an svg -->
+    <svg
+      class="marker"
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+    >
+      <circle cx="6" cy="6" r="6"></circle>
+    </svg>
+    <!-- The event info -->
+    <div class="content">
+      <time>1989</time>
+      <div class="text">
+        <p>I was born in the north of Sweden</p>
+      </div>
+    </div>
+  </div>
+  <div class="event life">
+    <!-- The circle is an svg -->
+    <svg
+      class="marker"
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+    >
+      <circle cx="6" cy="6" r="6"></circle>
+    </svg>
+    <!-- The event info -->
+    <div class="content">
+      <time>1989</time>
+      <div class="text">
+        <p>I was born in the north of Sweden</p>
+      </div>
+      <div data-controller="clipboard" class="box">
+        <span data-clipboard-target="source" class="is-wrap text-grey"><%= model.public_key %></span>
+        <button data-action="clipboard#copyInner" class="tag is-warning">复制 SSH 公钥</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <%= render 'index_actions' %>
