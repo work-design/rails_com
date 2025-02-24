@@ -4,7 +4,7 @@ module Com
     before_action :set_new_ssh_key, only: [:new, :create]
 
     def index
-      @ssh_keys = SshKey.where(user_id: current_user.id).page(params[:page])
+      @ssh_keys = SshKey.where(user_id: current_user.id).order(id: :desc).page(params[:page])
     end
 
     def setup
