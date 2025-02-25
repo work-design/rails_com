@@ -8,7 +8,11 @@ module Com
       attribute :url, :string
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
-      attribute :identifiers, :json
+      if connection.adapter_name == 'PostgreSQL'
+        attribute :identifiers, :string, array: true
+      else
+        attribute :identifiers, :json
+      end
       attribute :sync_host, :string
       attribute :sync_path, :string
 
