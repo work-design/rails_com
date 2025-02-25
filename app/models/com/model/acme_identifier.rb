@@ -28,7 +28,7 @@ module Com
     end
 
     def sync_domain_root
-      self.domain_root = domain.split('.')[-2, -1].join('.')
+      self.domain_root = domain.split('.')[-2 .. -1].join('.')
     end
 
     def reset
