@@ -124,16 +124,18 @@ module Com
     end
 
     def ensure_config
-      dns_client = acme_account.dns(common_name)
+      dns_client = acme_account.dns
 
-      rr = acme_identifiers.each_with_object({}) do |i, h|
-        if h.key? i.rr
-          h[i.rr] << i.record_content
-        else
-          h.merge! i.rr => [i.record_content]
+      acme_identifiers.group_by(&:domain_root).each do |domain, owned_identifiers|
+        rr = owned_identifiers.each_with_object({}) do |i, h|
+          if h.key? i.rr
+            h[i.rr] << i.record_content
+          else
+            h.merge! i.rr => [i.record_content]
+          end
         end
+        dns_client.ensure_acme domain, rr
       end
-      dns_client.ensure_acme rr
     end
 
     def identifiers_string

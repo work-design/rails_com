@@ -11,6 +11,7 @@ module Com
       attribute :record_name, :string
       attribute :record_content, :string
       attribute :domain, :string
+      attribute :domain_root, :string
       attribute :wildcard, :boolean
       attribute :url, :string
 
@@ -22,6 +23,12 @@ module Com
         invalid: 'invalid',
         deactivated: 'deactivated'
       }, prefix: true
+
+      before_validation :sync_domain_root, if: -> { domain && domain_changed? }
+    end
+
+    def sync_domain_root
+      self.domain_root = domain.split('.')[-2, -1].join('.')
     end
 
     def reset

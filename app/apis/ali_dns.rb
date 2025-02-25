@@ -4,19 +4,18 @@ rescue LoadError
 end
 
 class AliDns
-  attr_reader :client, :domain
+  attr_reader :client
 
-  def initialize(key, secret, domain)
+  def initialize(key, secret)
     @client = RPCClient.new(
       endpoint: 'https://alidns.cn-hangzhou.aliyuncs.com',
       api_version: '2015-01-09',
       access_key_id: key,
       access_key_secret: secret
     )
-    @domain = domain
   end
 
-  def records
+  def records(domain)
     body = {
       action: 'DescribeDomainRecords'
     }
@@ -31,8 +30,8 @@ class AliDns
     client.request(**body)
   end
 
-  def ensure_acme(values_hash)
-    results = records.dig('DomainRecords', 'Record')
+  def ensure_acme(domain, values_hash)
+    results = records(domain).dig('DomainRecords', 'Record')
 
     values_hash.each do |key, values|
       results.select do |i|
@@ -44,7 +43,7 @@ class AliDns
       values.each do |value|
         exist = results.find { |i| i['RR'] == key && i['Value'] == value }
         unless exist
-          add_acme_record(key, value)
+          add_acme_record(domain, key, value)
         end
       end
     end
@@ -63,7 +62,7 @@ class AliDns
     client.request(**body)
   end
 
-  def add_acme_record(key, value)
+  def add_acme_record(domain, key, value)
     body = {
       action: 'AddDomainRecord'
     }
