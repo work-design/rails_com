@@ -1,5 +1,5 @@
 module Com
-  class AwsServicer < AcmeIdentifier
+  class AwsServicer < AcmeServicer
     include Model::AcmeServicer::AwsServicer
   end
 end

@@ -1,5 +1,5 @@
 module Com
-  class AliServicer < AcmeIdentifier
+  class AliServicer < AcmeServicer
     include Model::AcmeServicer::AliServicer
   end
 end
