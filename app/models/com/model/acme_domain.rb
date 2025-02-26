@@ -9,6 +9,7 @@ module Com
     end
 
     def client
+      acme_servicer.domain = domain
       acme_servicer.client
     end
 

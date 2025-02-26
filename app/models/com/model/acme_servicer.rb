@@ -3,6 +3,8 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      attr_accessor :domain
+
       attribute :type, :string
       attribute :key, :string, comment: '阿里云DNS'
       attribute :secret, :string
