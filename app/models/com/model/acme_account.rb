@@ -53,11 +53,6 @@ module Com
       end
     end
 
-    def dns
-      return @dns if defined? @dns
-      @dns = AliDns.new(ali_key, ali_secret)
-    end
-
     def directory
       RailsCom.config.acme_url
     end

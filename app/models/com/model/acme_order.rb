@@ -128,9 +128,9 @@ module Com
     end
 
     def ensure_config
-      dns_client = acme_account.dns
-
       acme_identifiers.group_by(&:domain_root).map do |domain, owned_identifiers|
+        servicer = AcmeServicer.find_by(domain: domain)
+        next unless servicer
         rr = owned_identifiers.each_with_object({}) do |i, h|
           if h.key? i.rr
             h[i.rr] << i.record_content
@@ -138,7 +138,7 @@ module Com
             h.merge! i.rr => [i.record_content]
           end
         end
-        dns_client.ensure_acme domain, rr
+        servicer.client.ensure_acme domain, rr
       end
     end
 

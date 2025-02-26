@@ -4,9 +4,7 @@ module Com
     private
     def acme_account_permit_params
       [
-        :email,
-        :ali_key,
-        :ali_secret
+        :email
       ]
     end
 

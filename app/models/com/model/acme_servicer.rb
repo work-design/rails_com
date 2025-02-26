@@ -1,5 +1,5 @@
 module Com
-  module Model::AcmeDns
+  module Model::AcmeServicer
     extend ActiveSupport::Concern
 
     included do
@@ -12,8 +12,7 @@ module Com
     end
 
     def client
-      return @dns if defined? @dns
-      @dns = AliDns.new(key, secret)
+      'Should implement in subclass'
     end
 
   end

@@ -205,6 +205,7 @@ Rails.application.routes.draw do
             post :sync
           end
         end
+        resources :acme_servicers
         resources :acme_accounts do
           resources :acme_orders do
             member do
