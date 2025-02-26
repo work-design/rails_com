@@ -6,10 +6,6 @@ module Com
     included do
       attribute :email, :string
       attribute :kid, :string
-      attribute :ali_key, :string, comment: '阿里云DNS'
-      attribute :ali_secret, :string
-
-      encrypts :ali_key, :ali_secret
 
       has_many :acme_orders, dependent: :destroy_async
 
