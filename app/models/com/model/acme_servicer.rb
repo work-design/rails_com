@@ -8,6 +8,10 @@ module Com
       attribute :secret, :string
 
       encrypts :key, :secret
+
+      has_many :acme_domains
+
+      accepts_nested_attributes_for :acme_domains
     end
 
     def client
