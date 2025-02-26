@@ -4,7 +4,6 @@ module Com
 
     included do
       attribute :type, :string
-      attribute :domain, :string
       attribute :key, :string, comment: '阿里云DNS'
       attribute :secret, :string
 
