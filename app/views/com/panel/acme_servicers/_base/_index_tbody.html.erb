@@ -1,13 +1,9 @@
 <td>
-  <p><%= model.email %></p>
-  <p class="text-grey"><%= model.kid %></p>
+  <p><%= model.key %></p>
+  <p><%= model.secret %></p>
 </td>
 <td>
-  <p><%= model.ali_key %></p>
-  <p><%= model.ali_secret %></p>
-</td>
-<td>
-  <% if model.private_pem_blob %>
-    <%= link_to model.private_pem_blob.filename, rails_storage_redirect_path(model.private_pem) %>
-  <% end %>
+<% model.acme_domains.each do |acme_domain| %>
+  <p><%= acme_domain.domain %></p>
+<% end %>
 </td>
