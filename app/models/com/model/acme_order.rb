@@ -119,14 +119,14 @@ module Com
       ensure_config
     end
 
-    def dns_all_verified?
+    def all_verified?
       acme_identifiers.all? { |i| i.verify? }
     end
 
     def ensure_config
       dns_client = acme_account.dns
 
-      acme_identifiers.group_by(&:domain_root).each do |domain, owned_identifiers|
+      acme_identifiers.group_by(&:domain_root).map do |domain, owned_identifiers|
         rr = owned_identifiers.each_with_object({}) do |i, h|
           if h.key? i.rr
             h[i.rr] << i.record_content
