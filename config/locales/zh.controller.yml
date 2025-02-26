@@ -90,6 +90,9 @@ zh:
       acme_identifiers:
         index:
           title: SSL 订单详情
+      acme_servicers:
+        index:
+          title: 域名托管商
       blob_defaults:
         index:
           title: 默认图片

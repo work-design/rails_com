@@ -8,7 +8,7 @@ module Com
     end
 
     def acme_servicer_params
-      params.fetch(：:acme_servicer, {}).permit(
+      params.fetch(:acme_servicer, {}).permit(
         :type,
         :key,
         :secret,
