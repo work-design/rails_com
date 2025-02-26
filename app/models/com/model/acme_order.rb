@@ -152,7 +152,14 @@ module Com
 
     def csr
       return @csr if defined? @csr
-      @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: common_name })
+      @csr = Acme::Client::CertificateRequest.new(
+        names: identifiers,
+        subject: {
+          common_name: common_name,
+          organization_name: '有个想法武汉软件咨询有限公司',
+          organizational_unit: 'Work Design 工作设计'
+        }
+      )
       Tempfile.open do |file|
         file.binmode
         file.write @csr.private_key.to_pem
