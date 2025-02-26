@@ -1,4 +1,4 @@
-<%= f.select :type, options_for_select(Acme::AcmeServicer.options_i18n(:type), f.object.type) %>
+<%= f.select :type, options_for_select(Com::AcmeServicer.options_i18n(:type), f.object.type) %>
 <%= f.text_field :key %>
 <%= f.text_field :secret %>
 <%= f.fields :acme_domains, wrap: { all: nil, input: 'field' }, label: false, placeholder: true do |ef| %>
