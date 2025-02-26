@@ -86,7 +86,11 @@ module Com
         get_cert
       when 'pending'
         set_authorizations!
-        acme_identifiers.map(&:auto_verify).all?(true) && order.reload
+        if all_verified?
+          acme_identifiers.map(&:auto_verify).all?(true) && order.reload
+        else
+          AcmeOrderJob.set(wait: 60.seconds).perform_later(self)
+        end
         get_cert
       when 'ready'
         finalize
