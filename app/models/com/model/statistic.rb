@@ -7,7 +7,7 @@ module Com
       attribute :value, :string
       attribute :extra, :json
 
-      belongs_to :statis, polymorphic: true
+      belongs_to :statistical, polymorphic: true
 
       has_many :statistic_years
       has_many :statistic_months
