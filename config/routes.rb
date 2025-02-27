@@ -126,7 +126,11 @@ Rails.application.routes.draw do
         resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
         resources :states
-        resources :statistics
+        resources :statistics do
+          resources :statistic_months
+          resources :statistic_years
+          resources :statistic_days
+        end
         resources :meta_namespaces do
           collection do
             post :sync
