@@ -181,6 +181,9 @@ zh:
       states:
         index:
           title: 状态
+      statistics:
+        index:
+          title: 统计
       ssh_keys:
         index:
           title: SSH
