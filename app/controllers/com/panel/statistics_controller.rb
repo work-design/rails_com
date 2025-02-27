@@ -3,7 +3,7 @@ module Com
     before_action :set_statistic, only: [:show, :destroy]
 
     def index
-      @statistics = Statistic.order(created_at: :desc).page(params[:page])
+      @statistics = Statistic.order(created_at: :desc).page(params[:page]).per(params[:per])
     end
 
     private
