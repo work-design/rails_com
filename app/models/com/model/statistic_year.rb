@@ -1,5 +1,5 @@
 module Com
-  module Model::StatsYear
+  module Model::StatisticYear
     extend ActiveSupport::Concern
 
     included do
@@ -7,7 +7,7 @@ module Com
 
       attribute :value, :decimal
 
-      belongs_to :stats
+      belongs_to :statistic
     end
 
   end

@@ -1,5 +1,5 @@
 module Com
-  module Model::Stats
+  module Model::Statistic
     extend ActiveSupport::Concern
 
     included do
@@ -9,9 +9,9 @@ module Com
 
       belongs_to :statis, polymorphic: true
 
-      has_many :stats_years
-      has_many :stats_months
-      has_many :stats_days
+      has_many :statistic_years
+      has_many :statistic_months
+      has_many :statistic_days
     end
 
   end

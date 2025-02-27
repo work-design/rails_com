@@ -1,17 +1,14 @@
 module Com
-  module Model::StatsMonth
+  module Model::StatisticDay
     extend ActiveSupport::Concern
 
     included do
       attribute :year, :string
       attribute :month, :string
+      attribute :day, :string
       attribute :value, :decimal
 
-      belongs_to :stats
-    end
-
-    def year_month
-      "#{year}-#{month.to_s.rjust(2, '0')}"
+      belongs_to :statistic
     end
 
   end
