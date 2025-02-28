@@ -127,6 +127,9 @@ Rails.application.routes.draw do
         resources :csps, only: [:index, :show, :destroy]
         resources :states
         resources :statistics do
+          collection do
+            get :months
+          end
           resources :statistic_months
           resources :statistic_years
           resources :statistic_days
