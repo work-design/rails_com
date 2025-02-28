@@ -129,6 +129,7 @@ Rails.application.routes.draw do
         resources :statistics do
           collection do
             get :months
+            get 'month/:month' => :month
           end
           resources :statistic_months
           resources :statistic_years

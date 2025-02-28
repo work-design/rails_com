@@ -10,6 +10,10 @@ module Com
       @month_counts = StatisticMonth.group(:year_month).order(year_month: :desc).count(:statistic_id)
     end
 
+    def month
+      @statistics = Statistic.joins(:statistic_months).where(statistic_months: { year_month: params[:month] })
+    end
+
     private
     def set_statistic
       @statistic = Statistic.find(params[:id])
