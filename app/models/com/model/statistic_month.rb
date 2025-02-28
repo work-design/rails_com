@@ -17,13 +17,5 @@ module Com
       self.year_month = "#{year}-#{month.to_s.rjust(2, '0')}"
     end
 
-    class_methods do
-
-      def months
-        select(:year_month).distinct.order(:year_month).pluck(:year_month)
-      end
-
-    end
-
   end
 end

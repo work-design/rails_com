@@ -7,7 +7,7 @@ module Com
     end
 
     def months
-      @months = StatisticMonth.months
+      @month_counts = StatisticMonth.group(:year_month).order(year_month: :desc).count(:statistic_id)
     end
 
     private
