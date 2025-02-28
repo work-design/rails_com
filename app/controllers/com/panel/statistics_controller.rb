@@ -11,7 +11,7 @@ module Com
     end
 
     def month
-      @statistics = Statistic.joins(:statistic_months).where(statistic_months: { year_month: params[:month] })
+      @statistics = Statistic.joins(:statistic_months).where(statistic_months: { year_month: params[:month] }).page(params[:page])
     end
 
     private
