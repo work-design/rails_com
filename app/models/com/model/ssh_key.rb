@@ -99,6 +99,12 @@ module Com
       end
     end
 
+    def test_x
+      Net::SSH.start(host, 'root', key_data: [private_key], keys_only: true, non_interactive: true) do |ssh|
+        puts  ssh.exec! 'uname'
+      end
+    end
+
     class_methods do
 
       def init_project
