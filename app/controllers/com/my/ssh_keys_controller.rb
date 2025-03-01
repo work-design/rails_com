@@ -1,6 +1,6 @@
 module Com
   class My::SshKeysController < My::BaseController
-    before_action :set_ssh_key, only: [:show, :edit, :update, :destroy, :setup, :deploy]
+    before_action :set_ssh_key, only: [:show, :edit, :update, :destroy, :setup, :deploy, :remote_status]
     before_action :set_new_ssh_key, only: [:new, :create]
 
     def index
@@ -13,6 +13,10 @@ module Com
 
     def deploy
       SshKeyDeployJob.perform_later(@ssh_key, current_authorized_token.id)
+    end
+
+    def remote_status
+      @result = @ssh_key.remote_status
     end
 
     private

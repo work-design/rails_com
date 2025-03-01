@@ -81,6 +81,7 @@ Rails.application.routes.draw do
         resources :ssh_keys do
           member do
             post :deploy
+            get :remote_status
           end
         end
       end

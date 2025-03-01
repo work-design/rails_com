@@ -99,10 +99,12 @@ module Com
       end
     end
 
-    def test_x
+    def remote_status
+      result = '服务器系统：'
       Net::SSH.start(host, 'root', key_data: [private_key], keys_only: true, non_interactive: true) do |ssh|
-        puts  ssh.exec! 'uname'
+        result = ssh.exec! 'uname -v'
       end
+      result
     end
 
     class_methods do

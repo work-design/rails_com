@@ -1,6 +1,12 @@
-<details class="details as-boxed" open>
+<details
+  data-controller="details"
+  data-details-url-value="<%= url_for(action: 'remote_status', id: model.id) %>"
+  class="details as-boxed"
+  open
+>
   <summary>第一步：开通服务器</summary>
   <p>去开通服务器</p>
+  <p id="remote_status">正在检查服务器...</p>
 </details>
 <details class="details as-boxed mt-3">
   <summary>2.导入 SSH 公钥</summary>
