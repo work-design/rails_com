@@ -16,7 +16,12 @@ module Com
     end
 
     def remote_status
-      @result = @ssh_key.remote_status
+      result = @ssh_key.remote_status
+      if result == 'failed'
+        @result = '登录失败'
+      else
+        @result = result
+      end
     end
 
     private

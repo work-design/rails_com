@@ -105,6 +105,8 @@ module Com
         result = ssh.exec! 'uname -v'
       end
       result
+    rescue Net::SSH::AuthenticationFailed => e
+      'failed'
     end
 
     class_methods do
