@@ -35,8 +35,7 @@ module Com
 
     def ssh_key_params
       p = params.fetch(:ssh_key, {}).permit(
-        :host,
-        :domain
+        :host
       )
       p.merge! user_id: current_user.id
     end
