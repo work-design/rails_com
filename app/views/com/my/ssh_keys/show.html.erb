@@ -8,14 +8,14 @@
   <p>去开通服务器</p>
   <p id="remote_status">正在检查服务器...</p>
 </details>
-<details class="details as-boxed mt-3">
+<details data-controller="details" class="details as-boxed mt-3">
   <summary>2.导入 SSH 公钥</summary>
   <div data-controller="clipboard">
     <span data-clipboard-target="source" class="is-wrap text-grey"><%= model.public_key %></span>
     <button data-action="clipboard#copyInner" class="tag is-warning">复制 SSH 公钥</button>
   </div>
 </details>
-<details class="details as-boxed mt-3">
+<details data-controller="details" class="details as-boxed mt-3">
   <summary>3.开始部署</summary>
   <%= render 'index_actions' %>
   <div
