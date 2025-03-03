@@ -127,14 +127,21 @@ Rails.application.routes.draw do
         resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
         resources :states
-        resources :statistics do
+        resources :statistics, only: [] do
           collection do
-            get :months
-            get 'month/:month' => :month
+            get :statistical
           end
-          resources :statistic_months
-          resources :statistic_years
-          resources :statistic_days
+        end
+        scope ':statistical_type/:statistical_id' do
+          resources :statistics do
+            collection do
+              get :months
+              get 'month/:month' => :month
+            end
+            resources :statistic_months
+            resources :statistic_years
+            resources :statistic_days
+          end
         end
         resources :meta_namespaces do
           collection do

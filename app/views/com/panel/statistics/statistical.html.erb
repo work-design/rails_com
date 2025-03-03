@@ -1,4 +1,6 @@
-<%= render 'index_actions' %>
+<%= render 'bar' %>
+<%= render 'index_bar' %>
+
 <%= render layout: 'index_table' do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @statistics, as: :model %>
 <% end %>
