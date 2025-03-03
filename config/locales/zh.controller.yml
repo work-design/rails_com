@@ -185,7 +185,7 @@ zh:
         index:
           title: 统计
         statistical:
-          index: 统计类型
+          title: 统计类型
         months:
           title: 月度
       statistic_months:
