@@ -31,7 +31,7 @@ module Com
     end
 
     def set_statistical
-      @statistical = params[:statistical_type].constatize.find params[:statistical_id]
+      @statistical = params[:statistical_type].constantize.find params[:statistical_id]
     end
 
   end
