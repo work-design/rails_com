@@ -1,8 +1,6 @@
 <div class="columns">
   <div class="column">
-  <% Com::MetaBusiness.all.each do |model| %>
-    <%= render partial: 'admin_tags', locals: { business: model.identifier } if role_permit?(business: model.identifier, namespace: 'admin') %>
-  <% end %>
+    <%= render partial: 'admin_tags', collection: Com::MetaBusiness.all, as: :model %>
   </div>
   <div class="column">
     <div class="box">

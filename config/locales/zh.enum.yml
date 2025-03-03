@@ -19,3 +19,7 @@ zh:
           Com::DetectorFeishu: 飞书
           Com::DetectorSlack: Slack
           Com::DetectorWorkWechat: 企业微信
+      com/acme_servicer:
+        type:
+          Com::AliServicer: 阿里云
+          Com::AwsServicer: AWS

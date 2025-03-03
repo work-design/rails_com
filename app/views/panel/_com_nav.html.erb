@@ -10,7 +10,6 @@
   </div>
   <div class="menu-list" data-empty-target="content">
     <%= link_to t('com.panel.inbound_emails.index.title'), { controller: 'com/panel/inbound_emails' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'inbound_emails', active: 'is-active') %>
-    <%= link_to t('com.panel.acme_accounts.index.title'), { controller: 'com/panel/acme_accounts' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'acme_accounts', active: 'is-active') %>
     <%= link_to t('com.panel.meta_controllers.index.title'), { controller: 'com/panel/meta_controllers' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_controllers', active: 'is-active') %>
     <%= link_to t('com.panel.meta_models.index.title'), { controller: 'com/panel/meta_models' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_models', active: 'is-active') %>
     <%= link_to t('com.panel.err_summaries.index.title'), { controller: 'com/panel/err_summaries' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['err_summaries', 'errs'], active: 'is-active') %>

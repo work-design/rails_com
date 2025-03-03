@@ -19,10 +19,14 @@ module Com
       attribute :action_name, :string
       attribute :path, :string
       attribute :verb, :string
-      attribute :required_parts, :json
       attribute :position, :integer
       attribute :landmark, :boolean
       attribute :synced_at, :datetime
+      if connection.adapter_name == 'PostgreSQL'
+        attribute :required_parts, :string, array: true
+      else
+        attribute :required_parts, :json
+      end
 
       belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier
       belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier

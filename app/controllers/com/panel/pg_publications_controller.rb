@@ -17,7 +17,12 @@ module Com
     end
 
     def create_all
-      all_tables = PgPublication.connection.tables - RailsCom::Models.ignore_tables - ['com_errs', 'com_err_summaries']
+      all_tables = PgPublication.connection.tables - RailsCom::Models.ignore_tables - [
+        'com_errs',
+        'com_err_summaries',
+        'com_states',
+        'com_state_hierarchies'
+      ]
 
       PgPublication.connection.exec_query "CREATE PUBLICATION #{params[:pubname]} FOR TABLE #{all_tables.join(', ')}"
     end

@@ -5,7 +5,6 @@ module Com
 
     included do
       attribute :host, :string
-      attribute :domain, :string
       attribute :private_key, :string
       attribute :public_key, :string
       attribute :fingerprint, :string
@@ -49,12 +48,37 @@ module Com
       end
     end
 
-    def deploy
+    def setup(options = '-v')
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
+        cli = Kamal::Cli::Main.new([], [options])
+        cli.setup
+      end
+    end
+
+    def setup_with_log(auth_token)
       deploy_with do
         extra.each do |key, value|
           ENV[key] = value
         end
         cli = Kamal::Cli::Main.new
+        original_out = SSHKit.config.output
+        SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
+
+        cli.setup
+
+        SSHKit.config.output = original_out
+      end
+    end
+
+    def deploy(options = '-v')
+      deploy_with do
+        extra.each do |key, value|
+          ENV[key] = value
+        end
+        cli = Kamal::Cli::Main.new([], [options])
         cli.deploy
       end
     end
@@ -64,7 +88,7 @@ module Com
         extra.each do |key, value|
           ENV[key] = value
         end
-        cli = Kamal::Cli::Main.new([], ['-v'])
+        cli = Kamal::Cli::Main.new
         original_out = SSHKit.config.output
         SSHKit.config.output = SSHKit::Formatter::Pretty.new(LogChannelWriter.new(auth_token))
 
@@ -74,25 +98,22 @@ module Com
       end
     end
 
+    def remote_status
+      result = '服务器系统：'
+      Net::SSH.start(host, 'root', key_data: [private_key], keys_only: true, non_interactive: true) do |ssh|
+        result = ssh.exec! 'uname -v'
+      end
+      result
+    rescue Net::SSH::AuthenticationFailed => e
+      'failed'
+    end
+
     class_methods do
 
       def init_project
-        cmds = [
-          'git clone -b main --depth 1 root@yicanzhiji.com:work.design',
-          'git -C work.design submodule update --init',
-          'apk add npm',
-          'npm install'
-        ]
-        cmds.each { |i| exec_cmd(i) }
-      end
-
-      def exec_cmd(cmd)
-        Open3.popen2e(cmd) do |_, output, thread|
-          logger.info "\e[35m  #{cmd} (PID: #{thread.pid})  \e[0m"
-          output.each_line do |line|
-            logger.info "  #{line.chomp}"
-          end
-          puts "\n"
+        CmdUtil.exec('git clone -b main --depth 1 root@yicanzhiji.com:work.design')
+        Dir.chdir('work.design') do
+          ['git submodule update --init'].each { |i| CmdUtil.exec(i) }
         end
       end
 

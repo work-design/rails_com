@@ -8,7 +8,11 @@ module Com
       attribute :url, :string
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
-      attribute :identifiers, :json
+      if connection.adapter_name == 'PostgreSQL'
+        attribute :identifiers, :string, array: true
+      else
+        attribute :identifiers, :json
+      end
       attribute :sync_host, :string
       attribute :sync_path, :string
 
@@ -82,7 +86,11 @@ module Com
         get_cert
       when 'pending'
         set_authorizations!
-        acme_identifiers.map(&:auto_verify).all?(true) && order.reload
+        if all_verified?
+          acme_identifiers.map(&:auto_verify).all?(true) && order.reload
+        else
+          AcmeOrderJob.set(wait: 60.seconds).perform_later(self)
+        end
         get_cert
       when 'ready'
         finalize
@@ -115,21 +123,23 @@ module Com
       ensure_config
     end
 
-    def dns_all_verified?
+    def all_verified?
       acme_identifiers.all? { |i| i.verify? }
     end
 
     def ensure_config
-      dns_client = acme_account.dns(common_name)
-
-      rr = acme_identifiers.each_with_object({}) do |i, h|
-        if h.key? i.rr
-          h[i.rr] << i.record_content
-        else
-          h.merge! i.rr => [i.record_content]
+      acme_identifiers.group_by(&:domain_root).map do |domain, owned_identifiers|
+        acme_domain = AcmeDomain.find_by(domain: domain)
+        next unless acme_domain
+        rr = owned_identifiers.each_with_object({}) do |i, h|
+          if h.key? i.rr
+            h[i.rr] << i.record_content
+          else
+            h.merge! i.rr => [i.record_content]
+          end
         end
+        acme_domain.client.ensure_acme rr
       end
-      dns_client.ensure_acme rr
     end
 
     def identifiers_string
@@ -142,7 +152,14 @@ module Com
 
     def csr
       return @csr if defined? @csr
-      @csr = Acme::Client::CertificateRequest.new(names: identifiers, subject: { common_name: common_name })
+      @csr = Acme::Client::CertificateRequest.new(
+        names: identifiers,
+        subject: {
+          common_name: common_name,
+          organization_name: '有个想法武汉软件咨询有限公司',
+          organizational_unit: 'Work Design 工作设计'
+        }
+      )
       Tempfile.open do |file|
         file.binmode
         file.write @csr.private_key.to_pem

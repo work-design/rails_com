@@ -1,4 +1,5 @@
 <div class="fixed-grid has-6-cols">
+  <p class="size-7 text-grey mb-1">文件</p>
   <div class="grid">
     <%= link_to({ controller: 'blob_defaults' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.blob_defaults.index.title') %></span>
@@ -9,13 +10,29 @@
     <%= link_to({ controller: 'attachments' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.attachments.index.title') %></span>
     <% end %>
+  </div>
+  <p class="size-7 text-grey mb-1">系统数据</p>
+  <div class="grid">
     <%= link_to({ controller: 'meta_businesses' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.meta_businesses.index.title') %></span>
     <% end %>
     <%= link_to({ controller: 'states' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.states.index.title') %></span>
     <% end %>
+    <%= link_to({ controller: 'statistics', action: 'statistical' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.statistics.statistical.title') %></span>
+    <% end %>
   </div>
+  <p class="size-7 text-grey mb-1">SSL 证书管理</p>
+  <div class="grid">
+    <%= link_to({ controller: 'acme_accounts' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.acme_accounts.index.title') %></span>
+    <% end %>
+    <%= link_to({ controller: 'acme_servicers' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.acme_servicers.index.title') %></span>
+    <% end %>
+  </div>
+  <p class="size-7 text-grey mb-1">运营</p>
   <div class="grid">
     <%= link_to({ controller: 'err_bots' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.err_bots.index.title') %></span>
@@ -30,6 +47,7 @@
       <span><%= t('.ssh_keys.index.title') %></span>
     <% end %>
   </div>
+  <p class="size-7 text-grey mb-1">Postgresql</p>
   <div class="grid">
     <%= link_to({ controller: 'pg_publications' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.pg_publications.index.title') %></span>

@@ -80,7 +80,8 @@ Rails.application.routes.draw do
       namespace :my, defaults: { namespace: 'my' } do
         resources :ssh_keys do
           member do
-            match :deploy, via: [:get, :post]
+            post :deploy
+            get :remote_status
           end
         end
       end
@@ -126,6 +127,23 @@ Rails.application.routes.draw do
         resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
         resources :states
+        resources :statistics, only: [] do
+          collection do
+            get :statistical
+          end
+        end
+        scope ':statistical_type/:statistical_id' do
+          resources :statistics do
+            collection do
+              get :months
+              get 'month/:month' => :month
+              post 'do_cache/:month' => :do_cache
+            end
+            resources :statistic_months
+            resources :statistic_years
+            resources :statistic_days
+          end
+        end
         resources :meta_namespaces do
           collection do
             post :sync
@@ -204,6 +222,7 @@ Rails.application.routes.draw do
             post :sync
           end
         end
+        resources :acme_servicers
         resources :acme_accounts do
           resources :acme_orders do
             member do

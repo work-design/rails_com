@@ -5,8 +5,10 @@ module Com
     included do
       if connection.adapter_name == 'PostgreSQL'
         attribute :id, :uuid
+        attribute :parent_id, :uuid
       else
         attribute :id, :string, default: -> { SecureRandom.uuid_v7 }
+        attribute :parent_id, :string
       end
       attribute :host, :string
       attribute :path, :string

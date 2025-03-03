@@ -3,7 +3,6 @@
   <p><%= i %></p>
 <% end %>
 </td>
-<td><%= model.url %></td>
 <td>
   <% if model.private_pem_blob %>
     <p><%= link_to model.private_pem_blob.filename, model.private_pem_blob.url %></p>
@@ -15,4 +14,8 @@
 <td>
   <p><%= model.status %></p>
   <p><time data-controller="time"><%= model.issued_at&.to_fs(:iso8601) %></time></p>
+</td>
+<td>
+  <p><%= model.sync_host %></p>
+  <p><%= model.sync_path %></p>
 </td>
