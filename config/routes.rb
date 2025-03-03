@@ -137,6 +137,7 @@ Rails.application.routes.draw do
             collection do
               get :months
               get 'month/:month' => :month
+              post 'do_cache/:month' => :do_cache
             end
             resources :statistic_months
             resources :statistic_years

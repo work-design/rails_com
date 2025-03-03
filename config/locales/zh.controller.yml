@@ -188,6 +188,8 @@ zh:
           title: 统计类型
         months:
           title: 月度
+        do_cache:
+          title: 缓存当前月
       statistic_months:
         index:
           title: 月度统计
