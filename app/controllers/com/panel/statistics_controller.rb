@@ -22,9 +22,7 @@ module Com
     end
 
     def do_cache
-      month = Date.new(*params[:month].split('-').map(&:to_i))
-
-      @statistical.cached_statistic_year(start: month, finish: month.end_of_month)
+      @statistical.statistical_month_job(params[:month])
     end
 
     private
