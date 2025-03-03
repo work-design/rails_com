@@ -16,7 +16,9 @@ module Com
     end
 
     def month
-      @statistics = Statistic.joins(:statistic_months).where(statistic_months: { year_month: params[:month] }).page(params[:page])
+      q_params = {}
+      q_params.merge! params.permit(:column)
+      @statistics = Statistic.joins(:statistic_months).where(statistic_months: { year_month: params[:month] }).default_where(q_params).page(params[:page])
     end
 
     def do_cache
