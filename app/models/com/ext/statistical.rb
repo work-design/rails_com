@@ -71,9 +71,9 @@ module Com
       end
     end
 
-    def cached_statistic_year(columns: ['really', 'used', 'adjust'], start: Date.today.beginning_of_year, finish: Date.today)
+    def cached_statistic_year(columns: ['really', 'used', 'adjust'], extra_hash: {}, start: Date.today.beginning_of_year, finish: Date.today)
       columns.each do |column|
-        cached_statistic_data.each do |extra|
+        extra_hash.product_with_key.each do |extra|
           statistic = statistics.find_or_initialize_by(column: column, extra: extra)
           statistic.save
 
@@ -84,7 +84,7 @@ module Com
 
     def cached_statistic_month(statistic, start: Date.today.beginning_of_year, finish: Date.today)
       (start.month..finish.month).each do |month|
-        value = xx(statistic, 'month', start.change(month: month, day: 1))
+        value = cache_from_source(statistic, 'month', start.change(month: month, day: 1))
 
         sm = statistic.statistic_months.find_or_initialize_by(year: start.year, month: month)
         sm.value = value
@@ -94,7 +94,7 @@ module Com
 
     def cached_statistic_day(statistic, today: Date.today)
       (1..(today.day - 1)).each do |day|
-        value = xx(statistic, 'day', today.change(day: day))
+        value = cache_from_source(statistic, 'day', today.change(day: day))
 
         sd = statistic.statistic_days.find_or_initialize_by(year: today.year, month: today.month, day: day)
         sd.value = value
