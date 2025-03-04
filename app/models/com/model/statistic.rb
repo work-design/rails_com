@@ -20,7 +20,7 @@ module Com
       cached_statistic_month(start: start, finish: finish)
     end
 
-    def cache_statistic_month(start: Date.today.beginning_of_year, finish: Date.today)
+    def cache_statistic_months(start: Date.today.beginning_of_year, finish: Date.today)
       (start.month..finish.month).each do |month|
         value = statistical.cache_from_source(self, 'month', start.change(month: month, day: 1))
 
@@ -31,10 +31,11 @@ module Com
     end
 
     def cache_statistic_days(today: Date.today)
-      (1..(today.day - 1)).each do |day|
-        value = statistical.cache_from_source(self, 'day', today.change(day: day))
+      return if today == today.beginning_of_month
+      today.beginning_of_month..(today - 1).each do |date|
+        value = statistical.cache_from_source(self, 'day', date)
 
-        sd = statistic_days.find_or_initialize_by(year: today.year, month: today.month, day: day)
+        sd = statistic_days.find_or_initialize_by(year: date.year, month: date.month, day: date.day)
         sd.value = value
         sd.save
       end
