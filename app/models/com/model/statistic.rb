@@ -19,7 +19,7 @@ module Com
 
     def cache_from_configs
       statistic_configs.each do |statistic_config|
-        cached_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
+        cache_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
       end
     end
 
