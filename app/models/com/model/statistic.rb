@@ -35,7 +35,9 @@ module Com
         next_last_day = next_last_day.next_month.end_of_month
       end
 
-      if finish.end_of_month > finish
+      if finish.end_of_month == finish
+        cache_statistic_month(finish.to_fs(:year_and_month))
+      else
         cache_statistic_days(start: finish.beginning_of_month, finish: finish)
       end
     end
