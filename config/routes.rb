@@ -132,6 +132,7 @@ Rails.application.routes.draw do
             get :statistical
           end
         end
+        resources :statistic_configs
         scope ':statistical_type/:statistical_id' do
           resources :statistics do
             collection do

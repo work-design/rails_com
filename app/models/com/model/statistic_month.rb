@@ -3,8 +3,8 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :year, :string
-      attribute :month, :string
+      attribute :year, :integer
+      attribute :month, :integer
       attribute :year_month, :string, index: true
       attribute :value, :decimal
 
@@ -15,6 +15,10 @@ module Com
 
     def init_year_month
       self.year_month = "#{year}-#{month.to_s.rjust(2, '0')}"
+    end
+
+    def cache_value
+      self.value = statistic.statistical.cache_from_source(statistic, 'month', Date.today.change(year: year, month: month, day: 1))
     end
 
   end
