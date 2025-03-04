@@ -18,7 +18,29 @@ module Com
     end
 
     def cache_value
-      self.value = statistic.statistical.cache_from_source(statistic, 'month', Date.today.change(year: year, month: month, day: 1))
+      today = Date.today
+
+      if today.to_fs(:year_and_month) == year_month
+        cache_statistic_days(start: today.beginning_of_day, finish: today - 1)
+      else
+        self.value = statistic.statistical.cache_from_source(statistic, 'month', today.change(year: year, month: month, day: 1))
+      end
+    end
+
+    def cache_statistic_days(start:, finish:)
+      return if start > finish
+      start..finish.each do |date|
+        cache_statistic_day(date)
+      end
+    end
+
+    def cache_statistic_day(date = Date.today - 1)
+      sd = statistic.statistic_days.find_by(date: date)
+      return if sd
+
+      sd = statistic.statistic_days.find_or_initialize_by(date: date)
+      sd.cache_value
+      sd.save
     end
 
   end

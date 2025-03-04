@@ -40,21 +40,5 @@ module Com
       sm.save
     end
 
-    def cache_statistic_days(start: Date.today.beginning_of_month, finish: Date.today)
-      return if start == today.beginning_of_month
-      start..(today - 1).each do |date|
-        cache_statistic_day(date)
-      end
-    end
-
-    def cache_statistic_day(date = Date.today - 1)
-      sd = statistic_days.find_by(date: date)
-      return if sd
-
-      sd = statistic_days.find_or_initialize_by(date: date)
-      sd.cache_value
-      sd.save
-    end
-
   end
 end
