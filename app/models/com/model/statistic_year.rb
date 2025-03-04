@@ -10,5 +10,7 @@ module Com
       belongs_to :statistic
     end
 
+
+
   end
 end
