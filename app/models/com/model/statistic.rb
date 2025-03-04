@@ -24,10 +24,17 @@ module Com
     end
 
     def cache_statistic_months(start:, finish:)
-      (start..finish).group_by { |i| i.to_fs(:year_and_month) }.each do |year_month, days|
-        #cache_statistic_month(days.min, days.max)
-        cache_statistic_month(year_month)
+      first_day = start.beginning_of_month
+      if start > first_day
+        cache_statistic_days(start: start, finish: start.end_of_month)
       end
+
+      date = start.next_month
+
+      (start..finish).group_by { |i| i.to_fs(:year_and_month) }
+
+      cache_statistic_month(date.to_fs(:year_and_month))
+      
     end
 
     def cache_statistic_month(year_month)
@@ -38,6 +45,22 @@ module Com
       sm = statistic_months.find_or_initialize_by(year: year, month: month)
       sm.cache_value
       sm.save
+    end
+
+    def cache_statistic_days(start:, finish:)
+      return if start > finish
+      start..finish.each do |date|
+        cache_statistic_day(date)
+      end
+    end
+
+    def cache_statistic_day(date = Date.today - 1)
+      sd = statistic_days.find_by(date: date)
+      return if sd
+
+      sd = statistic_days.find_or_initialize_by(date: date)
+      sd.cache_value
+      sd.save
     end
 
   end
