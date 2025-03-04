@@ -54,7 +54,7 @@ module Com
 
     def cache_statistic_days(start:, finish:)
       return if start > finish
-      start..finish.each do |date|
+      (start..finish).each do |date|
         cache_statistic_day(date)
       end
     end
