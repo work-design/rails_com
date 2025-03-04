@@ -3,7 +3,7 @@ module Com
     before_action :set_statistic
 
     def index
-      @statistic_months = @statistic.statistic_months.order(month: :desc).page(params[:page]).per(params[:per])
+      @statistic_months = @statistic.statistic_months.order(year_month: :desc).page(params[:page]).per(params[:per])
     end
 
     private
