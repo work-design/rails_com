@@ -29,12 +29,15 @@ module Com
         cache_statistic_days(start: start, finish: start.end_of_month)
       end
 
-      date = start.next_month
+      next_last_day = start.next_month.end_of_month
+      while next_last_day < finish
+        cache_statistic_month(next_last_day.to_fs(:year_and_month))
+        next_last_day = next_last_day.next_month.end_of_month
+      end
 
-      (start..finish).group_by { |i| i.to_fs(:year_and_month) }
-
-      cache_statistic_month(date.to_fs(:year_and_month))
-      
+      if finish.end_of_month > finish
+        cache_statistic_days(start: finish.beginning_of_month, finish: finish)
+      end
     end
 
     def cache_statistic_month(year_month)
