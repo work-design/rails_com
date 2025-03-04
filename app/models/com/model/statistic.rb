@@ -27,10 +27,11 @@ module Com
     end
 
     def cache_statistic_month(start, month)
-      value = statistical.cache_from_source(self, 'month', start.change(month: month, day: 1))
+      sm = statistic_months.find_by(year: start.year, month: month)
+      return if sm
 
       sm = statistic_months.find_or_initialize_by(year: start.year, month: month)
-      sm.value = value
+      sm.value = statistical.cache_from_source(self, 'month', start.change(month: month, day: 1))
       sm.save
     end
 
@@ -42,10 +43,11 @@ module Com
     end
 
     def cache_statistic_day(date = Date.today - 1)
-      value = statistical.cache_from_source(self, 'day', date)
+      sd = statistic_days.find_by(year: date.year, month: date.month, day: date.day)
+      return if sd
 
       sd = statistic_days.find_or_initialize_by(year: date.year, month: date.month, day: date.day)
-      sd.value = value
+      sd.value = statistical.cache_from_source(self, 'day', date)
       sd.save
     end
 
