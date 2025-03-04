@@ -22,23 +22,31 @@ module Com
 
     def cache_statistic_months(start: Date.today.beginning_of_year, finish: Date.today)
       (start.month..finish.month).each do |month|
-        value = statistical.cache_from_source(self, 'month', start.change(month: month, day: 1))
-
-        sm = statistic_months.find_or_initialize_by(year: start.year, month: month)
-        sm.value = value
-        sm.save
+        cache_statistic_month(start, month)
       end
+    end
+
+    def cache_statistic_month(start, month)
+      value = statistical.cache_from_source(self, 'month', start.change(month: month, day: 1))
+
+      sm = statistic_months.find_or_initialize_by(year: start.year, month: month)
+      sm.value = value
+      sm.save
     end
 
     def cache_statistic_days(today: Date.today)
       return if today == today.beginning_of_month
       today.beginning_of_month..(today - 1).each do |date|
-        value = statistical.cache_from_source(self, 'day', date)
-
-        sd = statistic_days.find_or_initialize_by(year: date.year, month: date.month, day: date.day)
-        sd.value = value
-        sd.save
+        cache_statistic_day(date)
       end
+    end
+
+    def cache_statistic_day(date = Date.today - 1)
+      value = statistical.cache_from_source(self, 'day', date)
+
+      sd = statistic_days.find_or_initialize_by(year: date.year, month: date.month, day: date.day)
+      sd.value = value
+      sd.save
     end
 
   end
