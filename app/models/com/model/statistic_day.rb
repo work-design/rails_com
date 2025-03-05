@@ -9,7 +9,6 @@ module Com
       attribute :year_month, :string, index: true
       attribute :date, :date
       attribute :value, :decimal
-      attribute :count, :integer
 
       belongs_to :statistic, counter_cache: true
 

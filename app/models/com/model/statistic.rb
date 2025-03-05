@@ -6,7 +6,6 @@ module Com
       attribute :column, :string
       attribute :extra, :json
       attribute :value, :string
-      attribute :count, :integer
       attribute :cached, :boolean, default: false
       attribute :statistic_years_count, :integer
       attribute :statistic_months_count, :integer

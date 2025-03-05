@@ -140,9 +140,17 @@ Rails.application.routes.draw do
               get 'month/:month' => :month
               post 'do_cache/:month' => :do_cache
             end
-            resources :statistic_months
-            resources :statistic_years
             resources :statistic_days
+          end
+        end
+        scope ':countable_type/:countable_id' do
+          resources :counters do
+            collection do
+              get :months
+              get 'month/:month' => :month
+              post 'do_cache/:month' => :do_cache
+            end
+            resources :counter_days
           end
         end
         resources :meta_namespaces do

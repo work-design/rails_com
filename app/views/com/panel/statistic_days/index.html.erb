@@ -4,6 +4,5 @@
 <%= render layout: 'day_table' do %>
   <%= render partial: 'day_tbody', layout: 'index_tr', collection: @statistic_days, as: :model %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @statistic_months, as: :model %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @statistic_years, as: :model %>
 <% end %>
-
-<%= paginate @statistic_months %>

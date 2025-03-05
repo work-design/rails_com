@@ -4,9 +4,7 @@ module Com
 
     included do
       attribute :year, :integer
-
       attribute :value, :decimal
-      attribute :count, :integer
 
       belongs_to :statistic, counter_cache: true
     end
