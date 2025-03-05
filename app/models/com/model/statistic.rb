@@ -7,6 +7,9 @@ module Com
       attribute :value, :string
       attribute :extra, :json
       attribute :cached, :boolean, default: false
+      attribute :statistic_years_count, :integer
+      attribute :statistic_months_count, :integer
+      attribute :statistic_days_count, :integer
 
       belongs_to :statistical, polymorphic: true
 

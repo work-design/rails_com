@@ -3,14 +3,12 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :year, :string
+      attribute :year, :integer
 
       attribute :value, :decimal
 
-      belongs_to :statistic
+      belongs_to :statistic, counter_cache: true
     end
-
-
 
   end
 end

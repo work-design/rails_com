@@ -10,7 +10,7 @@ module Com
       attribute :date, :date
       attribute :value, :decimal
 
-      belongs_to :statistic
+      belongs_to :statistic, counter_cache: true
 
       before_validation :init_year_month, if: -> { (changes.keys & ['date']).present? }
     end

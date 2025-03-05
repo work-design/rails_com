@@ -8,7 +8,7 @@ module Com
       attribute :year_month, :string, index: true
       attribute :value, :decimal
 
-      belongs_to :statistic
+      belongs_to :statistic, counter_cache: true
 
       before_validation :init_year_month, if: -> { (changes.keys & ['year', 'month']).present? }
     end
