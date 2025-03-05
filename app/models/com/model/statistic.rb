@@ -15,7 +15,7 @@ module Com
       has_many :statistic_days, dependent: :delete_all
       has_many :statistic_configs, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
 
-      scope :uncached, -> { where(cached: false) }
+      scope :to_cache, -> { where(cached: false) }
 
       after_create_commit :cache_from_configs_later
     end
