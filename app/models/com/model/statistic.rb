@@ -9,9 +9,9 @@ module Com
 
       belongs_to :statistical, polymorphic: true
 
-      has_many :statistic_years
-      has_many :statistic_months
-      has_many :statistic_days
+      has_many :statistic_years, dependent: :delete_all
+      has_many :statistic_months, dependent: :delete_all
+      has_many :statistic_days, dependent: :delete_all
       has_many :statistic_configs, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
 
       after_create_commit :cache_from_configs_later
