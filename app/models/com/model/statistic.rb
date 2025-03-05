@@ -6,6 +6,7 @@ module Com
       attribute :column, :string
       attribute :value, :string
       attribute :extra, :json
+      attribute :cached, :boolean, default: false
 
       belongs_to :statistical, polymorphic: true
 
@@ -13,6 +14,8 @@ module Com
       has_many :statistic_months, dependent: :delete_all
       has_many :statistic_days, dependent: :delete_all
       has_many :statistic_configs, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
+
+      scope :uncached, -> { where(cached: false) }
 
       after_create_commit :cache_from_configs_later
     end
@@ -25,6 +28,7 @@ module Com
       statistic_configs.each do |statistic_config|
         cache_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
       end
+      self.update cached: true
     end
 
     def cache_statistic_months(start:, finish:)
