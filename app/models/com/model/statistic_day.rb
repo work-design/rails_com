@@ -25,7 +25,6 @@ module Com
 
     def cache_value
       self.value = statistic.statistical.sum_from_source(statistic, 'day', date)
-      self.count = statistic.statistical.count_from_source(statistic, 'day', date)
     end
 
   end

@@ -25,7 +25,6 @@ module Com
         statistic.cache_statistic_days(start: today.beginning_of_day, finish: today - 1)
       else
         self.value = statistic.statistical.sum_from_source(statistic, 'month', today.change(year: year, month: month, day: 1))
-        self.count = statistic.statistical.count_from_source(statistic, 'month', today.change(year: year, month: month, day: 1))
       end
     end
 

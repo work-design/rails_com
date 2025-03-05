@@ -21,9 +21,9 @@ module Com
       today = Date.today
 
       if today.to_fs(:year_and_month) == year_month
-        statistic.cache_statistic_days(start: today.beginning_of_day, finish: today - 1)
+        counter.cache_counter_days(start: today.beginning_of_day, finish: today - 1)
       else
-        self.count = statistic.statistical.count_from_source(statistic, 'month', today.change(year: year, month: month, day: 1))
+        self.count = counter.countable.count_from_source(counter, 'month', today.change(year: year, month: month, day: 1))
       end
     end
 

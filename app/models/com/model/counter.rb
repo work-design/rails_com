@@ -15,6 +15,7 @@ module Com
       has_many :counter_years, dependent: :delete_all
       has_many :counter_months, dependent: :delete_all
       has_many :counter_days, dependent: :delete_all
+      has_many :statistic_configs, primary_key: [:counter_type, :counter_id], foreign_key: [:statistical_type, :statistical_id]
 
       scope :to_cache, -> { where(cached: false) }
 
@@ -22,57 +23,57 @@ module Com
     end
 
     def cache_from_configs_later
-      StatisticJob.perform_later(self)
+      CounterJob.perform_later(self)
     end
 
     def cache_from_configs
       statistic_configs.each do |statistic_config|
-        cache_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
+        cache_counter_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
       end
       self.update cached: true
     end
 
-    def cache_statistic_months(start:, finish:)
+    def cache_counter_months(start:, finish:)
       first_day = start.beginning_of_month
       if start > first_day
-        cache_statistic_days(start: start, finish: start.end_of_month)
+        cache_counter_days(start: start, finish: start.end_of_month)
       end
 
       next_last_day = start.next_month.end_of_month
       while next_last_day < finish
-        cache_statistic_month(next_last_day.to_fs(:year_and_month))
+        cache_counter_month(next_last_day.to_fs(:year_and_month))
         next_last_day = next_last_day.next_month.end_of_month
       end
 
       if finish.end_of_month == finish
-        cache_statistic_month(finish.to_fs(:year_and_month))
+        cache_counter_month(finish.to_fs(:year_and_month))
       else
-        cache_statistic_days(start: finish.beginning_of_month, finish: finish)
+        cache_counter_days(start: finish.beginning_of_month, finish: finish)
       end
     end
 
-    def cache_statistic_month(year_month)
+    def cache_counter_month(year_month)
       year, month = year_month.split('-')
-      sm = statistic_months.find_by(year: year, month: month)
+      sm = counter_months.find_by(year: year, month: month)
       return if sm
 
-      sm = statistic_months.find_or_initialize_by(year: year, month: month)
+      sm = counter_months.find_or_initialize_by(year: year, month: month)
       sm.cache_value
       sm.save
     end
 
-    def cache_statistic_days(start:, finish:)
+    def cache_counter_days(start:, finish:)
       return if start > finish
       (start..finish).each do |date|
-        cache_statistic_day(date)
+        cache_counter_day(date)
       end
     end
 
-    def cache_statistic_day(date = Date.today - 1)
-      sd = statistic_days.find_by(date: date)
+    def cache_counter_day(date = Date.today - 1)
+      sd = counter_days.find_by(date: date)
       return if sd
 
-      sd = statistic_days.find_or_initialize_by(date: date)
+      sd = counter_days.find_or_initialize_by(date: date)
       sd.cache_value
       sd.save
     end
