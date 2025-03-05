@@ -71,7 +71,7 @@ module Com
       end
     end
 
-    def generate_all_statistics(columns: ['really', 'used', 'adjust'], extra_hash: {}, start: Date.today.beginning_of_year, finish: Date.today)
+    def generate_all_statistics(columns: [], extra_hash: {})
       columns.each do |column|
         extra_hash.product_with_key.each do |extra|
           statistic = statistics.find_or_initialize_by(column: column, extra: extra)

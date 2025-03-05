@@ -14,7 +14,11 @@ module Com
       has_many :statistic_days
       has_many :statistic_configs, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
 
-      after_create_commit :cache_from_configs
+      after_create_commit :cache_from_configs_later
+    end
+
+    def cache_from_configs_later
+      StatisticJob.perform_later(self)
     end
 
     def cache_from_configs
