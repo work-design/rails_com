@@ -40,11 +40,20 @@
     <%= link_to({ controller: 'err_summaries' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.err_summaries.index.title') %></span>
     <% end %>
+    <%= link_to({ controller: 'csps' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.csps.index.title') %></span>
+    <% end %>
     <%= link_to({ controller: 'detectors' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.detectors.index.title') %></span>
     <% end %>
     <%= link_to({ controller: 'ssh_keys' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.ssh_keys.index.title') %></span>
+    <% end %>
+  </div>
+  <p class="size-7 text-grey mb-1">邮件</p>
+  <div class="grid">
+    <%= link_to({ controller: 'inbound_emails' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.inbound_emails.index.title') %></span>
     <% end %>
   </div>
   <p class="size-7 text-grey mb-1">Postgresql</p>
