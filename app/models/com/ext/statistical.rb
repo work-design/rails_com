@@ -24,7 +24,7 @@ module Com
           end
 
           # 加上今天的实时数据
-          today_value = xx_today_xx(statistic)
+          today_value = today_sum(statistic)
           column_h[statistic.column] = column_h[statistic.column].to_d + today_value.to_d
         end
       end
@@ -43,7 +43,7 @@ module Com
           end
 
           # 加上今天的实时数据
-          today_value = xx_today_xx(statistic)
+          today_value = today_sum(statistic)
           column_h["#{Date.today.to_fs(:year_and_month)}"] ||= {}
           column_h["#{Date.today.to_fs(:year_and_month)}"][statistic.column] = column_h["#{Date.today.to_fs(:year_and_month)}"][statistic.column].to_d + today_value.to_d
         end
@@ -64,7 +64,7 @@ module Com
           end
 
           # 加上今天的实时数据
-          today_value = xx_today_xx(statistic)
+          today_value = today_sum(statistic)
           column_h[year_and_month] ||= {}
           column_h[year_and_month][statistic.column] = column_h[year_and_month][statistic.column].to_d + today_value.to_d
         end
