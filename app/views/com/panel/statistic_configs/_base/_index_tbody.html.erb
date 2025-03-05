@@ -1,6 +1,6 @@
 <td>
   <p><%= model.statistical_type %></p>
-  <p><%= model.statistical_id %></p>
+  <p><%= link_to model.statistical_id, { controller: 'statistics', action: 'index', statistical_type: model.statistical_type, statistical_id: model.statistical_id } %></p>
 </td>
 <td><%= model.begin_on %></td>
 <td><%= model.end_on %></td>
