@@ -8,28 +8,25 @@ module Com
       has_many :counters, class_name: 'Com::Counter', as: :countable
     end
 
-    def read_statistic_count(columns: ['really'], extra: {})
+    def read_counter_count(extra: {})
       extras = extra.product_with_key
+      all_counter = counters.where(extra: extras)
 
-      columns.each_with_object({}) do |column, column_h|
-        all_statistic = statistics.where(column: column, extra: extras)
-
-        StatisticMonth.where(statistic_id: all_statistic.pluck(:id)).group_by(&:statistic).each do |statistic, statistic_months|
-          statistic_months.each do |statistic_month|
-            column_h[statistic.column] = column_h[statistic.column].to_d + statistic_month.count.to_d
-          end
-
-          # 加上今天的实时数据
-          today_value = today_count(statistic)
-          column_h[statistic.column] = column_h[statistic.column].to_d + today_value.to_d
+      CounterMonth.where(counter_id: all_counter.pluck(:id)).group_by(&:counter).each_with_object(0) do |(counter, counter_months), total|
+        counter_months.each do |counter_month|
+          total = total + counter_month.count
         end
+
+        # 加上今天的实时数据
+        today_value = today_count(counter)
+        total + today_value
       end
     end
 
     def generate_all_counters(extra_hash: {})
       extra_hash.product_with_key.each do |extra|
-        statistic = statistics.find_or_initialize_by(column: column, extra: extra)
-        statistic.save
+        counter = counters.find_or_initialize_by(extra: extra)
+        counter.save
       end
     end
 
