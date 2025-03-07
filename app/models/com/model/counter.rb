@@ -15,21 +15,20 @@ module Com
       has_many :counter_years, dependent: :delete_all
       has_many :counter_months, dependent: :delete_all
       has_many :counter_days, dependent: :delete_all
-      has_many :statistic_configs, primary_key: [:counter_type, :counter_id], foreign_key: [:statistical_type, :statistical_id]
+      has_one :statistic_config, primary_key: [:countable_type, :countable_id], foreign_key: [:statistical_type, :statistical_id]
 
       scope :to_cache, -> { where(cached: false) }
 
-      after_create_commit :cache_from_configs_later
+      after_create_commit :cache_from_config_later
     end
 
-    def cache_from_configs_later
+    def cache_from_config_later
       CounterJob.perform_later(self)
     end
 
-    def cache_from_configs
-      statistic_configs.each do |statistic_config|
-        cache_counter_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
-      end
+    def cache_from_config
+      return unless statistic_config
+      cache_counter_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
       self.update cached: true
     end
 
