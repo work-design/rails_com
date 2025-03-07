@@ -4,7 +4,10 @@ module Com
     before_action :set_statistical, only: [:do_cache]
 
     def index
-      @statistics = Statistic.order(created_at: :desc).page(params[:page]).per(params[:per])
+      q_params = {}
+      q_params.merge! params.permit(:column)
+
+      @statistics = Statistic.default_where(q_params).order(created_at: :desc).page(params[:page]).per(params[:per])
     end
 
     def statistical
