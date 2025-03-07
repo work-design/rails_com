@@ -6,6 +6,7 @@ module Com
       attribute :year, :integer
       attribute :begin_on, :date
       attribute :end_on, :date
+      attribute :note, :string
 
       belongs_to :statistical, polymorphic: true
     end
