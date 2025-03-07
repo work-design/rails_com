@@ -6,7 +6,7 @@ module Com
       today = Date.today
       @statistic_days = @statistic.statistic_days.where(date: Date.today.beginning_of_month..).order(date: :desc)
       if @statistic.statistic_config
-        @statistic_months = @statistic.statistic_months.where(year: statistic_config.begin_on.year..).order(year_month: :desc)
+        @statistic_months = @statistic.statistic_months.where(year: @statistic.statistic_config.begin_on.year..).order(year_month: :desc)
       else
         @statistic_months = @statistic.statistic_months.where(year: today.year, month: 1..today.month - 1).order(year_month: :desc)
       end
