@@ -14,7 +14,7 @@
         <i class="fa-solid fa-circle-info text-info"></i>
         <span class="ml-1"><%= t('.statistics.index.title') %></span>
       <% end %>
-      <%= link_to({ controller: 'counters', counter_type: model.statistical_type, counter_id: model.statistical_id }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ controller: 'counters', countable_type: model.statistical_type, countable_id: model.statistical_id }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-circle-info text-info"></i>
         <span class="ml-1"><%= t('.counters.index.title') %></span>
       <% end %>
