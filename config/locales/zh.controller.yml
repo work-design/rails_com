@@ -193,6 +193,9 @@ zh:
       statistic_configs:
         index:
           title: 统计设置
+      statistic_days:
+        index:
+          title: 缓存详情
       statistic_months:
         index:
           title: 月度统计
