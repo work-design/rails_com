@@ -16,21 +16,22 @@ module Com
       has_many :statistic_years, dependent: :delete_all
       has_many :statistic_months, dependent: :delete_all
       has_many :statistic_days, dependent: :delete_all
+
+      has_one :statistic_config, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
       has_many :statistic_configs, primary_key: [:statistical_type, :statistical_id], foreign_key: [:statistical_type, :statistical_id]
 
       scope :to_cache, -> { where(cached: false) }
 
-      after_create_commit :cache_from_configs_later
+      after_create_commit :cache_from_config_later
     end
 
-    def cache_from_configs_later
+    def cache_from_config_later
       StatisticJob.perform_later(self)
     end
 
-    def cache_from_configs
-      statistic_configs.each do |statistic_config|
-        cache_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
-      end
+    def cache_from_config
+      return unless statistic_config
+      cache_statistic_months(start: statistic_config.begin_on, finish: statistic_config.end_on)
       self.update cached: true
     end
 
