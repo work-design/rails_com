@@ -28,7 +28,7 @@ module Roled
 
       validates :name, presence: true
 
-      after_update :set_default, if: -> { default? && (saved_change_to_default? || saved_change_to_type?) }
+      after_update :set_default, if: -> { default? && saved_change_to_default? }
       after_save :sync, if: -> { saved_change_to_role_hash? }
       after_save :reset_cache!, if: -> { saved_change_to_role_hash? }
     end
@@ -54,7 +54,7 @@ module Roled
     end
 
     def set_default
-      self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
+      self.class.where.not(id: self.id).update_all(default: false)
     end
 
     def role_types_hash
