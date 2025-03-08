@@ -13,7 +13,7 @@ module Com
 
     def process_file
       pdf_path = UrlUtil.filepath_from_url url
-      if Marcel::MimeType.for(pdf_path) == 'application/pdf' && CompressUtil.pdf_pages(pdf_path).to_i < 10
+      if Marcel::MimeType.for(pdf_path) == 'application/pdf' && CompressUtil.pdf_pages(pdf_path).to_i <= 15
         file = CompressUtil.pdf_to_jpg(pdf_path)
         self.file.attach(io: file, filename: pdf_path.basename)
       end
