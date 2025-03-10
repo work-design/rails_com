@@ -32,7 +32,7 @@ module Com
         #with(ctes)
       end
 
-      def json_filter(params, column)
+      def json_filter(column, params)
         query = self
 
         params.each do |k, v|

@@ -4,7 +4,11 @@ module Com
     before_action :set_countable
 
     def index
-      @counters = @countable.counters.order(created_at: :desc).page(params[:page]).per(params[:per])
+      @counters = @countable.counters
+      if (params.keys & ['key', 'value']).present?
+        @counters = @counters.json_filter('extra', params[:key] => params[:value])
+      end
+      @counters = @counters.order(created_at: :desc).page(params[:page]).per(params[:per])
     end
 
     def months

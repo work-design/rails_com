@@ -106,6 +106,9 @@ zh:
       attachments:
         index:
           title: 附件管理
+      counters:
+        index:
+          title: 数量汇总
       detectors:
         index:
           title: 监测器
