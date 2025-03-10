@@ -3,3 +3,19 @@
 <%= f.date_field :begin_on %>
 <%= f.date_field :end_on %>
 <%= f.text_field :note %>
+<%= f.fields :keys, wrap: { all: nil, input: 'field' }, label: false, placeholder: true do |ef| %>
+  <div class="field is-horizontal" data-controller="field" data-field-index-value="<%= ef.index %>">
+    <% if ef.index == 0 %>
+      <%# ef.label :identifiers %>
+    <% else %>
+      <label class="field-label"></label>
+    <% end %>
+    <div class="field-body">
+      <%= ef.text_field nil, label: nil, wrap: { all: nil, input: 'field' } %>
+      <span class="field has-addons has-addons-middle">
+        <i class="fa-solid fa-lg fa-plus-circle" data-action="click->field#add" style="cursor: pointer"></i>
+        <i class="fa-solid fa-lg fa-minus-circle pl-2" data-action="click->field#remove" style="cursor: pointer"></i>
+      </span>
+    </div>
+  </div>
+<% end %>

@@ -7,6 +7,7 @@ module Com
       attribute :begin_on, :date
       attribute :end_on, :date
       attribute :note, :string
+      attribute :keys, :json
 
       belongs_to :statistical, polymorphic: true
     end

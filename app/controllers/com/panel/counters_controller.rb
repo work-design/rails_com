@@ -28,6 +28,7 @@ module Com
 
     def set_countable
       @countable = params[:countable_type].constantize.find params[:countable_id]
+      @statistic_config = StatisticConfig.find_by(countable_type: params[:countable_type], countable_id: params[:countable_id])
     end
 
   end
