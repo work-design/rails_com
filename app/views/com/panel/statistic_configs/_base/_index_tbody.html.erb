@@ -5,5 +5,7 @@
 <td><%= model.begin_on %></td>
 <td><%= model.end_on %></td>
 <td>
-<% model %>
+<% model.keys.each do |key| %>
+  <p><%= key %></p>
+<% end %>
 </td>
