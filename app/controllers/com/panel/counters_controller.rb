@@ -1,10 +1,10 @@
 module Com
   class Panel::CountersController < Panel::BaseController
     before_action :set_counter, only: [:show, :destroy]
-    before_action :set_countable, only: [:do_cache]
+    before_action :set_countable
 
     def index
-      @counters = Counter.order(created_at: :desc).page(params[:page]).per(params[:per])
+      @counters = @countable.counters.order(created_at: :desc).page(params[:page]).per(params[:per])
     end
 
     def months

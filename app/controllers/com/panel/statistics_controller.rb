@@ -1,13 +1,13 @@
 module Com
   class Panel::StatisticsController < Panel::BaseController
     before_action :set_statistic, only: [:show, :destroy]
-    before_action :set_statistical, only: [:do_cache]
+    before_action :set_statistical
 
     def index
       q_params = {}
       q_params.merge! params.permit(:column)
 
-      @statistics = Statistic.default_where(q_params).order(created_at: :desc).page(params[:page]).per(params[:per])
+      @statistics = @statistical.statistics.default_where(q_params).order(created_at: :desc).page(params[:page]).per(params[:per])
     end
 
     def statistical
