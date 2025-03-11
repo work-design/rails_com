@@ -19,7 +19,8 @@ module Com
 
         # 加上今天的实时数据
         today_value = today_count(counter)
-        total + today_value
+        total = total + today_value
+        total
       end
     end
 
