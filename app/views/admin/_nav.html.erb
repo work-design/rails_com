@@ -15,4 +15,5 @@
   <%= render 'admin/org_simple_nav' if defined?(RailsOrg) && role_permit?(business: 'org', namespace: 'admin') %>
   <%= render 'admin/bench_nav' if defined?(RailsBench) && role_permit?(business: 'bench', namespace: 'admin') %>
   <%= render 'admin/detail_nav' if defined?(RailsDetail) && role_permit?(business: 'detail', namespace: 'admin') %>
+  <%= render 'admin/print_nav' if defined?(RailsPrint) && role_permit?(business: 'print', namespace: 'admin') %>
 </aside>
