@@ -75,10 +75,7 @@ module Job
 
     private
     def set_queue
-      queues_hash = SolidQueue::Queue.all.each_with_object({}) do |queue, h|
-        h.merge! queue.name => queue
-      end
-      @queue = queues_hash[params[:queue_id]]
+      @queue = SolidQueue::Queue.new(params[:queue_id])
     end
 
     def set_common_jobs
