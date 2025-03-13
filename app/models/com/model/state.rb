@@ -3,13 +3,8 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      if connection.adapter_name == 'PostgreSQL'
-        attribute :id, :uuid
-        attribute :parent_id, :uuid
-      else
-        attribute :id, :string, default: -> { SecureRandom.uuid_v7 }
-        attribute :parent_id, :string
-      end
+      attribute :id, :string, default: -> { SecureRandom.alphanumeric(32) }
+      attribute :parent_id, :string
       attribute :host, :string
       attribute :path, :string
       attribute :controller_path, :string
@@ -19,6 +14,7 @@ module Com
       attribute :params, :json, default: {}
       attribute :body, :json, default: {}
       attribute :cookie, :json, default: {}
+      attribute :session_id, :string
       attribute :session, :json, default: {}
       attribute :destroyable, :boolean, default: true
       attribute :auth_token, :string

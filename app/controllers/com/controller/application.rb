@@ -36,6 +36,7 @@ module Com
       destroyable: true
     )
       State.create(
+        session_id: session.id,
         host: host,
         controller_path: state_controller,
         action_name: state_action,
