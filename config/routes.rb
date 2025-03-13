@@ -132,8 +132,7 @@ Rails.application.routes.draw do
             get :statistical
           end
         end
-        resources :statistic_configs
-        scope ':statistical_type/:statistical_id' do
+        resources :statistic_configs do
           resources :statistics do
             collection do
               get :months
@@ -142,8 +141,6 @@ Rails.application.routes.draw do
             end
             resources :statistic_days
           end
-        end
-        scope ':countable_type/:countable_id' do
           resources :counters do
             collection do
               get :months

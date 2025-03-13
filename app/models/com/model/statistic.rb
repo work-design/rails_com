@@ -3,6 +3,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
+      attribute :statistical_type, :string
       attribute :column, :string
       attribute :extra, :json
       attribute :value, :string

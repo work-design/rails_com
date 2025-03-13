@@ -1,9 +1,11 @@
 <td>
   <p><%= model.statistical_type %></p>
-  <p><%= link_to model.statistical_id, { controller: 'statistics', action: 'index', statistical_type: model.statistical_type, statistical_id: model.statistical_id } %></p>
 </td>
-<td><%= model.begin_on %></td>
-<td><%= model.end_on %></td>
+<td>
+  <p><%= model.begin_on %></p>
+  <p><%= model.end_on %></p>
+</td>
+<td><%= model.today_begin_id %></td>
 <td>
 <% model.keys.each do |key| %>
   <p><%= key %></p>

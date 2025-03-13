@@ -5,7 +5,12 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      has_many :counters, class_name: 'Com::Counter', as: :countable
+      has_one :statistic_config, class_name: 'Com::StatisticConfig', primary_key: self.name, foreign_key: :statistical_type
+      has_many :counters, class_name: 'Com::Counter', primary_key: self.name, foreign_key: :statistical_type
+    end
+
+    def today_begin_id
+      where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first.id
     end
 
     def read_counter_count(extra: {})

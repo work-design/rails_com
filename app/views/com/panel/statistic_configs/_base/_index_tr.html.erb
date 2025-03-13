@@ -13,11 +13,11 @@
       <% end %>
     </div>
     <div data-show-target="item" class="visibility-hidden">
-      <%= link_to({ controller: 'statistics', statistical_type: model.statistical_type, statistical_id: model.statistical_id }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ controller: 'statistics', statistic_config_id: model.id }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-circle-info text-info"></i>
         <span class="ml-1"><%= t('.statistics.index.title') %></span>
       <% end %>
-      <%= link_to({ controller: 'counters', countable_type: model.statistical_type, countable_id: model.statistical_id }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ controller: 'counters', statistic_config_id: model.id }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-circle-info text-info"></i>
         <span class="ml-1"><%= t('.counters.index.title') %></span>
       <% end %>

@@ -86,14 +86,16 @@ module Job
     end
 
     def set_count
+      today_begin_id = SolidQueue::Job.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first&.id
+
       @count = {
-        index: @common_jobs.finished.count,
-        failed: @common_jobs.failed.count,
-        todo: @common_jobs.scheduled.default_where('scheduled_at-gte': Time.current).count,
-        blocked: @common_jobs.where.associated(:blocked_execution).count,
-        running: @common_jobs.where.associated(:claimed_execution).count,
-        ready: @common_jobs.where.associated(:ready_execution).count,
-        clearable: @common_jobs.clearable.count
+        index: @common_jobs.where(id: today_begin_id).finished.count,
+        failed: @common_jobs.where(id: today_begin_id).failed.count,
+        todo: @common_jobs.where(id: today_begin_id).scheduled.where(scheduled_at: Time.current..).count,
+        blocked: @common_jobs.where(id: today_begin_id).associated(:blocked_execution).count,
+        running: @common_jobs.where(id: today_begin_id).associated(:claimed_execution).count,
+        ready: @common_jobs.where(id: today_begin_id).associated(:ready_execution).count,
+        clearable: @common_jobs.where(id: today_begin_id).clearable.count
       }
     end
 
