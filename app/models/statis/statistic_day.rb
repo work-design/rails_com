@@ -1,4 +1,4 @@
-module Com
+module Statis
   class StatisticDay < ApplicationRecord
     include Model::StatisticDay
   end

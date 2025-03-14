@@ -1,4 +1,4 @@
-module Com
+module Statis
   class Counter < ApplicationRecord
     include Model::Counter
     include Ext::Cte

@@ -1,4 +1,4 @@
-module Com
+module Statis
   module Model::CounterDay
     extend ActiveSupport::Concern
 

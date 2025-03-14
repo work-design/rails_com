@@ -1,4 +1,4 @@
-module Com
+module Statis
   module Model::Config
     extend ActiveSupport::Concern
 

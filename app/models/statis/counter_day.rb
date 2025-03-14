@@ -1,4 +1,4 @@
-module Com
+module Statis
   class CounterDay < ApplicationRecord
     include Model::CounterDay
   end
