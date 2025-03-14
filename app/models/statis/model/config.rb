@@ -23,7 +23,7 @@ module Statis
       self.save
     end
 
-    def keys
+    def keys_gen
 
     end
 
