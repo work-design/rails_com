@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-CounterYear = Stats::CounterYear unless defined? CounterYear
+CounterYear = Statis::CounterYear unless defined? CounterYear

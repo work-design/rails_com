@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-StatisticYear = Stats::StatisticYear unless defined? StatisticYear
+StatisticYear = Statis::StatisticYear unless defined? StatisticYear
