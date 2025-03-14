@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     draw :job
     draw :pg
     draw :roled
-    draw :statis
+    draw :stats
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
       resources :direct_uploads, only: [:create]

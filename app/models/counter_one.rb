@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-CounterOne = Statis::CounterOne unless defined? CounterOne
+CounterOne = Stats::CounterOne unless defined? CounterOne

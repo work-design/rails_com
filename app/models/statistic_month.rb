@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-StatisticMonth = Statis::StatisticMonth unless defined? StatisticMonth
+StatisticMonth = Stats::StatisticMonth unless defined? StatisticMonth

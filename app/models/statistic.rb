@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-Statistic = Statis::Statistic unless defined? Statistic
+Statistic = Stats::Statistic unless defined? Statistic

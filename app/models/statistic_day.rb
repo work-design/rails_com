@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-StatisticDay = Statis::StatisticDay unless defined? StatisticDay
+StatisticDay = Stats::StatisticDay unless defined? StatisticDay
