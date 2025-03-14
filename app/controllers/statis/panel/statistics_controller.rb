@@ -1,4 +1,4 @@
-module Com
+module Statis
   class Panel::StatisticsController < Panel::BaseController
     before_action :set_statistic, only: [:show, :destroy]
     before_action :set_statistical

@@ -1,4 +1,4 @@
-module Com
+module Statis
   class Panel::CountersController < Panel::BaseController
     before_action :set_statistic_config
     before_action :set_counter, only: [:show, :destroy]

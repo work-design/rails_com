@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     draw :job
     draw :pg
     draw :roled
+    draw :statis
 
     scope 'rails/active_storage', module: :com, defaults: { business: 'com' } do
       resources :direct_uploads, only: [:create]
@@ -127,29 +128,6 @@ Rails.application.routes.draw do
         resources :err_bots
         resources :csps, only: [:index, :show, :destroy]
         resources :states
-        resources :statistics, only: [] do
-          collection do
-            get :statistical
-          end
-        end
-        resources :statistic_configs do
-          resources :statistics do
-            collection do
-              get :months
-              get 'month/:month' => :month
-              post 'do_cache/:month' => :do_cache
-            end
-            resources :statistic_days
-          end
-          resources :counters do
-            collection do
-              get :months
-              get 'month/:month' => :month
-              post 'do_cache/:month' => :do_cache
-            end
-            resources :counter_days
-          end
-        end
         resources :meta_namespaces do
           collection do
             post :sync

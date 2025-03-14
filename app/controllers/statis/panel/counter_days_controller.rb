@@ -1,4 +1,4 @@
-module Com
+module Statis
   class Panel::CounterDaysController < Panel::BaseController
     before_action :set_counter
 
