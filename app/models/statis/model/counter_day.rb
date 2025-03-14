@@ -10,7 +10,7 @@ module Statis
       attribute :date, :date
       attribute :count, :integer
 
-      belongs_to :counter, counter_cache: true
+      belongs_to :counter, polymorphic: true, counter_cache: true
 
       before_validation :init_year_month, if: -> { (changes.keys & ['date']).present? }
     end

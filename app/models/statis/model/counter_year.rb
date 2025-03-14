@@ -6,7 +6,7 @@ module Statis
       attribute :year, :integer
       attribute :count, :integer
 
-      belongs_to :counter, counter_cache: true
+      belongs_to :counter, polymorphic: true, counter_cache: true
     end
 
   end

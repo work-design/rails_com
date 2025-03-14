@@ -9,11 +9,11 @@ module Statis
       attribute :counter_months_count, :integer
       attribute :counter_days_count, :integer
 
-      belongs_to :statistic_config
+      belongs_to :config
 
-      has_many :counter_years, dependent: :delete_all
-      has_many :counter_months, dependent: :delete_all
-      has_many :counter_days, dependent: :delete_all
+      has_many :counter_years, as: :counter, dependent: :delete_all
+      has_many :counter_months, as: :counter, dependent: :delete_all
+      has_many :counter_days, as: :counter, dependent: :delete_all
 
       scope :to_cache, -> { where(cached: false) }
 

@@ -1,6 +1,7 @@
 module Statis
   module Model::CounterTwo
     extend ActiveSupport::Concern
+    include Inner::Counter
 
     included do
       attribute :key_first, :string

@@ -12,8 +12,6 @@ module Statis
       attribute :statistic_months_count, :integer
       attribute :statistic_days_count, :integer
 
-      belongs_to :statistical, polymorphic: true
-
       has_many :statistic_years, dependent: :delete_all
       has_many :statistic_months, dependent: :delete_all
       has_many :statistic_days, dependent: :delete_all
