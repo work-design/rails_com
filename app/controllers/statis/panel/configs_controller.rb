@@ -2,7 +2,7 @@ module Statis
   class Panel::ConfigsController < Panel::BaseController
 
     private
-    def statistic_config_params
+    def config_params
       params.fetch(:config, {}).permit(
         :statistical_type,
         :note,

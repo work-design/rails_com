@@ -1,5 +1,5 @@
 module Statis
-  module Model::Counter
+  module Inner::Counter
     extend ActiveSupport::Concern
 
     included do
