@@ -1,5 +1,5 @@
 
-namespace :roled, defaults: { business: 'roled' } do
+namespace :statis, defaults: { business: 'statis' } do
   namespace :panel, defaults: { namespace: 'panel' } do
     resources :statistics, only: [] do
       collection do
