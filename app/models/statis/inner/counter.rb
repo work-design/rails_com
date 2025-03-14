@@ -1,21 +1,19 @@
-module Com
+module Statis
   module Model::Counter
     extend ActiveSupport::Concern
 
     included do
-      attribute :extra, :json
-      attribute :count, :integer
+      attribute :scope, :string
       attribute :cached, :boolean, default: false
       attribute :counter_years_count, :integer
       attribute :counter_months_count, :integer
       attribute :counter_days_count, :integer
 
-      belongs_to :countable, polymorphic: true
+      belongs_to :statistic_config
 
       has_many :counter_years, dependent: :delete_all
       has_many :counter_months, dependent: :delete_all
       has_many :counter_days, dependent: :delete_all
-      has_one :statistic_config, primary_key: [:countable_type, :countable_id], foreign_key: [:statistical_type, :statistical_id]
 
       scope :to_cache, -> { where(cached: false) }
 

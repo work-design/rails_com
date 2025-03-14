@@ -8,7 +8,7 @@ module Com
       attribute :year_month, :string, index: true
       attribute :count, :integer
 
-      belongs_to :counter, counter_cache: true
+      belongs_to :counter_list, counter_cache: true
 
       before_validation :init_year_month, if: -> { (changes.keys & ['year', 'month']).present? }
     end

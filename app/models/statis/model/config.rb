@@ -1,5 +1,5 @@
 module Com
-  module Model::StatisticConfig
+  module Model::Config
     extend ActiveSupport::Concern
 
     included do
@@ -9,6 +9,7 @@ module Com
       attribute :end_on, :date
       attribute :note, :string
       attribute :keys, :json
+      attribute :scopes, :json
       attribute :today, :date
       attribute :today_begin_id, :big_integer
 
@@ -20,6 +21,10 @@ module Com
       self.today_begin_id = id
       self.today = Date.today
       self.save
+    end
+
+    def keys
+
     end
 
   end
