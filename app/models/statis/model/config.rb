@@ -8,8 +8,8 @@ module Statis
       attribute :begin_on, :date
       attribute :end_on, :date
       attribute :note, :string
-      attribute :keys, :json
-      attribute :scopes, :json
+      attribute :keys, :json, default: []
+      attribute :scopes, :json, default: []
       attribute :today, :date
       attribute :today_begin_id, :big_integer
 
