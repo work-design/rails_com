@@ -75,11 +75,7 @@ Rails.application.routes.draw do
           get :outer_search
         end
       end
-      resources :blob_temps do
-        collection do
-          post :example
-        end
-      end
+      resources :blob_temps
     end
 
     namespace :com, defaults: { business: 'com' } do
