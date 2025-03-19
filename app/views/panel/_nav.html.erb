@@ -1,4 +1,8 @@
-<aside id="admin_menu" class="menu-wrap column is-narrow p-0" style="<%= defined?(current_organ) && current_organ&.panel_theme %>">
+<aside
+  data-controller="menu"
+  id="admin_menu" class="menu-wrap column is-narrow p-0"
+  style="<%= defined?(current_organ) && current_organ&.panel_theme %>"
+>
   <%= render 'brand_nav' %>
   <%= render 'com_nav' %>
   <%= render 'role_nav' %>
