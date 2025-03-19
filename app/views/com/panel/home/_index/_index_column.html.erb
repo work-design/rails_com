@@ -68,5 +68,11 @@
       <span><%= t('statis.panel.configs.index.title') %></span>
     <% end %>
   </div>
+  <p class="size-7 text-grey mb-1"><%= t('job.panel.title') %></p>
+  <div class="grid">
+    <%= link_to({ controller: 'job/panel/home' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('job.panel.home.index.title') %></span>
+    <% end %>
+  </div>
 </div>
 
