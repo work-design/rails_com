@@ -1,4 +1,4 @@
-<aside
+<nav
   data-controller="menu"
   id="admin_menu" class="menu-wrap column is-narrow p-0"
   style="<%= defined?(current_organ) && current_organ&.panel_theme %>"
@@ -19,4 +19,4 @@
   <%= render 'markdown_nav' if defined? RailsMarkdown %>
   <%= render 'med_nav' if defined? RailsMed %>
   <%= render 'bench_nav' if defined? RailsBench %>
-</aside>
+</nav>
