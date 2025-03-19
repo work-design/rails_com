@@ -1,5 +1,5 @@
 module Statis
-  class Panel::HomeController < Panel::BaseController
+  class Panel::HomeController < Com::Panel::BaseController
 
     def index
     end

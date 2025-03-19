@@ -1,4 +1,4 @@
 module Statis
-  class Panel::BaseController < PanelController
+  class Panel::BaseController < Com::Panel::BaseController
   end
 end

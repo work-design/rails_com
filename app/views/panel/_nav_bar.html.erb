@@ -1,10 +1,12 @@
-<div class="navbar-breadcrumb" style="margin-bottom: 0.75rem">
+<div class="navbar-breadcrumb mb-3">
   <div class="breadcrumb has-succeeds-separator background-light">
     <ul>
       <% if current_page?(controller: 'home') %>
         <li><strong class="is-active"><%= t('.home.index.title') %></strong></li>
-      <% else %>
+      <% elsif RailsCom::Routes.controllers.dig("#{params[:business]}/panel/home", 'index').present? %>
         <li><%= link_to t('.home.index.title'), { controller: 'home' } %></li>
+      <% else %>
+        <li><%= link_to t('com.panel.home.index.title'), { controller: 'com/panel/home' } %></li>
       <% end %>
       <%= render 'breadcrumb' %>
     </ul>

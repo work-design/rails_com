@@ -1,7 +1,5 @@
-<%= render layout: 'layouts/application_head' do %>
-  <turbo-frame id="body">
-    <%= render 'nav_bar' %>
-    <%= render 'alert' %>
-    <%= yield %>
-  </turbo-frame>
-<% end %>
+<turbo-frame id="body" title="<%= current_title %>">
+  <%= render 'nav_bar' %>
+  <%= render 'alert' %>
+  <%= yield %>
+</turbo-frame>
