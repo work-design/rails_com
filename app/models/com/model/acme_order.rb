@@ -90,6 +90,7 @@ module Com
           acme_identifiers.map(&:auto_verify).all?(true) && order.reload
         else
           AcmeOrderJob.set(wait: 60.seconds).perform_later(self)
+          return
         end
         get_cert
       when 'ready'
