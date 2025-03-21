@@ -176,7 +176,11 @@ module Com
     end
 
     def tab_item_items
-      @roled_tabs.pluck(:path)
+      if defined? @roled_tabs
+        @roled_tabs.pluck(:path)
+      else
+        []
+      end
     end
 
     def current_state
