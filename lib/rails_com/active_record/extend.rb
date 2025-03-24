@@ -5,6 +5,22 @@ module RailsCom::ActiveRecord
       model_name.human
     end
 
+    def json_filter(column, params)
+      query = self
+
+      params.each do |k, v|
+        if v.is_a?(Array)
+          or_string = []
+          v.size.times { or_string << "#{column}->>'#{k}' = ?" }
+          query = query.where([or_string.join(' OR '), *v])
+        else
+          query = query.where("#{column}->>'#{k}' = ?", v)
+        end
+      end
+
+      query
+    end
+
     def reset_pk_sequence!
       connection.reset_pk_sequence!(table_name)
     end
