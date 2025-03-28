@@ -1,6 +1,6 @@
 <div id="modal" data-controller="modal" class="modal is-active">
   <div class="modal-background has-animate-color"></div>
-  <div class="modal-card">
+  <div class="modal-card" style="--bulma-modal-content-width: <%= defined?(width) ? width : '40em' %>">
     <%= render 'modal_header' %>
     <section class="modal-card-body">
       <%= yield %>
