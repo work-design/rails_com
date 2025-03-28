@@ -14,17 +14,4 @@
       <%= render 'breadcrumb' %>
     </ul>
   </div>
-  <nav data-controller="navbar" class="navbar is-light">
-    <div data-navbar-target="menu" class="navbar-menu">
-      <div class="navbar-end">
-        <%= render partial: 'locales' %>
-        <%= render partial: 'notice_navbar' if defined? RailsNotice %>
-        <% if defined?(current_member) && current_member %>
-          <%= render partial: 'admin/auth_navbar' %>
-        <% else %>
-          <%= render partial: 'application/auth_navbar' %>
-        <% end %>
-      </div>
-    </div>
-  </nav>
 </div>

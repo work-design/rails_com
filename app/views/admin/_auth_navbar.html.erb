@@ -1,9 +1,9 @@
-<div class="navbar-item has-dropdown is-hoverable display-none-touch">
+<div class="dropdown is-hoverable pop-right p-3">
   <div class="navbar-link">
     <%= image_tag current_member.avatar if current_member.avatar.present? %>
     <span><%= current_member.name %></span>
   </div>
-  <div class="navbar-dropdown is-right">
+  <div class="dropdown-menu">
     <%= link_to({ controller: '/me/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
       <span><%= t('me.home.index.title') %></span>
     <% end %>
