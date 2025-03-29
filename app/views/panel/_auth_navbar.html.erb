@@ -1,19 +1,23 @@
-<div class="navbar-item has-dropdown is-hoverable display-none-touch">
-  <div class="navbar-link">
-  <% if current_user %>
-    <%= image_tag current_user.avatar if current_user.avatar.present? %>
-    <span><%= current_user.name %></span>
-  <% end %>
+<div class="dropdown is-hoverable pop-right p-3">
+  <div class="dropdown-trigger">
+    <div class="is-several">
+    <% if current_user %>
+      <%= image_tag current_user.avatar, class: 'image is-32x32' if current_user.avatar.present? %>
+      <span><%= current_user.name %></span>
+    <% end %>
+    </div>
   </div>
-  <div class="navbar-dropdown is-right">
-    <%= link_to({ controller: '/board/home' }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['board/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span><%= t('board.home.index.title') %></span>
-    <% end %>
-    <%= link_to({ controller: '/panel/home' }, class: active_helper(controllers: ['panel/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span><%= t('panel.home.index.title') %></span>
-    <% end %>
-    <%= link_to({ controller: '/auth/sign', action: 'logout' }, data: { turbo_frame: '_top', turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
-      <span><%= t('auth.sign.logout.title') %></span>
-    <% end %>
+  <div class="dropdown-menu">
+    <div class="dropdown-content">
+      <%= link_to({ controller: '/board/home' }, class: 'dropdown-item') do %>
+        <span><%= t('board.home.index.title') %></span>
+      <% end %>
+      <%= link_to({ controller: '/panel/home' }, class: 'dropdown-item') do %>
+        <span><%= t('panel.home.index.title') %></span>
+      <% end %>
+      <%= link_to({ controller: '/auth/sign', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'dropdown-item') do %>
+        <span><%= t('auth.sign.logout.title') %></span>
+      <% end %>
+    </div>
   </div>
 </div>
