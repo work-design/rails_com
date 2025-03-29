@@ -1,17 +1,19 @@
 <div class="dropdown is-hoverable pop-right p-3">
-  <div class="navbar-link">
+  <div class="dropdown-trigger">
     <%= image_tag current_member.avatar if current_member.avatar.present? %>
     <span><%= current_member.name %></span>
   </div>
   <div class="dropdown-menu">
-    <%= link_to({ controller: '/me/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, data: { turbo_frame: '_top' }, class: active_helper(controllers: ['me/home'], active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span><%= t('me.home.index.title') %></span>
-    <% end %>
-    <%= link_to({ debug_mode: true }, class: active_helper(debug_mode: true, active: 'navbar-item is-active', item: 'navbar-item')) do %>
-      <span>Debug Mode</span>
-    <% end %>
-    <%= link_to({ controller: 'org/board/members', action: 'logout' }, data: { turbo_frame: '_top', turbo_confirm: '确认退出' }, class: 'navbar-item') do %>
-      <span><%= t('org.board.members.logout.title') %></span>
-    <% end %>
+    <div class="dropdown-content">
+      <%= link_to({ controller: '/me/home', **current_organ.admin_url_options(request, auth_token: current_authorized_token.id) }, class: 'dropdown-item') do %>
+        <span><%= t('me.home.index.title') %></span>
+      <% end %>
+      <%= link_to({ debug_mode: true }, class: 'dropdown-item') do %>
+        <span>Debug Mode</span>
+      <% end %>
+      <%= link_to({ controller: 'org/board/members', action: 'logout' }, data: { turbo_confirm: '确认退出' }, class: 'dropdown-item') do %>
+        <span><%= t('org.board.members.logout.title') %></span>
+      <% end %>
+    </div>
   </div>
 </div>
