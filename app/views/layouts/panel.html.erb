@@ -1,6 +1,13 @@
 <%= render layout: 'layouts/admin_head' do %>
   <main class="columns">
-    <%= render 'nav' %>
+    <div class="column is-narrow p-0 display-flex flex-direction-column">
+      <div id="admin_menu" class="flex-grow-1">
+        <%= render 'nav' %>
+      </div>
+      <div class="flex-shrink-0">
+        <%= render 'menu_bar' %>
+      </div>
+    </div>
     <turbo-frame id="body" data-turbo-action="advance" autoscroll data-autoscroll-block="start" class="column table-container pt-0">
       <%= render 'nav_bar' %>
       <%= render 'alert' %>
