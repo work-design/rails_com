@@ -1,7 +1,7 @@
-<div id="modal" data-controller="modal" class="modal is-active">
-  <div data-action="click->modal#close" class="modal-background has-animate-color"></div>
+<div data-controller="modal" class="modal">
+  <div data-action="click->modal#hide" class="modal-background has-animate-color"></div>
   <div class="modal-content">
-    <%= yield %>
+    <img data-showcase-target="preview" src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="" class="image">
   </div>
-  <button data-action="modal#close" class="modal-close is-large"></button>
+  <button data-action="modal#hide" class="modal-close is-large"></button>
 </div>
