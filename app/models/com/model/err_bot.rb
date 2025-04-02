@@ -4,6 +4,8 @@ module Com
 
     included do
       attribute :type, :string
+      attribute :base_url, :string
+      attribute :hook_key, :string
       attribute :hook_url, :string
       attribute :first_time, :boolean
       attribute :secret, :string
@@ -13,6 +15,12 @@ module Com
       accepts_nested_attributes_for :err_notices, allow_destroy: true
 
       scope :first_time, -> { where(first_time: true) }
+
+      before_validation :set_hook_key, if: -> { hook_url_changed? }
+    end
+
+    def set_hook_key
+      self.hook_key = hook_url.delete_prefix(self.base_url)
     end
 
     def set_content(err)
