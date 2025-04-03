@@ -3,12 +3,6 @@ module Com
   module Inner::FeishuBot
     extend ActiveSupport::Concern
 
-    included do
-      attr_reader :content
-
-      after_initialize :init_ivar
-    end
-
     def send_err_message(err_hash)
       add_at
       err_hash.each do |key, value|
