@@ -1,21 +1,5 @@
 <div class="box as-bar">
-  <% if request.variant.include?(:mini_program) %>
-    <i class="px-5"></i>
-  <% else %>
-    <% if current_organ&.parent %>
-      <%= link_to({ controller: '/me/home', **current_organ.parent.url_options(request) }, class: 'px-4') do %>
-        <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
-      <% end %>
-    <% elsif current_organ&.provider %>
-      <%= link_to({ controller: '/board/home', **current_organ.provider.url_options(request) }, class: 'px-4') do %>
-        <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
-      <% end %>
-    <% else %>
-      <%= link_to({ controller: '/board/home' }, class: 'px-4') do %>
-        <i class="fa-solid fa-lg fa-fw-1 fa-angle-left"></i>
-      <% end %>
-    <% end %>
-  <% end %>
+  <i class="px-5"></i>
   <span class="weui-title"><%= t('.title') %></span>
   <i class="px-5"></i>
 </div>
