@@ -9,6 +9,11 @@ module DefaultForm::ViewHelper
     instantiate_builder(scope, model, builder: builder, **options)
   end
 
+  def nested_form_object(model = nil, record_name, scope: nil, builder: DefaultForm::FormBuilder, **options)
+    parent_builder = form_object(model, scope: scope, builder: builder, **options)
+    instantiate_builder(scope, model, builder: builder, parent_builder: parent_builder, **options)
+  end
+
   # theme: :default
   def form_with(**options, &block)
     options[:url] ||= {}
