@@ -10,8 +10,8 @@ module DefaultForm::ViewHelper
 
   def nested_form_object(parent_model, association_name, model:, index:, builder: DefaultForm::FormBuilder, **options)
     parent_name = parent_model.model_name.param_key
-    scope = "#{parent_name}[#{association_name}_attributes][#{index}]"
-    instantiate_builder(scope, model, builder: builder, **options)
+    scope = "#{parent_name}[#{association_name}_attributes]"
+    instantiate_builder(scope, model, index: index, builder: builder, **options)
   end
 
   # theme: :default
