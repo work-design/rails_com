@@ -4,14 +4,14 @@ require 'default_form/form_builder'
 module DefaultForm::ViewHelper
 
   def form_object(model = nil, scope: nil, builder: DefaultForm::FormBuilder, **options)
-    model = convert_to_model(model)
     scope ||= model_name_from_record_or_class(model).param_key if model
     instantiate_builder(scope, model, builder: builder, **options)
   end
 
-  def nested_form_object(model = nil, record_name, scope: nil, builder: DefaultForm::FormBuilder, **options)
-    parent_builder = form_object(model, scope: scope, builder: builder, **options)
-    instantiate_builder(scope, model, builder: builder, parent_builder: parent_builder, **options)
+  def nested_form_object(parent_model, association_name, model:, index:, builder: DefaultForm::FormBuilder, **options)
+    parent_name = parent_model.model_name.param_key
+    scope = "#{parent_name}[#{association_name}_attributes][#{index}]"
+    instantiate_builder(scope, model, builder: builder, **options)
   end
 
   # theme: :default
