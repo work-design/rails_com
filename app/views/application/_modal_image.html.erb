@@ -1,7 +1,19 @@
-<div data-controller="modal" class="modal">
+<div data-controller="modal" class="modal as-preview">
   <div data-action="click->modal#hide" class="modal-background has-animate-color"></div>
+  <div class="images has-block-centered py-4">
+    <% images.each_with_index do |image, index| %>
+      <figure class="image is-32x32" data-index="<%= index %>" data-action="click->showcase#preview">
+        <%= image_tag image %>
+      </figure>
+    <% end %>
+  </div>
   <div class="modal-content">
-    <img data-showcase-target="preview" src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="" class="image">
+    <img
+      data-showcase-target="preview"
+      src="https://bulma.io/assets/images/placeholders/1280x960.png"
+      alt=""
+      class="image"
+    >
   </div>
   <button data-action="modal#hide" class="modal-close is-large"></button>
 </div>
