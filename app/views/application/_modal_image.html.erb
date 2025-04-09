@@ -1,6 +1,6 @@
 <div data-controller="modal" class="modal as-preview">
   <div data-action="click->modal#hide" class="modal-background has-animate-color"></div>
-  <div class="images has-block-centered py-4">
+  <div data-preview-target="window" class="images has-block-centered py-4">
     <% images.each_with_index do |image, index| %>
       <figure class="image is-32x32" data-index="<%= index %>" data-action="click->preview#current">
         <%= image_tag image %>
