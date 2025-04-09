@@ -6,6 +6,7 @@ module Roled
       helper_method :rails_role_user
     end
 
+    private
     def support_organ
       if current_organ.has_role?(
         business: params[:business] || 'application',

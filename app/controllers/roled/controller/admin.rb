@@ -1,6 +1,7 @@
 module Roled
   module Controller::Admin
 
+    private
     def rails_role_user
       return @rails_role_user if defined? @rails_role_user
       if defined?(current_member) && current_member

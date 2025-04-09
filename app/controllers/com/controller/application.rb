@@ -18,6 +18,7 @@ module Com
       after_action :set_state, if: -> { request.variant.any? :phone }
     end
 
+    private
     def raw_params
       params.except(:business, :namespace, :controller, :action)
     end

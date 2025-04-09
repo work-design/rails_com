@@ -11,16 +11,14 @@ module RailsCom::ActionController
       namespaces = [params[:namespace]]
 
       super_class = self.class.superclass
-      super_actions = RailsCom::Routes.controllers[super_class.controller_path]
       # 同名 controller, 向上级追溯
-      while super_actions.present?
-        pres.append "#{super_class.controller_path}/_#{params[:action]}" if super_actions.key?(params[:action])
+      while super_class.action_methods.include?(params[:action])
+        pres.append "#{super_class.controller_path}/_#{params[:action]}"
         bases.append "#{super_class.controller_path}/_base"
         names.append super_class.controller_path
-        namespaces.append super_actions.dig(params[:action], :namespace)
+        #namespaces.append super_actions.dig(params[:action], :namespace)
 
         super_class = super_class.superclass
-        super_actions = RailsCom::Routes.controllers[super_class.controller_path]
       end
 
       pres.concat bases

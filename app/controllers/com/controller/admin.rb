@@ -7,6 +7,7 @@ module Com
       skip_before_action :require_user if whether_filter :require_user
     end
 
+    private
     def set_locale
       super
     end
