@@ -1,5 +1,5 @@
-<div data-controller="modal" class="modal as-preview">
-  <div data-action="click->modal#hide" class="modal-background has-animate-color"></div>
+<div class="modal as-preview">
+  <div data-action="click->preview#hide" class="modal-background has-animate-color"></div>
   <div data-preview-target="window" class="images has-block-centered py-4">
     <% images.each_with_index do |image, index| %>
       <figure class="image is-32x32" data-index="<%= index %>" data-action="click->preview#current">
@@ -15,7 +15,7 @@
       class="image"
     >
   </div>
-  <button data-action="modal#hide" class="modal-close is-large"></button>
+  <button data-action="preview#hide" class="modal-close is-large"></button>
   <button data-action="preview#prev" class="modal-prev button is-large">
     <i class="fa-solid fa-chevron-left"></i>
   </button>
