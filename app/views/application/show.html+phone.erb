@@ -1,3 +1,8 @@
 <dl class="as-show as-boxed">
   <%= render 'show_table' %>
 </dl>
+
+<%= form_with url: { action: 'update' }, method: :patch, class: 'form-bottom' do |f| %>
+  <div id="bottom-field" class="field"></div>
+  <%= f.submit %>
+<% end %>
