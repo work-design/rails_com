@@ -1,4 +1,4 @@
-<%= form_with theme: 'modal', model: @acme_order, url: { action: 'create' } do |f| %>
+<%= form_with theme: 'modal', model: @acme_order, url: { action: 'update' } do |f| %>
   <%= render 'modal_header' %>
   <div class="modal-card-body">
     <%= render 'error_messages', target: @acme_order %>
