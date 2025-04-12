@@ -9,6 +9,7 @@ module RailsCom
       "#{config.root}/app/models/acme_servicer",
       "#{config.root}/app/models/acme_identifier",
       "#{config.root}/app/models/detector_bot",
+      "#{config.root}/app/models/detector_log",
       "#{config.root}/app/models/err_bot"
     ]
     config.eager_load_paths += Dir[
@@ -17,6 +18,7 @@ module RailsCom
       "#{config.root}/app/models/acme_servicer",
       "#{config.root}/app/models/acme_identifier",
       "#{config.root}/app/models/detector_bot",
+      "#{config.root}/app/models/detector_log",
       "#{config.root}/app/models/err_bot"
     ]
 
