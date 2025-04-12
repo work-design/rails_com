@@ -8,6 +8,7 @@ module Com
       attribute :status, :string
       attribute :body, :string
       attribute :error, :string
+      attribute :started_at, :datetime
 
       belongs_to :detector
       has_many :detector_bots, primary_key: :detector_id, foreign_key: :detector_id

@@ -111,6 +111,7 @@ Rails.application.routes.draw do
         end
         resource :organ
         resources :detectors do
+          resources :detector_logs
           resources :detector_errors
         end
         resources :err_summaries, only: [:index, :show, :destroy] do
