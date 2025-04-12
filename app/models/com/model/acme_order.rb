@@ -11,7 +11,7 @@ module Com
       if connection.adapter_name == 'PostgreSQL'
         attribute :identifiers, :string, array: true
       else
-        attribute :identifiers, :json
+        attribute :identifiers, :json, default: []
       end
       attribute :sync_host, :string
       attribute :sync_path, :string
