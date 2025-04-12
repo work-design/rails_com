@@ -9,6 +9,7 @@ module Com
 
       has_many :detector_bots
       has_many :detector_errors
+      has_many :detector_responses
 
       accepts_nested_attributes_for :detector_bots
     end
@@ -20,6 +21,8 @@ module Com
         self.detector_errors.create(error: r.error.to_s)
       elsif r.status >= 300
         self.detector_errors.create(status: r.status, body: r.body.to_s)
+      else
+        self.detector_responses.create(status: r.status, body: r.body.to_s)
       end
     end
 
