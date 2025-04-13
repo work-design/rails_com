@@ -3,7 +3,7 @@ module Com
     before_action :set_detector
 
     def index
-      @detector_logs = @detector.detector_logs.page(params[:page])
+      @detector_logs = @detector.detector_logs.order(id: :desc).page(params[:page])
     end
 
     private
