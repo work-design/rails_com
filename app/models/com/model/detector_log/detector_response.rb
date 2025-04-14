@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 module Com
-  module Model::DetectorError
+  module Model::DetectorLog::DetectorResponse
     extend ActiveSupport::Concern
 
     included do
-      attribute :status, :string
-      attribute :body, :string
       attribute :error, :string
 
-      belongs_to :detector
-      has_many :detector_bots, primary_key: :detector_id, foreign_key: :detector_id
-
-      after_create_commit :send_notice_later
+      #after_create_commit :send_notice_later
     end
 
     def send_notice_later
