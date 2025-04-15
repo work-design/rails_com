@@ -25,6 +25,7 @@ Date::DATE_FORMATS[:week] = ->(date) {
 Date::DATE_FORMATS[:month] = ->(date) {
   I18n.t('date.month_names')[date.month]
 }
+Date::DATE_FORMATS[:year_month] = '%Y年%m月'
 Date::DATE_FORMATS[:month_day] = ->(date) {
   "#{date.month}月#{date.mday}日"
 }
