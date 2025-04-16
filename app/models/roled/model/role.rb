@@ -13,7 +13,6 @@ module Roled
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
       has_many :role_whos, dependent: :destroy_async
-      has_many :who_roles
       has_many :tabs, dependent: :delete_all
       has_many :role_types
       has_many :cache_roles, dependent: :destroy_async

@@ -106,6 +106,19 @@ line:
     normal: field
   error:
     <<: *default_errors
+line_phone:
+  <<: *defaults
+  origin:
+    label: label text-grey
+    input: input
+    textarea: textarea
+    submit: button is-fullwidth is-primary
+  wrap:
+    input: control
+  all:
+    normal: field
+  error:
+    <<: *default_errors
 weui:
   <<: *defaults
   form: flex flex-direction-column is-fullheight
