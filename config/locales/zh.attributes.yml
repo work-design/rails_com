@@ -7,3 +7,5 @@ zh:
         path: 路径
         controller_name: Controller
         action_name: Action
+      com/detector_log:
+        spend: 耗时（毫秒）
