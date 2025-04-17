@@ -13,7 +13,9 @@ module Com
 
     def send_notice
       detector_bots.map do |bot|
-        bot.send_err_message("#{detector.url}请求超过 3 秒, 实际用时 #{spend} 毫秒")
+        bot.send_err_message("#{detector.url}请求超过 3 秒, 实际用时 #{spend} 毫秒", {
+          '应用名称' => detector.name
+        })
       end
     end
 
