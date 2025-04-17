@@ -15,7 +15,7 @@ module Com
 
     def send_notice
       detector_bots.map do |bot|
-        bot.send_message(self)
+        bot.send_err_message("#{detector.url}无法访问")
       end
     end
 

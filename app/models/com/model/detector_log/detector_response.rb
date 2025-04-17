@@ -4,9 +4,7 @@ module Com
     extend ActiveSupport::Concern
 
     included do
-      attribute :error, :string
-
-      #after_create_commit :send_notice_later
+      after_create_commit :send_notice_later, if: -> { spend > 3000 }
     end
 
     def send_notice_later
@@ -15,7 +13,7 @@ module Com
 
     def send_notice
       detector_bots.map do |bot|
-        bot.send_message(self)
+        bot.send_err_message("#{detector.url}请求超过 3 秒, 实际用时 #{spend} 毫秒")
       end
     end
 

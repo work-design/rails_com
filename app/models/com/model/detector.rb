@@ -15,8 +15,8 @@ module Com
       accepts_nested_attributes_for :detector_bots
     end
 
-    def detect
-      r = HTTPX.get url
+    def detect(request_url = url)
+      r = HTTPX.get request_url
       started_at = Time.current
 
       if r.error
@@ -31,9 +31,11 @@ module Com
           body: r.body.to_s
         )
       else
+        now = Time.current
         self.detector_responses.create(
           started_at: started_at,
           status: r.status,
+          spend: (now - started_at) * 1000,
           body: r.body.to_s
         )
       end
