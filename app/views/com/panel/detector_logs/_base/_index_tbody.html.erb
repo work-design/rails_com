@@ -1,9 +1,9 @@
 <td><%= model.status %></td>
+<td>
 <% if model.error.present? %>
-  <td><%= model.error %></td>
-<% else %>
-  <td><%= model.body %></td>
+  <%= model.error %>
 <% end %>
+</td>
 <td>
   <p><time data-controller="time" data-format="human"><%= model.started_at.to_fs(:iso8601) %></time></p>
   <p><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
