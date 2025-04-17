@@ -16,8 +16,8 @@ module Com
     end
 
     def detect(request_url = url)
-      r = HTTPX.get request_url
       started_at = Time.current
+      r = HTTPX.get request_url
 
       if r.error
         self.detector_errors.create(
