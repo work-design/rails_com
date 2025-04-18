@@ -20,7 +20,7 @@ module Roled
       p_ids.sort!
 
       cache = Cache.find_or_create_by!(str_role_ids: p_ids.join(','))
-      self.update cache_id: cache.id
+      self.update_columns cache_id: cache.id  # 资源新增时，防止回调污染
     end
 
     def visible_roles
