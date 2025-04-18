@@ -169,7 +169,7 @@ module Com
 
     def set_roled_tabs
       if request.variant.any?(:phone) && defined?(current_organ) && current_organ
-        @roled_tabs = current_organ.tabs.load.sort_by(&:position)
+        @roled_tabs = current_organ.tabs.where(namespace: '').load.sort_by(&:position)
       else
         @roled_tabs = Roled::Tab.none
       end

@@ -25,7 +25,8 @@ module Roled
       params.fetch(:tab, {}).permit(
         :path,
         :icon,
-        :name
+        :name,
+        :namespace
       )
     end
 

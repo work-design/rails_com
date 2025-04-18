@@ -7,6 +7,7 @@ module Roled
       attribute :path, :string
       attribute :icon, :string
       attribute :position, :integer
+      attribute :namespace, :string
 
       belongs_to :role
 
