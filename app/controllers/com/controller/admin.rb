@@ -18,7 +18,7 @@ module Com
 
     def set_roled_tabs
       if defined?(current_member) && current_member
-        @roled_tabs = current_member.tabs.load.sort_by(&:position)
+        @roled_tabs = current_member.tabs.where(namespace: 'admin').load.sort_by(&:position)
       else
         @roled_tabs = Roled::Tab.none
       end
