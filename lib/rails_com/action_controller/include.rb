@@ -3,7 +3,7 @@ module RailsCom::ActionController
     extend ActiveSupport::Concern
 
     included do
-      helper_method :referer_meta, :referer_controller, :referer_path
+      helper_method :referer_meta, :referer_controller, :referer_eql?, :referer_path
     end
 
     def whether_filter(filter)
@@ -36,6 +36,10 @@ module RailsCom::ActionController
 
     def referer_controller
       referer_meta[:controller]
+    end
+
+    def referer_eql?(controller_path, action_name)
+      referer_meta[:controller] == controller_path && referer_meta[:action] == action_name
     end
 
     def referer_path
