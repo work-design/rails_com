@@ -25,6 +25,8 @@ module Roled
 
       scope :visible, -> { where(visible: true) }
 
+      normalizes :tip, with: -> tip { tip.presence }
+
       validates :name, presence: true
 
       after_update :set_default, if: -> { default? && saved_change_to_default? }
