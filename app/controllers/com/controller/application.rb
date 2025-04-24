@@ -186,8 +186,7 @@ module Com
 
     def current_state
       return @current_state if defined? @current_state
-      if tab_item_items.include?(request.path)
-      elsif session[:state]
+      if session[:state]
         state = State.find_by(id: session[:state])
         if state && state.referer == request.url # 点回前一个页面
           @current_state = state.ancestors.where.not(request_method: 'POST').first
