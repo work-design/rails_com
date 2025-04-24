@@ -73,6 +73,10 @@ module Com
       StateDestroyJob.perform_later(self.id)
     end
 
+    def path_eql?(params_controller, params_action)
+      controller_path.delete_prefix('/') == params_controller && action_name == params_action
+    end
+
     def get?
       request_method == 'GET'
     end
