@@ -1,5 +1,5 @@
 <dl class="as-show as-boxed">
-<% @stats.except('worker_status').each do |k, v| %>
+<% @stats.except('worker_status', 'versions').each do |k, v| %>
   <div>
     <dt><%= k %></dt>
     <dd><%= v %></dd>
@@ -7,7 +7,7 @@
 <% end %>
 </dl>
 
-<table class="table">
+<table class="table is-border">
   <thead>
     <tr>
       <th>index</th>
