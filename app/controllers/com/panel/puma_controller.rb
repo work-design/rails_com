@@ -3,6 +3,8 @@ module Com
     before_action :set_puma
 
     def stats
+      res = HTTPX.get 'http://0.0.0.0:9293/stats'
+      @stats = res.json
     end
 
     def thread_stats
