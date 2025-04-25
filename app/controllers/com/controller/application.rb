@@ -209,7 +209,7 @@ module Com
     # 3. 点回前一个页面：referer 存在，
     # 5. 当前页面刷新：referer 为空；
     def set_state
-      if tab_item_items.include?(request.path)
+      if tab_item_items.include?(request.path) || controller_name == 'home'
         State.find_by(id: session[:state])&.destroy if session[:state]
         session[:state] = nil
       else
