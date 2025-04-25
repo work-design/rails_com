@@ -188,14 +188,19 @@ module Com
       return @current_state if defined? @current_state
       if session[:state]
         state = State.find_by(id: session[:state])
-        if state && state.referer == request.url # 点回前一个页面
-          @current_state = state.ancestors.where.not(request_method: 'POST').first
-        elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
-          @current_state = state
-        else # 常规页面：referer 存在，referer != url
-          @current_state = state_enter(destroyable: false, parent_id: state.id)
+        if state
+          if tab_item_items.include?(request.path) || controller_name == 'home'
+            state.destroy
+          elsif state.referer == request.url # 点回前一个页面
+            @current_state = state.ancestors.where.not(request_method: 'POST').first
+          elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
+            @current_state = state
+          else # 常规页面：referer 存在，referer != url
+            @current_state = state_enter(destroyable: false, parent_id: state.id)
+          end
+        else
         end
-      elsif request.variant.include?(:phone)
+      elsif request.variant.include?(:phone) && turbo_request?
         @current_state = state_enter(destroyable: false)
       end
       logger.debug "\e[35m  Current State: #{@current_state.id}, #{@current_state.parent_ancestors.values.reverse.join(', ')}  \e[0m" if @current_state # RailsCom.config.debug
@@ -209,11 +214,10 @@ module Com
     # 3. 点回前一个页面：referer 存在，
     # 5. 当前页面刷新：referer 为空；
     def set_state
-      if tab_item_items.include?(request.path) || controller_name == 'home'
-        State.find_by(id: session[:state])&.destroy if session[:state]
-        session[:state] = nil
+      if current_state
+        session[:state] = current_state.id
       else
-        session[:state] = current_state&.id
+        session.delete(:state)
       end
     end
 
@@ -243,6 +247,10 @@ module Com
 
     def turbo_frame_body?
       request.format.symbol == :html && request.headers['Turbo-Frame'] == 'body'
+    end
+
+    def turbo_request?
+      request.headers['X-Turbo-Request-Id'].present?
     end
 
     def current_filters
