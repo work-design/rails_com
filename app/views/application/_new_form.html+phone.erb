@@ -1,5 +1,5 @@
-<%= form_with theme: 'weui', model: model, scope: model_name, url: { action: 'create' }, state: 'redirect' do |f| %>
-  <div class="form-fields">
+<%= form_with theme: 'weui', model: model, scope: model_name, url: { action: 'create_refresh' }, data: { turbo_action: 'advance' } do |f| %>
+  <div class="form-fields box mt-3">
     <%= render partial: 'form', locals: { f: f } %>
   </div>
   <%= f.submit %>

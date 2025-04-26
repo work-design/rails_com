@@ -38,6 +38,17 @@ module Com
       end
     end
 
+    def create_refresh
+      model = model_new_object
+
+      if model.save
+        index
+        render :create_refresh, locals: { model: model }, status: :created
+      else
+        render :new, locals: { model: model }, status: :unprocessable_entity
+      end
+    end
+
     def batch_destroy
       model_klass.where(id: params[:ids].split(',')).each(&:destroy)
     end
