@@ -78,7 +78,7 @@ class BaseCpcl
       # 内容的宽度字符(display_width)
       content.to_s.split_by_display_width(width).each_with_index do |line|
         texts << "T #{font} #{size} #{x} #{@current_y} #{line}"
-        @current_y += y if line_add
+        @current_y += y * 1.5 if line_add
       end
     end
     texts << 'SETMAG 0 0'
