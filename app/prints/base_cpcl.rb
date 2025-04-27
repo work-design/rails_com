@@ -69,6 +69,23 @@ class BaseCpcl
     @texts += texts
   end
 
+  def text_bold_box_left(data, font: 8, size: 2, x: 0, y: 36, width: 28, line_add: true)
+    texts = []
+    texts << 'SETBOLD 2'
+    texts << "SETMAG #{size} #{size}"
+
+    data.each do |content|
+      # 内容的宽度字符(display_width)
+      content.to_s.split_by_display_width(width).each_with_index do |line|
+        texts << "T #{font} #{size} #{x} #{@current_y} #{line}"
+        @current_y += y * size if line_add
+      end
+    end
+    texts << 'SETMAG 0 0'
+    texts << 'SETBOLD 0'
+    @texts += texts
+  end
+
   def text_box_left(data, font: 8, size: 0, x: 0, y: 36, width: 28, line_add: true)
     texts = []
     data.each do |content|
