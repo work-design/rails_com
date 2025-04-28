@@ -11,7 +11,7 @@ module Com
     include Controller::Actions
 
     included do
-      layout -> { 'frame' if turbo_frame_body? }
+      layout -> { turbo_frame_layout }
       before_action :set_locale, :set_timezone, :set_variant
       before_action :set_roled_tabs, if: -> { request.variant.any?(:phone) }
       helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id, :tab_item_items
@@ -243,6 +243,12 @@ module Com
 
     def json_format?
       self.request.format.json?
+    end
+
+    def turbo_frame_layout
+      if request.headers.key? 'Turbo-Frame'
+        "frame_#{request.headers['Turbo-Frame']}"
+      end
     end
 
     def turbo_frame_body?
