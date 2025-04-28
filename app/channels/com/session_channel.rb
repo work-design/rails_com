@@ -2,18 +2,12 @@ module Com
   class SessionChannel < ApplicationCable::Channel
 
     def subscribed
-      if defined?(Auth::AuthorizedToken) && verified_receiver.is_a?(Auth::AuthorizedToken)
-        verified_receiver.update online_at: Time.current, offline_at: nil
-        stream_from "com:session:#{verified_receiver.id}"
-      else
-        stream_from "com:session:#{verified_receiver}"
-      end
+      verified_receiver.update online_at: Time.current, offline_at: nil
+      stream_from "com:session:#{verified_receiver.id}"
     end
 
     def unsubscribed
-      if defined?(Auth::AuthorizedToken) && verified_receiver.is_a?(Auth::AuthorizedToken)
-        verified_receiver.update online_at: nil, offline_at: Time.current
-      end
+      verified_receiver.update online_at: nil, offline_at: Time.current
     end
 
   end
