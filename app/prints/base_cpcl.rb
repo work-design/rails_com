@@ -84,9 +84,9 @@ class BaseCpcl
     end
 
     @texts += [
-      'SETBOLD 2',
+      "SETMAG #{size} #{size}",
       *texts,
-      'SETBOLD 0'
+      'SETMAG 0 0'
     ]
   end
 
