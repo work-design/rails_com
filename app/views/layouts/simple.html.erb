@@ -1,3 +1,5 @@
-<%= render layout: 'layouts/raw_head' do %>
-  <%= yield %>
+<%= render layout: 'layouts/application_head' do %>
+  <turbo-frame id="main" refresh="morph" data-turbo-action="advance">
+    <%= yield %>
+  </turbo-frame>
 <% end %>
