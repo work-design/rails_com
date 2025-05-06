@@ -178,6 +178,9 @@ zh:
       pg_stat_subscriptions:
         index:
           title: 订阅状态
+      puma:
+        stats:
+          title: Puma 运行状态
       states:
         index:
           title: 状态

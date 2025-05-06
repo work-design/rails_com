@@ -19,6 +19,9 @@
     <%= link_to({ controller: 'states' }, class: 'cell button is-fullwidth') do %>
       <span><%= t('.states.index.title') %></span>
     <% end %>
+    <%= link_to({ controller: 'puma', action: 'stats' }, class: 'cell button is-fullwidth') do %>
+      <span><%= t('.puma.stats.title') %></span>
+    <% end %>
   </div>
   <p class="size-7 text-grey mb-1">SSL 证书管理</p>
   <div class="grid">
