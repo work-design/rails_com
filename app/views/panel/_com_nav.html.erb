@@ -1,13 +1,13 @@
-<div class="menu ex-accordion is-active">
-  <%= link_to({ controller: 'com/panel/home' }, class: 'menu-label') do %>
+<div class="menu-list">
+  <%= link_to({ controller: 'com/panel/home' }, text: true, data: { turbo_frame: 'body', action: 'menu#enter' }, class: 'menu-item') do %>
     <div>
       <i class="fa-solid fa-cogs fa-fw"></i>
       <span><%= t('com.panel.title') %></span>
     </div>
   <% end %>
-  <div class="menu-list">
-    <%= link_to t('com.panel.meta_controllers.index.title'), { controller: 'com/panel/meta_controllers' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_controllers', active: 'is-active') %>
-    <%= link_to t('com.panel.meta_models.index.title'), { controller: 'com/panel/meta_models' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_models', active: 'is-active') %>
-    <%= link_to t('com.panel.err_summaries.index.title'), { controller: 'com/panel/err_summaries' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['err_summaries', 'errs'], active: 'is-active') %>
+  <div class="menu-list pl-3">
+    <%= link_to t('com.panel.meta_controllers.index.title'), { controller: 'com/panel/meta_controllers' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_controllers', item: 'menu-item', active: 'menu-item is-active') %>
+    <%= link_to t('com.panel.meta_models.index.title'), { controller: 'com/panel/meta_models' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'meta_models', item: 'menu-item', active: 'menu-item is-active') %>
+    <%= link_to t('com.panel.err_summaries.index.title'), { controller: 'com/panel/err_summaries' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: ['err_summaries', 'errs'], item: 'menu-item', active: 'menu-item is-active') %>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<aside id="admin_menu" class="menu-wrap" style="<%= defined?(current_organ) && current_organ&.admin_theme %>">
+<aside id="admin_menu" data-controller="menu" class="menu as-wrap p-3" style="<%= defined?(current_organ) && current_organ&.admin_theme %>">
   <%= render 'brand_nav' %>
   <%= render 'admin/factory_simple_nav' if defined?(RailsFactory) && role_permit?(business: 'factory', namespace: 'admin') %>
   <%= render 'in/trade_nav' if defined?(RailsTrade) && role_permit?(business: 'trade', namespace: 'in') %>

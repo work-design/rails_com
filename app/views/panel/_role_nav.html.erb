@@ -1,11 +1,11 @@
-<div class="menu ex-accordion is-active">
-  <div class="menu-label">
+<div class="menu-list">
+  <div class="menu-item">
     <div>
       <i class="fa-solid fa-fw fa-user-secret"></i>
       <span><%= t('roled.panel.title') %></span>
     </div>
   </div>
-  <div class="menu-list">
-    <%= link_to t('roled.panel.roles.index.title'), { controller: 'roled/panel/roles' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'roles', active: 'is-active') -%>
+  <div class="menu-list pl-3">
+    <%= link_to t('roled.panel.roles.index.title'), { controller: 'roled/panel/roles' }, data: { turbo_frame: 'body', action: 'menu#enter' }, class: active_helper(controllers: 'roles', item: 'menu-item', active: 'menu-item is-active') %>
   </div>
 </div>
