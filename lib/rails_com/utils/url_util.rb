@@ -31,12 +31,15 @@ module UrlUtil
   end
 
   private
-  def fetch_file(url, file, tries = 3)
+  def fetch_file(url, file, tries = 5)
+    return if tries <= 0
     res = HTTPX.plugin(:follow_redirects).get(url)
     if res.error.nil?
       res.body.each do |fragment|
         file.write fragment
       end
+    else
+      fetch_file(url, file, tries - 1)
     end
   rescue => e
     retry unless (tries -= 1).zero?
