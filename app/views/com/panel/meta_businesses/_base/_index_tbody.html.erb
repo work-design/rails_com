@@ -2,7 +2,7 @@
   <div class="is-several">
     <% if model.logo.attached? %>
       <%= image_tag model.logo, class: 'image is-24x24' %>
-    <% else %>
+    <% elsif Rails.application.assets.resolver.resolve("#{model.identifier}_logo.png") %>
       <%= image_tag "#{model.identifier}_logo.png", class: 'image is-24x24' %>
     <% end %>
     <%= link_to model.name, { action: 'show', id: model.id }, text: true %>
