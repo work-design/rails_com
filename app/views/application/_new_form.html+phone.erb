@@ -1,6 +1,8 @@
 <%= form_with theme: 'weui', model: model, scope: model_name, url: { action: 'create' } do |f| %>
-  <div class="form-fields box mt-3">
-    <%= render partial: 'form', locals: { f: f } %>
+  <div class="form-fields mt-3">
+    <div class="box">
+      <%= render partial: 'form', locals: { f: f } %>
+    </div>
   </div>
   <%= f.submit %>
 <% end %>
