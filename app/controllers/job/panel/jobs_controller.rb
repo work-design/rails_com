@@ -85,7 +85,7 @@ module Job
     def set_count
       today_begin = SolidQueue::Job.where(created_at: ...Date.today.beginning_of_month.beginning_of_day.to_fs(:human)).order(id: :desc).first
 
-      if today_begin
+      if today_begin && false
         @count = {
           index: @common_jobs.where(id: today_begin.id..).finished.async_count,
           failed: @common_jobs.where(id: today_begin.id..).failed.async_count,
