@@ -86,13 +86,13 @@ module Job
       today_begin_id = SolidQueue::Job.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first&.id
 
       @count = {
-        index: @common_jobs.where(id: today_begin_id..).finished.count,
-        failed: @common_jobs.where(id: today_begin_id..).failed.count,
-        todo: @common_jobs.where(id: today_begin_id..).scheduled.where(scheduled_at: Time.current..).count,
-        blocked: @common_jobs.where(id: today_begin_id..).where.associated(:blocked_execution).count,
-        running: @common_jobs.where(id: today_begin_id..).where.associated(:claimed_execution).count,
-        ready: @common_jobs.where(id: today_begin_id..).where.associated(:ready_execution).count,
-        clearable: @common_jobs.where(id: today_begin_id..).clearable.count
+        index: @common_jobs.where(id: today_begin_id..).finished.async_count,
+        failed: @common_jobs.where(id: today_begin_id..).failed.async_count,
+        todo: @common_jobs.where(id: today_begin_id..).scheduled.where(scheduled_at: Time.current..).async_count,
+        blocked: @common_jobs.where(id: today_begin_id..).where.associated(:blocked_execution).async_count,
+        running: @common_jobs.where(id: today_begin_id..).where.associated(:claimed_execution).async_count,
+        ready: @common_jobs.where(id: today_begin_id..).where.associated(:ready_execution).async_count,
+        clearable: @common_jobs.where(id: today_begin_id..).clearable.async_count
       }
     end
 
