@@ -1,7 +1,7 @@
 <nav data-controller="menu" id="admin_menu" class="menu as-wrap p-3" style="<%= defined?(current_organ) && current_organ&.panel_theme %>">
   <%= render 'brand_nav' %>
-  <%= render 'com_nav' %>
-  <%= render 'role_nav' %>
+  <%= render 'com_nav' if role_permit?(business: 'com', namespace: 'panel') %>
+  <%= render 'role_nav' if role_permit?(business: 'roled', namespace: 'panel') %>
   <%= render 'auth_nav' if defined?(RailsAuth) && role_permit?(business: 'auth', namespace: 'panel') %>
   <%= render 'org_nav' if defined?(RailsOrg) && role_permit?(business: 'org', namespace: 'panel') %>
   <%= render 'data_nav' if defined?(RailsData) && role_permit?(business: 'data', namespace: 'panel') %>
