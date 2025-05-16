@@ -195,8 +195,10 @@ module Com
             @current_state = state.ancestors.where.not(request_method: 'POST').first
           elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
             @current_state = state
-          else # 常规页面：referer 存在，referer != url
+          elsif request.get? # 常规页面：referer 存在，referer != url
             @current_state = state_enter(destroyable: false, parent_id: state.id)
+          else
+            @current_state = state
           end
         else
         end
