@@ -187,6 +187,7 @@ module Com
     def current_state
       return @current_state if defined? @current_state
       if session[:state]
+        # 这里 state 是上一个请求
         state = State.find_by(id: session[:state])
         if state
           if tab_item_items.include?(request.path) || controller_name == 'home'
@@ -200,7 +201,11 @@ module Com
               state.destroy # 直接进入 new/edit 页面的操作
             end
           elsif state.parent_id.present? && ['POST'].include?(state.request_method) # create/update redirect to 详情页后
-            @current_state = state_enter(destroyable: false, parent_id: state.parent_id)
+            if ['new', 'edit'].include?(state.parent.action_name) && state.parent.parent_id
+              @current_state = state_enter(destroyable: false, parent_id: state.parent.parent_id)
+            else
+              @current_state = state_enter(destroyable: false, parent_id: state.parent_id)
+            end
           elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
             @current_state = state
           elsif request.get? # 常规页面：referer 存在，referer != url
