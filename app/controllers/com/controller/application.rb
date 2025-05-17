@@ -194,17 +194,11 @@ module Com
             state.destroy
           elsif request.get? && state.referer == request.url # 点回前一个页面
             @current_state = state.ancestors.where.not(request_method: 'POST').first
-          elsif !request.get? && ['new', 'edit'].include?(state.action_name)  # 新增或修改提交
-            if state.parent_id.present?
-              @current_state = state_enter(destroyable: false, parent_id: state.parent_id)
-            else
-              state.destroy # 直接进入 new/edit 页面的操作
-            end
           elsif state.parent_id.present? && ['POST'].include?(state.request_method) # create/update redirect to 详情页后
-            if ['new', 'edit'].include?(state.parent.action_name) && state.parent.parent_id
-              @current_state = state_enter(destroyable: false, parent_id: state.parent.parent_id, referer: state.parent.referer)
+            if ['new', 'edit'].include?(state.parent.action_name)
+              @current_state = state_enter(destroyable: false, parent_id: state.id, referer: state.parent.referer)
             else
-              @current_state = state_enter(destroyable: false, parent_id: state.parent_id)
+              @current_state = state_enter(destroyable: false, parent_id: state.id)
             end
           elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
             @current_state = state
