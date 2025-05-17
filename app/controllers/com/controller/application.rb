@@ -202,10 +202,8 @@ module Com
             end
           elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
             @current_state = state
-          elsif request.get? # 常规页面：referer 存在，referer != url
+          else # 常规页面：referer 存在，referer != url
             @current_state = state_enter(destroyable: false, parent_id: state.id)
-          else
-            @current_state = state
           end
         else
         end
