@@ -196,7 +196,7 @@ module Com
             @current_state = state.ancestors.where.not(request_method: 'POST').first
           elsif state.parent_id.present? && ['POST'].include?(state.request_method) # create/update redirect to 详情页后
             if ['new', 'edit'].include?(state.parent.action_name)
-              @current_state = state_enter(destroyable: false, parent_id: state.id, referer: state.parent.referer)
+              @current_state = state_enter(destroyable: false, parent_id: state.parent.parent_id, referer: state.parent.referer)
             else
               @current_state = state_enter(destroyable: false, parent_id: state.id)
             end
