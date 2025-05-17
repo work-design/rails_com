@@ -126,7 +126,7 @@ weui:
     label: label text-grey
     input: input
     textarea: textarea
-    submit: button is-medium is-success is-fullwidth
+    submit: button is-fullwidth is-primary
     checkbox: weui-check
     radio: weui-check
   wrap:
