@@ -191,8 +191,14 @@ module Com
         if state
           if tab_item_items.include?(request.path) || controller_name == 'home'
             state.destroy
-          elsif state.referer == request.url # 点回前一个页面
+          elsif request.get? && state.referer == request.url # 点回前一个页面
             @current_state = state.ancestors.where.not(request_method: 'POST').first
+          elsif !request.get? && ['new', 'edit'].include?(state.action_name)  # 新增或修改提交
+            if state.parent_id.present?
+              @current_state = state_enter(destroyable: false, parent_id: state.parent_id)
+            else
+              state.destroy # 直接进入 new/edit 页面的操作
+            end
           elsif request.referer.blank? || request.referer == request.url # 当前页面刷新，或者当前页面重复点击
             @current_state = state
           elsif request.get? # 常规页面：referer 存在，referer != url
