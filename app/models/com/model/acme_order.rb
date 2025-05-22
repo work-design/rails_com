@@ -218,6 +218,14 @@ module Com
       end
     end
 
+    def nginx_reload
+      return unless ssh_key
+
+      Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
+        scp.session.exec! 'nginx -s reload'
+      end
+    end
+
     def renew_before_expired
       AcmeJob.set(wait_until: issued_at + 2.months).perform_later(self)
     end
