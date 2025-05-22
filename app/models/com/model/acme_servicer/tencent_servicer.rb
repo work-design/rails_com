@@ -13,9 +13,10 @@ module Com
     end
 
     def records
-      request = TencentCloud::Dnspod::V20210323::DescribeRecordFilterListRequest.new
+      request = TencentCloud::Dnspod::V20210323::DescribeRecordListRequest.new
       request.Domain = domain
-      client.DescribeRecordFilterList(request)
+      binding.b
+      client.DescribeRecordList(request)
     end
 
     def ensure_acme(values_hash)
