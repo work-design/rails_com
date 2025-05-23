@@ -15,21 +15,22 @@ module Com
     def records
       request = TencentCloud::Dnspod::V20210323::DescribeRecordListRequest.new
       request.Domain = domain
-      client.DescribeRecordList(request)
+      r = client.DescribeRecordList(request)
+      r.RecordList
     end
 
     def ensure_acme(values_hash)
-      results = records.dig('DomainRecords', 'Record')
+      results = records
 
       values_hash.each do |key, values|
         results.select do |i|
-          if i['RR'] == key && values.exclude?(i['Value'])
-            delete(i['RecordId'])
+          if i.Name == key && values.exclude?(i.Value)
+            delete(i.RecordId)
           end
         end
 
         values.each do |value|
-          exist = results.find { |i| i['RR'] == key && i['Value'] == value }
+          exist = results.find { |i| i.Name == key && i.Value == value }
           unless exist
             add_acme_record(key, value)
           end
