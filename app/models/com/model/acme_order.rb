@@ -222,7 +222,7 @@ module Com
       return unless ssh_key
 
       Net::SCP.start(sync_host, ssh_key.ssh_user, key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
-        scp.session.exec! 'nginx -s reload'
+        scp.session.exec! 'sudo nginx -s reload'
       end
     end
 
