@@ -205,7 +205,7 @@ module Com
     def sync_cert_to_host
       return unless ssh_key
 
-      Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
+      Net::SCP.start(sync_host, ssh_key.ssh_user, key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
         scp.session.exec! "mkdir -p #{sync_path}"
 
         private_pem.blob.open do |file|
@@ -221,7 +221,7 @@ module Com
     def nginx_reload
       return unless ssh_key
 
-      Net::SCP.start(sync_host, 'root', key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
+      Net::SCP.start(sync_host, ssh_key.ssh_user, key_data: [ssh_key.private_key], keys_only: true, non_interactive: true) do |scp|
         scp.session.exec! 'nginx -s reload'
       end
     end
