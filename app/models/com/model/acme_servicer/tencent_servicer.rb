@@ -15,7 +15,6 @@ module Com
     def records
       request = TencentCloud::Dnspod::V20210323::DescribeRecordListRequest.new
       request.Domain = domain
-      binding.b
       client.DescribeRecordList(request)
     end
 
@@ -39,34 +38,20 @@ module Com
     end
 
     def delete(id)
-      body = { action: 'DeleteDomainRecord' }
-      body.merge! params: {
-        RecordId: id
-      }
-      body.merge! opts: {
-        method: 'POST',
-        timeout: 15000
-      }
-
-      client.request(**body)
+      request = TencentCloud::Dnspod::V20210323::DeleteRecordRequest.new(domain, id)
+      client.DeleteRecord(request)
     end
 
     def add_acme_record(key, value)
-      body = {
-        action: 'AddDomainRecord'
-      }
-      body.merge! params: {
-        DomainName: domain,
-        Type: 'TXT',
-        RR: key,
-        value: value
-      }
-      body.merge! opts: {
-        method: 'POST',
-        timeout: 15000
-      }
-
-      client.request(**body)
+      request = TencentCloud::Dnspod::V20210323::CreateRecordRequest.new(
+        domain,
+        'TXT',
+        '默认',
+        value,
+        nil,
+        key
+      )
+      client.CreateRecord(request)
     end
 
   end
