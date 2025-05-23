@@ -9,7 +9,7 @@ module Com
       attribute :issued_at, :datetime
       attribute :expire_at, :datetime, comment: '过期时间'
       if connection.adapter_name == 'PostgreSQL'
-        attribute :identifiers, :string, array: true
+        attribute :identifiers, :string, array: true, default: []
       else
         attribute :identifiers, :json, default: []
       end
