@@ -1,9 +1,5 @@
-<td class="family-monospace"><%= model.id %></td>
 <td>
   <p><%= model.host %></p>
-</td>
-<td><%= model.public_key %></td>
-<td>
   <p><time data-controller="time" data-format="human"><%= model.created_at.to_fs(:iso8601) %></time></p>
-  <p><time data-controller="time" data-format="human"><%= model.updated_at.to_fs(:iso8601) %></time></p>
 </td>
+<td class="family-monospace"><%= model.public_key %></td>
