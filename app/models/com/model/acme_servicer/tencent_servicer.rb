@@ -15,22 +15,22 @@ module Com
     def records
       request = TencentCloud::Dnspod::V20210323::DescribeRecordListRequest.new
       request.Domain = domain
-      binding.b
-      client.DescribeRecordList(request)
+      r = client.DescribeRecordList(request)
+      r.RecordList
     end
 
     def ensure_acme(values_hash)
-      results = records.dig('DomainRecords', 'Record')
+      results = records
 
       values_hash.each do |key, values|
         results.select do |i|
-          if i['RR'] == key && values.exclude?(i['Value'])
-            delete(i['RecordId'])
+          if i.Name == key && values.exclude?(i.Value)
+            delete(i.RecordId)
           end
         end
 
         values.each do |value|
-          exist = results.find { |i| i['RR'] == key && i['Value'] == value }
+          exist = results.find { |i| i.Name == key && i.Value == value }
           unless exist
             add_acme_record(key, value)
           end
@@ -39,34 +39,20 @@ module Com
     end
 
     def delete(id)
-      body = { action: 'DeleteDomainRecord' }
-      body.merge! params: {
-        RecordId: id
-      }
-      body.merge! opts: {
-        method: 'POST',
-        timeout: 15000
-      }
-
-      client.request(**body)
+      request = TencentCloud::Dnspod::V20210323::DeleteRecordRequest.new(domain, id)
+      client.DeleteRecord(request)
     end
 
     def add_acme_record(key, value)
-      body = {
-        action: 'AddDomainRecord'
-      }
-      body.merge! params: {
-        DomainName: domain,
-        Type: 'TXT',
-        RR: key,
-        value: value
-      }
-      body.merge! opts: {
-        method: 'POST',
-        timeout: 15000
-      }
-
-      client.request(**body)
+      request = TencentCloud::Dnspod::V20210323::CreateRecordRequest.new(
+        domain,
+        'TXT',
+        '默认',
+        value,
+        nil,
+        key
+      )
+      client.CreateRecord(request)
     end
 
   end

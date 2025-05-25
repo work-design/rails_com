@@ -5,6 +5,7 @@ module Com
 
     included do
       attribute :host, :string
+      attribute :ssh_user, :string, default: 'root'
       attribute :private_key, :string
       attribute :public_key, :string
       attribute :fingerprint, :string
@@ -100,7 +101,7 @@ module Com
 
     def remote_status
       result = '服务器系统：'
-      Net::SSH.start(host, 'root', key_data: [private_key], keys_only: true, non_interactive: true) do |ssh|
+      Net::SSH.start(host, ssh_user, key_data: [private_key], keys_only: true, non_interactive: true) do |ssh|
         result = ssh.exec! 'uname -v'
       end
       result
