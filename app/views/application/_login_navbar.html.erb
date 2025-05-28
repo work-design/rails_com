@@ -1,10 +1,10 @@
 <% if defined?(RailsWechat) && current_wechat_app %>
-  <%= link_to({ controller: '/wechat/wechat', action: 'user_login' }, data: { controller: 'session-channel', turbo_frame: 'main' }, class: 'navbar-item') do %>
+  <%= link_to({ controller: '/wechat/wechat', action: 'user_login' }, data: { controller: 'session-channel' }, class: 'navbar-item') do %>
     <i class="fa-solid fa-user"></i>
     <span class="ml-1"><%= t('wechat.wechat.user_login.title') %></span>
   <% end %>
 <% else %>
-  <%= link_to({ controller: '/auth/sign', action: 'sign' }, data: { turbo_frame: 'main' }, class: 'navbar-item') do %>
+  <%= link_to({ controller: '/auth/sign', action: 'sign' }, class: 'navbar-item') do %>
     <i class="fa-solid fa-user"></i>
     <span class="ml-1"><%= t('auth.sign.sign.title') %></span>
   <% end %>
