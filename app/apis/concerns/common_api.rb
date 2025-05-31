@@ -113,4 +113,8 @@ module CommonApi
     end
   end
 
+  def logger
+    Rails.logger
+  end
+
 end
