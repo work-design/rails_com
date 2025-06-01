@@ -1,6 +1,7 @@
 module RailsCom::RoleHelper
 
   def role_permit_options?(_options, method)
+    return true if session.blank?
     if _options.is_a? String
       begin
         path_params = Rails.application.routes.recognize_path _options, { method: method }
