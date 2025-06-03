@@ -1,0 +1,10 @@
+<div data-controller="search" class="field">
+  <%= form_with theme: nil, class: 'weui-search-bar__form', method: :get do |f| %>
+    <div class="control has-icons-right">
+      <%= f.search_field 'name-like', value: params['name-like'], class: 'input', placeholder: '搜索', autocomplete: 'off', data: { search_target: 'input' } %>
+      <span class="icon is-small is-right">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+    </div>
+  <% end %>
+</div>
