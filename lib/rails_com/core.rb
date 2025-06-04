@@ -11,6 +11,7 @@ require 'rails_com/core/object'
 require 'rails_com/core/string'
 require 'rails_com/core/time'
 require 'rails_com/core/time_format'
+require 'rails_com/core/date_format'
 require 'rails_com/core/time_with_zone'
 require 'rails_com/core/module'
 
