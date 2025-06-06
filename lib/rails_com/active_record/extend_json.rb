@@ -6,7 +6,7 @@ module RailsCom::ActiveRecord
         "jsonb_set(#{sql}, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int + #{num})::text::jsonb)"
       end
 
-      update_all sql_str
+      update_all "#{column} = #{sql_str}"
     end
 
     def decrement_json_counter(*cols, column: 'counters', num: 1)
@@ -14,7 +14,7 @@ module RailsCom::ActiveRecord
         "jsonb_set(counters, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int - #{num})::text::jsonb)"
       end
 
-      update_all sql_str
+      update_all "#{column} = #{sql_str}"
     end
 
     def json_filter(column, params)
