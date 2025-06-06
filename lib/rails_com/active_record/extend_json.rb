@@ -1,10 +1,9 @@
 module RailsCom::ActiveRecord
   module ExtendJson
 
-    def increment_json_counter(column = 'counters', num = 1, *cols)
+    def increment_json_counter(*cols, column: 'counters', num: 1)
       cols.inject(column) do |sql, col|
-        sql = "jsonb_set(#{sql}, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int + #{num})::text::jsonb)"
-        sql
+        "jsonb_set(#{sql}, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int + #{num})::text::jsonb)"
       end
     end
 
