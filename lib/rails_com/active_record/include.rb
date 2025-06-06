@@ -12,10 +12,10 @@ module RailsCom::ActiveRecord
 
     def update_json_counter(column: 'counters', **cols)
       sql_str = cols.inject(column) do |sql, (col, num)|
-        "jsonb_set(#{sql}, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int + #{num})::text::jsonb)"
+        "jsonb_set(#{sql}, '{#{col}}', (COALESCE(counters->>'#{col}', '0')::int + #{num})::text::jsonb, true)"
       end
 
-      update_columns column => sql_str
+      self.class.where(id: id).update_all "#{column} = #{sql_str}"
     end
 
     def reset_attributes
