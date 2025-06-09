@@ -1,4 +1,4 @@
-<div class="tags">
+<div data-switch-target="src" class="tags display-none">
   <% request.GET.each do |key, value| %>
     <div id="filter_container_<%= key %>" data-controller="popup">
       <% if record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :boolean %>
