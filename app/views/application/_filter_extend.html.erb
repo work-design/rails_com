@@ -1,4 +1,10 @@
 <div id="filter_container" data-controller="popup">
+  <% request.GET.each do |key, value| %>
+    <div class="tags has-addons">
+      <span class="tag"><%= record_class.human_attribute_name(key) %></span>
+      <span class="tag is-primary"><%= value %></span>
+    </div>
+  <% end %>
   <%= button_to({ action: 'filter' }, class: 'button') do %>
     <span class="icon">
       <i class="fa-solid fa-plus"></i>
