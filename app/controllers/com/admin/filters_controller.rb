@@ -9,6 +9,10 @@ module Com
       @meta_column = MetaColumn.find_by(record_name: params[:record_name], column_name: params[:column_name])
     end
 
+    def column_single
+      @meta_column = MetaColumn.find_by(record_name: params[:record_name], column_name: params[:column_name])
+    end
+
     private
     def set_new_filter
       @filter = Filter.new(filter_params)

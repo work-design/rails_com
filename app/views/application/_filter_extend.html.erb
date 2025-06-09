@@ -1,10 +1,16 @@
-<div id="filter_container" data-controller="popup">
+<div class="tags">
   <% request.GET.each do |key, value| %>
-    <div class="tags has-addons">
-      <span class="tag"><%= record_class.human_attribute_name(key) %></span>
-      <span class="tag is-primary"><%= value %></span>
+    <div id="filter_container_<%= key %>" data-controller="popup">
+      <%= button_to({ controller: 'com/admin/filters', action: 'column_single' }, params: { record_name: record_class.name, column_name: key }) do %>
+        <div class="tags has-addons mb-0">
+          <span class="tag"><%= record_class.human_attribute_name(key) %></span>
+          <span class="tag is-primary"><%= value %></span>
+        </div>
+      <% end %>
     </div>
   <% end %>
+</div>
+<div id="filter_container" data-controller="popup">
   <%= button_to({ action: 'filter' }, class: 'button') do %>
     <span class="icon">
       <i class="fa-solid fa-plus"></i>

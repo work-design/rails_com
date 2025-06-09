@@ -93,6 +93,7 @@ Rails.application.routes.draw do
           collection do
             post :detect
             post :column
+            post :column_single
           end
         end
         resources :blob_defaults do
