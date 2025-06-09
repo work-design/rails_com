@@ -29,7 +29,7 @@ module Com
     end
 
     def filter_type
-      "filter_input_text"
+      "filter_input_#{column_type}"
     end
 
     def remove

@@ -1,0 +1,17 @@
+<div
+  id="filter_popup_box"
+  data-controller="filter-input"
+  data-popup-target="popup"
+  class="panel is-light as-popdown background-white overflow-y-hidden"
+>
+  <div class="field">
+    <label class="radio">
+      <%= radio_button_tag @meta_column.column_name, true, params[:value] == 'true', data: { action: 'filter-input#submit' }, form: 'filter_search_form' %>
+      <span><%= @meta_column.record_class.enum_i18n(params[:column_name], 'true') %></span>
+    </label>
+    <label class="radio">
+      <%= radio_button_tag @meta_column.column_name, false, params[:value] == 'false', data: { action: 'filter-input#submit' }, form: 'filter_search_form' %>
+      <span><%= @meta_column.record_class.enum_i18n(params[:column_name], 'false') %></span>
+    </label>
+  </div>
+</div>
