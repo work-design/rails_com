@@ -17,7 +17,7 @@
     </div>
   <% end %>
   <div id="filter_container" data-controller="popup">
-    <%= button_to({ action: 'filter' }, class: 'button') do %>
+    <%= button_to({ action: 'filter' }, params: { keys: request.GET.keys }, class: 'button') do %>
     <span class="icon">
       <i class="fa-solid fa-plus"></i>
     </span>
