@@ -5,6 +5,9 @@ module Com
     def detect
     end
 
+    def column
+    end
+
     private
     def set_new_filter
       @filter = Filter.new(filter_params)

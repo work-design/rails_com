@@ -92,6 +92,7 @@ Rails.application.routes.draw do
         resources :filters do
           collection do
             post :detect
+            post :column
           end
         end
         resources :blob_defaults do
