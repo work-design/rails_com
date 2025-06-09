@@ -193,7 +193,7 @@ module RailsCom::ActiveRecord
     def attributes_by_belongs
       results = {}
 
-      reflections_with_belongs_to.each do |reflection|
+      reflections_with_belongs_to.each do |_, reflection|
         next if reflection.foreign_key.is_a? Array
         results.merge! reflection.foreign_key.to_sym => {
           input_type: :integer  # todo 考虑 foreign_key 不是自增 ID 的场景
@@ -208,8 +208,8 @@ module RailsCom::ActiveRecord
     def references_by_model
       results = {}
       refs = reflections_with_belongs_to
-      refs.reject! { |reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
-      refs.reject! { |reflection| pending_attributes.key?(reflection.foreign_key) }
+      refs.reject! { |_, reflection| reflection.foreign_key.to_s != "#{reflection.name}_id" }
+      refs.reject! { |_, reflection| pending_attributes.key?(reflection.foreign_key) }
       refs.each do |ref|
         r = { name: ref.name }
         r.merge! polymorphic: true if ref.polymorphic?
@@ -236,7 +236,7 @@ module RailsCom::ActiveRecord
     end
 
     def reflections_with_belongs_to
-      reflections.values.select(&->(reflection){ reflection.belongs_to? })
+      reflections.select { |_, reflection| reflection.belongs_to? }
     end
 
     def reflections_with_collection
