@@ -1,5 +1,5 @@
 <div data-controller="search-input" class="field">
-  <%= form_with theme: nil, class: 'weui-search-bar__form', method: :get do |f| %>
+  <%= form_with theme: nil, method: :get, id: 'filter_search_form', class: 'weui-search-bar__form' do |f| %>
     <div class="control has-icons-right">
       <%= f.search_field 'name-like', value: params['name-like'], class: 'input', placeholder: '搜索', autocomplete: 'off', data: { search_input_target: 'input', action: 'change->search-input#cancel' } %>
       <span class="icon is-small is-right">

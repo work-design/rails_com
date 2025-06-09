@@ -1,7 +1,10 @@
 <div
   id="filter_popup_box"
+  data-controller="filter-input"
   data-popup-target="popup"
   class="panel is-light as-popdown background-white overflow-y-hidden"
 >
-  <%= text_field_tag @meta_column.column_name, nil, placeholder: "请输入#{@meta_column.i18n_name}", autocomplete: 'off', class: 'input' %>
+  <div class="field">
+    <%= text_field_tag @meta_column.column_name, nil, placeholder: "请输入#{@meta_column.i18n_name}", autofocus: true, autocomplete: 'off', data: { action: 'keydown.enter->filter-input#submit' }, class: 'input', form: 'filter_search_form' %>
+  </div>
 </div>
