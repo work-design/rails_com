@@ -28,8 +28,16 @@ module Com
       record_class.human_attribute_name(column_name)
     end
 
+    def belongs_model
+      record_class.reflections_with_belongs_to[column_name.delete_suffix('_id')].klass
+    end
+
     def filter_type
-      "filter_input_#{column_type}"
+      if record_class.reflections_with_belongs_to.map { |_, i| i.foreign_key }.include? column_name
+        'filter_input_belongs'
+      else
+        "filter_input_#{column_type}"
+      end
     end
 
     def remove
