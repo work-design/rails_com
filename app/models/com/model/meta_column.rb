@@ -24,6 +24,14 @@ module Com
       end
     end
 
+    def i18n_name
+      record_class.human_attribute_name(column_name)
+    end
+
+    def filter_type
+      "filter_input_text"
+    end
+
     def remove
       record_class.connection.remove_column(record_class.table_name, column_name, if_exists: true)
     end

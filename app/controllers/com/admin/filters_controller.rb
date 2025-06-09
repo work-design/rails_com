@@ -6,6 +6,7 @@ module Com
     end
 
     def column
+      @meta_column = MetaColumn.find_by(record_name: params[:record_name], column_name: params[:column_name])
     end
 
     private
