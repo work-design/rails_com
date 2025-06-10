@@ -18,6 +18,20 @@ module RailsCom::ActiveRecord
       self.class.where(id: id).update_all "#{column} = #{sql_str}"
     end
 
+    def increment_json_counter(*cols, column: 'counters')
+      to_cols = cols.each_with_object({}) do |col, h|
+        h.merge! col => 1
+      end
+      update_json_counter(column: column, **to_cols)
+    end
+
+    def decrement_json_counter(*cols, column: 'counters')
+      to_cols = cols.each_with_object({}) do |col, h|
+        h.merge! col => -1
+      end
+      update_json_counter(column: column, **to_cols)
+    end
+
     def reset_attributes
       assign_attributes changes.transform_values(&->(i){ i[0] })
       self
