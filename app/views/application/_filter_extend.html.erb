@@ -1,9 +1,20 @@
 <div data-switch-target="src" class="tags display-none">
-  <% request.GET.each do |key, value| %>
+  <% raw_filter_params.each do |key, value| %>
     <div id="filter_container_<%= key %>" data-controller="popup">
       <% if record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :boolean %>
         <%= button_to({ controller: 'com/admin/filters', action: 'column_single' }, params: { record_name: record_class.name, column_name: key, value: value }) do %>
           <span class="tag is-primary"><%= record_class.enum_i18n(key, value) %></span>
+        <% end %>
+      <% elsif record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :datetime %>
+        <%= button_to({ controller: 'com/admin/filters', action: 'column_single' }, params: { record_name: record_class.name, column_name: key, value: value }) do %>
+          <div class="tags has-addons mb-0">
+            <span class="tag"><%= record_class.human_attribute_name(key) %></span>
+            <span class="tag is-primary">
+              <time data-controller="time"><%= value['gte'] %></time>
+              <span>-</span>
+              <time data-controller="time"><%= value['lte'] %></time>
+            </span>
+          </div>
         <% end %>
       <% else %>
         <%= button_to({ controller: 'com/admin/filters', action: 'column_single' }, params: { record_name: record_class.name, column_name: key, value: value }) do %>

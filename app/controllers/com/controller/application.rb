@@ -14,13 +14,25 @@ module Com
       layout -> { turbo_frame_layout }
       before_action :set_locale, :set_timezone, :set_variant
       before_action :set_roled_tabs, if: -> { request.variant.any?(:phone) }
-      helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id, :tab_item_items
+      helper_method :current_title, :current_organ_name, :current_state, :current_filters, :default_params, :turbo_frame_request_id, :tab_item_items, :raw_filter_params
       after_action :set_state, if: -> { request.variant.any? :phone }
     end
 
     private
     def raw_params
       params.except(:business, :namespace, :controller, :action)
+    end
+
+    def raw_filter_params
+      request.GET.each_with_object({}) do |(k, v), h|
+        if k.include?('-')
+          key, suffix = k.split('-')
+          h[key] ||= {}
+          h[key][suffix] = v
+        else
+          h[k] = v
+        end
+      end
     end
 
     def state_enter(
