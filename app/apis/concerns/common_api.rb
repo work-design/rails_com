@@ -20,24 +20,24 @@ module CommonApi
     )
   end
 
-  def get(path, headers: {}, origin: nil, debug: nil, **params)
-    request('GET', path, params: params, headers: headers, origin: origin, debug: debug)
+  def get(path, origin: @app.base_url, headers: {}, debug: nil, **params)
+    request('GET', path, origin: origin, params: params, headers: headers, debug: debug)
   end
 
-  def post(path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
-    request('POST', path, params: params, headers: headers, origin: origin, debug: debug, **payload)
+  def post(path, origin: @app.base_url, params: {}, headers: {}, debug: nil, **payload)
+    request('POST', path, origin: origin, params: params, headers: headers, debug: debug, **payload)
   end
 
-  def post_stream(path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
-    request('POST', path, params: params, headers: headers, origin: origin, debug: debug, stream: true, **payload)
+  def post_stream(path, origin: @app.base_url, params: {}, headers: {}, debug: nil, **payload)
+    request('POST', path, origin: origin, params: params, headers: headers, debug: debug, stream: true, **payload)
   end
 
-  def put(path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
-    request('PUT', path, params: params, headers: headers, origin: origin, debug: debug, **payload)
+  def put(path, origin: @app.base_url, params: {}, headers: {}, debug: nil, **payload)
+    request('PUT', path, origin: origin, params: params, headers: headers, debug: debug, **payload)
   end
 
-  def delete(path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
-    request('DELETE', path, params: params, headers: headers, origin: origin, debug: debug, **payload)
+  def delete(path, origin: @app.base_url, params: {}, headers: {}, debug: nil, **payload)
+    request('DELETE', path, origin: origin, params: params, headers: headers, debug: debug, **payload)
   end
 
   def request(method, path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
