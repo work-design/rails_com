@@ -11,9 +11,6 @@ module CommonApi
       ssl: {
         verify_mode: OpenSSL::SSL::VERIFY_NONE
       },
-      headers: {
-        'Accept' => 'application/json'
-      },
       timeout: {
         read_timeout: 120
       }
