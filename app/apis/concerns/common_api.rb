@@ -40,7 +40,7 @@ module CommonApi
     request('DELETE', path, origin: origin, params: params, headers: headers, debug: debug, **payload)
   end
 
-  def request(method, path, params: {}, headers: {}, origin: nil, debug: nil, **payload)
+  def request(method, path, origin: @app.base_url, params: {}, headers: {}, debug: nil, **payload)
     with_options = { origin: origin }
     with_options.merge! debug: STDOUT, debug_level: 2 if debug
 
