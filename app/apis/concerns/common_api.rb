@@ -20,7 +20,7 @@ module CommonApi
     )
   end
 
-  def get(path, params: {}, headers: {}, origin: nil, debug: nil)
+  def get(path, headers: {}, origin: nil, debug: nil, **params)
     request('GET', path, params: params, headers: headers, origin: origin, debug: debug)
   end
 
