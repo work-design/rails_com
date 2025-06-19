@@ -8,4 +8,4 @@
     <span class="tag is-primary"><%= value %></span>
   </div>
 <% end %>
-<%= hidden_field_tag key, value, id: nil, form: form %>
+<%= hidden_field_tag scope.present? ? "#{scope}[#{key}]" : key, value, id: nil, form: form %>

@@ -11,5 +11,5 @@
     <time data-controller="time"><%= value['lte'] %></time>
   </span>
 <% end %>
-<%= hidden_field_tag "#{key}-gte", value['gte'], id: nil, form: form %>
-<%= hidden_field_tag "#{key}-lte", value['lte'], id: nil, form: form %>
+<%= hidden_field_tag scope.present? ? "#{scope}[#{key}-gte]" : "#{key}-gte", value['gte'], id: nil, form: form %>
+<%= hidden_field_tag scope.present? ? "#{scope}[#{key}-lte]" : "#{key}-lte", value['lte'], id: nil, form: form %>
