@@ -5,4 +5,4 @@
   ) do %>
   <span class="tag is-primary"><%= record_class.enum_i18n(key, value) %></span>
 <% end %>
-<%= hidden_field_tag key, value, id: nil, form: 'filter_search_form' %>
+<%= hidden_field_tag key, value, id: nil, form: form %>
