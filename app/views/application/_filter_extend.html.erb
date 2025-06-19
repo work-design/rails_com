@@ -1,20 +1,18 @@
 <div data-switch-target="src" class="tags display-none">
   <% raw_filter_params.each do |key, value| %>
-    <div id="filter_container_<%= key %>" data-controller="popup" class="max-fullwidth">
     <% if record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :boolean %>
-      <%= render partial: 'filter_extend_text' %>
+      <%= render partial: 'filter_extend_text', locals: { key: key, value: value } %>
     <% elsif record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :datetime %>
-      <%= render partial: 'filter_extend_datetime' %>
+      <%= render partial: 'filter_extend_datetime', locals: { key: key, value: value } %>
     <% else %>
-      <%= render partial: 'filter_extend_text' %>
+      <%= render partial: 'filter_extend_text', locals: { key: key, value: value } %>
     <% end %>
-    </div>
   <% end %>
   <div id="filter_container" data-controller="popup">
     <%= button_to({ action: 'filter' }, params: { keys: request.GET.keys }, class: 'button') do %>
-    <span class="icon">
-      <i class="fa-solid fa-plus"></i>
-    </span>
+      <span class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </span>
     <% end %>
   </div>
 </div>
