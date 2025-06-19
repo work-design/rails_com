@@ -1,11 +1,11 @@
 <div data-switch-target="src" class="tags display-none">
   <% raw_filter_params.each do |key, value| %>
     <% if record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :boolean %>
-      <%= render partial: 'filter_extend_text', locals: { key: key, value: value } %>
+      <%= render partial: 'filter_extend_text', locals: { record_class: record_class, key: key, value: value } %>
     <% elsif record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :datetime %>
-      <%= render partial: 'filter_extend_datetime', locals: { key: key, value: value } %>
+      <%= render partial: 'filter_extend_datetime', locals: { record_class: record_class, key: key, value: value } %>
     <% else %>
-      <%= render partial: 'filter_extend_text', locals: { key: key, value: value } %>
+      <%= render partial: 'filter_extend_text', locals: { record_class: record_class, key: key, value: value } %>
     <% end %>
   <% end %>
   <div id="filter_container" data-controller="popup">
