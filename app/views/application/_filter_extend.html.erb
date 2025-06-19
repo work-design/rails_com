@@ -1,5 +1,6 @@
 <div data-switch-target="src" class="tags display-none">
   <% raw_filter_params.each do |key, value| %>
+    <div id="filter_container_<%= key %>" data-controller="popup" class="max-fullwidth">
     <% if record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :boolean %>
       <%= render partial: 'filter_extend_text', locals: { record_class: record_class, key: key, value: value } %>
     <% elsif record_class.columns_hash.key?(key) && record_class.columns_hash[key].type == :datetime %>
@@ -7,6 +8,7 @@
     <% else %>
       <%= render partial: 'filter_extend_text', locals: { record_class: record_class, key: key, value: value } %>
     <% end %>
+    </div>
   <% end %>
   <div id="filter_container" data-controller="popup">
     <%= button_to({ action: 'filter' }, params: { keys: request.GET.keys }, class: 'button') do %>
