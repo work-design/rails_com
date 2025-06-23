@@ -7,9 +7,9 @@
   <div class="field">
     <%=
       text_field_tag(
-        params[:scope].present? ? "#{params[:scope]}[#{@meta_column.column_name}]" : @meta_column.column_name,
+        params[:scope].present? ? "#{params[:scope]}[#{params[:column_name]}]" : params[:column_name],
         params[:value],
-        placeholder: "请输入#{@meta_column.i18n_name}",
+        placeholder: @meta_column ? "请输入#{@meta_column.i18n_name}" : '',
         autofocus: true,
         autocomplete: 'off',
         data: { action: 'keydown.enter->filter-input#submit' },
