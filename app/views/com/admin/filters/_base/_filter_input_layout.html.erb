@@ -7,6 +7,6 @@
 >
   <% params[:extra].each do |key, value| %>
     <%= hidden_field_tag(params[:scope].present? ? "#{params[:scope]}[#{key}]" : key, value, autocomplete: 'off', form: 'filter_search_form') %>
-  <% end %>
+  <% end if params[:extra].is_a?(Hash) %>
   <%= yield %>
 </div>
