@@ -21,7 +21,7 @@ module Statis
     end
 
     def compute_today_begin!
-      id = statistical_type.constatize.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first.id
+      id = statistical_type.constantize.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first.id
       self.today_begin_id = id
       self.today = Date.today
       self.save
