@@ -13,7 +13,7 @@ module Statis
       attribute :today, :date
       attribute :today_begin_id, :big_integer
 
-      has_many :counters, primary_key: :statistical_type, foreign_key: :countable_type
+      #has_many :counters, primary_key: :statistical_type, foreign_key: :countable_type
     end
 
     def compute_today_begin!

@@ -1,7 +1,7 @@
 module Statis
   class Panel::StatisticsController < Panel::BaseController
     before_action :set_statistic, only: [:show, :destroy]
-    before_action :set_statistical
+    #before_action :set_statistical
 
     def index
       q_params = {}

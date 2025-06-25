@@ -1,5 +1,5 @@
 module Statis
-  module Inner::Counter
+  module Ext::Counter
     extend ActiveSupport::Concern
 
     included do
@@ -11,9 +11,9 @@ module Statis
 
       belongs_to :config
 
-      has_many :counter_years, as: :counter, dependent: :delete_all
-      has_many :counter_months, as: :counter, dependent: :delete_all
-      has_many :counter_days, as: :counter, dependent: :delete_all
+      has_many :counter_years, class_name: 'Statis::CounterYear', as: :counter, dependent: :delete_all
+      has_many :counter_months, class_name: 'Statis::CounterMonth', as: :counter, dependent: :delete_all
+      has_many :counter_days, class_name: 'Statis::CounterDay', as: :counter, dependent: :delete_all
 
       scope :to_cache, -> { where(cached: false) }
 

@@ -1,10 +1,10 @@
 module Statis
   class Panel::CountersController < Panel::BaseController
-    before_action :set_statistic_config
+    before_action :set_config
     before_action :set_counter, only: [:show, :destroy]
 
     def index
-      @counters = @statistic_config.counters
+      @counters = @config.counters
       if (params.keys & ['key', 'value']).present?
         @counters = @counters.json_filter('extra', params[:key] => params[:value])
       end
@@ -30,8 +30,8 @@ module Statis
       @counter = Counter.find(params[:id])
     end
 
-    def set_statistic_config
-      @statistic_config = StatisticConfig.find params[:statistic_config_id]
+    def set_config
+      @config = Config.find params[:config_id]
     end
 
   end
