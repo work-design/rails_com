@@ -9,6 +9,7 @@ module Statis
       attribute :year_month, :string, index: true
       attribute :date, :date
       attribute :count, :integer
+      attribute :filter, :json
 
       belongs_to :config, counter_cache: true
       belongs_to :counter_month, foreign_key: [:config_id, :year_month], primary_key: [:config_id, :year_month]
@@ -24,8 +25,9 @@ module Statis
       self.year_month = "#{year}-#{month.to_s.rjust(2, '0')}"
     end
 
+
     def cache_value
-      self.count = counter.countable.count_from_source(counter, 'day', date)
+      self.count = config.countable.where(filter).where(created_at: time_range).count
     end
 
   end

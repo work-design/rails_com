@@ -21,13 +21,61 @@ module Statis
     end
 
     def compute_today_begin!
-      id = statistical_type.constantize.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first.id
+      id = countable.where(created_at: ...Date.today.beginning_of_day.to_fs(:human)).order(id: :desc).first.id
       self.today_begin_id = id
       self.today = Date.today
       self.save
     end
 
     def keys_gen
+
+    end
+
+    def countable
+      statistical_type.constantize
+    end
+
+    def cache_from_config
+      cache_counter_months(start: begin_on, finish: end_on)
+      #self.update cached: true
+    end
+
+    def cache_counter_months(start:, finish:)
+      first_day = start.beginning_of_month
+      if start > first_day
+        cache_counter_days(start: start, finish: start.end_of_month)
+      end
+
+      next_last_day = start.next_month.end_of_month
+      while next_last_day < finish
+        cache_counter_month(next_last_day.to_fs(:year_and_month))
+        next_last_day = next_last_day.next_month.end_of_month
+      end
+
+      if finish.end_of_month == finish
+        cache_counter_month(finish.to_fs(:year_and_month))
+      else
+        cache_counter_days(start: finish.beginning_of_month, finish: finish)
+      end
+    end
+
+    def cache_counter_days(start:, finish:)
+      return if start > finish
+      (start..finish).each do |date|
+        cache_counter_day(date)
+      end
+    end
+
+    def cache_counter_day(date = Date.today - 1)
+      time_range  = date.beging_of_day .. date.end_of_day
+      arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
+
+      arr.each do |k|
+        sd = counter_days.build(date: date)
+        sd.filter = scopes.zip(k).to_h
+        sd.cache_value
+        sd.save
+      end
 
     end
 
