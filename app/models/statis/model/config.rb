@@ -4,7 +4,6 @@ module Statis
 
     included do
       attribute :statistical_type, :string
-      attribute :year, :integer
       attribute :begin_on, :date
       attribute :end_on, :date
       attribute :note, :string
