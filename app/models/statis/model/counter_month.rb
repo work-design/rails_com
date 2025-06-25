@@ -8,7 +8,8 @@ module Statis
       attribute :year_month, :string, index: true
       attribute :count, :integer
 
-      belongs_to :counter, polymorphic: true, counter_cache: true
+      belongs_to :config, counter_cache: true
+      belongs_to :counter_year, foreign_key: [:config_id, :year], primary_key: [:config_id, :year]
 
       before_validation :init_year_month, if: -> { (changes.keys & ['year', 'month']).present? }
     end

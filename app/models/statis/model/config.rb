@@ -12,8 +12,13 @@ module Statis
       attribute :scopes, :json, default: []
       attribute :today, :date
       attribute :today_begin_id, :big_integer
+      attribute :counter_years_count, :integer
+      attribute :counter_months_count, :integer
+      attribute :counter_days_count, :integer
 
-      #has_many :counters, primary_key: :statistical_type, foreign_key: :countable_type
+      has_many :counter_days
+      has_many :counter_months
+      has_many :counter_years
     end
 
     def compute_today_begin!
