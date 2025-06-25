@@ -7,6 +7,11 @@
 </td>
 <td><%= model.today_begin_id %></td>
 <td>
+  <% model.scopes.each do |key| %>
+    <p><%= key %></p>
+  <% end %>
+</td>
+<td>
 <% model.keys.each do |key| %>
   <p><%= key %></p>
 <% end %>
