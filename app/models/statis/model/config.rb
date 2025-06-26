@@ -28,16 +28,8 @@ module Statis
       self.save
     end
 
-    def keys_gen
-
-    end
-
     def countable
       statistical_type.constantize
-    end
-
-    def cache_from_config
-      #self.update cached: true
     end
 
     def compute_counters
