@@ -67,16 +67,27 @@ module Statis
       end
     end
 
+    def cache_counter_month(year, month)
+
+      
+      arr.each do |k|
+        counter_month = counter_months.build(year: year, month: month)
+        counter_month.filter = scopes.zip(k).to_h
+        counter_month.cache_value
+        counter_month.save
+      end
+    end
+
     def cache_counter_day(date = begin_on)
       time_range  = date.beginning_of_day ... (date + 1).beginning_of_day
       arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
 
       counter_days.where(date: date).delete_all
       arr.each do |k|
-        sd = counter_days.build(date: date)
-        sd.filter = scopes.zip(k).to_h
-        sd.cache_value
-        sd.save
+        counter_day = counter_days.build(date: date)
+        counter_day.filter = scopes.zip(k).to_h
+        counter_day.cache_value
+        counter_day.save
       end
 
     end

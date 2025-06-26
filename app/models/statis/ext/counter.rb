@@ -27,15 +27,7 @@ module Statis
 
 
 
-    def cache_counter_month(year_month)
-      year, month = year_month.split('-')
-      sm = counter_months.find_by(year: year, month: month)
-      return if sm
 
-      sm = counter_months.find_or_initialize_by(year: year, month: month)
-      sm.cache_value
-      sm.save
-    end
 
 
 
