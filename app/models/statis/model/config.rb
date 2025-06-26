@@ -37,7 +37,6 @@ module Statis
     end
 
     def cache_from_config
-      cache_counter_months(start: begin_on, finish: end_on)
       #self.update cached: true
     end
 
@@ -60,11 +59,9 @@ module Statis
       end
     end
 
-    def cache_counter_days(start:, finish:)
-      return if start > finish
-      (start..finish).each do |date|
-        cache_counter_day(date)
-      end
+    def cache_counter_year(year)
+      arr = []
+      
     end
 
     def cache_counter_month(year, month)
