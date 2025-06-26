@@ -19,13 +19,16 @@ module Statis
       self.year_month = "#{year}-#{month.to_s.rjust(2, '0')}"
     end
 
-    def cache_value
-      today = Date.today
+    def time_range
+      the_day = Date.new(year, month, 1)
+      the_day.beginning_of_day ... (the_day + 1.month).beginning_of_day
+    end
 
+    def cache_value(today = Date.today)
       if today.to_fs(:year_and_month) == year_month
         counter.cache_counter_days(start: today.beginning_of_day, finish: today - 1)
       else
-        self.count = counter.countable.count_from_source(counter, 'month', today.change(year: year, month: month, day: 1))
+        self.count = config.countable.where(filter).where(created_at: time_range).count
       end
     end
 
