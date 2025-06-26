@@ -4,6 +4,7 @@ module Statis
 
     included do
       attribute :year, :integer
+      attribute :begin_on, :date
       attribute :count, :integer
       attribute :filter, :json
 
@@ -11,8 +12,13 @@ module Statis
     end
 
     def time_range
-      the_day = Date.new(year, 1, 1)
-      the_day.beginning_of_day ... (the_day.end_of_year + 1).beginning_of_day
+      if config.begin_on > Date.new(year, 1, 1)
+        the_day = config.begin_on
+      else
+        the_day = Date.new(year, 1, 1)
+      end
+
+      begin_on.beginning_of_day ... (begin_on.end_of_year + 1).beginning_of_day
     end
 
     def cache_value(today = Date.today)

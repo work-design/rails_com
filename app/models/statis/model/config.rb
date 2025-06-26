@@ -40,7 +40,23 @@ module Statis
       #self.update cached: true
     end
 
-    def cache_counter_months(start: begin_on, finish: end_on)
+
+
+    def compute_counters
+      if begin_on.year < end_on.year
+        (begin_on.year .. (end_on.year - 1)).each_with_index do |year, index|
+          if index == 0
+            the_day = begin_on
+          else
+            the_day = Date.new(year, 1, 1)
+          end
+          cache_counter_year(begin_on.year, the_day)
+        end
+        cache_months(Date.new(end_on.year, 1, 1), end_on)
+      elsif begin_on.year == end_on.year  # 当开始的时间范围和结束的时间范围在同一年
+        cache_months(begin_on, end_on)
+      end
+
       first_day = start.beginning_of_month
       if start > first_day
         cache_counter_days(start: start, finish: start.end_of_month)
@@ -48,25 +64,40 @@ module Statis
 
       next_last_day = start.next_month.end_of_month
       while next_last_day < finish
-        cache_counter_month(next_last_day.to_fs(:year_and_month))
+        cache_counter_month(next_last_day.year, next_last_day.month)
         next_last_day = next_last_day.next_month.end_of_month
       end
 
       if finish.end_of_month == finish
-        cache_counter_month(finish.to_fs(:year_and_month))
+        cache_counter_month(finish.year, finish.month)
       else
-        cache_counter_days(start: finish.beginning_of_month, finish: finish)
+        cache_counter_day(start: finish.beginning_of_month, finish: finish)
       end
     end
 
-    def cache_counter_year(year)
-      the_day = Date.new(year, 1, 1)
+    def cache_months(begin_on, end_on)
+      if begin_on.month < end_on.month
+        (begin_on.month .. (end_on.month - 1)).each do |month|
+          cache_counter_month(begin_on.year, month)
+        end
+        (Date.new(end_on.year, end_on.month, 1) .. end_on).each do |date|
+          cache_counter_day(date)
+        end
+      elsif begin_on.month == begin_on.month
+        (begin_on .. end_on).each do |date|
+          cache_counter_day(date)
+        end
+      end
+    end
+
+    def cache_counter_year(year, the_day)
       time_range = the_day.beginning_of_day ... (the_day.end_of_year + 1).beginning_of_day
       arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
 
       arr.each do |k|
         counter_year = counter_years.build(year: year)
         counter_year.filter = scopes.zip(k).to_h
+        counter_year.begin_on = the_start
         counter_year.cache_value
         counter_year.save
       end
