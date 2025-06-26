@@ -40,7 +40,7 @@ module Statis
       #self.update cached: true
     end
 
-    def cache_counter_months(start:, finish:)
+    def cache_counter_months(start: begin_on, finish: end_on)
       first_day = start.beginning_of_month
       if start > first_day
         cache_counter_days(start: start, finish: start.end_of_month)
@@ -60,8 +60,16 @@ module Statis
     end
 
     def cache_counter_year(year)
-      arr = []
-      
+      the_day = Date.new(year, 1, 1)
+      time_range = the_day.beginning_of_day ... (the_day.end_of_year + 1).beginning_of_day
+      arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
+
+      arr.each do |k|
+        counter_year = counter_years.build(year: year)
+        counter_year.filter = scopes.zip(k).to_h
+        counter_year.cache_value
+        counter_year.save
+      end
     end
 
     def cache_counter_month(year, month)
