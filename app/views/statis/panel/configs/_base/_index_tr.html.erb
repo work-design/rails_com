@@ -17,9 +17,9 @@
         <i class="fa-solid fa-circle-info text-info"></i>
         <span class="ml-1"><%= t('.statistics.index.title') %></span>
       <% end %>
-      <%= link_to({ controller: 'counters', config_id: model.id }, class: 'button is-small is-rounded is-light') do %>
+      <%= link_to({ controller: 'counter_days', config_id: model.id }, class: 'button is-small is-rounded is-light') do %>
         <i class="fa-solid fa-circle-info text-info"></i>
-        <span class="ml-1"><%= t('.counters.index.title') %></span>
+        <span class="ml-1"><%= t('.counter_days.index.title') %></span>
       <% end %>
     </div>
   </td>

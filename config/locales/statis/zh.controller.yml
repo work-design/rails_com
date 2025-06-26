@@ -17,9 +17,9 @@ zh:
       configs:
         index:
           title: 统计设置
-      counters:
+      counter_days:
         index:
-          title: 数量汇总
+          title: 计数汇总
       statistic_days:
         index:
           title: 缓存详情

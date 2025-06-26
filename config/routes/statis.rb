@@ -21,8 +21,8 @@ namespace :statis, defaults: { business: 'statis' } do
           get 'month/:month' => :month
           post 'do_cache/:month' => :do_cache
         end
-        resources :counter_days
       end
+      resources :counter_days
     end
   end
 end
