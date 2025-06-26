@@ -17,7 +17,7 @@ module RailsCom::ActiveRecord
       update_all "#{column} = #{sql_str}"
     end
 
-    def json_filter(column, params)
+    def json_filter(column, **params)
       query = self
 
       params.each do |k, v|
@@ -31,6 +31,19 @@ module RailsCom::ActiveRecord
       end
 
       query
+    end
+
+    def json_or(column, **params)
+      query = self
+      or_string = []
+      or_v = []
+
+      params.each do |k, v|
+        or_string << "#{column}->>'#{k}' = ?"
+        or_v << v
+      end
+
+      query.where([or_string.join(' OR '), *or_v])
     end
 
   end
