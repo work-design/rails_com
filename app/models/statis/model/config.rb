@@ -53,13 +53,18 @@ module Statis
         (begin_on.month .. (end_on.month - 1)).each do |month|
           cache_counter_month(begin_on.year, month)
         end
-        (Date.new(end_on.year, end_on.month, 1) .. end_on).each do |date|
-          cache_counter_day(date)
-        end
+        cache_days(Date.new(end_on.year, end_on.month, 1), end_on)
       elsif begin_on.month == begin_on.month
-        (begin_on .. end_on).each do |date|
-          cache_counter_day(date)
-        end
+        cache_days(begin_on, end_on)
+      end
+    end
+
+    def cache_days(begin_on, end_on)
+      #return if end_on.day == 1 # 如果当天是月初第一天则没必要缓存计算
+      #(today.beginning_of_month .. (today - 1))
+
+      (begin_on .. end_on).each do |date|
+        cache_counter_day(date)
       end
     end
 
@@ -100,7 +105,6 @@ module Statis
         counter_day.cache_value
         counter_day.save
       end
-
     end
 
   end

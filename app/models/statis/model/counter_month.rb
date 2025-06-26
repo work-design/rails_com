@@ -24,15 +24,8 @@ module Statis
       the_day.beginning_of_day ... (the_day + 1.month).beginning_of_day
     end
 
-    def cache_value(today = Date.today)
-      if today.to_fs(:year_and_month) == year_month
-        return if today.day == 1 # 如果当天是月初第一天则没必要缓存计算
-        (today.beginning_of_month .. (today - 1)).each do |date|
-          config.cache_counter_day(date)
-        end
-      else
-        self.count = config.countable.where(filter).where(created_at: time_range).count
-      end
+    def cache_value
+      self.count = config.countable.where(filter).where(created_at: time_range).count
     end
 
   end
