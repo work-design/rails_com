@@ -67,10 +67,12 @@ module Statis
       end
     end
 
-    def cache_counter_day(date = Date.today - 1)
-      time_range  = date.beging_of_day .. date.end_of_day
+    def cache_counter_day(date = begin_on)
+      time_range  = date.beginning_of_day ... (date + 1).beginning_of_day
       arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
 
+      counter_days.where(date: date).delete_all
+      binding.b
       arr.each do |k|
         sd = counter_days.build(date: date)
         sd.filter = scopes.zip(k).to_h
