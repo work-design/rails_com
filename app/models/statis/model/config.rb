@@ -68,8 +68,10 @@ module Statis
     end
 
     def cache_counter_month(year, month)
+      the_day = Date.new(year, month, 1)
+      time_range  = the_day.beginning_of_day ... (the_day.end_of_month + 1).beginning_of_day
+      arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
 
-      
       arr.each do |k|
         counter_month = counter_months.build(year: year, month: month)
         counter_month.filter = scopes.zip(k).to_h
