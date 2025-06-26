@@ -7,11 +7,12 @@ module Statis
       attribute :month, :integer
       attribute :year_month, :string, index: true
       attribute :count, :integer
+      attribute :filter, :json
 
       belongs_to :config, counter_cache: true
-      belongs_to :counter_year, foreign_key: [:config_id, :year], primary_key: [:config_id, :year]
+      belongs_to :counter_year, foreign_key: [:config_id, :year], primary_key: [:config_id, :year], optional: true
 
-      before_validation :init_year_month, if: -> { (changes.keys & ['year', 'month']).present? }
+      after_initialize :init_year_month, if: :new_record?
     end
 
     def init_year_month
