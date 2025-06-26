@@ -25,6 +25,10 @@ module Statis
       self.year_month = "#{year}-#{month.to_s.rjust(2, '0')}"
     end
 
+    def time_range
+      the_day = Date.new(year, month, day)
+      the_day.beginning_of_day ... (the_day + 1).beginning_of_day
+    end
 
     def cache_value
       self.count = config.countable.where(filter).where(created_at: time_range).count
