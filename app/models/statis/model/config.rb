@@ -40,8 +40,6 @@ module Statis
       #self.update cached: true
     end
 
-
-
     def compute_counters
       if begin_on.year < end_on.year
         (begin_on.year .. (end_on.year - 1)).each_with_index do |year, index|
@@ -55,23 +53,6 @@ module Statis
         cache_months(Date.new(end_on.year, 1, 1), end_on)
       elsif begin_on.year == end_on.year  # 当开始的时间范围和结束的时间范围在同一年
         cache_months(begin_on, end_on)
-      end
-
-      first_day = start.beginning_of_month
-      if start > first_day
-        cache_counter_days(start: start, finish: start.end_of_month)
-      end
-
-      next_last_day = start.next_month.end_of_month
-      while next_last_day < finish
-        cache_counter_month(next_last_day.year, next_last_day.month)
-        next_last_day = next_last_day.next_month.end_of_month
-      end
-
-      if finish.end_of_month == finish
-        cache_counter_month(finish.year, finish.month)
-      else
-        cache_counter_day(start: finish.beginning_of_month, finish: finish)
       end
     end
 
