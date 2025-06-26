@@ -72,7 +72,6 @@ module Statis
       arr = countable.where(created_at: time_range).select(scopes).distinct.pluck(scopes)
 
       counter_days.where(date: date).delete_all
-      binding.b
       arr.each do |k|
         sd = counter_days.build(date: date)
         sd.filter = scopes.zip(k).to_h
