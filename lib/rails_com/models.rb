@@ -95,12 +95,8 @@ module RailsCom::Models
     tables
   end
 
-  def unbound_tables_hash
-    #tables - models.map(&:table_name) -
-    tables = {}
-    tables_hash.each do |table_name, cols|
-
-    end
+  def unbound_tables
+    ActiveRecord::Base.connection.tables - models.map(&:table_name) - ['schema_migrations', 'ar_internal_metadata']
   end
 
   def migrate_modules_hash
