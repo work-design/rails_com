@@ -58,9 +58,13 @@ module RailsCom::Models
           table_options = {
             id: r[:model_attributes].delete(node.primary_key.to_sym)[:migrate_type]
           }
-          table_options.merge! default: 'uuidv7()' if table_options[:id] == :uuid
-          r[:table_options] = table_options.inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
+        else
+          table_options = {
+            id: :uuid,
+            default: 'uuidv7()'
+          }
         end
+        r[:table_options] = table_options.inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
       end
 
       tables_hash(node, records_hash[root])
