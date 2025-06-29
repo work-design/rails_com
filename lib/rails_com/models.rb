@@ -58,6 +58,7 @@ module RailsCom::Models
           table_options = {
             id: r[:model_attributes].delete(node.primary_key.to_sym)[:migrate_type]
           }
+          table_options.merge! default: 'uuidv7()' if table_options[:id] == :uuid
         else
           table_options = {
             id: :uuid,
