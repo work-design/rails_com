@@ -213,9 +213,9 @@ module RailsCom::ActiveRecord
       refs.each do |_, ref|
         r = { name: ref.name }
         if ref.polymorphic?
-          r.merge! polymorphic: true
+          r.merge! polymorphic: true, type: :uuid
         else
-          r.merge! type: ref.klass.columns_hash['id'].sql_type
+          r.merge! type: :uuid
         end
         r.merge! reference_options: r.slice(:polymorphic, :type).inject('') { |s, h| s << ", #{h[0]}: #{h[1].inspect}" }
         results[ref.foreign_key.to_sym] = r unless results.key?(ref.foreign_key.to_sym)
