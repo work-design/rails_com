@@ -11,7 +11,7 @@ module RailsCom
         Rails.logger.silence { @app.call(env) }
       else
         unless Rails.env.development?
-          Rails.logger.debug "\n"
+          puts "\n"
         end
         @app.call(env)
       end
