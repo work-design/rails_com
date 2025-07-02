@@ -44,9 +44,7 @@ module RailsCom
     end
 
     initializer 'rails_com.quiet_logs' do |app|
-      if RailsCom.config.quiet_logs.present?
-        app.middleware.insert_before ::Rails::Rack::Logger, ::RailsCom::QuietLogs
-      end
+      app.middleware.insert_before ::Rails::Rack::Logger, ::RailsCom::QuietLogs
     end
 
     initializer 'rails_com.default_initializer' do |app|
