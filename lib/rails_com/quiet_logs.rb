@@ -3,11 +3,10 @@ module RailsCom
 
     def initialize(app)
       @app = app
-      @assets_regex = %r(\A/{0,2}(#{RailsCom.config.quiet_logs.join('|')}))
     end
 
     def call(env)
-      if env['PATH_INFO'] =~ @assets_regex
+      if env['PATH_INFO'].start_with? *RailsCom.config.quiet_logs
         Rails.logger.debug "\e[33m  Silenced: #{env['PATH_INFO']}  \e[0m"
         Rails.logger.silence { @app.call(env) }
       else
