@@ -3,10 +3,10 @@
     <h2 class="title is-3"><%= t('.title') %></h2>
     <% if instance_variable_defined? "@#{pluralize_model_name}" %>
       <p class="text-grey"><span>共<%= instance_variable_get("@#{pluralize_model_name}").count %>条记录</span></p>
-    <% end %>  
+    <% end %>
   </div>
   <div class="level-right">
-    <%= render 'filter_form' %>
+    <%= render 'button_actions' %>
     <%= render 'button' %>
   </div>
 </nav>
