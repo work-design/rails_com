@@ -12,7 +12,9 @@ module Pg
     end
 
     def create
-      PgSubscription.connection.exec_query "CREATE SUBSCRIPTION #{pg_subscription_params[:subname]} CONNECTION '#{conninfo_params}' PUBLICATION #{pg_subscription_params[:pubname]}"
+      PgSubscription.connection.exec_query(
+        "CREATE SUBSCRIPTION #{pg_subscription_params[:subname]} CONNECTION '#{conninfo_params}' PUBLICATION #{pg_subscription_params[:pubname]}"
+      )
     end
 
     def update
