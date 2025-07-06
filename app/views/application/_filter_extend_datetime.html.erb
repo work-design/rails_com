@@ -5,7 +5,7 @@
     class: 'tags has-addons mb-0'
   ) do %>
   <span class="tag"><%= record_class.human_attribute_name(key) %></span>
-  <span class="tag is-primary justify-content-flex-start overflow-x-hidden">
+  <span class="tag is-primary justify-content-flex-start overflow-x-hidden as-attached-left">
     <time data-controller="time"><%= value['gte'] %></time>
     <span>-</span>
     <time data-controller="time"><%= value['lte'] %></time>
