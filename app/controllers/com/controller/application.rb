@@ -25,6 +25,7 @@ module Com
 
     def raw_filter_params
       request.GET.each_with_object({}) do |(k, v), h|
+        next if v.blank?
         if k.include?('-')
           key, suffix = k.split('-')
           if ['like'].include? suffix
