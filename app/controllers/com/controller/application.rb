@@ -27,8 +27,12 @@ module Com
       request.GET.each_with_object({}) do |(k, v), h|
         if k.include?('-')
           key, suffix = k.split('-')
-          h[key] ||= {}
-          h[key][suffix] = v
+          if ['like'].include? suffix
+            h[k] = v
+          else
+            h[key] ||= {}
+            h[key][suffix] = v
+          end
         else
           h[k] = v
         end
