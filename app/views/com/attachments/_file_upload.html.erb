@@ -1,4 +1,4 @@
-<div class="field is-narrow file has-name as-boxed" data-picture-target="uploadDiv">
+<div data-picture-target="uploadDiv" class="field is-narrow file is-boxed">
   <label class="file-label">
     <%=
       f.file_field(
@@ -16,8 +16,8 @@
       <span class="file-icon">
         <i class="fa-solid fa-upload text-grey-dark"></i>
       </span>
+      <span>选择文件</span>
     </span>
-    <span class="file-name" data-picture-target="filename"></span>
   </label>
 </div>
 <div class="field is-narrow" data-picture-target="preview" style="display: none">
