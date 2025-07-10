@@ -4,7 +4,7 @@ module Roled
     include Ext::Base
 
     def visible_roles
-      Role.where(role_types: { who_type: 'Org::Organ' }).visible
+      Role.joins(:role_types).where(role_types: { who_type: 'Org::Organ' }).visible
     end
 
     class_methods do
