@@ -1,9 +1,9 @@
 module Roled
   module Ext::User
+    include Ext::Base
     extend ActiveSupport::Concern
 
     included do
-      include Ext::Base
       attribute :admin, :boolean, default: false
     end
 
