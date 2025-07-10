@@ -24,7 +24,11 @@ module Roled
     end
 
     def visible_roles
-      Role.visible
+      self.class.visible_roles
+    end
+
+    def default_roles
+      self.class.default_roles
     end
 
     def all_roles
@@ -84,6 +88,16 @@ module Roled
     def landmark_rules
       _rule_ids = role_hash.leaves
       Com::MetaAction.where(id: _rule_ids, landmark: true)
+    end
+
+    class_methods do
+      def visible_roles
+        Role.joins(:role_types).where(role_types: { who_type: name }).visible
+      end
+
+      def default_roles
+        Role.joins(:role_types).where(role_types: { who_type: name }).visible
+      end
     end
 
   end

@@ -24,6 +24,7 @@ module Roled
       accepts_nested_attributes_for :role_types, allow_destroy: true
 
       scope :visible, -> { where(visible: true) }
+      scope :default, -> { where(default: true) }
 
       normalizes :tip, with: -> tip { tip.presence }
 
