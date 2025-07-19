@@ -4,9 +4,7 @@ module RailsCom::ActionController
     private
     def _prefixes
       # 支持在 views/:controller 目录下以 _:action 开头的子目录进一步分组，会优先查找该目录下文件
-      # 支持在 views/:controller 目录下以 _base 开头的通用分组子目录
       pres = ["#{controller_path}/_#{params[:action]}"]
-      _bases = ["#{controller_path}/_base"]
       controller_paths = [controller_path]
       namespaces = [params[:namespace]]
 
@@ -21,7 +19,6 @@ module RailsCom::ActionController
       super_actions = RailsCom::Routes.controllers[route_super_class.controller_path]
       # 同名 controller, 向上级追溯
       while super_actions.is_a?(Hash) && super_actions.key?(params[:action])
-        _bases.append "#{route_super_class.controller_path}/_base"
         controller_paths.append route_super_class.controller_path
         namespaces.append super_actions.dig(params[:action], :namespace)
 
@@ -29,7 +26,6 @@ module RailsCom::ActionController
         super_actions = RailsCom::Routes.controllers[route_super_class.controller_path]
       end
 
-      pres.concat _bases
       # 可以在 controller 中定义 _prefixes 方法
       # super do |pres|
       #   pres + ['xx']
