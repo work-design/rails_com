@@ -27,12 +27,6 @@ module RailsCom::ActiveRecord
       end
     end
 
-    def help_i18n(attribute)
-      return nil if attribute.blank?
-      help_key = RailsCom.config.help_key.call(self, attribute)
-      ::I18n.t help_key, default: nil
-    end
-
     def enum_base_i18n(attribute)
       h = ::I18n.t enum_key(attribute), default: {}
       h.compact  # 注意这里返回的结果是 frozen Hash, 避免使用 compact!

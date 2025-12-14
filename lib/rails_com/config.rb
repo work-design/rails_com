@@ -14,7 +14,6 @@ module RailsCom #:nodoc:
   config.debug_i18n = false
   config.default_return_path = '/board'
   config.enum_key = ->(o, attribute){ "#{o.i18n_scope}.enum.#{o.base_class.model_name.i18n_key}.#{attribute}" }
-  config.help_key = ->(o, attribute){ "#{o.i18n_scope}.help.#{o.base_class.model_name.i18n_key}.#{attribute}" }
   config.ignore_exception = [
     'ActionController::UnknownFormat',
     'ActiveRecord::RecordNotFound'
