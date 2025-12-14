@@ -28,14 +28,6 @@ require 'rails_com/utils'
 require 'generators/scaffold_generator'
 require 'generators/jbuilder_generator' if defined?(Jbuilder)
 
-# default_form, 需要位于 rails_com 的加载之后
-require 'default_form/config'
-require 'default_form/active_record/extend'
-require 'default_form/override/action_view/helpers/tags/collection_check_boxes'
-require 'default_form/override/action_view/helpers/tags/collection_radio_buttons'
-require 'default_form/controller_helper'
-require 'default_form/view_helper'
-
 # active storage
 require 'active_storage/service/disc_service'
 
